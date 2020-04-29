@@ -15,9 +15,6 @@ function addRule(config, {browsers, langs, bemLevels, ruleIncludes, ruleExcludes
         use: [{
             loader: require.resolve('babel-loader'),
             options: {
-                presets: [
-                    [require.resolve('babel-preset-data-ui'), {env: envConfig, typescript}],
-                ],
                 plugins: [
                     reactHotLoader && require.resolve('react-hot-loader/babel'),
                 ].filter(Boolean),

@@ -24,7 +24,7 @@ module.exports = {
         '^(?!.*\\.(js|jsx|ts|tsx|json)$)': '<rootDir>/jest/fileTransform.js',
     },
     transformIgnorePatterns: [
-        'node_modules/(?!(@yandex-data-ui)/)',
+        'node_modules/',
     ],
     snapshotSerializers: [
         'enzyme-to-json/serializer',

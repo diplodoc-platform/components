@@ -1,5 +1,5 @@
 {
-  "name": "@yandex-data-ui/docs-components",
+  "name": "docs-components",
   "description": "Sharable Cloud docs components",
   "author": "DataUI Team <data-ui@yandex-team.ru>",
   "license": "UNLICENSED",
@@ -35,9 +35,6 @@
     "build": "npm run build:clean && npm run build:compile && npm run build:copy",
     "storybook:start": "start-storybook -p 7008",
     "storybook:build": "build-storybook -c .storybook -o storybook-static",
-    "docker:build": "docker build . -t registry.yandex.net/data-ui/docs-components:${npm_package_version}",
-    "docker:push": "docker push registry.yandex.net/data-ui/docs-components:${npm_package_version}",
-    "platform-tools": "DOCKER_IMAGE_NAME=\"docs-components\" platform-tools",
     "prepublishOnly": "npm run lint && npm run test && npm run build"
   },
   "dependencies": {
@@ -79,7 +76,6 @@
     "babel-loader": "^8.1.0",
     "babel-plugin-dynamic-import-node": "^2.3.3",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
-    "babel-preset-data-ui": "^3.7.0",
     "cache-loader": "^4.1.0",
     "copyfiles": "^2.2.0",
     "css-loader": "^3.5.3",

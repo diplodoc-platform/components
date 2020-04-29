@@ -1,0 +1,12 @@
+# Settings
+.idea
+.vscode
+.DS_Store
+.env
+
+# Libs
+node_modules
+
+# Generated content
+/build
+/storybook-static

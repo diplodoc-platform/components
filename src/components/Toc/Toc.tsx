@@ -2,14 +2,15 @@ import React from 'react';
 import block from 'bem-cn-lite';
 import {parse} from 'url';
 
-import {TocData, Router, TocItem} from '../../models';
+import {TocData, Router, TocItem, Lang} from '../../models';
 import {ToggleArrow} from '../ToggleArrow';
 import {HTML} from '../HTML';
 import {TextInput} from '../TextInput';
 
+import i18n from './i18n';
+
 import './Toc.scss';
 
-// TODO: Add support of i18n
 const b = block('dc-toc');
 const HEADER_HEIGHT = 0;
 
@@ -19,6 +20,7 @@ function isActiveItem(router: Router, href: string) {
 
 export interface TocProps extends TocData {
     router: Router;
+    lang: Lang;
 }
 
 interface FlatTocItem {
@@ -53,6 +55,7 @@ export class Toc extends React.Component<TocProps, TocState> {
     };
 
     componentDidMount() {
+        i18n.changeLanguage(this.props.lang);
         this.containerEl = document.querySelector('.Layout__content');
         this.footerEl = document.querySelector('.Layout__footer');
         this.setTocHeight();
@@ -69,6 +72,10 @@ export class Toc extends React.Component<TocProps, TocState> {
         if (prevProps.router.pathname !== this.props.router.pathname) {
             this.setTocHeight();
             this.setState(this.getState(this.props, this.state), () => this.scrollToActiveItem());
+        }
+
+        if (prevProps.lang !== this.props.lang) {
+            i18n.changeLanguage(this.props.lang);
         }
     }
 
@@ -207,7 +214,7 @@ export class Toc extends React.Component<TocProps, TocState> {
                     <TextInput
                         className={b('top-filter-input')}
                         text={this.state.filterName}
-                        // TODO add placeholder={i18nK('label_toc-filter-placeholder')}
+                        placeholder={i18n.t('label_toc-filter-placeholder')}
                         onChange={this.handleFilterNameChange}
                     />
                 </div>

@@ -1,7 +1,7 @@
 import React, {ReactElement} from 'react';
 import block from 'bem-cn-lite';
 
-import {TocData, Router} from '../../models';
+import {TocData, Router, Lang} from '../../models';
 import {Toc} from '../Toc';
 
 import './DocLayout.scss';
@@ -15,6 +15,7 @@ const Right: React.FC = () => null;
 export interface DocLayoutProps {
     toc: TocData;
     router: Router;
+    lang: Lang;
     children: ReactElement[] | ReactElement<unknown, React.FC>;
     className?: string;
 }
@@ -56,7 +57,7 @@ export class DocLayout extends React.Component<DocLayoutProps> {
     }
 
     private renderToc() {
-        const {toc, router} = this.props;
+        const {toc, router, lang} = this.props;
 
         if (!toc) {
             return null;
@@ -64,7 +65,7 @@ export class DocLayout extends React.Component<DocLayoutProps> {
 
         return (
             <div className={b('toc')}>
-                <Toc {...toc} router={router}/>
+                <Toc {...toc} router={router} lang={lang}/>
             </div>
         );
     }

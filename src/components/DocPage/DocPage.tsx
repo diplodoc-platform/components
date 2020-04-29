@@ -2,14 +2,14 @@ import React from 'react';
 import block from 'bem-cn-lite';
 import 'yfm-transform/dist/js/yfm';
 
-// TODO(vladimirfedin): Add support of i18n
-
-import {TocData, Router} from '../../models';
+import {TocData, Router, Lang} from '../../models';
 import {DocLayout} from '../DocLayout';
 import {DocPageTitle} from '../DocPageTitle';
 import {MiniToc} from '../MiniToc';
 import {Breadcrumbs, BreadcrumbItem} from '../Breadcrumbs';
 import {HTML} from '../HTML';
+
+import i18n from './i18n';
 
 import GithubIcon from '../../../assets/icons/github.svg';
 
@@ -39,17 +39,29 @@ export interface DocPageProps {
     meta: DocPageMeta;
     githubUrl?: string;
     router: Router;
+    lang: Lang;
 }
 
 export class DocPage extends React.Component<DocPageProps> {
+
+    componentDidMount() {
+        i18n.changeLanguage(this.props.lang);
+    }
+
+    componentDidUpdate(prevProps: DocPageProps) {
+        if (prevProps.lang !== this.props.lang) {
+            i18n.changeLanguage(this.props.lang);
+        }
+    }
+
     render() {
-        const {toc, router} = this.props;
+        const {toc, router, lang} = this.props;
 
         const asideLinks = this.renderAsideLinks();
         const asideMiniToc = this.renderAsideMiniToc();
 
         return (
-            <DocLayout toc={toc} router={router} className={b()}>
+            <DocLayout toc={toc} router={router} lang={lang} className={b()}>
                 <DocLayout.Center>
                     <div className={b('main')}>
                         {this.renderBreadcrumbs()}
@@ -173,11 +185,7 @@ export class DocPage extends React.Component<DocPageProps> {
                         className={b('aside-link')}
                     >
                         <GithubIcon className={b('aside-link-icon')} width={iconSize} height={iconSize}/>
-                        {
-                            // TODO(vladimirfedin) Add github link
-                            // TODO i18n('docs', 'label_link-github')
-                            'Редактировать на GitHub'
-                        }
+                        {i18n.t('label_link-github')}
                     </a>
                 </li>
             </ul>

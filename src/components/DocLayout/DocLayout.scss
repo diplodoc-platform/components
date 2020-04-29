@@ -1,5 +1,5 @@
-@import 'mixins';
-@import 'variables';
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
 
 .dc-doc-layout {
     display: flex;

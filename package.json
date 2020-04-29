@@ -27,7 +27,7 @@
     "typecheck": "tsc --noEmit",
     "dev": "npm run storybook:start",
     "start": "node dist",
-    "test": "jest",
+    "test": "jest --passWithNoTests",
     "test:update": "jest -u",
     "build:clean": "rimraf build",
     "build:copy": "copyfiles -u 1 \"src/components/**/*.scss\" \"src/components/**/*.svg\" build",

@@ -1,7 +1,7 @@
 import React from 'react';
 import block from 'bem-cn-lite';
 
-import {TocData, Router} from '../../models';
+import {TocData, Router, Lang} from '../../models';
 import {DocLayout} from '../DocLayout';
 import {DocPageTitle} from '../DocPageTitle';
 import {Text} from '../Text';
@@ -27,11 +27,14 @@ export interface DocLeadingPageProps {
     data: DocLeadingPageData;
     toc: TocData;
     router: Router;
+    lang: Lang;
 }
 
-export const DocLeadingPage: React.FC<DocLeadingPageProps> = ({data: {title, description, links}, toc, router}) => {
+export const DocLeadingPage: React.FC<DocLeadingPageProps> = (
+    {data: {title, description, links}, toc, router, lang},
+) => {
     return (
-        <DocLayout toc={toc} router={router} className={b()}>
+        <DocLayout toc={toc} router={router} lang={lang} className={b()}>
             <span/>
             <DocLayout.Center>
                 <main className={b('main')}>

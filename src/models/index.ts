@@ -23,3 +23,8 @@ export interface HeadingItem {
 export interface Router {
     pathname: string;
 }
+
+export enum Lang {
+    Ru = 'ru',
+    En = 'en'
+}

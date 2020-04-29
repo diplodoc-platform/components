@@ -2,7 +2,7 @@ import React, {ReactElement} from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 
-import {HeadingItem} from '../../models';
+import {DocHeadingItem} from '../../models';
 import {Scrollspy} from '../Scrollspy';
 
 import './MiniToc.scss';
@@ -10,7 +10,7 @@ import './MiniToc.scss';
 const b = block('dc-mini-toc');
 
 export interface MinitocProps {
-    headings: HeadingItem[];
+    headings: DocHeadingItem[];
 }
 
 export class MiniToc extends React.Component<MinitocProps> {
@@ -54,7 +54,7 @@ export class MiniToc extends React.Component<MinitocProps> {
         );
     }
 
-    private renderSection = (prevSections: ReactElement[], heading: HeadingItem) => {
+    private renderSection = (prevSections: ReactElement[], heading: DocHeadingItem) => {
         return prevSections.concat(
             this.renderItem(heading),
             heading.items
@@ -63,7 +63,7 @@ export class MiniToc extends React.Component<MinitocProps> {
         );
     };
 
-    private renderItem = ({title, href}: HeadingItem, isChild = false) => {
+    private renderItem = ({title, href}: DocHeadingItem, isChild = false) => {
         return (
             <li
                 key={href}

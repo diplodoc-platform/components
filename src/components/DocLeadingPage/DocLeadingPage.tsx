@@ -1,7 +1,7 @@
 import React from 'react';
 import block from 'bem-cn-lite';
 
-import {TocData, Router, Lang} from '../../models';
+import {DocLeadingPageData, Router, Lang} from '../../models';
 import {DocLayout} from '../DocLayout';
 import {DocPageTitle} from '../DocPageTitle';
 import {Text} from '../Text';
@@ -11,21 +11,7 @@ import './DocLeadingPage.scss';
 
 const b = block('dc-doc-leading-page');
 
-interface DocLeadingPageLinks {
-    title: string;
-    description: string;
-    href: string;
-}
-
-interface DocLeadingPageData {
-    title: string;
-    description: string;
-    links: DocLeadingPageLinks[];
-}
-
-export interface DocLeadingPageProps {
-    data: DocLeadingPageData;
-    toc: TocData;
+export interface DocLeadingPageProps extends DocLeadingPageData {
     router: Router;
     lang: Lang;
 }

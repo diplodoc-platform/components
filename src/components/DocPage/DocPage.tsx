@@ -2,11 +2,11 @@ import React from 'react';
 import block from 'bem-cn-lite';
 import 'yfm-transform/dist/js/yfm';
 
-import {TocData, Router, Lang} from '../../models';
+import {DocPageData, Router, Lang} from '../../models';
 import {DocLayout} from '../DocLayout';
 import {DocPageTitle} from '../DocPageTitle';
 import {MiniToc} from '../MiniToc';
-import {Breadcrumbs, BreadcrumbItem} from '../Breadcrumbs';
+import {Breadcrumbs} from '../Breadcrumbs';
 import {HTML} from '../HTML';
 
 import i18n from './i18n';
@@ -18,26 +18,7 @@ import './DocPage.scss';
 
 const b = block('dc-doc-page');
 
-interface DocPageMeta {
-    stage: string;
-    editable?: boolean;
-}
-
-interface DocPageHeadingItem {
-    title: string;
-    href: string;
-    level: number;
-    items?: DocPageHeadingItem[];
-}
-
-export interface DocPageProps {
-    toc: TocData;
-    breadcrumbs: BreadcrumbItem[];
-    html: string;
-    title: string;
-    headings: DocPageHeadingItem[];
-    meta: DocPageMeta;
-    githubUrl?: string;
+export interface DocPageProps extends DocPageData {
     router: Router;
     lang: Lang;
 }
@@ -209,6 +190,4 @@ export class DocPage extends React.Component<DocPageProps> {
     private renderAsideSeparator() {
         return <div className={b('aside-separator')}/>;
     }
-
-
 }

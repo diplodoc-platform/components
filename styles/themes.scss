@@ -1,0 +1,14 @@
+@import 'themes/light.scss';
+@import 'socials.scss';
+
+.yc-root {
+    &_theme_light {
+        @include yc-theme-light;
+
+        --text-header-color: var(--yc-color-text-primary);
+        --text-content-color: var(--yc-color-text-complementary);
+
+        background: var(--yc-color-base);
+        color: var(--yc-color-text-primary);
+    }
+}

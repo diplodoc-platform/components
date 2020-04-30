@@ -10,7 +10,7 @@ $leftOffset: 57px;
 
     display: flex;
     flex-direction: column;
-    height: calc(100vh - #{$headerHeight});
+    height: calc(100vh - var(--dc-header-height, #{$headerHeight}));
     padding-top: 25px;
     overflow-y: hidden;
 
@@ -82,7 +82,7 @@ $leftOffset: 57px;
                 position: relative;
                 padding: 8px 15px 8px 35px;
 
-                color: var(--text-content-color);
+                color: var(--dc-text-content-color);
 
                 &-match {
                     background-color: var(--yc-color-selection);
@@ -111,7 +111,7 @@ $leftOffset: 57px;
 
             &_main > *:first-child {
                 @include heading5();
-                color: var(--text-content-color);
+                color: var(--dc-text-content-color);
             }
 
             &_active &-text {

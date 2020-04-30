@@ -23,7 +23,7 @@
     &__toc {
         position: fixed;
         z-index: 90;
-        top: $headerHeight;
+        top: var(--dc-header-height, #{$headerHeight});
         width: 300px;
         background-color: var(--yc-color-base-area);
         @include text-size(body2);

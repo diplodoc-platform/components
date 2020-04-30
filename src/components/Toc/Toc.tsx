@@ -13,7 +13,7 @@ import '../../i18n';
 import './Toc.scss';
 
 const b = block('dc-toc');
-const HEADER_HEIGHT = 0;
+const HEADER_DEFAULT_HEIGHT = 0;
 
 function isActiveItem(router: Router, href: string) {
     return router.pathname === parse(href).pathname;
@@ -22,6 +22,7 @@ function isActiveItem(router: Router, href: string) {
 export interface TocProps extends TocData {
     router: Router;
     lang: Lang;
+    headerHeight?: number;
 }
 
 type TocInnerProps =
@@ -273,8 +274,9 @@ class Toc extends React.Component<TocInnerProps, TocState> {
     }
 
     private setTocHeight() {
+        const {headerHeight = HEADER_DEFAULT_HEIGHT} = this.props;
         const containerHeight = this.containerEl?.offsetHeight ?? 0;
-        const scrollDiff = window.scrollY + window.innerHeight - HEADER_HEIGHT - containerHeight;
+        const scrollDiff = window.scrollY + window.innerHeight - headerHeight - containerHeight;
         const rootNode = this.rootRef.current;
 
         if (!rootNode) {
@@ -282,11 +284,11 @@ class Toc extends React.Component<TocInnerProps, TocState> {
         }
 
         if (scrollDiff > 0) {
-            rootNode.style.height = window.innerHeight - HEADER_HEIGHT - scrollDiff + 'px';
+            rootNode.style.height = window.innerHeight - headerHeight - scrollDiff + 'px';
         } else if (containerHeight < window.innerHeight) {
             rootNode.style.height = containerHeight + 'px';
         } else {
-            rootNode.style.height = window.innerHeight - HEADER_HEIGHT + 'px';
+            rootNode.style.height = window.innerHeight - headerHeight + 'px';
         }
     }
 

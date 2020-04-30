@@ -22,6 +22,7 @@ const b = block('dc-doc-page');
 export interface DocPageProps extends DocPageData {
     router: Router;
     lang: Lang;
+    headerHeight?: number;
 }
 
 type DocPageInnerProps =
@@ -39,13 +40,13 @@ class DocPage extends React.Component<DocPageInnerProps> {
     }
 
     render() {
-        const {toc, router, lang} = this.props;
+        const {toc, router, lang, headerHeight} = this.props;
 
         const asideLinks = this.renderAsideLinks();
         const asideMiniToc = this.renderAsideMiniToc();
 
         return (
-            <DocLayout toc={toc} router={router} lang={lang} className={b()}>
+            <DocLayout toc={toc} router={router} lang={lang} headerHeight={headerHeight} className={b()}>
                 <DocLayout.Center>
                     <div className={b('main')}>
                         {this.renderBreadcrumbs()}
@@ -172,7 +173,11 @@ class DocPage extends React.Component<DocPageInnerProps> {
                         rel="noreferrer noopener"
                         className={b('aside-link')}
                     >
-                        <GithubIcon className={b('aside-link-icon')} width={iconSize} height={iconSize}/>
+                        <GithubIcon
+                            className={b('aside-link-icon', {type: 'github'})}
+                            width={iconSize}
+                            height={iconSize}
+                        />
                         {t('label_link-github')}
                     </a>
                 </li>

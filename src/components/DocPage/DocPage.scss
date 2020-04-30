@@ -7,7 +7,7 @@
 
     &__aside {
         position: sticky;
-        top: $headerHeight;
+        top: var(--dc-header-height, #{$headerHeight});
 
         padding: 30px 20px 20px 0;
         width: 240px;
@@ -24,10 +24,14 @@
             display: flex;
             align-items: center;
 
-            color: var(--text-content-color);
+            color: var(--dc-text-content-color);
 
             &-icon {
                 margin-right: 6px;
+
+                &_type_github {
+                    fill: var(--yc-color-github);
+                }
             }
         }
 

@@ -37,13 +37,13 @@
     cursor: pointer;
 
     &:hover, &:active {
-        --text-header-color: var(--yc-color-link-hover);
+        --dc-text-header-color: var(--yc-color-link-hover);
         color: var(--yc-color-link-hover);
     }
 }
 
 @mixin heading1() {
-    color: var(--text-header-color);
+    color: var(--dc-text-header-color);
     @include text-size(display3);
     font-weight: 500;
 
@@ -53,31 +53,31 @@
 }
 
 @mixin heading2() {
-    color: var(--text-header-color);
+    color: var(--dc-text-header-color);
     @include text-size(display1);
     font-weight: 500;
 }
 
 @mixin heading3() {
-    color: var(--text-header-color);
+    color: var(--dc-text-header-color);
     @include text-size(title);
     font-weight: 500;
 }
 
 @mixin heading4() {
-    color: var(--text-header-color);
+    color: var(--dc-text-header-color);
     @include text-size(header);
     font-weight: 500;
 }
 
 @mixin heading5() {
-    color: var(--text-header-color);
+    color: var(--dc-text-header-color);
     @include text-size(body3);
     font-weight: 500;
 }
 
 @mixin heading6() {
-    color: var(--text-header-color);
+    color: var(--dc-text-header-color);
     @include text-size(body3);
     font-weight: 400;
 }

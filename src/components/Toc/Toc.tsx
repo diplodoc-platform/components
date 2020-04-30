@@ -1,13 +1,14 @@
 import React from 'react';
 import block from 'bem-cn-lite';
 import {parse} from 'url';
+import {WithTranslation, WithTranslationProps, withTranslation} from 'react-i18next';
 
 import {TocData, TocItem, Router, Lang} from '../../models';
 import {ToggleArrow} from '../ToggleArrow';
 import {HTML} from '../HTML';
 import {TextInput} from '../TextInput';
 
-import i18n from './i18n';
+import '../../i18n';
 
 import './Toc.scss';
 
@@ -22,6 +23,11 @@ export interface TocProps extends TocData {
     router: Router;
     lang: Lang;
 }
+
+type TocInnerProps =
+    & TocProps
+    & WithTranslation
+    & WithTranslationProps;
 
 interface FlatTocItem {
     name: string;
@@ -38,7 +44,7 @@ interface TocState {
     activeId?: string | null;
 }
 
-export class Toc extends React.Component<TocProps, TocState> {
+class Toc extends React.Component<TocInnerProps, TocState> {
 
     contentRef = React.createRef<HTMLDivElement>();
     rootRef = React.createRef<HTMLDivElement>();
@@ -55,7 +61,6 @@ export class Toc extends React.Component<TocProps, TocState> {
     };
 
     componentDidMount() {
-        i18n.changeLanguage(this.props.lang);
         this.containerEl = document.querySelector('.Layout__content');
         this.footerEl = document.querySelector('.Layout__footer');
         this.setTocHeight();
@@ -69,13 +74,15 @@ export class Toc extends React.Component<TocProps, TocState> {
     }
 
     componentDidUpdate(prevProps: TocProps) {
-        if (prevProps.router.pathname !== this.props.router.pathname) {
+        const {router, i18n, lang} = this.props;
+
+        if (prevProps.router.pathname !== router.pathname) {
             this.setTocHeight();
             this.setState(this.getState(this.props, this.state), () => this.scrollToActiveItem());
         }
 
-        if (prevProps.lang !== this.props.lang) {
-            i18n.changeLanguage(this.props.lang);
+        if (prevProps.lang !== lang) {
+            i18n.changeLanguage(lang);
         }
     }
 
@@ -192,7 +199,7 @@ export class Toc extends React.Component<TocProps, TocState> {
     }
 
     private renderTop() {
-        const {router, title, href} = this.props;
+        const {router, title, href, lang, i18n, t} = this.props;
         let topHeader;
 
         if (href) {
@@ -207,6 +214,10 @@ export class Toc extends React.Component<TocProps, TocState> {
             topHeader = <div className={b('top-header')}><HTML>{title}</HTML></div>;
         }
 
+        if (i18n.language !== lang) {
+            i18n.changeLanguage(lang);
+        }
+
         return (
             <div className={b('top')}>
                 {topHeader}
@@ -214,7 +225,7 @@ export class Toc extends React.Component<TocProps, TocState> {
                     <TextInput
                         className={b('top-filter-input')}
                         text={this.state.filterName}
-                        placeholder={i18n.t('label_toc-filter-placeholder')}
+                        placeholder={t('label_toc-filter-placeholder')}
                         onChange={this.handleFilterNameChange}
                     />
                 </div>
@@ -372,3 +383,5 @@ export class Toc extends React.Component<TocProps, TocState> {
         }
     };
 }
+
+export default withTranslation('toc')(Toc);

@@ -28,6 +28,10 @@
 
             &-icon {
                 margin-right: 6px;
+
+                &_type_github {
+                    fill: var(--yc-color-github);
+                }
             }
         }
 

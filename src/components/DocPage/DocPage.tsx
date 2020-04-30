@@ -172,7 +172,11 @@ class DocPage extends React.Component<DocPageInnerProps> {
                         rel="noreferrer noopener"
                         className={b('aside-link')}
                     >
-                        <GithubIcon className={b('aside-link-icon')} width={iconSize} height={iconSize}/>
+                        <GithubIcon
+                            className={b('aside-link-icon', {type: 'github'})}
+                            width={iconSize}
+                            height={iconSize}
+                        />
                         {t('label_link-github')}
                     </a>
                 </li>

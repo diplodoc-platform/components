@@ -14,13 +14,14 @@ const b = block('dc-doc-leading-page');
 export interface DocLeadingPageProps extends DocLeadingPageData {
     router: Router;
     lang: Lang;
+    headerHeight?: number;
 }
 
 export const DocLeadingPage: React.FC<DocLeadingPageProps> = (
-    {data: {title, description, links}, toc, router, lang},
+    {data: {title, description, links}, toc, router, lang, headerHeight},
 ) => {
     return (
-        <DocLayout toc={toc} router={router} lang={lang} className={b()}>
+        <DocLayout toc={toc} router={router} lang={lang} headerHeight={headerHeight} className={b()}>
             <span/>
             <DocLayout.Center>
                 <main className={b('main')}>

@@ -12,8 +12,8 @@
 }
 
 @mixin fixAnchorPosition($offset: 0px) {
-    padding-top: $headerHeight;
-    margin-top: -$headerHeight + $offset;
+    padding-top: var(--dc-header-height, #{$headerHeight});
+    margin-top: calc($offset - var(--dc-header-height, #{$headerHeight}));
 }
 
 @mixin reset-link-style() {

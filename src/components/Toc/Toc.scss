@@ -10,7 +10,7 @@ $leftOffset: 57px;
 
     display: flex;
     flex-direction: column;
-    height: calc(100vh - #{$headerHeight});
+    height: calc(100vh - var(--dc-header-height, #{$headerHeight}));
     padding-top: 25px;
     overflow-y: hidden;
 

@@ -17,6 +17,7 @@ export interface DocLayoutProps {
     router: Router;
     lang: Lang;
     children: ReactElement[] | ReactElement<unknown, React.FC>;
+    headerHeight?: number;
     className?: string;
 }
 
@@ -57,7 +58,7 @@ export class DocLayout extends React.Component<DocLayoutProps> {
     }
 
     private renderToc() {
-        const {toc, router, lang} = this.props;
+        const {toc, router, lang, headerHeight} = this.props;
 
         if (!toc) {
             return null;
@@ -65,7 +66,7 @@ export class DocLayout extends React.Component<DocLayoutProps> {
 
         return (
             <div className={b('toc')}>
-                <Toc {...toc} router={router} lang={lang}/>
+                <Toc {...toc} router={router} lang={lang} headerHeight={headerHeight}/>
             </div>
         );
     }

@@ -7,7 +7,7 @@
 
     &__aside {
         position: sticky;
-        top: $headerHeight;
+        top: var(--dc-header-height, #{$headerHeight});
 
         padding: 30px 20px 20px 0;
         width: 240px;

@@ -22,6 +22,7 @@ const b = block('dc-doc-page');
 export interface DocPageProps extends DocPageData {
     router: Router;
     lang: Lang;
+    headerHeight?: number;
 }
 
 type DocPageInnerProps =
@@ -39,13 +40,13 @@ class DocPage extends React.Component<DocPageInnerProps> {
     }
 
     render() {
-        const {toc, router, lang} = this.props;
+        const {toc, router, lang, headerHeight} = this.props;
 
         const asideLinks = this.renderAsideLinks();
         const asideMiniToc = this.renderAsideMiniToc();
 
         return (
-            <DocLayout toc={toc} router={router} lang={lang} className={b()}>
+            <DocLayout toc={toc} router={router} lang={lang} headerHeight={headerHeight} className={b()}>
                 <DocLayout.Center>
                     <div className={b('main')}>
                         {this.renderBreadcrumbs()}

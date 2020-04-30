@@ -2,7 +2,7 @@ import React from 'react';
 import block from 'bem-cn-lite';
 import {parse} from 'url';
 
-import {TocData, Router, TocItem, Lang} from '../../models';
+import {TocData, TocItem, Router, Lang} from '../../models';
 import {ToggleArrow} from '../ToggleArrow';
 import {HTML} from '../HTML';
 import {TextInput} from '../TextInput';

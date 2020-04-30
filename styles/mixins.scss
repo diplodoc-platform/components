@@ -1,4 +1,4 @@
-@import 'variables';
+@import './variables';
 
 @mixin text-size($name) {
     font-size: var(--yc-text-#{$name}-font-size);

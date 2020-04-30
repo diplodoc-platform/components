@@ -1,7 +1,7 @@
 import React from 'react';
 
 export interface HTMLProps {
-    children: string;
+    children?: string;
     block?: boolean;
     className?: string;
 }

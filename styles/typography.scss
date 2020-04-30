@@ -1,6 +1,6 @@
-@import 'fonts';
-@import 'variables';
-@import 'mixins';
+@import './fonts';
+@import './variables';
+@import './mixins';
 
 body.yc-root {
     font-feature-settings: 'liga', 'kern';

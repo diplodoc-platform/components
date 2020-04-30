@@ -1,13 +1,11 @@
 import React from 'react';
 import block from 'bem-cn-lite';
 
+import {BreadcrumbItem} from '../../models';
+
 import './Breadcrumbs.scss';
 
 const b = block('dc-breadcrumbs');
-
-export interface BreadcrumbItem {
-    name: string;
-}
 
 export interface BreadcrumbsProps {
     items: BreadcrumbItem[];

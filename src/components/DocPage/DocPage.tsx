@@ -1,5 +1,6 @@
 import React from 'react';
 import block from 'bem-cn-lite';
+import {withTranslation, WithTranslation, WithTranslationProps} from 'react-i18next';
 import 'yfm-transform/dist/js/yfm';
 
 import {DocPageData, Router, Lang} from '../../models';
@@ -9,7 +10,7 @@ import {MiniToc} from '../MiniToc';
 import {Breadcrumbs} from '../Breadcrumbs';
 import {HTML} from '../HTML';
 
-import i18n from './i18n';
+import '../../i18n';
 
 import GithubIcon from '../../../assets/icons/github.svg';
 
@@ -23,15 +24,17 @@ export interface DocPageProps extends DocPageData {
     lang: Lang;
 }
 
-export class DocPage extends React.Component<DocPageProps> {
+type DocPageInnerProps =
+    & DocPageProps
+    & WithTranslation
+    & WithTranslationProps;
 
-    componentDidMount() {
-        i18n.changeLanguage(this.props.lang);
-    }
+class DocPage extends React.Component<DocPageInnerProps> {
 
     componentDidUpdate(prevProps: DocPageProps) {
-        if (prevProps.lang !== this.props.lang) {
-            i18n.changeLanguage(this.props.lang);
+        const {i18n, lang} = this.props;
+        if (prevProps.lang !== lang) {
+            i18n.changeLanguage(lang);
         }
     }
 
@@ -143,7 +146,7 @@ export class DocPage extends React.Component<DocPageProps> {
     }
 
     private renderAsideLinks() {
-        const {toc, meta, githubUrl} = this.props;
+        const {toc, meta, githubUrl, lang, i18n, t} = this.props;
         const editable = (
             toc.stage !== 'preview' &&
             meta.stage !== 'preview' &&
@@ -156,6 +159,10 @@ export class DocPage extends React.Component<DocPageProps> {
             return null;
         }
 
+        if (i18n.language !== lang) {
+            i18n.changeLanguage(lang);
+        }
+
         return (
             <ul className={b('aside-links')}>
                 <li className={b('aside-links-item')}>
@@ -166,7 +173,7 @@ export class DocPage extends React.Component<DocPageProps> {
                         className={b('aside-link')}
                     >
                         <GithubIcon className={b('aside-link-icon')} width={iconSize} height={iconSize}/>
-                        {i18n.t('label_link-github')}
+                        {t('label_link-github')}
                     </a>
                 </li>
             </ul>
@@ -191,3 +198,5 @@ export class DocPage extends React.Component<DocPageProps> {
         return <div className={b('aside-separator')}/>;
     }
 }
+
+export default withTranslation('docPage')(DocPage);

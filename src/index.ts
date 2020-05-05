@@ -1,3 +1,6 @@
+// init i18n
+import './i18n';
+
 export * from './components/Breadcrumbs';
 export * from './components/DocLayout';
 export * from './components/DocLeadingPage';

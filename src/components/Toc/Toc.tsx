@@ -8,8 +8,6 @@ import {ToggleArrow} from '../ToggleArrow';
 import {HTML} from '../HTML';
 import {TextInput} from '../TextInput';
 
-import '../../i18n';
-
 import './Toc.scss';
 
 const b = block('dc-toc');

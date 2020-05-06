@@ -136,7 +136,7 @@ class Toc extends React.Component<TocInnerProps, TocState> {
                     }
 
                     if (subItems && subItems.length > 0) {
-                        icon = <ToggleArrow className={b('list-item-icon')} open={opened} thin={true} size={20}/>;
+                        icon = <ToggleArrow className={b('list-item-icon')} open={opened} thin={true}/>;
                     }
 
                     if (filteredItemIds.includes(id)) {

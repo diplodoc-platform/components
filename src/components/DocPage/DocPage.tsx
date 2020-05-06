@@ -10,8 +10,6 @@ import {MiniToc} from '../MiniToc';
 import {Breadcrumbs} from '../Breadcrumbs';
 import {HTML} from '../HTML';
 
-import '../../i18n';
-
 import GithubIcon from '../../../assets/icons/github.svg';
 
 import 'yfm-transform/dist/css/yfm.css';

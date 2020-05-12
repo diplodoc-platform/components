@@ -2,7 +2,7 @@ import React, {ReactElement} from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 
-import {DocHeadingItem} from '../../models';
+import {DocHeadingItem, Router} from '../../models';
 import {Scrollspy} from '../Scrollspy';
 
 import './MiniToc.scss';
@@ -11,6 +11,7 @@ const b = block('dc-mini-toc');
 
 export interface MinitocProps {
     headings: DocHeadingItem[];
+    router: Router;
 }
 
 export class MiniToc extends React.Component<MinitocProps> {
@@ -27,7 +28,7 @@ export class MiniToc extends React.Component<MinitocProps> {
     }
 
     private renderSections() {
-        const {headings} = this.props;
+        const {headings, router} = this.props;
 
         if (headings.length === 0) {
             return null;
@@ -48,6 +49,7 @@ export class MiniToc extends React.Component<MinitocProps> {
                 className={b('sections')}
                 currentClassName={b('section', {active: true})}
                 items={sectionHrefs}
+                router={router}
             >
                 {headings.reduce(this.renderSection, [])}
             </Scrollspy>

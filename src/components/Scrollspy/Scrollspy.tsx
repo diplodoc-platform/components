@@ -2,6 +2,7 @@ import React, {ReactElement} from 'react';
 import _ from 'lodash';
 
 import {InnerProps} from '../../utils';
+import {Router} from '../../models';
 
 interface ScrollspyDefaultProps {
     currentClassName: string;
@@ -12,6 +13,7 @@ interface ScrollspyDefaultProps {
 export interface ScrollspyProps extends Partial<ScrollspyDefaultProps> {
     items: string[];
     children: ReactElement[];
+    router: Router;
     onSectionClick?: (event: MouseEvent) => void;
     className?: string;
 }
@@ -50,7 +52,9 @@ export class Scrollspy extends React.Component<ScrollspyInnerProps, ScrollspySta
     }
 
     componentDidUpdate(prevProps: Readonly<ScrollspyProps>) {
-        if (!_.isEqual(this.props.items, prevProps.items)) {
+        const {items, router} = this.props;
+
+        if (!_.isEqual(items, prevProps.items) || prevProps.router.pathname !== router.pathname) {
             this.initItems();
         }
     }

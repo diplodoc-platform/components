@@ -1,6 +1,5 @@
 import React from 'react';
 import block from 'bem-cn-lite';
-import {withTranslation, WithTranslation, WithTranslationProps} from 'react-i18next';
 import 'yfm-transform/dist/js/yfm';
 
 import {DocPageData, Router, Lang} from '../../models';
@@ -9,8 +8,7 @@ import {DocPageTitle} from '../DocPageTitle';
 import {MiniToc} from '../MiniToc';
 import {Breadcrumbs} from '../Breadcrumbs';
 import {HTML} from '../HTML';
-
-import GithubIcon from '../../../assets/icons/github.svg';
+import {VcsLink} from '../VcsLink';
 
 import 'yfm-transform/dist/css/yfm.css';
 import './DocPage.scss';
@@ -23,20 +21,7 @@ export interface DocPageProps extends DocPageData {
     headerHeight?: number;
 }
 
-type DocPageInnerProps =
-    & DocPageProps
-    & WithTranslation
-    & WithTranslationProps;
-
-class DocPage extends React.Component<DocPageInnerProps> {
-
-    componentDidUpdate(prevProps: DocPageProps) {
-        const {i18n, lang} = this.props;
-        if (prevProps.lang !== lang) {
-            i18n.changeLanguage(lang);
-        }
-    }
-
+class DocPage extends React.Component<DocPageProps> {
     render() {
         const {toc, router, lang, headerHeight} = this.props;
 
@@ -145,39 +130,27 @@ class DocPage extends React.Component<DocPageInnerProps> {
     }
 
     private renderAsideLinks() {
-        const {toc, meta, githubUrl, lang, i18n, t} = this.props;
+        const {toc, meta, vcsUrl, vcsType, lang} = this.props;
         const editable = (
             toc.stage !== 'preview' &&
             meta.stage !== 'preview' &&
             meta.editable !== false &&
             toc.editable !== false
         );
-        const iconSize = 24;
 
-        if (!editable || !githubUrl) {
+        if (!editable || !vcsUrl || !vcsType) {
             return null;
-        }
-
-        if (i18n.language !== lang) {
-            i18n.changeLanguage(lang);
         }
 
         return (
             <ul className={b('aside-links')}>
                 <li className={b('aside-links-item')}>
-                    <a
-                        href={githubUrl}
-                        target="_blank"
-                        rel="noreferrer noopener"
+                    <VcsLink
+                        vcsUrl={vcsUrl}
+                        vcsType={vcsType}
+                        lang={lang}
                         className={b('aside-link')}
-                    >
-                        <GithubIcon
-                            className={b('aside-link-icon', {type: 'github'})}
-                            width={iconSize}
-                            height={iconSize}
-                        />
-                        {t('label_link-github')}
-                    </a>
+                    />
                 </li>
             </ul>
         );
@@ -202,4 +175,4 @@ class DocPage extends React.Component<DocPageInnerProps> {
     }
 }
 
-export default withTranslation('docPage')(DocPage);
+export default DocPage;

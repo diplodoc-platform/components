@@ -1,6 +1,7 @@
 {
-    "docPage": {
-        "label_link-github": "Редактировать на GitHub"
+    "vcsLink": {
+        "label_link-github": "Редактировать на GitHub",
+        "label_link-arcanum": "Редактировать в Arcanum"
     },
     "toc": {
         "label_toc-filter-placeholder": "Фильтр по заголовкам разделов"

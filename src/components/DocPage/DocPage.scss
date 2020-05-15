@@ -21,18 +21,7 @@
         &-link {
             @include link();
 
-            display: flex;
-            align-items: center;
-
             color: var(--dc-text-content-color);
-
-            &-icon {
-                margin-right: 6px;
-
-                &_type_github {
-                    fill: var(--yc-color-github);
-                }
-            }
         }
 
         &-separator {

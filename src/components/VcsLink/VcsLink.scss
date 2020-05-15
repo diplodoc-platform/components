@@ -1,0 +1,12 @@
+.dc-vcs-link {
+    display: flex;
+    align-items: center;
+
+    &__icon {
+        margin-right: 6px;
+
+        &_type_github {
+            fill: var(--yc-color-github);
+        }
+    }
+}

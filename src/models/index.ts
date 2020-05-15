@@ -21,6 +21,11 @@ export interface DocLeadingLinks {
     href: string;
 }
 
+export enum Vcs {
+    Github = 'github',
+    Arcanum = 'arcanum'
+}
+
 export interface DocPageData extends DocBasePageData {
     leading?: false;
     breadcrumbs: BreadcrumbItem[];
@@ -28,7 +33,8 @@ export interface DocPageData extends DocBasePageData {
     title: string;
     headings: DocHeadingItem[];
     meta: DocMeta;
-    githubUrl?: string;
+    vcsUrl?: string;
+    vcsType?: Vcs;
 }
 
 export interface DocHeadingItem {

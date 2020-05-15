@@ -15,5 +15,6 @@ export * from './components/Text';
 export * from './components/TextInput';
 export * from './components/Toc';
 export * from './components/ToggleArrow';
+export * from './components/VcsLink';
 
 export * from './models';

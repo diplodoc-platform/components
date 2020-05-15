@@ -1,6 +1,7 @@
 {
-    "docPage": {
-        "label_link-github": "Edit on GitHub"
+    "vcsLink": {
+        "label_link-github": "Edit on GitHub",
+        "label_link-arcanum": "Edit on Arcanum"
     },
     "toc": {
         "label_toc-filter-placeholder": "Filter by section titles"

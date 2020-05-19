@@ -175,15 +175,18 @@ export class Scrollspy extends React.Component<ScrollspyInnerProps, ScrollspySta
 
     private handleSectionClick = (event: MouseEvent) => {
         const {onSectionClick} = this.props;
+        const {target} = event;
 
-        event.stopPropagation();
+        if (target && (target as HTMLElement).tagName === 'a') {
+            event.stopPropagation();
 
-        this.scrollByClick = false;
+            this.scrollByClick = false;
 
-        this.saveActiveItems((event.target as HTMLAnchorElement).hash);
+            this.saveActiveItems((target as HTMLAnchorElement).hash);
 
-        if (onSectionClick) {
-            onSectionClick(event);
+            if (onSectionClick) {
+                onSectionClick(event);
+            }
         }
     };
 }

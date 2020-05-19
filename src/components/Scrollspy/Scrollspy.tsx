@@ -7,7 +7,7 @@ import {Router} from '../../models';
 interface ScrollspyDefaultProps {
     currentClassName: string;
     sectionOffset: number;
-    headerOffset: number;
+    headerHeight: number;
 }
 
 export interface ScrollspyProps extends Partial<ScrollspyDefaultProps> {
@@ -27,10 +27,10 @@ type ScrollspyInnerProps = InnerProps<ScrollspyProps, ScrollspyDefaultProps>;
 
 export class Scrollspy extends React.Component<ScrollspyInnerProps, ScrollspyState> {
 
-    static defaultProps = {
+    static defaultProps: ScrollspyDefaultProps = {
         currentClassName: 'Scrollspy',
         sectionOffset: 20,
-        headerOffset: 70,
+        headerHeight: 0,
     };
 
     scrollByClick: boolean;
@@ -114,8 +114,8 @@ export class Scrollspy extends React.Component<ScrollspyInnerProps, ScrollspySta
 
     private getViewState(hash?: string) {
         const {targetItems, inViewState} = this.state;
-        const {headerOffset} = this.props;
-        const visibleAreaHeight = (window.innerHeight - headerOffset) * 0.33;
+        const {headerHeight} = this.props;
+        const visibleAreaHeight = (window.innerHeight - headerHeight) * 0.33;
         const currentOffset = window.pageYOffset;
         const visibleItemOffset: boolean[] = [];
         let isOneActive = false;
@@ -175,15 +175,18 @@ export class Scrollspy extends React.Component<ScrollspyInnerProps, ScrollspySta
 
     private handleSectionClick = (event: MouseEvent) => {
         const {onSectionClick} = this.props;
+        const {target} = event;
 
-        event.stopPropagation();
+        if (target && (target as HTMLElement).tagName === 'a') {
+            event.stopPropagation();
 
-        this.scrollByClick = false;
+            this.scrollByClick = false;
 
-        this.saveActiveItems((event.target as HTMLAnchorElement).hash);
+            this.saveActiveItems((target as HTMLAnchorElement).hash);
 
-        if (onSectionClick) {
-            onSectionClick(event);
+            if (onSectionClick) {
+                onSectionClick(event);
+            }
         }
     };
 }

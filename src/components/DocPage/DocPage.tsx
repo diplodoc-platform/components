@@ -184,7 +184,7 @@ class DocPage extends React.Component<DocPageInnerProps> {
     }
 
     private renderAsideMiniToc() {
-        const {headings, router} = this.props;
+        const {headings, router, headerHeight} = this.props;
 
         if (headings.length === 0) {
             return null;
@@ -192,7 +192,7 @@ class DocPage extends React.Component<DocPageInnerProps> {
 
         return (
             <div className={b('aside-mini-toc')}>
-                <MiniToc headings={headings} router={router}/>
+                <MiniToc headings={headings} router={router} headerHeight={headerHeight}/>
             </div>
         );
     }

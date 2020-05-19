@@ -12,6 +12,7 @@ const b = block('dc-mini-toc');
 export interface MinitocProps {
     headings: DocHeadingItem[];
     router: Router;
+    headerHeight?: number;
 }
 
 export class MiniToc extends React.Component<MinitocProps> {
@@ -28,7 +29,7 @@ export class MiniToc extends React.Component<MinitocProps> {
     }
 
     private renderSections() {
-        const {headings, router} = this.props;
+        const {headings, router, headerHeight} = this.props;
 
         if (headings.length === 0) {
             return null;
@@ -50,6 +51,7 @@ export class MiniToc extends React.Component<MinitocProps> {
                 currentClassName={b('section', {active: true})}
                 items={sectionHrefs}
                 router={router}
+                headerHeight={headerHeight}
             >
                 {headings.reduce(this.renderSection, [])}
             </Scrollspy>

@@ -16,6 +16,8 @@
   "sideEffects": [
     "./build/index.js",
     "./build/i18n/index.js",
+    "./src/index.ts",
+    "./src/i18n/index.ts",
     "*.scss"
   ],
   "main": "build/index.js",
@@ -39,11 +41,24 @@
     "storybook:build": "build-storybook -c .storybook -o storybook-static",
     "prepublishOnly": "npm run lint && npm run test && npm run build"
   },
+  "preview-generator": {
+    "prepare": [
+      "npm i @yandex-data-ui/core",
+      "npm run storybook:build",
+      "rm -rf dist/public",
+      "mv storybook-static dist/public",
+      "mkdir -p dist/run"
+    ],
+    "env": {
+      "NODE_ENV": "production"
+    }
+  },
   "dependencies": {
     "bem-cn-lite": "^4.0.0",
     "i18next": "^19.4.4",
     "lodash": "^4.17.15",
-    "react-i18next": "^11.4.0"
+    "react-i18next": "^11.4.0",
+    "yfm-transform": "^3.1.2"
   },
   "peerDependencies": {
     "react": "^16.0.0"
@@ -98,6 +113,7 @@
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "postcss-loader": "^3.0.0",
     "react-hot-loader": "^4.12.20",
+    "react-svg-loader": "^3.0.3",
     "resolve-url-loader": "^3.1.1",
     "sass-loader": "^8.0.2",
     "storybook-host": "^5.1.0",

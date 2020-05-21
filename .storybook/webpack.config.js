@@ -42,7 +42,20 @@ config
         options: {
             extract: true,
             spriteFilename: 'sprite-[hash:6].svg'
-        }
+        },
+        exclude: [path.resolve(assetsRoot, 'icons')],
+    })
+    .module.addRule({
+        test: /\.css$/,
+        use: [
+            'style-loader',
+            {loader: 'css-loader'}
+        ],
+    })
+    .module.addRule({
+        test: /\.svg$/,
+        loader: 'react-svg-loader',
+        include: [path.resolve(assetsRoot, 'icons')],
     })
     .plugins.addPlugin(new SpriteLoaderPlugin({plainSprite: true}));
 

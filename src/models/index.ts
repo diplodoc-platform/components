@@ -54,14 +54,14 @@ export interface TocData {
     title: string;
     href: string;
     items: TocItem[];
-    stage: string;
+    stage?: string;
     editable?: boolean;
 }
 
 export interface TocItem {
     id: string;
     name: string;
-    href: string;
+    href?: string;
     items?: TocItem[];
 }
 

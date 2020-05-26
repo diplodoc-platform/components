@@ -3,7 +3,7 @@
   "description": "Sharable Cloud docs components",
   "author": "DataUI Team <data-ui@yandex-team.ru>",
   "license": "UNLICENSED",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "repository": {
     "type": "git",
     "url": "git@github.yandex-team.ru:data-ui/docs-components.git"

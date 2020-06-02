@@ -175,10 +175,15 @@ class Toc extends React.Component<TocInnerProps, TocState> {
                     }
 
                     if (href) {
-                        const target = isExternalHref(href) ? '_blank' : '_self';
+                        const isExternal = isExternalHref(href);
+                        const linkAttributes = {
+                            href,
+                            target: isExternal ? '_blank' : '_self',
+                            rel: isExternal ? 'noopener noreferrer' : undefined,
+                        };
 
                         content = (
-                            <a href={href} target={target} className={b('list-item-link')} data-router-shallow>
+                            <a {...linkAttributes} className={b('list-item-link')} data-router-shallow>
                                 {content}
                             </a>
                         );

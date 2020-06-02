@@ -33,7 +33,11 @@ export class Scrollspy extends React.Component<ScrollspyInnerProps, ScrollspySta
         headerHeight: 0,
     };
 
+    containerRef = React.createRef<HTMLUListElement>();
+
     scrollByClick: boolean;
+    firstItemIndexInView: number;
+    lastItemIndexInView: number;
 
     constructor(props: ScrollspyInnerProps) {
         super(props);
@@ -44,6 +48,8 @@ export class Scrollspy extends React.Component<ScrollspyInnerProps, ScrollspySta
         };
 
         this.scrollByClick = true;
+        this.firstItemIndexInView = -1;
+        this.lastItemIndexInView = -1;
     }
 
     componentDidMount() {
@@ -77,6 +83,8 @@ export class Scrollspy extends React.Component<ScrollspyInnerProps, ScrollspySta
 
             if (inViewState[index] && currentClassName.length > 0) {
                 childClassNames += ` ${currentClassName}`;
+
+                this.syncScroll(index);
             }
 
             return (
@@ -87,10 +95,48 @@ export class Scrollspy extends React.Component<ScrollspyInnerProps, ScrollspySta
         });
 
         return (
-            <ul className={className}>
+            <ul className={className} ref={this.containerRef}>
                 {items}
             </ul>
         );
+    }
+
+    private updateFirstItemIndexInView(maxItemsInView: number) {
+        this.firstItemIndexInView = Math.max(this.lastItemIndexInView - (maxItemsInView - 1), 0);
+    }
+
+    private syncScroll(index: number) {
+        const {children} = this.props;
+        const containerEl = this.containerRef.current;
+
+        if (!containerEl) {
+            return;
+        }
+
+        /* Average values */
+        const childHeight = Math.round(containerEl.scrollHeight / children.length);
+        const maxItemsInView = Math.round(containerEl.clientHeight / childHeight);
+
+        if (this.lastItemIndexInView === -1) {
+            this.lastItemIndexInView = maxItemsInView - 1;
+        }
+
+        this.updateFirstItemIndexInView(maxItemsInView);
+
+        if (index >= this.lastItemIndexInView) {
+            this.lastItemIndexInView = Math.min(index + 1, children.length - 1);
+        } else if (index <= this.firstItemIndexInView) {
+            this.lastItemIndexInView = Math.max(index + maxItemsInView - 2, maxItemsInView - 1);
+        }
+
+        this.updateFirstItemIndexInView(maxItemsInView);
+
+        const endIsNear = index + maxItemsInView / 2 > children.length;
+        if (endIsNear) {
+            containerEl.scrollTop = containerEl.scrollHeight;
+        } else {
+            containerEl.scrollTop = childHeight * this.firstItemIndexInView;
+        }
     }
 
     private initItems() {

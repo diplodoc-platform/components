@@ -17,6 +17,10 @@ function isActiveItem(router: Router, href: string) {
     return router.pathname === parse(href).pathname;
 }
 
+function isExternalHref(href: string) {
+    return href.startsWith('http') || href.startsWith('//');
+}
+
 export interface TocProps extends TocData {
     router: Router;
     lang: Lang;
@@ -171,8 +175,12 @@ class Toc extends React.Component<TocInnerProps, TocState> {
                     }
 
                     if (href) {
+                        const target = isExternalHref(href) ? '_blank' : '_self';
+
                         content = (
-                            <a href={href} className={b('list-item-link')} data-router-shallow>{content}</a>
+                            <a href={href} target={target} className={b('list-item-link')} data-router-shallow>
+                                {content}
+                            </a>
                         );
 
                         active = id === activeId;

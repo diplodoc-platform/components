@@ -29,6 +29,317 @@ export default function getPageInfo(): DocPageProps {
                         'level': 3,
                     },
                 ],
+            },            {
+                'title': 'Категории сервисов',
+                'href': '#service-type',
+                'level': 2,
+            },
+            {
+                'title': 'Список сервисов Яндекс.Облака',
+                'href': '#list',
+                'level': 2,
+                'items': [
+                    {
+                        'title': 'Как подключиться к сервисам',
+                        'href': '#enable',
+                        'level': 3,
+                    },
+                ],
+            },            {
+                'title': 'Категории сервисов',
+                'href': '#service-type',
+                'level': 2,
+            },
+            {
+                'title': 'Список сервисов Яндекс.Облака',
+                'href': '#list',
+                'level': 2,
+                'items': [
+                    {
+                        'title': 'Как подключиться к сервисам',
+                        'href': '#enable',
+                        'level': 3,
+                    },
+                ],
+            },            {
+                'title': 'Категории сервисов',
+                'href': '#service-type',
+                'level': 2,
+            },
+            {
+                'title': 'Список сервисов Яндекс.Облака',
+                'href': '#list',
+                'level': 2,
+                'items': [
+                    {
+                        'title': 'Как подключиться к сервисам',
+                        'href': '#enable',
+                        'level': 3,
+                    },
+                ],
+            },            {
+                'title': 'Категории сервисов',
+                'href': '#service-type',
+                'level': 2,
+            },
+            {
+                'title': 'Список сервисов Яндекс.Облака',
+                'href': '#list',
+                'level': 2,
+                'items': [
+                    {
+                        'title': 'Как подключиться к сервисам',
+                        'href': '#enable',
+                        'level': 3,
+                    },
+                ],
+            },            {
+                'title': 'Категории сервисов',
+                'href': '#service-type',
+                'level': 2,
+            },
+            {
+                'title': 'Список сервисов Яндекс.Облака',
+                'href': '#list',
+                'level': 2,
+                'items': [
+                    {
+                        'title': 'Как подключиться к сервисам',
+                        'href': '#enable',
+                        'level': 3,
+                    },
+                ],
+            },            {
+                'title': 'Категории сервисов',
+                'href': '#service-type',
+                'level': 2,
+            },
+            {
+                'title': 'Список сервисов Яндекс.Облака',
+                'href': '#list',
+                'level': 2,
+                'items': [
+                    {
+                        'title': 'Как подключиться к сервисам',
+                        'href': '#enable',
+                        'level': 3,
+                    },
+                ],
+            },            {
+                'title': 'Категории сервисов',
+                'href': '#service-type',
+                'level': 2,
+            },
+            {
+                'title': 'Список сервисов Яндекс.Облака',
+                'href': '#list',
+                'level': 2,
+                'items': [
+                    {
+                        'title': 'Как подключиться к сервисам',
+                        'href': '#enable',
+                        'level': 3,
+                    },
+                ],
+            },            {
+                'title': 'Категории сервисов',
+                'href': '#service-type',
+                'level': 2,
+            },
+            {
+                'title': 'Список сервисов Яндекс.Облака',
+                'href': '#list',
+                'level': 2,
+                'items': [
+                    {
+                        'title': 'Как подключиться к сервисам',
+                        'href': '#enable',
+                        'level': 3,
+                    },
+                ],
+            },            {
+                'title': 'Категории сервисов',
+                'href': '#service-type',
+                'level': 2,
+            },
+            {
+                'title': 'Список сервисов Яндекс.Облака',
+                'href': '#list',
+                'level': 2,
+                'items': [
+                    {
+                        'title': 'Как подключиться к сервисам',
+                        'href': '#enable',
+                        'level': 3,
+                    },
+                ],
+            },            {
+                'title': 'Категории сервисов',
+                'href': '#service-type',
+                'level': 2,
+            },
+            {
+                'title': 'Список сервисов Яндекс.Облака',
+                'href': '#list',
+                'level': 2,
+                'items': [
+                    {
+                        'title': 'Как подключиться к сервисам',
+                        'href': '#enable',
+                        'level': 3,
+                    },
+                ],
+            },            {
+                'title': 'Категории сервисов',
+                'href': '#service-type',
+                'level': 2,
+            },
+            {
+                'title': 'Список сервисов Яндекс.Облака',
+                'href': '#list',
+                'level': 2,
+                'items': [
+                    {
+                        'title': 'Как подключиться к сервисам',
+                        'href': '#enable',
+                        'level': 3,
+                    },
+                ],
+            },            {
+                'title': 'Список сервисов Яндекс.Облака',
+                'href': '#list',
+                'level': 2,
+                'items': [
+                    {
+                        'title': 'Как подключиться к сервисам',
+                        'href': '#enable',
+                        'level': 3,
+                    },
+                ],
+            },            {
+                'title': 'Категории сервисов',
+                'href': '#service-type',
+                'level': 2,
+            },
+            {
+                'title': 'Список сервисов Яндекс.Облака',
+                'href': '#list',
+                'level': 2,
+                'items': [
+                    {
+                        'title': 'Как подключиться к сервисам',
+                        'href': '#enable',
+                        'level': 3,
+                    },
+                ],
+            },            {
+                'title': 'Список сервисов Яндекс.Облака',
+                'href': '#list',
+                'level': 2,
+                'items': [
+                    {
+                        'title': 'Как подключиться к сервисам',
+                        'href': '#enable',
+                        'level': 3,
+                    },
+                ],
+            },            {
+                'title': 'Категории сервисов',
+                'href': '#service-type',
+                'level': 2,
+            },
+            {
+                'title': 'Список сервисов Яндекс.Облака',
+                'href': '#list',
+                'level': 2,
+                'items': [
+                    {
+                        'title': 'Как подключиться к сервисам',
+                        'href': '#enable',
+                        'level': 3,
+                    },
+                ],
+            },            {
+                'title': 'Список сервисов Яндекс.Облака',
+                'href': '#list',
+                'level': 2,
+                'items': [
+                    {
+                        'title': 'Как подключиться к сервисам',
+                        'href': '#enable',
+                        'level': 3,
+                    },
+                ],
+            },            {
+                'title': 'Категории сервисов',
+                'href': '#service-type',
+                'level': 2,
+            },
+            {
+                'title': 'Список сервисов Яндекс.Облака',
+                'href': '#list',
+                'level': 2,
+                'items': [
+                    {
+                        'title': 'Как подключиться к сервисам',
+                        'href': '#enable',
+                        'level': 3,
+                    },
+                ],
+            },            {
+                'title': 'Список сервисов Яндекс.Облака',
+                'href': '#list',
+                'level': 2,
+                'items': [
+                    {
+                        'title': 'Как подключиться к сервисам',
+                        'href': '#enable',
+                        'level': 3,
+                    },
+                ],
+            },            {
+                'title': 'Категории сервисов',
+                'href': '#service-type',
+                'level': 2,
+            },
+            {
+                'title': 'Список сервисов Яндекс.Облака',
+                'href': '#list',
+                'level': 2,
+                'items': [
+                    {
+                        'title': 'Как подключиться к сервисам',
+                        'href': '#enable',
+                        'level': 3,
+                    },
+                ],
+            },            {
+                'title': 'Список сервисов Яндекс.Облака',
+                'href': '#list',
+                'level': 2,
+                'items': [
+                    {
+                        'title': 'Как подключиться к сервисам',
+                        'href': '#enable',
+                        'level': 3,
+                    },
+                ],
+            },            {
+                'title': 'Категории сервисов',
+                'href': '#service-type',
+                'level': 2,
+            },
+            {
+                'title': 'Список сервисов Яндекс.Облака',
+                'href': '#list',
+                'level': 2,
+                'items': [
+                    {
+                        'title': 'Как подключиться к сервисам',
+                        'href': '#enable',
+                        'level': 3,
+                    },
+                ],
             },
         ],
         'meta': {

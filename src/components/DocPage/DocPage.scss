@@ -6,7 +6,7 @@
     @include text-size(body2);
 
     &__aside {
-        position: sticky;
+        position: fixed;
         top: var(--dc-header-height, #{$headerHeight});
 
         padding: 30px 20px 20px 0;

@@ -6,6 +6,10 @@
 
     &__sections {
         @include reset-list-style();
+
+        height: calc(100vh - var(--dc-header-height, #{$headerHeight}) - #{$miniTocOffset});
+        overflow-y: auto;
+        overflow-x: hidden;
     }
 
     &__section {

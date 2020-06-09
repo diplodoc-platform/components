@@ -1,3 +1,7 @@
-# Docs Components
+# YFM Docs Components
 
-Общие компоненты облачной документации.
+Компоненты для Yandex Flavored Markdown Documentation
+
+## License
+
+MIT

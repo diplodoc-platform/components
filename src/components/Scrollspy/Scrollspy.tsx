@@ -55,6 +55,11 @@ export class Scrollspy extends React.Component<ScrollspyInnerProps, ScrollspySta
     componentDidMount() {
         this.initItems();
         window.addEventListener('scroll', this.handleScroll);
+
+        const containerEl = this.containerRef.current;
+        if (containerEl) {
+            containerEl.addEventListener('scroll', this.updateScrollValues);
+        }
     }
 
     componentDidUpdate(prevProps: Readonly<ScrollspyProps>) {
@@ -67,6 +72,11 @@ export class Scrollspy extends React.Component<ScrollspyInnerProps, ScrollspySta
 
     componentWillUnmount() {
         window.removeEventListener('scroll', this.handleScroll);
+
+        const containerEl = this.containerRef.current;
+        if (containerEl) {
+            containerEl.removeEventListener('scroll', this.updateScrollValues);
+        }
     }
 
     render() {
@@ -105,6 +115,29 @@ export class Scrollspy extends React.Component<ScrollspyInnerProps, ScrollspySta
         this.firstItemIndexInView = Math.max(this.lastItemIndexInView - (maxItemsInView - 1), 0);
     }
 
+    private getContainerValues(containerEl: HTMLUListElement) {
+        const {children} = this.props;
+
+        /* Average values */
+        const childHeight = Math.round(containerEl.scrollHeight / children.length);
+        const maxItemsInView = Math.round(containerEl.clientHeight / childHeight);
+
+        return {childHeight, maxItemsInView};
+    }
+
+    private updateScrollValues = () => {
+        const containerEl = this.containerRef.current;
+
+        if (!containerEl) {
+            return;
+        }
+
+        const {childHeight, maxItemsInView} = this.getContainerValues(containerEl);
+        this.lastItemIndexInView = Math.round(containerEl.scrollTop / childHeight) + maxItemsInView - 1;
+
+        this.updateFirstItemIndexInView(maxItemsInView);
+    };
+
     private syncScroll(index: number) {
         const {children} = this.props;
         const containerEl = this.containerRef.current;
@@ -113,9 +146,7 @@ export class Scrollspy extends React.Component<ScrollspyInnerProps, ScrollspySta
             return;
         }
 
-        /* Average values */
-        const childHeight = Math.round(containerEl.scrollHeight / children.length);
-        const maxItemsInView = Math.round(containerEl.clientHeight / childHeight);
+        const {childHeight, maxItemsInView} = this.getContainerValues(containerEl);
 
         if (this.lastItemIndexInView === -1) {
             this.lastItemIndexInView = maxItemsInView - 1;
@@ -123,16 +154,21 @@ export class Scrollspy extends React.Component<ScrollspyInnerProps, ScrollspySta
 
         this.updateFirstItemIndexInView(maxItemsInView);
 
+        let itemInView = false;
         if (index >= this.lastItemIndexInView) {
             this.lastItemIndexInView = Math.min(index + 1, children.length - 1);
         } else if (index <= this.firstItemIndexInView) {
             this.lastItemIndexInView = Math.max(index + maxItemsInView - 2, maxItemsInView - 1);
+        } else {
+            itemInView = true;
         }
 
         this.updateFirstItemIndexInView(maxItemsInView);
 
         const endIsNear = index + maxItemsInView / 2 > children.length;
-        if (endIsNear) {
+        if (itemInView) {
+            return;
+        } else if (endIsNear) {
             containerEl.scrollTop = containerEl.scrollHeight;
         } else {
             containerEl.scrollTop = childHeight * this.firstItemIndexInView;

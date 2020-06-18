@@ -127,5 +127,15 @@
   "lint-staged": {
     "*.{css,scss}": "stylelint --fix",
     "*.{js,jsx,ts,tsx}": "eslint --fix"
-  }
+  },
+  "keywords": [
+    "markdown",
+    "yandex",
+    "docs",
+    "yfm",
+    "documentation",
+    "tool",
+    "tools",
+    "components"
+  ]
 }

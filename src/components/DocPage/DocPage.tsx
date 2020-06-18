@@ -1,6 +1,6 @@
 import React from 'react';
 import block from 'bem-cn-lite';
-import 'yfm-transform/dist/js/yfm';
+import '@doc-tools/transform/dist/js/yfm';
 
 import {DocPageData, Router, Lang} from '../../models';
 import {DocLayout} from '../DocLayout';
@@ -10,7 +10,7 @@ import {Breadcrumbs} from '../Breadcrumbs';
 import {HTML} from '../HTML';
 import {VcsLink} from '../VcsLink';
 
-import 'yfm-transform/dist/css/yfm.css';
+import '@doc-tools/transform/dist/css/yfm.css';
 import './DocPage.scss';
 
 const b = block('dc-doc-page');

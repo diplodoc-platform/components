@@ -1,12 +1,12 @@
 {
-  "name": "yfm-docs-components",
-  "description": "Sharable Cloud docs components",
-  "author": "DataUI Team <data-ui@yandex-team.ru>",
-  "license": "UNLICENSED",
-  "version": "0.0.7",
+  "name": "@doc-tools/components",
+  "description": "React компоненты для отрисовки документационного проекта",
+  "author": "YFM Team <yfm-team@yandex.ru>",
+  "license": "MIT",
+  "version": "0.0.1",
   "repository": {
     "type": "git",
-    "url": "git@github.yandex-team.ru:data-ui/docs-components.git"
+    "url": "git@github.com:yandex-cloud/docs-components.git"
   },
   "files": [
     "assets",
@@ -41,27 +41,15 @@
     "storybook:build": "build-storybook -c .storybook -o storybook-static",
     "prepublishOnly": "npm run lint && npm run test && npm run build"
   },
-  "preview-generator": {
-    "prepare": [
-      "npm i @yandex-data-ui/core",
-      "npm run storybook:build",
-      "rm -rf dist/public",
-      "mv storybook-static dist/public",
-      "mkdir -p dist/run"
-    ],
-    "env": {
-      "NODE_ENV": "production"
-    }
-  },
   "dependencies": {
     "bem-cn-lite": "^4.0.0",
     "i18next": "^19.4.4",
     "lodash": "^4.17.15",
-    "react-i18next": "^11.4.0",
-    "yfm-transform": "^3.1.2"
+    "react-i18next": "^11.4.0"
   },
   "peerDependencies": {
-    "react": "^16.0.0"
+    "react": "^16.0.0",
+    "@doc-tools/transform": "^0.0.12"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",

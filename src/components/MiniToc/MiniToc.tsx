@@ -41,7 +41,7 @@ export class MiniToc extends React.Component<MinitocProps> {
             return prevHrefs.concat(href, children);
         }, []);
 
-        if (sectionHrefs.length === 0) {
+        if (sectionHrefs.length < 2) {
             return null;
         }
 

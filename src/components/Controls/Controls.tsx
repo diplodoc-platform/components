@@ -379,10 +379,7 @@ class Controls extends React.Component<ControlsInnerProps, ControlsState> {
                     onMouseOver={this.makeTogglePopup('showSettingsTooltip', true)}
                     onMouseLeave={this.makeTogglePopup('showSettingsTooltip', false)}
                 >
-                    {showMark
-                        ? <SettingsMarkedIcon/>
-                        : <SettingsIcon/>
-                    }
+                    {showMark ? <SettingsMarkedIcon/> : <SettingsIcon/>}
                 </Button>
                 {onChangeLang ?
                     <Button

@@ -8,13 +8,15 @@ const stylesRoot = path.resolve(__dirname, '..',  'styles');
 const assetsRoot = path.resolve(__dirname, '..',  'assets');
 const storybookRoot = path.resolve(__dirname, '..',  '.storybook');
 const storybookHost = path.resolve(__dirname, '..',  'node_modules/storybook-host');
+const yfmTransformDir = path.resolve(srcRoot, '../node_modules/@doc-tools/transform');
 
 const ruleIncludes = [
     srcRoot,
     stylesRoot,
     assetsRoot,
     storybookRoot,
-    storybookHost
+    storybookHost,
+    yfmTransformDir
 ];
 
 const config = new ConfigBuilder();
@@ -44,13 +46,6 @@ config
             spriteFilename: 'sprite-[hash:6].svg'
         },
         exclude: [path.resolve(assetsRoot, 'icons')],
-    })
-    .module.addRule({
-        test: /\.css$/,
-        use: [
-            'style-loader',
-            {loader: 'css-loader'}
-        ],
     })
     .module.addRule({
         test: /\.svg$/,

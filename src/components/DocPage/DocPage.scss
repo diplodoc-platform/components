@@ -4,43 +4,97 @@
 .dc-doc-page {
     position: relative;
     @include text-size(body2);
+    max-width: 1440px;
+
+    $block: &;
 
     &__aside {
         position: fixed;
-        top: var(--dc-header-height, #{$headerHeight});
+        top: calc(var(--dc-header-height, #{$headerHeight}) + var(--dc-subheader-height));
 
-        padding: 30px 20px 20px 0;
-        width: 240px;
+        padding-top: 24px;
+        width: 176px;
 
-        @include text-size(body);
+        @include text-size(body-1-short);
 
-        &-links {
-            @include reset-list-style();
-        }
-
-        &-link {
-            @include link();
-
-            color: var(--dc-text-content-color);
-        }
-
-        &-separator {
-            margin: 20px 0;
-            border-bottom: 1px solid var(--yc-color-divider);
+        @media screen and (min-width: 1280px) {
+            & {
+                width: 200px;
+            }
         }
     }
 
     &__main {
-        padding: 30px 40px 0;
+        padding: 24px 36px;
         overflow: hidden;
     }
 
+    &__controls {
+        display: flex;
+        top: var(--dc-header-height, #{$headerHeight});
+        align-items: center;
+        height: 40px;
+        z-index: 100;
+        position: absolute;
+        right: 7px;
+
+        & > .dc-controls {
+            position: fixed;
+            top: calc(6px + var(--dc-header-height, #{$headerHeight}));
+        }
+
+        &_vertical {
+            top: calc(6px + var(--dc-header-height, #{$headerHeight}));
+            justify-content: center;
+            height: auto;
+            width: 36px;
+            position: absolute;
+            right: 0;
+        }
+    }
+
     &__body {
-        @include text-size(body2);
+        &_text-size {
+            &_s.yfm {
+                @include text-size(body-1-short);
+
+                --dc-code-font-size: 12px;
+                --dc-code-line-height: 18px;
+
+                --dc-code-short-font-size: 12px;
+                --dc-code-short-line-height: 14px;
+                --dc-code-short-padding: 1px 2px;
+            }
+
+            &_m.yfm {
+                @include text-size(body2);
+
+                --dc-code-font-size: 14px;
+                --dc-code-line-height: 20px;
+
+                --dc-code-short-font-size: 14px;
+                --dc-code-short-line-height: 16px;
+                --dc-code-short-padding: 1px 4px;
+            }
+
+            &_l.yfm {
+                @include text-size(body3);
+
+                --dc-code-font-size: 16px;
+                --dc-code-line-height: 24px;
+
+                --dc-code-short-font-size: 16px;
+                --dc-code-short-line-height: 20px;
+                --dc-code-short-padding: 1px 6px;
+            }
+        }
     }
 
     &__breadcrumbs {
-        margin-bottom: 30px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        padding: 0 36px;
     }
 
     &__title {
@@ -58,10 +112,44 @@
         margin-bottom: 20px;
     }
 
-    &__feedback {
-        max-width: 510px;
-        margin: 50px 0 30px;
-        border-top: 1px solid #e7e7e7;
+    & .dc-nav-toc-panel {
+        position: fixed;
+        bottom: 0;
+        z-index: 1000;
+        left: 0;
+    }
+
+    &_full-screen {
+        --dc-header-height: 0px;
+
+        & #{$block}__breadcrumbs {
+            padding: 0 24px;
+        }
+
+        #{$block}__main, & .dc-nav-toc-panel__content {
+            padding-left: 64px;
+            padding-right: 64px;
+        }
+    }
+
+    &_limit-width {
+        max-width: initial;
+    }
+
+    &#{&}_full-screen#{&}_limit-width {
+        #{$block}__main {
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        #{$block}__breadcrumbs {
+            padding: 0;
+        }
+
+        & .dc-nav-toc-panel__content {
+            max-width: 736px;
+            padding: 0;
+        }
     }
 
     .mobile & {
@@ -70,11 +158,30 @@
         }
 
         &__breadcrumbs {
-            margin-bottom: 20px;
+            padding: 0 20px;
         }
 
         &__content-mini-toc {
             display: block;
         }
     }
+
+    @media screen and (min-width: 1024px) {
+        &#{&}_full-screen#{&}_limit-width &__controls_vertical {
+            right: -36px;
+        }
+    }
+    /* stylelint-disable declaration-no-important */
+    @media screen and (max-width: 1280px) {
+        &_full-screen &__main, &_full-screen .dc-nav-toc-panel__content {
+            padding-left: 40px !important;
+            padding-right: 40px !important;
+        }
+        &_full-screen &__breadcrumbs {
+            padding-left: 24px !important;
+            padding-right: 24px !important;
+        }
+    }
+    /* stylelint-enable declaration-no-important */
 }
+

@@ -1,0 +1,48 @@
+@import '../../../styles/mixins';
+
+.dc-list {
+    padding: 4px 0;
+
+    &__items {
+        @include text-size(body-1-short);
+    }
+
+    &__item {
+        display: flex;
+        align-items: center;
+        padding: 6px 12px;
+
+        &_clickable {
+            cursor: pointer;
+
+            &:hover {
+                background: var(--yc-color-hover-area);
+            }
+        }
+
+        &_active {
+            background: var(--yc-color-celestial);
+        }
+    }
+
+    &__item-icon {
+        margin-right: 8px;
+        display: flex;
+        align-items: center;
+    }
+
+    &__item-text {
+        color: var(--yc-color-text-primary);
+
+    }
+
+    &__item-description {
+        color: var(--yc-color-text-hint);
+    }
+
+    &__item-control {
+        display: flex;
+        align-items: center;
+        margin-left: auto;
+    }
+}

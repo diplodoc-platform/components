@@ -14,6 +14,9 @@ html, body {
     --yc-text-body-font-size: 13px;
     --yc-text-body-line-height: 16px;
 
+    --yc-text-body-1-short-font-size: 13px;
+    --yc-text-body-1-short-line-height: 18px;
+
     --yc-text-body2-font-size: 15px;
     --yc-text-body2-line-height: 20px;
 
@@ -39,7 +42,9 @@ html, body {
     --yc-font-family-monospace: 'SF Mono', 'Monaco', 'Menlo', 'Consolas', 'Ubuntu Mono', 'Liberation Mono', 'DejaVu Sans Mono', 'Courier New', 'Courier', monospace;
 
     --yc-scrollbar-width: 12px;
-    --dc-header-height: 0px;
+    --yc-scrollbar-thin-width: 8px;
+    --dc-header-height: 0;
+    --dc-subheader-height: 40px;
 
     font-family: var(--yc-font-family);
     font-size: var(--yc-text-body3-font-size);
@@ -49,10 +54,14 @@ html, body {
 }
 
 body.yc-root {
-    &::-webkit-scrollbar, *::-webkit-scrollbar {
+    &::-webkit-scrollbar {
         width: var(--yc-scrollbar-width);
         height: var(--yc-scrollbar-width);
         background: var(--yc-color-scroll-track);
+    }
+    *::-webkit-scrollbar {
+        width: var(--yc-scrollbar-thin-width);
+        height: var(--yc-scrollbar-thin-width);
     }
 
     &::-webkit-scrollbar-track, *::-webkit-scrollbar-track {

@@ -1,0 +1,71 @@
+@import '../../../styles/mixins';
+
+.dc-controls {
+    display: flex;
+    align-items: center;
+    @include text-size(body-1-short);
+
+    &_vertical {
+        flex-direction: column;
+    }
+
+    &__tooltip {
+        display: flex;
+        align-items: center;
+        padding: 4px 8px;
+        border: none;
+        height: 26px;
+        background: var(--dc-tooltip-background);
+        color: var(--dc-text-tooltip-color);
+    }
+
+    &__tooltip-text {
+        @include text-size(body-1-short);
+        white-space: nowrap;
+    }
+
+    &__divider {
+        width: 1px;
+        height: 16px;
+        background: var(--yc-color-divider);
+    }
+
+    &_vertical &__divider {
+        height: 1px;
+        width: 16px;
+    }
+
+    &__text-size-control {
+        display: flex;
+        align-items: center;
+    }
+
+    &__text-size-button {
+        &_active {
+            color: var(--yc-color-azure-solid);
+        }
+
+        &_s {
+            @include text-size(body-1-short);
+        }
+        &_m {
+            @include text-size(body2);
+        }
+        &_l {
+            @include text-size(body3);
+        }
+    }
+
+    & .dc-button:not(:last-child),
+    &__text-size-control .dc-button:not(:last-child),
+    &__divider {
+        margin-right: 4px;
+    }
+
+    &_vertical .dc-button:not(:last-child),
+    &_vertical &__text-size-control .dc-button:not(:last-child),
+    &_vertical &__divider {
+        margin-right: 0;
+        margin-bottom: 4px;
+    }
+}

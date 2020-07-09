@@ -1,36 +1,22 @@
 import React from 'react';
 import block from 'bem-cn-lite';
-import {parse} from 'url';
-import {WithTranslation, WithTranslationProps, withTranslation} from 'react-i18next';
 
-import {TocData, TocItem, Router, Lang} from '../../models';
+import {TocData, TocItem, Router} from '../../models';
 import {ToggleArrow} from '../ToggleArrow';
 import {HTML} from '../HTML';
-import {TextInput} from '../TextInput';
+
+import {isExternalHref, isActiveItem} from '../../utils';
 
 import './Toc.scss';
 
 const b = block('dc-toc');
 const HEADER_DEFAULT_HEIGHT = 0;
 
-function isActiveItem(router: Router, href: string) {
-    return router.pathname === parse(href).pathname;
-}
-
-function isExternalHref(href: string) {
-    return href.startsWith('http') || href.startsWith('//');
-}
-
 export interface TocProps extends TocData {
     router: Router;
-    lang: Lang;
     headerHeight?: number;
+    tocTitleIcon?: React.ReactNode;
 }
-
-type TocInnerProps =
-    & TocProps
-    & WithTranslation
-    & WithTranslationProps;
 
 interface FlatTocItem {
     name: string;
@@ -47,7 +33,7 @@ interface TocState {
     activeId?: string | null;
 }
 
-class Toc extends React.Component<TocInnerProps, TocState> {
+class Toc extends React.Component<TocProps, TocState> {
 
     contentRef = React.createRef<HTMLDivElement>();
     rootRef = React.createRef<HTMLDivElement>();
@@ -77,15 +63,11 @@ class Toc extends React.Component<TocInnerProps, TocState> {
     }
 
     componentDidUpdate(prevProps: TocProps) {
-        const {router, i18n, lang} = this.props;
+        const {router} = this.props;
 
         if (prevProps.router.pathname !== router.pathname) {
             this.setTocHeight();
             this.setState(this.getState(this.props, this.state), () => this.scrollToActiveItem());
-        }
-
-        if (prevProps.lang !== lang) {
-            i18n.changeLanguage(lang);
         }
     }
 
@@ -99,7 +81,7 @@ class Toc extends React.Component<TocInnerProps, TocState> {
 
     render() {
         const {items} = this.props;
-        const {filterName, filteredItemIds, contentScrolled} = this.state;
+        const {filterName, filteredItemIds} = this.state;
         let content;
 
         if (filterName.length !== 0 && filteredItemIds.length === 0) {
@@ -111,7 +93,7 @@ class Toc extends React.Component<TocInnerProps, TocState> {
         return (
             <div className={b()} ref={this.rootRef}>
                 {this.renderTop()}
-                <div className={b('content', {scrolled: contentScrolled})} ref={this.contentRef}>
+                <div className={b('content')} ref={this.contentRef}>
                     {content}
                 </div>
             </div>
@@ -211,7 +193,8 @@ class Toc extends React.Component<TocInnerProps, TocState> {
     }
 
     private renderTop() {
-        const {router, title, href, lang, i18n, t} = this.props;
+        const {router, title, href, tocTitleIcon} = this.props;
+        const {contentScrolled} = this.state;
         let topHeader;
 
         if (href) {
@@ -223,24 +206,20 @@ class Toc extends React.Component<TocInnerProps, TocState> {
                 </a>
             );
         } else {
-            topHeader = <div className={b('top-header')}><HTML>{title}</HTML></div>;
-        }
-
-        if (i18n.language !== lang) {
-            i18n.changeLanguage(lang);
+            topHeader = (
+                <div className={b('top-header')}>
+                    <HTML>{title}</HTML>
+                </div>
+            );
         }
 
         return (
-            <div className={b('top')}>
+            <div className={b('top', {scrolled: contentScrolled})}>
+                {tocTitleIcon ?
+                    <div className={b('top-header-icon')}>{tocTitleIcon}</div>
+                    : null
+                }
                 {topHeader}
-                <div className={b('top-filter')}>
-                    <TextInput
-                        className={b('top-filter-input')}
-                        text={this.state.filterName}
-                        placeholder={t('label_toc-filter-placeholder')}
-                        onChange={this.handleFilterNameChange}
-                    />
-                </div>
             </div>
         );
     }
@@ -334,21 +313,6 @@ class Toc extends React.Component<TocInnerProps, TocState> {
         }
     }
 
-    private getVisibleItemIds = (filterName: string) => {
-        const {flatToc} = this.state;
-        let filteredItemIds: string[] = [];
-
-        if (filterName) {
-            const itemIds = Object.keys(flatToc);
-
-            filteredItemIds = itemIds.filter((id) => (
-                flatToc[id].name.toLowerCase().includes(filterName.toLowerCase())
-            ));
-        }
-
-        return filteredItemIds;
-    };
-
     private handleScroll = () => {
         this.setTocHeight();
     };
@@ -369,25 +333,6 @@ class Toc extends React.Component<TocInnerProps, TocState> {
         }));
     };
 
-    private handleFilterNameChange = (value: string) => {
-        const filteredItemIds = this.getVisibleItemIds(value);
-        let filteredState;
-
-        if (value.length > 0 && filteredItemIds.length !== 0) {
-            filteredState = {
-                filterName: value,
-                filteredItemIds,
-            };
-        } else {
-            filteredState = {
-                filterName: value,
-                filteredItemIds: [],
-            };
-        }
-
-        this.setState(filteredState);
-    };
-
     private handleContentScroll = () => {
         const contentNode = this.contentRef.current;
         const contentScrolled = contentNode ? contentNode.scrollTop > 0 : false;
@@ -397,4 +342,4 @@ class Toc extends React.Component<TocInnerProps, TocState> {
     };
 }
 
-export default withTranslation('toc')(Toc);
+export default Toc;

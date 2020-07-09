@@ -1,13 +1,14 @@
 import {StoryFn} from '@storybook/addons';
 import {radios} from '@storybook/addon-knobs';
+import {Theme} from '../../models';
 
 export function getThemeSelector() {
     const label = 'Theme';
     const options = {
-        Light: 'light',
-        Dark: 'dark',
+        Light: Theme.Light,
+        Dark: Theme.Dark,
     };
-    const defaultValue = 'light';
+    const defaultValue = Theme.Dark;
 
     return radios(label, options, defaultValue);
 }

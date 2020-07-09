@@ -4,10 +4,17 @@
 .dc-mini-toc {
     $class: &;
 
+    &__title {
+        @include text-size(body2);
+        font-weight: 500;
+        color: var(--dc-text-header-color);
+        margin-bottom: 12px;
+    }
+
     &__sections {
         @include reset-list-style();
 
-        height: calc(100vh - var(--dc-header-height, #{$headerHeight}) - #{$miniTocOffset});
+        height: calc(100vh - var(--dc-header-height, #{$headerHeight}) - #{$miniTocOffset} - var(--dc-subheader-height));
         overflow-y: auto;
         overflow-x: hidden;
     }
@@ -15,16 +22,22 @@
     &__section {
         display: block;
 
-        &-link {
-            display: block;
-            padding-left: 12px;
+        & > #{$class}__section-link {
+            border-left-color: var(--yc-color-divider);
+        }
 
-            color: var(--dc-text-content-color);
+        &-link {
+            display: flex;
+            align-items: center;
+            padding: 6px 6px 6px 12px;
+            min-height: 28px;
+
+            color: var(--yc-color-text-inactive);
             border-left: 2px solid transparent;
             text-decoration: none;
 
             &:hover {
-                color: var(--yc-color-link-hover);
+                color: var(--yc-color-text-complementary);
             }
         }
 
@@ -34,13 +47,13 @@
             }
         }
 
-        &_active > #{$class}__section-link {
-            color: var(--yc-color-link);
-            border-left-color: var(--yc-color-link);
+        &:last-child {
+            padding-bottom: 30px;
         }
 
-        & + & {
-            margin-top: 16px;
+        &_active > #{$class}__section-link {
+            color: var(--yc-color-text-primary);
+            border-left-color: var(--yc-color-text-primary);
         }
     }
 }

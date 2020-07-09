@@ -1,0 +1,171 @@
+@mixin yc-theme-dark {
+
+    // Achromatic palette
+
+    --yc-color-contrast-85: rgba(255, 255, 255, 0.85);
+    --yc-color-contrast-70: rgba(255, 255, 255, 0.7);
+    --yc-color-contrast-55: rgba(255, 255, 255, 0.55);
+    --yc-color-contrast-35: rgba(255, 255, 255, 0.35);
+    --yc-color-contrast-30: rgba(255, 255, 255, 0.3);
+    --yc-color-contrast-22: rgba(255, 255, 255, 0.22);
+    --yc-color-contrast-17: rgba(255, 255, 255, 0.17);
+    --yc-color-contrast-15: rgba(255, 255, 255, 0.15);
+    --yc-color-contrast-10: rgba(255, 255, 255, 0.1);
+    --yc-color-contrast-7: rgba(255, 255, 255, 0.07);
+    --yc-color-contrast-5: rgba(255, 255, 255, 0.05);
+    --yc-color-contrast-4: rgba(255, 255, 255, 0.04);
+    --yc-color-contrast-2: rgba(255, 255, 255, 0.02);
+    --yc-color-contrast-1: rgba(255, 255, 255, 0.01);
+
+    --yc-color-reverse-contrast-90: rgba(0, 0, 0, 0.9);
+    --yc-color-reverse-contrast-40: rgba(0, 0, 0, 0.4);
+    --yc-color-reverse-contrast-10: rgba(0, 0, 0, 0.1);
+    --yc-color-reverse-contrast: rgba(0, 0, 0, 0.2);
+
+    // Achromatic solid palette
+
+    --yc-color-contrast-70-solid: #c0c0c2;
+    --yc-color-contrast-55-solid: #a09fa3;
+    --yc-color-contrast-35-solid: #76757a;
+    --yc-color-contrast-17-solid: #504f55;
+    --yc-color-contrast-15-solid: #4c4b51;
+    --yc-color-contrast-10-solid: #424147;
+    --yc-color-contrast-7-solid: #3b3a41;
+    --yc-color-contrast-4-solid: #35343b;
+    --yc-color-contrast-2-solid: #313037;
+    --yc-color-contrast-0-solid: #2d2c33;
+
+    // Chromatic palette
+
+    --yc-color-rain-cloud: rgba(107, 131, 153, 0.8);
+    --yc-color-celestial-thunder: rgba(102, 179, 255, 0.25);
+    --yc-color-celestial: rgba(102, 179, 255, 0.15);
+    --yc-color-apple: rgba(59, 201, 53, 0.75);
+    --yc-color-frosted-mint: rgba(59, 201, 53, 0.12);
+    --yc-color-light-green: rgba(59, 201, 53, 0.08);
+    --yc-color-saffron: rgba(255, 219, 77, 0.8);
+    --yc-color-scarlet-light: rgba(191, 50, 48, 0.25);
+    --yc-color-saffron-light: rgba(214, 185, 73, 0.25);
+    --yc-color-azure-50: rgba(2, 123, 243, 0.5);
+    --yc-color-cloudy-dark: rgba(76, 75, 81, 0.95);
+    --yc-color-rain-cloud-12: rgba(107, 132, 153, 0.18);
+    --yc-color-rain-cloud-20: rgba(107, 132, 153, 0.3);
+    --yc-color-shamrock: rgba(59, 201, 53, 0.75);
+    --yc-color-amber-15: rgba(255, 136, 0, 0.2);
+    --yc-color-amber-20: rgba(255, 136, 0, 0.3);
+    --yc-color-scarlet-10: rgba(191, 50, 48, 0.3);
+    --yc-color-scarlet-17: rgba(191, 50, 48, 0.45);
+    --yc-color-greeen-300: rgba(186, 255, 184, 0.5);
+    --yc-color-orange-300: rgba(255, 160, 66, 0.5);
+    --yc-color-red-300: rgba(255, 77, 73, 0.5);
+    --yc-color-blue-300: rgba(102, 179, 255, 0.5);
+
+    // Chromatic solid palette
+
+    --yc-color-rain-cloud-solid: #5f7285;
+    --yc-color-rain-cloud-contrast-solid: #8ea2b4;
+    --yc-color-maya-solid: #66b3ff;
+    --yc-color-ocean-solid: #3d98f2;
+    --yc-color-bleu-de-france-solid: #3d98f2;
+    --yc-color-blue-de-france-solid: #3d98f2; // deprecated
+    --yc-color-azure-solid: #2284e5;
+    --yc-color-celestial-thunder-solid: #3b4e66;
+    --yc-color-celestial-solid: #2f3541;
+    --yc-color-apple-solid: #38a335;
+    --yc-color-frosted-mint-solid: #324237;
+    --yc-color-light-green-solid: #323c37;
+    --yc-color-plum-solid: #a63eb2;
+    --yc-color-scarlet-solid: #bf3230;
+    --yc-color-saffron-solid: #d6b949;
+    --yc-color-amber-solid: #cc6810;
+
+    // Declarations text
+
+    --yc-color-text-primary: var(--yc-color-contrast-70);
+    --yc-color-text-complementary: var(--yc-color-contrast-55);
+    --yc-color-text-secondary: var(--yc-color-contrast-35);
+    --yc-color-text-inactive: var(--yc-color-contrast-35);
+    --yc-color-text-hint: var(--yc-color-contrast-17);
+    --yc-color-text-info: var(--yc-color-bleu-de-france-solid);
+    --yc-color-text-link: var(--yc-color-bleu-de-france-solid);
+    --yc-color-text-danger: var(--yc-color-scarlet-solid);
+    --yc-color-text-accent: var(--yc-color-scarlet-solid);
+    --yc-color-text-warning: var(--yc-color-saffron);
+    --yc-color-text-positive: var(--yc-color-apple);
+    --yc-color-text-utility: var(--yc-color-plum-solid);
+    --yc-color-text-tooltip: var(--yc-color-contrast-70);
+    --yc-color-text-status: var(--yc-color-contrast-85);
+
+    --yc-color-text-special-primary: var(--yc-color-contrast-70);
+    --yc-color-text-special-secondary: var(--yc-color-contrast-35);
+
+    // Declarations variables
+
+    --yc-color-base: var(--yc-color-contrast-0-solid);
+    --yc-color-base-area: var(--yc-color-contrast-2-solid);
+    --yc-color-float-area: var(--yc-color-contrast-7-solid);
+    --yc-color-divider: var(--yc-color-contrast-7);
+    --yc-color-hover-area: var(--yc-color-contrast-4);
+    --yc-color-hover-area-solid: var(--yc-color-contrast-4-solid);
+    --yc-color-selection: var(--yc-color-celestial);
+    --yc-color-selection-solid: var(--yc-color-celestial-solid);
+    --yc-color-selection-hover-solid: var(--yc-color-celestial-thunder-solid);
+    --yc-color-veil: var(--yc-color-reverse-contrast-40);
+    --yc-color-shadow: var(--yc-color-reverse-contrast);
+    --yc-color-card-shadow: var(--yc-color-reverse-contrast);
+    --yc-color-decoration: var(--yc-color-contrast-15);
+    --yc-color-fade: var(--yc-color-reverse-contrast);
+    --yc-color-special-area: var(--yc-color-azure-solid);
+    --yc-color-link: var(--yc-color-bleu-de-france-solid);
+    --yc-color-link-hover: var(--yc-color-maya-solid);
+    --yc-color-icon: var(--yc-color-rain-cloud);
+    --yc-color-service-icon: var(--yc-color-contrast-70);
+    --yc-color-control-accent: var(--yc-color-scarlet-solid);
+    --yc-color-selection-accent: var(--yc-color-azure-solid); // ???
+    --yc-color-scroll-track: var(--yc-color-base-area);
+    --yc-color-scroll-handle: var(--yc-color-contrast-15);
+    --yc-color-scroll-handle-hover: var(--yc-color-contrast-22);
+    --yc-color-scroll-corner: var(--yc-color-contrast-10);
+    --yc-color-loader-active: var(--yc-color-azure-solid);
+    --yc-color-loader-inactive: var(--yc-color-celestial-thunder);
+    --yc-color-chart-veil: var(--yc-color-contrast-35);
+    --yc-color-table-border: var(--yc-color-contrast-15-solid);
+    --yc-color-tooltip-bg: var(--yc-color-cloudy-dark);
+    --yc-color-tooltip-alternate-bg: var(--yc-color-contrast-7);
+
+    --yc-color-shape-generic-normal: var(--yc-color-contrast-5);
+    --yc-color-stats-default: var(--yc-color-contrast-30);
+    --yc-color-stats-success: var(--yc-color-greeen-300);
+    --yc-color-stats-warning: var(--yc-color-orange-300);
+    --yc-color-stats-danger: var(--yc-color-red-300);
+    --yc-color-stats-info: var(--yc-color-blue-300);
+
+    // Buttons
+
+    --yc-color-button-disabled: var(--yc-color-contrast-17);
+    --yc-color-button-background-disabled: var(--yc-color-contrast-4);
+    --yc-color-button-accent: var(--yc-color-contrast-85);
+    --yc-color-button-accent-background: var(--yc-color-azure-solid);
+    --yc-color-button-accent-background-hover: var(--yc-color-bleu-de-france-solid);
+    --yc-color-button-accent-progress: var(--yc-color-contrast-85);
+    --yc-color-button-accent-background-progress: var(--yc-color-azure-solid);
+    --yc-color-button-accent-background-2-progress: var(--yc-color-bleu-de-france-solid);
+    --yc-color-button-normal-background-progress: var(--yc-color-contrast-4);
+    --yc-color-button-normal-background-2-progress: var(--yc-color-contrast-10);
+
+    --yc-color-button-special-disabled: var(--yc-color-contrast-35);
+    --yc-color-button-special-background-disabled: var(--yc-color-reverse-contrast-10);
+    --yc-color-button-flat-special: var(--yc-color-contrast-85);
+    --yc-color-button-flat-special-background-hover: var(--yc-color-contrast-10);
+    --yc-color-button-normal-special: var(--yc-color-reverse-contrast-90);
+    --yc-color-button-normal-special-background: var(--yc-color-contrast-70);
+    --yc-color-button-normal-special-background-hover: var(--yc-color-contrast-55);
+    --yc-color-button-pseudo-special: var(--yc-color-contrast-85);
+    --yc-color-button-pseudo-special-border: var(--yc-color-contrast-35);
+    --yc-color-button-pseudo-special-background-hover: var(--yc-color-contrast-10);
+    --yc-color-button-link-text: var(--yc-color-azure-solid);
+    --yc-color-button-link-border: var(--yc-color-azure-50);
+
+    // deprecated
+    --yc-color-azure-contrast-50: rgba(2, 123, 243, 0.5);
+}

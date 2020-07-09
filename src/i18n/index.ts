@@ -9,7 +9,7 @@ export default i18n
     .use(initReactI18next)
     .init({
         fallbackLng: Lang.Ru,
-        ns: ['toc', 'vcsLink'],
+        ns: ['controls', 'mini-toc'],
         resources: {ru, en},
         interpolation: {
             escapeValue: false,

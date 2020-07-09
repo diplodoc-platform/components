@@ -1,3 +1,22 @@
+export enum Theme {
+    Light = 'light',
+    Dark = 'dark'
+}
+
+export enum TextSizes {
+    s = 's', // 13px
+    m = 'm', // 15px
+    l = 'l' // 17px
+}
+
+export interface DocSettings {
+    fullScreen?: boolean;
+    limitTextWidth?: boolean;
+    showMiniToc?: boolean;
+    theme?: Theme;
+    textSize?: TextSizes;
+}
+
 export interface DocBasePageData {
     toc: TocData;
     leading?: boolean;

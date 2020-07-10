@@ -80,7 +80,7 @@ class DocPage extends React.Component<DocPageInnerProps> {
                     </div>
                 </DocLayout.Center>
                 <DocLayout.Right>
-                    /* This key allows recalculating the offset for the mini-toc for Safari */
+                    {/* This key allows recalculating the offset for the mini-toc for Safari */}
                     <div className={b('aside')} key={getStateKey(showMiniToc, limitTextWidth)}>
                         {asideMiniToc}
                     </div>

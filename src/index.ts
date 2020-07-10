@@ -15,6 +15,10 @@ export * from './components/Text';
 export * from './components/TextInput';
 export * from './components/Toc';
 export * from './components/ToggleArrow';
-export * from './components/VcsLink';
+export * from './components/Popup';
+export * from './components/OutsideClick';
+export * from './components/Tumbler';
+export * from './components/TocNavPanel';
+export * from './components/Button';
 
 export * from './models';

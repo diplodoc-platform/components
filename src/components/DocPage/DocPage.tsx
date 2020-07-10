@@ -2,49 +2,86 @@ import React from 'react';
 import block from 'bem-cn-lite';
 import '@doc-tools/transform/dist/js/yfm';
 
-import {DocPageData, Router, Lang} from '../../models';
+import {DocPageData, Lang, Router, Theme, DocSettings, TextSizes, Vcs} from '../../models';
 import {DocLayout} from '../DocLayout';
 import {DocPageTitle} from '../DocPageTitle';
 import {MiniToc} from '../MiniToc';
-import {Breadcrumbs} from '../Breadcrumbs';
 import {HTML} from '../HTML';
-import {VcsLink} from '../VcsLink';
+import {Breadcrumbs} from '../Breadcrumbs';
+import {Controls} from '../Controls';
+
+import {getStateKey, InnerProps} from '../../utils';
+import {DEFAULT_SETTINGS} from '../../constants';
 
 import '@doc-tools/transform/dist/css/yfm.css';
 import './DocPage.scss';
 
 const b = block('dc-doc-page');
 
-export interface DocPageProps extends DocPageData {
-    router: Router;
+export interface DocPageProps extends DocPageData, Partial<DocSettings> {
     lang: Lang;
+    router: Router;
     headerHeight?: number;
+    tocTitleIcon?: React.ReactNode;
+
+    onChangeLang?: (lang: Lang) => void;
+    onChangeFullScreen?: (value: boolean) => void;
+    onChangeLimitTextWidth?: (value: boolean) => void;
+    onChangeShowMiniToc?: (value: boolean) => void;
+    onChangeTheme?: (theme: Theme) => void;
+    onChangeTextSize?: (textSize: TextSizes) => void;
 }
 
-class DocPage extends React.Component<DocPageProps> {
-    render() {
-        const {toc, router, lang, headerHeight} = this.props;
+type DocPageInnerProps = InnerProps<DocPageProps, DocSettings>;
 
-        const asideLinks = this.renderAsideLinks();
+class DocPage extends React.Component<DocPageInnerProps> {
+    static defaultProps: DocSettings = DEFAULT_SETTINGS;
+
+    render() {
+        const {
+            toc,
+            router,
+            lang,
+            headerHeight,
+            limitTextWidth,
+            fullScreen,
+            showMiniToc,
+            tocTitleIcon,
+        } = this.props;
+
         const asideMiniToc = this.renderAsideMiniToc();
+        const modes = {
+            'limit-width': limitTextWidth,
+            'full-screen': fullScreen,
+            'hidden-mini-toc': !showMiniToc,
+        };
 
         return (
-            <DocLayout toc={toc} router={router} lang={lang} headerHeight={headerHeight} className={b()}>
+            <DocLayout
+                toc={toc}
+                router={router}
+                lang={lang}
+                headerHeight={headerHeight}
+                className={b(modes)}
+                fullScreen={fullScreen}
+                hideRight={!showMiniToc}
+                tocTitleIcon={tocTitleIcon}
+                limitTextWidth={limitTextWidth}
+            >
                 <DocLayout.Center>
+                    {this.renderBreadcrumbs()}
+                    {this.renderControls()}
                     <div className={b('main')}>
-                        {this.renderBreadcrumbs()}
                         <main className={b('content')}>
                             {this.renderTitle()}
-                            {this.renderContentMiniToc()}
+                            {showMiniToc ? this.renderContentMiniToc() : null}
                             {this.renderBody()}
                         </main>
-                        {/* {this.renderFeedback()} */}
                     </div>
                 </DocLayout.Center>
                 <DocLayout.Right>
-                    <div className={b('aside')}>
-                        {asideLinks}
-                        {asideLinks && asideMiniToc && this.renderAsideSeparator()}
+                    /* This key allows recalculating the offset for the mini-toc for Safari */
+                    <div className={b('aside')} key={getStateKey(showMiniToc, limitTextWidth)}>
                         {asideMiniToc}
                     </div>
                 </DocLayout.Right>
@@ -120,44 +157,17 @@ class DocPage extends React.Component<DocPageProps> {
     }
 
     private renderBody() {
-        const {html} = this.props;
+        const {html, textSize} = this.props;
 
         if (!html) {
             return null;
         }
 
-        return <div className={b('body', 'yfm')} dangerouslySetInnerHTML={{__html: html}}/>;
-    }
-
-    private renderAsideLinks() {
-        const {toc, meta, vcsUrl, vcsType, lang} = this.props;
-        const editable = (
-            toc.stage !== 'preview' &&
-            meta.stage !== 'preview' &&
-            meta.editable !== false &&
-            toc.editable !== false
-        );
-
-        if (!editable || !vcsUrl || !vcsType) {
-            return null;
-        }
-
-        return (
-            <ul className={b('aside-links')}>
-                <li className={b('aside-links-item')}>
-                    <VcsLink
-                        vcsUrl={vcsUrl}
-                        vcsType={vcsType}
-                        lang={lang}
-                        className={b('aside-link')}
-                    />
-                </li>
-            </ul>
-        );
+        return <div className={b('body', {'text-size': textSize}, 'yfm')} dangerouslySetInnerHTML={{__html: html}}/>;
     }
 
     private renderAsideMiniToc() {
-        const {headings, router, headerHeight} = this.props;
+        const {headings, router, headerHeight, lang} = this.props;
 
         if (headings.length === 0) {
             return null;
@@ -165,13 +175,66 @@ class DocPage extends React.Component<DocPageProps> {
 
         return (
             <div className={b('aside-mini-toc')}>
-                <MiniToc headings={headings} router={router} headerHeight={headerHeight}/>
+                <MiniToc headings={headings} router={router} headerHeight={headerHeight} lang={lang}/>
             </div>
         );
     }
 
-    private renderAsideSeparator() {
-        return <div className={b('aside-separator')}/>;
+    private isEditable() {
+        const {toc, meta, vcsUrl, vcsType} = this.props;
+        const editable = (
+            toc.stage !== 'preview' &&
+            meta.stage !== 'preview' &&
+            meta.editable !== false &&
+            toc.editable !== false
+        );
+
+        return Boolean(editable && vcsUrl && vcsType);
+    }
+
+    private renderControls() {
+        const {
+            lang,
+            textSize,
+            theme,
+            limitTextWidth,
+            showMiniToc,
+            fullScreen,
+            vcsUrl,
+            vcsType,
+            onChangeLang,
+            onChangeFullScreen,
+            onChangeLimitTextWidth,
+            onChangeShowMiniToc,
+            onChangeTheme,
+            onChangeTextSize,
+        } = this.props;
+
+        const showEditControl = !fullScreen && this.isEditable();
+        const verticalView = !showMiniToc || fullScreen;
+
+        return (
+            <div className={b('controls', {vertical: verticalView})}>
+                <Controls
+                    lang={lang}
+                    textSize={textSize}
+                    theme={theme}
+                    limitTextWidth={limitTextWidth}
+                    showMiniToc={showMiniToc}
+                    fullScreen={fullScreen}
+                    onChangeLang={onChangeLang}
+                    vcsUrl={vcsUrl as string}
+                    vcsType={vcsType as Vcs}
+                    showEditControl={showEditControl}
+                    onChangeFullScreen={onChangeFullScreen}
+                    onChangeLimitTextWidth={onChangeLimitTextWidth}
+                    onChangeShowMiniToc={onChangeShowMiniToc}
+                    onChangeTheme={onChangeTheme}
+                    onChangeTextSize={onChangeTextSize}
+                    verticalView={verticalView}
+                />
+            </div>
+        );
     }
 }
 

@@ -1,0 +1,9 @@
+.dc-popup {
+    position: fixed;
+    z-index: 10000;
+    width: auto;
+    background: var(--yc-color-base);
+    border-radius: 4px;
+    border: 1px solid var(--yc-color-divider);
+    box-shadow: 0 10px 13px var(--yc-color-card-shadow);
+}

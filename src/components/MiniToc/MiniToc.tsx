@@ -2,7 +2,9 @@ import React, {ReactElement} from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
 
-import {DocHeadingItem, Router} from '../../models';
+import {withTranslation, WithTranslation, WithTranslationProps} from 'react-i18next';
+
+import {DocHeadingItem, Router, Lang} from '../../models';
 import {Scrollspy} from '../Scrollspy';
 
 import './MiniToc.scss';
@@ -10,19 +12,39 @@ import './MiniToc.scss';
 const b = block('dc-mini-toc');
 
 export interface MinitocProps {
+    lang: Lang;
     headings: DocHeadingItem[];
     router: Router;
     headerHeight?: number;
 }
 
-export class MiniToc extends React.Component<MinitocProps> {
+type MinitocInnerProps =
+    & MinitocProps
+    & WithTranslation
+    & WithTranslationProps;
+
+class MiniToc extends React.Component<MinitocInnerProps> {
     static propTypes = {
         headings: PropTypes.array.isRequired,
     };
 
+    componentDidUpdate(prevProps: MinitocProps) {
+        const {i18n, lang} = this.props;
+        if (prevProps.lang !== lang) {
+            i18n.changeLanguage(lang);
+        }
+    }
+
     render() {
+        const {lang, i18n, t} = this.props;
+
+        if (i18n.language !== lang) {
+            i18n.changeLanguage(lang);
+        }
+
         return (
             <div className={b()}>
+                <div className={b('title')}>{t('title')}:</div>
                 {this.renderSections()}
             </div>
         );
@@ -41,7 +63,7 @@ export class MiniToc extends React.Component<MinitocProps> {
             return prevHrefs.concat(href, children);
         }, []);
 
-        if (sectionHrefs.length < 2) {
+        if (sectionHrefs.length === 0) {
             return null;
         }
 
@@ -79,3 +101,5 @@ export class MiniToc extends React.Component<MinitocProps> {
         );
     };
 }
+
+export default withTranslation('mini-toc')(MiniToc);

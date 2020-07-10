@@ -1,4 +1,5 @@
 @import './themes/light';
+@import './themes/dark';
 
 .yc-root {
     &_theme_light {
@@ -6,8 +7,24 @@
 
         --dc-text-header-color: var(--yc-color-text-primary);
         --dc-text-content-color: var(--yc-color-text-complementary);
+        --dc-tooltip-background: var(--yc-color-contrast-70-solid);
+        --dc-text-tooltip-color: var(--yc-color-contrast-0-solid);
+
+        background: var(--yc-color-base);
+        color: var(--yc-color-text-primary);
+    }
+
+    &_theme_dark {
+        @include yc-theme-dark;
+
+        --dc-text-header-color: var(--yc-color-text-primary);
+        --dc-text-content-color: var(--yc-color-text-complementary);
+        --dc-tooltip-background: var(--yc-color-contrast-7-solid);
+        --dc-text-tooltip-color: var(--yc-color-text-primary);
 
         background: var(--yc-color-base);
         color: var(--yc-color-text-primary);
     }
 }
+
+@import './yfm.scss';

@@ -1,9 +1,24 @@
 {
-    "vcsLink": {
-        "label_link-github": "Edit on GitHub",
-        "label_link-arcanum": "Edit on Arcanum"
+    "controls": {
+        "label_text_width": "Text width",
+        "description_text_width": "Limit the width",
+        "label_show_mini_toc": "Navigation for the article",
+        "description_show_mini_toc": "Show navigation",
+        "label_dark_theme": "Dark theme",
+        "description_enabled_dark_theme": "Enabled",
+        "description_disabled_dark_theme": "Disabled",
+        "label_text_size": "Font size",
+        "description_s_text_size": "Small",
+        "description_m_text_size": "Default",
+        "description_l_text_size": "Large",
+        "full-screen-text-enabled": "Exit from reading mode (Esc)",
+        "full-screen-text-disabled": "Reading mode",
+        "edit-text-github": "Edit on GitHub",
+        "edit-text-arcanum": "Edit on Arcanum",
+        "settings-text": "Settings",
+        "lang-text": "Language"
     },
-    "toc": {
-        "label_toc-filter-placeholder": "Filter by section titles"
+    "mini-toc" : {
+        "title": "In this article"
     }
 }

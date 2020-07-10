@@ -1,0 +1,71 @@
+.dc-tumbler {
+    width: 36px;
+    height: 20px;
+    border-radius: 5px;
+    user-select: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    touch-action: manipulation;
+
+    &__box {
+        background-color: var(--yc-color-contrast-15);
+        border-width: 0;
+        border-radius: 100px;
+        transition: background-color 0.1s;
+        width: 36px;
+        height: 20px;
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+        vertical-align: top;
+    }
+
+    &_checked &__box {
+        background-color: var(--yc-color-azure-solid);
+    }
+    &_disabled &__box {
+        background-color: var(--yc-color-contrast-4-solid);
+    }
+
+    &_disabled &__box, &_disabled &__button {
+        cursor: initial;
+    }
+
+    &__button {
+        overflow: visible;
+        width: 16px;
+        height: 16px;
+        position: absolute;
+        z-index: 1;
+        transition: left 0.15s ease-out;
+        left: 2px;
+        top: 2px;
+        outline: none;
+        user-select: none;
+        text-align: center;
+        white-space: nowrap;
+        text-decoration: none;
+        background: transparent;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        touch-action: manipulation;
+        border: none;
+        cursor: pointer;
+
+
+        &:before {
+            border-width: 0;
+            border-radius: 100px;
+            background-color: var(--yc-color-base);
+            position: absolute;
+            z-index: -1;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            content: '';
+        }
+    }
+
+    &_checked &__button {
+        left: 18px;
+    }
+}

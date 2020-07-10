@@ -1,9 +1,24 @@
 {
-    "vcsLink": {
-        "label_link-github": "Редактировать на GitHub",
-        "label_link-arcanum": "Редактировать в Arcanum"
+    "controls": {
+        "label_text_width": "Ширина текста",
+        "description_text_width": "Ограничивать ширину",
+        "label_show_mini_toc": "Навигация по текущей статье",
+        "description_show_mini_toc": "Показывать навигацию",
+        "label_dark_theme": "Темная тема",
+        "description_enabled_dark_theme": "Включена",
+        "description_disabled_dark_theme": "Выключена",
+        "label_text_size": "Размер текста",
+        "description_s_text_size": "Умешьшенный",
+        "description_m_text_size": "По умолчанию",
+        "description_l_text_size": "Увеличенный",
+        "full-screen-text-enabled": "Выйти из режима чтения (Esc)",
+        "full-screen-text-disabled": "Режим чтения",
+        "edit-text-github": "Редактировать на GitHub",
+        "edit-text-arcanum": "Редактировать в Arcanum",
+        "settings-text": "Настройки",
+        "lang-text": "Язык"
     },
-    "toc": {
-        "label_toc-filter-placeholder": "Фильтр по заголовкам разделов"
+    "mini-toc" : {
+        "title": "В этой статье"
     }
 }

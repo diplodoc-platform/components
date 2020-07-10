@@ -5,52 +5,59 @@ $iconSize: 18px;
 $toggleSize: 10px;
 $leftOffset: 57px;
 
+@mixin toc-header {
+    @include text-size(body2);
+    font-weight: 500;
+}
+
 .dc-toc {
     $class: &;
 
     display: flex;
     flex-direction: column;
     height: calc(100vh - var(--dc-header-height, #{$headerHeight}));
-    padding-top: 25px;
     overflow-y: hidden;
 
     &__empty {
-        padding: 5px 15px 5px 35px;
+        padding: 5px 15px 5px 24px;
     }
 
     &__top {
         flex-grow: 0;
-        padding-bottom: 12px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        padding: 10px 10px 8px 0;
+
+        &_scrolled {
+            border-bottom: 1px solid var(--yc-color-divider);
+        }
+
+        &-header-icon {
+            display: flex;
+            margin-right: 5px;
+            flex-shrink: 0;
+        }
 
         &-header {
+            flex-grow: 0;
             $headerClass: &;
             position: relative;
-            margin-bottom: 15px;
-            padding: 5px 25px 5px 35px;
 
-            @include heading4();
+            @include text-size(body2);
+            font-weight: 500;
 
             &_link {
                 @include reset-link-style();
-                display: block;
+                display: flex;
+                align-items: center;
 
                 &:hover {
-                    color: inherit;
-                    background-color: var(--yc-color-hover-area);
-                }
+                    @include link();
 
-                &#{$headerClass}_active {
-                    background-color: var(--yc-color-selection);
+                    color: var(--yc-color-text-primary);
                 }
             }
-        }
-
-        &-filter {
-            padding: 0 32px;
-        }
-
-        &-filter-input {
-            width: 100%;
         }
     }
 
@@ -58,10 +65,6 @@ $leftOffset: 57px;
         position: relative;
         flex-grow: 1;
         overflow-y: auto;
-
-        &_scrolled {
-            border-top: 1px solid var(--yc-color-divider);
-        }
     }
 
     &__list {
@@ -80,12 +83,12 @@ $leftOffset: 57px;
 
             &-text {
                 position: relative;
-                padding: 8px 15px 8px 35px;
+                padding: 8px 15px 8px 20px;
 
-                color: var(--dc-text-content-color);
+                color: var(--yc-color-text-inactive);
 
                 &-match {
-                    background-color: var(--yc-color-selection);
+                    color: var(--yc-color-text-primary);
                 }
 
                 &::before {
@@ -98,28 +101,22 @@ $leftOffset: 57px;
                     height: 100%;
                 }
 
-                &:hover::before {
-                    background-color: var(--yc-color-hover-area);
+                &:hover {
+                    color: var(--yc-color-text-complementary);
                 }
             }
 
             &-icon {
                 position: absolute;
-                left: 14px;
-                height: var(--yc-text-body2-line-height);
+                left: 0;
             }
 
             &_main > *:first-child {
-                @include heading5();
-                color: var(--dc-text-content-color);
+                color: var(--yc-color-text-primary);
             }
 
             &_active &-text {
                 color: var(--yc-color-text-primary);
-
-                &::before {
-                    background-color: var(--yc-color-selection);
-                }
             }
 
             &:not(&_opened) > #{$class}__list {

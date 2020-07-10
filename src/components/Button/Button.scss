@@ -1,0 +1,33 @@
+.dc-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    color: var(--yc-color-text-inactive);
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+
+    &:before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 4px;
+    }
+
+    &:hover:before {
+        background: var(--yc-color-hover-area);
+    }
+
+    &:hover {
+        color: var(--yc-color-text-primary);
+    }
+
+    &:focus {
+        outline: none;
+    }
+}

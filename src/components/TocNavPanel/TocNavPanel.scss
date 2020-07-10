@@ -1,0 +1,47 @@
+@import '../../../styles/mixins';
+
+
+.dc-nav-toc-panel {
+    display: flex;
+    justify-content: center;
+    height: 32px;
+    width: 100%;
+    border-top: 1px solid var(--yc-color-divider);
+    background: var(--yc-color-base);
+
+    @include text-size(body-1-short);
+
+    &__content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 40px;
+        flex: 1;
+        max-width: 1440px;
+    }
+
+    &__control {
+        display: flex;
+        align-items: center;
+
+        & svg {
+            margin-top: -1px;
+        }
+
+        &_left svg {
+            margin-right: 6px;
+        }
+
+        &_right svg {
+            margin-left: 6px;
+        }
+    }
+
+    &__link {
+        display: flex;
+        align-items: center;
+        height: 32px;
+        color: var(--yc-color-text-primary);
+        font-weight: 500;
+    }
+}

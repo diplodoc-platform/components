@@ -8,6 +8,7 @@ import {DocPageTitle} from '../DocPageTitle';
 import {MiniToc} from '../MiniToc';
 import {HTML} from '../HTML';
 import {Breadcrumbs} from '../Breadcrumbs';
+import {TocNavPanel} from '../TocNavPanel';
 import {Controls} from '../Controls';
 
 import {getStateKey, InnerProps} from '../../utils';
@@ -77,6 +78,7 @@ class DocPage extends React.Component<DocPageInnerProps> {
                             {showMiniToc ? this.renderContentMiniToc() : null}
                             {this.renderBody()}
                         </main>
+                        {this.renderTocNavPanel()}
                     </div>
                 </DocLayout.Center>
                 <DocLayout.Right>
@@ -177,6 +179,23 @@ class DocPage extends React.Component<DocPageInnerProps> {
             <div className={b('aside-mini-toc')}>
                 <MiniToc headings={headings} router={router} headerHeight={headerHeight} lang={lang}/>
             </div>
+        );
+    }
+
+    private renderTocNavPanel() {
+        const {toc, router, fullScreen, lang} = this.props;
+
+        if (!toc) {
+            return null;
+        }
+
+        return (
+            <TocNavPanel
+                {...toc}
+                lang={lang}
+                router={router}
+                fixed={fullScreen}
+            />
         );
     }
 

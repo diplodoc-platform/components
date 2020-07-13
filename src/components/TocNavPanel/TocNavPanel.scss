@@ -6,23 +6,45 @@
     justify-content: center;
     height: 32px;
     width: 100%;
-    border-top: 1px solid var(--yc-color-divider);
     background: var(--yc-color-base);
 
     @include text-size(body-1-short);
+
+    &_fixed {
+        position: fixed;
+        bottom: 0;
+        z-index: 1000;
+        left: 0;
+        border-top: 1px solid var(--yc-color-divider);
+    }
+
+    &_fixed &__key-hint {
+        display: none;
+    }
+
+    &_fixed &__content {
+        padding: 0 40px;
+    }
 
     &__content {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 0 40px;
         flex: 1;
         max-width: 1440px;
     }
 
     &__control {
         display: flex;
-        align-items: center;
+        flex-direction: column;
+
+        &_left {
+            align-items: flex-start;
+        }
+
+        &_right {
+            align-items: flex-end;
+        }
 
         & svg {
             margin-top: -1px;
@@ -35,6 +57,15 @@
         &_right svg {
             margin-left: 6px;
         }
+    }
+
+    &__key-hint {
+        color: var(--yc-color-text-hint);
+    }
+
+    &__control-text {
+        display: flex;
+        align-items: center;
     }
 
     &__link {

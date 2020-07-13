@@ -4,7 +4,6 @@ import block from 'bem-cn-lite';
 import {TocData, Router, Lang} from '../../models';
 import {getStateKey} from '../../utils';
 import {Toc} from '../Toc';
-import {TocNavPanel} from '../TocNavPanel';
 
 import './DocLayout.scss';
 
@@ -76,7 +75,6 @@ export class DocLayout extends React.Component<DocLayoutProps> {
                 }
                 <div className={b('center', modes)}>
                     {center}
-                    {this.renderTocNavPanel()}
                 </div>
                 {fullScreen || hideRight ? null :
                     <div className={b('right', modes)}>
@@ -106,15 +104,5 @@ export class DocLayout extends React.Component<DocLayoutProps> {
                 />
             </div>
         );
-    }
-
-    private renderTocNavPanel() {
-        const {toc, router, fullScreen} = this.props;
-
-        if (!toc || !fullScreen) {
-            return null;
-        }
-
-        return <TocNavPanel {...toc} router={router}/>;
     }
 }

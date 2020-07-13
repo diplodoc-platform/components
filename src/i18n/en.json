@@ -21,5 +21,9 @@
     },
     "mini-toc" : {
         "title": "In this article"
+    },
+    "toc-nav-panel": {
+         "key_previous": "Previous",
+         "key_next": "Next"
     }
 }

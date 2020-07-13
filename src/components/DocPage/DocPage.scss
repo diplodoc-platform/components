@@ -132,11 +132,11 @@
         }
     }
 
-    &_limit-width {
+    &_regular-page-width {
         max-width: initial;
     }
 
-    &#{&}_full-screen#{&}_limit-width {
+    &#{&}_full-screen#{&}_regular-page-width {
         #{$block}__main {
             padding-left: 0;
             padding-right: 0;
@@ -167,7 +167,7 @@
     }
 
     @media screen and (min-width: 1024px) {
-        &#{&}_full-screen#{&}_limit-width &__controls_vertical {
+        &#{&}_full-screen#{&}_regular-page-width &__controls_vertical {
             right: -36px;
         }
     }

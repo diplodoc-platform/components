@@ -1,7 +1,8 @@
 {
     "controls": {
-        "label_text_width": "Ширина текста",
-        "description_text_width": "Ограничивать ширину",
+        "label_page_width": "Ширина страницы",
+        "description_wide_page_width": "Широкая",
+        "description_regular_page_width": "Обычная",
         "label_show_mini_toc": "Навигация по текущей статье",
         "description_show_mini_toc": "Показывать навигацию",
         "label_dark_theme": "Темная тема",

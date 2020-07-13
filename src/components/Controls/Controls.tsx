@@ -26,7 +26,7 @@ const b = block('dc-controls');
 export interface ControlsProps {
     lang: Lang;
     fullScreen: boolean;
-    limitTextWidth: boolean;
+    regularPageWidth: boolean;
     showMiniToc: boolean;
     theme: Theme;
     textSize: TextSizes;
@@ -35,7 +35,7 @@ export interface ControlsProps {
     showEditControl: boolean;
     onChangeLang?: (lang: Lang) => void;
     onChangeFullScreen?: (value: boolean) => void;
-    onChangeLimitTextWidth?: (value: boolean) => void;
+    onChangeRegularPageWidth?: (value: boolean) => void;
     onChangeShowMiniToc?: (value: boolean) => void;
     onChangeTheme?: (theme: Theme) => void;
     onChangeTextSize?: (textSize: TextSizes) => void;
@@ -266,7 +266,7 @@ class Controls extends React.Component<ControlsInnerProps, ControlsState> {
         const {
             textSize,
             theme,
-            limitTextWidth,
+            regularPageWidth,
             showMiniToc,
             fullScreen,
             t,
@@ -277,12 +277,14 @@ class Controls extends React.Component<ControlsInnerProps, ControlsState> {
         const allTextSizes = Object.values(TextSizes);
         const ITEMS = [
             {
-                text: t('label_text_width'),
-                description: t('description_text_width'),
+                text: t('label_page_width'),
+                description: regularPageWidth
+                    ? t('description_regular_page_width')
+                    : t('description_wide_page_width'),
                 control: (
                     <Tumbler
-                        checked={limitTextWidth}
-                        onChange={this.onChangeLimitTextWidth}
+                        checked={regularPageWidth}
+                        onChange={this.onChangeRegularPageWidth}
                     />
                 ),
             },
@@ -352,14 +354,14 @@ class Controls extends React.Component<ControlsInnerProps, ControlsState> {
             fullScreen,
             textSize,
             theme,
-            limitTextWidth,
+            regularPageWidth,
             showMiniToc,
             onChangeLang,
         } = this.props;
         const showMark = !isDefaultSettings({
             textSize,
             theme,
-            limitTextWidth,
+            regularPageWidth,
             showMiniToc,
         });
 
@@ -411,11 +413,11 @@ class Controls extends React.Component<ControlsInnerProps, ControlsState> {
         }
     };
 
-    private onChangeLimitTextWidth = () => {
-        const {limitTextWidth, onChangeLimitTextWidth} = this.props;
+    private onChangeRegularPageWidth = () => {
+        const {regularPageWidth, onChangeRegularPageWidth} = this.props;
 
-        if (typeof onChangeLimitTextWidth === 'function') {
-            onChangeLimitTextWidth(!limitTextWidth);
+        if (typeof onChangeRegularPageWidth === 'function') {
+            onChangeRegularPageWidth(!regularPageWidth);
         }
     };
 

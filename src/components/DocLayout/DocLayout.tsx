@@ -21,7 +21,7 @@ export interface DocLayoutProps {
     children: (ReactElement | null)[] | ReactElement<unknown, React.FC>;
     fullScreen?: boolean;
     hideRight?: boolean;
-    limitTextWidth?: boolean;
+    regularPageWidth?: boolean;
     headerHeight?: number;
     tocTitleIcon?: React.ReactNode;
     className?: string;
@@ -38,12 +38,12 @@ export class DocLayout extends React.Component<DocLayoutProps> {
             children,
             className,
             fullScreen = false,
-            limitTextWidth = false,
+            regularPageWidth = true,
             hideRight = false,
         } = this.props;
         let left, center, right;
         const modes = {
-            'limit-width': limitTextWidth,
+            'regular-page-width': regularPageWidth,
             'full-screen': fullScreen,
             'hidden-right': hideRight,
         };
@@ -88,7 +88,7 @@ export class DocLayout extends React.Component<DocLayoutProps> {
     }
 
     private renderToc() {
-        const {toc, router, headerHeight, tocTitleIcon, hideRight, limitTextWidth} = this.props;
+        const {toc, router, headerHeight, tocTitleIcon, hideRight, regularPageWidth} = this.props;
 
         if (!toc) {
             return null;
@@ -98,7 +98,7 @@ export class DocLayout extends React.Component<DocLayoutProps> {
             <div className={b('toc')}>
                 <Toc
                     /* This key allows recalculating the offset for the toc for Safari */
-                    key={getStateKey(hideRight, limitTextWidth)}
+                    key={getStateKey(hideRight, regularPageWidth)}
                     {...toc}
                     router={router}
                     headerHeight={headerHeight}

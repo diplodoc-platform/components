@@ -279,8 +279,8 @@ class Controls extends React.Component<ControlsInnerProps, ControlsState> {
             {
                 text: t('label_page_width'),
                 description: regularPageWidth
-                    ? t('description_regular_page_width')
-                    : t('description_wide_page_width'),
+                    ? t('description_page_width_regular')
+                    : t('description_page_width_wide'),
                 control: (
                     <Tumbler
                         checked={regularPageWidth}

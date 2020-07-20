@@ -4,7 +4,6 @@ import block from 'bem-cn-lite';
 import {TocData, Router, Lang} from '../../models';
 import {getStateKey} from '../../utils';
 import {Toc} from '../Toc';
-import {TocNavPanel} from '../TocNavPanel';
 
 import './DocLayout.scss';
 
@@ -21,7 +20,7 @@ export interface DocLayoutProps {
     children: (ReactElement | null)[] | ReactElement<unknown, React.FC>;
     fullScreen?: boolean;
     hideRight?: boolean;
-    limitTextWidth?: boolean;
+    regularPageWidth?: boolean;
     headerHeight?: number;
     tocTitleIcon?: React.ReactNode;
     className?: string;
@@ -38,12 +37,12 @@ export class DocLayout extends React.Component<DocLayoutProps> {
             children,
             className,
             fullScreen = false,
-            limitTextWidth = false,
+            regularPageWidth = true,
             hideRight = false,
         } = this.props;
         let left, center, right;
         const modes = {
-            'limit-width': limitTextWidth,
+            'regular-page-width': regularPageWidth,
             'full-screen': fullScreen,
             'hidden-right': hideRight,
         };
@@ -76,7 +75,6 @@ export class DocLayout extends React.Component<DocLayoutProps> {
                 }
                 <div className={b('center', modes)}>
                     {center}
-                    {this.renderTocNavPanel()}
                 </div>
                 {fullScreen || hideRight ? null :
                     <div className={b('right', modes)}>
@@ -88,7 +86,7 @@ export class DocLayout extends React.Component<DocLayoutProps> {
     }
 
     private renderToc() {
-        const {toc, router, headerHeight, tocTitleIcon, hideRight, limitTextWidth} = this.props;
+        const {toc, router, headerHeight, tocTitleIcon, hideRight, regularPageWidth} = this.props;
 
         if (!toc) {
             return null;
@@ -98,7 +96,7 @@ export class DocLayout extends React.Component<DocLayoutProps> {
             <div className={b('toc')}>
                 <Toc
                     /* This key allows recalculating the offset for the toc for Safari */
-                    key={getStateKey(hideRight, limitTextWidth)}
+                    key={getStateKey(hideRight, regularPageWidth)}
                     {...toc}
                     router={router}
                     headerHeight={headerHeight}
@@ -106,15 +104,5 @@ export class DocLayout extends React.Component<DocLayoutProps> {
                 />
             </div>
         );
-    }
-
-    private renderTocNavPanel() {
-        const {toc, router, fullScreen} = this.props;
-
-        if (!toc || !fullScreen) {
-            return null;
-        }
-
-        return <TocNavPanel {...toc} router={router}/>;
     }
 }

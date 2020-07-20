@@ -40,9 +40,9 @@ export default function getPageInfo(): DocPageProps {
                 value: value ? 'true' : 'false'
             })
         },
-        onChangeLimitTextWidth: (value) => {
+        onChangeRegularPageWidth: (value) => {
             __STORYBOOK_ADDONS.channel.emit('storybookjs/knobs/change', {
-                name: 'Limit text width',
+                name: 'Regular page width',
                 value: value ? 'true' : 'false'
             })
         },

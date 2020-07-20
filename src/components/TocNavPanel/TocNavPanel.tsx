@@ -1,7 +1,9 @@
 import React from 'react';
 import block from 'bem-cn-lite';
 
-import {TocData, TocItem, Router} from '../../models';
+import {withTranslation, WithTranslation, WithTranslationProps} from 'react-i18next';
+
+import {TocData, TocItem, Router, Lang} from '../../models';
 
 import ArrowLeft from '../../../assets/icons/arrow-left.svg';
 import ArrowRight from '../../../assets/icons/arrow-right.svg';
@@ -14,7 +16,14 @@ const b = block('dc-nav-toc-panel');
 
 export interface TocNavPanelProps extends TocData {
     router: Router;
+    lang: Lang;
+    fixed?: boolean;
 }
+
+type TocNavPanelInnerProps =
+    & TocNavPanelProps
+    & WithTranslation
+    & WithTranslationProps;
 
 interface FlatTocItem {
     name: string;
@@ -26,7 +35,7 @@ interface TocNavPanelState {
     activeItemIndex: number;
 }
 
-class TocNavPanel extends React.Component<TocNavPanelProps, TocNavPanelState> {
+class TocNavPanel extends React.Component<TocNavPanelInnerProps, TocNavPanelState> {
     state: TocNavPanelState = {
         flatToc: [],
         activeItemIndex: 0,
@@ -37,15 +46,20 @@ class TocNavPanel extends React.Component<TocNavPanelProps, TocNavPanelState> {
     }
 
     componentDidUpdate(prevProps: TocNavPanelProps) {
-        const {router} = this.props;
+        const {router, i18n, lang} = this.props;
 
         if (prevProps.router.pathname !== router.pathname) {
             this.setState(this.getState(this.props));
+        }
+
+        if (prevProps.lang !== lang) {
+            i18n.changeLanguage(lang);
         }
     }
 
     render() {
         const {flatToc, activeItemIndex} = this.state;
+        const {fixed = false, t} = this.props;
 
         if (!flatToc.length) {
             return null;
@@ -55,15 +69,21 @@ class TocNavPanel extends React.Component<TocNavPanelProps, TocNavPanelState> {
         const nextItem = activeItemIndex < flatToc.length - 1 ? flatToc[activeItemIndex + 1] : null;
 
         return (
-            <div className={b()}>
+            <div className={b({fixed})}>
                 <div className={b('content')}>
                     <div className={b('control', {left: true})}>
-                        {prevItem && <ArrowLeft/>}
-                        {this.renderLink(prevItem)}
+                        <div className={b('key-hint')}>{t('key_previous')}</div>
+                        <div className={b('control-text')}>
+                            {prevItem && <ArrowLeft/>}
+                            {this.renderLink(prevItem)}
+                        </div>
                     </div>
                     <div className={b('control', {right: true})}>
-                        {this.renderLink(nextItem)}
-                        {nextItem && <ArrowRight/>}
+                        <div className={b('key-hint')}>{t('key_next')}</div>
+                        <div className={b('control-text')}>
+                            {this.renderLink(nextItem)}
+                            {nextItem && <ArrowRight/>}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -119,4 +139,4 @@ class TocNavPanel extends React.Component<TocNavPanelProps, TocNavPanelState> {
     }
 }
 
-export default TocNavPanel;
+export default withTranslation('toc-nav-panel')(TocNavPanel);

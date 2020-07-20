@@ -1,7 +1,8 @@
 {
     "controls": {
-        "label_text_width": "Text width",
-        "description_text_width": "Limit the width",
+        "label_page_width": "Page width",
+        "description_page_width_wide": "Wide",
+        "description_page_width_regular": "Regular",
         "label_show_mini_toc": "Navigation for the article",
         "description_show_mini_toc": "Show navigation",
         "label_dark_theme": "Dark theme",
@@ -20,5 +21,9 @@
     },
     "mini-toc" : {
         "title": "In this article"
+    },
+    "toc-nav-panel": {
+         "key_previous": "Previous",
+         "key_next": "Next"
     }
 }

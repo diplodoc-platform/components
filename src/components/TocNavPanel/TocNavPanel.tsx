@@ -72,18 +72,26 @@ class TocNavPanel extends React.Component<TocNavPanelInnerProps, TocNavPanelStat
             <div className={b({fixed})}>
                 <div className={b('content')}>
                     <div className={b('control', {left: true})}>
-                        <div className={b('key-hint')}>{t('key_previous')}</div>
-                        <div className={b('control-text')}>
-                            {prevItem && <ArrowLeft/>}
-                            {this.renderLink(prevItem)}
-                        </div>
+                        {prevItem &&
+                            <React.Fragment>
+                                <div className={b('key-hint')}>{t('key_previous')}</div>
+                                <div className={b('control-text')}>
+                                    <ArrowLeft/>
+                                    {this.renderLink(prevItem)}
+                                </div>
+                            </React.Fragment>
+                        }
                     </div>
                     <div className={b('control', {right: true})}>
-                        <div className={b('key-hint')}>{t('key_next')}</div>
-                        <div className={b('control-text')}>
-                            {this.renderLink(nextItem)}
-                            {nextItem && <ArrowRight/>}
-                        </div>
+                        {nextItem &&
+                            <React.Fragment>
+                                <div className={b('key-hint')}>{t('key_next')}</div>
+                                <div className={b('control-text')}>
+                                    {this.renderLink(nextItem)}
+                                    <ArrowRight/>
+                                </div>
+                            </React.Fragment>
+                        }
                     </div>
                 </div>
             </div>

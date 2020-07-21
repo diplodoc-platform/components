@@ -23,7 +23,7 @@
         "title": "В этой статье"
     },
     "toc-nav-panel": {
-        "key_previous": "Предыдущая",
-        "key_next": "Следующая"
+        "hint_previous": "Предыдущая",
+        "hint_next": "Следующая"
     }
 }

@@ -59,7 +59,7 @@ class TocNavPanel extends React.Component<TocNavPanelInnerProps, TocNavPanelStat
 
     render() {
         const {flatToc, activeItemIndex} = this.state;
-        const {fixed = false, t} = this.props;
+        const {fixed = false} = this.props;
 
         if (!flatToc.length) {
             return null;
@@ -71,29 +71,29 @@ class TocNavPanel extends React.Component<TocNavPanelInnerProps, TocNavPanelStat
         return (
             <div className={b({fixed})}>
                 <div className={b('content')}>
-                    <div className={b('control', {left: true})}>
-                        {prevItem &&
-                            <React.Fragment>
-                                <div className={b('key-hint')}>{t('key_previous')}</div>
-                                <div className={b('control-text')}>
-                                    <ArrowLeft/>
-                                    {this.renderLink(prevItem)}
-                                </div>
-                            </React.Fragment>
-                        }
-                    </div>
-                    <div className={b('control', {right: true})}>
-                        {nextItem &&
-                            <React.Fragment>
-                                <div className={b('key-hint')}>{t('key_next')}</div>
-                                <div className={b('control-text')}>
-                                    {this.renderLink(nextItem)}
-                                    <ArrowRight/>
-                                </div>
-                            </React.Fragment>
-                        }
-                    </div>
+                    {this.renderControl(prevItem)}
+                    {this.renderControl(nextItem, true)}
                 </div>
+            </div>
+        );
+    }
+
+    private renderControl(tocItem: FlatTocItem | null, isNext?: boolean) {
+        const {t} = this.props;
+        const keyHint = isNext ? 'hint_next' : 'hint_previous';
+
+        return (
+            <div className={b('control', {left: !isNext, right: isNext})}>
+                {tocItem &&
+                    <React.Fragment>
+                        <div className={b('control-hint')}>{t(keyHint)}</div>
+                        <div className={b('control-text')}>
+                            {!isNext && <ArrowLeft/>}
+                            {this.renderLink(tocItem)}
+                            {isNext && <ArrowRight/>}
+                        </div>
+                    </React.Fragment>
+                }
             </div>
         );
     }

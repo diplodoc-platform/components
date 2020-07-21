@@ -23,7 +23,7 @@
         "title": "In this article"
     },
     "toc-nav-panel": {
-         "key_previous": "Previous",
-         "key_next": "Next"
+        "hint_previous": "Previous",
+        "hint_next": "Next"
     }
 }

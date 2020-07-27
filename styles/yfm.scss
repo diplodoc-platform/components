@@ -103,12 +103,12 @@
         background: var(--yc-color-base);
     }
 
-    table thead {
-        background: var(--yc-color-base-area);
+    table thead, table tr:nth-child(2n) {
+        background: var(--yc-color-contrast-5);
     }
 
     table tr {
-        border-bottom: 1px solid var(--yc-color-divider);
+        border-bottom: none;
     }
 
     hr {

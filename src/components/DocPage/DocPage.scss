@@ -159,6 +159,14 @@
         &__content-mini-toc {
             display: block;
         }
+
+        & .dc-nav-toc-panel {
+            padding-bottom: 50px;
+        }
+
+        & .dc-controls {
+            display: none;
+        }
     }
 
     @media screen and (min-width: 1024px) {

@@ -69,10 +69,11 @@
         padding: var(--dc-code-short-padding);
     }
 
+    --yfm-code-background: rgba(107, 132, 153, 0.12);
     pre > code {
         border: none;
         border-radius: initial;
-        background: transparent;
+        background: var(--yfm-code-background);
         color: var(--yc-color-text-complementary);
         white-space: pre;
         display: block;
@@ -82,7 +83,6 @@
     }
 
     .yfm-clipboard > pre {
-        border: 1px solid var(--yc-color-divider);
         border-radius: 10px;
         overflow: hidden;
     }

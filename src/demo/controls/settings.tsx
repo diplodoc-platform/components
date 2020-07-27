@@ -5,7 +5,7 @@ import {TextSizes} from '../../models';
 export default function getUserSettings() {
     return {
         fullScreen: getFullScreen(),
-        regularPageWidth: getRegularPageWidth(),
+        wideFormat: getWideFormat(),
         showMiniToc: getShowMiniToc(),
         theme: getThemeSelector(),
         textSize: getTextSize(),
@@ -23,8 +23,8 @@ function getFullScreen() {
     return radios(label, options, defaultValue) === 'true';
 }
 
-function getRegularPageWidth() {
-    const label = 'Regular page width';
+function getWideFormat() {
+    const label = 'Wide format';
     const options = {
         enabled: 'true',
         disabled: 'false',

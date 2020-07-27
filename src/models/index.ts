@@ -11,7 +11,7 @@ export enum TextSizes {
 
 export interface DocSettings {
     fullScreen?: boolean;
-    regularPageWidth?: boolean;
+    wideFormat?: boolean;
     showMiniToc?: boolean;
     theme?: Theme;
     textSize?: TextSizes;

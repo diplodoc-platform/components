@@ -25,9 +25,9 @@ export function isExternalHref(href: string) {
     return href.startsWith('http') || href.startsWith('//');
 }
 
-export function getStateKey(showMiniToc: boolean | unknown, regularPageWidth: boolean | unknown) {
+export function getStateKey(showMiniToc: boolean | unknown, wideFormat: boolean | unknown) {
     return [
         showMiniToc ? 'showMiniToc' : '',
-        regularPageWidth ? 'regularPageWidth' : '',
+        wideFormat ? 'wideFormat' : '',
     ].join('|');
 }

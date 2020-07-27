@@ -1,8 +1,8 @@
 {
     "controls": {
-        "label_page_width": "Page width",
-        "description_page_width_wide": "Wide",
-        "description_page_width_regular": "Regular",
+        "label_wide_format": "Wide format",
+        "description_wide_format_enabled": "Enabled",
+        "description_wide_format_disabled": "Disabled",
         "label_show_mini_toc": "Navigation for the article",
         "description_show_mini_toc": "Show navigation",
         "label_dark_theme": "Dark theme",

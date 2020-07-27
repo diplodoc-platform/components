@@ -1,8 +1,8 @@
 {
     "controls": {
-        "label_page_width": "Ширина страницы",
-        "description_page_width_wide": "Широкая",
-        "description_page_width_regular": "Обычная",
+        "label_wide_format": "Широкий формат",
+        "description_wide_format_enabled": "Включен",
+        "description_wide_format_disabled": "Выключен",
         "label_show_mini_toc": "Навигация по текущей статье",
         "description_show_mini_toc": "Показывать навигацию",
         "label_dark_theme": "Темная тема",

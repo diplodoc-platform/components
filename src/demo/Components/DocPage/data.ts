@@ -40,9 +40,9 @@ export default function getPageInfo(): DocPageProps {
                 value: value ? 'true' : 'false'
             })
         },
-        onChangeRegularPageWidth: (value) => {
+        onChangeWideFormat: (value) => {
             __STORYBOOK_ADDONS.channel.emit('storybookjs/knobs/change', {
-                name: 'Regular page width',
+                name: 'Wide format',
                 value: value ? 'true' : 'false'
             })
         },

@@ -27,7 +27,7 @@ export interface DocPageProps extends DocPageData, Partial<DocSettings> {
 
     onChangeLang?: (lang: Lang) => void;
     onChangeFullScreen?: (value: boolean) => void;
-    onChangeRegularPageWidth?: (value: boolean) => void;
+    onChangeWideFormat?: (value: boolean) => void;
     onChangeShowMiniToc?: (value: boolean) => void;
     onChangeTheme?: (theme: Theme) => void;
     onChangeTextSize?: (textSize: TextSizes) => void;
@@ -44,7 +44,7 @@ class DocPage extends React.Component<DocPageInnerProps> {
             router,
             lang,
             headerHeight,
-            regularPageWidth,
+            wideFormat,
             fullScreen,
             showMiniToc,
             tocTitleIcon,
@@ -52,7 +52,7 @@ class DocPage extends React.Component<DocPageInnerProps> {
 
         const asideMiniToc = this.renderAsideMiniToc();
         const modes = {
-            'regular-page-width': regularPageWidth,
+            'regular-page-width': !wideFormat,
             'full-screen': fullScreen,
             'hidden-mini-toc': !showMiniToc,
         };
@@ -67,7 +67,7 @@ class DocPage extends React.Component<DocPageInnerProps> {
                 fullScreen={fullScreen}
                 hideRight={!showMiniToc}
                 tocTitleIcon={tocTitleIcon}
-                regularPageWidth={regularPageWidth}
+                wideFormat={wideFormat}
             >
                 <DocLayout.Center>
                     {this.renderBreadcrumbs()}
@@ -83,7 +83,7 @@ class DocPage extends React.Component<DocPageInnerProps> {
                 </DocLayout.Center>
                 <DocLayout.Right>
                     {/* This key allows recalculating the offset for the mini-toc for Safari */}
-                    <div className={b('aside')} key={getStateKey(showMiniToc, regularPageWidth)}>
+                    <div className={b('aside')} key={getStateKey(showMiniToc, wideFormat)}>
                         {asideMiniToc}
                     </div>
                 </DocLayout.Right>
@@ -216,14 +216,14 @@ class DocPage extends React.Component<DocPageInnerProps> {
             lang,
             textSize,
             theme,
-            regularPageWidth,
+            wideFormat,
             showMiniToc,
             fullScreen,
             vcsUrl,
             vcsType,
             onChangeLang,
             onChangeFullScreen,
-            onChangeRegularPageWidth,
+            onChangeWideFormat,
             onChangeShowMiniToc,
             onChangeTheme,
             onChangeTextSize,
@@ -238,7 +238,7 @@ class DocPage extends React.Component<DocPageInnerProps> {
                     lang={lang}
                     textSize={textSize}
                     theme={theme}
-                    regularPageWidth={regularPageWidth}
+                    wideFormat={wideFormat}
                     showMiniToc={showMiniToc}
                     fullScreen={fullScreen}
                     onChangeLang={onChangeLang}
@@ -246,7 +246,7 @@ class DocPage extends React.Component<DocPageInnerProps> {
                     vcsType={vcsType as Vcs}
                     showEditControl={showEditControl}
                     onChangeFullScreen={onChangeFullScreen}
-                    onChangeRegularPageWidth={onChangeRegularPageWidth}
+                    onChangeWideFormat={onChangeWideFormat}
                     onChangeShowMiniToc={onChangeShowMiniToc}
                     onChangeTheme={onChangeTheme}
                     onChangeTextSize={onChangeTextSize}

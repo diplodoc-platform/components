@@ -126,10 +126,12 @@
     }
 
     &_regular-page-width {
-        max-width: initial;
+        max-width: 1136px;
     }
 
     &#{&}_full-screen#{&}_regular-page-width {
+        max-width: 736px;
+
         #{$block}__main {
             padding-left: 0;
             padding-right: 0;

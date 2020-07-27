@@ -4,7 +4,6 @@
 .dc-doc-layout {
     display: flex;
     align-items: center;
-    justify-content: center;
     margin: 0 auto;
     height: 100%;
     background: var(--yc-color-base);
@@ -40,6 +39,16 @@
 
         &_regular-page-width {
             max-width: 736px;
+        }
+
+        &#{&}_hidden-right#{&}_regular-page-width:not(#{&}_full-screen) {
+            max-width: calc(736px + 176px / 2);
+
+            @media screen and (min-width: 1280px) {
+                & {
+                    max-width: calc(736px + 200px / 2);
+                }
+            }
         }
 
         &_full-screen {

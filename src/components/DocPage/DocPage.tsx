@@ -195,6 +195,7 @@ class DocPage extends React.Component<DocPageInnerProps> {
                 lang={lang}
                 router={router}
                 fixed={fullScreen}
+                className={b('toc-nav-panel')}
             />
         );
     }

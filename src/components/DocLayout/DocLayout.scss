@@ -43,12 +43,6 @@
 
         &#{&}_hidden-right#{&}_regular-page-width:not(#{&}_full-screen) {
             max-width: calc(736px + 176px / 2);
-
-            @media screen and (min-width: 1280px) {
-                & {
-                    max-width: calc(736px + 200px / 2);
-                }
-            }
         }
 
         &_full-screen {
@@ -90,6 +84,10 @@
     }
 
     @media screen and (min-width: 1280px) {
+        &__center &#{&}_hidden-right#{&}_regular-page-width:not(#{&}_full-screen) {
+            max-width: calc(736px + 200px / 2);
+        }
+
         &__toc, &__right, &__left {
             width: 200px;
         }

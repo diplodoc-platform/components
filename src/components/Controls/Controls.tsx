@@ -278,9 +278,7 @@ class Controls extends React.Component<ControlsInnerProps, ControlsState> {
         const ITEMS = [
             {
                 text: t('label_wide_format'),
-                description: wideFormat
-                    ? t('description_wide_format_enabled')
-                    : t('description_wide_format_disabled'),
+                description: t(`description_wide_format_${wideFormat ? 'enabled' : 'disabled'}`),
                 control: (
                     <Tumbler
                         checked={wideFormat}

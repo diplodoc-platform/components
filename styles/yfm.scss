@@ -26,75 +26,33 @@
         background-color: var(--yc-color-base);
     }
 
-    --yfm-note-color-info: rgba(2, 123, 243, 0.08);
-    --yfm-note-color-positive: rgba(63, 201, 46, 0.1);
-    --yfm-note-color-warning: rgba(255, 136, 0, 0.15);
-    --yfm-note-color-danger: rgba(235, 50, 38, 0.08);
+    $backgroundColors: (
+        yfm-accent-info: var(--yc-color-base-info),
+        yfm-accent-tip: var(--yc-color-base-positive),
+        yfm-accent-alert: var(--yc-color-base-danger),
+        yfm-accent-warning: var(--yc-color-base-warning)
+    );
 
-    .yfm-accent {
-        &-info {
-            background: var(--yfm-note-color-info);
+    @each $type, $color in $backgroundColors {
+        &.#{$type} {
+            background: $color;
         }
-        &-tip {
-            background: var(--yfm-note-color-positive);
-        }
-        &-alert {
-            background: var(--yfm-note-color-danger);
-        }
-        &-warning {
-            background: var(--yfm-note-color-warning);
-        }
-    }
-
-    .yfm-note {
-        border: none;
-    }
-
-    --yfm-inline-code-background: var(--yc-color-rain-cloud-20);
-    --yfm-inline-code-color: var(--yc-color-rain-cloud-contrast-solid);
-
-    code, kbd, pre {
-        font-family: var(--yc-font-family-monospace);
-        text-shadow: none;
     }
 
     code {
-        border: none;
-        background: var(--yfm-inline-code-background);
-        color: var(--yfm-inline-code-color);
-        display: inline-block;
-        white-space: normal;
         font-size: var(--dc-code-short-font-size);
         line-height: var(--dc-code-short-line-height);
         padding: var(--dc-code-short-padding);
+        background: var(--yc-color-rain-cloud-12);
+        color: var(--yc-color-text-misc);
     }
 
-    --yfm-code-background: rgba(107, 132, 153, 0.12);
     pre > code {
-        border: none;
-        border-radius: initial;
-        background: var(--yfm-code-background);
-        color: var(--yc-color-text-complementary);
-        white-space: pre;
-        display: block;
         font-size: var(--dc-code-font-size);
         line-height: var(--dc-code-line-height);
         padding: 16px;
-    }
-
-    .yfm-clipboard > pre {
-        border-radius: 10px;
-        overflow: hidden;
-    }
-
-    .yfm-clipboard {
-        .yfm-clipboard-button {
-            display: none;
-        }
-
-        &:hover .yfm-clipboard-button {
-            display: block;
-        }
+        background: var(--yc-color-base-misc);
+        color: var(--yc-color-text-complementary);
     }
 
     table {
@@ -105,10 +63,6 @@
 
     table thead, table tr:nth-child(2n) {
         background: var(--yc-color-base-generic);
-    }
-
-    table tr {
-        border-bottom: none;
     }
 
     hr {

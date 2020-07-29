@@ -1,4 +1,13 @@
+@import '../colors/private/dark.scss';
+@import '../colors/text/dark.scss';
+@import '../colors/base/dark.scss';
+@import '../colors/line/dark.scss';
+
 @mixin yc-theme-dark {
+    @include yc-colors-private-dark;
+    @include yc-colors-text-dark;
+    @include yc-colors-base-dark;
+    @include yc-colors-line-dark;
 
     // Achromatic palette
 
@@ -165,6 +174,4 @@
     --yc-color-button-pseudo-special-background-hover: var(--yc-color-contrast-10);
     --yc-color-button-link-text: var(--yc-color-azure-solid);
     --yc-color-button-link-border: var(--yc-color-azure-50);
-
-    --yc-color-base-generic: var(--yc-color-contrast-5);
 }

@@ -1,0 +1,41 @@
+@mixin yc-colors-base-light {
+    --yc-color-base-background: var(--yc-color-private-white-1000);
+    --yc-color-base-generic: var(--yc-color-private-black-50);
+    --yc-color-base-generic-hover: var(--yc-color-private-black-150);
+    --yc-color-base-simple-hover: var(--yc-color-private-black-50);
+    --yc-color-base-simple-hover-solid: var(--yc-color-private-black-solid-50);
+    --yc-color-base-selection: var(--yc-color-private-blue-50);
+    --yc-color-base-selection-hover: var(--yc-color-private-blue-100);
+    --yc-color-base-selection-solid: var(--yc-color-private-blue-solid-50);
+    --yc-color-base-selection-hover-solid: var(--yc-color-private-blue-solid-100);
+
+    --yc-color-base-special: var(--yc-color-private-blue-550);
+    --yc-color-base-special-hover: var(--yc-color-private-blue-600);
+    --yc-color-base-action: var(--yc-color-private-yellow-550);
+    --yc-color-base-action-hover: var(--yc-color-private-yellow-600);
+
+    --yc-color-base-info: var(--yc-color-private-blue-50);
+    --yc-color-base-info-hover: var(--yc-color-private-blue-100);
+    --yc-color-base-positive: var(--yc-color-private-green-50);
+    --yc-color-base-positive-hover: var(--yc-color-private-green-100);
+    --yc-color-base-warning: var(--yc-color-private-orange-50);
+    --yc-color-base-warning-hover: var(--yc-color-private-orange-100);
+    --yc-color-base-danger: var(--yc-color-private-red-50);
+    --yc-color-base-danger-hover: var(--yc-color-private-red-100);
+    --yc-color-base-misc: var(--yc-color-private-cool-grey-50);
+    --yc-color-base-misc-hover: var(--yc-color-private-cool-grey-100);
+
+    --yc-color-base-info-heavy: var(--yc-color-private-blue-450);
+    --yc-color-base-positive-heavy: var(--yc-color-private-green-450);
+    --yc-color-base-warning-heavy: var(--yc-color-private-orange-450);
+    --yc-color-base-danger-heavy: var(--yc-color-private-red-450);
+    --yc-color-base-misc-heavy: var(--yc-color-private-cool-grey-450);
+
+    --yc-color-base-light: var(--yc-color-private-white-1000);
+    --yc-color-base-light-hover: var(--yc-color-private-white-850);
+    --yc-color-base-light-simple-hover: var(--yc-color-private-white-150);
+
+    --yc-color-base-float-bg: var(--yc-color-private-white-1000);
+    --yc-color-base-float-bg-hover: var(--yc-color-private-black-solid-50);
+    --yc-color-base-float-bg-heavy: var(--yc-color-private-white-1000);
+}

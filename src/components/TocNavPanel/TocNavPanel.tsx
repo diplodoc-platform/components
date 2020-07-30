@@ -18,6 +18,7 @@ export interface TocNavPanelProps extends TocData {
     router: Router;
     lang: Lang;
     fixed?: boolean;
+    className?: string;
 }
 
 type TocNavPanelInnerProps =
@@ -59,7 +60,7 @@ class TocNavPanel extends React.Component<TocNavPanelInnerProps, TocNavPanelStat
 
     render() {
         const {flatToc, activeItemIndex} = this.state;
-        const {fixed = false} = this.props;
+        const {fixed = false, className} = this.props;
 
         if (!flatToc.length) {
             return null;
@@ -69,7 +70,7 @@ class TocNavPanel extends React.Component<TocNavPanelInnerProps, TocNavPanelStat
         const nextItem = activeItemIndex < flatToc.length - 1 ? flatToc[activeItemIndex + 1] : null;
 
         return (
-            <div className={b({fixed})}>
+            <div className={b({fixed}, className)}>
                 <div className={b('content')}>
                     {this.renderControl(prevItem)}
                     {this.renderControl(nextItem, true)}

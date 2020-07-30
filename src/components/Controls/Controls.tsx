@@ -26,7 +26,7 @@ const b = block('dc-controls');
 export interface ControlsProps {
     lang: Lang;
     fullScreen: boolean;
-    regularPageWidth: boolean;
+    wideFormat: boolean;
     showMiniToc: boolean;
     theme: Theme;
     textSize: TextSizes;
@@ -35,7 +35,7 @@ export interface ControlsProps {
     showEditControl: boolean;
     onChangeLang?: (lang: Lang) => void;
     onChangeFullScreen?: (value: boolean) => void;
-    onChangeRegularPageWidth?: (value: boolean) => void;
+    onChangeWideFormat?: (value: boolean) => void;
     onChangeShowMiniToc?: (value: boolean) => void;
     onChangeTheme?: (theme: Theme) => void;
     onChangeTextSize?: (textSize: TextSizes) => void;
@@ -266,7 +266,7 @@ class Controls extends React.Component<ControlsInnerProps, ControlsState> {
         const {
             textSize,
             theme,
-            regularPageWidth,
+            wideFormat,
             showMiniToc,
             fullScreen,
             t,
@@ -277,14 +277,12 @@ class Controls extends React.Component<ControlsInnerProps, ControlsState> {
         const allTextSizes = Object.values(TextSizes);
         const ITEMS = [
             {
-                text: t('label_page_width'),
-                description: regularPageWidth
-                    ? t('description_page_width_regular')
-                    : t('description_page_width_wide'),
+                text: t('label_wide_format'),
+                description: t(`description_wide_format_${wideFormat ? 'enabled' : 'disabled'}`),
                 control: (
                     <Tumbler
-                        checked={regularPageWidth}
-                        onChange={this.onChangeRegularPageWidth}
+                        checked={wideFormat}
+                        onChange={this.onChangeWideFormat}
                     />
                 ),
             },
@@ -354,14 +352,14 @@ class Controls extends React.Component<ControlsInnerProps, ControlsState> {
             fullScreen,
             textSize,
             theme,
-            regularPageWidth,
+            wideFormat,
             showMiniToc,
             onChangeLang,
         } = this.props;
         const showMark = !isDefaultSettings({
             textSize,
             theme,
-            regularPageWidth,
+            wideFormat,
             showMiniToc,
         });
 
@@ -413,11 +411,11 @@ class Controls extends React.Component<ControlsInnerProps, ControlsState> {
         }
     };
 
-    private onChangeRegularPageWidth = () => {
-        const {regularPageWidth, onChangeRegularPageWidth} = this.props;
+    private onChangeWideFormat = () => {
+        const {wideFormat, onChangeWideFormat} = this.props;
 
-        if (typeof onChangeRegularPageWidth === 'function') {
-            onChangeRegularPageWidth(!regularPageWidth);
+        if (typeof onChangeWideFormat === 'function') {
+            onChangeWideFormat(!wideFormat);
         }
     };
 

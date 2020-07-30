@@ -2,7 +2,7 @@ import {TextSizes, Theme} from './models';
 
 export const DEFAULT_SETTINGS = {
     fullScreen: false,
-    regularPageWidth: true,
+    wideFormat: false,
     showMiniToc: true,
     theme: Theme.Light,
     textSize: TextSizes.m,

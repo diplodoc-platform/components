@@ -8,11 +8,6 @@
     --yfm-color-hljs-comment: var(--yc-color-text-secondary);
     --yfm-color-hljs-deletion: var(--yc-color-text-accent);
     --yfm-color-hljs-section: var(--yc-color-text-accent);
-    --yfm-color-hljs-pseudo: #bc6060;
-    --yfm-color-hljs-literal: #78a960;
-    --yfm-color-hljs-addition: #397300;
-    --yfm-color-hljs-meta: #1f7199;
-    --yfm-color-hljs-meta-string: #4d99bf;
 
     a {
         color: var(--yc-color-link);
@@ -57,7 +52,7 @@
 
     table {
         color: var(--yc-color-text-primary);
-        border: 1px solid var(--yc-color-divider);
+        border-color: var(--yc-color-divider);
         background: var(--yc-color-base);
     }
 
@@ -70,11 +65,11 @@
     }
 
     blockquote {
-        border-left: 3px solid var(--yc-color-azure-solid);
+        border-left-color: var(--yc-color-azure-solid);
     }
 
     .yfm-tab-list {
-        border-bottom: 1px solid var(--yc-color-divider);
+        border-bottom-color: var(--yc-color-divider);
     }
 
     .yfm-tab:hover, .yfm-tab:active {

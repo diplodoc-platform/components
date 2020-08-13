@@ -7,21 +7,30 @@ import {DocPageTitle} from '../DocPageTitle';
 import {Text} from '../Text';
 import {HTML} from '../HTML';
 
+import {DEFAULT_SETTINGS} from '../../constants';
+
 import './DocLeadingPage.scss';
 
 const b = block('dc-doc-leading-page');
+
+const {wideFormat: defaultWideFormat} = DEFAULT_SETTINGS;
 
 export interface DocLeadingPageProps extends DocLeadingPageData {
     router: Router;
     lang: Lang;
     headerHeight?: number;
+    wideFormat?: boolean;
 }
 
 export const DocLeadingPage: React.FC<DocLeadingPageProps> = (
-    {data: {title, description, links}, toc, router, lang, headerHeight},
+    {data: {title, description, links}, toc, router, lang, headerHeight, wideFormat = defaultWideFormat},
 ) => {
+    const modes = {
+        'regular-page-width': !wideFormat,
+    };
+
     return (
-        <DocLayout toc={toc} router={router} lang={lang} headerHeight={headerHeight} className={b()}>
+        <DocLayout toc={toc} router={router} lang={lang} headerHeight={headerHeight} className={b(modes)}>
             <span/>
             <DocLayout.Center>
                 <main className={b('main')}>

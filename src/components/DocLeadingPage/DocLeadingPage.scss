@@ -3,8 +3,13 @@
 
 .dc-doc-leading-page {
     display: flex;
+    max-width: 1440px;
 
     @include text-size(body2);
+
+    &_regular-page-width {
+        max-width: 1136px;
+    }
 
     &__main {
         max-width: 800px;

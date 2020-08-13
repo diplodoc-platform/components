@@ -199,7 +199,6 @@ export class Scrollspy extends React.Component<ScrollspyInnerProps, ScrollspySta
         const currentOffset = window.pageYOffset;
         const visibleItemOffset: boolean[] = [];
         let isOneActive = false;
-        let isOnePseudoActive = false;
 
         targetItems.forEach((item, index) => {
             if (!item) {
@@ -223,26 +222,19 @@ export class Scrollspy extends React.Component<ScrollspyInnerProps, ScrollspySta
 
                 visibleItemOffset.push(true);
                 isOneActive = true;
-            } else if (!isOneActive && currentOffset > offsetTop) {
-                if (visibleItemOffset[index - 1]) {
-                    visibleItemOffset[index - 1] = false;
-                }
-
-                visibleItemOffset.push(true);
-                isOnePseudoActive = true;
             } else {
                 visibleItemOffset.push(false);
             }
         });
 
-        if (targetItems && targetItems.length && !isOneActive && !isOnePseudoActive) {
+        if (targetItems && targetItems.length && !isOneActive) {
             if (currentOffset < targetItems[0].getBoundingClientRect().top) {
                 visibleItemOffset[0] = true;
                 isOneActive = true;
             }
         }
 
-        return isOneActive || isOnePseudoActive ? visibleItemOffset : inViewState;
+        return isOneActive ? visibleItemOffset : inViewState;
     }
 
     private handleScroll = () => {

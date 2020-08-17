@@ -51,7 +51,7 @@ class Toc extends React.Component<TocProps, TocState> {
 
     componentDidMount() {
         this.containerEl = document.querySelector('.Layout__content');
-        this.footerEl = document.querySelector('.Layout__footer');
+        this.footerEl = document.querySelector('.Footer');
         this.setTocHeight();
         this.setState(this.getState(this.props, this.state), () => this.scrollToActiveItem());
 
@@ -266,7 +266,8 @@ class Toc extends React.Component<TocProps, TocState> {
     private setTocHeight() {
         const {headerHeight = HEADER_DEFAULT_HEIGHT} = this.props;
         const containerHeight = this.containerEl?.offsetHeight ?? 0;
-        const scrollDiff = window.scrollY + window.innerHeight - headerHeight - containerHeight;
+        const footerHeight = this.footerEl?.offsetHeight ?? 0;
+        const scrollDiff = window.scrollY + window.innerHeight + footerHeight - headerHeight - containerHeight;
         const rootNode = this.rootRef.current;
 
         if (!rootNode) {
@@ -276,7 +277,7 @@ class Toc extends React.Component<TocProps, TocState> {
         if (scrollDiff > 0) {
             rootNode.style.height = window.innerHeight - headerHeight - scrollDiff + 'px';
         } else if (containerHeight < window.innerHeight) {
-            rootNode.style.height = containerHeight + 'px';
+            rootNode.style.height = containerHeight - footerHeight + 'px';
         } else {
             rootNode.style.height = window.innerHeight - headerHeight + 'px';
         }

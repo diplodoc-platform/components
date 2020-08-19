@@ -15,8 +15,11 @@
         padding: 4px 8px;
         border: none;
         height: 26px;
-        background: var(--dc-tooltip-background);
-        color: var(--dc-text-tooltip-color);
+
+        &.dc-popup {
+            background: var(--dc-tooltip-background);
+            color: var(--dc-text-tooltip-color);
+        }
     }
 
     &__tooltip-text {
@@ -41,7 +44,7 @@
     }
 
     &__text-size-button {
-        &_active {
+        &_active.dc-button {
             color: var(--yc-color-azure-solid);
         }
 

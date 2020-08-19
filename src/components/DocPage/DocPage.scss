@@ -4,7 +4,7 @@
 .dc-doc-page {
     position: relative;
     @include text-size(body2);
-    max-width: 1440px;
+    width: 1440px;
 
     $block: &;
 
@@ -126,7 +126,7 @@
     }
 
     &_regular-page-width {
-        max-width: 1136px;
+        width: 1136px;
     }
 
     &#{&}_full-screen#{&}_regular-page-width {
@@ -166,6 +166,18 @@
 
         &__controls {
             display: none;
+        }
+    }
+
+    @media screen and (max-width: 1440px) {
+        &:not(&_regular-page-width) {
+            width: 100%;
+        }
+    }
+
+    @media screen and (max-width: 1136px) {
+        &_regular-page-width {
+            width: 100%;
         }
     }
 

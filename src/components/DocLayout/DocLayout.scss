@@ -14,11 +14,11 @@
 
     &__left, &__right {
         flex: 0 0 auto;
-        width: 176px;
         box-sizing: content-box;
     }
 
     &__right {
+        width: 176px;
         padding-right: 24px;
         &_full-screen, &_hidden-right {
             flex: initial;
@@ -26,6 +26,8 @@
     }
 
     &__left {
+        width: 200px;
+
         &_full-screen {
             flex: initial;
         }
@@ -88,8 +90,12 @@
             max-width: calc(736px + 200px / 2);
         }
 
-        &__toc, &__right, &__left {
+        &__toc, &__right {
             width: 200px;
+        }
+
+        &__left {
+            width: 224px;
         }
     }
 }

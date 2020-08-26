@@ -24,6 +24,12 @@
 
         background: var(--yc-color-base);
         color: var(--yc-color-text-primary);
+
+        .dc-doc-page__body {
+            svg {
+                filter: invert(1);
+            }
+        }
     }
 }
 

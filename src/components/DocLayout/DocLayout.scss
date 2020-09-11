@@ -90,12 +90,16 @@
             max-width: calc(736px + 200px / 2);
         }
 
-        &__toc, &__right {
+        &__right {
             width: 200px;
         }
 
+        &__toc {
+            width: 252px;
+        }
+
         &__left {
-            width: 224px;
+            width: 276px;
         }
     }
 }

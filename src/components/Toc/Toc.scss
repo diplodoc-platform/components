@@ -69,7 +69,9 @@ $leftOffset: 57px;
         scrollbar-width: thin;
 
         &::-webkit-scrollbar {
-            width: 6px;
+            /* stylelint-disable-next-line declaration-no-important */
+            width: 6px !important;
+
         }
     }
 

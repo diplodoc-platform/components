@@ -26,7 +26,7 @@
     }
 
     &__left {
-        width: 200px;
+        width: 276px;
 
         &_full-screen {
             flex: initial;
@@ -57,7 +57,7 @@
         z-index: 100;
         top: var(--dc-header-height, #{$headerHeight});
         padding-left: 24px;
-        width: 176px;
+        width: 252px;
         background-color: var(--yc-color-base);
         @include text-size(body-1-short);
     }

@@ -79,7 +79,6 @@ $leftOffset: 57px;
         @include reset-list-style();
 
         display: block;
-        padding-right: 21px;
 
         &-item {
             cursor: pointer;
@@ -107,7 +106,8 @@ $leftOffset: 57px;
                 }
 
                 &:hover {
-                    color: var(--yc-color-text-complementary);
+                    border-radius: 3px;
+                    background: var(--yc-color-base-simple-hover);
                 }
             }
 
@@ -138,5 +138,9 @@ $leftOffset: 57px;
 
     &__content > &__list > &__list-item:last-child {
         padding-bottom: 30px;
+    }
+
+    &__content > &__list {
+        padding-right: 21px;
     }
 }

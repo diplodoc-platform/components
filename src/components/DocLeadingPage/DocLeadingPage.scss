@@ -8,11 +8,10 @@
     @include text-size(body2);
 
     &_regular-page-width {
-        max-width: 1136px;
+        max-width: 1280px;
     }
 
     &__main {
-        max-width: 800px;
         margin-bottom: 40px;
         padding: 0 40px;
     }

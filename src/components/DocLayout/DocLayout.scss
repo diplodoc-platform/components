@@ -38,10 +38,6 @@
         position: relative;
         min-width: 0;
 
-        &_regular-page-width {
-            max-width: 736px;
-        }
-
         &#{&}_hidden-right#{&}_regular-page-width:not(#{&}_full-screen) {
             max-width: calc(736px + 176px / 2);
         }

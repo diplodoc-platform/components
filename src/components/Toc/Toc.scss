@@ -63,6 +63,9 @@ $leftOffset: 57px;
     }
 
     &__content {
+        --yc-scrollbar-width: 6px;
+        --yc-scrollbar-thin-width: 6px;
+
         position: relative;
         flex-grow: 1;
         overflow-y: auto;

@@ -67,12 +67,6 @@ $leftOffset: 57px;
         flex-grow: 1;
         overflow-y: auto;
         scrollbar-width: thin;
-
-        &::-webkit-scrollbar {
-            /* stylelint-disable-next-line declaration-no-important */
-            width: 6px !important;
-
-        }
     }
 
     &__list {

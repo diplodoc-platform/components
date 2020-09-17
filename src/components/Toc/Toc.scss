@@ -17,6 +17,7 @@ $leftOffset: 57px;
     flex-direction: column;
     height: calc(100vh - var(--dc-header-height, #{$headerHeight}));
     overflow-y: hidden;
+    border-right: 1px solid var(--yc-color-line-generic);
 
     &__empty {
         padding: 5px 15px 5px 24px;
@@ -62,9 +63,13 @@ $leftOffset: 57px;
     }
 
     &__content {
+        --yc-scrollbar-width: 6px;
+        --yc-scrollbar-thin-width: 6px;
+
         position: relative;
         flex-grow: 1;
         overflow-y: auto;
+        scrollbar-width: thin;
     }
 
     &__list {
@@ -83,13 +88,9 @@ $leftOffset: 57px;
 
             &-text {
                 position: relative;
-                padding: 8px 6px 8px 20px;
+                padding: 7px 12px 7px 20px;
 
-                color: var(--yc-color-text-secondary);
-
-                &-match {
-                    color: var(--yc-color-text-primary);
-                }
+                color: var(--yc-color-text-primary);
 
                 &::before {
                     content: '';
@@ -102,7 +103,8 @@ $leftOffset: 57px;
                 }
 
                 &:hover {
-                    color: var(--yc-color-text-complementary);
+                    border-radius: 3px;
+                    background: var(--yc-color-base-simple-hover);
                 }
             }
 
@@ -115,8 +117,9 @@ $leftOffset: 57px;
                 color: var(--yc-color-text-primary);
             }
 
-            &_active &-text {
-                color: var(--yc-color-text-primary);
+            &_active {
+                border-radius: 3px;
+                background: var(--yc-color-base-selection);
             }
 
             &:not(&_opened) > #{$class}__list {
@@ -132,5 +135,9 @@ $leftOffset: 57px;
 
     &__content > &__list > &__list-item:last-child {
         padding-bottom: 30px;
+    }
+
+    &__content > &__list {
+        padding-right: 21px;
     }
 }

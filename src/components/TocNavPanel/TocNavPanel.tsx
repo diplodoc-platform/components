@@ -89,9 +89,7 @@ class TocNavPanel extends React.Component<TocNavPanelInnerProps, TocNavPanelStat
                     <React.Fragment>
                         <div className={b('control-hint')}>{t(keyHint)}</div>
                         <div className={b('control-text')}>
-                            {!isNext && <ArrowLeft/>}
-                            {this.renderLink(tocItem)}
-                            {isNext && <ArrowRight/>}
+                            {this.renderLink(tocItem, isNext)}
                         </div>
                     </React.Fragment>
                 }
@@ -99,7 +97,7 @@ class TocNavPanel extends React.Component<TocNavPanelInnerProps, TocNavPanelStat
         );
     }
 
-    private renderLink(item: FlatTocItem | null) {
+    private renderLink(item: FlatTocItem | null, isNext?: boolean) {
         if (!item) {
             return null;
         }
@@ -113,7 +111,9 @@ class TocNavPanel extends React.Component<TocNavPanelInnerProps, TocNavPanelStat
 
         return (
             <a {...linkAttributes} className={b('link')} data-router-shallow>
+                {!isNext && <ArrowLeft/>}
                 {item.name}
+                {isNext && <ArrowRight/>}
             </a>
         );
     }

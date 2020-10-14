@@ -1,5 +1,6 @@
 import React from 'react';
 import block from 'bem-cn-lite';
+import isEqual from 'lodash/isEqual';
 
 import {TocData, TocItem, Router} from '../../models';
 import {ToggleArrow} from '../ToggleArrow';
@@ -65,7 +66,7 @@ class Toc extends React.Component<TocProps, TocState> {
     componentDidUpdate(prevProps: TocProps) {
         const {router} = this.props;
 
-        if (prevProps.router.pathname !== router.pathname) {
+        if (prevProps.router.pathname !== router.pathname || !isEqual(prevProps.router.query, router.query)) {
             this.setTocHeight();
             this.setState(this.getState(this.props, this.state), () => this.scrollToActiveItem());
         }

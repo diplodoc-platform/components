@@ -90,6 +90,7 @@ export interface BreadcrumbItem {
 
 export interface Router {
     pathname: string;
+    query?: object;
 }
 
 export enum Lang {

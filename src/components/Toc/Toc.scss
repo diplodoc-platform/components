@@ -70,6 +70,10 @@ $leftOffset: 57px;
         flex-grow: 1;
         overflow-y: auto;
         scrollbar-width: thin;
+
+        &_offset_top {
+            padding-top: 4px;
+        }
     }
 
     &__list {

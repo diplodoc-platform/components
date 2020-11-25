@@ -23,6 +23,7 @@ export interface DocLayoutProps {
     wideFormat?: boolean;
     headerHeight?: number;
     tocTitleIcon?: React.ReactNode;
+    hideTocHeader?: boolean;
     className?: string;
 }
 
@@ -86,7 +87,7 @@ export class DocLayout extends React.Component<DocLayoutProps> {
     }
 
     private renderToc() {
-        const {toc, router, headerHeight, tocTitleIcon, hideRight, wideFormat} = this.props;
+        const {toc, router, headerHeight, tocTitleIcon, hideRight, wideFormat, hideTocHeader} = this.props;
 
         if (!toc) {
             return null;
@@ -101,6 +102,7 @@ export class DocLayout extends React.Component<DocLayoutProps> {
                     router={router}
                     headerHeight={headerHeight}
                     tocTitleIcon={tocTitleIcon}
+                    hideTocHeader={hideTocHeader}
                 />
             </div>
         );

@@ -24,6 +24,7 @@ export interface DocPageProps extends DocPageData, Partial<DocSettings> {
     router: Router;
     headerHeight?: number;
     tocTitleIcon?: React.ReactNode;
+    hideTocHeader?: boolean;
 
     onChangeLang?: (lang: Lang) => void;
     onChangeFullScreen?: (value: boolean) => void;
@@ -48,6 +49,7 @@ class DocPage extends React.Component<DocPageInnerProps> {
             fullScreen,
             showMiniToc,
             tocTitleIcon,
+            hideTocHeader,
         } = this.props;
 
         const asideMiniToc = this.renderAsideMiniToc();
@@ -68,6 +70,7 @@ class DocPage extends React.Component<DocPageInnerProps> {
                 hideRight={!showMiniToc}
                 tocTitleIcon={tocTitleIcon}
                 wideFormat={wideFormat}
+                hideTocHeader={hideTocHeader}
             >
                 <DocLayout.Center>
                     {this.renderBreadcrumbs()}

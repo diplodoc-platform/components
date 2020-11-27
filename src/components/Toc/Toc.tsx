@@ -16,6 +16,7 @@ export interface TocProps extends TocData {
     router: Router;
     headerHeight?: number;
     tocTitleIcon?: React.ReactNode;
+    hideTocHeader?: boolean;
 }
 
 interface FlatTocItem {
@@ -80,7 +81,7 @@ class Toc extends React.Component<TocProps, TocState> {
     }
 
     render() {
-        const {items} = this.props;
+        const {items, hideTocHeader} = this.props;
         const {filterName, filteredItemIds} = this.state;
         let content;
 
@@ -93,7 +94,7 @@ class Toc extends React.Component<TocProps, TocState> {
         return (
             <div className={b()} ref={this.rootRef}>
                 {this.renderTop()}
-                <div className={b('content')} ref={this.contentRef}>
+                <div className={b('content', {'offset_top': hideTocHeader})} ref={this.contentRef}>
                     {content}
                 </div>
             </div>
@@ -193,9 +194,13 @@ class Toc extends React.Component<TocProps, TocState> {
     }
 
     private renderTop() {
-        const {router, title, href, tocTitleIcon} = this.props;
+        const {router, title, href, tocTitleIcon, hideTocHeader} = this.props;
         const {contentScrolled} = this.state;
         let topHeader;
+
+        if (hideTocHeader) {
+            return null;
+        }
 
         if (href) {
             const active = isActiveItem(router, href);

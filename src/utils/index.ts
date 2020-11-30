@@ -17,8 +17,12 @@ export const isDefaultSettings = (settings: DocSettings) => {
 
 export type ChangeHandler<S> = <K extends keyof S, V extends S[K]>(field: K, value?: V) => () => void;
 
+export function normalizePath(path?: string | null) {
+    return path?.replace(/\/index$/, '/');
+}
+
 export function isActiveItem(router: Router, href: string) {
-    return router.pathname === parse(href).pathname;
+    return normalizePath(router.pathname) === normalizePath(parse(href).pathname);
 }
 
 export function isExternalHref(href: string) {

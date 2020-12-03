@@ -234,7 +234,7 @@ class Toc extends React.Component<TocProps, TocState> {
         let activeId;
 
         function processItems(items: TocItem[], parentId?: string) {
-            items.forEach(({id, href, name, items: subItems}) => {
+            items.forEach(({id, href, name, items: subItems, expanded}) => {
                 flatToc[id] = state.flatToc[id]
                     ? {...state.flatToc[id]}
                     : {name, href, parents: []};
@@ -249,7 +249,9 @@ class Toc extends React.Component<TocProps, TocState> {
 
                 if (subItems) {
                     if (typeof flatToc[id].opened === 'undefined') {
-                        flatToc[id].opened = flatToc[id].parents.length === 0;
+                        const isFirstLevel = flatToc[id].parents.length === 0;
+
+                        flatToc[id].opened = isFirstLevel && typeof expanded !== 'undefined' ? expanded : false;
                     }
 
                     processItems(subItems, id);

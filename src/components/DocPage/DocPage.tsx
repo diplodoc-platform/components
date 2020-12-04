@@ -174,7 +174,7 @@ class DocPage extends React.Component<DocPageInnerProps> {
     private renderAsideMiniToc() {
         const {headings, router, headerHeight, lang} = this.props;
 
-        if (headings.length === 0) {
+        if (headings.length < 2) {
             return null;
         }
 

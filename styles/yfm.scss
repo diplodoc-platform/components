@@ -1,4 +1,5 @@
 @import './mixins';
+@import './variables';
 
 .dc-doc-page .yfm {
     color: var(--yc-color-text-primary);
@@ -80,8 +81,40 @@
         border-bottom-color: var(--yc-color-azure-solid);
     }
 
-    h1, h2, h3, h4, h5, h6 {
+    /* TODO: move yfm-cut styles to yfm-transform */
+    .yfm-cut {
+        margin-bottom: $blockMarginBottomMedium;
+    }
+
+    .yfm-cut.open {
+        margin-bottom: 0;
+    }
+
+    .yfm-cut.open .yfm-cut-content {
+        padding: 5px 0 0 30px;
+    }
+
+    // Margin collapse is not applied for a block and header with a negative margin.
+    // The margin is summed up. So, we need to take 15px away from the header margin-top
+    h1, h2 {
+        @include fixAnchorPosition(calc(#{$headerMarginTopLarge} - #{$blockMarginBottomMedium}));
+        margin-bottom: $blockMarginBottomLarge;
+    }
+
+    h3, h4, h5, h6 {
+        @include fixAnchorPosition(calc(#{$headerMarginTopMedium} - #{$blockMarginBottomMedium}));
+    }
+
+    h1 + h2, h2 + h3, h3 + h4, h4 + h5, h5 + h6 {
         @include fixAnchorPosition();
+    }
+
+    // Use 0px for the top offset of the header if it is the first child element,
+    // because it is located after the page title
+    h1, h2, h3, h4, h5, h6 {
+        &:first-child {
+            @include fixAnchorPosition();
+        }
     }
 }
 

@@ -107,7 +107,7 @@ class Toc extends React.Component<TocProps, TocState> {
         return (
             <ul className={b('list')}>
                 {items.map(({id, name, href, items: subItems}, index) => {
-                    const opened = flatToc[id] ? flatToc[id].opened : true;
+                    const opened = flatToc[id] ? flatToc[id].opened : false;
                     let isOpenFilteredItem = false;
                     let active = false;
                     let visibleChildren = Boolean(subItems);

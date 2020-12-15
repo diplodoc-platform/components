@@ -5,21 +5,21 @@
 
     &_type {
         &_horizontal {
-            transform: rotate(-90deg);
+            transform: rotate(0deg);
         }
 
         &_vertical {
-            transform: rotate(0deg);
+            transform: rotate(90deg);
         }
     }
 
     &_open {
         &#{$root}_type_horizontal {
-            transform: rotate(0deg);
+            transform: rotate(90deg);
         }
 
         &#{$root}_type_vertical {
-            transform: rotate(180deg);
+            transform: rotate(-90deg);
         }
     }
 

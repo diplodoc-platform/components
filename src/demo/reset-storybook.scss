@@ -4,7 +4,6 @@
     & code[class*='language-'], pre[class*='language-'] {
         background: initial;
         padding: initial;
-        overflow: initial;
         margin: 0 0 15px;
         text-shadow: none;
     }
@@ -27,5 +26,5 @@ body.yc-root {
 .Layout__header {
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 101;
 }

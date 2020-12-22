@@ -15,6 +15,8 @@ import LangSwitcherIcon from '../../../assets/icons/lang.svg';
 import RusIcon from '../../../assets/icons/rus.svg';
 import EngIcon from '../../../assets/icons/eng.svg';
 import EditIcon from '../../../assets/icons/edit.svg';
+import SinglePageIcon from '../../../assets/icons/single-page.svg';
+import SinglePageClickedIcon from '../../../assets/icons/single-page-clicked.svg';
 
 import {Lang, TextSizes, Theme} from '../../models';
 import {isDefaultSettings, ChangeHandler} from '../../utils';
@@ -26,6 +28,7 @@ const b = block('dc-controls');
 export interface ControlsProps {
     lang: Lang;
     fullScreen: boolean;
+    singlePage: boolean;
     wideFormat: boolean;
     showMiniToc: boolean;
     theme: Theme;
@@ -35,6 +38,7 @@ export interface ControlsProps {
     showEditControl: boolean;
     onChangeLang?: (lang: Lang) => void;
     onChangeFullScreen?: (value: boolean) => void;
+    onChangeSinglePage?: (value: boolean) => void;
     onChangeWideFormat?: (value: boolean) => void;
     onChangeShowMiniToc?: (value: boolean) => void;
     onChangeTheme?: (theme: Theme) => void;
@@ -50,6 +54,7 @@ interface ControlsState {
     showEditTooltip: boolean;
     showLangTooltip: boolean;
     showSettingsTooltip: boolean;
+    showSinglePageTooltip: boolean;
 }
 
 type ControlsInnerProps =
@@ -61,6 +66,7 @@ class Controls extends React.Component<ControlsInnerProps, ControlsState> {
     settingsRef?: HTMLButtonElement;
     langRef?: HTMLButtonElement;
     fullScreenRef?: HTMLButtonElement;
+    singlePageRef?: HTMLButtonElement;
     editRef?: HTMLButtonElement;
 
     state: ControlsState = {
@@ -70,6 +76,7 @@ class Controls extends React.Component<ControlsInnerProps, ControlsState> {
         showEditTooltip: false,
         showLangTooltip: false,
         showSettingsTooltip: false,
+        showSinglePageTooltip: false,
     };
 
     componentDidMount(): void {
@@ -104,6 +111,7 @@ class Controls extends React.Component<ControlsInnerProps, ControlsState> {
                 {this.renderEditTooltip()}
                 {this.renderSettingsTooltip()}
                 {this.renderLangTooltip()}
+                {this.renderSinglePageTooltip()}
             </div>
         );
     }
@@ -115,10 +123,10 @@ class Controls extends React.Component<ControlsInnerProps, ControlsState> {
     };
 
     private renderEditLink() {
-        const {vcsUrl, showEditControl} = this.props;
+        const {vcsUrl, showEditControl, singlePage} = this.props;
         const iconSize = 16;
 
-        if (!showEditControl) {
+        if (!showEditControl || singlePage) {
             return null;
         }
 
@@ -204,9 +212,37 @@ class Controls extends React.Component<ControlsInnerProps, ControlsState> {
         );
     }
 
+    private renderSinglePageTooltip() {
+        const {t, singlePage} = this.props;
+        const {showSinglePageTooltip} = this.state;
+        const singlePageValue = singlePage ? 'enabled' : 'disabled';
+
+        if (!this.singlePageRef) {
+            return null;
+        }
+
+        return (
+            <Popup
+                anchor={this.singlePageRef}
+                visible={showSinglePageTooltip}
+                onOutsideClick={this.makeTogglePopup('showSinglePageTooltip', false)}
+                className={b('tooltip')}
+                align={this.getPopupAlign()}
+            >
+                <span className={b('tooltip-text')}>
+                    {t(`single-page-text-${singlePageValue}`)}
+                </span>
+            </Popup>
+        );
+    }
+
     private renderEditTooltip() {
-        const {t, vcsType} = this.props;
+        const {t, vcsType, singlePage} = this.props;
         const {showEditTooltip} = this.state;
+
+        if (singlePage) {
+            return null;
+        }
 
         return (
             <Popup
@@ -269,12 +305,14 @@ class Controls extends React.Component<ControlsInnerProps, ControlsState> {
             wideFormat,
             showMiniToc,
             fullScreen,
+            singlePage,
             t,
             onChangeTheme,
         } = this.props;
         const popupWidth = 256;
         const ITEM_HEIGHT = 48;
         const allTextSizes = Object.values(TextSizes);
+        const showMiniTocDisabled = fullScreen || singlePage;
         const ITEMS = [
             {
                 text: t('label_wide_format'),
@@ -291,7 +329,7 @@ class Controls extends React.Component<ControlsInnerProps, ControlsState> {
                 description: t('description_show_mini_toc'),
                 control: (
                     <Tumbler
-                        disabled={fullScreen}
+                        disabled={showMiniTocDisabled}
                         checked={showMiniToc}
                         onChange={this.onChangeShowMiniToc}
                     />
@@ -350,11 +388,13 @@ class Controls extends React.Component<ControlsInnerProps, ControlsState> {
     private renderSwitchers() {
         const {
             fullScreen,
+            singlePage,
             textSize,
             theme,
             wideFormat,
             showMiniToc,
             onChangeLang,
+            onChangeSinglePage,
         } = this.props;
         const showMark = !isDefaultSettings({
             textSize,
@@ -391,6 +431,16 @@ class Controls extends React.Component<ControlsInnerProps, ControlsState> {
                         <LangSwitcherIcon/>
                     </Button> : null
                 }
+                {onChangeSinglePage ?
+                    <Button
+                        onClick={this.onChangeSinglePage}
+                        buttonRef={this.makeSetRef('singlePageRef')}
+                        onMouseOver={this.makeTogglePopup('showSinglePageTooltip', true)}
+                        onMouseLeave={this.makeTogglePopup('showSinglePageTooltip', false)}
+                    >
+                        {singlePage ? <SinglePageClickedIcon/> : <SinglePageIcon/>}
+                    </Button> : null
+                }
             </React.Fragment>
         );
     }
@@ -408,6 +458,14 @@ class Controls extends React.Component<ControlsInnerProps, ControlsState> {
 
         if (typeof onChangeFullScreen === 'function') {
             onChangeFullScreen(!fullScreen);
+        }
+    };
+
+    private onChangeSinglePage = () => {
+        const {singlePage, onChangeSinglePage} = this.props;
+
+        if (typeof onChangeSinglePage === 'function') {
+            onChangeSinglePage(!singlePage);
         }
     };
 

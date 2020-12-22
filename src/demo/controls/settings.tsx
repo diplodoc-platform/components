@@ -9,11 +9,23 @@ export default function getUserSettings() {
         showMiniToc: getShowMiniToc(),
         theme: getThemeSelector(),
         textSize: getTextSize(),
+        singlePage: getSinglePage(),
     };
 }
 
 function getFullScreen() {
     const label = 'Full screen';
+    const options = {
+        enabled: 'true',
+        disabled: 'false',
+    };
+    const defaultValue = 'false';
+
+    return radios(label, options, defaultValue) === 'true';
+}
+
+function getSinglePage() {
+    const label = 'Single page';
     const options = {
         enabled: 'true',
         disabled: 'false',

@@ -116,6 +116,48 @@
             @include fixAnchorPosition();
         }
     }
+
+    .yfm-page__delimeter {
+        height: 4px;
+        border-radius: 2px;
+        background: var(--yc-color-line-generic);
+        margin-top: 20px;
+        margin-bottom: 0;
+
+        & + h1, & + h2, & + h3, & + h4, & + h5, & + h6 {
+            @include fixAnchorPosition(#{$headerMarginTopLarge});
+        }
+    }
+
+    .yfm-original-link {
+        &:before {
+            content: none;
+        }
+        & svg {
+            visibility: hidden;
+        }
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        .yfm-original-link::before {
+            content: none;
+        }
+        .yfm-original-link svg {
+            visibility: hidden;
+        }
+        &:hover .yfm-original-link svg {
+            visibility: visible;
+        }
+    }
+
+    /* stylelint-disable declaration-no-important */
+    .yfm-anchor_hidden {
+        visibility: hidden;
+        &:before {
+            visibility: hidden!important;
+        }
+    }
+    /* stylelint-enable declaration-no-important */
 }
 
 .yc-root_theme_dark .dc-doc-page .yfm {

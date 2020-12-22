@@ -11,6 +11,7 @@ export enum TextSizes {
 
 export interface DocSettings {
     fullScreen?: boolean;
+    singlePage?: boolean;
     wideFormat?: boolean;
     showMiniToc?: boolean;
     theme?: Theme;
@@ -75,6 +76,7 @@ export interface TocData {
     items: TocItem[];
     stage?: string;
     editable?: boolean;
+    singlePage?: boolean;
 }
 
 export interface TocItem {
@@ -91,6 +93,7 @@ export interface BreadcrumbItem {
 
 export interface Router {
     pathname: string;
+    hash?: string;
 }
 
 export enum Lang {

@@ -64,9 +64,12 @@ class Toc extends React.Component<TocProps, TocState> {
     }
 
     componentDidUpdate(prevProps: TocProps) {
-        const {router} = this.props;
+        const {router, singlePage} = this.props;
 
-        if (prevProps.router.pathname !== router.pathname) {
+        if (prevProps.router.pathname !== router.pathname ||
+            prevProps.router.hash !== router.hash ||
+            prevProps.singlePage !== singlePage
+        ) {
             this.setTocHeight();
             this.setState(this.getState(this.props, this.state), () => this.scrollToActiveItem());
         }
@@ -102,6 +105,7 @@ class Toc extends React.Component<TocProps, TocState> {
     }
 
     private renderList(items: TocItem[], isMain = true) {
+        const {singlePage} = this.props;
         const {flatToc, filteredItemIds, filterName, activeId} = this.state;
 
         return (
@@ -172,6 +176,10 @@ class Toc extends React.Component<TocProps, TocState> {
                         );
 
                         active = id === activeId;
+
+                        if (singlePage && !activeId && index === 0 && isMain) {
+                            active = true;
+                        }
                     }
 
                     if (subItems && (active || opened)) {
@@ -194,7 +202,7 @@ class Toc extends React.Component<TocProps, TocState> {
     }
 
     private renderTop() {
-        const {router, title, href, tocTitleIcon, hideTocHeader} = this.props;
+        const {router, title, href, tocTitleIcon, hideTocHeader, singlePage} = this.props;
         const {contentScrolled} = this.state;
         let topHeader;
 
@@ -203,7 +211,7 @@ class Toc extends React.Component<TocProps, TocState> {
         }
 
         if (href) {
-            const active = isActiveItem(router, href);
+            const active = isActiveItem(router, href, singlePage);
 
             topHeader = (
                 <a href={href} className={b('top-header', {active, link: true})} data-router-shallow>
@@ -230,6 +238,7 @@ class Toc extends React.Component<TocProps, TocState> {
     }
 
     private getState(props: TocProps, state: TocState) {
+        const {singlePage} = this.props;
         const flatToc: Record<string, FlatTocItem> = {};
         let activeId;
 
@@ -243,7 +252,7 @@ class Toc extends React.Component<TocProps, TocState> {
                     flatToc[id].parents = [parentId, ...flatToc[parentId].parents];
                 }
 
-                if (href && isActiveItem(props.router, href)) {
+                if (href && isActiveItem(props.router, href, singlePage)) {
                     activeId = id;
                 }
 

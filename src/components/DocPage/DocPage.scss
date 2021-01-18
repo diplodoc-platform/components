@@ -29,12 +29,24 @@
         overflow: hidden;
     }
 
+    &__loader-wrapper {
+        background: var(--yc-color-base);
+        padding-top: calc((100vh - var(--dc-header-height, #{$headerHeight})) / 2);
+        display: flex;
+        justify-content: center;
+        position: absolute;
+        width: 100%;
+        top: 0;
+        z-index: 101;
+        height: 100%;
+    }
+
     &__controls {
         display: flex;
         top: var(--dc-header-height, #{$headerHeight});
         align-items: center;
         height: 40px;
-        z-index: 100;
+        z-index: 102;
         position: absolute;
         right: 7px;
 
@@ -127,6 +139,11 @@
 
     &_regular-page-width {
         width: 1280px;
+    }
+
+    &#{&}_single-page &__header-container {
+        position: relative;
+        padding-right: 200px;
     }
 
     &#{&}_full-screen#{&}_regular-page-width {

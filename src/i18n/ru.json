@@ -14,8 +14,11 @@
         "description_l_text_size": "Увеличенный",
         "full-screen-text-enabled": "Выйти из режима чтения (Esc)",
         "full-screen-text-disabled": "Режим чтения",
+        "single-page-text-enabled": "Выйти из одностраничного режима",
+        "single-page-text-disabled": "Одностраничный режим",
         "edit-text-github": "Редактировать на GitHub",
         "edit-text-arcanum": "Редактировать в Arcanum",
+        "edit-text": "Редактировать",
         "settings-text": "Настройки",
         "lang-text": "Язык"
     },

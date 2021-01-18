@@ -2,12 +2,14 @@
 @import '../colors/text/light.scss';
 @import '../colors/base/light.scss';
 @import '../colors/line/light.scss';
+@import '../colors/sfx/light.scss';
 
 @mixin yc-theme-light {
     @include yc-colors-private-light;
     @include yc-colors-text-light;
     @include yc-colors-base-light;
     @include yc-colors-line-light;
+    @include yc-colors-sfx-light;
 
     // Achromatic palette
 

@@ -14,8 +14,11 @@
         "description_l_text_size": "Large",
         "full-screen-text-enabled": "Exit from reading mode (Esc)",
         "full-screen-text-disabled": "Reading mode",
+        "single-page-text-enabled": "Exit from single-page mode",
+        "single-page-text-disabled": "Single-page mode",
         "edit-text-github": "Edit on GitHub",
         "edit-text-arcanum": "Edit on Arcanum",
+        "edit-text": "Edit",
         "settings-text": "Settings",
         "lang-text": "Language"
     },

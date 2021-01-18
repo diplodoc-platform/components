@@ -46,6 +46,11 @@
             flex: 0 0 auto;
             width: 100%;
         }
+
+        &_loading {
+            height: calc(100vh - var(--dc-header-height, #{$headerHeight}));
+            overflow: hidden;
+        }
     }
 
     &__toc {

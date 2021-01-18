@@ -2,12 +2,14 @@
 @import '../colors/text/dark.scss';
 @import '../colors/base/dark.scss';
 @import '../colors/line/dark.scss';
+@import '../colors/sfx/dark.scss';
 
 @mixin yc-theme-dark {
     @include yc-colors-private-dark;
     @include yc-colors-text-dark;
     @include yc-colors-base-dark;
     @include yc-colors-line-dark;
+    @include yc-colors-sfx-dark;
 
     // Achromatic palette
 

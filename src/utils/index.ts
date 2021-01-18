@@ -52,7 +52,6 @@ export function getStateKey(
     ].join('|');
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function callSafe(func: ((path: string) => string) | undefined, path: string) {
     if (typeof func === 'function') {
         return func(path);
@@ -83,7 +82,7 @@ export function getHeaderTag(el: HTMLElement) {
     return resultEl;
 }
 function isHeaderTag(el: HTMLElement) {
-    return ['H1', 'H2', 'H3', 'H4', 'H5', 'H6'].indexOf(el.tagName) !== -1;
+    return ['H1', 'H2', 'H3', 'H4', 'H5', 'H6'].includes(el.tagName);
 }
 
 export function createElementFromHTML(htmlString: string) {

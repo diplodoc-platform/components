@@ -1,5 +1,6 @@
 import React, {ReactElement} from 'react';
 import _ from 'lodash';
+import scrollIntoView from 'scroll-into-view-if-needed';
 
 import {InnerProps} from '../../utils';
 import {Router} from '../../models';
@@ -16,6 +17,7 @@ export interface ScrollspyProps extends Partial<ScrollspyDefaultProps> {
     router: Router;
     onSectionClick?: (event: MouseEvent) => void;
     className?: string;
+    scrollToListItem?: boolean;
 }
 
 interface ScrollspyState {
@@ -34,6 +36,7 @@ export class Scrollspy extends React.Component<ScrollspyInnerProps, ScrollspySta
     };
 
     containerRef = React.createRef<HTMLUListElement>();
+    itemRefs = this.props.items.map(() => React.createRef<HTMLDivElement>());
 
     scrollByClick: boolean;
     firstItemIndexInView: number;
@@ -62,8 +65,13 @@ export class Scrollspy extends React.Component<ScrollspyInnerProps, ScrollspySta
         }
     }
 
-    componentDidUpdate(prevProps: Readonly<ScrollspyProps>) {
+    componentDidUpdate(prevProps: Readonly<ScrollspyProps>, prevState: Readonly<ScrollspyState>) {
         const {items, router} = this.props;
+        const {inViewState} = this.state;
+
+        if (!_.isEqual(inViewState, prevState.inViewState)) {
+            this.scrollToListItem();
+        }
 
         if (!_.isEqual(items, prevProps.items) || prevProps.router.pathname !== router.pathname) {
             this.initItems();
@@ -98,7 +106,12 @@ export class Scrollspy extends React.Component<ScrollspyInnerProps, ScrollspySta
             }
 
             return (
-                <ChildTag key={child.key} className={childClassNames} onClick={this.handleSectionClick}>
+                <ChildTag
+                    key={child.key}
+                    className={childClassNames}
+                    onClick={this.handleSectionClick}
+                    ref={this.itemRefs[index]}
+                >
                     {child.props.children}
                 </ChildTag>
             );
@@ -175,6 +188,29 @@ export class Scrollspy extends React.Component<ScrollspyInnerProps, ScrollspySta
         }
     }
 
+    private scrollToListItem = () => {
+        if (!this.props.scrollToListItem) {
+            return;
+        }
+
+        let itemIndex = this.state.inViewState.findIndex((isActive) => isActive);
+
+        if (itemIndex < 0) {
+            itemIndex = 0;
+        }
+
+        const ref = this.itemRefs[itemIndex] && this.itemRefs[itemIndex].current;
+
+        if (ref) {
+            scrollIntoView(ref, {
+                scrollMode: 'if-needed',
+                block: 'nearest',
+                inline: 'nearest',
+                behavior: 'smooth',
+            });
+        }
+    };
+
     private initItems() {
         const {items} = this.props;
         const targetItems = items
@@ -182,6 +218,7 @@ export class Scrollspy extends React.Component<ScrollspyInnerProps, ScrollspySta
             .filter(Boolean) as HTMLElement[];
 
         this.setState({targetItems}, this.initSections);
+        this.scrollToListItem();
     }
 
     private initSections = () => {

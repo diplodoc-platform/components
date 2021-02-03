@@ -50,7 +50,7 @@ export class Scrollspy extends React.Component<ScrollspyInnerProps, ScrollspySta
             inViewState: [],
         };
 
-        this.scrollByClick = true;
+        this.scrollByClick = false;
         this.firstItemIndexInView = -1;
         this.lastItemIndexInView = -1;
     }
@@ -75,6 +75,11 @@ export class Scrollspy extends React.Component<ScrollspyInnerProps, ScrollspySta
 
         if (!_.isEqual(items, prevProps.items) || prevProps.router.pathname !== router.pathname) {
             this.initItems();
+        }
+
+        if (router.hash !== prevProps.router.hash) {
+            this.pauseScrollHandler();
+            this.saveActiveItems(router.hash);
         }
     }
 
@@ -237,6 +242,8 @@ export class Scrollspy extends React.Component<ScrollspyInnerProps, ScrollspySta
         const visibleItemOffset: boolean[] = [];
         let isOneActive = false;
 
+        const pureHash = hash && hash.startsWith('#') ? hash.substring(1) : hash;
+
         targetItems.forEach((item, index) => {
             if (!item) {
                 return;
@@ -245,8 +252,8 @@ export class Scrollspy extends React.Component<ScrollspyInnerProps, ScrollspySta
             const offsetTop = item.getBoundingClientRect().top;
             const isVisibleItem = offsetTop < 1;
 
-            if (hash) {
-                if (hash === `#${item.getAttribute('id')}`) {
+            if (pureHash) {
+                if (pureHash === item.getAttribute('id')) {
                     visibleItemOffset.push(true);
                     isOneActive = true;
                 } else {
@@ -276,21 +283,31 @@ export class Scrollspy extends React.Component<ScrollspyInnerProps, ScrollspySta
 
     private handleScroll = () => {
         if (this.scrollByClick) {
-            this.saveActiveItems();
-        } else {
-            this.scrollByClick = true;
+            // the end of smooth auto-scroll
+            window.removeEventListener('scroll', this.handleScrollDebounced);
+            window.addEventListener('scroll', this.handleScroll);
+            this.scrollByClick = false;
         }
+        this.saveActiveItems();
     };
+
+    // eslint-disable-next-line @typescript-eslint/member-ordering, react/sort-comp
+    private handleScrollDebounced = _.debounce(this.handleScroll, 100);
+
+    private pauseScrollHandler() {
+        // wait for the end of smooth auto-scroll
+        this.scrollByClick = true;
+        window.removeEventListener('scroll', this.handleScroll);
+        window.addEventListener('scroll', this.handleScrollDebounced);
+    }
 
     private handleSectionClick = (event: MouseEvent) => {
         const {onSectionClick} = this.props;
         const {target} = event;
 
-        if (target && (target as HTMLElement).tagName === 'a') {
+        if (target && (target as HTMLElement).tagName === 'A') {
             event.stopPropagation();
-
-            this.scrollByClick = false;
-
+            this.pauseScrollHandler();
             this.saveActiveItems((target as HTMLAnchorElement).hash);
 
             if (onSectionClick) {

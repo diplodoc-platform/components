@@ -286,7 +286,7 @@ export class Scrollspy extends React.Component<ScrollspyInnerProps, ScrollspySta
         const {onSectionClick} = this.props;
         const {target} = event;
 
-        if (target && (target as HTMLElement).tagName === 'a') {
+        if (target && (target as HTMLElement).tagName === 'A') {
             event.stopPropagation();
 
             this.scrollByClick = false;

@@ -24,6 +24,7 @@
 
     &__tooltip-text {
         @include text-size(body-1-short);
+        display: block;
         white-space: nowrap;
     }
 

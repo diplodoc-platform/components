@@ -292,7 +292,7 @@ export class Scrollspy extends React.Component<ScrollspyInnerProps, ScrollspySta
     };
 
     // eslint-disable-next-line @typescript-eslint/member-ordering, react/sort-comp
-    private handleScrollDebounced = _.debounce(this.handleScroll, 100);
+    private handleScrollDebounced = _.debounce(this.handleScroll, 200);
 
     private pauseScrollHandler() {
         // wait for the end of smooth auto-scroll

@@ -66,6 +66,8 @@ export interface DocHeadingItem {
 
 export interface DocMeta {
     title?: string;
+    description?: string;
+    keywords?: string[];
     stage?: string;
     editable?: boolean;
 }

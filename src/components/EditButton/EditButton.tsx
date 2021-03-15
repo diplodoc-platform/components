@@ -1,10 +1,12 @@
-import React from 'react';
+import React, {ReactElement} from 'react';
 import block from 'bem-cn-lite';
 import {withTranslation, WithTranslation, WithTranslationProps} from 'react-i18next';
 
+import {Button} from '../Button';
+
 import EditIcon from '../../../assets/icons/edit.svg';
 
-import {Lang} from '../../models';
+import {ButtonThemes, Lang} from '../../models';
 
 import './EditButton.scss';
 
@@ -31,17 +33,25 @@ class EditButton extends React.Component<EditButtonInnerProps> {
     render() {
         const {t, href} = this.props;
 
-        return (
+        const wrapper = (el: ReactElement) => (
             <a
                 href={href}
                 target="_blank"
                 rel="noreferrer noopener"
             >
-                <button className={b()}>
-                    <EditIcon/>
-                    <span className={b('text')}>{t('edit-text')}</span>
-                </button>
+                {el}
             </a>
+        );
+
+        return (
+            <Button
+                wrapper={wrapper}
+                className={b()}
+                theme={ButtonThemes.float}
+            >
+                <EditIcon/>
+                <span className={b('text')}>{t('edit-text')}</span>
+            </Button>
         );
     }
 }

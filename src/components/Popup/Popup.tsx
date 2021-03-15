@@ -9,13 +9,19 @@ import './Popup.scss';
 
 const b = block('dc-popup');
 
+export enum PopupPosition {
+    bottom = 'bottom',
+    left = 'left',
+    rightTop = 'rightTop',
+}
+
 export interface PopupProps {
     anchor: React.ReactNode;
     visible: boolean;
     onOutsideClick: () => void;
     popupWidth?: number;
     className?: string;
-    align?: 'bottom' | 'left';
+    position?: PopupPosition;
 }
 
 interface PopupState {
@@ -52,44 +58,50 @@ export class Popup extends React.Component<PopupProps, PopupState> {
         }
 
         return ReactDOM.createPortal(
-            <div
-                ref={this.ref}
-                className={b(null, className)}
-                style={popupStyle}
-            >
-                <OutsideClick onOutsideClick={onOutsideClick}>
+            <OutsideClick onOutsideClick={onOutsideClick}>
+                <div
+                    ref={this.ref}
+                    className={b(null, className)}
+                    style={popupStyle}
+                >
                     {children}
-                </OutsideClick>
-            </div>,
+                </div>
+            </OutsideClick>,
             document.body,
         );
     }
 
     private getPopupStyle = () => {
-        const {popupWidth: fixedWidth, anchor, align = 'bottom'} = this.props;
+        const {popupWidth: fixedWidth, anchor, position} = this.props;
 
         if (!this.ref.current) {
             return {};
         }
 
-        const {width: autoWidth} = this.ref.current.getBoundingClientRect();
+        const {width: autoWidth, height: popupHeight} = this.ref.current.getBoundingClientRect();
         const popupWidth = fixedWidth ? fixedWidth : autoWidth;
 
         if (anchor) {
             const {top, bottom, right, left} = (anchor as HTMLElement).getBoundingClientRect();
 
-            switch (align) {
-                case 'bottom':
+            switch (position) {
+                case PopupPosition.bottom:
                     return {
                         left: right - popupWidth,
                         width: popupWidth,
                         top: bottom + 4,
                     };
-                case 'left':
+                case PopupPosition.left:
                     return {
                         left: left - popupWidth - 4,
                         width: popupWidth,
                         top: top,
+                    };
+                case PopupPosition.rightTop:
+                    return {
+                        left: right + 4,
+                        width: popupWidth,
+                        top: top - popupHeight,
                     };
             }
         }

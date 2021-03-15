@@ -20,5 +20,6 @@ export * from './components/OutsideClick';
 export * from './components/Tumbler';
 export * from './components/TocNavPanel';
 export * from './components/Button';
+export * from './components/Feedback';
 
 export * from './models';

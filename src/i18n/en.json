@@ -20,7 +20,17 @@
         "edit-text-arcanum": "Edit on Arcanum",
         "edit-text": "Edit",
         "settings-text": "Settings",
-        "lang-text": "Language"
+        "lang-text": "Language",
+        "like-text": "Helpful",
+        "dislike-text": "Not helpful",
+        "cancel-like-text": "It got worse",
+        "cancel-dislike-text": "It got better",
+        "feedback-success-title": "Thank you!",
+        "feedback-success-text": "Your answer will help make the documentation better",
+        "dislike-variants-title": "Tell us what's wrong with the article",
+        "send-action-text": "Send",
+        "skip-action-text": "Skip",
+        "feedback-comment-placeholder": "Additional information will be useful"
     },
     "mini-toc" : {
         "title": "In this article"
@@ -31,5 +41,19 @@
     },
     "authors": {
         "title": "improved by"
+    },
+    "feedback": {
+        "like-text": "Helpful",
+        "dislike-text": "Not helpful",
+        "cancel-like-text": "It got worse",
+        "cancel-dislike-text": "It got better",
+        "success-title": "Thank you!",
+        "success-text": "Your answer will help make the documentation better",
+        "dislike-variants-title": "Tell us what's wrong with the article",
+        "send-action-text": "Send",
+        "comment-placeholder": "Additional information will be useful",
+        "button-like-text": "Yes",
+        "button-dislike-text": "No",
+        "main-question": "Was the article helpful?"
     }
 }

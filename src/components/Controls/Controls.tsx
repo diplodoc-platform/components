@@ -3,14 +3,15 @@ import block from 'bem-cn-lite';
 import {withTranslation, WithTranslation, WithTranslationProps} from 'react-i18next';
 
 import {List, ListItem} from '../List';
-import {Popup} from '../Popup';
+import {Popup, PopupPosition} from '../Popup';
 import {Tumbler} from '../Tumbler';
-import {Button} from '../Button';
+import {ControlButton} from '../ControlButton';
+import {Control} from '../Control';
+import {Feedback, FeedbackView} from '../Feedback';
 
 import FullScreenIcon from '../../../assets/icons/full-screen.svg';
 import FullScreenClickedIcon from '../../../assets/icons/full-screen-clicked.svg';
 import SettingsIcon from '../../../assets/icons/cog.svg';
-import SettingsMarkedIcon from '../../../assets/icons/cog-marked.svg';
 import LangSwitcherIcon from '../../../assets/icons/lang.svg';
 import RusIcon from '../../../assets/icons/rus.svg';
 import EngIcon from '../../../assets/icons/eng.svg';
@@ -18,8 +19,8 @@ import EditIcon from '../../../assets/icons/edit.svg';
 import SinglePageIcon from '../../../assets/icons/single-page.svg';
 import SinglePageClickedIcon from '../../../assets/icons/single-page-clicked.svg';
 
-import {Lang, TextSizes, Theme} from '../../models';
-import {isDefaultSettings, ChangeHandler} from '../../utils';
+import {Lang, TextSizes, Theme, FeedbackSendData} from '../../models';
+import {ChangeHandler} from '../../utils';
 
 import './Controls.scss';
 
@@ -36,6 +37,9 @@ export interface ControlsProps {
     vcsUrl: string;
     vcsType: string;
     showEditControl: boolean;
+    isLiked: boolean;
+    isDisliked: boolean;
+    dislikeVariants: string[];
     onChangeLang?: (lang: Lang) => void;
     onChangeFullScreen?: (value: boolean) => void;
     onChangeSinglePage?: (value: boolean) => void;
@@ -43,18 +47,14 @@ export interface ControlsProps {
     onChangeShowMiniToc?: (value: boolean) => void;
     onChangeTheme?: (theme: Theme) => void;
     onChangeTextSize?: (textSize: TextSizes) => void;
+    onSendFeedback?: (data: FeedbackSendData) => void;
     className?: string;
-    verticalView?: boolean;
+    isVerticalView: boolean;
 }
 
 interface ControlsState {
     showSettingsPopup: boolean;
     showLangPopup: boolean;
-    showFullScreenTooltip: boolean;
-    showEditTooltip: boolean;
-    showLangTooltip: boolean;
-    showSettingsTooltip: boolean;
-    showSinglePageTooltip: boolean;
 }
 
 type ControlsInnerProps =
@@ -65,18 +65,11 @@ type ControlsInnerProps =
 class Controls extends React.Component<ControlsInnerProps, ControlsState> {
     settingsRef?: HTMLButtonElement;
     langRef?: HTMLButtonElement;
-    fullScreenRef?: HTMLButtonElement;
     singlePageRef?: HTMLButtonElement;
-    editRef?: HTMLButtonElement;
 
     state: ControlsState = {
         showSettingsPopup: false,
         showLangPopup: false,
-        showFullScreenTooltip: false,
-        showEditTooltip: false,
-        showLangTooltip: false,
-        showSettingsTooltip: false,
-        showSinglePageTooltip: false,
     };
 
     componentDidMount(): void {
@@ -85,6 +78,7 @@ class Controls extends React.Component<ControlsInnerProps, ControlsState> {
 
     componentDidUpdate(prevProps: ControlsProps) {
         const {i18n, lang} = this.props;
+
         if (prevProps.lang !== lang) {
             i18n.changeLanguage(lang);
         }
@@ -95,23 +89,19 @@ class Controls extends React.Component<ControlsInnerProps, ControlsState> {
     }
 
     render() {
-        const {lang, i18n, className, verticalView} = this.props;
+        const {lang, i18n, className, isVerticalView} = this.props;
 
         if (i18n.language !== lang) {
             i18n.changeLanguage(lang);
         }
 
         return (
-            <div className={b({vertical: verticalView}, className)}>
-                {this.renderSwitchers()}
+            <div className={b({vertical: isVerticalView}, className)}>
+                {this.renderCommonControls()}
                 {this.renderEditLink()}
+                {this.renderFeedbackControls()}
                 {this.renderSettingsPopup()}
                 {this.renderLangPopup()}
-                {this.renderFullScreenTooltip()}
-                {this.renderEditTooltip()}
-                {this.renderSettingsTooltip()}
-                {this.renderLangTooltip()}
-                {this.renderSinglePageTooltip()}
             </div>
         );
     }
@@ -123,8 +113,14 @@ class Controls extends React.Component<ControlsInnerProps, ControlsState> {
     };
 
     private renderEditLink() {
-        const {vcsUrl, showEditControl, singlePage} = this.props;
-        const iconSize = 16;
+        const {
+            vcsUrl,
+            vcsType,
+            showEditControl,
+            singlePage,
+            isVerticalView,
+            t,
+        } = this.props;
 
         if (!showEditControl || singlePage) {
             return null;
@@ -137,21 +133,23 @@ class Controls extends React.Component<ControlsInnerProps, ControlsState> {
                     href={vcsUrl}
                     target="_blank"
                     rel="noreferrer noopener"
+                    className={b('control')}
                 >
-                    <Button
-                        buttonRef={this.makeSetRef('editRef')}
-                        onMouseOver={this.makeTogglePopup('showEditTooltip', true)}
-                        onMouseLeave={this.makeTogglePopup('showEditTooltip', false)}
+                    <Control
+                        onClick={this.onChangeFullScreen}
+                        className={b('control')}
+                        isVerticalView={isVerticalView}
+                        tooltipText={t(`edit-text-${vcsType}`)}
                     >
-                        <EditIcon width={iconSize} height={iconSize}/>
-                    </Button>
+                        <EditIcon/>
+                    </Control>
                 </a>
             </React.Fragment>
         );
     }
 
-    private getPopupAlign() {
-        return this.props.verticalView ? 'left' : 'bottom';
+    private getPopupPosition() {
+        return this.props.isVerticalView ? PopupPosition.left : PopupPosition.bottom;
     }
 
     private renderLangPopup() {
@@ -175,7 +173,7 @@ class Controls extends React.Component<ControlsInnerProps, ControlsState> {
                 visible={showLangPopup}
                 onOutsideClick={this.makeTogglePopup('showLangPopup', false)}
                 popupWidth={popupWidth}
-                align={this.getPopupAlign()}
+                position={this.getPopupPosition()}
             >
                 <List
                     items={ITEMS}
@@ -184,115 +182,6 @@ class Controls extends React.Component<ControlsInnerProps, ControlsState> {
                         this.onChangeLang(item.value as Lang);
                     }}
                 />
-            </Popup>
-        );
-    }
-
-    private renderFullScreenTooltip() {
-        const {t, fullScreen} = this.props;
-        const {showFullScreenTooltip} = this.state;
-        const fullScreenValue = fullScreen ? 'enabled' : 'disabled';
-
-        if (!this.fullScreenRef) {
-            return null;
-        }
-
-        return (
-            <Popup
-                anchor={this.fullScreenRef}
-                visible={showFullScreenTooltip}
-                onOutsideClick={this.makeTogglePopup('showFullScreenTooltip', false)}
-                className={b('tooltip')}
-                align={this.getPopupAlign()}
-            >
-                <span className={b('tooltip-text')}>
-                    {t(`full-screen-text-${fullScreenValue}`)}
-                </span>
-            </Popup>
-        );
-    }
-
-    private renderSinglePageTooltip() {
-        const {t, singlePage} = this.props;
-        const {showSinglePageTooltip} = this.state;
-        const singlePageValue = singlePage ? 'enabled' : 'disabled';
-
-        if (!this.singlePageRef) {
-            return null;
-        }
-
-        return (
-            <Popup
-                anchor={this.singlePageRef}
-                visible={showSinglePageTooltip}
-                onOutsideClick={this.makeTogglePopup('showSinglePageTooltip', false)}
-                className={b('tooltip')}
-                align={this.getPopupAlign()}
-            >
-                <span className={b('tooltip-text')}>
-                    {t(`single-page-text-${singlePageValue}`)}
-                </span>
-            </Popup>
-        );
-    }
-
-    private renderEditTooltip() {
-        const {t, vcsType, singlePage} = this.props;
-        const {showEditTooltip} = this.state;
-
-        if (singlePage) {
-            return null;
-        }
-
-        return (
-            <Popup
-                anchor={this.editRef}
-                visible={showEditTooltip}
-                onOutsideClick={this.makeTogglePopup('showEditTooltip', false)}
-                className={b('tooltip')}
-                align={this.getPopupAlign()}
-            >
-                <span className={b('tooltip-text')}>
-                    {t(`edit-text-${vcsType}`)}
-                </span>
-            </Popup>
-        );
-    }
-
-    private renderSettingsTooltip() {
-        const {t} = this.props;
-        const {showSettingsTooltip} = this.state;
-
-        return (
-            <Popup
-                anchor={this.settingsRef}
-                visible={showSettingsTooltip}
-                onOutsideClick={this.makeTogglePopup('showSettingsTooltip', false)}
-                className={b('tooltip')}
-                align={this.getPopupAlign()}
-            >
-                <span className={b('tooltip-text')}>
-                    {t('settings-text')}
-                </span>
-            </Popup>
-        );
-    }
-
-    private renderLangTooltip() {
-        const {t} = this.props;
-        const {showLangTooltip} = this.state;
-
-        return (
-            <Popup
-                anchor={this.langRef}
-                visible={showLangTooltip}
-                onOutsideClick={this.makeTogglePopup('showLangTooltip', false)}
-                className={b('tooltip')}
-                align={this.getPopupAlign()}
-            >
-                <span className={b('tooltip-text')}>
-                    {t('lang-text')}
-                </span>
             </Popup>
         );
     }
@@ -353,16 +242,16 @@ class Controls extends React.Component<ControlsInnerProps, ControlsState> {
                 control: (
                     <div className={b('text-size-control')}>
                         {allTextSizes.map((textSizeKey) => (
-                            <Button
+                            <ControlButton
                                 key={textSizeKey}
                                 className={b('text-size-button', {
                                     [textSizeKey]: true,
                                     active: textSize === textSizeKey,
-                                })}
+                                }, b('control'))}
                                 onClick={this.makeOnChangeTextSize(textSizeKey)}
                             >
                                 A
-                            </Button>
+                            </ControlButton>
                         ))}
                     </div>
                 ),
@@ -375,7 +264,7 @@ class Controls extends React.Component<ControlsInnerProps, ControlsState> {
                 visible={showSettingsPopup}
                 onOutsideClick={this.makeTogglePopup('showSettingsPopup', false)}
                 popupWidth={popupWidth}
-                align={this.getPopupAlign()}
+                position={this.getPopupPosition()}
             >
                 <List
                     items={ITEMS as ListItem[]}
@@ -385,65 +274,94 @@ class Controls extends React.Component<ControlsInnerProps, ControlsState> {
         );
     }
 
-    private renderSwitchers() {
+    private renderCommonControls() {
         const {
             fullScreen,
             singlePage,
-            textSize,
-            theme,
-            wideFormat,
-            showMiniToc,
             onChangeLang,
             onChangeSinglePage,
+            isVerticalView,
+            t,
         } = this.props;
-        const showMark = !isDefaultSettings({
-            textSize,
-            theme,
-            wideFormat,
-            showMiniToc,
-        });
+        const fullScreenValue = fullScreen ? 'enabled' : 'disabled';
 
         return (
             <React.Fragment>
-                <Button
+                <Control
                     onClick={this.onChangeFullScreen}
-                    buttonRef={this.makeSetRef('fullScreenRef')}
-                    onMouseOver={this.makeTogglePopup('showFullScreenTooltip', true)}
-                    onMouseLeave={this.makeTogglePopup('showFullScreenTooltip', false)}
+                    className={b('control')}
+                    isVerticalView={isVerticalView}
+                    tooltipText={t(`full-screen-text-${fullScreenValue}`)}
                 >
                     {fullScreen ? <FullScreenClickedIcon/> : <FullScreenIcon/>}
-                </Button>
-                <Button
+                </Control>
+                <Control
                     onClick={this.makeTogglePopup('showSettingsPopup')}
-                    buttonRef={this.makeSetRef('settingsRef')}
-                    onMouseOver={this.makeTogglePopup('showSettingsTooltip', true)}
-                    onMouseLeave={this.makeTogglePopup('showSettingsTooltip', false)}
+                    className={b('control')}
+                    isVerticalView={isVerticalView}
+                    tooltipText={t('settings-text')}
+                    setRef={this.makeSetRef('settingsRef')}
                 >
-                    {showMark ? <SettingsMarkedIcon/> : <SettingsIcon/>}
-                </Button>
+                    <SettingsIcon/>
+                </Control>
                 {onChangeLang ?
-                    <Button
+                    <Control
                         onClick={this.makeTogglePopup('showLangPopup')}
-                        buttonRef={this.makeSetRef('langRef')}
-                        onMouseOver={this.makeTogglePopup('showLangTooltip', true)}
-                        onMouseLeave={this.makeTogglePopup('showLangTooltip', false)}
+                        className={b('control')}
+                        isVerticalView={isVerticalView}
+                        tooltipText={t('lang-text')}
+                        setRef={this.makeSetRef('langRef')}
                     >
                         <LangSwitcherIcon/>
-                    </Button> : null
+                    </Control> : null
                 }
                 {onChangeSinglePage ?
-                    <Button
+                    <Control
                         onClick={this.onChangeSinglePage}
-                        buttonRef={this.makeSetRef('singlePageRef')}
-                        onMouseOver={this.makeTogglePopup('showSinglePageTooltip', true)}
-                        onMouseLeave={this.makeTogglePopup('showSinglePageTooltip', false)}
+                        className={b('control')}
+                        isVerticalView={isVerticalView}
+                        tooltipText={t(`single-page-text-${singlePage ? 'enabled' : 'disabled'}`)}
+                        setRef={this.makeSetRef('singlePageRef')}
                     >
                         {singlePage ? <SinglePageClickedIcon/> : <SinglePageIcon/>}
-                    </Button> : null
+                    </Control> : null
                 }
             </React.Fragment>
         );
     }
+
+    private renderFeedbackControls = () => {
+        const {
+            lang,
+            singlePage,
+            onSendFeedback,
+            isLiked,
+            isDisliked,
+            dislikeVariants,
+            isVerticalView,
+        } = this.props;
+
+        if (!onSendFeedback) {
+            return null;
+        }
+
+        return (
+            <React.Fragment>
+                <div className={b('divider')}/>
+                <Feedback
+                    lang={lang}
+                    singlePage={singlePage}
+                    isLiked={isLiked}
+                    isDisliked={isDisliked}
+                    dislikeVariants={dislikeVariants}
+                    onSendFeedback={onSendFeedback}
+                    isVerticalView={isVerticalView}
+                    view={FeedbackView.regular}
+                    classNameControl={b('control')}
+                />
+            </React.Fragment>
+        );
+    };
 
     private onChangeLang = (lang: Lang) => {
         const {onChangeLang} = this.props;

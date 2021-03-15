@@ -1,14 +1,88 @@
-import React from 'react';
-import {DocPage} from '../../../index';
+import React, {useCallback, useState} from 'react';
+import {DocPage, FeedbackSendData, FeedbackType, Theme} from '../../../index';
+import {DEFAULT_SETTINGS, DISLIKE_VARIANTS} from '../../../constants';
 import {getIsMobile} from '../../controls/settings';
+import getLangControl from '../../controls/lang';
+import getVcsControl from '../../controls/vcs';
+import {getContent} from './data';
 
 import {join} from 'path';
 
-import getPageInfo from './data';
+function updateBodyClassName(theme: Theme) {
+    const bodyEl = document.body;
+
+    if (!bodyEl.classList.contains('yc-root')) {
+        bodyEl.classList.add('yc-root');
+    }
+
+    bodyEl.classList.toggle('yc-root_theme_light', theme === 'light');
+    bodyEl.classList.toggle('yc-root_theme_dark', theme === 'dark');
+}
 
 const DocPageDemo = () => {
-    const props = getPageInfo();
+    const langValue = getLangControl();
+    const vcsType = getVcsControl();
     const isMobile = getIsMobile();
+    const router = {pathname: '/docs/overview/concepts/quotas-limits'};
+
+    const [fullScreen, onChangeFullScreen] = useState(DEFAULT_SETTINGS.fullScreen);
+    const [wideFormat, onChangeWideFormat] = useState(DEFAULT_SETTINGS.wideFormat);
+    const [showMiniToc, onChangeShowMiniToc] = useState(DEFAULT_SETTINGS.showMiniToc);
+    const [theme, onChangeTheme] = useState(DEFAULT_SETTINGS.theme);
+    const [textSize, onChangeTextSize] = useState(DEFAULT_SETTINGS.textSize);
+    const [singlePage, onChangeSinglePage] = useState(DEFAULT_SETTINGS.singlePage);
+    const [isLiked, setIsLiked] = useState(DEFAULT_SETTINGS.isLiked);
+    const [isDisliked, setIsDisliked] = useState(DEFAULT_SETTINGS.isDisliked);
+    const [lang, onChangeLang] = useState(langValue);
+
+    const onSendFeedback = useCallback((data: FeedbackSendData) => {
+        const {type} = data;
+
+        if (type === FeedbackType.like) {
+            setIsLiked(true);
+            setIsDisliked(false);
+        } else if (type === FeedbackType.dislike) {
+            setIsLiked(false);
+            setIsDisliked(true);
+        } else {
+            setIsLiked(false);
+            setIsDisliked(false);
+        }
+
+        console.log('Feedback:', data);
+    }, []);
+
+    updateBodyClassName(theme);
+
+    const props = {
+        ...getContent(lang, singlePage),
+        vcsType,
+        lang,
+        onChangeLang,
+        router,
+        dislikeVariants: DISLIKE_VARIANTS[lang],
+        headerHeight: fullScreen ? 0 : 64,
+        fullScreen,
+        onChangeFullScreen,
+        wideFormat,
+        onChangeWideFormat,
+        showMiniToc,
+        onChangeShowMiniToc,
+        theme,
+        onChangeTheme: (themeValue: Theme) => {
+            updateBodyClassName(themeValue);
+            onChangeTheme(themeValue);
+        },
+        textSize,
+        onChangeTextSize,
+        singlePage,
+        onChangeSinglePage,
+        isLiked,
+        isDisliked,
+        onSendFeedback,
+    };
+
+
     const tocTitleIcon = (
         <svg width="14" height="12" fill="none" xmlns="http://www.w3.org/2000/svg">
             {/* eslint-disable-next-line max-len */}

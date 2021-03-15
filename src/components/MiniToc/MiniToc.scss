@@ -23,7 +23,7 @@
         display: block;
 
         & > #{$class}__section-link {
-            border-left-color: var(--yc-color-divider);
+            border-left-color: var(--yc-color-line-generic);
         }
 
         &-link {

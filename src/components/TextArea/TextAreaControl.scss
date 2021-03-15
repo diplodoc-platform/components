@@ -1,0 +1,26 @@
+.dc-text-area-control {
+    resize: none;
+
+    &#{&}_size {
+        &_s {
+            padding: 4px 8px;
+            font-size: 12px;
+        }
+
+        &_m {
+            padding: 5px 8px;
+        }
+
+        &_l {
+            padding: 7px 8px;
+        }
+
+        &_xl {
+            padding: 9px 8px;
+        }
+    }
+
+    &_resizable {
+        overflow: hidden;
+    }
+}

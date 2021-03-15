@@ -197,13 +197,16 @@ class Controls extends React.Component<ControlsInnerProps, ControlsState> {
             singlePage,
             t,
             onChangeTheme,
+            onChangeWideFormat,
+            onChangeShowMiniToc,
+            onChangeTextSize,
         } = this.props;
         const popupWidth = 256;
         const ITEM_HEIGHT = 48;
         const allTextSizes = Object.values(TextSizes);
         const showMiniTocDisabled = fullScreen || singlePage;
         const ITEMS = [
-            {
+            onChangeWideFormat ? {
                 text: t('label_wide_format'),
                 description: t(`description_wide_format_${wideFormat ? 'enabled' : 'disabled'}`),
                 control: (
@@ -212,8 +215,8 @@ class Controls extends React.Component<ControlsInnerProps, ControlsState> {
                         onChange={this.onChangeWideFormat}
                     />
                 ),
-            },
-            {
+            } : null,
+            onChangeShowMiniToc ? {
                 text: t('label_show_mini_toc'),
                 description: t('description_show_mini_toc'),
                 control: (
@@ -223,7 +226,7 @@ class Controls extends React.Component<ControlsInnerProps, ControlsState> {
                         onChange={this.onChangeShowMiniToc}
                     />
                 ),
-            },
+            } : null,
             onChangeTheme ? {
                 text: t('label_dark_theme'),
                 description: Theme.Light === theme
@@ -236,7 +239,7 @@ class Controls extends React.Component<ControlsInnerProps, ControlsState> {
                     />
                 ),
             } : null,
-            {
+            onChangeTextSize ? {
                 text: t('label_text_size'),
                 description: t(`description_${textSize}_text_size`),
                 control: (
@@ -255,7 +258,7 @@ class Controls extends React.Component<ControlsInnerProps, ControlsState> {
                         ))}
                     </div>
                 ),
-            },
+            } : null,
         ].filter(Boolean);
 
         return (
@@ -274,10 +277,27 @@ class Controls extends React.Component<ControlsInnerProps, ControlsState> {
         );
     }
 
+    private isSettingControlVisible = () => {
+        const {
+            onChangeWideFormat,
+            onChangeTheme,
+            onChangeShowMiniToc,
+            onChangeTextSize,
+        } = this.props;
+
+        return (
+            onChangeWideFormat ||
+            onChangeTheme ||
+            onChangeShowMiniToc ||
+            onChangeTextSize
+        );
+    };
+
     private renderCommonControls() {
         const {
             fullScreen,
             singlePage,
+            onChangeFullScreen,
             onChangeLang,
             onChangeSinglePage,
             isVerticalView,
@@ -287,23 +307,27 @@ class Controls extends React.Component<ControlsInnerProps, ControlsState> {
 
         return (
             <React.Fragment>
-                <Control
-                    onClick={this.onChangeFullScreen}
-                    className={b('control')}
-                    isVerticalView={isVerticalView}
-                    tooltipText={t(`full-screen-text-${fullScreenValue}`)}
-                >
-                    {fullScreen ? <FullScreenClickedIcon/> : <FullScreenIcon/>}
-                </Control>
-                <Control
-                    onClick={this.makeTogglePopup('showSettingsPopup')}
-                    className={b('control')}
-                    isVerticalView={isVerticalView}
-                    tooltipText={t('settings-text')}
-                    setRef={this.makeSetRef('settingsRef')}
-                >
-                    <SettingsIcon/>
-                </Control>
+                {onChangeFullScreen ?
+                    <Control
+                        onClick={this.onChangeFullScreen}
+                        className={b('control')}
+                        isVerticalView={isVerticalView}
+                        tooltipText={t(`full-screen-text-${fullScreenValue}`)}
+                    >
+                        {fullScreen ? <FullScreenClickedIcon/> : <FullScreenIcon/>}
+                    </Control> : null
+                }
+                {this.isSettingControlVisible() ?
+                    <Control
+                        onClick={this.makeTogglePopup('showSettingsPopup')}
+                        className={b('control')}
+                        isVerticalView={isVerticalView}
+                        tooltipText={t('settings-text')}
+                        setRef={this.makeSetRef('settingsRef')}
+                    >
+                        <SettingsIcon/>
+                    </Control> : null
+                }
                 {onChangeLang ?
                     <Control
                         onClick={this.makeTogglePopup('showLangPopup')}
@@ -341,7 +365,7 @@ class Controls extends React.Component<ControlsInnerProps, ControlsState> {
             isVerticalView,
         } = this.props;
 
-        if (!onSendFeedback) {
+        if (singlePage || !onSendFeedback) {
             return null;
         }
 

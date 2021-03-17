@@ -27,6 +27,9 @@
     &__main {
         padding: 24px 36px;
         overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        min-height: calc(100vh - var(--dc-header-height, #{$headerHeight}) - var(--dc-subheader-height));
     }
 
     &__loader-wrapper {
@@ -110,7 +113,7 @@
     }
 
     &__feedback {
-        margin-bottom: 24px;
+        margin-top: 20px;
     }
 
     &__title {
@@ -120,6 +123,7 @@
     }
 
     &__content {
+        flex: 1;
         margin-bottom: 50px;
     }
 

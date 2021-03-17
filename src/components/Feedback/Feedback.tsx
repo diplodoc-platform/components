@@ -286,29 +286,32 @@ class Feedback extends React.Component<FeedbackInnerProps, FeedbackState> {
         const {isDisliked} = this.state;
 
         return (
-            <div className={b()}>
-                <h3 className={b('title', {view})}>{t('main-question')}</h3>
-                <div className={b('controls', {view})}>
-                    <Button
-                        theme="like"
-                        active={isLiked}
-                        buttonRef={this.makeSetRef('likeControlRef')}
-                        onClick={this.onChangeLike}
-                        className={b('control', {view})}
-                    >
-                        <LikeIcon className={b('like-button', {active: isLiked, view})}/>
-                        {t('button-like-text')}
-                    </Button>
-                    <Button
-                        theme="like"
-                        active={isDisliked}
-                        buttonRef={this.makeSetRef('dislikeControlRef')}
-                        onClick={this.onChangeDislike}
-                        className={b('control', {view})}
-                    >
-                        <DislikeIcon className={b('like-button', {active: isDisliked, view})}/>
-                        {t('button-dislike-text')}
-                    </Button>
+            <div className={b('container', {view})}>
+                <div className={b('divider')}/>
+                <div className={b('container-row', {view})}>
+                    <h3 className={b('title', {view})}>{t('main-question')}</h3>
+                    <div className={b('controls', {view})}>
+                        <Button
+                            theme="like"
+                            active={isLiked}
+                            buttonRef={this.makeSetRef('likeControlRef')}
+                            onClick={this.onChangeLike}
+                            className={b('control', {view})}
+                        >
+                            <LikeIcon className={b('like-button', {active: isLiked, view})}/>
+                            {t('button-like-text')}
+                        </Button>
+                        <Button
+                            theme="like"
+                            active={isDisliked}
+                            buttonRef={this.makeSetRef('dislikeControlRef')}
+                            onClick={this.onChangeDislike}
+                            className={b('control', {view})}
+                        >
+                            <DislikeIcon className={b('like-button', {active: isDisliked, view})}/>
+                            {t('button-dislike-text')}
+                        </Button>
+                    </div>
                 </div>
             </div>
         );

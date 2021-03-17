@@ -1,10 +1,28 @@
 @import '../../../styles/mixins';
 
 .dc-feedback {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
+    &__container {
+        &_view_wide {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            width: 100%;
+        }
+    }
+
+    &__container-row {
+        &_view_wide {
+            display: flex;
+            align-items: center;
+        }
+    }
+
+    &__divider {
+        width: 100%;
+        height: 1px;
+        background: var(--yc-color-line-generic);
+        margin: 16px 0;
+    }
 
     &__like-button {
         &_active {
@@ -64,7 +82,7 @@
         &_view_wide {
             font-size: var(--yc-text-body2-font-size);
             line-height: var(--yc-text-body2-line-height);
-            padding-bottom: 16px;
+            margin-right: 16px;
         }
     }
 

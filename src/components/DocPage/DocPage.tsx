@@ -119,8 +119,8 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                             {this.renderAuthors()}
                             {hideMiniToc ? null : this.renderContentMiniToc()}
                             {this.renderBody()}
+                            {this.renderFeedback()}
                         </main>
-                        {this.renderFeedback()}
                         {this.renderTocNavPanel()}
                     </div>
                     {this.renderLoader()}

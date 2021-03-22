@@ -23,7 +23,7 @@ export const TextArea: React.FC<TextAreaProps> = React.memo((props) => {
     const [hasVerticalScrollbar, setHasVerticalScrollbar] = React.useState(false);
 
     React.useEffect((): void => {
-        if (controlRef && typeof controlRef !== 'function') {
+        if (controlRef) {
             controlRef.current = innerControlRef.current;
         }
     }, [controlRef]);
@@ -68,7 +68,7 @@ export const TextArea: React.FC<TextAreaProps> = React.memo((props) => {
         }
     }, [value, hasVerticalScrollbar]);
 
-    const isClearControlVisible = Boolean(clear && !disabled && value);
+    const isClearControlVisible = clear && !disabled && value;
 
     return (
         <span className={b(null, className)}>

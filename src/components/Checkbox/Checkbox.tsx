@@ -38,7 +38,7 @@ export function Checkbox({
     const [checkedState, setCheckedState] = React.useState(checked ?? defaultChecked ?? false);
 
     React.useEffect(() => {
-        if (typeof checked === 'boolean') {
+        if (checked) {
             setCheckedState(checked);
         }
     }, [checked]);

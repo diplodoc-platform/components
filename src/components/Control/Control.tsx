@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ReactElement, useCallback, useState, useRef} from 'react';
 import block from 'bem-cn-lite';
 
 import {ControlButton} from '../ControlButton';
@@ -14,71 +14,63 @@ export interface ControlProps {
     isVerticalView?: boolean;
     tooltipText: string;
     className?: string;
+    children: (ReactElement | null)[] | ReactElement<unknown, React.FC>;
 }
 
-interface ControlState {
-    showTooltip: boolean;
-}
+const Control = (props: ControlProps) => {
+    const {
+        children,
+        onClick,
+        className,
+        tooltipText,
+        isVerticalView,
+        setRef,
+    } = props;
 
-class Control extends React.Component<ControlProps, ControlState> {
-    controlRef?: HTMLButtonElement;
+    const controlRef = useRef<HTMLButtonElement | null>(null);
+    const [isVisibleTooltip, setIsVisibleTooltip] = useState(false);
 
-    state: ControlState = {
-        showTooltip: false,
-    };
+    const showTooltip = () => setIsVisibleTooltip(true);
+    const hideTooltip = () => setIsVisibleTooltip(false);
+    const getTooltipAlign = useCallback(() => {
+        return isVerticalView ? PopupPosition.left : PopupPosition.bottom;
+    }, [isVerticalView]);
+    const _setRef = useCallback((ref: HTMLButtonElement) => {
+        controlRef.current = ref;
 
-    render() {
-        const {children, onClick, className, tooltipText} = this.props;
-        const {showTooltip} = this.state;
-        const position = this.getTooltipAlign();
-
-        return (
-            <React.Fragment>
-                <ControlButton
-                    onClick={onClick}
-                    buttonRef={this.setRef}
-                    onMouseOver={this.showTooltip}
-                    onMouseLeave={this.hideTooltip}
-                    className={b(null, className)}
-                >
-                    {children}
-                </ControlButton>
-                <Popup
-                    anchor={this.controlRef}
-                    visible={showTooltip}
-                    onOutsideClick={this.hideTooltip}
-                    className={b('tooltip')}
-                    position={position}
-                >
-                    <span className={b('tooltip-text')}>
-                        {tooltipText}
-                    </span>
-                </Popup>
-            </React.Fragment>
-        );
-    }
-
-    private setRef = (ref: HTMLButtonElement) => {
-        const {setRef} = this.props;
-
-        this.controlRef = ref;
-
-        if (typeof setRef === 'function') {
+        if (setRef) {
             setRef(ref);
         }
-    };
+    }, [setRef]);
 
-    private showTooltip = () => {
-        this.setState({showTooltip: true});
-    };
+    const position = getTooltipAlign();
 
-    private hideTooltip = () => {
-        this.setState({showTooltip: false});
-    };
+    return (
+        <React.Fragment>
+            <ControlButton
+                onClick={onClick}
+                buttonRef={_setRef}
+                onMouseOver={showTooltip}
+                onMouseLeave={hideTooltip}
+                className={b(null, className)}
+            >
+                {children}
+            </ControlButton>
+            <Popup
+                anchor={controlRef.current}
+                visible={isVisibleTooltip}
+                onOutsideClick={hideTooltip}
+                className={b('tooltip')}
+                position={position}
+            >
+                <span className={b('tooltip-text')}>
+                    {tooltipText}
+                </span>
+            </Popup>
+        </React.Fragment>
+    );
+};
 
-    private getTooltipAlign() {
-        return this.props.isVerticalView ? PopupPosition.left : PopupPosition.bottom;
-    }
-}
+Control.displayName = 'DCControl';
 
 export default Control;

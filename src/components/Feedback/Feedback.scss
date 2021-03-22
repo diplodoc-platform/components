@@ -1,4 +1,5 @@
 @import '../../../styles/mixins';
+@import '../../../styles/variables';
 
 .dc-feedback {
     &__container {
@@ -31,11 +32,11 @@
     }
 
     &__success-popup {
-        padding: 16px 50px 16px 16px;
+        padding: $popupPadding 50px $popupPadding $popupPadding;
     }
 
     &__variants-popup {
-        padding: 16px;
+        padding: $popupPadding;
     }
 
     &__popup-title {

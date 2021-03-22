@@ -1,7 +1,9 @@
 .dc-control-button {
+    $buttonSize: 28px;
+
     position: relative;
     color: var(--yc-color-text-secondary);
-    width: 28px;
-    height: 28px;
+    width: $buttonSize;
+    height: $buttonSize;
     padding: 0;
 }

@@ -19,7 +19,7 @@ import EditIcon from '../../../assets/icons/edit.svg';
 import SinglePageIcon from '../../../assets/icons/single-page.svg';
 import SinglePageClickedIcon from '../../../assets/icons/single-page-clicked.svg';
 
-import {Lang, TextSizes, Theme, FeedbackSendData} from '../../models';
+import {Lang, TextSizes, Theme, FeedbackSendData, ControlSizes} from '../../models';
 import {ChangeHandler} from '../../utils';
 
 import './Controls.scss';
@@ -50,6 +50,7 @@ export interface ControlsProps {
     onSendFeedback?: (data: FeedbackSendData) => void;
     className?: string;
     isVerticalView: boolean;
+    controlSize?: ControlSizes;
 }
 
 interface ControlsState {
@@ -119,6 +120,7 @@ class Controls extends React.Component<ControlsInnerProps, ControlsState> {
             showEditControl,
             singlePage,
             isVerticalView,
+            controlSize,
             t,
         } = this.props;
 
@@ -136,13 +138,13 @@ class Controls extends React.Component<ControlsInnerProps, ControlsState> {
                     className={b('control')}
                 >
                     <Control
+                        size={controlSize}
                         onClick={this.onChangeFullScreen}
                         className={b('control')}
                         isVerticalView={isVerticalView}
                         tooltipText={t(`edit-text-${vcsType}`)}
-                    >
-                        <EditIcon/>
-                    </Control>
+                        icon={EditIcon}
+                    />
                 </a>
             </React.Fragment>
         );
@@ -163,7 +165,7 @@ class Controls extends React.Component<ControlsInnerProps, ControlsState> {
 
         const popupWidth = 146;
         const ITEMS = [
-            {value: Lang.Ru, text: 'Русский язык', icon: <RusIcon/>},
+            {value: Lang.Ru, text: 'Русский', icon: <RusIcon/>},
             {value: Lang.En, text: 'English', icon: <EngIcon/>},
         ];
 
@@ -301,6 +303,7 @@ class Controls extends React.Component<ControlsInnerProps, ControlsState> {
             onChangeLang,
             onChangeSinglePage,
             isVerticalView,
+            controlSize,
             t,
         } = this.props;
         const fullScreenValue = fullScreen ? 'enabled' : 'disabled';
@@ -309,46 +312,46 @@ class Controls extends React.Component<ControlsInnerProps, ControlsState> {
             <React.Fragment>
                 {onChangeFullScreen ?
                     <Control
+                        size={controlSize}
                         onClick={this.onChangeFullScreen}
                         className={b('control')}
                         isVerticalView={isVerticalView}
                         tooltipText={t(`full-screen-text-${fullScreenValue}`)}
-                    >
-                        {fullScreen ? <FullScreenClickedIcon/> : <FullScreenIcon/>}
-                    </Control> : null
+                        icon={fullScreen ? FullScreenClickedIcon : FullScreenIcon}
+                    /> : null
                 }
                 {this.isSettingControlVisible() ?
                     <Control
+                        size={controlSize}
                         onClick={this.makeTogglePopup('showSettingsPopup')}
                         className={b('control')}
                         isVerticalView={isVerticalView}
                         tooltipText={t('settings-text')}
                         setRef={this.makeSetRef('settingsRef')}
-                    >
-                        <SettingsIcon/>
-                    </Control> : null
+                        icon={SettingsIcon}
+                    /> : null
                 }
                 {onChangeLang ?
                     <Control
+                        size={controlSize}
                         onClick={this.makeTogglePopup('showLangPopup')}
                         className={b('control')}
                         isVerticalView={isVerticalView}
                         tooltipText={t('lang-text')}
                         setRef={this.makeSetRef('langRef')}
-                    >
-                        <LangSwitcherIcon/>
-                    </Control> : null
+                        icon={LangSwitcherIcon}
+                    /> : null
                 }
                 {onChangeSinglePage ?
                     <Control
+                        size={controlSize}
                         onClick={this.onChangeSinglePage}
                         className={b('control')}
                         isVerticalView={isVerticalView}
                         tooltipText={t(`single-page-text-${singlePage ? 'enabled' : 'disabled'}`)}
                         setRef={this.makeSetRef('singlePageRef')}
-                    >
-                        {singlePage ? <SinglePageClickedIcon/> : <SinglePageIcon/>}
-                    </Control> : null
+                        icon={singlePage ? SinglePageClickedIcon : SinglePageIcon}
+                    /> : null
                 }
             </React.Fragment>
         );

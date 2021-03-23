@@ -22,6 +22,7 @@ export * from './components/TocNavPanel';
 export * from './components/Button';
 export * from './components/Feedback';
 export * from './components/Control';
+export * from './components/Controls';
 export * from './components/Checkbox';
 
 export * from './models';

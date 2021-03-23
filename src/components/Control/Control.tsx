@@ -1,12 +1,18 @@
-import React, {ReactElement, useCallback, useState, useRef} from 'react';
+import React, {useCallback, useState, useRef} from 'react';
 import block from 'bem-cn-lite';
 
 import {ControlButton} from '../ControlButton';
 import {Popup, PopupPosition} from '../Popup';
+import {ControlSizes} from '../../models';
 
 import './Control.scss';
 
 const b = block('dc-control');
+
+export interface IconProps {
+    width?: number;
+    height?: number;
+}
 
 export interface ControlProps {
     onClick: () => void;
@@ -14,17 +20,24 @@ export interface ControlProps {
     isVerticalView?: boolean;
     tooltipText: string;
     className?: string;
-    children: (ReactElement | null)[] | ReactElement<unknown, React.FC>;
+    size?: ControlSizes;
+    icon: React.FC<IconProps>;
 }
+
+const ICONS_SIZES = {
+    [ControlSizes.s]: 16,
+    [ControlSizes.m]: 24,
+};
 
 const Control = (props: ControlProps) => {
     const {
-        children,
         onClick,
         className,
         tooltipText,
         isVerticalView,
         setRef,
+        size = ControlSizes.s,
+        icon,
     } = props;
 
     const controlRef = useRef<HTMLButtonElement | null>(null);
@@ -44,6 +57,8 @@ const Control = (props: ControlProps) => {
     }, [setRef]);
 
     const position = getTooltipAlign();
+    const Icon = icon;
+    const iconSize = ICONS_SIZES[size];
 
     return (
         <React.Fragment>
@@ -53,8 +68,12 @@ const Control = (props: ControlProps) => {
                 onMouseOver={showTooltip}
                 onMouseLeave={hideTooltip}
                 className={b(null, className)}
+                size={size}
             >
-                {children}
+                <Icon
+                    width={iconSize}
+                    height={iconSize}
+                />
             </ControlButton>
             <Popup
                 anchor={controlRef.current}

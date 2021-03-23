@@ -261,18 +261,16 @@ class Feedback extends React.Component<FeedbackInnerProps, FeedbackState> {
                     isVerticalView={isVerticalView}
                     tooltipText={t(`${isLiked ? 'cancel-' : ''}like-text`)}
                     setRef={this.makeSetRef('likeControlRef')}
-                >
-                    <LikeIcon className={b('like-button', {active: isLiked, view})}/>
-                </Control>
+                    icon={(args) => <LikeIcon className={b('like-button', {active: isLiked, view})} {...args}/>}
+                />
                 <Control
                     onClick={this.onChangeDislike}
                     className={b('control', {view}, classNameControl)}
                     isVerticalView={isVerticalView}
                     tooltipText={t(`${isDisliked ? 'cancel-' : ''}dislike-text`)}
                     setRef={this.makeSetRef('dislikeControlRef')}
-                >
-                    <DislikeIcon className={b('like-button', {active: isDisliked, view})}/>
-                </Control>
+                    icon={(args) => <DislikeIcon className={b('like-button', {active: isDisliked, view})} {...args}/>}
+                />
             </React.Fragment>
         );
     }

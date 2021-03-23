@@ -10,6 +10,7 @@ export enum TextSizes {
 }
 
 export enum ControlSizes {
+    s = 's',
     m = 'm'
 }
 

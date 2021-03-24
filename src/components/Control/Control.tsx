@@ -26,7 +26,7 @@ export interface ControlProps {
 
 const ICONS_SIZES = {
     [ControlSizes.s]: 16,
-    [ControlSizes.m]: 24,
+    [ControlSizes.m]: 20,
 };
 
 const Control = (props: ControlProps) => {

@@ -9,36 +9,9 @@
         flex-direction: column;
     }
 
-    &__divider {
-        width: 1px;
-        height: 16px;
-        background: var(--yc-color-line-generic);
-    }
-
     &_vertical &__divider {
         height: 1px;
         width: 16px;
-    }
-
-    &__text-size-control {
-        display: flex;
-        align-items: center;
-    }
-
-    &__text-size-button {
-        &_active.dc-button {
-            color: var(--yc-color-azure-solid);
-        }
-
-        &_s {
-            @include text-size(body-1-short);
-        }
-        &_m {
-            @include text-size(body2);
-        }
-        &_l {
-            @include text-size(body3);
-        }
     }
 
     &__control:not(:last-child), &__divider {

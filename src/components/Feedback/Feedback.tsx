@@ -7,6 +7,7 @@ import {Button} from '../Button';
 import {Checkbox} from '../Checkbox';
 import {TextArea} from '../TextArea';
 import {Control} from '../Control';
+import {DividerControl} from '../Controls/single-controls';
 
 import LikeIcon from '../../../assets/icons/like.svg';
 import DislikeIcon from '../../../assets/icons/dislike.svg';
@@ -285,7 +286,7 @@ class Feedback extends React.Component<FeedbackInnerProps, FeedbackState> {
 
         return (
             <div className={b('container', {view})}>
-                <div className={b('divider')}/>
+                <DividerControl className={b('divider')} isVerticalView={false}/>
                 <div className={b('container-row', {view})}>
                     <h3 className={b('title', {view})}>{t('main-question')}</h3>
                     <div className={b('controls', {view})}>

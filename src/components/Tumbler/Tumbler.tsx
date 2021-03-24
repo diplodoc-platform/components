@@ -6,7 +6,7 @@ import './Tumbler.scss';
 const b = block('dc-tumbler');
 
 export interface TumblerProps {
-    checked: boolean;
+    checked?: boolean;
     onChange: (value: boolean) => void;
     disabled?: boolean;
 }

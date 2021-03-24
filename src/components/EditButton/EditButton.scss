@@ -1,7 +1,9 @@
 .dc-edit-button {
-    position: absolute;
-    right: 0;
-    margin-top: -28px;
+    &.dc-button {
+        position: absolute;
+        right: 0;
+        margin-top: -28px;
+    }
 
     &__text {
         margin-left: 8px;

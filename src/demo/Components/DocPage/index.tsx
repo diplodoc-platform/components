@@ -1,5 +1,14 @@
 import React, {useCallback, useState} from 'react';
-import {DocPage, FeedbackSendData, FeedbackType, Theme} from '../../../index';
+import {
+    ControlSizes,
+    DocPage,
+    FeedbackSendData,
+    FeedbackType,
+    LangControl,
+    FullScreenControl,
+    Theme,
+    DividerControl,
+} from '../../../index';
 import {DEFAULT_SETTINGS, DISLIKE_VARIANTS} from '../../../constants';
 import {getIsMobile} from '../../controls/settings';
 import getLangControl from '../../controls/lang';
@@ -100,7 +109,25 @@ const DocPageDemo = () => {
         <div className={isMobile === 'true' ? 'mobile' : 'desktop'}>
             {props.fullScreen ? null :
                 <div className="Layout__header">
-                    <div className="Header"/>
+                    <div className="Header">
+                        <FullScreenControl
+                            lang={lang}
+                            value={fullScreen}
+                            onChange={onChangeFullScreen}
+                            size={ControlSizes.m}
+                            className="Header__control"
+                        />
+                        <DividerControl
+                            size={ControlSizes.m}
+                            className="Header__divider"
+                        />
+                        <LangControl
+                            lang={lang}
+                            onChangeLang={onChangeLang}
+                            size={ControlSizes.m}
+                            className="Header__control"
+                        />
+                    </div>
                 </div>
             }
             <div className="Layout__content">

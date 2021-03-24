@@ -1,0 +1,24 @@
+@import '../../../../../styles/mixins';
+
+.dc-settings-control {
+    &__text-size-control {
+        display: flex;
+        align-items: center;
+    }
+
+    &__text-size-button {
+        &_active.dc-button {
+            color: var(--yc-color-azure-solid);
+        }
+
+        &_s {
+            @include text-size(body-1-short);
+        }
+        &_m {
+            @include text-size(body2);
+        }
+        &_l {
+            @include text-size(body3);
+        }
+    }
+}

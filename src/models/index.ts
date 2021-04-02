@@ -70,6 +70,7 @@ export interface DocMeta {
     keywords?: string[];
     stage?: string;
     editable?: boolean;
+    contributors?: string;
 }
 
 export interface TocData {
@@ -101,4 +102,14 @@ export interface Router {
 export enum Lang {
     Ru = 'ru',
     En = 'en'
+}
+
+export interface Author {
+    avatar: string;
+    login: string;
+    name: string;
+}
+
+export interface AuthorItems {
+    [login: string]: Author;
 }

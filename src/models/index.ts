@@ -109,7 +109,3 @@ export interface Author {
     login: string;
     name: string;
 }
-
-export interface AuthorItems {
-    [login: string]: Author;
-}

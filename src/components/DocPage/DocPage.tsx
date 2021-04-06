@@ -20,6 +20,7 @@ import LinkIcon from '../../../assets/icons/link.svg';
 
 import '@doc-tools/transform/dist/css/yfm.css';
 import './DocPage.scss';
+import {Authors} from '../Authors';
 
 const b = block('dc-doc-page');
 
@@ -113,6 +114,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                     <div className={b('main')}>
                         <main className={b('content')}>
                             {this.renderTitle()}
+                            {this.renderAuthors()}
                             {hideMiniToc ? null : this.renderContentMiniToc()}
                             {this.renderBody()}
                         </main>
@@ -257,6 +259,18 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             <DocPageTitle stage={meta.stage} className={b('title')}>
                 <HTML>{title}</HTML>
             </DocPageTitle>
+        );
+    }
+
+    private renderAuthors() {
+        const {meta} = this.props;
+
+        if (!meta || !meta.contributors) {
+            return null;
+        }
+
+        return (
+            <Authors title={'Improved by'} usersMetadata={meta.contributors}/>
         );
     }
 

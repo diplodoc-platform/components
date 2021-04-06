@@ -108,7 +108,6 @@ class Controls extends React.Component<ControlsInnerProps> {
                 >
                     <Control
                         size={controlSize}
-                        onClick={this.onChangeFullScreen}
                         className={b('control')}
                         isVerticalView={isVerticalView}
                         tooltipText={t(`edit-text-${vcsType}`)}
@@ -213,14 +212,6 @@ class Controls extends React.Component<ControlsInnerProps> {
                 />
             </React.Fragment>
         );
-    };
-
-    private onChangeFullScreen = () => {
-        const {fullScreen, onChangeFullScreen} = this.props;
-
-        if (typeof onChangeFullScreen === 'function') {
-            onChangeFullScreen(!fullScreen);
-        }
     };
 }
 

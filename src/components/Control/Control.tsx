@@ -15,7 +15,7 @@ export interface IconProps {
 }
 
 export interface ControlProps {
-    onClick: () => void;
+    onClick?: () => void;
     setRef?: (ref: HTMLButtonElement) => void;
     isVerticalView?: boolean;
     tooltipText: string;

@@ -57,8 +57,8 @@ function getAvatars(authors: Author[]): ReactElement {
 
     return (
         <Fragment>
-            <div className={b('avatars', {displayed: true})}>{displayedAvatars}</div>
-            <div className={b('avatars', {hidden: true})}>{hiddenAvatars}</div>
+            <div className={b('displayed_avatars')}>{displayedAvatars}</div>
+            <div className={b('hidden_avatars')}>{hiddenAvatars}</div>
         </Fragment>
     );
 }
@@ -92,7 +92,7 @@ function getHiddenAvatars(authors: Author[]): ReactElement | null {
     const authorsCountString = authorCount >= 10 ? `${authorCount}+` : `+${authorCount}`;
 
     const hiddenAvatars = (
-        <div className={b('avatar', {small: true})}>
+        <div className={b('avatar', {size: 'small'})}>
             {authorsCountString}
         </div>
     );
@@ -101,7 +101,7 @@ function getHiddenAvatars(authors: Author[]): ReactElement | null {
 }
 
 function getAvatar(author: Author): ReactElement {
-    const avatar = <img key={author.login} className={b('avatar', {small: true})} src={author.avatar}/>;
+    const avatar = <img key={author.login} className={b('avatar', {size: 'small'})} src={author.avatar}/>;
     // TODO: add logic when tooltip will be implemented
 
     return avatar;

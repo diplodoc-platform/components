@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, ReactElement} from 'react';
 import block from 'bem-cn-lite';
 import {Author} from '../../models';
 
@@ -6,7 +6,7 @@ import './Authors.scss';
 
 const b = block('authors');
 
-const MAX_NUMBER_DISPLAYED_AUTHORS = 3;
+const MAX_DISPLAYED_AUTHORS = 3;
 
 export interface AuthorsProps {
     title: string;
@@ -27,41 +27,39 @@ export const Authors: React.FC<AuthorsProps> = (props) => {
     return (
         <div className={b()}>
             <div className={b('title')}>{title}</div>
-            <div className={b('avatars')}>{avatars}</div>
+            <div className={b('avatars-wrapper')}>{avatars}</div>
         </div>
     );
 };
 
-function getAvatars(authors: Author[]) {
+function getAvatars(authors: Author[]): ReactElement {
     if (authors.length === 1) {
         return getOneAvatar(authors[0]);
     }
 
-    const displayedAvatars: JSX.Element[] = [];
+    const displayedAuthors = [...authors];
+    const hiddenAuthors = displayedAuthors.splice(MAX_DISPLAYED_AUTHORS);
 
-    authors.forEach((author: Author, id: number) => {
-        if (id < MAX_NUMBER_DISPLAYED_AUTHORS) {
-            displayedAvatars.push(getAvatar(author));
-        }
+    const displayedAvatars = displayedAuthors.map((author: Author) => {
+        return getAvatar(author);
     });
-
-    const hiddenAvatars = getHiddenAvatars(authors.slice(MAX_NUMBER_DISPLAYED_AUTHORS));
+    const hiddenAvatars = getHiddenAvatars(hiddenAuthors);
 
     return (
         <Fragment>
-            <div className={b('displayed_avatars')}>{displayedAvatars}</div>
-            <div className={b('hidden_avatars')}>{hiddenAvatars}</div>
+            <div className={b('avatars', {displayed: true})}>{displayedAvatars}</div>
+            <div className={b('avatars', {hidden: true})}>{hiddenAvatars}</div>
         </Fragment>
     );
 }
 
-function getOneAvatar(author: Author) {
+function getOneAvatar(author: Author): ReactElement {
     const fullUserName = author.name;
 
     const shortUserName = fullUserName
         .split(' ')
-        .reduce((result, current, id) => {
-            return id > 0 ? `${result} ${current.charAt(0)}.` : current;
+        .reduce((result, current, index) => {
+            return index > 0 ? `${result} ${current.charAt(0)}.` : current;
         }, '');
 
     return (
@@ -72,7 +70,7 @@ function getOneAvatar(author: Author) {
     );
 }
 
-function getHiddenAvatars(authors: Author[]): JSX.Element | null {
+function getHiddenAvatars(authors: Author[]): ReactElement | null {
     const authorCount = authors.length;
 
     if (authorCount === 0) {
@@ -82,7 +80,7 @@ function getHiddenAvatars(authors: Author[]): JSX.Element | null {
     // TODO: add logic when tooltip will be implemented
 
     const hiddenAvatars = (
-        <div className={b('small_avatar')}>
+        <div className={b('avatar', {small: true})}>
             {`+${authorCount}`}
         </div>
     );
@@ -90,8 +88,8 @@ function getHiddenAvatars(authors: Author[]): JSX.Element | null {
     return hiddenAvatars;
 }
 
-function getAvatar(author: Author): JSX.Element {
-    const avatar = <img key={author.login} className={b('small_avatar')} src={author.avatar}/>;
+function getAvatar(author: Author): ReactElement {
+    const avatar = <img key={author.login} className={b('avatar', {small: true})} src={author.avatar}/>;
     // TODO: add logic when tooltip will be implemented
 
     return avatar;

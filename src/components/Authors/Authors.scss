@@ -1,74 +1,70 @@
-@import '../../../styles/mixins';
+@mixin text() {
+    margin-right: 5px;
+    font-size: 13px;
+    font-weight: 400;
+}
 
 .authors {
     display: flex;
     margin: 10px 0;
 
-    &__avatars {
+    &__avatars-wrapper {
         display: flex;
     }
 
     &__title {
-        margin-right: 5px;
-        font-size: 13px;
-        font-weight: 400;
+        @include text();
     }
 
     &__one_author {
         display: flex;
 
         & > * {
-            margin-right: 5px;
-            font-size: 13px;
-            font-weight: 400;
-
+            @include text();
         }
     }
 
-    &__small_avatar {
+    &__avatar_small {
         border-radius: 50%;
         height: 20px;
         width: 20px;
         border: 1px solid var(--yc-color-base);
     }
 
-    &__description_avatar {
+    &__avatar_big {
         border-radius: 50%;
         height: 36px;
         width: 36px;
     }
 
-    &__displayed_avatars {
-        flex-direction: row-reverse;
-        display: flex;
-    }
-
-    &__displayed_avatars {
-        flex-direction: row-reverse;
-        display: flex;
-
-        & > * {
-            position: relative;
-        }
-
-        & > *:not(:last-child) {
-            margin-left: -5px;
-        }
-    }
-
-    &__hidden_avatars {
-        margin-left: -5px;
-        font-size: 10px;
-        font-weight: 500;
-        color: #555555;
-        text-align: center;
-
-        & > * {
-            background: #edf2f7;
-            flex-direction: column;
-            text-align: center;
+    &__avatars {
+        &_displayed {
+            flex-direction: row-reverse;
             display: flex;
-            justify-content: center;
+
+            & > * {
+                position: relative;
+            }
+
+            & > *:not(:last-child) {
+                margin-left: -5px;
+            }
+        }
+
+        &_hidden {
+            margin-left: -5px;
+            font-size: 10px;
+            font-weight: 500;
+            color: #555555;
+            text-align: center;
+
+            & > * {
+                background: #edf2f7;
+                flex-direction: column;
+                text-align: center;
+                display: flex;
+                justify-content: center;
+            }
         }
     }
 }

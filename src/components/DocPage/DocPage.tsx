@@ -12,6 +12,7 @@ import {Breadcrumbs} from '../Breadcrumbs';
 import {TocNavPanel} from '../TocNavPanel';
 import {Controls} from '../Controls';
 import {EditButton} from '../EditButton';
+import {Authors} from '../Authors';
 
 import {getStateKey, InnerProps, callSafe, getHeaderTag, createElementFromHTML} from '../../utils';
 import {DEFAULT_SETTINGS} from '../../constants';
@@ -20,7 +21,6 @@ import LinkIcon from '../../../assets/icons/link.svg';
 
 import '@doc-tools/transform/dist/css/yfm.css';
 import './DocPage.scss';
-import {Authors} from '../Authors';
 
 const b = block('dc-doc-page');
 
@@ -265,7 +265,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
     private renderAuthors() {
         const {meta} = this.props;
 
-        if (!meta || !meta.contributors) {
+        if (!meta?.contributors) {
             return null;
         }
 

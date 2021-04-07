@@ -263,14 +263,14 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
     }
 
     private renderAuthors() {
-        const {meta} = this.props;
+        const {meta, lang} = this.props;
 
         if (!meta?.contributors) {
             return null;
         }
 
         return (
-            <Authors title={'Improved by'} usersMetadata={meta.contributors}/>
+            <Authors lang={lang} usersMetadata={meta.contributors}/>
         );
     }
 

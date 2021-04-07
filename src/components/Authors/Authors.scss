@@ -1,3 +1,7 @@
+@import '../../../styles/colors/text/dark.scss';
+
+$authorsShift: -2px;
+
 @mixin text() {
     margin-right: 5px;
     font-size: 13px;
@@ -47,23 +51,25 @@
             }
 
             & > *:not(:last-child) {
-                margin-left: -5px;
+                margin-left: $authorsShift;
             }
         }
 
         &_hidden {
-            margin-left: -5px;
+            margin-left: $authorsShift;
             font-size: 10px;
             font-weight: 500;
             color: #555555;
             text-align: center;
 
             & > * {
-                background: #edf2f7;
+                background: var(--yc-color-base-misc);
                 flex-direction: column;
                 text-align: center;
                 display: flex;
                 justify-content: center;
+                padding-left: 3px;
+                padding-right: 1px;
             }
         }
     }

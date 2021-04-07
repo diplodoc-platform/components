@@ -1,6 +1,7 @@
 import React, {Fragment, ReactElement} from 'react';
 import block from 'bem-cn-lite';
-import {Author} from '../../models';
+import {Author, Lang} from '../../models';
+import {WithTranslation, withTranslation, WithTranslationProps} from 'react-i18next';
 
 import './Authors.scss';
 
@@ -9,12 +10,17 @@ const b = block('authors');
 const MAX_DISPLAYED_AUTHORS = 3;
 
 export interface AuthorsProps {
-    title: string;
+    lang: Lang;
     usersMetadata: string;
 }
 
-export const Authors: React.FC<AuthorsProps> = (props) => {
-    const {title, usersMetadata} = props;
+type AuthorsInnerProps =
+    & AuthorsProps
+    & WithTranslation
+    & WithTranslationProps;
+
+const Authors: React.FC<AuthorsInnerProps> = (props) => {
+    const {usersMetadata, lang, i18n, t} = props;
 
     const users = JSON.parse(usersMetadata.replace(/'/g, '"'));
 
@@ -24,9 +30,13 @@ export const Authors: React.FC<AuthorsProps> = (props) => {
 
     const avatars = getAvatars(users);
 
+    if (i18n.language !== lang) {
+        i18n.changeLanguage(lang);
+    }
+
     return (
         <div className={b()}>
-            <div className={b('title')}>{title}</div>
+            <div className={b('title')}>{t('title')}</div>
             <div className={b('avatars-wrapper')}>{avatars}</div>
         </div>
     );
@@ -79,9 +89,11 @@ function getHiddenAvatars(authors: Author[]): ReactElement | null {
 
     // TODO: add logic when tooltip will be implemented
 
+    const authorsCountString = authorCount >= 10 ? `${authorCount}+` : `+${authorCount}`;
+
     const hiddenAvatars = (
         <div className={b('avatar', {small: true})}>
-            {`+${authorCount}`}
+            {authorsCountString}
         </div>
     );
 
@@ -94,3 +106,5 @@ function getAvatar(author: Author): ReactElement {
 
     return avatar;
 }
+
+export default withTranslation('authors')(Authors);

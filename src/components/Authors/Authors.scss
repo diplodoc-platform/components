@@ -1,4 +1,4 @@
-@import '../../../styles/colors/text/dark.scss';
+@import '../../../styles/variables';
 
 $authorsShift: -2px;
 
@@ -54,7 +54,7 @@ $authorsShift: -2px;
         margin-left: $authorsShift;
         font-size: 10px;
         font-weight: 500;
-        color: #555555;
+        color: var(--yc-color-text-secondary);
         text-align: center;
 
         & > * {

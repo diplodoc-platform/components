@@ -28,5 +28,8 @@
     "toc-nav-panel": {
         "hint_previous": "Previous",
         "hint_next": "Next"
+    },
+    "authors": {
+        "title": "improved by"
     }
 }

@@ -12,6 +12,7 @@ import {Breadcrumbs} from '../Breadcrumbs';
 import {TocNavPanel} from '../TocNavPanel';
 import {Controls} from '../Controls';
 import {EditButton} from '../EditButton';
+import {Authors} from '../Authors';
 
 import {getStateKey, InnerProps, callSafe, getHeaderTag, createElementFromHTML} from '../../utils';
 import {DEFAULT_SETTINGS} from '../../constants';
@@ -113,6 +114,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                     <div className={b('main')}>
                         <main className={b('content')}>
                             {this.renderTitle()}
+                            {this.renderAuthors()}
                             {hideMiniToc ? null : this.renderContentMiniToc()}
                             {this.renderBody()}
                         </main>
@@ -257,6 +259,18 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             <DocPageTitle stage={meta.stage} className={b('title')}>
                 <HTML>{title}</HTML>
             </DocPageTitle>
+        );
+    }
+
+    private renderAuthors() {
+        const {meta, lang} = this.props;
+
+        if (!meta?.contributors) {
+            return null;
+        }
+
+        return (
+            <Authors lang={lang} usersMetadata={meta.contributors}/>
         );
     }
 

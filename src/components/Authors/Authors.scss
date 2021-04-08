@@ -1,0 +1,70 @@
+@import '../../../styles/variables';
+
+$authorsShift: -2px;
+
+@mixin text() {
+    margin-right: 5px;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.authors {
+    display: flex;
+    margin: 10px 0;
+
+    &__avatars-wrapper {
+        display: flex;
+    }
+
+    &__title {
+        @include text();
+    }
+
+    &__one_author {
+        display: flex;
+
+        & > * {
+            @include text();
+        }
+    }
+
+    &__avatar_size {
+        &_small {
+            border-radius: 50%;
+            height: 20px;
+            width: 20px;
+            border: 1px solid var(--yc-color-base);
+        }
+    }
+
+    &__displayed_avatars {
+        flex-direction: row-reverse;
+        display: flex;
+
+        & > * {
+            position: relative;
+        }
+
+        & > *:not(:last-child) {
+            margin-left: $authorsShift;
+        }
+    }
+
+    &__hidden_avatars {
+        margin-left: $authorsShift;
+        font-size: 10px;
+        font-weight: 500;
+        color: var(--yc-color-text-secondary);
+        text-align: center;
+
+        & > * {
+            background: var(--yc-color-base-misc);
+            flex-direction: column;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            padding-left: 3px;
+            padding-right: 1px;
+        }
+    }
+}

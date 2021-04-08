@@ -8,6 +8,7 @@ import './Authors.scss';
 const b = block('authors');
 
 const MAX_DISPLAYED_AUTHORS = 3;
+const LOWER_BOUND_MORE_AUTHORS = 10;
 
 export interface AuthorsProps {
     lang: Lang;
@@ -89,7 +90,9 @@ function getHiddenAvatars(authors: Author[]): ReactElement | null {
 
     // TODO: add logic when tooltip will be implemented
 
-    const authorsCountString = authorCount >= 10 ? `${authorCount}+` : `+${authorCount}`;
+    const authorsCountString = authorCount >= LOWER_BOUND_MORE_AUTHORS
+        ? `${authorCount}+`
+        : `+${authorCount}`;
 
     const hiddenAvatars = (
         <div className={b('avatar', {size: 'small'})}>

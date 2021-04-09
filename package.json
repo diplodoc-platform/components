@@ -3,7 +3,7 @@
   "description": "React компоненты для отрисовки документационного проекта",
   "author": "YFM Team <yfm-team@yandex.ru>",
   "license": "MIT",
-  "version": "1.6.2",
+  "version": "1.7.0",
   "repository": {
     "type": "git",
     "url": "git@github.com:yandex-cloud/docs-components.git"

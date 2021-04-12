@@ -1,36 +1,11 @@
 .dc-edit-button {
-    display: flex;
-    font-size: var(--yc-text-body-1-short-font-size);
-    line-height: var(--yc-text-body-1-short-line-height);
-    font-family: var(--yc-font-family);
-    font-weight: 400;
-    color: var(--yc-color-text-primary);
-    height: 28px;
-    margin-top: -28px;
-    width: auto;
-    white-space: nowrap;
-    position: absolute;
-    padding: 5px 12px;
-    background: var(--yc-color-float-area);
-    box-shadow: 0px 1px 5px var(--yc-color-sfx-shadow);
-    border-radius: 4px;
-    border: none;
-    cursor: pointer;
-    transition: background 0.15s linear, opacity 0.15s linear;
-    right: 0;
-
-
-    &:hover {
-        background: var(--yc-color-hover-area);
-        color: var(--yc-color-text-primary);
+    &.dc-button {
+        position: absolute;
+        right: 0;
+        margin-top: -28px;
     }
 
     &__text {
         margin-left: 8px;
-    }
-
-
-    &:focus {
-        outline: none;
     }
 }

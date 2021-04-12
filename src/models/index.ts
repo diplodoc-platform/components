@@ -4,9 +4,21 @@ export enum Theme {
 }
 
 export enum TextSizes {
-    s = 's', // 13px
-    m = 'm', // 15px
-    l = 'l' // 17px
+    S = 's', // 13px
+    M = 'm', // 15px
+    L = 'l' // 17px
+}
+
+export enum ControlSizes {
+    S = 's',
+    M = 'm'
+}
+
+export enum ButtonThemes {
+    Flat = 'flat',
+    Float = 'float',
+    Action = 'action',
+    Like = 'like'
 }
 
 export interface DocSettings {
@@ -16,6 +28,9 @@ export interface DocSettings {
     showMiniToc?: boolean;
     theme?: Theme;
     textSize?: TextSizes;
+    isLiked?: boolean;
+    isDisliked?: boolean;
+    dislikeVariants?: string[];
 }
 
 export interface DocBasePageData {
@@ -108,4 +123,21 @@ export interface Author {
     avatar: string;
     login: string;
     name: string;
+}
+
+export interface DislikeData {
+    answers: string[];
+    comment: string;
+}
+
+export enum FeedbackType {
+    like = 'like',
+    dislike = 'dislike',
+    indeterminate = 'indeterminate'
+}
+
+export interface FeedbackSendData {
+    type: FeedbackType;
+    answers?: string[];
+    comment?: string;
 }

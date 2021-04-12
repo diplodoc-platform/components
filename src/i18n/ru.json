@@ -20,7 +20,19 @@
         "edit-text-arcanum": "Редактировать в Arcanum",
         "edit-text": "Редактировать",
         "settings-text": "Настройки",
-        "lang-text": "Язык"
+        "lang-text": "Язык",
+        "like-text": "Статья полезна",
+        "dislike-text": "Статья не полезна",
+        "cancel-like-text": "Стало хуже",
+        "cancel-dislike-text": "Стало лучше",
+        "feedback-success-title": "Спасибо!",
+        "feedback-success-text": "Ваш ответ поможет сделать документацию лучше",
+        "dislike-variants-title": "Расскажите, что не так со статьей",
+        "send-action-text": "Отправить",
+        "skip-action-text": "Пропустить",
+        "feedback-comment-placeholder": "Дополнительная информация будет полезна",
+        "lang-control-text-ru": "Русский",
+        "lang-control-text-en": "English"
     },
     "mini-toc" : {
         "title": "В этой статье"
@@ -31,5 +43,19 @@
     },
     "authors": {
         "title": "улучшено с помощью"
+    },
+    "feedback": {
+        "like-text": "Статья полезна",
+        "dislike-text": "Статья не полезна",
+        "cancel-like-text": "Стало хуже",
+        "cancel-dislike-text": "Стало лучше",
+        "success-title": "Спасибо!",
+        "success-text": "Ваш ответ поможет сделать документацию лучше",
+        "dislike-variants-title": "Расскажите, что не так со статьей",
+        "send-action-text": "Отправить",
+        "comment-placeholder": "Дополнительная информация будет полезна",
+        "button-like-text": "Да",
+        "button-dislike-text": "Нет",
+        "main-question": "Была ли статья полезна?"
     }
 }

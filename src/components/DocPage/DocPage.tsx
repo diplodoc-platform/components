@@ -3,7 +3,7 @@ import ReactDOMServer from 'react-dom/server';
 import block from 'bem-cn-lite';
 import '@doc-tools/transform/dist/js/yfm';
 
-import {DocPageData, Lang, Router, Theme, DocSettings, TextSizes, Vcs} from '../../models';
+import {FeedbackSendData, DocPageData, DocSettings, Lang, Router, Vcs, TextSizes, Theme} from '../../models';
 import {DocLayout} from '../DocLayout';
 import {DocPageTitle} from '../DocPageTitle';
 import {MiniToc} from '../MiniToc';
@@ -13,8 +13,9 @@ import {TocNavPanel} from '../TocNavPanel';
 import {Controls} from '../Controls';
 import {EditButton} from '../EditButton';
 import {Authors} from '../Authors';
+import {Feedback, FeedbackView} from '../Feedback';
 
-import {getStateKey, InnerProps, callSafe, getHeaderTag, createElementFromHTML} from '../../utils';
+import {callSafe, createElementFromHTML, getHeaderTag, getStateKey, InnerProps} from '../../utils';
 import {DEFAULT_SETTINGS} from '../../constants';
 
 import LinkIcon from '../../../assets/icons/link.svg';
@@ -41,6 +42,7 @@ export interface DocPageProps extends DocPageData, Partial<DocSettings> {
     onChangeShowMiniToc?: (value: boolean) => void;
     onChangeTheme?: (theme: Theme) => void;
     onChangeTextSize?: (textSize: TextSizes) => void;
+    onSendFeedback?: (data: FeedbackSendData) => void;
 }
 
 type DocPageInnerProps = InnerProps<DocPageProps, DocSettings>;
@@ -117,6 +119,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                             {this.renderAuthors()}
                             {hideMiniToc ? null : this.renderContentMiniToc()}
                             {this.renderBody()}
+                            {this.renderFeedback()}
                         </main>
                         {this.renderTocNavPanel()}
                     </div>
@@ -343,6 +346,39 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
         );
     }
 
+    private renderFeedback() {
+        const {
+            toc,
+            lang,
+            singlePage,
+            isLiked,
+            isDisliked,
+            onSendFeedback,
+            dislikeVariants,
+        } = this.props;
+
+        if (!toc || toc.singlePage) {
+            return null;
+        }
+
+        const isVerticalView = this.getIsVerticalView();
+
+        return (
+            <div className={b('feedback')}>
+                <Feedback
+                    isVerticalView={isVerticalView}
+                    lang={lang}
+                    singlePage={singlePage}
+                    isLiked={isLiked}
+                    isDisliked={isDisliked}
+                    dislikeVariants={dislikeVariants}
+                    onSendFeedback={onSendFeedback}
+                    view={FeedbackView.Wide}
+                />
+            </div>
+        );
+    }
+
     private renderTocNavPanel() {
         const {toc, router, fullScreen, lang} = this.props;
 
@@ -383,6 +419,11 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
         });
     };
 
+    private getIsVerticalView = () => {
+        const {fullScreen} = this.props;
+        return !this.showMiniToc || fullScreen;
+    };
+
     private renderControls() {
         const {
             lang,
@@ -399,14 +440,18 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             onChangeShowMiniToc,
             onChangeTheme,
             onChangeTextSize,
+            onSendFeedback,
+            isLiked,
+            isDisliked,
+            dislikeVariants,
         } = this.props;
 
         const showEditControl = !fullScreen && this.isEditable();
-        const verticalView = !this.showMiniToc || fullScreen;
+        const isVerticalView = this.getIsVerticalView();
         const onChangeSinglePage = this.isSinglePageSupported ? this.onChangeSinglePage : undefined;
 
         return (
-            <div className={b('controls', {vertical: verticalView})}>
+            <div className={b('controls', {vertical: isVerticalView})}>
                 <Controls
                     lang={lang}
                     textSize={textSize}
@@ -418,6 +463,9 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                     onChangeLang={onChangeLang}
                     vcsUrl={vcsUrl as string}
                     vcsType={vcsType as Vcs}
+                    isLiked={isLiked}
+                    isDisliked={isDisliked}
+                    dislikeVariants={dislikeVariants}
                     showEditControl={showEditControl}
                     onChangeFullScreen={onChangeFullScreen}
                     onChangeSinglePage={onChangeSinglePage}
@@ -425,7 +473,8 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                     onChangeShowMiniToc={onChangeShowMiniToc}
                     onChangeTheme={onChangeTheme}
                     onChangeTextSize={onChangeTextSize}
-                    verticalView={verticalView}
+                    onSendFeedback={onSendFeedback}
+                    isVerticalView={isVerticalView}
                 />
             </div>
         );

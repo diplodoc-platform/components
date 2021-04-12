@@ -1,0 +1,22 @@
+@import '../../../styles/mixins';
+
+.dc-control {
+    &__tooltip {
+        display: flex;
+        align-items: center;
+        padding: 4px 8px;
+        border: none;
+        height: 26px;
+
+        &.dc-popup {
+            background: var(--dc-tooltip-background);
+            color: var(--dc-text-tooltip-color);
+        }
+    }
+
+    &__tooltip-text {
+        @include text-size(body-1-short);
+        display: block;
+        white-space: nowrap;
+    }
+}

@@ -51,6 +51,15 @@ config
         test: /\.svg$/,
         loader: 'react-svg-loader',
         include: [path.resolve(assetsRoot, 'icons')],
+        options: {
+            svgo: {
+                plugins: [
+                    {
+                        removeViewBox: false
+                    }
+                ]
+            }
+        }
     })
     .plugins.addPlugin(new SpriteLoaderPlugin({plainSprite: true}));
 

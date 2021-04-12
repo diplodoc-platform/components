@@ -13,14 +13,22 @@ body.yc-root {
     --dc-header-height: 64px;
 }
 
-.Header {
+.yc-root .Header {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     height: 64px;
     padding: 0 24px;
     background-color: var(--yc-color-base);
-    box-shadow: inset 0 -1px 0 var(--yc-color-divider);
+    box-shadow: inset 0 -1px 0 var(--yc-color-line-generic);
+
+    &__control {
+        color: var(--yc-color-text-primary);
+    }
+
+    &__divider {
+        margin: 0 4px;
+    }
 }
 
 .Layout__header {

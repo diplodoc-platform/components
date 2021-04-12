@@ -4,7 +4,6 @@
 .dc-nav-toc-panel {
     display: flex;
     justify-content: center;
-    height: 32px;
     width: 100%;
     background: var(--yc-color-base);
 
@@ -15,7 +14,7 @@
         bottom: 0;
         z-index: 1000;
         left: 0;
-        border-top: 1px solid var(--yc-color-divider);
+        border-top: 1px solid var(--yc-color-line-generic);
     }
 
     &_fixed &__control-hint {

@@ -8,11 +8,11 @@ export default class OutsideClick extends React.Component<OutsideClickProps> {
     ref = createRef<HTMLDivElement>();
 
     componentDidMount() {
-        document.addEventListener('click', this.handleOutsideClick);
+        document.addEventListener('mousedown', this.handleOutsideClick);
     }
 
     componentWillUnmount() {
-        document.removeEventListener('click', this.handleOutsideClick);
+        document.removeEventListener('mousedown', this.handleOutsideClick);
     }
 
     render() {

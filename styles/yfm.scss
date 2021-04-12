@@ -53,7 +53,7 @@
 
     table {
         color: var(--yc-color-text-primary);
-        border-color: var(--yc-color-divider);
+        border-color: var(--yc-color-line-generic);
         background: var(--yc-color-base);
     }
 
@@ -70,7 +70,7 @@
     }
 
     .yfm-tab-list {
-        border-bottom-color: var(--yc-color-divider);
+        border-bottom-color: var(--yc-color-line-generic);
     }
 
     .yfm-tab:hover, .yfm-tab:active {

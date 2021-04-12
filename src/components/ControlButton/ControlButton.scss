@@ -1,0 +1,16 @@
+.dc-control-button {
+    position: relative;
+    color: var(--yc-color-text-secondary);
+    padding: 0;
+
+    &_size_s {
+        $buttonSize: 28px;
+        width: $buttonSize;
+        height: $buttonSize;
+    }
+    &_size_m {
+        $buttonSize: 32px;
+        width: $buttonSize;
+        height: $buttonSize;
+    }
+}

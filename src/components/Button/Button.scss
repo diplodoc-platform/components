@@ -2,14 +2,66 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    width: auto;
     position: relative;
-    color: var(--yc-color-text-secondary);
-    width: 28px;
-    height: 28px;
-    padding: 0;
+
     background: transparent;
+    transition: background 0.15s linear, opacity 0.15s linear;
     border: none;
+    border-radius: 4px;
     cursor: pointer;
+    white-space: nowrap;
+
+    &_size_m {
+        height: 28px;
+        padding: 5px 12px;
+    }
+
+    &_theme_flat, &_theme_float {
+        color: var(--yc-color-text-primary);
+
+        &:hover {
+            color: var(--yc-color-text-primary);
+        }
+
+        &:hover:before {
+            background: var(--yc-color-base-simple-hover);
+        }
+    }
+
+    &_theme_float {
+        background: var(--yc-color-base-float);
+        box-shadow: 0px 1px 5px var(--yc-color-sfx-shadow);
+    }
+
+    &_theme_action {
+        color: var(--yc-color-text-light-primary);
+        background: var(--yc-color-button-accent-background);
+
+        &:hover {
+            color: var(--yc-color-text-light-primary);
+            background: var(--yc-color-button-accent-background-hover);
+        }
+    }
+
+    &_theme_like {
+        color: var(--yc-color-text-primary);
+        background: var(--yc-color-base-generic);
+
+        &:hover {
+            background: var(--yc-color-base-generic-hover);
+        }
+    }
+
+    &_theme_like#{&}_active {
+        color: var(--yc-color-button-accent-background);
+        background: var(--yc-color-base-info);
+
+        &:hover {
+            color: var(--yc-color-button-accent-background-hover);
+            background: var(--yc-color-base-info-hover);
+        }
+    }
 
     &:before {
         content: '';
@@ -18,14 +70,6 @@
         height: 100%;
         border-radius: 4px;
         transition: background 0.15s linear, opacity 0.15s linear;
-    }
-
-    &:hover:before {
-        background: var(--yc-color-hover-area);
-    }
-
-    &:hover {
-        color: var(--yc-color-text-primary);
     }
 
     &:focus {

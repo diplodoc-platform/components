@@ -1,0 +1,19 @@
+.dc-divider-control {
+    background: var(--yc-color-line-generic);
+
+    &:not(&_vertical) {
+        width: 100%;
+        height: 1px;
+    }
+
+    &_vertical {
+        width: 1px;
+    }
+
+    &#{&}_vertical#{&}_size_s {
+        height: 16px;
+    }
+    &#{&}_vertical#{&}_size_m {
+        height: 24px;
+    }
+}

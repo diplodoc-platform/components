@@ -30,7 +30,9 @@
         "dislike-variants-title": "Tell us what's wrong with the article",
         "send-action-text": "Send",
         "skip-action-text": "Skip",
-        "feedback-comment-placeholder": "Additional information will be useful"
+        "feedback-comment-placeholder": "Additional information will be useful",
+        "lang-control-text-ru": "Русский",
+        "lang-control-text-en": "English"
     },
     "mini-toc" : {
         "title": "In this article"

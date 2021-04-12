@@ -47,7 +47,7 @@ class EditButton extends React.Component<EditButtonInnerProps> {
             <Button
                 wrapper={wrapper}
                 className={b()}
-                theme={ButtonThemes.float}
+                theme={ButtonThemes.Float}
             >
                 <EditIcon/>
                 <span className={b('text')}>{t('edit-text')}</span>

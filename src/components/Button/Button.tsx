@@ -27,8 +27,8 @@ export const Button: React.FC<ButtonProps> = ({
     onMouseOver,
     onMouseLeave,
     wrapper,
-    size = ControlSizes.m,
-    theme = ButtonThemes.float,
+    size = ControlSizes.M,
+    theme = ButtonThemes.Float,
     active = false,
 }) => {
     const modes = {size, theme, active};

@@ -21,7 +21,7 @@ export const DEFAULT_SETTINGS = {
     wideFormat: false,
     showMiniToc: true,
     theme: Theme.Dark,
-    textSize: TextSizes.m,
+    textSize: TextSizes.M,
     isLiked: false,
     isDisliked: false,
     dislikeVariants: DISLIKE_VARIANTS[Lang.Ru],

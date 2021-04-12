@@ -25,8 +25,8 @@ export interface ControlProps {
 }
 
 const ICONS_SIZES = {
-    [ControlSizes.s]: 16,
-    [ControlSizes.m]: 20,
+    [ControlSizes.S]: 16,
+    [ControlSizes.M]: 20,
 };
 
 const Control = (props: ControlProps) => {
@@ -36,7 +36,7 @@ const Control = (props: ControlProps) => {
         tooltipText,
         isVerticalView,
         setRef,
-        size = ControlSizes.s,
+        size = ControlSizes.S,
         icon,
     } = props;
 

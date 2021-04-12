@@ -4,21 +4,21 @@ export enum Theme {
 }
 
 export enum TextSizes {
-    s = 's', // 13px
-    m = 'm', // 15px
-    l = 'l' // 17px
+    S = 's', // 13px
+    M = 'm', // 15px
+    L = 'l' // 17px
 }
 
 export enum ControlSizes {
-    s = 's',
-    m = 'm'
+    S = 's',
+    M = 'm'
 }
 
 export enum ButtonThemes {
-    flat = 'flat',
-    float = 'float',
-    action = 'action',
-    like = 'like'
+    Flat = 'flat',
+    Float = 'float',
+    Action = 'action',
+    Like = 'like'
 }
 
 export interface DocSettings {

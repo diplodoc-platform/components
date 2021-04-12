@@ -207,7 +207,7 @@ class Controls extends React.Component<ControlsInnerProps> {
                     dislikeVariants={dislikeVariants}
                     onSendFeedback={onSendFeedback}
                     isVerticalView={isVerticalView}
-                    view={FeedbackView.regular}
+                    view={FeedbackView.Regular}
                     classNameControl={b('control')}
                 />
             </React.Fragment>

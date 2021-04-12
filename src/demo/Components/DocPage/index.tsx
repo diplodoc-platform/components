@@ -1,4 +1,5 @@
 import React, {useCallback, useState} from 'react';
+import cn from 'bem-cn-lite';
 import {
     ControlSizes,
     DocPage,
@@ -16,6 +17,9 @@ import getVcsControl from '../../controls/vcs';
 import {getContent} from './data';
 
 import {join} from 'path';
+
+const headBlock = cn('Header');
+const layoutBlock = cn('Layout');
 
 function updateBodyClassName(theme: Theme) {
     const bodyEl = document.body;
@@ -108,29 +112,29 @@ const DocPageDemo = () => {
     return (
         <div className={isMobile === 'true' ? 'mobile' : 'desktop'}>
             {props.fullScreen ? null :
-                <div className="Layout__header">
-                    <div className="Header">
+                <div className={layoutBlock('header')}>
+                    <div className={headBlock()}>
                         <FullScreenControl
                             lang={lang}
                             value={fullScreen}
                             onChange={onChangeFullScreen}
-                            size={ControlSizes.m}
-                            className="Header__control"
+                            size={ControlSizes.M}
+                            className={headBlock('control')}
                         />
                         <DividerControl
-                            size={ControlSizes.m}
-                            className="Header__divider"
+                            size={ControlSizes.M}
+                            className={headBlock('divider')}
                         />
                         <LangControl
                             lang={lang}
                             onChangeLang={onChangeLang}
-                            size={ControlSizes.m}
-                            className="Header__control"
+                            size={ControlSizes.M}
+                            className={headBlock('control')}
                         />
                     </div>
                 </div>
             }
-            <div className="Layout__content">
+            <div className={layoutBlock('content')}>
                 <DocPage
                     {...props}
                     tocTitleIcon={tocTitleIcon}

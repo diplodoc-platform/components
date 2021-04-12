@@ -373,7 +373,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                     isDisliked={isDisliked}
                     dislikeVariants={dislikeVariants}
                     onSendFeedback={onSendFeedback}
-                    view={FeedbackView.wide}
+                    view={FeedbackView.Wide}
                 />
             </div>
         );

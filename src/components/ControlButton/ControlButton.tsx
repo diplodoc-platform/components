@@ -9,13 +9,13 @@ import './ControlButton.scss';
 const b = block('dc-control-button');
 
 export const ControlButton: React.FC<ButtonProps> = (props) => {
-    const {className, size = ControlSizes.s} = props;
+    const {className, size = ControlSizes.S} = props;
 
     return (
         <Button
             {...props}
             className={b({size}, className)}
-            theme={ButtonThemes.flat}
+            theme={ButtonThemes.Flat}
         />
     );
 };

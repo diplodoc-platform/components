@@ -19,8 +19,8 @@ import './Feedback.scss';
 const b = block('dc-feedback');
 
 export enum FeedbackView {
-    wide = 'wide',
-    regular = 'regular',
+    Wide = 'wide',
+    Regular = 'regular',
 }
 
 export interface FeedbackProps {
@@ -137,10 +137,10 @@ class Feedback extends React.Component<FeedbackInnerProps, FeedbackState> {
     private getPopupPosition() {
         const {
             isVerticalView,
-            view = FeedbackView.regular,
+            view = FeedbackView.Regular,
         } = this.props;
 
-        if (view === FeedbackView.regular) {
+        if (view === FeedbackView.Regular) {
             return isVerticalView ? PopupPosition.left : PopupPosition.bottom;
         }
 
@@ -225,7 +225,7 @@ class Feedback extends React.Component<FeedbackInnerProps, FeedbackState> {
                 </div>
                 <div className={b('variants-actions')}>
                     <Button
-                        theme={ButtonThemes.action}
+                        theme={ButtonThemes.Action}
                         className={b('variants-action')}
                         onClick={this.onSendDislikeInformation}
                     >
@@ -237,9 +237,9 @@ class Feedback extends React.Component<FeedbackInnerProps, FeedbackState> {
     }
 
     private renderFeedbackControls() {
-        const {view = FeedbackView.regular} = this.props;
+        const {view = FeedbackView.Regular} = this.props;
 
-        return view === FeedbackView.regular
+        return view === FeedbackView.Regular
             ? this.renderRegularFeedbackControls()
             : this.renderWideFeedbackControls();
     }
@@ -291,7 +291,7 @@ class Feedback extends React.Component<FeedbackInnerProps, FeedbackState> {
                     <h3 className={b('title', {view})}>{t('main-question')}</h3>
                     <div className={b('controls', {view})}>
                         <Button
-                            theme="like"
+                            theme={ButtonThemes.Like}
                             active={isLiked}
                             buttonRef={this.makeSetRef('likeControlRef')}
                             onClick={this.onChangeLike}
@@ -301,7 +301,7 @@ class Feedback extends React.Component<FeedbackInnerProps, FeedbackState> {
                             {t('button-like-text')}
                         </Button>
                         <Button
-                            theme="like"
+                            theme={ButtonThemes.Like}
                             active={isDisliked}
                             buttonRef={this.makeSetRef('dislikeControlRef')}
                             onClick={this.onChangeDislike}

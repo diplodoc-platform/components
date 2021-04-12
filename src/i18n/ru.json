@@ -30,7 +30,9 @@
         "dislike-variants-title": "Расскажите, что не так со статьей",
         "send-action-text": "Отправить",
         "skip-action-text": "Пропустить",
-        "feedback-comment-placeholder": "Дополнительная информация будет полезна"
+        "feedback-comment-placeholder": "Дополнительная информация будет полезна",
+        "lang-control-text-ru": "Русский",
+        "lang-control-text-en": "English"
     },
     "mini-toc" : {
         "title": "В этой статье"

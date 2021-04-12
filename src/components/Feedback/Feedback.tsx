@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback, useState, useEffect, useRef} from 'react';
 import block from 'bem-cn-lite';
 import {withTranslation, WithTranslation, WithTranslationProps} from 'react-i18next';
 
@@ -35,13 +35,8 @@ export interface FeedbackProps {
     classNameControl?: string;
 }
 
-interface FeedbackState {
-    showLikeSuccessPopup: boolean;
-    showDislikeSuccessPopup: boolean;
-    showDislikeVariantsPopup: boolean;
-    feedbackComment: string;
-    feedbackCheckboxes: {[key: string]: boolean};
-    isDisliked: boolean;
+interface FeedbackCheckboxes {
+    [key: string]: boolean;
 }
 
 type FeedbackInnerProps =
@@ -49,109 +44,229 @@ type FeedbackInnerProps =
     & WithTranslation
     & WithTranslationProps;
 
-class Feedback extends React.Component<FeedbackInnerProps, FeedbackState> {
-    likeControlRef?: HTMLButtonElement;
-    dislikeControlRef?: HTMLButtonElement;
+const Feedback: React.FC<FeedbackInnerProps> = (props) => {
+    const {
+        lang,
+        singlePage,
+        isLiked,
+        isDisliked,
+        dislikeVariants,
+        isVerticalView,
+        onSendFeedback,
+        view,
+        classNameControl,
+        i18n,
+        t,
+    } = props;
 
-    timeout = 3000;
-    timerId: number | unknown = 0;
+    const likeControlRef = useRef<HTMLButtonElement | null>(null);
+    const dislikeControlRef = useRef<HTMLButtonElement | null>(null);
+    const timerId = useRef<number | unknown>();
+    const timeout = 3000;
 
-    state: FeedbackState = {
-        showLikeSuccessPopup: false,
-        showDislikeSuccessPopup: false,
-        showDislikeVariantsPopup: false,
-        feedbackComment: '',
-        feedbackCheckboxes: {},
-        isDisliked: false,
-    };
+    const [innerIsDisliked, setInnerIsDisliked] = useState(isDisliked);
+    const [feedbackComment, setFeedbackComment] = useState('');
+    const [feedbackCheckboxes, setFeedbackCheckboxes] = useState({} as FeedbackCheckboxes);
+    const [showLikeSuccessPopup, setShowLikeSuccessPopup] = useState(false);
+    const [showDislikeSuccessPopup, setShowDislikeSuccessPopup] = useState(false);
+    const [showDislikeVariantsPopup, setShowDislikeVariantsPopup] = useState(false);
 
-    componentDidMount() {
-        this.initStateFromProps();
-    }
+    const hideFeedbackPopups = useCallback(() => {
+        setShowDislikeSuccessPopup(false);
+        setShowLikeSuccessPopup(false);
+        setShowDislikeVariantsPopup(false);
+    }, []);
 
-    componentDidUpdate(prevProps: FeedbackProps) {
-        const {i18n, lang, isDisliked} = this.props;
-        const {showLikeSuccessPopup, showDislikeSuccessPopup} = this.state;
+    const resetFeedbackAdditionalInfo = useCallback(() => {
+        setFeedbackComment('');
+        setFeedbackCheckboxes({});
+    }, []);
 
-        if (prevProps.lang !== lang) {
-            i18n.changeLanguage(lang);
-        }
+    useEffect(() => {
+        setInnerIsDisliked(isDisliked);
+    }, [isDisliked]);
 
-        if (prevProps.isDisliked !== isDisliked) {
-            this.setState({
-                isDisliked,
-            });
-        }
+    useEffect(() => {
+        i18n.changeLanguage(lang);
+    }, [i18n, lang]);
 
-        if (showLikeSuccessPopup || showDislikeSuccessPopup) {
-            this.setTimer(() => {
-                this.setState({
-                    showLikeSuccessPopup: false,
-                    showDislikeSuccessPopup: false,
-                }, () => {
-                    this.clearTimer();
-                });
-            });
-        }
-    }
-
-    render() {
-        const {lang, i18n, singlePage, onSendFeedback} = this.props;
-
-        if (i18n.language !== lang) {
-            i18n.changeLanguage(lang);
-        }
-
-        if (singlePage || !onSendFeedback) {
-            return null;
-        }
-
-        return (
-            <React.Fragment>
-                {this.renderFeedbackControls()}
-                {this.renderFeedbackSuccessPopup()}
-                {this.renderDislikeVariantsPopup()}
-            </React.Fragment>
-        );
-    }
-
-    private initStateFromProps = () => {
-        const {isDisliked} = this.props;
-
-        this.setState({
-            isDisliked,
-        });
-    };
-
-    private setTimer(callback: () => void) {
-        this.timerId = setTimeout(async () => {
+    const setTimer = useCallback((callback: () => void) => {
+        timerId.current = setTimeout(async () => {
             callback();
-        }, this.timeout);
-    }
+        }, timeout);
+    }, []);
 
-    private clearTimer() {
-        clearTimeout(this.timerId as number);
-        this.timerId = undefined;
-    }
+    const clearTimer = useCallback(() => {
+        clearTimeout(timerId.current as number);
+        timerId.current = undefined;
+    }, []);
 
-    private getPopupPosition() {
-        const {
-            isVerticalView,
-            view = FeedbackView.Regular,
-        } = this.props;
+    useEffect(() => {
+        if (showLikeSuccessPopup || showDislikeSuccessPopup) {
+            setTimer(() => {
+                setShowDislikeSuccessPopup(false);
+                setShowLikeSuccessPopup(false);
+                clearTimer();
+            });
+        }
+    }, [isDisliked, clearTimer, setTimer, showLikeSuccessPopup, showDislikeSuccessPopup]);
 
-        if (view === FeedbackView.Regular) {
+    const setLikeControlRef = useCallback((ref) => {
+        likeControlRef.current = ref;
+    }, []);
+
+    const setDislikeControlRef = useCallback((ref) => {
+        dislikeControlRef.current = ref;
+    }, []);
+
+    const onOutsideClick = useCallback(() => {
+        hideFeedbackPopups();
+
+        if (showDislikeVariantsPopup && innerIsDisliked && !isDisliked) {
+            setInnerIsDisliked(false);
+        }
+    }, [isDisliked, innerIsDisliked, hideFeedbackPopups, setInnerIsDisliked, showDislikeVariantsPopup]);
+
+    const onSendDislikeInformation = useCallback(() => {
+        setShowDislikeSuccessPopup(true);
+        setShowLikeSuccessPopup(false);
+        setShowDislikeVariantsPopup(false);
+
+        if (onSendFeedback) {
+            const type = FeedbackType.dislike;
+
+            const additionalInfo = getPreparedFeedbackAdditionalInfo(feedbackComment, feedbackCheckboxes);
+            const data = {
+                type,
+                ...additionalInfo,
+            };
+
+            onSendFeedback(data);
+
+            resetFeedbackAdditionalInfo();
+        }
+    }, [onSendFeedback, feedbackComment, feedbackCheckboxes, resetFeedbackAdditionalInfo]);
+
+    const getPopupPosition = useCallback(() => {
+        if (!view || view === FeedbackView.Regular) {
             return isVerticalView ? PopupPosition.left : PopupPosition.bottom;
         }
 
         return PopupPosition.rightTop;
-    }
+    }, [isVerticalView, view]);
 
-    private renderFeedbackSuccessPopup() {
-        const {showLikeSuccessPopup, showDislikeSuccessPopup} = this.state;
-        const {t} = this.props;
+    const onChangeLike = useCallback(() => {
+        setShowLikeSuccessPopup(true);
+        setShowDislikeSuccessPopup(false);
+        setShowDislikeVariantsPopup(false);
+        setInnerIsDisliked(false);
 
-        const anchor = showLikeSuccessPopup ? this.likeControlRef : this.dislikeControlRef;
+        if (onSendFeedback) {
+            onSendFeedback({
+                type: isLiked ? FeedbackType.indeterminate : FeedbackType.like,
+            });
+        }
+    }, [isLiked, onSendFeedback]);
+
+    const onChangeDislike = useCallback(() => {
+        if (!isDisliked && !innerIsDisliked) { // Нажать дизлайк и показать окно с доп. информацией
+            setShowDislikeVariantsPopup(true);
+            setInnerIsDisliked(true);
+            setShowLikeSuccessPopup(false);
+            setShowDislikeSuccessPopup(false);
+
+            if (isLiked && onSendFeedback) {
+                onSendFeedback({type: FeedbackType.indeterminate});
+            }
+        } else if (!isDisliked && innerIsDisliked) {
+            hideFeedbackPopups();
+            setInnerIsDisliked(false);
+        } else if (isDisliked && innerIsDisliked) { // Отжать дизлайк и отправить событие в неопределенное состояние
+            hideFeedbackPopups();
+            setInnerIsDisliked(false);
+
+            if (onSendFeedback) {
+                onSendFeedback({type: FeedbackType.indeterminate});
+            }
+        }
+    }, [innerIsDisliked, isDisliked, isLiked, onSendFeedback, hideFeedbackPopups]);
+
+    const renderLikeControl = useCallback(() => {
+        return (
+            <Control
+                onClick={onChangeLike}
+                className={b('control', {view}, classNameControl)}
+                isVerticalView={isVerticalView}
+                tooltipText={t(`${isLiked ? 'cancel-' : ''}like-text`)}
+                setRef={setLikeControlRef}
+                icon={(args) => <LikeIcon className={b('like-button', {active: isLiked, view})} {...args}/>}
+            />
+        );
+    }, [onChangeLike, classNameControl, view, isVerticalView, isLiked, setLikeControlRef, t]);
+
+    const renderDislikeControl = useCallback(() => {
+        return (
+            <Control
+                onClick={onChangeDislike}
+                className={b('control', {view}, classNameControl)}
+                isVerticalView={isVerticalView}
+                tooltipText={t(`${innerIsDisliked ? 'cancel-' : ''}dislike-text`)}
+                setRef={setDislikeControlRef}
+                icon={(args) => <DislikeIcon className={b('like-button', {active: innerIsDisliked, view})} {...args}/>}
+            />
+        );
+    }, [innerIsDisliked, onChangeDislike, classNameControl, view, isVerticalView, setDislikeControlRef, t]);
+
+    const renderRegularFeedbackControls = useCallback(() => {
+        return (
+            <React.Fragment>
+                {renderLikeControl()}
+                {renderDislikeControl()}
+            </React.Fragment>
+        );
+    }, [renderLikeControl, renderDislikeControl]);
+
+    const renderWideFeedbackControls = useCallback(() => {
+        return (
+            <div className={b('container', {view})}>
+                <DividerControl className={b('divider')} isVerticalView={false}/>
+                <div className={b('container-row', {view})}>
+                    <h3 className={b('title', {view})}>{t('main-question')}</h3>
+                    <div className={b('controls', {view})}>
+                        <Button
+                            theme={ButtonThemes.Like}
+                            active={isLiked}
+                            buttonRef={setLikeControlRef}
+                            onClick={onChangeLike}
+                            className={b('control', {view})}
+                        >
+                            <LikeIcon className={b('like-button', {active: isLiked, view})}/>
+                            {t('button-like-text')}
+                        </Button>
+                        <Button
+                            theme={ButtonThemes.Like}
+                            active={innerIsDisliked}
+                            buttonRef={setDislikeControlRef}
+                            onClick={onChangeDislike}
+                            className={b('control', {view})}
+                        >
+                            <DislikeIcon className={b('like-button', {active: innerIsDisliked, view})}/>
+                            {t('button-dislike-text')}
+                        </Button>
+                    </div>
+                </div>
+            </div>
+        );
+    }, [innerIsDisliked, isLiked, view, t, setLikeControlRef, setDislikeControlRef, onChangeLike, onChangeDislike]);
+
+    const renderFeedbackControls = useCallback(() => {
+        return view === FeedbackView.Regular
+            ? renderRegularFeedbackControls()
+            : renderWideFeedbackControls();
+    }, [view, renderRegularFeedbackControls, renderWideFeedbackControls]);
+
+    const renderFeedbackSuccessPopup = useCallback(() => {
+        const anchor = showLikeSuccessPopup ? likeControlRef.current : dislikeControlRef.current;
         const visible = showLikeSuccessPopup || showDislikeSuccessPopup;
         const popupWidth = 320;
 
@@ -163,20 +278,85 @@ class Feedback extends React.Component<FeedbackInnerProps, FeedbackState> {
             <Popup
                 anchor={anchor}
                 visible={visible}
-                onOutsideClick={this.hideFeedbackPopups}
+                onOutsideClick={hideFeedbackPopups}
                 popupWidth={popupWidth}
                 className={b('success-popup')}
-                position={this.getPopupPosition()}
+                position={getPopupPosition()}
             >
                 <h3 className={b('popup-title')}>{t('success-title')}</h3>
                 <p className={b('popup-text')}>{t('success-text')}</p>
             </Popup>
         );
-    }
+    }, [t, hideFeedbackPopups, showLikeSuccessPopup, showDislikeSuccessPopup, getPopupPosition]);
 
-    private renderDislikeVariantsPopup() {
-        const {showDislikeVariantsPopup, feedbackComment, feedbackCheckboxes} = this.state;
-        const {t, dislikeVariants} = this.props;
+    const renderDislikeVariantsList = useCallback(() => {
+        if (!dislikeVariants.length) {
+            return null;
+        }
+
+        return (
+            <div className={b('variants')}>
+                {dislikeVariants.map((variant, index) => (
+                    <Checkbox
+                        key={index}
+                        className={b('variant')}
+                        checked={feedbackCheckboxes[variant]}
+                        onChange={(event) => {
+                            setFeedbackCheckboxes({
+                                ...feedbackCheckboxes,
+                                [variant]: event.target.checked,
+                            });
+                        }}
+                        label={variant}
+                    />
+                ))}
+            </div>
+        );
+    }, [dislikeVariants, feedbackCheckboxes]);
+
+    const renderDislikeVariantsTextArea = useCallback(() => {
+        return (
+            <div className={b('textarea')}>
+                <TextArea
+                    size="m"
+                    rows={6}
+                    placeholder={t('comment-placeholder')}
+                    clear
+                    value={feedbackComment}
+                    onChange={(_event, value) => {
+                        setFeedbackComment(value);
+                    }}
+                />
+            </div>
+        );
+    }, [feedbackComment, t]);
+
+    const renderDislikeVariantsActions = useCallback(() => {
+        return (
+            <div className={b('variants-actions')}>
+                <Button
+                    theme={ButtonThemes.Action}
+                    className={b('variants-action')}
+                    onClick={onSendDislikeInformation}
+                >
+                    {t('send-action-text')}
+                </Button>
+            </div>
+        );
+    }, [onSendDislikeInformation, t]);
+
+    const renderDislikeVariantsContent = useCallback(() => {
+        return (
+            <React.Fragment>
+                <h3 className={b('popup-title')}>{t('dislike-variants-title')}</h3>
+                {renderDislikeVariantsList()}
+                {renderDislikeVariantsTextArea()}
+                {renderDislikeVariantsActions()}
+            </React.Fragment>
+        );
+    }, [t, renderDislikeVariantsList, renderDislikeVariantsTextArea, renderDislikeVariantsActions]);
+
+    const renderDislikeVariantsPopup = useCallback(() => {
         const popupWidth = 320;
 
         if (!showDislikeVariantsPopup) {
@@ -185,256 +365,43 @@ class Feedback extends React.Component<FeedbackInnerProps, FeedbackState> {
 
         return (
             <Popup
-                anchor={this.dislikeControlRef}
+                anchor={dislikeControlRef.current}
                 visible={showDislikeVariantsPopup}
-                onOutsideClick={this.onOutsideClick}
+                onOutsideClick={onOutsideClick}
                 popupWidth={popupWidth}
                 className={b('variants-popup')}
-                position={this.getPopupPosition()}
+                position={getPopupPosition()}
             >
-                <h3 className={b('popup-title')}>{t('dislike-variants-title')}</h3>
-                {dislikeVariants.length ?
-                    <div className={b('variants')}>
-                        {dislikeVariants.map((variant, index) => (
-                            <Checkbox
-                                key={index}
-                                className={b('variant')}
-                                checked={feedbackCheckboxes[variant]}
-                                onChange={(event) => {
-                                    this.setState({feedbackCheckboxes: {
-                                        ...feedbackCheckboxes,
-                                        [variant]: event.target.checked,
-                                    }});
-                                }}
-                                label={variant}
-                            />
-                        ))}
-                    </div> : null
-                }
-                <div className={b('textarea')}>
-                    <TextArea
-                        size="m"
-                        rows={6}
-                        placeholder={t('comment-placeholder')}
-                        clear
-                        value={feedbackComment}
-                        onChange={(_event, value) => {
-                            this.setState({feedbackComment: value});
-                        }}
-                    />
-                </div>
-                <div className={b('variants-actions')}>
-                    <Button
-                        theme={ButtonThemes.Action}
-                        className={b('variants-action')}
-                        onClick={this.onSendDislikeInformation}
-                    >
-                        {t('send-action-text')}
-                    </Button>
-                </div>
+                {renderDislikeVariantsContent()}
             </Popup>
         );
+    }, [showDislikeVariantsPopup, getPopupPosition, onOutsideClick, renderDislikeVariantsContent]);
+
+    if (singlePage || !onSendFeedback) {
+        return null;
     }
 
-    private renderFeedbackControls() {
-        const {view = FeedbackView.Regular} = this.props;
+    return (
+        <React.Fragment>
+            {renderFeedbackControls()}
+            {renderFeedbackSuccessPopup()}
+            {renderDislikeVariantsPopup()}
+        </React.Fragment>
+    );
+};
 
-        return view === FeedbackView.Regular
-            ? this.renderRegularFeedbackControls()
-            : this.renderWideFeedbackControls();
-    }
-
-    private renderRegularFeedbackControls() {
-        const {
-            isLiked,
-            isVerticalView,
-            classNameControl,
-            view,
-            t,
-        } = this.props;
-        const {isDisliked} = this.state;
-
-        return (
-            <React.Fragment>
-                <Control
-                    onClick={this.onChangeLike}
-                    className={b('control', {view}, classNameControl)}
-                    isVerticalView={isVerticalView}
-                    tooltipText={t(`${isLiked ? 'cancel-' : ''}like-text`)}
-                    setRef={this.makeSetRef('likeControlRef')}
-                    icon={(args) => <LikeIcon className={b('like-button', {active: isLiked, view})} {...args}/>}
-                />
-                <Control
-                    onClick={this.onChangeDislike}
-                    className={b('control', {view}, classNameControl)}
-                    isVerticalView={isVerticalView}
-                    tooltipText={t(`${isDisliked ? 'cancel-' : ''}dislike-text`)}
-                    setRef={this.makeSetRef('dislikeControlRef')}
-                    icon={(args) => <DislikeIcon className={b('like-button', {active: isDisliked, view})} {...args}/>}
-                />
-            </React.Fragment>
-        );
-    }
-
-    private renderWideFeedbackControls() {
-        const {
-            isLiked,
-            view,
-            t,
-        } = this.props;
-        const {isDisliked} = this.state;
-
-        return (
-            <div className={b('container', {view})}>
-                <DividerControl className={b('divider')} isVerticalView={false}/>
-                <div className={b('container-row', {view})}>
-                    <h3 className={b('title', {view})}>{t('main-question')}</h3>
-                    <div className={b('controls', {view})}>
-                        <Button
-                            theme={ButtonThemes.Like}
-                            active={isLiked}
-                            buttonRef={this.makeSetRef('likeControlRef')}
-                            onClick={this.onChangeLike}
-                            className={b('control', {view})}
-                        >
-                            <LikeIcon className={b('like-button', {active: isLiked, view})}/>
-                            {t('button-like-text')}
-                        </Button>
-                        <Button
-                            theme={ButtonThemes.Like}
-                            active={isDisliked}
-                            buttonRef={this.makeSetRef('dislikeControlRef')}
-                            onClick={this.onChangeDislike}
-                            className={b('control', {view})}
-                        >
-                            <DislikeIcon className={b('like-button', {active: isDisliked, view})}/>
-                            {t('button-dislike-text')}
-                        </Button>
-                    </div>
-                </div>
-            </div>
-        );
-    }
-
-    private onChangeLike = () => {
-        const {isLiked, onSendFeedback} = this.props;
-
-        this.setState({
-            showLikeSuccessPopup: true,
-            showDislikeSuccessPopup: false,
-            showDislikeVariantsPopup: false,
-            isDisliked: false,
-        });
-
-        if (onSendFeedback) {
-            onSendFeedback({
-                type: isLiked ? FeedbackType.indeterminate : FeedbackType.like,
-            });
+function getPreparedFeedbackAdditionalInfo(feedbackComment: string, feedbackCheckboxes: FeedbackCheckboxes) {
+    const answers = Object.keys(feedbackCheckboxes).reduce((acc, key) => {
+        if (feedbackCheckboxes[key]) {
+            acc.push(key);
         }
-    };
 
-    private onChangeDislike = () => {
-        const {isDisliked, isLiked, onSendFeedback} = this.props;
-        const {isDisliked: innerIsDisliked} = this.state;
+        return acc;
+    }, [] as string[]);
 
-        if (!isDisliked && !innerIsDisliked) { // Нажать дизлайк и показать окно с доп. информацией
-            this.setState({
-                showDislikeSuccessPopup: false,
-                showDislikeVariantsPopup: true,
-                showLikeSuccessPopup: false,
-                isDisliked: true,
-            }, () => {
-                if (isLiked && onSendFeedback) {
-                    onSendFeedback({type: FeedbackType.indeterminate});
-                }
-            });
-        } else if (!isDisliked && innerIsDisliked) {
-            this.hideFeedbackPopups();
-            this.setState({
-                isDisliked: false,
-            });
-        } else if (isDisliked && innerIsDisliked) { // Отжать дизлайк и отправить событие в неопределенное состояние
-            this.hideFeedbackPopups();
-            this.setState({
-                isDisliked: false,
-            });
-
-            if (onSendFeedback) {
-                onSendFeedback({type: FeedbackType.indeterminate});
-            }
-        }
-    };
-
-    private hideFeedbackPopups = () => {
-        this.setState({
-            showLikeSuccessPopup: false,
-            showDislikeVariantsPopup: false,
-            showDislikeSuccessPopup: false,
-        });
-    };
-
-    private resetFeedbackAdditionalInfo = () => {
-        this.setState({
-            feedbackComment: '',
-            feedbackCheckboxes: {},
-        });
-    };
-
-    private getPreparedFeedbackAdditionalInfo = () => {
-        const {feedbackComment: comment, feedbackCheckboxes} = this.state;
-
-        const answers = Object.keys(feedbackCheckboxes).reduce((acc, key) => {
-            if (feedbackCheckboxes[key]) {
-                acc.push(key);
-            }
-
-            return acc;
-        }, [] as string[]);
-
-        return {
-            comment,
-            answers,
-        };
-    };
-
-    private onSendDislikeInformation = () => {
-        const {onSendFeedback} = this.props;
-
-        this.setState({
-            showLikeSuccessPopup: false,
-            showDislikeVariantsPopup: false,
-            showDislikeSuccessPopup: true,
-        }, () => {
-            if (onSendFeedback) {
-                const type = FeedbackType.dislike;
-
-                const additionalInfo = this.getPreparedFeedbackAdditionalInfo();
-                const data = {
-                    type,
-                    ...additionalInfo,
-                };
-
-                onSendFeedback(data);
-
-                this.resetFeedbackAdditionalInfo();
-            }
-        });
-    };
-
-    private onOutsideClick = () => {
-        const {
-            showDislikeVariantsPopup,
-        } = this.state;
-
-        this.hideFeedbackPopups();
-
-        if (showDislikeVariantsPopup && this.state.isDisliked && !this.props.isDisliked) {
-            this.setState({isDisliked: false});
-        }
-    };
-
-    private makeSetRef = <K extends keyof Feedback>(field: K) => (ref: HTMLButtonElement) => {
-        this[field] = ref;
+    return {
+        comment: feedbackComment,
+        answers,
     };
 }
 

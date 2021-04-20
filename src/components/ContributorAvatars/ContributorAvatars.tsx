@@ -98,7 +98,7 @@ function getHiddenAvatars(authors: Contributor[]): ReactElement | null {
 
 function getAvatar(author: Contributor, vcsType?: Vcs): ReactElement {
     if (!author.avatar) {
-        return getDefaultIcon(vcsType);
+        return getDefaultIcon(author.login, vcsType);
     }
 
     const avatar = <img key={author.login} className={b('avatar', {size: 'small'})} src={author.avatar}/>;
@@ -107,15 +107,16 @@ function getAvatar(author: Contributor, vcsType?: Vcs): ReactElement {
     return avatar;
 }
 
-function getDefaultIcon(vcsType?: Vcs) {
+function getDefaultIcon(key: string, vcsType?: Vcs) {
     const className = b('avatar', {size: 'small', type: vcsType});
 
-    switch (vcsType) {
-        case Vcs.Arcanum:
-            return <div className={className}><ArcanumIcon/></div>;
-        default:
-            return <div className={className}><GithubIcon/></div>;
-    }
+    const defaultIcon = vcsType === Vcs.Arcanum
+        ? <ArcanumIcon/>
+        : <GithubIcon/>;
+
+    return (
+        <div className={className} key={key}>{defaultIcon}</div>
+    );
 }
 
 export default ContributorAvatars;

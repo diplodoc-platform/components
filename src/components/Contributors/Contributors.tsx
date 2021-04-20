@@ -1,6 +1,6 @@
 import React from 'react';
 import block from 'bem-cn-lite';
-import {WithTranslation, withTranslation, WithTranslationProps} from 'react-i18next';
+import {useTranslation} from 'react-i18next';
 
 import {ContributorsProps} from '../../models';
 import {ContributorAvatars} from '../ContributorAvatars';
@@ -9,13 +9,9 @@ import './Contributors.scss';
 
 const b = block('contributors');
 
-type ContributorsInnerProps =
-    & ContributorsProps
-    & WithTranslation
-    & WithTranslationProps;
-
-const Contributors: React.FC<ContributorsInnerProps> = (props) => {
-    const {users, lang, vcsType, i18n, t} = props;
+const Contributors: React.FC<ContributorsProps> = (props) => {
+    const {users, lang, vcsType} = props;
+    const {t, i18n} = useTranslation('contributors');
 
     if (i18n.language !== lang) {
         i18n.changeLanguage(lang);
@@ -29,4 +25,4 @@ const Contributors: React.FC<ContributorsInnerProps> = (props) => {
     );
 };
 
-export default withTranslation('contributors')(Contributors);
+export default Contributors;

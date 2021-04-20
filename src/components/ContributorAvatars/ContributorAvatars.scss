@@ -1,14 +1,14 @@
 @import '../../../styles/variables';
 @import '../../../styles/mixins';
 
-$authorsShift: -4px;
+$contributorsShift: -4px;
 
 .contributor-icons {
     &__avatars-wrapper {
         display: flex;
     }
 
-    &__one_author {
+    &__one_contributor {
         display: flex;
 
         & > * {
@@ -47,13 +47,13 @@ $authorsShift: -4px;
         }
 
         & > *:not(:last-child) {
-            margin-left: $authorsShift;
+            margin-left: $contributorsShift;
             overflow: hidden;
         }
     }
 
     &__hidden_avatars {
-        margin-left: $authorsShift;
+        margin-left: $contributorsShift;
         font-size: 10px;
         font-weight: 500;
         color: var(--yc-color-text-secondary);

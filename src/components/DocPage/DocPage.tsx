@@ -14,6 +14,7 @@ import {Controls} from '../Controls';
 import {EditButton} from '../EditButton';
 import {Authors} from '../Authors';
 import {Feedback, FeedbackView} from '../Feedback';
+import Contributors from '../Contributors/Contributors';
 
 import {callSafe, createElementFromHTML, getHeaderTag, getStateKey, InnerProps} from '../../utils';
 import {DEFAULT_SETTINGS} from '../../constants';
@@ -116,7 +117,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                     <div className={b('main')}>
                         <main className={b('content')}>
                             {this.renderTitle()}
-                            {this.renderAuthors()}
+                            {this.renderPageContributors()}
                             {hideMiniToc ? null : this.renderContentMiniToc()}
                             {this.renderBody()}
                             {this.renderFeedback()}
@@ -265,15 +266,40 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
         );
     }
 
-    private renderAuthors() {
-        const {meta, lang} = this.props;
+    private renderPageContributors() {
+        const author = this.renderAuthor();
+        const contributors = this.renderContributors();
+
+        const separator = author && contributors && <div className={b('separator')}>{','}</div>;
+
+        return (
+            <div className={b('page-contributors')}>
+                {author} {separator} {contributors}
+            </div>
+        );
+    }
+
+    private renderAuthor() {
+        const {meta, lang, vcsType} = this.props;
+
+        if (!meta?.author) {
+            return null;
+        }
+
+        return (
+            <Authors lang={lang} users={[meta.author]} vcsType={vcsType}/>
+        );
+    }
+
+    private renderContributors() {
+        const {meta, lang, vcsType} = this.props;
 
         if (!meta?.contributors) {
             return null;
         }
 
         return (
-            <Authors lang={lang} usersMetadata={meta.contributors}/>
+            <Contributors lang={lang} users={meta.contributors} vcsType={vcsType}/>
         );
     }
 

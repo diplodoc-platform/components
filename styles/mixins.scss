@@ -81,3 +81,9 @@
     @include text-size(body3);
     font-weight: 400;
 }
+
+@mixin contributors-text() {
+    font-size: 13px;
+    font-weight: 400;
+    margin-right: 5px;
+}

@@ -42,6 +42,9 @@
         "hint_next": "Next"
     },
     "authors": {
+        "title": "Written by"
+    },
+    "contributors": {
         "title": "improved by"
     },
     "feedback": {

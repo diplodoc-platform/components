@@ -5,13 +5,13 @@ import {useTranslation} from 'react-i18next';
 import {ContributorsProps} from '../../models';
 import {ContributorAvatars} from '../ContributorAvatars';
 
-import './Authors.scss';
+import './Contributors.scss';
 
-const b = block('authors');
+const b = block('contributors');
 
-const Authors: React.FC<ContributorsProps> = (props) => {
+const Contributors: React.FC<ContributorsProps> = (props) => {
     const {users, lang, vcsType} = props;
-    const {t, i18n} = useTranslation('authors');
+    const {t, i18n} = useTranslation('contributors');
 
     useEffect(() => {
         i18n.changeLanguage(lang);
@@ -20,9 +20,9 @@ const Authors: React.FC<ContributorsProps> = (props) => {
     return (
         <div className={b()}>
             <div className={b('title')}>{t('title')}</div>
-            <ContributorAvatars contributors={users} vcsType={vcsType} isAuthor={true}/>
+            <ContributorAvatars contributors={users} vcsType={vcsType}/>
         </div>
     );
 };
 
-export default Authors;
+export default Contributors;

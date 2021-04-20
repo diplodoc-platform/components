@@ -1,0 +1,74 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+$contributorsShift: -4px;
+
+.contributor-icons {
+    &__avatars-wrapper {
+        display: flex;
+    }
+
+    &__one_contributor {
+        display: flex;
+
+        & > * {
+            @include contributors-text();
+        }
+
+        & > *:last-child {
+            margin-right: 0px;
+        }
+    }
+
+    &__avatar {
+        &_size_small {
+            border-radius: 50%;
+            height: 20px;
+            width: 20px;
+            border: 1px solid var(--yc-color-base);
+        }
+
+        &_type {
+            &_github {
+                background: var(--yc-color-contrast);
+                fill: var(--yc-color-base);
+            }
+
+            &_arcanum {
+                background: var(--yc-color-base);
+            }
+        }
+    }
+
+    &__displayed_avatars {
+        flex-direction: row-reverse;
+        display: flex;
+
+        & > * {
+            position: relative;
+        }
+
+        & > *:not(:last-child) {
+            margin-left: $contributorsShift;
+            overflow: hidden;
+        }
+    }
+
+    &__hidden_avatars {
+        margin-left: $contributorsShift;
+        font-size: 10px;
+        font-weight: 500;
+        color: var(--yc-color-text-secondary);
+        text-align: center;
+
+        & > * {
+            background: var(--yc-color-base-misc);
+            flex-direction: column;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            padding-left: 3px;
+            padding-right: 1px;
+        }
+    }
+}

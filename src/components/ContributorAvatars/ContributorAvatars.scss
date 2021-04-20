@@ -28,13 +28,15 @@ $contributorsShift: -4px;
             border: 1px solid var(--yc-color-base);
         }
 
-        &_type_github {
-            background: var(--yc-color-contrast);
-            fill: var(--yc-color-base);
-        }
+        &_type {
+            &_github {
+                background: var(--yc-color-contrast);
+                fill: var(--yc-color-base);
+            }
 
-        &_type_arcanum {
-            background: var(--yc-color-base);
+            &_arcanum {
+                background: var(--yc-color-base);
+            }
         }
     }
 

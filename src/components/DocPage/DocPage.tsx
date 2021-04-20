@@ -270,11 +270,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
         const author = this.renderAuthor();
         const contributors = this.renderContributors();
 
-        if (!author) {
-            return contributors;
-        }
-
-        const separator = <div className={b('separator')}>{','}</div>;
+        const separator = author && contributors && <div className={b('separator')}>{','}</div>;
 
         return (
             <div className={b('page-contributors')}>

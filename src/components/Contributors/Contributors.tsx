@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import block from 'bem-cn-lite';
 import {useTranslation} from 'react-i18next';
 
@@ -13,9 +13,9 @@ const Contributors: React.FC<ContributorsProps> = (props) => {
     const {users, lang, vcsType} = props;
     const {t, i18n} = useTranslation('contributors');
 
-    if (i18n.language !== lang) {
+    useEffect(() => {
         i18n.changeLanguage(lang);
-    }
+    }, [i18n, lang]);
 
     return (
         <div className={b()}>

@@ -10,7 +10,7 @@ import './ContributorAvatars.scss';
 const b = block('contributor-icons');
 
 const MAX_DISPLAYED_CONTRIBUTORS = 3;
-const LOWER_BOUND_MORE_CONTRIBUTORS = 10;
+const LOWER_BOUND_MORE_CONTRIBUTORS = 9;
 
 export interface ContributorAvatarsProps {
     contributors: Contributor[];
@@ -83,8 +83,8 @@ function getHiddenAvatars(contributors: Contributor[]): ReactElement | null {
 
     // TODO: add logic when tooltip will be implemented
 
-    const contributorsCountString = contributorsCount >= LOWER_BOUND_MORE_CONTRIBUTORS
-        ? `${contributorsCount}+`
+    const contributorsCountString = contributorsCount > LOWER_BOUND_MORE_CONTRIBUTORS
+        ? `${LOWER_BOUND_MORE_CONTRIBUTORS}+`
         : `+${contributorsCount}`;
 
     const hiddenAvatars = (

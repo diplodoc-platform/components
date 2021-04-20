@@ -5,16 +5,16 @@ import {WithTranslation, withTranslation, WithTranslationProps} from 'react-i18n
 import {ContributorsProps} from '../../models';
 import {ContributorAvatars} from '../ContributorAvatars';
 
-import './Authors.scss';
+import './Contributors.scss';
 
-const b = block('authors');
+const b = block('contributors');
 
-type AuthorsInnerProps =
+type ContributorsInnerProps =
     & ContributorsProps
     & WithTranslation
     & WithTranslationProps;
 
-const Authors: React.FC<AuthorsInnerProps> = (props) => {
+const Contributors: React.FC<ContributorsInnerProps> = (props) => {
     const {users, lang, vcsType, i18n, t} = props;
 
     if (i18n.language !== lang) {
@@ -24,9 +24,9 @@ const Authors: React.FC<AuthorsInnerProps> = (props) => {
     return (
         <div className={b()}>
             <div className={b('title')}>{t('title')}</div>
-            <ContributorAvatars contributors={users} vcsType={vcsType} isAuthor={true}/>
+            <ContributorAvatars contributors={users} vcsType={vcsType}/>
         </div>
     );
 };
 
-export default withTranslation('authors')(Authors);
+export default withTranslation('contributors')(Contributors);

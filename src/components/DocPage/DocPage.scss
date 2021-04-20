@@ -194,6 +194,17 @@
         }
     }
 
+    &__page-contributors {
+        display: flex;
+    }
+
+    &__separator {
+        justify-content: center;
+        flex-direction: column;
+        display: flex;
+        margin-right: 10px;
+    }
+
     @media screen and (max-width: 1440px) {
         &:not(&_regular-page-width) {
             width: 100%;

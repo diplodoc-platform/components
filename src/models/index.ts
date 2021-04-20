@@ -85,7 +85,8 @@ export interface DocMeta {
     keywords?: string[];
     stage?: string;
     editable?: boolean;
-    contributors?: string;
+    contributors?: Contributor[];
+    author?: Contributor;
 }
 
 export interface TocData {
@@ -119,10 +120,16 @@ export enum Lang {
     En = 'en'
 }
 
-export interface Author {
+export interface Contributor {
     avatar: string;
     login: string;
     name: string;
+}
+
+export interface ContributorsProps {
+    lang: Lang;
+    users: Contributor[];
+    vcsType?: Vcs;
 }
 
 export interface DislikeData {

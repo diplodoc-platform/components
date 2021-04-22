@@ -104,7 +104,9 @@ function getAvatar(contributor: Contributor, vcsType?: Vcs): ReactElement {
     const avatar = <img key={contributor.login} className={b('avatar', {size: 'small'})} src={contributor.avatar}/>;
     // TODO: add logic when tooltip will be implemented
 
-    return avatar;
+    return (
+        <div key={contributor.login}>{avatar}</div>
+    );
 }
 
 function getDefaultIcon(key: string, vcsType?: Vcs) {

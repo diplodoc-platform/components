@@ -129,7 +129,6 @@ export interface Contributor {
 export interface ContributorsProps {
     lang: Lang;
     users: Contributor[];
-    vcsType?: Vcs;
 }
 
 export interface DislikeData {

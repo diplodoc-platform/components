@@ -280,26 +280,26 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
     }
 
     private renderAuthor() {
-        const {meta, lang, vcsType} = this.props;
+        const { meta, lang } = this.props;
 
         if (!meta?.author) {
             return null;
         }
 
         return (
-            <Authors lang={lang} users={[meta.author]} vcsType={vcsType}/>
+            <Authors lang={lang} users={[meta.author]} />
         );
     }
 
     private renderContributors() {
-        const {meta, lang, vcsType} = this.props;
+        const { meta, lang } = this.props;
 
-        if (!meta?.contributors) {
+        if (!meta?.contributors || meta.contributors.length === 0) {
             return null;
         }
 
         return (
-            <Contributors lang={lang} users={meta.contributors} vcsType={vcsType}/>
+            <Contributors lang={lang} users={meta.contributors} />
         );
     }
 

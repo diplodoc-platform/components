@@ -1,47 +1,44 @@
 import React, {Fragment, ReactElement} from 'react';
 import block from 'bem-cn-lite';
 
-import {Contributor, Vcs} from '../../models';
-import GithubIcon from '../../../assets/icons/github.svg';
-import ArcanumIcon from '../../../assets/icons/arcanum.svg';
+import {Contributor} from '../../models';
 
 import './ContributorAvatars.scss';
 
 const b = block('contributor-icons');
 
 const MAX_DISPLAYED_CONTRIBUTORS = 3;
-const LOWER_BOUND_MORE_CONTRIBUTORS = 10;
+const LOWER_BOUND_MORE_CONTRIBUTORS = 9;
 
 export interface ContributorAvatarsProps {
     contributors: Contributor[];
-    vcsType?: Vcs;
     isAuthor?: boolean;
 }
 
 const ContributorAvatars: React.FC<ContributorAvatarsProps> = (props) => {
-    const {contributors, vcsType, isAuthor} = props;
+    const {contributors, isAuthor} = props;
 
     if (!contributors || contributors.length === 0) {
         return null;
     }
 
-    const avatars = getAvatars(contributors, isAuthor, vcsType);
+    const avatars = getAvatars(contributors, isAuthor);
 
     return (
         <div className={b('avatars-wrapper')}>{avatars}</div>
     );
 };
 
-function getAvatars(contributors: Contributor[], isAuthor = false, vcsType?: Vcs): ReactElement {
+function getAvatars(contributors: Contributor[], isAuthor = false): ReactElement {
     if (contributors.length === 1) {
-        return getOneAvatar(contributors[0], isAuthor, vcsType);
+        return getOneAvatar(contributors[0], isAuthor);
     }
 
     const displayedContributors = [...contributors];
     const hiddenContributors = displayedContributors.splice(MAX_DISPLAYED_CONTRIBUTORS);
 
     const displayedAvatars = displayedContributors.map((contributor: Contributor) => {
-        return getAvatar(contributor, vcsType);
+        return getAvatar(contributor);
     });
     const hiddenAvatars = getHiddenAvatars(hiddenContributors);
 
@@ -53,14 +50,14 @@ function getAvatars(contributors: Contributor[], isAuthor = false, vcsType?: Vcs
     );
 }
 
-function getOneAvatar(contributor: Contributor, isAuthor: boolean, vcsType?: Vcs): ReactElement {
+function getOneAvatar(contributor: Contributor, isAuthor: boolean): ReactElement {
     const contributorName = isAuthor
         ? contributor.name
         : getShortContributorName(contributor.name);
 
     return (
         <div className={b('one_contributor')}>
-            {getAvatar(contributor, vcsType)}
+            {getAvatar(contributor)}
             <div>{contributorName}</div>
         </div>
     );
@@ -83,8 +80,8 @@ function getHiddenAvatars(contributors: Contributor[]): ReactElement | null {
 
     // TODO: add logic when tooltip will be implemented
 
-    const contributorsCountString = contributorsCount >= LOWER_BOUND_MORE_CONTRIBUTORS
-        ? `${contributorsCount}+`
+    const contributorsCountString = contributorsCount > LOWER_BOUND_MORE_CONTRIBUTORS
+        ? `${LOWER_BOUND_MORE_CONTRIBUTORS}+`
         : `+${contributorsCount}`;
 
     const hiddenAvatars = (
@@ -96,27 +93,20 @@ function getHiddenAvatars(contributors: Contributor[]): ReactElement | null {
     return hiddenAvatars;
 }
 
-function getAvatar(contributor: Contributor, vcsType?: Vcs): ReactElement {
-    if (!contributor.avatar) {
-        return getDefaultIcon(contributor.login, vcsType);
-    }
+function getAvatar(contributor: Contributor): ReactElement {
+    const {avatar, name, login} = contributor;
 
-    const avatar = <img key={contributor.login} className={b('avatar', {size: 'small'})} src={contributor.avatar}/>;
+    const avatarImg = avatar
+        ? <img key={login} className={b('avatar', {size: 'small'})} src={avatar}/>
+        : <div key={login} className={b('avatar', {size: 'small', default: true})}>{getInitials(name || login)}</div>;
+
     // TODO: add logic when tooltip will be implemented
 
-    return avatar;
+    return avatarImg;
 }
 
-function getDefaultIcon(key: string, vcsType?: Vcs) {
-    const className = b('avatar', {size: 'small', type: vcsType});
-
-    const defaultIcon = vcsType === Vcs.Arcanum
-        ? <ArcanumIcon/>
-        : <GithubIcon/>;
-
-    return (
-        <div className={className} key={key}>{defaultIcon}</div>
-    );
+function getInitials(name: string) {
+    return name.charAt(0).toUpperCase();
 }
 
 export default ContributorAvatars;

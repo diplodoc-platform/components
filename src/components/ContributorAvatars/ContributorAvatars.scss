@@ -25,9 +25,8 @@ $contributorsShift: -4px;
             border-radius: 50%;
             height: 20px;
             width: 20px;
-            border: 1px solid var(--yc-color-base);
+            border: 1px solid var(--yc-color-base-background);
         }
-
 
         &_default {
             text-align: center;
@@ -36,8 +35,8 @@ $contributorsShift: -4px;
             justify-content: center;
             font-size: 10px;
             font-weight: 500;
-            border: 1px solid var(--yc-color-contrast-15);
-            background: var(--yc-color-base);
+            border: 1px solid var(--yc-color-line-generic);
+            background: var(--yc-color-base-background);
         }
     }
 

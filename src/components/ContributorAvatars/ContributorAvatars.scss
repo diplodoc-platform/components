@@ -2,7 +2,6 @@
 @import '../../../styles/mixins';
 
 $contributorsShift: -4px;
-$colors: red orange yellow green blue purple;
 
 .contributor-icons {
     &__avatars-wrapper {
@@ -26,15 +25,18 @@ $colors: red orange yellow green blue purple;
             border-radius: 50%;
             height: 20px;
             width: 20px;
-            border: 1px solid var(--yc-color-base);
+            border: 1px solid var(--yc-color-base-background);
         }
-
 
         &_default {
             text-align: center;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            font-size: 10px;
+            font-weight: 500;
+            border: 1px solid var(--yc-color-line-generic);
+            background: var(--yc-color-base-background);
         }
     }
 
@@ -44,7 +46,6 @@ $colors: red orange yellow green blue purple;
 
         & > * {
             position: relative;
-            @include randomBackgrounds($colors);
         }
 
         & > *:not(:last-child) {

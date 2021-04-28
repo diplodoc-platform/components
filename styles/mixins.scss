@@ -87,11 +87,3 @@
     font-weight: 400;
     margin-right: 5px;
 }
-
-@mixin randomBackgrounds($list) {
-    @for $i from 1 through length($list) {
-        &:nth-child(#{length($list)}n+#{$i}) {
-            background: nth($list, $i);
-        }
-    }
-}

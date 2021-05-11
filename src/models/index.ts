@@ -124,6 +124,7 @@ export interface Contributor {
     avatar: string;
     login: string;
     name: string;
+    email: string;
 }
 
 export interface ContributorsProps {

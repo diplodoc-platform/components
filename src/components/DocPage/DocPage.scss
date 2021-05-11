@@ -194,12 +194,13 @@
         }
     }
 
-    &__page-contributors {
-        display: flex;
+    &__separator {
+        margin: 10px 5px 10px 0;
+        align-self: center;
     }
 
-    &__separator {
-        margin: 10px 5px 0 0;
+    &__page-contributors {
+        display: flex;
     }
 
     @media screen and (max-width: 1440px) {

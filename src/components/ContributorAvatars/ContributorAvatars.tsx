@@ -51,14 +51,16 @@ function getAvatars(contributors: Contributor[], isAuthor = false): ReactElement
 }
 
 function getOneAvatar(contributor: Contributor, isAuthor: boolean): ReactElement {
+    const {email, name, login} = contributor;
+
     const contributorName = isAuthor
-        ? contributor.name
-        : getShortContributorName(contributor.name);
+        ? name
+        : getShortContributorName(name);
 
     return (
         <div className={b('one_contributor')}>
             {getAvatar(contributor)}
-            <div>{contributorName}</div>
+            <div>{contributorName || email || login}</div>
         </div>
     );
 }

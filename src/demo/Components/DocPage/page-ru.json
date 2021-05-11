@@ -107,33 +107,9 @@
         "contributors": [
             {
                 "avatar": "",
-                "login": "robot-dataui-vcs@yandex-team.ru",
-                "name": "DataUI VCS Robot"
-            },
-            {
-                "avatar": "",
-                "login": "skanunnikov@yandex-team.ru",
-                "name": "Sergey Kanunnikov"
-            },
-            {
-                "avatar": "https://avatars.githubusercontent.com/u/2485935?v=4",
-                "login": "zamulla",
-                "name": "Aleksey Zamulla"
-            },
-            {
-                "avatar": "",
-                "login": "migelle@yandex-team.ru",
-                "name": "Mikhail Goncharov"
-            },
-            {
-                "avatar": "",
-                "login": "leeuw@yandex-team.ru",
-                "name": "Olga Turchanovskaya"
-            },
-            {
-                "avatar": "",
-                "login": "dottir@yandex-team.ru",
-                "name": "Anastasia Karavaeva"
+                "email": "",
+                "login": "nanov94",
+                "name": ""
             }
         ]
     },

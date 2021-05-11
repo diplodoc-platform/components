@@ -101,37 +101,44 @@
     "meta": {
         "author": {
             "avatar": "https://avatars.githubusercontent.com/u/2485935?v=4",
+            "email": "",
             "login": "robot-dataui-vcs@yandex-team.ru",
             "name": "DataUI VCS Robot"
         },
         "contributors": [
             {
                 "avatar": "https://avatars.githubusercontent.com/u/2485945?v=6",
+                "email": "",
                 "login": "robot-dataui-vcs@yandex-team.ru",
                 "name": "DataUI VCS Robot"
             },
             {
                 "avatar": "https://avatars.githubusercontent.com/u/2485945?v=6",
+                "email": "",
                 "login": "skanunnikov@yandex-team.ru",
                 "name": "Sergey Kanunnikov"
             },
             {
                 "avatar": "https://avatars.githubusercontent.com/u/2485935?v=4",
+                "email": "",
                 "login": "zamulla",
                 "name": "Aleksey Zamulla"
             },
             {
                 "avatar": "https://avatars.githubusercontent.com/u/2485945?v=6",
+                "email": "",
                 "login": "migelle@yandex-team.ru",
                 "name": "Mikhail Goncharov"
             },
             {
                 "avatar": "https://avatars.githubusercontent.com/u/2485945?v=6",
+                "email": "",
                 "login": "leeuw@yandex-team.ru",
                 "name": "Olga Turchanovskaya"
             },
             {
                 "avatar": "",
+                "email": "",
                 "login": "dottir@yandex-team.ru",
                 "name": "Anastasia Karavaeva"
             }

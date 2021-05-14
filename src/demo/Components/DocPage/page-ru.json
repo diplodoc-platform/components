@@ -103,14 +103,16 @@
             "avatar": "https://avatars.githubusercontent.com/u/2485935?v=4",
             "email": "",
             "login": "robot-dataui-vcs@yandex-team.ru",
-            "name": "DataUI VCS Robot"
+            "name": "DataUI VCS Robot",
+            "url": "http://yandex.ru/"
         },
         "contributors": [
             {
                 "avatar": "",
                 "email": "",
                 "login": "nanov94",
-                "name": ""
+                "name": "",
+                "url": "http://yandex.ru/"
             }
         ]
     },

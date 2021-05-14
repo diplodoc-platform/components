@@ -96,7 +96,7 @@ function getHiddenAvatars(contributors: Contributor[]): ReactElement | null {
 }
 
 function getAvatar(contributor: Contributor): ReactElement {
-    const {avatar, name, login} = contributor;
+    const {avatar, name, login, url} = contributor;
 
     const avatarImg = avatar
         ? <img key={login} className={b('avatar', {size: 'small'})} src={avatar}/>
@@ -104,7 +104,9 @@ function getAvatar(contributor: Contributor): ReactElement {
 
     // TODO: add logic when tooltip will be implemented
 
-    return avatarImg;
+    return url
+        ? (<a href={url} target="_blank" rel="noopener noreferrer">{avatarImg}</a>)
+        : avatarImg;
 }
 
 function getInitials(name: string) {

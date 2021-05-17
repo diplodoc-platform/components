@@ -105,7 +105,7 @@ function getAvatar(contributor: Contributor): ReactElement {
     // TODO: add logic when tooltip will be implemented
 
     return url
-        ? (<a href={url} target="_blank" rel="noopener noreferrer">{avatarImg}</a>)
+        ? <a href={url} target="_blank" rel="noopener noreferrer">{avatarImg}</a>
         : avatarImg;
 }
 

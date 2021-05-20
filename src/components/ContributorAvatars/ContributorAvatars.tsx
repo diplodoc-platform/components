@@ -23,38 +23,36 @@ const ContributorAvatars: React.FC<ContributorAvatarsProps> = (props) => {
         return null;
     }
 
-    let avatars;
+    const avatarsComponent = (avatars: ReactElement) => <div className={b('avatars-wrapper')}>{avatars}</div>;
 
     if (contributors.length === 1) {
-        avatars = getOneAvatar(contributors[0], isAuthor);
-    } else {
-        const displayedContributors = [...contributors];
-        const hiddenContributors = displayedContributors.splice(MAX_DISPLAYED_CONTRIBUTORS);
-
-        const displayedAvatars = displayedContributors.map((contributor: Contributor) => {
-            return (
-                <AvatarWithDescription
-                    key={contributor.login}
-                    contributor={contributor}
-                    avatarSize={ContributorAvatarSizes.SMALL}
-                />
-            );
-        });
-
-        const hiddenAvatars =
-            <HiddenAvatars contributors={hiddenContributors} avatarsSize={ContributorAvatarSizes.SMALL}/>;
-
-        avatars = (
-            <Fragment>
-                <div className={b('displayed_avatars')}>{displayedAvatars}</div>
-                <div className={b('hidden_avatars')}>{hiddenAvatars}</div>
-            </Fragment>
-        );
+        const oneAvatar = getOneAvatar(contributors[0], isAuthor);
+        return avatarsComponent(oneAvatar);
     }
 
-    return (
-        <div className={b('avatars-wrapper')}>{avatars}</div>
+    const displayedContributors = [...contributors];
+    const hiddenContributors = displayedContributors.splice(MAX_DISPLAYED_CONTRIBUTORS);
+
+    const displayedAvatars = displayedContributors.map((contributor: Contributor) => {
+        return (
+            <AvatarWithDescription
+                key={contributor.login}
+                contributor={contributor}
+                avatarSize={ContributorAvatarSizes.SMALL}
+            />
+        );
+    });
+
+    const hiddenAvatars = <HiddenAvatars contributors={hiddenContributors} avatarsSize={ContributorAvatarSizes.SMALL}/>;
+
+    const avatars = (
+        <Fragment>
+            <div className={b('displayed_avatars')}>{displayedAvatars}</div>
+            <div className={b('hidden_avatars')}>{hiddenAvatars}</div>
+        </Fragment>
     );
+
+    return avatarsComponent(avatars);
 };
 
 function getOneAvatar(contributor: Contributor, isAuthor = false): ReactElement {

@@ -28,6 +28,7 @@ export interface HiddenAvatarsProps {
 
 const AvatarWithDescription: React.FC<AvatarWithDescriptionProps> = (props) => {
     const {contributor, avatarSize} = props;
+
     const controlRef = useRef<HTMLImageElement | null>(null);
     const [isVisiblePopup, setIsVisiblePopup] = useState(false);
 
@@ -54,7 +55,6 @@ const HiddenAvatars: React.FC<HiddenAvatarsProps> = (props) => {
 
     const controlRef = useRef<HTMLImageElement | null>(null);
     const [isVisiblePopup, setIsVisiblePopup] = useState(false);
-
     const setRef = useCallback((ref: HTMLImageElement) => {
         controlRef.current = ref;
     }, []);
@@ -90,7 +90,6 @@ function getDetails(
     isVisiblePopup: boolean,
     hidePopup: () => void,
 ): JSX.Element {
-
     const contributorsDetails = contributors.map((author: Contributor) => {
         return getContributorDetails(author);
     });
@@ -130,7 +129,8 @@ function getAvatar(
     size: string = ContributorAvatarSizes.SMALL,
     showPopup?: () => void,
     hidePopup?: () => void,
-    setRef?: (ref: HTMLImageElement) => void): ReactElement {
+    setRef?: (ref: HTMLImageElement) => void,
+): ReactElement {
     const {avatar, name, login} = contributor;
 
     if (avatar) {

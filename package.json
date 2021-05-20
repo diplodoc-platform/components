@@ -42,10 +42,12 @@
     "prepublishOnly": "npm run lint && npm run test && npm run build"
   },
   "dependencies": {
+    "@popperjs/core": "^2.9.2",
     "bem-cn-lite": "^4.0.0",
     "i18next": "^19.4.4",
     "lodash": "^4.17.21",
     "react-i18next": "^11.4.0",
+    "react-popper": "^2.2.5",
     "scroll-into-view-if-needed": "^2.2.26"
   },
   "peerDependencies": {

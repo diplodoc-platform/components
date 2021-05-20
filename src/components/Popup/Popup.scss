@@ -1,8 +1,71 @@
+$arrow-content: 20px;
+$circle-wrapper: 10px;
+$border: 4px;
+$circle: 28px;
+
 .dc-popup {
-    position: fixed;
+    position: absolute;
     z-index: 10000;
     width: auto;
     background: var(--yc-color-base-float);
     border-radius: 4px;
     box-shadow: 0 10px 13px var(--yc-color-sfx-shadow);
+
+    &__arrow {
+        width: 20px;
+        height: 20px;
+    }
+
+    &[data-popper-placement^='bottom'] &__arrow {
+        top: -10px;
+    }
+
+    &[data-popper-placement^='top'] &__arrow {
+        transform: rotate(180deg);
+        bottom: -10px;
+    }
+
+    &[data-popper-placement^='left'] &__arrow {
+        transform: rotate(90deg);
+        right: -10px;
+    }
+
+    &[data-popper-placement^='right'] &__arrow {
+        transform: rotate(-90deg);
+        left: -10px;
+    }
+
+    &__arrow-content {
+        width: $arrow-content;
+        height: $arrow-content;
+        position: absolute;
+        overflow: hidden;
+        display: flex;
+    }
+
+    &__arrow-circle-wrapper {
+        background-color: transparent;
+        overflow: hidden;
+        width: $circle-wrapper;
+        height: $circle-wrapper;
+        position: relative;
+    }
+
+    &__arrow-circle {
+        border-radius: 50%;
+        border: $border solid var(--yc-color-base-float);
+        width: $circle;
+        height: $circle;
+        position: absolute;
+
+        &_left {
+            right: -$border;
+            bottom: -$border;
+        }
+
+        &_right {
+            left: -$border;
+            bottom: -$border;
+        }
+    }
 }

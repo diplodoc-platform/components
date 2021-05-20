@@ -46,7 +46,7 @@ const Control = (props: ControlProps) => {
     const showTooltip = () => setIsVisibleTooltip(true);
     const hideTooltip = () => setIsVisibleTooltip(false);
     const getTooltipAlign = useCallback(() => {
-        return isVerticalView ? PopupPosition.left : PopupPosition.bottom;
+        return isVerticalView ? PopupPosition.LEFT_START : PopupPosition.BOTTOM_END;
     }, [isVerticalView]);
     const _setRef = useCallback((ref: HTMLButtonElement) => {
         controlRef.current = ref;
@@ -76,7 +76,7 @@ const Control = (props: ControlProps) => {
                 />
             </ControlButton>
             <Popup
-                anchor={controlRef.current}
+                anchorRef={controlRef.current}
                 visible={isVisibleTooltip}
                 onOutsideClick={hideTooltip}
                 className={b('tooltip')}

@@ -149,10 +149,10 @@ const Feedback: React.FC<FeedbackInnerProps> = (props) => {
 
     const getPopupPosition = useCallback(() => {
         if (!view || view === FeedbackView.Regular) {
-            return isVerticalView ? PopupPosition.left : PopupPosition.bottom;
+            return isVerticalView ? PopupPosition.LEFT_START : PopupPosition.BOTTOM_END;
         }
 
-        return PopupPosition.rightTop;
+        return PopupPosition.RIGHT_TOP;
     }, [isVerticalView, view]);
 
     const onChangeLike = useCallback(() => {
@@ -266,7 +266,7 @@ const Feedback: React.FC<FeedbackInnerProps> = (props) => {
     }, [view, renderRegularFeedbackControls, renderWideFeedbackControls]);
 
     const renderFeedbackSuccessPopup = useCallback(() => {
-        const anchor = showLikeSuccessPopup ? likeControlRef.current : dislikeControlRef.current;
+        const anchorCurrent = showLikeSuccessPopup ? likeControlRef.current : dislikeControlRef.current;
         const visible = showLikeSuccessPopup || showDislikeSuccessPopup;
         const popupWidth = 320;
 
@@ -276,7 +276,7 @@ const Feedback: React.FC<FeedbackInnerProps> = (props) => {
 
         return (
             <Popup
-                anchor={anchor}
+                anchorRef={anchorCurrent}
                 visible={visible}
                 onOutsideClick={hideFeedbackPopups}
                 popupWidth={popupWidth}
@@ -365,7 +365,7 @@ const Feedback: React.FC<FeedbackInnerProps> = (props) => {
 
         return (
             <Popup
-                anchor={dislikeControlRef.current}
+                anchorRef={dislikeControlRef.current}
                 visible={showDislikeVariantsPopup}
                 onOutsideClick={onOutsideClick}
                 popupWidth={popupWidth}

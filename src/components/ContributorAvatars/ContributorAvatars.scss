@@ -2,10 +2,11 @@
 @import '../../../styles/mixins';
 
 $contributorsShift: -4px;
-$textFontSize: 12px;
-$textFontWeight: 500;
+$avatarTextFontSize: 12px;
+$avatarTextFontWeight: 500;
+$detailsIndent: 12px;
 
-.contributor-icons {
+.contributor-avatars {
     &__avatars-wrapper {
         display: flex;
     }
@@ -36,13 +37,21 @@ $textFontWeight: 500;
             border: 1px solid var(--yc-color-base-background);
         }
 
+        &_size_big {
+            border-radius: 50%;
+            height: 36px;
+            width: 36px;
+            border: 1px solid var(--yc-color-base-background);
+            margin-right: $detailsIndent;
+        }
+
         &_default {
             text-align: center;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            font-size: $textFontSize;
-            font-weight: $textFontWeight;
+            font-size: $avatarTextFontSize;
+            font-weight: $avatarTextFontWeight;
             border: 1px solid var(--yc-color-line-generic);
             background: var(--yc-color-base-background);
         }
@@ -64,10 +73,11 @@ $textFontWeight: 500;
 
     &__hidden_avatars {
         margin-left: $contributorsShift;
-        font-size: $textFontSize;
-        font-weight: $textFontWeight;
+        font-size: $avatarTextFontSize;
+        font-weight: $avatarTextFontWeight;
         color: var(--yc-color-text-secondary);
         text-align: center;
+        cursor: pointer;
 
         & > * {
             background: var(--yc-color-base-misc);
@@ -78,5 +88,29 @@ $textFontWeight: 500;
             padding-left: 3px;
             padding-right: 1px;
         }
+    }
+
+    &__details {
+        display: flex;
+        margin: $detailsIndent;
+
+        & > div:last-child {
+            font-size: 13px;
+            font-weight: 400;
+        }
+    }
+
+    &__details_name {
+        color: var(--yc-color-contrast);
+        line-height: 18px;
+    }
+
+    &__details_login {
+        color: var(--yc-color-contrast-50);
+        line-height: 18px;
+    }
+
+    &__popup {
+        box-shadow: 0px 3px 24px rgba(0, 0, 0, 0.15);
     }
 }

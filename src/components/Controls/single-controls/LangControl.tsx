@@ -79,7 +79,7 @@ const LangControl = (props: ControlInnerProps) => {
                 setRef={setRef}
             />
             <Popup
-                anchor={controlRef.current}
+                anchorRef={controlRef.current}
                 visible={isVisiblePopup}
                 onOutsideClick={hidePopup}
                 popupWidth={POPUP_WIDTH}

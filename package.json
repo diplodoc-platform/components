@@ -125,15 +125,6 @@
     "webpack-bundle-analyzer": "^3.7.0",
     "webpack-manifest-plugin": "^2.2.0"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.{css,scss}": "stylelint --fix",
-    "*.{js,jsx,ts,tsx}": "eslint --fix"
-  },
   "keywords": [
     "markdown",
     "yandex",

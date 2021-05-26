@@ -1,27 +1,19 @@
 import block from 'bem-cn-lite';
 import ReactDOM from 'react-dom';
-import React, {useEffect, useRef, useState} from 'react';
+import React, { useRef } from 'react';
 
 import {PopupArrow} from './PopupArrow';
-import {usePopper, useForkRef} from '../../hooks';
+import { usePopper, useForkRef, PopperPosition } from '../../hooks';
 import {OutsideClick} from '../OutsideClick';
 
 import './Popup.scss';
 
 const b = block('dc-popup');
 
-export enum PopupPosition {
-    BOTTOM_END = 'bottom-end',
-    BOTTOM = 'bottom',
-    LEFT_START = 'left-start',
-    RIGHT_TOP = 'right-top',
-    TOP = 'top',
-}
-
 export interface PopupProps {
     anchorRef: HTMLElement | null;
     visible: boolean;
-    position: PopupPosition;
+    position: PopperPosition;
     onOutsideClick: () => void;
     popupWidth?: number;
     className?: string;
@@ -30,53 +22,34 @@ export interface PopupProps {
 
 const Popup: React.FC<PopupProps> = (props) => {
     const popupRef = useRef<HTMLDivElement>(null);
-    const [popupStyle, setPopupStyle] = useState({});
-
-    useEffect(() => {
-        calculatePopupStyle(props, popupRef, setPopupStyle);
-        window.addEventListener('resize', () => calculatePopupStyle(props, popupRef, setPopupStyle));
-
-        return () => {
-            window.removeEventListener('resize', () => calculatePopupStyle(props, popupRef, setPopupStyle));
-        };
-    }, []);
-
-    useEffect(() => {
-        calculatePopupStyle(props, popupRef, setPopupStyle);
-    }, [props]);
-
     const {visible, onOutsideClick, hasArrow, position, children, className, anchorRef} = props;
 
-    const {attributes, styles, setPopperRef, setArrowRef} = usePopper({
-        anchorRef,
-        placement: position,
-        offset: [0, hasArrow ? 12 : 5],
-        modifiers: [],
-    });
-
-    const handleRef = useForkRef(popupRef, (ref) => setPopperRef(ref));
+    const { attributes, styles, setArrowRef, handleRef } = getPopupData(position, anchorRef, popupRef, hasArrow);
 
     if (!visible || !document || !document.body) {
         return null;
     }
+
+    const getPopupArrow = () => {
+        return (
+            <PopupArrow
+                position={position}
+                styles={styles.arrow}
+                attributes={attributes.arrow}
+                setArrowRef={setArrowRef}
+            />
+        );
+    };
 
     const portalElement = ReactDOM.createPortal(
         <OutsideClick onOutsideClick={onOutsideClick}>
             <div
                 ref={handleRef}
                 className={b(null, className)}
-                style={{...popupStyle, ...styles.popper}} //...popupStyle,
-                // role="tooltip"
+                style={{ ...styles.popper }}
                 {...attributes.popper}
             >
-                {hasArrow && (
-                    <PopupArrow
-                        position={position}
-                        styles={styles.arrow}
-                        attributes={attributes.arrow}
-                        setArrowRef={setArrowRef}
-                    />
-                )}
+                {hasArrow && getPopupArrow()}
                 {children}
             </div>
         </OutsideClick>,
@@ -90,64 +63,27 @@ const Popup: React.FC<PopupProps> = (props) => {
     );
 };
 
-function getPopupStyle(props: PopupProps, popupRef: React.RefObject<HTMLDivElement>) {
-    const {popupWidth: fixedWidth, anchorRef, position, hasArrow} = props;
-
-    if (!popupRef.current) {
-        return {};
-    }
-
-    const {width: autoWidth, height: popupHeight} = popupRef.current.getBoundingClientRect();
-    const popupWidth = fixedWidth ? fixedWidth : autoWidth;
-
-    if (anchorRef) {
-        const {top, right} = (anchorRef as HTMLElement).getBoundingClientRect();
-
-        // const anchorWidth = right - left;
-        const popupIndent = hasArrow ? 10 : 5;
-
-        // return {bottom, right, popupWidth, anchorWidth};
-
-        switch (position) {
-            // case PopupPosition.BOTTOM_END:
-            //     return {
-            //         left: right - popupWidth,
-            //         width: popupWidth,
-            //         top: bottom + popupIndent,
-
-            //     };
-            // case PopupPosition.BOTTOM:
-            //     return {
-            //         left: right - popupWidth / 2 - anchorWidth / 2,
-            //         width: popupWidth,
-            //         top: bottom + popupIndent,
-            //         test: { bottom, right, popupWidth, anchorWidth }
-            //     };
-            // case PopupPosition.LEFT_START:
-            //     return {
-            //         left: left - popupWidth - popupIndent,
-            //         width: popupWidth,
-            //         top: top,
-            //     };
-            case PopupPosition.RIGHT_TOP:
-                return {
-                    left: right + popupIndent,
-                    width: popupWidth,
-                    top: top - popupHeight,
-                };
-        }
-    }
-
-    return {};
-}
-
-function calculatePopupStyle(
-    props: PopupProps,
+function getPopupData(
+    position: PopperPosition,
+    anchorRef: HTMLElement | null,
     popupRef: React.RefObject<HTMLDivElement>,
-    setPopupStyle: (obj: object) => void): void {
+    hasArrow?: boolean,
+) {
+    const { attributes, styles, setPopperRef, setArrowRef } = usePopper({
+        anchorRef,
+        placement: position,
+        offset: [0, hasArrow ? 12 : 5],
+        modifiers: [],
+    });
 
-    const newPopupStyles = getPopupStyle(props, popupRef);
-    setPopupStyle(newPopupStyles);
+    const handleRef = useForkRef(popupRef, (ref) => setPopperRef(ref));
+
+    return {
+        styles,
+        attributes,
+        setArrowRef,
+        handleRef,
+    };
 }
 
 export default Popup;

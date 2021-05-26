@@ -1,21 +1,21 @@
 import React from 'react';
 import block from 'bem-cn-lite';
 
-import {PopupPosition} from './Popup';
+import { PopperPosition } from '../../hooks';
 
 import './Popup.scss';
 
 const b = block('dc-popup');
 
 interface PopupArrowProps {
-    position: PopupPosition;
+    position: PopperPosition;
     styles?: React.CSSProperties;
     attributes?: Record<string, unknown>;
     setArrowRef?: (value: HTMLDivElement) => void;
 }
 
 export function PopupArrow(props: PopupArrowProps) {
-    const {styles, attributes, setArrowRef} = props;
+    const { styles, attributes, setArrowRef } = props;
 
     return (
         <div
@@ -27,7 +27,7 @@ export function PopupArrow(props: PopupArrowProps) {
         >
             <div className={b('arrow-content')}>
                 <div className={b('arrow-circle-wrapper')}>
-                    <div className={b('arrow-circle', {left: true})}></div>
+                    <div className={b('arrow-circle', { left: true })}></div>
                 </div>
                 <div className={b('arrow-circle-wrapper')}>
                     <div className={b('arrow-circle', {right: true})}></div>

@@ -14,22 +14,24 @@ export interface PopperProps {
     modifiers?: PopperModifiers;
 }
 
-const DEFAULT_PLACEMENT: PopperPlacement = [
-    'bottom-start',
-    'bottom',
-    'bottom-end',
-    'top-start',
-    'top',
-    'top-end',
-    'right-start',
-    'right',
-    'right-end',
-    'left-start',
-    'left',
-    'left-end',
-];
+export enum PopperPosition {
+    BOTTOM_START = 'bottom-start',
+    BOTTOM = 'bottom',
+    BOTTOM_END = 'bottom-end',
+    TOP_START = 'top-start',
+    TOP = 'top',
+    TOP_END = 'top-end',
+    RIGHT_START = 'right-start',
+    RIGHT = 'right',
+    RIGHT_END = 'right-end',
+    LEFT_START = 'left-start',
+    LEFT = 'left',
+    LEFT_END = 'left-end',
+}
 
-interface PopoverHook {
+const DEFAULT_PLACEMENT: PopperPlacement = Object.values(PopperPosition);
+
+export interface PopoverHook {
     attributes: Record<string, Record<string, string> | undefined>;
     styles: Record<string, React.CSSProperties>;
     setPopperRef: React.Dispatch<React.SetStateAction<HTMLDivElement | null>>;
@@ -47,7 +49,7 @@ export function usePopper(props: PopperProps): PopoverHook {
         modifiers: [
             {name: 'arrow', options: {enabled: Boolean(arrowElement), element: arrowElement}},
             {name: 'offset', options: {offset}},
-            {name: 'flip', options: {fallbackPlacements: placements.slice(1)}},
+            { name: 'flip', options: { fallbackPlacements: [PopperPosition.BOTTOM, PopperPosition.RIGHT, PopperPosition.LEFT, PopperPosition.TOP] } },
             {
                 name: 'computeStyles',
                 options: {

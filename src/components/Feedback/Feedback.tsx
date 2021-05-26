@@ -2,17 +2,17 @@ import React, {useCallback, useState, useEffect, useRef} from 'react';
 import block from 'bem-cn-lite';
 import {withTranslation, WithTranslation, WithTranslationProps} from 'react-i18next';
 
-import {Popup, PopupPosition} from '../Popup';
+import { Popup } from '../Popup';
 import {Button} from '../Button';
 import {Checkbox} from '../Checkbox';
 import {TextArea} from '../TextArea';
 import {Control} from '../Control';
 import {DividerControl} from '../Controls/single-controls';
+import { PopperPosition } from '../../hooks';
+import { ButtonThemes, FeedbackSendData, FeedbackType, Lang } from '../../models';
 
 import LikeIcon from '../../../assets/icons/like.svg';
 import DislikeIcon from '../../../assets/icons/dislike.svg';
-
-import {ButtonThemes, FeedbackSendData, FeedbackType, Lang} from '../../models';
 
 import './Feedback.scss';
 
@@ -149,10 +149,10 @@ const Feedback: React.FC<FeedbackInnerProps> = (props) => {
 
     const getPopupPosition = useCallback(() => {
         if (!view || view === FeedbackView.Regular) {
-            return isVerticalView ? PopupPosition.LEFT_START : PopupPosition.BOTTOM_END;
+            return isVerticalView ? PopperPosition.LEFT_START : PopperPosition.BOTTOM_END;
         }
 
-        return PopupPosition.RIGHT_TOP;
+        return PopperPosition.RIGHT;
     }, [isVerticalView, view]);
 
     const onChangeLike = useCallback(() => {

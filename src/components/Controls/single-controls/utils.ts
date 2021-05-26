@@ -1,5 +1,5 @@
-import {PopupPosition} from '../../Popup';
+import { PopperPosition } from '../../../hooks';
 
 export const getPopupPosition = (isVerticalView: boolean | undefined) => {
-    return isVerticalView ? PopupPosition.LEFT_START : PopupPosition.BOTTOM_END;
+    return isVerticalView ? PopperPosition.LEFT_START : PopperPosition.BOTTOM_END;
 };

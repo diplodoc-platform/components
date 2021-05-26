@@ -1,9 +1,10 @@
 import block from 'bem-cn-lite';
-import React, {ReactElement, useCallback, useRef, useState} from 'react';
+import React, { BaseSyntheticEvent, ReactElement, useCallback, useRef, useState } from 'react';
 
 import {Contributor} from '../../models';
-import {Popup, PopupPosition} from '../Popup';
+import { Popup } from '../Popup';
 import {getName} from './utils';
+import { PopperPosition } from '../../hooks';
 
 import './ContributorAvatars.scss';
 
@@ -32,14 +33,21 @@ const AvatarWithDescription: React.FC<AvatarWithDescriptionProps> = (props) => {
     const controlRef = useRef<HTMLImageElement | null>(null);
     const [isVisiblePopup, setIsVisiblePopup] = useState(false);
 
-    const showPopup = () => setIsVisiblePopup(true);
-    const hidePopup = () => setIsVisiblePopup(false);
+    const changeVisiblilityPopup = (visible?: boolean) => {
+        if (visible !== undefined) {
+            setIsVisiblePopup(visible);
+            return;
+        }
+
+        setIsVisiblePopup(!isVisiblePopup);
+    };
+
     const setRef = useCallback((ref: HTMLImageElement) => {
         controlRef.current = ref;
     }, []);
 
-    const avatarImg = getAvatar(contributor, avatarSize, showPopup, hidePopup, setRef);
-    const details = getDetails([contributor], controlRef, isVisiblePopup, hidePopup);
+    const avatarImg = getAvatar(contributor, avatarSize, changeVisiblilityPopup, setRef);
+    const details = getDetails([contributor], controlRef, isVisiblePopup, changeVisiblilityPopup);
 
     return (
         <React.Fragment>
@@ -74,7 +82,6 @@ const HiddenAvatars: React.FC<HiddenAvatarsProps> = (props) => {
             <div
                 className={b('avatar', {size: avatarsSize})}
                 ref={setRef}
-                aria-describedby="tooltip"
                 onClick={() => setIsVisiblePopup(!isVisiblePopup)}
             >
                 {contributorsCountString}
@@ -88,7 +95,7 @@ function getDetails(
     contributors: Contributor[],
     controlRef: React.MutableRefObject<HTMLImageElement | null>,
     isVisiblePopup: boolean,
-    hidePopup: () => void,
+    changeVisiblilityPopup: (visible?: boolean) => void,
 ): JSX.Element {
     const contributorsDetails = contributors.map((author: Contributor) => {
         return getContributorDetails(author);
@@ -98,9 +105,9 @@ function getDetails(
         <Popup
             anchorRef={controlRef.current}
             visible={isVisiblePopup}
-            onOutsideClick={hidePopup}
+            onOutsideClick={() => changeVisiblilityPopup(false)}
             className={b('popup')}
-            position={PopupPosition.BOTTOM}
+            position={PopperPosition.BOTTOM}
             hasArrow={true}
         >
             {contributorsDetails}
@@ -111,7 +118,7 @@ function getDetails(
 function getContributorDetails(contributor: Contributor) {
     const {login} = contributor;
 
-    const avatarImg = getAvatar(contributor, ContributorAvatarSizes.BIG);
+    const avatarImg = getAvatar(contributor, ContributorAvatarSizes.BIG, () => { });
 
     return (
         <div key={login} className={b('details')}>
@@ -127,11 +134,12 @@ function getContributorDetails(contributor: Contributor) {
 function getAvatar(
     contributor: Contributor,
     size: string = ContributorAvatarSizes.SMALL,
-    showPopup?: () => void,
-    hidePopup?: () => void,
+    changeVisiblilityPopup: (visible?: boolean) => void,
     setRef?: (ref: HTMLImageElement) => void,
 ): ReactElement {
     const {avatar, name, login} = contributor;
+
+    const preventDefaultChanges = (event: BaseSyntheticEvent) => event.preventDefault();
 
     if (avatar) {
         return (
@@ -140,9 +148,11 @@ function getAvatar(
                 className={b('avatar', {size})}
                 src={avatar}
                 ref={setRef}
-                aria-describedby="tooltip"
-                onMouseOver={showPopup}
-                onMouseLeave={hidePopup}
+                onMouseOver={() => changeVisiblilityPopup(true)}
+                onMouseLeave={() => changeVisiblilityPopup(false)}
+                onTouchStart={() => changeVisiblilityPopup()}
+                onTouchMove={preventDefaultChanges}
+                onTouchEnd={preventDefaultChanges}
             />
         );
     }
@@ -154,9 +164,11 @@ function getAvatar(
             key={login}
             className={b('avatar', {size, default: true})}
             ref={setRef}
-            aria-describedby="tooltip"
-            onMouseOver={showPopup}
-            onMouseLeave={hidePopup}
+            onMouseOver={() => changeVisiblilityPopup(true)}
+            onMouseLeave={() => changeVisiblilityPopup(false)}
+            onTouchStart={() => changeVisiblilityPopup()}
+            onTouchMove={preventDefaultChanges}
+            onTouchEnd={preventDefaultChanges}
         >
             {initials}
         </div>

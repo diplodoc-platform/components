@@ -8,7 +8,6 @@ export type PopperModifiers = Modifier<unknown, Record<string, unknown>>[];
 
 export interface PopperProps {
     anchorRef: HTMLElement | null;
-    popupRef: React.RefObject<HTMLDivElement>;
     placement?: PopperPlacement;
     offset?: [number, number];
     modifiers?: PopperModifiers;

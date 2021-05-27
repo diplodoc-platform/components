@@ -42,10 +42,10 @@
         "hint_next": "Следующая"
     },
     "authors": {
-        "title": "Создано"
+        "title": "Статья создана"
     },
     "contributors": {
-        "title": "улучшено"
+        "title": "улучшена"
     },
     "feedback": {
         "like-text": "Статья полезна",

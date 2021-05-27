@@ -103,44 +103,51 @@
             "avatar": "https://avatars.githubusercontent.com/u/2485935?v=4",
             "email": "",
             "login": "robot-dataui-vcs@yandex-team.ru",
-            "name": "DataUI VCS Robot"
+            "name": "DataUI VCS Robot",
+            "url": "http://yandex.ru/"
         },
         "contributors": [
             {
                 "avatar": "https://avatars.githubusercontent.com/u/2485945?v=6",
                 "email": "",
                 "login": "robot-dataui-vcs@yandex-team.ru",
-                "name": "DataUI VCS Robot"
+                "name": "DataUI VCS Robot",
+                "url": "http://yandex.ru/"
             },
             {
                 "avatar": "https://avatars.githubusercontent.com/u/2485945?v=6",
                 "email": "",
                 "login": "skanunnikov@yandex-team.ru",
-                "name": "Sergey Kanunnikov"
+                "name": "Sergey Kanunnikov",
+                "url": "http://yandex.ru/"
             },
             {
                 "avatar": "https://avatars.githubusercontent.com/u/2485935?v=4",
                 "email": "",
                 "login": "zamulla",
-                "name": "Aleksey Zamulla"
+                "name": "Aleksey Zamulla",
+                "url": "http://yandex.ru/"
             },
             {
                 "avatar": "https://avatars.githubusercontent.com/u/2485945?v=6",
                 "email": "",
                 "login": "migelle@yandex-team.ru",
-                "name": "Mikhail Goncharov"
+                "name": "Mikhail Goncharov",
+                "url": "http://yandex.ru/"
             },
             {
                 "avatar": "https://avatars.githubusercontent.com/u/2485945?v=6",
                 "email": "",
                 "login": "leeuw@yandex-team.ru",
-                "name": "Olga Turchanovskaya"
+                "name": "Olga Turchanovskaya",
+                "url": "http://yandex.ru/"
             },
             {
                 "avatar": "",
                 "email": "",
                 "login": "dottir@yandex-team.ru",
-                "name": "Anastasia Karavaeva"
+                "name": "Anastasia Karavaeva",
+                "url": "http://yandex.ru/"
             }
         ]
     },

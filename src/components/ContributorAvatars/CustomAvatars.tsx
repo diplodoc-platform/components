@@ -28,7 +28,7 @@ export interface HiddenAvatarsProps {
 }
 
 const AvatarWithDescription: React.FC<AvatarWithDescriptionProps> = (props) => {
-    const {contributor, avatarSize} = props;
+    const { contributor, avatarSize } = props;
 
     const controlRef = useRef<HTMLImageElement | null>(null);
     const [isVisiblePopup, setIsVisiblePopup] = useState(false);
@@ -46,12 +46,12 @@ const AvatarWithDescription: React.FC<AvatarWithDescriptionProps> = (props) => {
         controlRef.current = ref;
     }, []);
 
-    const avatarImg = getAvatar(contributor, avatarSize, changeVisiblilityPopup, setRef);
+    const avatarImg = getAvatar(contributor, avatarSize, false, changeVisiblilityPopup, setRef);
     const details = getDetails([contributor], controlRef, isVisiblePopup, changeVisiblilityPopup);
 
     return (
         <React.Fragment>
-            {avatarImg}
+            {getAvatarWithUrl(avatarImg, contributor.url)}
             {details}
         </React.Fragment>
     );
@@ -71,18 +71,28 @@ const HiddenAvatars: React.FC<HiddenAvatarsProps> = (props) => {
         return null;
     }
 
-    const details = getDetails(contributors, controlRef, isVisiblePopup, () => setIsVisiblePopup(false));
+    const details = getDetails(contributors, controlRef, isVisiblePopup, () => setIsVisiblePopup(false), controlRef);
 
     const contributorsCountString = contributorsCount > LOWER_BOUND_MORE_CONTRIBUTORS
         ? `${LOWER_BOUND_MORE_CONTRIBUTORS}+`
         : `+${contributorsCount}`;
+
+    const preventDefaultChanges = (event: BaseSyntheticEvent) => event.preventDefault();
 
     return (
         <React.Fragment>
             <div
                 className={b('avatar', {size: avatarsSize})}
                 ref={setRef}
-                onClick={() => setIsVisiblePopup(!isVisiblePopup)}
+                onClick={(event: BaseSyntheticEvent) => {
+                    setIsVisiblePopup(!isVisiblePopup);
+                    preventDefaultChanges(event);
+                }}
+                onMouseOver={preventDefaultChanges}
+                onMouseLeave={preventDefaultChanges}
+                onMouseUp={preventDefaultChanges}
+                onMouseDown={preventDefaultChanges}
+                onDoubleClick={preventDefaultChanges}
             >
                 {contributorsCountString}
             </div>
@@ -116,13 +126,13 @@ function getDetails(
 }
 
 function getContributorDetails(contributor: Contributor) {
-    const {login} = contributor;
+    const { login, url } = contributor;
 
-    const avatarImg = getAvatar(contributor, ContributorAvatarSizes.BIG, () => { });
+    const avatarImg = getAvatar(contributor, ContributorAvatarSizes.BIG, true);
 
     return (
         <div key={login} className={b('details')}>
-            {avatarImg}
+            {getAvatarWithUrl(avatarImg, url)}
             <div>
                 <div className={b('details_name')}>{getName(contributor)}</div>
                 <div className={b('details_login')}>{login}</div>
@@ -134,7 +144,8 @@ function getContributorDetails(contributor: Contributor) {
 function getAvatar(
     contributor: Contributor,
     size: string = ContributorAvatarSizes.SMALL,
-    changeVisiblilityPopup: (visible?: boolean) => void,
+    inDetails: boolean = false,
+    changeVisiblilityPopup: (visible?: boolean) => void = () => { },
     setRef?: (ref: HTMLImageElement) => void,
 ): ReactElement {
     const {avatar, name, login} = contributor;
@@ -151,8 +162,7 @@ function getAvatar(
                 onMouseOver={() => changeVisiblilityPopup(true)}
                 onMouseLeave={() => changeVisiblilityPopup(false)}
                 onTouchStart={() => changeVisiblilityPopup()}
-                onTouchMove={preventDefaultChanges}
-                onTouchEnd={preventDefaultChanges}
+                onTouchEnd={inDetails ? () => { } : preventDefaultChanges}
             />
         );
     }
@@ -167,8 +177,7 @@ function getAvatar(
             onMouseOver={() => changeVisiblilityPopup(true)}
             onMouseLeave={() => changeVisiblilityPopup(false)}
             onTouchStart={() => changeVisiblilityPopup()}
-            onTouchMove={preventDefaultChanges}
-            onTouchEnd={preventDefaultChanges}
+            onTouchEnd={inDetails ? () => { } : preventDefaultChanges}
         >
             {initials}
         </div>
@@ -177,6 +186,12 @@ function getAvatar(
 
 function getInitials(name: string) {
     return name.charAt(0).toUpperCase();
+}
+
+function getAvatarWithUrl(avatar: ReactElement, url?: string): ReactElement {
+    return url
+        ? <a href={url} target="_blank" rel="noopener noreferrer">{avatar}</a>
+        : avatar;
 }
 
 export {

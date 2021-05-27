@@ -42,7 +42,7 @@ const Popup: React.FC<PopupProps> = (props) => {
     };
 
     const portalElement = ReactDOM.createPortal(
-        <OutsideClick onOutsideClick={onOutsideClick}>
+        <OutsideClick onOutsideClick={onOutsideClick} anchorRef={anchorRef}>
             <div
                 ref={handleRef}
                 className={b(null, className)}

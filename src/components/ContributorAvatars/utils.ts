@@ -1,9 +1,9 @@
 import {Contributor} from '../../models';
 
-export function getName(contributor: Contributor, isAuthor = false): string {
+export function getName(contributor: Contributor, useFullName = false): string {
     const {name, email, login} = contributor;
 
-    const contributorName = isAuthor
+    const contributorName = useFullName
         ? name
         : getShortContributorName(name);
 

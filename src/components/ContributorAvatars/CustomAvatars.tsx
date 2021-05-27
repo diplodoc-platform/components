@@ -134,7 +134,7 @@ function getContributorDetails(contributor: Contributor) {
         <div key={login} className={b('details')}>
             {getAvatarWithUrl(avatarImg, url)}
             <div>
-                <div className={b('details_name')}>{getName(contributor)}</div>
+                <div className={b('details_name')}>{getName(contributor, true)}</div>
                 <div className={b('details_login')}>{login}</div>
             </div>
         </div>

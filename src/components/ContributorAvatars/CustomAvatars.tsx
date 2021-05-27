@@ -1,10 +1,10 @@
 import block from 'bem-cn-lite';
-import React, { BaseSyntheticEvent, ReactElement, useCallback, useRef, useState } from 'react';
+import React, {BaseSyntheticEvent, ReactElement, useCallback, useRef, useState} from 'react';
 
 import {Contributor} from '../../models';
-import { Popup } from '../Popup';
+import {Popup} from '../Popup';
 import {getName} from './utils';
-import { PopperPosition } from '../../hooks';
+import {PopperPosition} from '../../hooks';
 
 import './ContributorAvatars.scss';
 
@@ -28,7 +28,7 @@ export interface HiddenAvatarsProps {
 }
 
 const AvatarWithDescription: React.FC<AvatarWithDescriptionProps> = (props) => {
-    const { contributor, avatarSize } = props;
+    const {contributor, avatarSize} = props;
 
     const controlRef = useRef<HTMLImageElement | null>(null);
     const [isVisiblePopup, setIsVisiblePopup] = useState(false);
@@ -71,7 +71,7 @@ const HiddenAvatars: React.FC<HiddenAvatarsProps> = (props) => {
         return null;
     }
 
-    const details = getDetails(contributors, controlRef, isVisiblePopup, () => setIsVisiblePopup(false), controlRef);
+    const details = getDetails(contributors, controlRef, isVisiblePopup, () => setIsVisiblePopup(false));
 
     const contributorsCountString = contributorsCount > LOWER_BOUND_MORE_CONTRIBUTORS
         ? `${LOWER_BOUND_MORE_CONTRIBUTORS}+`
@@ -113,7 +113,7 @@ function getDetails(
 
     return (
         <Popup
-            anchorRef={controlRef.current}
+            anchor={controlRef.current}
             visible={isVisiblePopup}
             onOutsideClick={() => changeVisiblilityPopup(false)}
             className={b('popup')}
@@ -126,7 +126,7 @@ function getDetails(
 }
 
 function getContributorDetails(contributor: Contributor) {
-    const { login, url } = contributor;
+    const {login, url} = contributor;
 
     const avatarImg = getAvatar(contributor, ContributorAvatarSizes.BIG, true);
 
@@ -144,7 +144,7 @@ function getContributorDetails(contributor: Contributor) {
 function getAvatar(
     contributor: Contributor,
     size: string = ContributorAvatarSizes.SMALL,
-    inDetails: boolean = false,
+    inDetails = false,
     changeVisiblilityPopup: (visible?: boolean) => void = () => { },
     setRef?: (ref: HTMLImageElement) => void,
 ): ReactElement {

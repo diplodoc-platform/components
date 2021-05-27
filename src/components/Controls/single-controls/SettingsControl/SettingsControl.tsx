@@ -195,7 +195,7 @@ const SettingsControl = (props: ControlInnerProps) => {
                 setRef={setRef}
             />
             <Popup
-                anchorRef={controlRef.current}
+                anchor={controlRef.current}
                 visible={isVisiblePopup}
                 onOutsideClick={hidePopup}
                 popupWidth={POPUP_WIDTH}

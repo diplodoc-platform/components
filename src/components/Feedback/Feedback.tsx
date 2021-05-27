@@ -2,14 +2,14 @@ import React, {useCallback, useState, useEffect, useRef} from 'react';
 import block from 'bem-cn-lite';
 import {withTranslation, WithTranslation, WithTranslationProps} from 'react-i18next';
 
-import { Popup } from '../Popup';
+import {Popup} from '../Popup';
 import {Button} from '../Button';
 import {Checkbox} from '../Checkbox';
 import {TextArea} from '../TextArea';
 import {Control} from '../Control';
 import {DividerControl} from '../Controls/single-controls';
-import { PopperPosition } from '../../hooks';
-import { ButtonThemes, FeedbackSendData, FeedbackType, Lang } from '../../models';
+import {PopperPosition} from '../../hooks';
+import {ButtonThemes, FeedbackSendData, FeedbackType, Lang} from '../../models';
 
 import LikeIcon from '../../../assets/icons/like.svg';
 import DislikeIcon from '../../../assets/icons/dislike.svg';
@@ -266,7 +266,7 @@ const Feedback: React.FC<FeedbackInnerProps> = (props) => {
     }, [view, renderRegularFeedbackControls, renderWideFeedbackControls]);
 
     const renderFeedbackSuccessPopup = useCallback(() => {
-        const anchorCurrent = showLikeSuccessPopup ? likeControlRef.current : dislikeControlRef.current;
+        const anchor = showLikeSuccessPopup ? likeControlRef.current : dislikeControlRef.current;
         const visible = showLikeSuccessPopup || showDislikeSuccessPopup;
         const popupWidth = 320;
 
@@ -276,7 +276,7 @@ const Feedback: React.FC<FeedbackInnerProps> = (props) => {
 
         return (
             <Popup
-                anchorRef={anchorCurrent}
+                anchor={anchor}
                 visible={visible}
                 onOutsideClick={hideFeedbackPopups}
                 popupWidth={popupWidth}
@@ -365,7 +365,7 @@ const Feedback: React.FC<FeedbackInnerProps> = (props) => {
 
         return (
             <Popup
-                anchorRef={dislikeControlRef.current}
+                anchor={dislikeControlRef.current}
                 visible={showDislikeVariantsPopup}
                 onOutsideClick={onOutsideClick}
                 popupWidth={popupWidth}

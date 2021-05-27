@@ -7,7 +7,7 @@ export type PopperOffset = [number, number];
 export type PopperModifiers = Modifier<unknown, Record<string, unknown>>[];
 
 export interface PopperProps {
-    anchorRef: HTMLElement | null;
+    anchor: HTMLElement | null;
     placement?: PopperPlacement;
     offset?: [number, number];
     modifiers?: PopperModifiers;
@@ -38,17 +38,27 @@ export interface PopoverHook {
 }
 
 export function usePopper(props: PopperProps): PopoverHook {
-    const {anchorRef, placement = DEFAULT_PLACEMENT, offset, modifiers = []} = props;
+    const {anchor, placement = DEFAULT_PLACEMENT, offset, modifiers = []} = props;
 
     const [popperElement, setPopperElement] = React.useState<HTMLDivElement | null>(null);
     const [arrowElement, setArrowElement] = React.useState<HTMLDivElement | null>(null);
     const placements = Array.isArray(placement) ? placement : [placement];
 
-    const {attributes, styles} = useReactPopper(anchorRef, popperElement, {
+    const {attributes, styles} = useReactPopper(anchor, popperElement, {
         modifiers: [
             {name: 'arrow', options: {enabled: Boolean(arrowElement), element: arrowElement}},
             {name: 'offset', options: {offset}},
-            { name: 'flip', options: { fallbackPlacements: [PopperPosition.BOTTOM, PopperPosition.RIGHT, PopperPosition.LEFT, PopperPosition.TOP] } },
+            {
+                name: 'flip',
+                options: {
+                    fallbackPlacements: [
+                        PopperPosition.BOTTOM,
+                        PopperPosition.RIGHT,
+                        PopperPosition.LEFT,
+                        PopperPosition.TOP,
+                    ],
+                },
+            },
             {
                 name: 'computeStyles',
                 options: {

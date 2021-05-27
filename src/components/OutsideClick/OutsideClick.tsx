@@ -2,7 +2,7 @@ import React, {createRef} from 'react';
 
 export interface OutsideClickProps {
     onOutsideClick: () => void;
-    anchorRef?: HTMLElement | null;
+    anchor?: HTMLElement | null;
 }
 
 export default class OutsideClick extends React.Component<OutsideClickProps> {
@@ -26,9 +26,9 @@ export default class OutsideClick extends React.Component<OutsideClickProps> {
     }
 
     handleOutsideClick = (e: MouseEvent) => {
-        const { onOutsideClick, anchorRef } = this.props;
+        const {onOutsideClick, anchor} = this.props;
 
-        if (e.target && !(this.ref?.current?.contains(e.target as Node) || anchorRef?.contains(e.target as Node))) {
+        if (e.target && !(this.ref?.current?.contains(e.target as Node) || anchor?.contains(e.target as Node))) {
             onOutsideClick();
         }
     };

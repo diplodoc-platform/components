@@ -2,10 +2,10 @@ import React, {useCallback, useEffect, useState, useRef} from 'react';
 import {WithTranslation, withTranslation, WithTranslationProps} from 'react-i18next';
 
 import {Control} from '../../Control';
-import { ControlSizes, Lang } from '../../../models';
+import {ControlSizes, Lang} from '../../../models';
 import {Popup} from '../../Popup';
 import {List, ListItem} from '../../List';
-import { getPopupPosition } from './utils';
+import {getPopupPosition} from './utils';
 
 import LangIcon from '../../../../assets/icons/lang.svg';
 import RusIcon from '../../../../assets/icons/rus.svg';
@@ -76,7 +76,7 @@ const LangControl = (props: ControlInnerProps) => {
                 setRef={setRef}
             />
             <Popup
-                anchorRef={controlRef.current}
+                anchor={controlRef.current}
                 visible={isVisiblePopup}
                 onOutsideClick={hidePopup}
                 popupWidth={POPUP_WIDTH}

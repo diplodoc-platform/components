@@ -1,9 +1,9 @@
 import block from 'bem-cn-lite';
 import ReactDOM from 'react-dom';
-import React, { useRef } from 'react';
+import React, {useRef} from 'react';
 
 import {PopupArrow} from './PopupArrow';
-import { usePopper, useForkRef, PopperPosition } from '../../hooks';
+import {usePopper, useForkRef, PopperPosition} from '../../hooks';
 import {OutsideClick} from '../OutsideClick';
 
 import './Popup.scss';
@@ -11,7 +11,7 @@ import './Popup.scss';
 const b = block('dc-popup');
 
 export interface PopupProps {
-    anchorRef: HTMLElement | null;
+    anchor: HTMLElement | null;
     visible: boolean;
     position: PopperPosition;
     onOutsideClick: () => void;
@@ -22,9 +22,16 @@ export interface PopupProps {
 
 const Popup: React.FC<PopupProps> = (props) => {
     const popupRef = useRef<HTMLDivElement>(null);
-    const {visible, onOutsideClick, hasArrow, position, children, className, anchorRef} = props;
+    const {visible, onOutsideClick, hasArrow, position, children, className, anchor} = props;
 
-    const { attributes, styles, setArrowRef, handleRef } = getPopupData(position, anchorRef, popupRef, hasArrow);
+    const {attributes, styles, setPopperRef, setArrowRef} = usePopper({
+        anchor,
+        placement: position,
+        offset: [0, hasArrow ? 12 : 5],
+        modifiers: [],
+    });
+
+    const handleRef = useForkRef(popupRef, (ref) => setPopperRef(ref));
 
     if (!visible || !document || !document.body) {
         return null;
@@ -42,11 +49,11 @@ const Popup: React.FC<PopupProps> = (props) => {
     };
 
     const portalElement = ReactDOM.createPortal(
-        <OutsideClick onOutsideClick={onOutsideClick} anchorRef={anchorRef}>
+        <OutsideClick onOutsideClick={onOutsideClick} anchor={anchor}>
             <div
                 ref={handleRef}
                 className={b(null, className)}
-                style={{ ...styles.popper }}
+                style={{...styles.popper}}
                 {...attributes.popper}
             >
                 {hasArrow && getPopupArrow()}
@@ -62,28 +69,5 @@ const Popup: React.FC<PopupProps> = (props) => {
         </React.Fragment>
     );
 };
-
-function getPopupData(
-    position: PopperPosition,
-    anchorRef: HTMLElement | null,
-    popupRef: React.RefObject<HTMLDivElement>,
-    hasArrow?: boolean,
-) {
-    const { attributes, styles, setPopperRef, setArrowRef } = usePopper({
-        anchorRef,
-        placement: position,
-        offset: [0, hasArrow ? 12 : 5],
-        modifiers: [],
-    });
-
-    const handleRef = useForkRef(popupRef, (ref) => setPopperRef(ref));
-
-    return {
-        styles,
-        attributes,
-        setArrowRef,
-        handleRef,
-    };
-}
 
 export default Popup;

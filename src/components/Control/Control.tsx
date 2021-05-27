@@ -2,9 +2,9 @@ import React, {useCallback, useState, useRef} from 'react';
 import block from 'bem-cn-lite';
 
 import {ControlButton} from '../ControlButton';
-import { Popup } from '../Popup';
+import {Popup} from '../Popup';
 import {ControlSizes} from '../../models';
-import { PopperPosition } from '../../hooks';
+import {PopperPosition} from '../../hooks';
 
 import './Control.scss';
 
@@ -77,7 +77,7 @@ const Control = (props: ControlProps) => {
                 />
             </ControlButton>
             <Popup
-                anchorRef={controlRef.current}
+                anchor={controlRef.current}
                 visible={isVisibleTooltip}
                 onOutsideClick={hideTooltip}
                 className={b('tooltip')}

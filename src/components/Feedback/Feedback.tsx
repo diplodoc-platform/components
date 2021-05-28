@@ -240,7 +240,7 @@ const Feedback: React.FC<FeedbackInnerProps> = (props) => {
                             onClick={onChangeLike}
                             className={b('control', {view})}
                         >
-                            <LikeIcon className={b('like-button', {active: isLiked, view})}/>
+                            <LikeIcon className={b('feedback-button', {active: isLiked, view})}/>
                             {t('button-like-text')}
                         </Button>
                         <Button
@@ -250,7 +250,7 @@ const Feedback: React.FC<FeedbackInnerProps> = (props) => {
                             onClick={onChangeDislike}
                             className={b('control', {view})}
                         >
-                            <DislikeIcon className={b('like-button', {active: innerIsDisliked, view})}/>
+                            <DislikeIcon className={b('feedback-button', {active: innerIsDisliked, view})}/>
                             {t('button-dislike-text')}
                         </Button>
                     </div>
@@ -268,7 +268,6 @@ const Feedback: React.FC<FeedbackInnerProps> = (props) => {
     const renderFeedbackSuccessPopup = useCallback(() => {
         const anchor = showLikeSuccessPopup ? likeControlRef.current : dislikeControlRef.current;
         const visible = showLikeSuccessPopup || showDislikeSuccessPopup;
-        const popupWidth = 320;
 
         if (!visible) {
             return null;
@@ -279,8 +278,7 @@ const Feedback: React.FC<FeedbackInnerProps> = (props) => {
                 anchor={anchor}
                 visible={visible}
                 onOutsideClick={hideFeedbackPopups}
-                popupWidth={popupWidth}
-                className={b('success-popup')}
+                className={b('success-popup', {view})}
                 position={getPopupPosition()}
             >
                 <h3 className={b('popup-title')}>{t('success-title')}</h3>
@@ -357,8 +355,6 @@ const Feedback: React.FC<FeedbackInnerProps> = (props) => {
     }, [t, renderDislikeVariantsList, renderDislikeVariantsTextArea, renderDislikeVariantsActions]);
 
     const renderDislikeVariantsPopup = useCallback(() => {
-        const popupWidth = 320;
-
         if (!showDislikeVariantsPopup) {
             return null;
         }
@@ -368,8 +364,7 @@ const Feedback: React.FC<FeedbackInnerProps> = (props) => {
                 anchor={dislikeControlRef.current}
                 visible={showDislikeVariantsPopup}
                 onOutsideClick={onOutsideClick}
-                popupWidth={popupWidth}
-                className={b('variants-popup')}
+                className={b('variants-popup', {view})}
                 position={getPopupPosition()}
             >
                 {renderDislikeVariantsContent()}

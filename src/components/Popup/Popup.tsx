@@ -15,7 +15,6 @@ export interface PopupProps {
     visible: boolean;
     position: PopperPosition;
     onOutsideClick: () => void;
-    popupWidth?: number;
     className?: string;
     hasArrow?: boolean;
 }

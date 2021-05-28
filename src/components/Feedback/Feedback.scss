@@ -1,6 +1,19 @@
 @import '../../../styles/mixins';
 @import '../../../styles/variables';
 
+$popupWidth: 320px;
+
+@mixin tooltip-in-center {
+    @media screen and (max-width: map-get($screenBreakpoints, 'xs')) {
+        & {
+            // stylelint-disable declaration-no-important
+            right: 0 !important;
+            left: 0 !important;
+            margin: auto;
+        }
+    }
+}
+
 .dc-feedback {
     &__container {
         &_view_wide {
@@ -30,10 +43,20 @@
 
     &__success-popup {
         padding: $popupPadding 50px $popupPadding $popupPadding;
+        width: $popupWidth;
+
+        &_view_wide {
+            @include tooltip-in-center();
+        }
     }
 
     &__variants-popup {
         padding: $popupPadding;
+        width: $popupWidth;
+
+        &_view_wide {
+            @include tooltip-in-center();
+        }
     }
 
     &__popup-title {
@@ -81,6 +104,7 @@
             font-size: var(--yc-text-body2-font-size);
             line-height: var(--yc-text-body2-line-height);
             margin-right: 16px;
+            font-weight: 400;
         }
     }
 
@@ -93,8 +117,15 @@
     }
 
     &__control {
+        &:last-child {
+            font-size: 13px;
+            line-height: 18px;
+            display: flex;
+            align-items: center;
+        }
+
         &_view_wide {
-            margin-right: 16px;
+            margin-right: 12px;
 
             &:last-child {
                 margin-right: 0;
@@ -110,9 +141,13 @@
         }
     }
 
-    &__like-button {
+    &__feedback-button {
+        width: 16px;
+        height: 16px;
+
         &_view_wide {
             margin-right: 8px;
+
         }
 
         &_active {

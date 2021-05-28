@@ -15,7 +15,6 @@ import {getPopupPosition} from '../utils';
 
 import './SettingsControl.scss';
 
-const POPUP_WIDTH = 256;
 const ITEM_HEIGHT = 48;
 const b = cn('dc-settings-control');
 
@@ -198,7 +197,6 @@ const SettingsControl = (props: ControlInnerProps) => {
                 anchor={controlRef.current}
                 visible={isVisiblePopup}
                 onOutsideClick={hidePopup}
-                popupWidth={POPUP_WIDTH}
                 position={getPopupPosition(isVerticalView)}
             >
                 <List

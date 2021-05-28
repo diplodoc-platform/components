@@ -23,11 +23,9 @@ const ContributorAvatars: React.FC<ContributorAvatarsProps> = (props) => {
         return null;
     }
 
-    const avatarsComponent = (avatars: ReactElement) => <div className={b('avatars-wrapper')}>{avatars}</div>;
-
     if (contributors.length === 1) {
         const oneAvatar = getOneAvatar(contributors[0], isAuthor);
-        return avatarsComponent(oneAvatar);
+        return getAvatarsComponent(oneAvatar);
     }
 
     const displayedContributors = [...contributors];
@@ -52,7 +50,7 @@ const ContributorAvatars: React.FC<ContributorAvatarsProps> = (props) => {
         </Fragment>
     );
 
-    return avatarsComponent(avatars);
+    return getAvatarsComponent(avatars);
 };
 
 function getOneAvatar(contributor: Contributor, isAuthor = false): ReactElement {
@@ -62,6 +60,10 @@ function getOneAvatar(contributor: Contributor, isAuthor = false): ReactElement 
             <div>{getName(contributor, isAuthor)}</div>
         </div>
     );
+}
+
+function getAvatarsComponent(avatars: ReactElement) {
+    return (<div className={b('avatars-wrapper')}>{avatars}</div>);
 }
 
 export default ContributorAvatars;

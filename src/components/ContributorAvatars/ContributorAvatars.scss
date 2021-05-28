@@ -5,6 +5,8 @@ $contributorsShift: -4px;
 $avatarTextFontSize: 12px;
 $avatarTextFontWeight: 500;
 $detailsIndent: 12px;
+$avatarBorder: 1.5px;
+$textLineHeight: 18px;
 
 @mixin disable-link-styles {
     a,
@@ -53,7 +55,7 @@ $detailsIndent: 12px;
             border-radius: 50%;
             height: 24px;
             width: 24px;
-            border: 1.5px solid var(--yc-color-base-background);
+            border: $avatarBorder solid var(--yc-color-base-background);
         }
 
         &_size_big {
@@ -70,7 +72,7 @@ $detailsIndent: 12px;
             justify-content: center;
             font-size: $avatarTextFontSize;
             font-weight: $avatarTextFontWeight;
-            border: 1.5px solid var(--yc-color-line-generic);
+            border: $avatarBorder solid var(--yc-color-line-generic);
         }
     }
 
@@ -121,12 +123,12 @@ $detailsIndent: 12px;
 
     &__details_name {
         color: var(--yc-color-contrast);
-        line-height: 18px;
+        line-height: $textLineHeight;
     }
 
     &__details_login {
         color: var(--yc-color-contrast-50);
-        line-height: 18px;
+        line-height: $textLineHeight;
     }
 
     &__popup {

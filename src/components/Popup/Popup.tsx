@@ -62,11 +62,7 @@ const Popup: React.FC<PopupProps> = (props) => {
         document.body,
     );
 
-    return (
-        <React.Fragment>
-            {portalElement}
-        </React.Fragment>
-    );
+    return portalElement;
 };
 
 export default Popup;

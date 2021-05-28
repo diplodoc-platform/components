@@ -2,10 +2,12 @@ import block from 'bem-cn-lite';
 import React, {Fragment, ReactElement} from 'react';
 
 import {Contributor} from '../../models';
-import {AvatarWithDescription, ContributorAvatarSizes, HiddenAvatars} from './CustomAvatars';
 import {getName} from './utils';
 
 import './ContributorAvatars.scss';
+import {AvatarSizes} from './models';
+import HiddenAvatars from './Avatars/HiddenAvatars';
+import AvatarWithDescription from './Avatars/AvatarWithDescription';
 
 const b = block('contributor-avatars');
 
@@ -36,12 +38,12 @@ const ContributorAvatars: React.FC<ContributorAvatarsProps> = (props) => {
             <AvatarWithDescription
                 key={contributor.login}
                 contributor={contributor}
-                avatarSize={ContributorAvatarSizes.SMALL}
+                avatarSize={AvatarSizes.SMALL}
             />
         );
     });
 
-    const hiddenAvatars = <HiddenAvatars contributors={hiddenContributors} avatarsSize={ContributorAvatarSizes.SMALL}/>;
+    const hiddenAvatars = <HiddenAvatars contributors={hiddenContributors} avatarsSize={AvatarSizes.SMALL}/>;
 
     const avatars = (
         <Fragment>
@@ -56,7 +58,7 @@ const ContributorAvatars: React.FC<ContributorAvatarsProps> = (props) => {
 function getOneAvatar(contributor: Contributor, isAuthor = false): ReactElement {
     return (
         <div className={b('one_contributor')}>
-            <AvatarWithDescription contributor={contributor} avatarSize={ContributorAvatarSizes.SMALL}/>
+            <AvatarWithDescription contributor={contributor} avatarSize={AvatarSizes.SMALL}/>
             <div>{getName(contributor, isAuthor)}</div>
         </div>
     );

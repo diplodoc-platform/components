@@ -16,17 +16,18 @@ const MAX_DISPLAYED_CONTRIBUTORS = 3;
 export interface ContributorAvatarsProps {
     contributors: Contributor[];
     isAuthor?: boolean;
+    onlyAuthor?: boolean;
 }
 
 const ContributorAvatars: React.FC<ContributorAvatarsProps> = (props) => {
-    const {contributors, isAuthor} = props;
+    const {contributors, isAuthor = false, onlyAuthor = false} = props;
 
     if (!contributors || contributors.length === 0) {
         return null;
     }
 
     if (contributors.length === 1) {
-        const oneAvatar = getOneAvatar(contributors[0], isAuthor);
+        const oneAvatar = getOneAvatar(contributors[0], isAuthor, onlyAuthor);
         return getAvatarsComponent(oneAvatar);
     }
 
@@ -55,9 +56,9 @@ const ContributorAvatars: React.FC<ContributorAvatarsProps> = (props) => {
     return getAvatarsComponent(avatars);
 };
 
-function getOneAvatar(contributor: Contributor, isAuthor = false): ReactElement {
+function getOneAvatar(contributor: Contributor, isAuthor: boolean, onlyAuthor: boolean): ReactElement {
     return (
-        <div className={b('one_contributor')}>
+        <div className={b('one_contributor', {onlyAuthor})}>
             <AvatarWithDescription contributor={contributor} avatarSize={AvatarSizes.SMALL}/>
             <div>{getName(contributor, isAuthor)}</div>
         </div>

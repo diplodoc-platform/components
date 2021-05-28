@@ -1,7 +1,7 @@
 @import '../../../styles/variables';
 @import '../../../styles/mixins';
 
-$contributorsShift: -4px;
+$avatarsDistance: 2px;
 $avatarTextFontSize: 12px;
 $avatarTextFontWeight: 500;
 $detailsIndent: 12px;
@@ -31,7 +31,7 @@ $textLineHeight: 18px;
             @include contributors-text();
 
             @media screen and (max-width: map-get($screenBreakpoints, 'sm')) {
-                & {
+                &_onlyAuthor {
                     margin: 0;
                 }
             }
@@ -42,7 +42,7 @@ $textLineHeight: 18px;
         }
 
         @media screen and (max-width: map-get($screenBreakpoints, 'sm')) {
-            & > *:last-child {
+            &_onlyAuthor > *:last-child {
                 display: none;
             }
         }
@@ -53,9 +53,9 @@ $textLineHeight: 18px;
 
         &_size_small {
             border-radius: 50%;
-            height: 24px;
-            width: 24px;
-            border: $avatarBorder solid var(--yc-color-base-background);
+            height: 26px;
+            width: 26px;
+            border: $avatarBorder solid var(--yc-color-line-generic-accent);
         }
 
         &_size_big {
@@ -63,6 +63,7 @@ $textLineHeight: 18px;
             height: 36px;
             width: 36px;
             margin-right: $detailsIndent;
+            border: $avatarBorder solid var(--yc-color-line-generic-accent);
         }
 
         &_default {
@@ -72,26 +73,19 @@ $textLineHeight: 18px;
             justify-content: center;
             font-size: $avatarTextFontSize;
             font-weight: $avatarTextFontWeight;
-            border: $avatarBorder solid var(--yc-color-line-generic);
+            border: $avatarBorder solid var(--yc-color-line-generic-accent);
         }
     }
 
     &__displayed_avatars {
-        flex-direction: row-reverse;
         display: flex;
 
         & > * {
-            position: relative;
-        }
-
-        & > *:not(:last-child) {
-            margin-left: $contributorsShift;
-            overflow: hidden;
+            margin-right: $avatarsDistance;
         }
     }
 
     &__hidden_avatars {
-        margin-left: $contributorsShift;
         font-size: $avatarTextFontSize;
         font-weight: $avatarTextFontWeight;
         color: var(--yc-color-text-secondary);

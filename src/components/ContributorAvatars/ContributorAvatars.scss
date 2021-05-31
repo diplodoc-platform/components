@@ -8,6 +8,11 @@ $detailsIndent: 12px;
 $avatarBorder: 1.5px;
 $textLineHeight: 18px;
 
+$avatarWrapperSmallSize: 26px;
+$avatarSmallSize: 23px;
+$avatarWrapperBigSize: 36px;
+$avatarBigSize: 33px;
+
 @mixin disable-link-styles {
     a,
     a:hover,
@@ -29,11 +34,11 @@ $textLineHeight: 18px;
 
         & > * {
             @include contributors-text();
+        }
 
-            @media screen and (max-width: map-get($screenBreakpoints, 'sm')) {
-                &_onlyAuthor {
-                    margin: 0;
-                }
+        @media screen and (max-width: map-get($screenBreakpoints, 'sm')) {
+            &_onlyAuthor > * {
+                margin: 0;
             }
         }
 
@@ -48,25 +53,43 @@ $textLineHeight: 18px;
         }
     }
 
+    &__avatar-wrapper {
+        border-radius: 50%;
+        background: var(--yc-color-line-generic-accent);
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        &_size_small {
+            height: $avatarWrapperSmallSize;
+            width: $avatarWrapperSmallSize;
+        }
+
+        &_size_big {
+            height: $avatarWrapperBigSize;
+            width: $avatarWrapperBigSize;
+        }
+    }
+
     &__avatar {
         cursor: pointer;
 
         &_size_small {
             border-radius: 50%;
-            height: 26px;
-            width: 26px;
-            border: $avatarBorder solid var(--yc-color-line-generic-accent);
+            height: $avatarSmallSize;
+            width: $avatarSmallSize;
         }
 
         &_size_big {
             border-radius: 50%;
-            height: 36px;
-            width: 36px;
-            margin-right: $detailsIndent;
-            border: $avatarBorder solid var(--yc-color-line-generic-accent);
+            height: $avatarBigSize;
+            width: $avatarBigSize;
         }
 
         &_default {
+            border-radius: 50%;
             text-align: center;
             display: flex;
             flex-direction: column;
@@ -74,6 +97,16 @@ $textLineHeight: 18px;
             font-size: $avatarTextFontSize;
             font-weight: $avatarTextFontWeight;
             border: $avatarBorder solid var(--yc-color-line-generic-accent);
+
+            &.big {
+                height: $avatarWrapperBigSize;
+                width: $avatarWrapperBigSize;
+            }
+
+            &.small {
+                height: $avatarWrapperSmallSize;
+                width: $avatarWrapperSmallSize;
+            }
         }
     }
 
@@ -89,6 +122,7 @@ $textLineHeight: 18px;
         font-size: $avatarTextFontSize;
         font-weight: $avatarTextFontWeight;
         color: var(--yc-color-text-secondary);
+        border-radius: 50%;
         text-align: center;
         cursor: pointer;
 
@@ -100,6 +134,9 @@ $textLineHeight: 18px;
             justify-content: center;
             padding-left: 3px;
             padding-right: 1px;
+            border: $avatarBorder solid var(--yc-color-line-generic-accent);
+            height: $avatarWrapperSmallSize;
+            width: $avatarWrapperSmallSize;
         }
     }
 
@@ -111,7 +148,7 @@ $textLineHeight: 18px;
         & > div:last-child {
             font-size: 13px;
             font-weight: 400;
-            margin-right: $detailsIndent;
+            margin: 0 $detailsIndent;
         }
     }
 

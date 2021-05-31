@@ -1,5 +1,5 @@
 import block from 'bem-cn-lite';
-import React, {BaseSyntheticEvent, useRef, useState} from 'react';
+import React, {BaseSyntheticEvent, Fragment, useRef, useState} from 'react';
 
 import {AvatarSizes, PopupData} from '../models';
 import {Contributor} from '../../../models';
@@ -38,7 +38,7 @@ const HiddenAvatars: React.FC<HiddenAvatarsProps> = (props) => {
         : `+${contributorsCount}`;
 
     return (
-        <React.Fragment>
+        <Fragment>
             <div
                 className={b('avatar', {size: avatarsSize})}
                 ref={controlRef}
@@ -50,7 +50,7 @@ const HiddenAvatars: React.FC<HiddenAvatarsProps> = (props) => {
                 {contributorsCountString}
             </div>
             <Details contributors={contributors} popupData={popupData}/>
-        </React.Fragment>
+        </Fragment>
     );
 };
 

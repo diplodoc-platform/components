@@ -1,115 +1,68 @@
-import React, {createRef, RefObject} from 'react';
-import ReactDOM from 'react-dom';
 import block from 'bem-cn-lite';
-import _ from 'lodash';
+import ReactDOM from 'react-dom';
+import React, {useRef} from 'react';
 
+import {PopupArrow} from './PopupArrow';
+import {usePopper, useForkRef, PopperPosition} from '../../hooks';
 import {OutsideClick} from '../OutsideClick';
 
 import './Popup.scss';
 
 const b = block('dc-popup');
 
-export enum PopupPosition {
-    bottom = 'bottom',
-    left = 'left',
-    rightTop = 'rightTop',
-}
-
 export interface PopupProps {
-    anchor: React.ReactNode;
+    anchor: HTMLElement | null;
     visible: boolean;
+    position: PopperPosition;
     onOutsideClick: () => void;
-    popupWidth?: number;
     className?: string;
-    position?: PopupPosition;
+    hasArrow?: boolean;
 }
 
-interface PopupState {
-    popupStyle: object;
-}
+const Popup: React.FC<PopupProps> = (props) => {
+    const popupRef = useRef<HTMLDivElement>(null);
+    const {visible, onOutsideClick, hasArrow, position, children, className, anchor} = props;
 
-export class Popup extends React.Component<PopupProps, PopupState> {
-    ref: RefObject<HTMLDivElement> = createRef();
-    state = {
-        popupStyle: {},
-    };
+    const {attributes, styles, setPopperRef, setArrowRef} = usePopper({
+        anchor,
+        placement: position,
+        offset: [0, hasArrow ? 12 : 5],
+        modifiers: [],
+    });
 
-    componentDidMount() {
-        this.calculatePopupStyle();
-        window.addEventListener('resize', this.calculatePopupStyle);
+    const handleRef = useForkRef(popupRef, (ref) => setPopperRef(ref));
+
+    if (!visible || !document || !document.body) {
+        return null;
     }
 
-    componentDidUpdate(prevProps: Readonly<PopupProps>): void {
-        if (!_.isEqual(prevProps, this.props)) {
-            this.calculatePopupStyle();
-        }
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener('resize', this.calculatePopupStyle);
-    }
-
-    render() {
-        const {visible, onOutsideClick, children, className} = this.props;
-        const {popupStyle} = this.state;
-
-        if (!visible || !document || !document.body) {
-            return null;
-        }
-
-        return ReactDOM.createPortal(
-            <OutsideClick onOutsideClick={onOutsideClick}>
-                <div
-                    ref={this.ref}
-                    className={b(null, className)}
-                    style={popupStyle}
-                >
-                    {children}
-                </div>
-            </OutsideClick>,
-            document.body,
+    const getPopupArrow = () => {
+        return (
+            <PopupArrow
+                position={position}
+                styles={styles.arrow}
+                attributes={attributes.arrow}
+                setArrowRef={setArrowRef}
+            />
         );
-    }
-
-    private getPopupStyle = () => {
-        const {popupWidth: fixedWidth, anchor, position} = this.props;
-
-        if (!this.ref.current) {
-            return {};
-        }
-
-        const {width: autoWidth, height: popupHeight} = this.ref.current.getBoundingClientRect();
-        const popupWidth = fixedWidth ? fixedWidth : autoWidth;
-
-        if (anchor) {
-            const {top, bottom, right, left} = (anchor as HTMLElement).getBoundingClientRect();
-
-            switch (position) {
-                case PopupPosition.bottom:
-                    return {
-                        left: right - popupWidth,
-                        width: popupWidth,
-                        top: bottom + 4,
-                    };
-                case PopupPosition.left:
-                    return {
-                        left: left - popupWidth - 4,
-                        width: popupWidth,
-                        top: top,
-                    };
-                case PopupPosition.rightTop:
-                    return {
-                        left: right + 4,
-                        width: popupWidth,
-                        top: top - popupHeight,
-                    };
-            }
-        }
-
-        return {};
     };
 
-    private calculatePopupStyle = () => {
-        this.setState({popupStyle: this.getPopupStyle()});
-    };
-}
+    const portalElement = ReactDOM.createPortal(
+        <OutsideClick onOutsideClick={onOutsideClick} anchor={anchor}>
+            <div
+                ref={handleRef}
+                className={b(null, className)}
+                style={{...styles.popper}}
+                {...attributes.popper}
+            >
+                {hasArrow && getPopupArrow()}
+                {children}
+            </div>
+        </OutsideClick>,
+        document.body,
+    );
+
+    return portalElement;
+};
+
+export default Popup;

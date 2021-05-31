@@ -1,116 +1,72 @@
-import React, {Fragment, ReactElement} from 'react';
 import block from 'bem-cn-lite';
+import React, {Fragment, ReactElement} from 'react';
 
 import {Contributor} from '../../models';
+import {getName} from './utils';
 
 import './ContributorAvatars.scss';
+import {AvatarSizes} from './models';
+import HiddenAvatars from './Avatars/HiddenAvatars';
+import AvatarWithDescription from './Avatars/AvatarWithDescription';
 
-const b = block('contributor-icons');
+const b = block('contributor-avatars');
 
 const MAX_DISPLAYED_CONTRIBUTORS = 3;
-const LOWER_BOUND_MORE_CONTRIBUTORS = 9;
 
 export interface ContributorAvatarsProps {
     contributors: Contributor[];
     isAuthor?: boolean;
+    onlyAuthor?: boolean;
 }
 
 const ContributorAvatars: React.FC<ContributorAvatarsProps> = (props) => {
-    const {contributors, isAuthor} = props;
+    const {contributors, isAuthor = false, onlyAuthor = false} = props;
 
     if (!contributors || contributors.length === 0) {
         return null;
     }
 
-    const avatars = getAvatars(contributors, isAuthor);
-
-    return (
-        <div className={b('avatars-wrapper')}>{avatars}</div>
-    );
-};
-
-function getAvatars(contributors: Contributor[], isAuthor = false): ReactElement {
     if (contributors.length === 1) {
-        return getOneAvatar(contributors[0], isAuthor);
+        const oneAvatar = getOneAvatar(contributors[0], isAuthor, onlyAuthor);
+        return getAvatarsComponent(oneAvatar);
     }
 
     const displayedContributors = [...contributors];
     const hiddenContributors = displayedContributors.splice(MAX_DISPLAYED_CONTRIBUTORS);
 
     const displayedAvatars = displayedContributors.map((contributor: Contributor) => {
-        return getAvatar(contributor);
+        return (
+            <AvatarWithDescription
+                key={contributor.login}
+                contributor={contributor}
+                avatarSize={AvatarSizes.SMALL}
+            />
+        );
     });
-    const hiddenAvatars = getHiddenAvatars(hiddenContributors);
 
-    return (
+    const hiddenAvatars = <HiddenAvatars contributors={hiddenContributors} avatarsSize={AvatarSizes.SMALL}/>;
+
+    const avatars = (
         <Fragment>
             <div className={b('displayed_avatars')}>{displayedAvatars}</div>
             <div className={b('hidden_avatars')}>{hiddenAvatars}</div>
         </Fragment>
     );
-}
 
-function getOneAvatar(contributor: Contributor, isAuthor: boolean): ReactElement {
-    const {email, name, login} = contributor;
+    return getAvatarsComponent(avatars);
+};
 
-    const contributorName = isAuthor
-        ? name
-        : getShortContributorName(name);
-
+function getOneAvatar(contributor: Contributor, isAuthor: boolean, onlyAuthor: boolean): ReactElement {
     return (
-        <div className={b('one_contributor')}>
-            {getAvatar(contributor)}
-            <div>{contributorName || email || login}</div>
+        <div className={b('one_contributor', {onlyAuthor})}>
+            <AvatarWithDescription contributor={contributor} avatarSize={AvatarSizes.SMALL}/>
+            <div>{getName(contributor, isAuthor)}</div>
         </div>
     );
 }
 
-function getShortContributorName(fullContributorName: string): string {
-    return fullContributorName
-        .split(' ')
-        .reduce((result, current, index) => {
-            return index > 0 ? `${result} ${current.charAt(0)}.` : current;
-        }, '');
-}
-
-function getHiddenAvatars(contributors: Contributor[]): ReactElement | null {
-    const contributorsCount = contributors.length;
-
-    if (contributorsCount === 0) {
-        return null;
-    }
-
-    // TODO: add logic when tooltip will be implemented
-
-    const contributorsCountString = contributorsCount > LOWER_BOUND_MORE_CONTRIBUTORS
-        ? `${LOWER_BOUND_MORE_CONTRIBUTORS}+`
-        : `+${contributorsCount}`;
-
-    const hiddenAvatars = (
-        <div className={b('avatar', {size: 'small'})}>
-            {contributorsCountString}
-        </div>
-    );
-
-    return hiddenAvatars;
-}
-
-function getAvatar(contributor: Contributor): ReactElement {
-    const {avatar, name, login, url} = contributor;
-
-    const avatarImg = avatar
-        ? <img key={login} className={b('avatar', {size: 'small'})} src={avatar}/>
-        : <div key={login} className={b('avatar', {size: 'small', default: true})}>{getInitials(name || login)}</div>;
-
-    // TODO: add logic when tooltip will be implemented
-
-    return url
-        ? <a href={url} target="_blank" rel="noopener noreferrer">{avatarImg}</a>
-        : avatarImg;
-}
-
-function getInitials(name: string) {
-    return name.charAt(0).toUpperCase();
+function getAvatarsComponent(avatars: ReactElement) {
+    return (<div className={b('avatars-wrapper')}>{avatars}</div>);
 }
 
 export default ContributorAvatars;

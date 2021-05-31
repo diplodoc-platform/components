@@ -267,8 +267,11 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
     }
 
     private renderPageContributors() {
-        const author = this.renderAuthor();
+        const {meta} = this.props;
+
+        const author = this.renderAuthor(Boolean(meta?.contributors?.length));
         const contributors = this.renderContributors();
+
 
         const separator = author && contributors && <div className={b('separator')}>{','}</div>;
 
@@ -279,7 +282,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
         );
     }
 
-    private renderAuthor() {
+    private renderAuthor(onlyAuthor: boolean) {
         const {meta, lang} = this.props;
 
         if (!meta?.author) {
@@ -287,7 +290,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
         }
 
         return (
-            <Authors lang={lang} users={[meta.author]}/>
+            <Authors lang={lang} users={[meta.author]} onlyAuthor={onlyAuthor}/>
         );
     }
 

@@ -10,7 +10,7 @@ import './Authors.scss';
 const b = block('authors');
 
 const Authors: React.FC<ContributorsProps> = (props) => {
-    const {users, lang} = props;
+    const {users, lang, onlyAuthor} = props;
     const {t, i18n} = useTranslation('authors');
 
     useEffect(() => {
@@ -20,7 +20,7 @@ const Authors: React.FC<ContributorsProps> = (props) => {
     return (
         <div className={b()}>
             <div className={b('title')}>{t('title')}</div>
-            <ContributorAvatars contributors={users} isAuthor={true}/>
+            <ContributorAvatars contributors={users} isAuthor={true} onlyAuthor={onlyAuthor}/>
         </div>
     );
 };

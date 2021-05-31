@@ -2,8 +2,9 @@ import React, {useCallback, useState, useRef} from 'react';
 import block from 'bem-cn-lite';
 
 import {ControlButton} from '../ControlButton';
-import {Popup, PopupPosition} from '../Popup';
+import {Popup} from '../Popup';
 import {ControlSizes} from '../../models';
+import {PopperPosition} from '../../hooks';
 
 import './Control.scss';
 
@@ -46,7 +47,7 @@ const Control = (props: ControlProps) => {
     const showTooltip = () => setIsVisibleTooltip(true);
     const hideTooltip = () => setIsVisibleTooltip(false);
     const getTooltipAlign = useCallback(() => {
-        return isVerticalView ? PopupPosition.left : PopupPosition.bottom;
+        return isVerticalView ? PopperPosition.LEFT_START : PopperPosition.BOTTOM_END;
     }, [isVerticalView]);
     const _setRef = useCallback((ref: HTMLButtonElement) => {
         controlRef.current = ref;

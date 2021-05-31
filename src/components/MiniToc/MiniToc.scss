@@ -3,6 +3,7 @@
 
 .dc-mini-toc {
     $class: &;
+    $footerHeight: 80px;
 
     &__title {
         @include text-size(body2);
@@ -48,7 +49,7 @@
         }
 
         &:last-child {
-            padding-bottom: 30px;
+            padding-bottom: $footerHeight;
         }
 
         &_active > #{$class}__section-link {

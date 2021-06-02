@@ -20,18 +20,16 @@ const Avatar: React.FC<AvatarProps> = (props) => {
 
     if (avatar) {
         return (
-            <div className={b('avatar-wrapper', {size})}>
-                <img
-                    key={login}
-                    className={b('avatar', {size})}
-                    src={avatar}
-                    ref={ref}
-                    onMouseOver={() => changeVisiblilityPopup(true)}
-                    onMouseLeave={() => changeVisiblilityPopup(false)}
-                    onTouchStart={() => changeVisiblilityPopup()}
-                    onTouchEnd={(event: BaseSyntheticEvent) => preventDefaultByComponent(event, inDetails)}
-                />
-            </div>
+            <img
+                key={login}
+                className={b('avatar', {size})}
+                src={avatar}
+                ref={ref}
+                onMouseOver={() => changeVisiblilityPopup(true)}
+                onMouseLeave={() => changeVisiblilityPopup(false)}
+                onTouchStart={() => changeVisiblilityPopup()}
+                onTouchEnd={(event: BaseSyntheticEvent) => preventDefaultByComponent(event, inDetails)}
+            />
         );
     }
 
@@ -40,7 +38,7 @@ const Avatar: React.FC<AvatarProps> = (props) => {
     return (
         <div
             key={login}
-            className={b('avatar', {default: true}, size)}
+            className={b('avatar', {size, default: true})}
             ref={ref}
             onMouseOver={() => changeVisiblilityPopup(true)}
             onMouseLeave={() => changeVisiblilityPopup(false)}

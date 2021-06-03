@@ -1,13 +1,15 @@
 import {Contributor} from '../../models';
 
 export function getName(contributor: Contributor, useFullName = false): string {
+    return useFullName
+        ? getUserIdentificator(contributor)
+        : getShortContributorName(getUserIdentificator(contributor));
+}
+
+export function getUserIdentificator(contributor: Contributor): string {
     const {name, email, login} = contributor;
 
-    const contributorName = useFullName
-        ? name
-        : getShortContributorName(name);
-
-    return contributorName || email || login;
+    return name || login || email;
 }
 
 function getShortContributorName(fullContributorName: string): string {

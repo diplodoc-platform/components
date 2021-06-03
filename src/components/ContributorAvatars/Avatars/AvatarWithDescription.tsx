@@ -1,6 +1,5 @@
-import React, {useRef, useState} from 'react';
+import React, {Fragment, useRef, useState} from 'react';
 
-import UrlWrapper from './UrlWrapper';
 import Avatar from './Avatar';
 import {AvatarData, AvatarSizes, PopupData} from '../models';
 import {Contributor} from '../../../models';
@@ -40,10 +39,10 @@ const AvatarWithDescription: React.FC<AvatarWithDescriptionProps> = (props) => {
     const avatarImg = (<Avatar avatarData={avatarData} popupData={popupData}/>);
 
     return (
-        <React.Fragment>
-            <UrlWrapper avatar={avatarImg} url={contributor.url}/>
+        <Fragment>
+            {avatarImg}
             <Details contributors={[contributor]} popupData={popupData}/>
-        </React.Fragment>
+        </Fragment>
     );
 };
 

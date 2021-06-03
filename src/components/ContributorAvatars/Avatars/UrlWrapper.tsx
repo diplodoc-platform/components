@@ -1,16 +1,16 @@
 import React, {ReactElement} from 'react';
 
 interface UrlWrapperProps {
-    avatar: ReactElement;
+    children: ReactElement;
     url?: string;
 }
 
 const UrlWrapper: React.FC<UrlWrapperProps> = (props) => {
-    const {avatar, url} = props;
+    const {children, url} = props;
 
     return url
-        ? <a href={url} target="_blank" rel="noopener noreferrer">{avatar}</a>
-        : avatar;
+        ? <a href={url} target="_blank" rel="noopener noreferrer">{children}</a>
+        : children;
 };
 
 export default UrlWrapper;

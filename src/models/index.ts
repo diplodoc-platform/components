@@ -128,12 +128,6 @@ export interface Contributor {
     url: string;
 }
 
-export interface ContributorsProps {
-    lang: Lang;
-    users: Contributor[];
-    onlyAuthor?: boolean;
-}
-
 export interface DislikeData {
     answers: string[];
     comment: string;

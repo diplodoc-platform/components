@@ -8,8 +8,8 @@ $detailsIndent: 12px;
 $avatarBorder: 1.5px;
 $textLineHeight: 18px;
 
-$avatarWrapperSmallSize: 26px;
-$avatarWrapperBigSize: 36px;
+$avatarWrapperSmallSize: 23px;
+$avatarWrapperBigSize: 33px;
 
 @mixin disable-link-styles {
     a,
@@ -25,7 +25,7 @@ $avatarWrapperBigSize: 36px;
 .contributor-avatars {
     &__one_contributor {
         display: flex;
-        @include disable-link-styles();
+        @include disable-link-styles;
 
         & > * {
             @include contributors-text();
@@ -66,7 +66,8 @@ $avatarWrapperBigSize: 36px;
 
         & {
             border-radius: 50%;
-            border: $avatarBorder solid var(--yc-color-line-generic-accent);
+            margin: 0 $avatarBorder;
+            box-shadow: 0 0 0 $avatarBorder var(--yc-color-line-generic-accent);
         }
 
         &_size_small {
@@ -91,7 +92,7 @@ $avatarWrapperBigSize: 36px;
 
     &__displayed_avatars {
         display: flex;
-        @include disable-link-styles();
+        @include disable-link-styles;
 
         & > * {
             margin-right: $avatarsDistance;
@@ -114,13 +115,13 @@ $avatarWrapperBigSize: 36px;
             justify-content: center;
             padding-left: 3px;
             padding-right: 1px;
-            border: $avatarBorder solid var(--yc-color-line-generic-accent);
+            margin: 0 $avatarBorder;
+            box-shadow: 0 0 0 $avatarBorder var(--yc-color-line-generic-accent);
         }
     }
 
     &__details {
         display: flex;
-        margin: $detailsIndent;
 
         & > div:last-child {
             font-size: 13px;
@@ -136,6 +137,10 @@ $avatarWrapperBigSize: 36px;
 
     &__popup {
         box-shadow: 0px 3px 24px rgba(0, 0, 0, 0.2);
-        @include disable-link-styles();
+        @include disable-link-styles;
+
+        & > a {
+            margin: $detailsIndent;
+        }
     }
 }

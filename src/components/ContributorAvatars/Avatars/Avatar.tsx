@@ -33,7 +33,7 @@ const Avatar: React.FC<AvatarProps> = (props) => {
                 onMouseOver={() => changeVisiblilityPopup(true)}
                 onMouseLeave={() => changeVisiblilityPopup(false)}
                 onTouchStart={() => changeVisiblilityPopup()}
-                onTouchEnd={(event: BaseSyntheticEvent) => preventDefaultByComponent(event, inDetails || isRedirect)}
+                onTouchEnd={(event: BaseSyntheticEvent) => preventDefaultByComponent(event, inDetails, isRedirect)}
             />
         );
     }
@@ -48,15 +48,15 @@ const Avatar: React.FC<AvatarProps> = (props) => {
             onMouseOver={() => changeVisiblilityPopup(true)}
             onMouseLeave={() => changeVisiblilityPopup(false)}
             onTouchStart={() => changeVisiblilityPopup()}
-            onTouchEnd={(event: BaseSyntheticEvent) => preventDefaultByComponent(event, inDetails || isRedirect)}
+            onTouchEnd={(event: BaseSyntheticEvent) => preventDefaultByComponent(event, inDetails, isRedirect)}
         >
             {initials}
         </div>
     );
 };
 
-function preventDefaultByComponent(event: BaseSyntheticEvent, isRedirect: boolean): void {
-    if (isRedirect) {
+function preventDefaultByComponent(event: BaseSyntheticEvent, inDetails: boolean, isRedirect: boolean): void {
+    if (inDetails || isRedirect) {
         return;
     }
 

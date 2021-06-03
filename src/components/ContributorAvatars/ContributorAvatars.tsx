@@ -6,7 +6,7 @@ import {getName} from './utils';
 import {AvatarData, AvatarSizes} from './models';
 import HiddenAvatars from './Avatars/HiddenAvatars';
 import AvatarWithDescription from './Avatars/AvatarWithDescription';
-import UrlWrapper from './Avatars/UrlWrapper';
+import Link from '../Link';
 import Avatar from './Avatars/Avatar';
 
 import './ContributorAvatars.scss';
@@ -39,9 +39,9 @@ const ContributorAvatars: React.FC<ContributorAvatarsProps> = (props) => {
     const displayedAvatars = displayedContributors.map((contributor: Contributor) => {
         const {url, login, email} = contributor;
         return (
-            <UrlWrapper key={`displayed-contributors-${login || email}`} url={url}>
+            <Link key={`displayed-contributors-${login || email}`} url={url}>
                 <AvatarWithDescription contributor={contributor} avatarSize={AvatarSizes.SMALL}/>
-            </UrlWrapper>
+            </Link>
         );
     });
 
@@ -64,24 +64,27 @@ function getOneAvatar(contributor: Contributor, isAuthor: boolean, onlyAuthor: b
     };
 
     const wrapperModifiers = isAuthor ? {onlyAuthor} : {};
-    const getRedirectingAvatar = (isRedirect = false) => (
-        <UrlWrapper url={contributor.url}>
-            <Avatar avatarData={avatarData} isRedirect={isRedirect}/>
-        </UrlWrapper>
-    );
 
     return (
         <div className={b('one_contributor', wrapperModifiers)}>
-            <div className={'desktop'}>{getRedirectingAvatar()} </div>
+            <div className={'desktop'}>{getRedirectingAvatar(avatarData, contributor.url)} </div>
             <div className={'mobile'}>
                 {
                     isAuthor && onlyAuthor
-                        ? getRedirectingAvatar(true)
+                        ? getRedirectingAvatar(avatarData, contributor.url, true)
                         : <AvatarWithDescription contributor={contributor} avatarSize={AvatarSizes.SMALL}/>
                 }
             </div>
             <div>{getName(contributor, isAuthor)}</div>
         </div>
+    );
+}
+
+function getRedirectingAvatar(avatarData: AvatarData, url: string, isRedirect = false) {
+    return (
+        <Link url={url}>
+            <Avatar avatarData={avatarData} isRedirect={isRedirect}/>
+        </Link>
     );
 }
 

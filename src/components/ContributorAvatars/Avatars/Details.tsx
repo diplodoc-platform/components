@@ -2,7 +2,7 @@ import block from 'bem-cn-lite';
 import React from 'react';
 
 import Avatar from './Avatar';
-import UrlWrapper from './UrlWrapper';
+import Link from '../../Link';
 import {Popup} from '../../Popup';
 import {AvatarData, AvatarSizes, PopupData} from '../models';
 import {getName} from '../utils';
@@ -52,12 +52,12 @@ function getContributorDetails(contributor: Contributor) {
     const avatarImg = (<Avatar avatarData={avatarData}/>);
 
     return (
-        <UrlWrapper url={url}>
-            <div key={`details-${login || email}`} className={b('details')}>
+        <Link url={url} key={`details-${login || email}`}>
+            <div className={b('details')}>
                 {avatarImg}
                 <div className={b('details_name')}>{getName(contributor, true)}</div>
             </div>
-        </UrlWrapper>
+        </Link>
     );
 }
 

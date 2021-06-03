@@ -2,7 +2,7 @@ import block from 'bem-cn-lite';
 import React from 'react';
 
 import Avatar from './Avatar';
-import UrlWrapper from './UrlWrapper';
+import Link from '../../Link';
 import {Popup} from '../../Popup';
 import {AvatarData, AvatarSizes, PopupData} from '../models';
 import {getName} from '../utils';
@@ -41,7 +41,7 @@ const Details: React.FC<DetailsProps> = (props) => {
 };
 
 function getContributorDetails(contributor: Contributor) {
-    const {login, url} = contributor;
+    const {login, email, url} = contributor;
 
     const avatarData: AvatarData = {
         contributor,
@@ -52,13 +52,12 @@ function getContributorDetails(contributor: Contributor) {
     const avatarImg = (<Avatar avatarData={avatarData}/>);
 
     return (
-        <div key={login} className={b('details')}>
-            <UrlWrapper avatar={avatarImg} url={url}/>
-            <div>
+        <Link url={url} key={`details-${login || email}`}>
+            <div className={b('details')}>
+                {avatarImg}
                 <div className={b('details_name')}>{getName(contributor, true)}</div>
-                <div className={b('details_login')}>{login}</div>
             </div>
-        </div>
+        </Link>
     );
 }
 

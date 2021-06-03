@@ -12,7 +12,6 @@ import {Breadcrumbs} from '../Breadcrumbs';
 import {TocNavPanel} from '../TocNavPanel';
 import {Controls} from '../Controls';
 import {EditButton} from '../EditButton';
-import {Authors} from '../Authors';
 import {Feedback, FeedbackView} from '../Feedback';
 import Contributors from '../Contributors/Contributors';
 
@@ -269,7 +268,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
     private renderPageContributors() {
         const {meta} = this.props;
 
-        const author = this.renderAuthor(Boolean(meta?.contributors?.length));
+        const author = this.renderAuthor(!(meta?.contributors?.length));
         const contributors = this.renderContributors();
 
 
@@ -290,7 +289,13 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
         }
 
         return (
-            <Authors lang={lang} users={[meta.author]} onlyAuthor={onlyAuthor}/>
+            <Contributors
+                lang={lang}
+                users={[meta.author]}
+                onlyAuthor={onlyAuthor}
+                translationName={'authors'}
+                isAuthor={true}
+            />
         );
     }
 

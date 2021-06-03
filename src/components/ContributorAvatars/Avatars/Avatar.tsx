@@ -2,6 +2,8 @@ import block from 'bem-cn-lite';
 import React, {BaseSyntheticEvent} from 'react';
 
 import {AvatarData, AvatarSizes, PopupData} from '../models';
+import {Contributor} from '../../../models';
+import {getUserIdentificator} from '../utils';
 
 import '../ContributorAvatars.scss';
 
@@ -10,56 +12,59 @@ const b = block('contributor-avatars');
 interface AvatarProps {
     avatarData: AvatarData;
     popupData?: PopupData;
+    isRedirect?: boolean;
 }
 
 const Avatar: React.FC<AvatarProps> = (props) => {
-    const {avatarData, popupData} = props;
+    const {avatarData, popupData, isRedirect = false} = props;
     const {contributor, size = AvatarSizes.SMALL, inDetails = false} = avatarData;
     const {changeVisiblilityPopup = () => { }, ref} = popupData || {};
-    const {avatar, name, login} = contributor;
+    const {avatar, email, login} = contributor;
+
+    const key = `avatar-${login || email}`;
 
     if (avatar) {
         return (
             <img
-                key={login}
+                key={key}
                 className={b('avatar', {size})}
                 src={avatar}
                 ref={ref}
                 onMouseOver={() => changeVisiblilityPopup(true)}
                 onMouseLeave={() => changeVisiblilityPopup(false)}
                 onTouchStart={() => changeVisiblilityPopup()}
-                onTouchEnd={(event: BaseSyntheticEvent) => preventDefaultByComponent(event, inDetails)}
+                onTouchEnd={(event: BaseSyntheticEvent) => preventDefaultByComponent(event, inDetails, isRedirect)}
             />
         );
     }
 
-    const initials = getInitials(name || login);
+    const initials = getInitials(contributor);
 
     return (
         <div
-            key={login}
+            key={key}
             className={b('avatar', {size, default: true})}
             ref={ref}
             onMouseOver={() => changeVisiblilityPopup(true)}
             onMouseLeave={() => changeVisiblilityPopup(false)}
             onTouchStart={() => changeVisiblilityPopup()}
-            onTouchEnd={(event: BaseSyntheticEvent) => preventDefaultByComponent(event, inDetails)}
+            onTouchEnd={(event: BaseSyntheticEvent) => preventDefaultByComponent(event, inDetails, isRedirect)}
         >
             {initials}
         </div>
     );
 };
 
-function preventDefaultByComponent(event: BaseSyntheticEvent, inDetails: boolean): void {
-    if (inDetails) {
+function preventDefaultByComponent(event: BaseSyntheticEvent, inDetails: boolean, isRedirect: boolean): void {
+    if (inDetails || isRedirect) {
         return;
     }
 
     event.preventDefault();
 }
 
-function getInitials(name: string) {
-    return name.charAt(0).toUpperCase();
+function getInitials(contributor: Contributor) {
+    return getUserIdentificator(contributor).charAt(0).toUpperCase();
 }
 
 export default Avatar;

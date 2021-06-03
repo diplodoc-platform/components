@@ -8,8 +8,8 @@ $detailsIndent: 12px;
 $avatarBorder: 1.5px;
 $textLineHeight: 18px;
 
-$avatarWrapperSmallSize: 26px;
-$avatarWrapperBigSize: 36px;
+$avatarWrapperSmallSize: 23px;
+$avatarWrapperBigSize: 33px;
 
 @mixin disable-link-styles {
     a,
@@ -18,35 +18,45 @@ $avatarWrapperBigSize: 36px;
     a:active {
         color: inherit;
         text-decoration: none;
+        display: flex;
     }
 }
 
 .contributor-avatars {
-    &__avatars-wrapper {
-        display: flex;
-        @include disable-link-styles();
-    }
-
     &__one_contributor {
         display: flex;
+        @include disable-link-styles;
 
         & > * {
             @include contributors-text();
         }
 
         @media screen and (max-width: map-get($screenBreakpoints, 'sm')) {
-            &_onlyAuthor > * {
-                margin: 0;
+            &_onlyAuthor > *:last-child {
+                margin-left: 5px;
+            }
+
+            & > *:last-child,
+            & > .desktop {
+                display: none;
+            }
+
+            &_onlyAuthor > *:last-child {
+                display: block;
+            }
+
+            & > *:not(:last-child) {
+                margin-right: 0px;
             }
         }
 
-        & > *:last-child {
-            margin-right: 0px;
-        }
-
-        @media screen and (max-width: map-get($screenBreakpoints, 'sm')) {
-            &_onlyAuthor > *:last-child {
+        @media screen and (min-width: map-get($screenBreakpoints, 'sm')) {
+            & > .mobile {
                 display: none;
+            }
+
+            & > *:last-child {
+                margin-right: 0px;
             }
         }
     }
@@ -56,7 +66,8 @@ $avatarWrapperBigSize: 36px;
 
         & {
             border-radius: 50%;
-            border: $avatarBorder solid var(--yc-color-line-generic-accent);
+            margin: 0 $avatarBorder;
+            box-shadow: 0 0 0 $avatarBorder var(--yc-color-line-generic-accent);
         }
 
         &_size_small {
@@ -81,6 +92,7 @@ $avatarWrapperBigSize: 36px;
 
     &__displayed_avatars {
         display: flex;
+        @include disable-link-styles;
 
         & > * {
             margin-right: $avatarsDistance;
@@ -103,21 +115,18 @@ $avatarWrapperBigSize: 36px;
             justify-content: center;
             padding-left: 3px;
             padding-right: 1px;
-            border: $avatarBorder solid var(--yc-color-line-generic-accent);
-            height: $avatarWrapperSmallSize;
-            width: $avatarWrapperSmallSize;
+            margin: 0 $avatarBorder;
+            box-shadow: 0 0 0 $avatarBorder var(--yc-color-line-generic-accent);
         }
     }
 
     &__details {
         display: flex;
-        margin: $detailsIndent;
-        @include disable-link-styles();
 
         & > div:last-child {
             font-size: 13px;
             font-weight: 400;
-            margin: 0 $detailsIndent;
+            margin: auto $detailsIndent;
         }
     }
 
@@ -126,12 +135,12 @@ $avatarWrapperBigSize: 36px;
         line-height: $textLineHeight;
     }
 
-    &__details_login {
-        color: var(--yc-color-contrast-50);
-        line-height: $textLineHeight;
-    }
-
     &__popup {
         box-shadow: 0px 3px 24px rgba(0, 0, 0, 0.2);
+        @include disable-link-styles;
+
+        & > a {
+            margin: $detailsIndent;
+        }
     }
 }

@@ -105,7 +105,16 @@
             "login": "robot-dataui-vcs@yandex-team.ru",
             "name": "DataUI VCS Robot",
             "url": "http://yandex.ru/"
-        }
+        },
+        "contributors": [
+            {
+                "avatar": "https://avatars.githubusercontent.com/u/2485945?v=6",
+                "email": "robot-dataui-vcs@yandex-team.ru",
+                "login": "",
+                "name": "DataUI VCS Robot",
+                "url": ""
+            }
+        ]
     },
     "toc": {
         "title": "Обзор платформы",

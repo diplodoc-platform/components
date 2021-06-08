@@ -20,6 +20,10 @@ $avatarWrapperBigSize: 33px;
         text-decoration: none;
         display: flex;
     }
+
+    a {
+        cursor: pointer;
+    }
 }
 
 .contributor-avatars {
@@ -62,8 +66,6 @@ $avatarWrapperBigSize: 33px;
     }
 
     &__avatar {
-        cursor: pointer;
-
         & {
             border-radius: 50%;
             margin: 0 $avatarBorder;
@@ -139,7 +141,7 @@ $avatarWrapperBigSize: 33px;
         box-shadow: 0px 3px 24px rgba(0, 0, 0, 0.2);
         @include disable-link-styles;
 
-        & > a {
+        & > *:not(:nth-child(1)) {
             margin: $detailsIndent;
         }
     }

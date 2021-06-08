@@ -1,5 +1,5 @@
 import block from 'bem-cn-lite';
-import React, {BaseSyntheticEvent} from 'react';
+import React, {BaseSyntheticEvent, ReactElement} from 'react';
 
 import {AvatarData, AvatarSizes, PopupData} from '../models';
 import {Contributor} from '../../../models';
@@ -23,8 +23,10 @@ const Avatar: React.FC<AvatarProps> = (props) => {
 
     const key = `avatar-${login || email}`;
 
+    const avatarWrapper = (avatar: ReactElement) => <div>{avatar}</div>;
+
     if (avatar) {
-        return (
+        return avatarWrapper(
             <img
                 key={key}
                 className={b('avatar', {size})}
@@ -34,13 +36,13 @@ const Avatar: React.FC<AvatarProps> = (props) => {
                 onMouseLeave={() => changeVisiblilityPopup(false)}
                 onTouchStart={() => changeVisiblilityPopup()}
                 onTouchEnd={(event: BaseSyntheticEvent) => preventDefaultByComponent(event, inDetails, isRedirect)}
-            />
+            />,
         );
     }
 
     const initials = getInitials(contributor);
 
-    return (
+    return avatarWrapper(
         <div
             key={key}
             className={b('avatar', {size, default: true})}
@@ -51,7 +53,7 @@ const Avatar: React.FC<AvatarProps> = (props) => {
             onTouchEnd={(event: BaseSyntheticEvent) => preventDefaultByComponent(event, inDetails, isRedirect)}
         >
             {initials}
-        </div>
+        </div>,
     );
 };
 

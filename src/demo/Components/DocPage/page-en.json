@@ -112,14 +112,14 @@
                 "email": "robot-dataui-vcs@yandex-team.ru",
                 "login": "",
                 "name": "DataUI VCS Robot",
-                "url": "http://yandex.ru/"
+                "url": ""
             },
             {
                 "avatar": "",
                 "email": "skanunnikov@yandex-team.ru",
                 "login": "",
                 "name": "Sergey Kanunnikov",
-                "url": "http://yandex.ru/"
+                "url": ""
             },
             {
                 "avatar": "https://avatars.githubusercontent.com/u/2485935?v=4",
@@ -147,7 +147,7 @@
                 "email": "dottir@yandex-team.ru",
                 "login": "",
                 "name": "Anastasia Karavaeva",
-                "url": "http://yandex.ru/"
+                "url": ""
             }
         ]
     },

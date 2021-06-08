@@ -20,11 +20,16 @@ $avatarWrapperBigSize: 33px;
         text-decoration: none;
         display: flex;
     }
+
+    a {
+        cursor: pointer;
+    }
 }
 
 .contributor-avatars {
     &__one_contributor {
         display: flex;
+        margin: 0 $avatarBorder;
         @include disable-link-styles;
 
         & > * {
@@ -62,11 +67,8 @@ $avatarWrapperBigSize: 33px;
     }
 
     &__avatar {
-        cursor: pointer;
-
         & {
             border-radius: 50%;
-            margin: 0 $avatarBorder;
             box-shadow: 0 0 0 $avatarBorder var(--yc-color-line-generic-accent);
         }
 
@@ -95,7 +97,8 @@ $avatarWrapperBigSize: 33px;
         @include disable-link-styles;
 
         & > * {
-            margin-right: $avatarsDistance;
+            margin-left: $avatarBorder;
+            margin-right: calc(#{$avatarBorder} + #{$avatarsDistance});
         }
     }
 
@@ -139,7 +142,7 @@ $avatarWrapperBigSize: 33px;
         box-shadow: 0px 3px 24px rgba(0, 0, 0, 0.2);
         @include disable-link-styles;
 
-        & > a {
+        & > *:not(:first-child) {
             margin: $detailsIndent;
         }
     }

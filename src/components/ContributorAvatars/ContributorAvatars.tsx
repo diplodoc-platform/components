@@ -75,7 +75,11 @@ function getOneAvatar(contributor: Contributor, isAuthor: boolean, onlyAuthor: b
                         : <AvatarWithDescription contributor={contributor} avatarSize={AvatarSizes.SMALL}/>
                 }
             </div>
-            <div>{getName(contributor, isAuthor)}</div>
+            <div>
+                <Link url={contributor.url}>
+                    {getName(contributor, isAuthor)}
+                </Link>
+            </div>
         </div>
     );
 }

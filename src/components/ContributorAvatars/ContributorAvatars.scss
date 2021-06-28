@@ -138,7 +138,7 @@ $avatarWrapperBigSize: 33px;
         line-height: $textLineHeight;
     }
 
-    &__popup {
+    &__popup.dc-popup {
         box-shadow: 0px 3px 24px rgba(0, 0, 0, 0.2);
         @include disable-link-styles;
 

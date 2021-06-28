@@ -27,7 +27,6 @@
 
     &__content {
         display: flex;
-        align-items: center;
         justify-content: space-between;
         flex: 1;
         max-width: 1440px;
@@ -36,6 +35,7 @@
     &__control {
         display: flex;
         flex-direction: column;
+        width: 48%;
 
         &_left {
             align-items: flex-start;
@@ -47,6 +47,7 @@
 
         & svg {
             margin-top: -1px;
+            min-width: 16px;
         }
 
         &_left svg {
@@ -70,7 +71,7 @@
     &__link {
         display: flex;
         align-items: center;
-        height: 32px;
+        min-height: 32px;
         color: var(--yc-color-text-primary);
         font-weight: 500;
     }

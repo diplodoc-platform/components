@@ -2,7 +2,7 @@
 
 .contributors {
     display: flex;
-    margin: 10px 0;
+    margin: 0 0 32px;
 
     &__title {
         @include contributors-text();

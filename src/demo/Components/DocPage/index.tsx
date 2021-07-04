@@ -10,7 +10,7 @@ import {
     Theme,
     DividerControl,
 } from '../../../index';
-import {DEFAULT_SETTINGS, DISLIKE_VARIANTS} from '../../../constants';
+import {DEFAULT_SETTINGS} from '../../../constants';
 import {getIsMobile} from '../../controls/settings';
 import getLangControl from '../../controls/lang';
 import getVcsControl from '../../controls/vcs';
@@ -73,7 +73,6 @@ const DocPageDemo = () => {
         lang,
         onChangeLang,
         router,
-        dislikeVariants: DISLIKE_VARIANTS[lang],
         headerHeight: fullScreen ? 0 : 64,
         fullScreen,
         onChangeFullScreen,

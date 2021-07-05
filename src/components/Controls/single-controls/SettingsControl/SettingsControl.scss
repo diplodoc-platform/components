@@ -21,4 +21,8 @@
             @include text-size(body3);
         }
     }
+
+    &__popup {
+        width: 230px;
+    }
 }

@@ -68,6 +68,12 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
         this.addBodyObserver();
     }
 
+    componentDidUpdate(prevProps: DocPageInnerProps): void {
+        if (prevProps.singlePage !== this.props.singlePage) {
+            this.setState({loading: true});
+        }
+    }
+
     componentWillUnmount(): void {
         if (this.bodyObserver) {
             this.bodyObserver.disconnect();
@@ -230,11 +236,6 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
         }
 
         return showMiniToc;
-    }
-
-    get isSinglePageSupported() {
-        const {onChangeSinglePage} = this.props;
-        return typeof onChangeSinglePage === 'function';
     }
 
     private renderBreadcrumbs() {
@@ -443,16 +444,6 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
         return Boolean(editable && vcsUrl && vcsType);
     }
 
-    private onChangeSinglePage = (value: boolean) => {
-        const {onChangeSinglePage} = this.props;
-
-        this.setState({loading: true}, () => {
-            if (typeof onChangeSinglePage === 'function') {
-                onChangeSinglePage(value);
-            }
-        });
-    };
-
     private getIsVerticalView = () => {
         const {fullScreen} = this.props;
         return !this.showMiniToc || fullScreen;
@@ -474,6 +465,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             onChangeShowMiniToc,
             onChangeTheme,
             onChangeTextSize,
+            onChangeSinglePage,
             onSendFeedback,
             isLiked,
             isDisliked,
@@ -482,7 +474,6 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
 
         const showEditControl = !fullScreen && this.isEditable();
         const isVerticalView = this.getIsVerticalView();
-        const onChangeSinglePage = this.isSinglePageSupported ? this.onChangeSinglePage : undefined;
 
         return (
             <div className={b('controls', {vertical: isVerticalView})}>

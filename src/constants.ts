@@ -24,5 +24,4 @@ export const DEFAULT_SETTINGS = {
     textSize: TextSizes.M,
     isLiked: false,
     isDisliked: false,
-    dislikeVariants: DISLIKE_VARIANTS[Lang.Ru],
 };

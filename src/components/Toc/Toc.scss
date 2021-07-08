@@ -93,6 +93,7 @@ $leftOffset: 57px;
             &-text {
                 position: relative;
                 padding: 7px 12px 7px 20px;
+                word-break: break-word;
 
                 color: var(--yc-color-text-primary);
 

@@ -10,6 +10,7 @@ import {Control} from '../Control';
 import {DividerControl} from '../Controls/single-controls';
 import {PopperPosition} from '../../hooks';
 import {ButtonThemes, FeedbackSendData, FeedbackType, Lang} from '../../models';
+import {DISLIKE_VARIANTS} from '../../constants';
 
 import LikeIcon from '../../../assets/icons/like.svg';
 import DislikeIcon from '../../../assets/icons/dislike.svg';
@@ -50,7 +51,7 @@ const Feedback: React.FC<FeedbackInnerProps> = (props) => {
         singlePage,
         isLiked,
         isDisliked,
-        dislikeVariants,
+        dislikeVariants = DISLIKE_VARIANTS[lang],
         isVerticalView,
         onSendFeedback,
         view,

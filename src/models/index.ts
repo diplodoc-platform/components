@@ -87,6 +87,7 @@ export interface DocMeta {
     editable?: boolean;
     contributors?: Contributor[];
     author?: Contributor;
+    __system?: Record<string, unknown>
 }
 
 export interface TocData {

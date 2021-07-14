@@ -52,8 +52,10 @@ export interface DocLeadingData {
 
 export interface DocLeadingLinks {
     title: string;
-    description: string;
-    href: string;
+    description?: string;
+    href?: string;
+    imgSrc?: string;
+    links?: DocLeadingLinks[];
 }
 
 export enum Vcs {

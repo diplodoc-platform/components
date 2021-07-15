@@ -31,6 +31,7 @@ export interface DocPageProps extends DocPageData, Partial<DocSettings> {
     headerHeight?: number;
     tocTitleIcon?: React.ReactNode;
     hideTocHeader?: boolean;
+    hideToc?: boolean;
 
     renderLoader?: () => React.ReactNode;
     convertPathToOriginalArticle?: (path: string) => string;
@@ -91,6 +92,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             singlePage,
             tocTitleIcon,
             hideTocHeader,
+            hideToc,
         } = this.props;
 
         const asideMiniToc = this.renderAsideMiniToc();
@@ -114,6 +116,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                 tocTitleIcon={tocTitleIcon}
                 wideFormat={wideFormat}
                 hideTocHeader={hideTocHeader}
+                hideToc={hideToc}
                 loading={this.state.loading}
             >
                 <DocLayout.Center>

@@ -21,6 +21,7 @@ export interface DocLeadingPageProps extends DocLeadingPageData {
     headerHeight?: number;
     wideFormat?: boolean;
     hideTocHeader?: boolean;
+    hideToc?: boolean;
     tocTitleIcon?: React.ReactNode;
 }
 
@@ -91,7 +92,7 @@ export const Links: React.FC<DocLinksProps> = ({links, isRoot}) => {
 
 export const DocLeadingPage: React.FC<DocLeadingPageProps> = ({
     data: {title, description, links},
-    toc, router, lang, headerHeight, wideFormat = defaultWideFormat, hideTocHeader, tocTitleIcon,
+    toc, router, lang, headerHeight, wideFormat = defaultWideFormat, hideTocHeader, hideToc, tocTitleIcon,
 }) => {
     const modes = {
         'regular-page-width': !wideFormat,
@@ -105,6 +106,7 @@ export const DocLeadingPage: React.FC<DocLeadingPageProps> = ({
             headerHeight={headerHeight}
             className={b(modes)}
             hideTocHeader={hideTocHeader}
+            hideToc={hideToc}
             tocTitleIcon={tocTitleIcon}
         >
             <span/>

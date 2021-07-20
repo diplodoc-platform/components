@@ -46,13 +46,19 @@ const renderLeft = (data: DocLeadingLinks, isRoot?: boolean) => {
 
 const renderRight = (data: DocLeadingLinks, isRoot?: boolean) => {
     const {title, description, href, links} = data;
+    let titleContent;
 
-    let titleContent = href
-        ? <a href={href} className={b('links-link')}>{title}</a>
-        : title;
-    titleContent = isRoot
-        ? <h2 className={b('links-title', {root: isRoot})}>{titleContent}</h2>
-        : <div className={b('links-title')}>{titleContent}</div>;
+    if (href) {
+        titleContent = <a href={href} className={b('links-link')}>{title}</a>;
+    } else {
+        titleContent = title;
+    }
+
+    if (isRoot) {
+        titleContent = <h2 className={b('links-title', {root: isRoot})}>{titleContent}</h2>;
+    } else {
+        titleContent = <div className={b('links-title')}>{titleContent}</div>;
+    }
 
 
     return (

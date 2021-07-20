@@ -1,8 +1,6 @@
 import React, {useState} from 'react';
 import cn from 'bem-cn-lite';
-import {
-    DocLeadingPage,
-} from '../../../index';
+import {DocLeadingPage} from '../../../index';
 import Header from '../Header/Header';
 import {DEFAULT_SETTINGS} from '../../../constants';
 import {getIsMobile} from '../../controls/settings';

@@ -42,7 +42,7 @@
         &_root {
             flex-direction: row;
             margin-top: 70px;
-            margin-bottom: -20px;
+            margin-bottom: -$blockMarginBottomLarge;
         }
     }
 
@@ -57,7 +57,7 @@
             max-width: 400px;
             width: calc(50% - 20px);
             padding-bottom: 40px;
-            margin-bottom: 20px;
+            margin-bottom: $blockMarginBottomLarge;
             border-bottom: 1px solid var(--yc-color-line-generic);
         }
     }

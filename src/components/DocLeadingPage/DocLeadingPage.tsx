@@ -1,7 +1,7 @@
 import React from 'react';
 import block from 'bem-cn-lite';
 
-import {DocLeadingPageData, Router, Lang} from '../../models';
+import {DocLeadingPageData, DocLeadingLinks, Router, Lang} from '../../models';
 import {DocLayout} from '../DocLayout';
 import {DocPageTitle} from '../DocPageTitle';
 import {Text} from '../Text';
@@ -21,11 +21,85 @@ export interface DocLeadingPageProps extends DocLeadingPageData {
     headerHeight?: number;
     wideFormat?: boolean;
     hideTocHeader?: boolean;
+    hideToc?: boolean;
+    tocTitleIcon?: React.ReactNode;
 }
 
-export const DocLeadingPage: React.FC<DocLeadingPageProps> = (
-    {data: {title, description, links}, toc, router, lang, headerHeight, wideFormat = defaultWideFormat, hideTocHeader},
-) => {
+export interface DocLinkProps {
+    data: DocLeadingLinks;
+    isRoot?: boolean;
+}
+
+const renderLeft = (data: DocLeadingLinks, isRoot?: boolean) => {
+    const {imgSrc} = data;
+
+    if (!imgSrc || !isRoot) {
+        return null;
+    }
+
+    return (
+        <div className={b('links-left')}>
+            <img src={imgSrc}/>
+        </div>
+    );
+};
+
+const renderRight = (data: DocLeadingLinks, isRoot?: boolean) => {
+    const {title, description, href, links} = data;
+    let titleContent;
+
+    if (href) {
+        titleContent = <a href={href} className={b('links-link')}>{title}</a>;
+    } else {
+        titleContent = title;
+    }
+
+    if (isRoot) {
+        titleContent = <h2 className={b('links-title', {root: isRoot})}>{titleContent}</h2>;
+    } else {
+        titleContent = <div className={b('links-title')}>{titleContent}</div>;
+    }
+
+
+    return (
+        <div className={b('links-right')}>
+            {titleContent}
+            {description && isRoot ? <p className={b('links-description')}>{description}</p> : null}
+            <Links links={links}/>
+        </div>
+    );
+};
+
+export const Link: React.FC<DocLinkProps> = ({data, isRoot}) => {
+    return (
+        <li className={b('links-item', {root: isRoot})}>
+            {renderLeft(data, isRoot)}
+            {renderRight(data, isRoot)}
+        </li>
+    );
+};
+
+export interface DocLinksProps {
+    links?: DocLeadingLinks[];
+    isRoot?: boolean;
+}
+
+export const Links: React.FC<DocLinksProps> = ({links, isRoot}) => {
+    if (!links || !links.length) {
+        return null;
+    }
+
+    return (
+        <ul className={b('links', {root: isRoot})}>
+            {links.map((data, index) => <Link key={index} data={data} isRoot={isRoot}/>)}
+        </ul>
+    );
+};
+
+export const DocLeadingPage: React.FC<DocLeadingPageProps> = ({
+    data: {title, description, links},
+    toc, router, lang, headerHeight, wideFormat = defaultWideFormat, hideTocHeader, hideToc, tocTitleIcon,
+}) => {
     const modes = {
         'regular-page-width': !wideFormat,
     };
@@ -38,6 +112,8 @@ export const DocLeadingPage: React.FC<DocLeadingPageProps> = (
             headerHeight={headerHeight}
             className={b(modes)}
             hideTocHeader={hideTocHeader}
+            hideToc={hideToc}
+            tocTitleIcon={tocTitleIcon}
         >
             <span/>
             <DocLayout.Center>
@@ -48,16 +124,7 @@ export const DocLeadingPage: React.FC<DocLeadingPageProps> = (
                     <div className={b('description')}>
                         <Text data={description} html block/>
                     </div>
-                    <ul className={b('links')}>
-                        {links.map(({title: linkTitle, description: linkDescription, href}, index) => (
-                            <li key={index} className={b('links-item')}>
-                                <h2 className={b('links-title')}>
-                                    <a href={href} className={b('links-link')}>{linkTitle}</a>
-                                </h2>
-                                <p className={b('links-description')}>{linkDescription}</p>
-                            </li>
-                        ))}
-                    </ul>
+                    <Links links={links} isRoot/>
                 </main>
             </DocLayout.Center>
         </DocLayout>

@@ -1,15 +1,12 @@
 import React, {useCallback, useState} from 'react';
 import cn from 'bem-cn-lite';
 import {
-    ControlSizes,
     DocPage,
     FeedbackSendData,
     FeedbackType,
-    LangControl,
-    FullScreenControl,
     Theme,
-    DividerControl,
 } from '../../../index';
+import Header from '../Header/Header';
 import {DEFAULT_SETTINGS} from '../../../constants';
 import {getIsMobile} from '../../controls/settings';
 import getLangControl from '../../controls/lang';
@@ -18,7 +15,6 @@ import {getContent} from './data';
 
 import {join} from 'path';
 
-const headBlock = cn('Header');
 const layoutBlock = cn('Layout');
 
 function updateBodyClassName(theme: Theme) {
@@ -111,27 +107,12 @@ const DocPageDemo = () => {
     return (
         <div className={isMobile === 'true' ? 'mobile' : 'desktop'}>
             {props.fullScreen ? null :
-                <div className={layoutBlock('header')}>
-                    <div className={headBlock()}>
-                        <FullScreenControl
-                            lang={lang}
-                            value={fullScreen}
-                            onChange={onChangeFullScreen}
-                            size={ControlSizes.M}
-                            className={headBlock('control')}
-                        />
-                        <DividerControl
-                            size={ControlSizes.M}
-                            className={headBlock('divider')}
-                        />
-                        <LangControl
-                            lang={lang}
-                            onChangeLang={onChangeLang}
-                            size={ControlSizes.M}
-                            className={headBlock('control')}
-                        />
-                    </div>
-                </div>
+                <Header
+                    lang={lang}
+                    fullScreen={fullScreen}
+                    onChangeFullScreen={onChangeFullScreen}
+                    onChangeLang={onChangeLang}
+                />
             }
             <div className={layoutBlock('content')}>
                 <DocPage

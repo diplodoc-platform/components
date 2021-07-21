@@ -10,3 +10,9 @@ stories.add('DocPage', () => {
         <Components.DocPage/>
     );
 });
+
+stories.add('DocLeadingPage', () => {
+    return (
+        <Components.DocLeadingPage/>
+    );
+});

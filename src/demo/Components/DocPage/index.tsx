@@ -35,10 +35,10 @@ const DocPageDemo = () => {
     const router = {pathname: '/docs/overview/concepts/quotas-limits'};
 
     const [fullScreen, onChangeFullScreen] = useState(DEFAULT_SETTINGS.fullScreen);
-    const [wideFormat, onChangeWideFormat] = useState(DEFAULT_SETTINGS.wideFormat);
-    const [showMiniToc, onChangeShowMiniToc] = useState(DEFAULT_SETTINGS.showMiniToc);
-    const [theme, onChangeTheme] = useState(DEFAULT_SETTINGS.theme);
-    const [textSize, onChangeTextSize] = useState(DEFAULT_SETTINGS.textSize);
+    const [wideFormat] = useState(DEFAULT_SETTINGS.wideFormat);
+    const [showMiniToc] = useState(DEFAULT_SETTINGS.showMiniToc);
+    const [theme] = useState(DEFAULT_SETTINGS.theme);
+    const [textSize] = useState(DEFAULT_SETTINGS.textSize);
     const [singlePage, onChangeSinglePage] = useState(DEFAULT_SETTINGS.singlePage);
     const [isLiked, setIsLiked] = useState(DEFAULT_SETTINGS.isLiked);
     const [isDisliked, setIsDisliked] = useState(DEFAULT_SETTINGS.isDisliked);
@@ -63,31 +63,20 @@ const DocPageDemo = () => {
 
     updateBodyClassName(theme);
 
-    const props = {
+    const pageProps = {
         ...getContent(lang, singlePage),
         vcsType,
         lang,
-        onChangeLang,
         router,
         headerHeight: fullScreen ? 0 : 64,
         fullScreen,
-        onChangeFullScreen,
         wideFormat,
-        onChangeWideFormat,
         showMiniToc,
-        onChangeShowMiniToc,
         theme,
-        onChangeTheme: (themeValue: Theme) => {
-            updateBodyClassName(themeValue);
-            onChangeTheme(themeValue);
-        },
         textSize,
-        onChangeTextSize,
         singlePage,
-        onChangeSinglePage,
         isLiked,
         isDisliked,
-        onSendFeedback,
     };
 
 
@@ -99,24 +88,32 @@ const DocPageDemo = () => {
     );
     const convertPathToOriginalArticle = (path: string) => join('prefix', path);
     const generatePathToVcs = (path: string) => join(
-        `https://github.com/yandex-cloud/docs/blob/master/${props.lang}`,
+        `https://github.com/yandex-cloud/docs/blob/master/${pageProps.lang}`,
         path,
     );
     const renderLoader = () => 'Loading...';
 
     return (
         <div className={isMobile === 'true' ? 'mobile' : 'desktop'}>
-            {props.fullScreen ? null :
+            {pageProps.fullScreen ? null :
                 <Header
                     lang={lang}
                     fullScreen={fullScreen}
+                    singlePage={singlePage}
                     onChangeFullScreen={onChangeFullScreen}
                     onChangeLang={onChangeLang}
+                    onSendFeedback={onSendFeedback}
+                    isLiked={isLiked}
+                    isDisliked={isDisliked}
+                    vcsType={vcsType}
+                    onChangeSinglePage={onChangeSinglePage}
                 />
             }
             <div className={layoutBlock('content')}>
                 <DocPage
-                    {...props}
+                    {...pageProps}
+                    hideTocHeader
+                    hideControls
                     tocTitleIcon={tocTitleIcon}
                     convertPathToOriginalArticle={convertPathToOriginalArticle}
                     generatePathToVcs={generatePathToVcs}

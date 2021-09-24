@@ -22,18 +22,18 @@ const b = block('dc-controls');
 
 export interface ControlsProps {
     lang: Lang;
-    fullScreen: boolean;
-    singlePage: boolean;
-    wideFormat: boolean;
-    showMiniToc: boolean;
-    theme: Theme;
-    textSize: TextSizes;
-    vcsUrl: string;
-    vcsType: string;
-    showEditControl: boolean;
-    isLiked: boolean;
-    isDisliked: boolean;
-    dislikeVariants: string[];
+    fullScreen?: boolean;
+    singlePage?: boolean;
+    wideFormat?: boolean;
+    showMiniToc?: boolean;
+    theme?: Theme;
+    textSize?: TextSizes;
+    vcsUrl?: string;
+    vcsType?: string;
+    showEditControl?: boolean;
+    isLiked?: boolean;
+    isDisliked?: boolean;
+    dislikeVariants?: string[];
     onChangeLang?: (lang: Lang) => void;
     onChangeFullScreen?: (value: boolean) => void;
     onChangeSinglePage?: (value: boolean) => void;
@@ -43,7 +43,7 @@ export interface ControlsProps {
     onChangeTextSize?: (textSize: TextSizes) => void;
     onSendFeedback?: (data: FeedbackSendData) => void;
     className?: string;
-    isVerticalView: boolean;
+    isVerticalView?: boolean;
     controlSize?: ControlSizes;
 }
 

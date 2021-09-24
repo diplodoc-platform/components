@@ -8,8 +8,8 @@ import FullScreenClickedIcon from '../../../../assets/icons/full-screen-clicked.
 import FullScreenIcon from '../../../../assets/icons/full-screen.svg';
 
 interface ControlProps {
-    value: boolean;
     lang: Lang;
+    value?: boolean;
     onChange?: (value: boolean) => void;
     isVerticalView?: boolean;
     className?: string;

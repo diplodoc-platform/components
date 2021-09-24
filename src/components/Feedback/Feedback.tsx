@@ -26,10 +26,10 @@ export enum FeedbackView {
 
 export interface FeedbackProps {
     lang: Lang;
-    singlePage: boolean;
-    isLiked: boolean;
-    isDisliked: boolean;
-    dislikeVariants: string[];
+    singlePage?: boolean;
+    isLiked?: boolean;
+    isDisliked?: boolean;
+    dislikeVariants?: string[];
     isVerticalView?: boolean;
     onSendFeedback?: (data: FeedbackSendData) => void;
     view?: FeedbackView;

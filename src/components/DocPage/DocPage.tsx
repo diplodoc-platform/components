@@ -32,7 +32,7 @@ export interface DocPageProps extends DocPageData, Partial<DocSettings> {
     tocTitleIcon?: React.ReactNode;
     hideTocHeader?: boolean;
     hideToc?: boolean;
-
+    hideControls?: boolean;
     renderLoader?: () => React.ReactNode;
     convertPathToOriginalArticle?: (path: string) => string;
     generatePathToVcs?: (path: string) => string;
@@ -473,7 +473,12 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             isLiked,
             isDisliked,
             dislikeVariants,
+            hideControls,
         } = this.props;
+
+        if (hideControls) {
+            return null;
+        }
 
         const showEditControl = !fullScreen && this.isEditable();
         const isVerticalView = this.getIsVerticalView();

@@ -8,8 +8,8 @@ import SinglePageIcon from '../../../../assets/icons/single-page.svg';
 import SinglePageClickedIcon from '../../../../assets/icons/single-page-clicked.svg';
 
 interface ControlProps {
-    value: boolean;
     lang: Lang;
+    value?: boolean;
     onChange?: (value: boolean) => void;
     isVerticalView?: boolean;
     className?: string;

@@ -376,7 +376,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
         const emptyHeaderOrSinglePage = headings.length === 0 || toc.singlePage;
         const soloHeaderWithChildren = headings.length === 1 && headings[0].items && headings[0].items.length > 1;
 
-        if (emptyHeaderOrSinglePage || !(soloHeaderWithChildren || headings.length > 2)) {
+        if (emptyHeaderOrSinglePage || !(soloHeaderWithChildren || headings.length >= 2)) {
             return null;
         }
 

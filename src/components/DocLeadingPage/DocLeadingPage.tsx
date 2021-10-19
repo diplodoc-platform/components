@@ -98,7 +98,7 @@ export const Links: React.FC<DocLinksProps> = ({links, isRoot}) => {
 
 export const DocLeadingPage: React.FC<DocLeadingPageProps> = ({
     data: {title, description, links},
-    toc, router, lang, headerHeight, wideFormat = defaultWideFormat, hideTocHeader, hideToc, tocTitleIcon,
+    toc, router, lang, headerHeight, wideFormat = defaultWideFormat, hideTocHeader, hideToc, tocTitleIcon, footer,
 }) => {
     const modes = {
         'regular-page-width': !wideFormat,
@@ -126,6 +126,7 @@ export const DocLeadingPage: React.FC<DocLeadingPageProps> = ({
                     </div>
                     <Links links={links} isRoot/>
                 </main>
+                {footer}
             </DocLayout.Center>
         </DocLayout>
     );

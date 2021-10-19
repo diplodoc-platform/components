@@ -93,6 +93,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             tocTitleIcon,
             hideTocHeader,
             hideToc,
+            footer,
         } = this.props;
 
         const asideMiniToc = this.renderAsideMiniToc();
@@ -133,6 +134,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                         {this.renderTocNavPanel()}
                     </div>
                     {this.renderLoader()}
+                    {footer}
                 </DocLayout.Center>
                 <DocLayout.Right>
                     {/* This key allows recalculating the offset for the mini-toc for Safari */}

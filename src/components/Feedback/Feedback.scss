@@ -25,15 +25,23 @@ $popupWidth: 320px;
     }
 
     &__container-row {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        padding: 28px;
+
+        border: 1px solid var(--yc-color-line-generic);
+        border-radius: 8px;
+
         &_view_wide {
             display: flex;
             align-items: center;
         }
     }
 
-    &__divider {
-        margin: 16px 0;
-    }
+    // &__divider {
+    //     margin: 16px 0;
+    // }
 
     &__like-button {
         &_active {

@@ -47,10 +47,6 @@
             }
         }
 
-        &:last-child {
-            padding-bottom: 30px;
-        }
-
         &_active > #{$class}__section-link {
             color: var(--yc-color-text-primary);
             border-left-color: var(--yc-color-text-primary);

@@ -93,6 +93,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             tocTitleIcon,
             hideTocHeader,
             hideToc,
+            footer,
         } = this.props;
 
         const asideMiniToc = this.renderAsideMiniToc();
@@ -118,6 +119,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                 hideTocHeader={hideTocHeader}
                 hideToc={hideToc}
                 loading={this.state.loading}
+                footer={footer}
             >
                 <DocLayout.Center>
                     {this.renderBreadcrumbs()}

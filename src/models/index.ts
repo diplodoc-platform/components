@@ -36,6 +36,7 @@ export interface DocSettings {
 export interface DocBasePageData {
     toc: TocData;
     leading?: boolean;
+    footer?: React.ReactNode;
 }
 
 export interface DocLeadingPageData extends DocBasePageData {

@@ -7,7 +7,6 @@ import {Button} from '../Button';
 import {Checkbox} from '../Checkbox';
 import {TextArea} from '../TextArea';
 import {Control} from '../Control';
-import {DividerControl} from '../Controls/single-controls';
 import {PopperPosition} from '../../hooks';
 import {ButtonThemes, FeedbackSendData, FeedbackType, Lang} from '../../models';
 import {DISLIKE_VARIANTS} from '../../constants';
@@ -230,7 +229,6 @@ const Feedback: React.FC<FeedbackInnerProps> = (props) => {
     const renderWideFeedbackControls = useCallback(() => {
         return (
             <div className={b('container', {view})}>
-                <DividerControl className={b('divider')} isVerticalView={false}/>
                 <div className={b('container-row', {view})}>
                     <h3 className={b('title', {view})}>{t('main-question')}</h3>
                     <div className={b('controls', {view})}>

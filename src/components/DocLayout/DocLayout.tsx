@@ -27,6 +27,7 @@ export interface DocLayoutProps {
     hideToc?: boolean;
     className?: string;
     loading?: boolean;
+    footer?: React.ReactNode;
 }
 
 export class DocLayout extends React.Component<DocLayoutProps> {
@@ -43,6 +44,7 @@ export class DocLayout extends React.Component<DocLayoutProps> {
             wideFormat = false,
             hideRight = false,
             loading = false,
+            footer = null,
         } = this.props;
         let left, center, right;
         const modes = {
@@ -72,6 +74,8 @@ export class DocLayout extends React.Component<DocLayoutProps> {
 
         return (
             <div className={b(null, className)}>
+                {/* layout direction reverses on mobiles */}
+                <div className={b('mobile-only')}>{footer}</div>
                 {fullScreen ? null :
                     <div className={b('left', modes)}>
                         {this.renderToc()}
@@ -80,6 +84,7 @@ export class DocLayout extends React.Component<DocLayoutProps> {
                 }
                 <div className={b('center', modes)}>
                     {center}
+                    <div className={b('desktop-only')}>{footer}</div>
                 </div>
                 {fullScreen || hideRight ? null :
                     <div className={b('right', modes)}>

@@ -63,6 +63,18 @@
         @include text-size(body-1-short);
     }
 
+    &__desktop-only {
+        .mobile & {
+            display: none;
+        }
+    }
+
+    &__mobile-only {
+        .desktop & {
+            display: none;
+        }
+    }
+
     .mobile & {
         flex-direction: column-reverse;
 

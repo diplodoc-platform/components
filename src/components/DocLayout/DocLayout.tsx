@@ -74,7 +74,7 @@ export class DocLayout extends React.Component<DocLayoutProps> {
 
         return (
             <div className={b(null, className)}>
-                // layout direction reverses on mobiles
+                {/* layout direction reverses on mobiles */}
                 <div className={b('mobile-only')}>{footer}</div>
                 {fullScreen ? null :
                     <div className={b('left', modes)}>

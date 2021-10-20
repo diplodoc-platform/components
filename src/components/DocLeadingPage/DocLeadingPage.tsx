@@ -114,6 +114,7 @@ export const DocLeadingPage: React.FC<DocLeadingPageProps> = ({
             hideTocHeader={hideTocHeader}
             hideToc={hideToc}
             tocTitleIcon={tocTitleIcon}
+            footer={footer}
         >
             <span/>
             <DocLayout.Center>
@@ -126,7 +127,6 @@ export const DocLeadingPage: React.FC<DocLeadingPageProps> = ({
                     </div>
                     <Links links={links} isRoot/>
                 </main>
-                {footer}
             </DocLayout.Center>
         </DocLayout>
     );

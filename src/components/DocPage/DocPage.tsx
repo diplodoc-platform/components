@@ -119,6 +119,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                 hideTocHeader={hideTocHeader}
                 hideToc={hideToc}
                 loading={this.state.loading}
+                footer={footer}
             >
                 <DocLayout.Center>
                     {this.renderBreadcrumbs()}
@@ -134,7 +135,6 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                         {this.renderTocNavPanel()}
                     </div>
                     {this.renderLoader()}
-                    {footer}
                 </DocLayout.Center>
                 <DocLayout.Right>
                     {/* This key allows recalculating the offset for the mini-toc for Safari */}

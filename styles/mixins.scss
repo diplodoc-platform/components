@@ -48,7 +48,7 @@
     @include text-size(display3);
     font-weight: 500;
 
-    .mobile & {
+    @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
         @include text-size(display2);
     }
 }
@@ -88,4 +88,28 @@
     font-weight: 400;
     margin-right: 5px;
     align-self: center;
+}
+
+@mixin desktop-only() {
+    @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
+        display: none;
+    }
+}
+
+@mixin desktop-tablet-only() {
+    @media (max-width: map-get($screenBreakpoints, 'sm') - 1) {
+        display: none;
+    }
+}
+
+@mixin mobile-tablet-only() {
+    @media (min-width: map-get($screenBreakpoints, 'md')) {
+        display: none;
+    }
+}
+
+@mixin mobile-only() {
+    @media (min-width: map-get($screenBreakpoints, 'sm')) {
+        display: none;
+    }
 }

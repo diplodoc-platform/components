@@ -175,7 +175,7 @@
         }
     }
 
-    .mobile & {
+    @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
         &__main {
             padding: 20px 20px 0;
         }

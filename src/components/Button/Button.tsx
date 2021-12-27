@@ -1,4 +1,4 @@
-import React, {ReactElement} from 'react';
+import React, {ReactElement, MouseEvent} from 'react';
 import block from 'bem-cn-lite';
 
 import {ControlSizes, ButtonThemes} from '../../models';
@@ -8,7 +8,7 @@ import './Button.scss';
 const b = block('dc-button');
 
 export interface ButtonProps {
-    onClick?: () => void;
+    onClick?: (e: MouseEvent) => void;
     onMouseOver?: () => void;
     onMouseLeave?: () => void;
     className?: string;

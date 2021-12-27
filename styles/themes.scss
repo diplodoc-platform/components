@@ -2,6 +2,9 @@
 @import './themes/dark';
 
 .yc-root {
+    --dc-text-highlight: var(--yc-color-base-warning-heavy);
+    --dc-text-highlight-selected: #ffab3b;
+
     &_theme_light {
         @include yc-theme-light;
 

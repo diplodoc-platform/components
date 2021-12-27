@@ -87,3 +87,5 @@ export function createElementFromHTML(htmlString: string) {
 
     return div.firstChild as Node;
 }
+
+export const getRandomKey = () => Math.random();

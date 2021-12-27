@@ -27,6 +27,16 @@ body.yc-root {
         color: var(--yc-color-text-primary);
     }
 
+    &__control-input {
+        height: 28px;
+        border-radius: 4px;
+        border: 1px solid var(--yc-color-line-generic);
+        margin-right: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
     &__divider {
         margin: 0 4px;
     }

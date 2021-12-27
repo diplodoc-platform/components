@@ -50,12 +50,14 @@
     "pre-commit": "lint-staged"
   },
   "dependencies": {
-    "@popperjs/core": "2.11.2",
-    "bem-cn-lite": "4.1.0",
-    "i18next": "19.9.2",
-    "lodash": "4.17.21",
+    "@popperjs/core": "^2.11.2",
+    "i18next": "^19.9.2",
+    "lodash": "^4.17.21",
+    "mark.ts": "^1.0.5",
+    "react-hotkeys-hook": "^3.3.1",
+    "react-popper": "^2.2.5",
+    "bem-cn-lite": "4.1.0", ,
     "react-i18next": "11.15.6",
-    "react-popper": "2.2.5",
     "scroll-into-view-if-needed": "2.2.29"
   },
   "peerDependencies": {

@@ -60,5 +60,11 @@
     "button-like-text": "Yes",
     "button-dislike-text": "No",
     "main-question": "Was the article helpful?"
+  },
+  "search-bar": {
+    "search-query-label": "Found on request",
+    "close": "Close",
+    "prev": "Previous",
+    "next": "Next"
   }
 }

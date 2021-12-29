@@ -11,6 +11,7 @@ import {DEFAULT_SETTINGS} from '../../../constants';
 import {getIsMobile} from '../../controls/settings';
 import getLangControl from '../../controls/lang';
 import getVcsControl from '../../controls/vcs';
+import {getIsBookmarked} from '../../decorators/bookmark';
 import {getContent} from './data';
 
 import {join} from 'path';
@@ -32,6 +33,7 @@ const DocPageDemo = () => {
     const langValue = getLangControl();
     const vcsType = getVcsControl();
     const isMobile = getIsMobile();
+    const isBookmarked = getIsBookmarked();
     const router = {pathname: '/docs/overview/concepts/quotas-limits'};
 
     const [fullScreen, onChangeFullScreen] = useState(DEFAULT_SETTINGS.fullScreen);
@@ -42,6 +44,7 @@ const DocPageDemo = () => {
     const [singlePage, onChangeSinglePage] = useState(DEFAULT_SETTINGS.singlePage);
     const [isLiked, setIsLiked] = useState(DEFAULT_SETTINGS.isLiked);
     const [isDisliked, setIsDisliked] = useState(DEFAULT_SETTINGS.isDisliked);
+    const [isPinned, setIsPinned] = useState(DEFAULT_SETTINGS.isPinned);
     const [lang, onChangeLang] = useState(langValue);
 
     const onSendFeedback = useCallback((data: FeedbackSendData) => {
@@ -61,7 +64,19 @@ const DocPageDemo = () => {
         console.log('Feedback:', data);
     }, []);
 
+    const onChangeBookmarkPage = useCallback((data: boolean) => {
+        setIsPinned(!data);
+        console.log(`This page pinned: ${data}`);
+    }, []);
+
     updateBodyClassName(theme);
+
+    const enableDisableBookmarks = () => {
+        return isBookmarked === 'true' ? {
+            bookmarkedPage: isPinned,
+            onChangeBookmarkPage: onChangeBookmarkPage,
+        } : undefined;
+    };
 
     const props = {
         ...getContent(lang, singlePage),
@@ -88,6 +103,7 @@ const DocPageDemo = () => {
         isLiked,
         isDisliked,
         onSendFeedback,
+        ...enableDisableBookmarks(),
     };
 
 

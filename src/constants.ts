@@ -24,4 +24,5 @@ export const DEFAULT_SETTINGS = {
     textSize: TextSizes.M,
     isLiked: false,
     isDisliked: false,
+    isPinned: false,
 };

@@ -26,6 +26,7 @@ export interface DocSettings {
     singlePage?: boolean;
     wideFormat?: boolean;
     showMiniToc?: boolean;
+    bookmarkedPage?: boolean;
     theme?: Theme;
     textSize?: TextSizes;
     isLiked?: boolean;

@@ -41,6 +41,7 @@ export interface DocPageProps extends DocPageData, Partial<DocSettings> {
     onChangeSinglePage?: (value: boolean) => void;
     onChangeWideFormat?: (value: boolean) => void;
     onChangeShowMiniToc?: (value: boolean) => void;
+    onChangeBookmarkPage?: (value: boolean) => void;
     onChangeTheme?: (theme: Theme) => void;
     onChangeTextSize?: (textSize: TextSizes) => void;
     onSendFeedback?: (data: FeedbackSendData) => void;
@@ -258,14 +259,19 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
     }
 
     private renderTitle() {
-        const {title, meta} = this.props;
+        const {title, meta, bookmarkedPage, onChangeBookmarkPage} = this.props;
 
         if (!title) {
             return null;
         }
 
         return (
-            <DocPageTitle stage={meta.stage} className={b('title')}>
+            <DocPageTitle
+                stage={meta.stage}
+                className={b('title')}
+                bookmarkedPage={bookmarkedPage}
+                onChangeBookmarkPage={onChangeBookmarkPage}
+            >
                 <HTML>{title}</HTML>
             </DocPageTitle>
         );

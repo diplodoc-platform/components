@@ -318,7 +318,14 @@ const Feedback: React.FC<FeedbackInnerProps> = (props) => {
                 <p className={b('popup-text')}>{t('success-text')}</p>
             </Popup>
         );
-    }, [t, hideFeedbackPopups, showLikeSuccessPopup, showDislikeSuccessPopup, getPopupPosition]);
+    }, [
+        showLikeSuccessPopup,
+        showDislikeSuccessPopup,
+        hideFeedbackPopups,
+        view,
+        getPopupPosition,
+        t,
+    ]);
 
     const renderDislikeVariantsList = useCallback(() => {
         if (!dislikeVariants.length) {
@@ -403,7 +410,13 @@ const Feedback: React.FC<FeedbackInnerProps> = (props) => {
                 {renderDislikeVariantsContent()}
             </Popup>
         );
-    }, [showDislikeVariantsPopup, getPopupPosition, onOutsideClick, renderDislikeVariantsContent]);
+    }, [
+        showDislikeVariantsPopup,
+        onOutsideClick,
+        view,
+        getPopupPosition,
+        renderDislikeVariantsContent,
+    ]);
 
     if (singlePage || !onSendFeedback) {
         return null;

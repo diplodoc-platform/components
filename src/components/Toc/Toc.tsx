@@ -108,6 +108,7 @@ class Toc extends React.Component<TocProps, TocState> {
         const {singlePage} = this.props;
         const {flatToc, filteredItemIds, filterName, activeId} = this.state;
 
+        /* eslint-disable complexity */
         return (
             <ul className={b('list')}>
                 {items.map(({id, name, href, items: subItems}, index) => {
@@ -213,6 +214,7 @@ class Toc extends React.Component<TocProps, TocState> {
                 })}
             </ul>
         );
+        /* eslint-enable complexity */
     }
 
     private renderEmpty(text: string) {

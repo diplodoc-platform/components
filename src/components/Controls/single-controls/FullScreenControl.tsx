@@ -33,7 +33,7 @@ const FullScreenControl = (props: ControlInnerProps) => {
                 onClick();
             }
         },
-        [value],
+        [onClick, value],
     );
 
     useEffect(() => {

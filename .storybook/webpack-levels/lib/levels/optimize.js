@@ -57,9 +57,12 @@ module.exports = function createOptimizeLevel(options = {}) {
                     }),
                     new OptimizeCSSAssetsPlugin({
                         cssProcessorPluginOptions: {
-                            preset: ['default', {
-                                svgo: false,
-                            }],
+                            preset: [
+                                'default',
+                                {
+                                    svgo: false,
+                                },
+                            ],
                         },
                     }),
                 ],

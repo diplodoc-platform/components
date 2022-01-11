@@ -21,7 +21,10 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({items, className}) => {
             <ol className={b('items')}>
                 {items.map(({name}, index, subItems) => (
                     <li key={index} className={b('item')}>
-                        <span className={b('text')} aria-current={index === subItems.length - 1 ? 'page' : undefined}>
+                        <span
+                            className={b('text')}
+                            aria-current={index === subItems.length - 1 ? 'page' : undefined}
+                        >
                             {name}
                         </span>
                     </li>

@@ -9,7 +9,12 @@ body.yc-root {
     text-rendering: optimizeLegibility;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     margin: 0;
 }
 
@@ -37,7 +42,8 @@ h6 {
     @include heading6();
 }
 
-p, div.p {
+p,
+div.p {
     margin: 0 0 20px;
 
     &:last-child {
@@ -45,7 +51,8 @@ p, div.p {
     }
 }
 
-sub, sup {
+sub,
+sup {
     font-size: 0.75em;
     line-height: 0;
 }

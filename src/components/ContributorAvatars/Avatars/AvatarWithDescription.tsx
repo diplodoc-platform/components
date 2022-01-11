@@ -36,12 +36,12 @@ const AvatarWithDescription: React.FC<AvatarWithDescriptionProps> = (props) => {
         isVisiblePopup,
     };
 
-    const avatarImg = (<Avatar avatarData={avatarData} popupData={popupData}/>);
+    const avatarImg = <Avatar avatarData={avatarData} popupData={popupData} />;
 
     return (
         <Fragment>
             {avatarImg}
-            <Details contributors={[contributor]} popupData={popupData}/>
+            <Details contributors={[contributor]} popupData={popupData} />
         </Fragment>
     );
 };

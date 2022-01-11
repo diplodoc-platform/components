@@ -5,29 +5,32 @@ function addRule(config, {imgFilename, fontFilename, limit, ruleIncludes, ruleEx
         test: /\.(ico|bmp|gif|jpe?g|png|svg)$/,
         include: ruleIncludes,
         exclude: ruleExcludes,
-        use: [{
-            loader: require.resolve('url-loader'),
-            options: {
-                limit: limit,
-                name: imgFilename,
-                fallback: 'file-loader',
+        use: [
+            {
+                loader: require.resolve('url-loader'),
+                options: {
+                    limit: limit,
+                    name: imgFilename,
+                    fallback: 'file-loader',
+                },
             },
-        }],
+        ],
     };
     const fontsRule = {
         test: /\.(ttf|eot|woff2?)$/,
         include: ruleIncludes,
         exclude: ruleExcludes,
-        use: [{
-            loader: require.resolve('url-loader'),
-            options: {
-                limit: limit,
-                name: fontFilename,
-                fallback: 'file-loader',
+        use: [
+            {
+                loader: require.resolve('url-loader'),
+                options: {
+                    limit: limit,
+                    name: fontFilename,
+                    fallback: 'file-loader',
+                },
             },
-        }],
+        ],
     };
-
 
     config.module.addRule(imagesRule);
     config.module.addRule(fontsRule);

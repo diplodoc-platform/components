@@ -12,7 +12,8 @@
         align-items: normal;
     }
 
-    &__left, &__right {
+    &__left,
+    &__right {
         flex: 0 0 auto;
         box-sizing: content-box;
     }
@@ -20,7 +21,8 @@
     &__right {
         width: 176px;
         padding-right: 24px;
-        &_full-screen, &_hidden-right {
+        &_full-screen,
+        &_hidden-right {
             flex: initial;
         }
     }

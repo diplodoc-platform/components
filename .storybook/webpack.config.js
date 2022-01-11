@@ -3,11 +3,11 @@ const path = require('path');
 const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 const {ConfigBuilder, javascript, styles, assets, optimize} = require('./webpack-levels');
 
-const srcRoot = path.resolve(__dirname, '..',  'src');
-const stylesRoot = path.resolve(__dirname, '..',  'styles');
-const assetsRoot = path.resolve(__dirname, '..',  'assets');
-const storybookRoot = path.resolve(__dirname, '..',  '.storybook');
-const storybookHost = path.resolve(__dirname, '..',  'node_modules/storybook-host');
+const srcRoot = path.resolve(__dirname, '..', 'src');
+const stylesRoot = path.resolve(__dirname, '..', 'styles');
+const assetsRoot = path.resolve(__dirname, '..', 'assets');
+const storybookRoot = path.resolve(__dirname, '..', '.storybook');
+const storybookHost = path.resolve(__dirname, '..', 'node_modules/storybook-host');
 const yfmTransformDir = path.resolve(srcRoot, '../node_modules/@doc-tools/transform');
 
 const ruleIncludes = [
@@ -16,25 +16,31 @@ const ruleIncludes = [
     assetsRoot,
     storybookRoot,
     storybookHost,
-    yfmTransformDir
+    yfmTransformDir,
 ];
 
 const config = new ConfigBuilder();
 
 config
-    .apply(javascript({
-        bem: false,
-        typescript: true,
-        reactHotLoader: false,
-        ruleIncludes
-    }))
-    .apply(styles({
-        ruleIncludes,
-    }))
-    .apply(assets({
-        ruleIncludes,
-        ruleExcludes: [path.resolve(assetsRoot, 'icons')]
-    }))
+    .apply(
+        javascript({
+            bem: false,
+            typescript: true,
+            reactHotLoader: false,
+            ruleIncludes,
+        }),
+    )
+    .apply(
+        styles({
+            ruleIncludes,
+        }),
+    )
+    .apply(
+        assets({
+            ruleIncludes,
+            ruleExcludes: [path.resolve(assetsRoot, 'icons')],
+        }),
+    )
     .apply(optimize())
     .resolve.addModules(srcRoot)
     .module.addRule({
@@ -43,7 +49,7 @@ config
         loader: 'svg-sprite-loader',
         options: {
             extract: true,
-            spriteFilename: 'sprite-[hash:6].svg'
+            spriteFilename: 'sprite-[hash:6].svg',
         },
         exclude: [path.resolve(assetsRoot, 'icons')],
     })
@@ -55,11 +61,11 @@ config
             svgo: {
                 plugins: [
                     {
-                        removeViewBox: false
-                    }
-                ]
-            }
-        }
+                        removeViewBox: false,
+                    },
+                ],
+            },
+        },
     })
     .plugins.addPlugin(new SpriteLoaderPlugin({plainSprite: true}));
 
@@ -73,7 +79,7 @@ module.exports = ({config: storybookBaseConfig}) => {
     storybookBaseConfig.module.rules.push({
         test: /\.md$/,
         include: [path.resolve(__dirname, '..')],
-        use: [{loader: 'html-loader'}, {loader: 'markdown-loader'}]
+        use: [{loader: 'html-loader'}, {loader: 'markdown-loader'}],
     });
 
     storybookBaseConfig.plugins.push(...projectConfig.plugins);

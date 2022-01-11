@@ -9,42 +9,67 @@ module.exports = {
         // Latest stable ECMAScript features
         (isEnvDevelopment || isEnvProduction) && [require.resolve('@babel/preset-env'), {}],
         // ES features necessary for current Node version
-        isEnvTest && [require.resolve('@babel/preset-env'), Object.assign({}, {}, {
-            targets: {
-                node: 'current',
-            },
-        })],
+        isEnvTest && [
+            require.resolve('@babel/preset-env'),
+            Object.assign(
+                {},
+                {},
+                {
+                    targets: {
+                        node: 'current',
+                    },
+                },
+            ),
+        ],
         // JSX
-        [require.resolve('@babel/preset-react'), {
-            development: isEnvDevelopment || isEnvTest,
-            useBuiltIns: true,
-        }],
+        [
+            require.resolve('@babel/preset-react'),
+            {
+                development: isEnvDevelopment || isEnvTest,
+                useBuiltIns: true,
+            },
+        ],
         [require.resolve('@babel/preset-typescript')],
     ].filter(Boolean),
     plugins: [
         // class { handleClick = () => { } }
-        [require.resolve('@babel/plugin-proposal-class-properties'), {
-            loose: true,
-        }],
+        [
+            require.resolve('@babel/plugin-proposal-class-properties'),
+            {
+                loose: true,
+            },
+        ],
         // const { a, ...z } = { a: 1, b: 2, c: 3 }
-        [require.resolve('@babel/plugin-proposal-object-rest-spread'), {
-            useBuiltIns: true,
-        }],
-        [require.resolve('@babel/plugin-proposal-decorators'), {
-            // @decorator
-            // export class Foo {}
-            decoratorsBeforeExport: true,
-        }],
+        [
+            require.resolve('@babel/plugin-proposal-object-rest-spread'),
+            {
+                useBuiltIns: true,
+            },
+        ],
+        [
+            require.resolve('@babel/plugin-proposal-decorators'),
+            {
+                // @decorator
+                // export class Foo {}
+                decoratorsBeforeExport: true,
+            },
+        ],
         // Polyfills the runtime needed for async/await and generators
         [require.resolve('@babel/plugin-transform-runtime'), {}],
-        isEnvProduction && [require.resolve('babel-plugin-transform-react-remove-prop-types'), {
-            removeImport: true,
-        }],
+        isEnvProduction && [
+            require.resolve('babel-plugin-transform-react-remove-prop-types'),
+            {
+                removeImport: true,
+            },
+        ],
         // function* () { yield 42; yield 43; }
-        (isEnvDevelopment || isEnvProduction) && [require.resolve('@babel/plugin-transform-regenerator'), {
-            // Async functions are converted to generators by @babel/preset-env
-            async: false,
-        }],
+        (isEnvDevelopment || isEnvProduction) && [
+            require.resolve('@babel/plugin-transform-regenerator'),
+            {
+                // Async functions are converted to generators by @babel/preset-env
+                async: false,
+            },
+        ],
         // a?.b?.c
         require.resolve('@babel/plugin-proposal-optional-chaining'),
         // a ?? b;

@@ -16,16 +16,23 @@ export interface BookmarkButtonProps {
     onChangeBookmarkPage: (value: boolean) => void;
 }
 
-export const BookmarkButton: React.FC<BookmarkButtonProps> = ({bookmarkedPage, onChangeBookmarkPage}) => {
+export const BookmarkButton: React.FC<BookmarkButtonProps> = ({
+    bookmarkedPage,
+    onChangeBookmarkPage,
+}) => {
     const [pinnedPage, setPinnedPage] = useState(bookmarkedPage);
 
     return (
-        <Button className={b({active: pinnedPage})} onClick={() => {
-            setPinnedPage(!pinnedPage);
-            onChangeBookmarkPage(!pinnedPage);
-        }} theme={'clear'} size="s"
+        <Button
+            className={b({active: pinnedPage})}
+            onClick={() => {
+                setPinnedPage(!pinnedPage);
+                onChangeBookmarkPage(!pinnedPage);
+            }}
+            theme={'clear'}
+            size="s"
         >
-            {pinnedPage ? <StarActive/> : <StarInactive/>}
+            {pinnedPage ? <StarActive /> : <StarInactive />}
         </Button>
     );
 };

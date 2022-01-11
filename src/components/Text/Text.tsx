@@ -24,7 +24,8 @@ export const Text: React.FC<TextProps> = ({data = '', html = false, block = fals
                         key: index,
                         className: block ? 'p' : null,
                     },
-                    html ? <HTML>{text}</HTML> : text),
+                    html ? <HTML>{text}</HTML> : text,
+                ),
             )}
         </React.Fragment>
     );

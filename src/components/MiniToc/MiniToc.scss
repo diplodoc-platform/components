@@ -14,7 +14,9 @@
     &__sections {
         @include reset-list-style();
 
-        height: calc(100vh - var(--dc-header-height, #{$headerHeight}) - #{$miniTocOffset} - var(--dc-subheader-height));
+        height: calc(
+            100vh - var(--dc-header-height, #{$headerHeight}) - #{$miniTocOffset} - var(--dc-subheader-height)
+        );
         overflow-y: auto;
         overflow-x: hidden;
     }

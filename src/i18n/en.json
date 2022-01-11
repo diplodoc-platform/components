@@ -1,64 +1,64 @@
 {
-    "controls": {
-        "label_wide_format": "Wide format",
-        "description_wide_format_enabled": "Enabled",
-        "description_wide_format_disabled": "Disabled",
-        "label_show_mini_toc": "Navigation for the article",
-        "description_show_mini_toc": "Show navigation",
-        "label_dark_theme": "Dark theme",
-        "description_enabled_dark_theme": "Enabled",
-        "description_disabled_dark_theme": "Disabled",
-        "label_text_size": "Font size",
-        "description_s_text_size": "Small",
-        "description_m_text_size": "Default",
-        "description_l_text_size": "Large",
-        "full-screen-text-enabled": "Exit from reading mode (Esc)",
-        "full-screen-text-disabled": "Reading mode",
-        "single-page-text-enabled": "Exit from single-page mode",
-        "single-page-text-disabled": "Single-page mode",
-        "edit-text-github": "Edit on GitHub",
-        "edit-text-arcanum": "Edit on Arcanum",
-        "edit-text": "Edit",
-        "settings-text": "Settings",
-        "lang-text": "Language",
-        "like-text": "Helpful",
-        "dislike-text": "Not helpful",
-        "cancel-like-text": "It got worse",
-        "cancel-dislike-text": "It got better",
-        "feedback-success-title": "Thank you!",
-        "feedback-success-text": "Your answer will help make the documentation better",
-        "dislike-variants-title": "Tell us what's wrong with the article",
-        "send-action-text": "Send",
-        "skip-action-text": "Skip",
-        "feedback-comment-placeholder": "Additional information will be useful",
-        "lang-control-text-ru": "Русский",
-        "lang-control-text-en": "English"
-    },
-    "mini-toc" : {
-        "title": "In this article"
-    },
-    "toc-nav-panel": {
-        "hint_previous": "Previous",
-        "hint_next": "Next"
-    },
-    "authors": {
-        "title": "Written by"
-    },
-    "contributors": {
-        "title": "improved by"
-    },
-    "feedback": {
-        "like-text": "Helpful",
-        "dislike-text": "Not helpful",
-        "cancel-like-text": "It got worse",
-        "cancel-dislike-text": "It got better",
-        "success-title": "Thank you!",
-        "success-text": "Your answer will help make the documentation better",
-        "dislike-variants-title": "Tell us what's wrong with the article",
-        "send-action-text": "Send",
-        "comment-placeholder": "Additional information will be useful",
-        "button-like-text": "Yes",
-        "button-dislike-text": "No",
-        "main-question": "Was the article helpful?"
-    }
+  "controls": {
+    "label_wide_format": "Wide format",
+    "description_wide_format_enabled": "Enabled",
+    "description_wide_format_disabled": "Disabled",
+    "label_show_mini_toc": "Navigation for the article",
+    "description_show_mini_toc": "Show navigation",
+    "label_dark_theme": "Dark theme",
+    "description_enabled_dark_theme": "Enabled",
+    "description_disabled_dark_theme": "Disabled",
+    "label_text_size": "Font size",
+    "description_s_text_size": "Small",
+    "description_m_text_size": "Default",
+    "description_l_text_size": "Large",
+    "full-screen-text-enabled": "Exit from reading mode (Esc)",
+    "full-screen-text-disabled": "Reading mode",
+    "single-page-text-enabled": "Exit from single-page mode",
+    "single-page-text-disabled": "Single-page mode",
+    "edit-text-github": "Edit on GitHub",
+    "edit-text-arcanum": "Edit on Arcanum",
+    "edit-text": "Edit",
+    "settings-text": "Settings",
+    "lang-text": "Language",
+    "like-text": "Helpful",
+    "dislike-text": "Not helpful",
+    "cancel-like-text": "It got worse",
+    "cancel-dislike-text": "It got better",
+    "feedback-success-title": "Thank you!",
+    "feedback-success-text": "Your answer will help make the documentation better",
+    "dislike-variants-title": "Tell us what's wrong with the article",
+    "send-action-text": "Send",
+    "skip-action-text": "Skip",
+    "feedback-comment-placeholder": "Additional information will be useful",
+    "lang-control-text-ru": "Русский",
+    "lang-control-text-en": "English"
+  },
+  "mini-toc": {
+    "title": "In this article"
+  },
+  "toc-nav-panel": {
+    "hint_previous": "Previous",
+    "hint_next": "Next"
+  },
+  "authors": {
+    "title": "Written by"
+  },
+  "contributors": {
+    "title": "improved by"
+  },
+  "feedback": {
+    "like-text": "Helpful",
+    "dislike-text": "Not helpful",
+    "cancel-like-text": "It got worse",
+    "cancel-dislike-text": "It got better",
+    "success-title": "Thank you!",
+    "success-text": "Your answer will help make the documentation better",
+    "dislike-variants-title": "Tell us what's wrong with the article",
+    "send-action-text": "Send",
+    "comment-placeholder": "Additional information will be useful",
+    "button-like-text": "Yes",
+    "button-dislike-text": "No",
+    "main-question": "Was the article helpful?"
+  }
 }

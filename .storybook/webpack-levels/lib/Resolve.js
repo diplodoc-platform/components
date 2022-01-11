@@ -38,11 +38,14 @@ class Resolve {
     }
 
     build() {
-        return Object.assign({
-            modules: this._modules.concat(this._defaultModules),
-            alias: this._aliases,
-            extensions: this._extensions.concat(this._defaultExtensions),
-        }, this._extend);
+        return Object.assign(
+            {
+                modules: this._modules.concat(this._defaultModules),
+                alias: this._aliases,
+                extensions: this._extensions.concat(this._defaultExtensions),
+            },
+            this._extend,
+        );
     }
 }
 

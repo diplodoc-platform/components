@@ -18,7 +18,7 @@ interface AvatarProps {
 const Avatar: React.FC<AvatarProps> = (props) => {
     const {avatarData, popupData, isRedirect = false} = props;
     const {contributor, size = AvatarSizes.SMALL, inDetails = false} = avatarData;
-    const {changeVisiblilityPopup = () => { }, ref} = popupData || {};
+    const {changeVisiblilityPopup = () => {}, ref} = popupData || {};
     const {avatar, email, login} = contributor;
 
     const key = `avatar-${login || email}`;
@@ -33,7 +33,9 @@ const Avatar: React.FC<AvatarProps> = (props) => {
                 onMouseOver={() => changeVisiblilityPopup(true)}
                 onMouseLeave={() => changeVisiblilityPopup(false)}
                 onTouchStart={() => changeVisiblilityPopup()}
-                onTouchEnd={(event: BaseSyntheticEvent) => preventDefaultByComponent(event, inDetails, isRedirect)}
+                onTouchEnd={(event: BaseSyntheticEvent) =>
+                    preventDefaultByComponent(event, inDetails, isRedirect)
+                }
             />
         );
     }
@@ -48,14 +50,20 @@ const Avatar: React.FC<AvatarProps> = (props) => {
             onMouseOver={() => changeVisiblilityPopup(true)}
             onMouseLeave={() => changeVisiblilityPopup(false)}
             onTouchStart={() => changeVisiblilityPopup()}
-            onTouchEnd={(event: BaseSyntheticEvent) => preventDefaultByComponent(event, inDetails, isRedirect)}
+            onTouchEnd={(event: BaseSyntheticEvent) =>
+                preventDefaultByComponent(event, inDetails, isRedirect)
+            }
         >
             {initials}
         </div>
     );
 };
 
-function preventDefaultByComponent(event: BaseSyntheticEvent, inDetails: boolean, isRedirect: boolean): void {
+function preventDefaultByComponent(
+    event: BaseSyntheticEvent,
+    inDetails: boolean,
+    isRedirect: boolean,
+): void {
     if (inDetails || isRedirect) {
         return;
     }

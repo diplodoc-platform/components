@@ -17,10 +17,7 @@ export interface EditButtonProps {
     href: string;
 }
 
-type EditButtonInnerProps =
-    & EditButtonProps
-    & WithTranslation
-    & WithTranslationProps;
+type EditButtonInnerProps = EditButtonProps & WithTranslation & WithTranslationProps;
 
 class EditButton extends React.Component<EditButtonInnerProps> {
     componentDidUpdate(prevProps: EditButtonProps) {
@@ -34,22 +31,14 @@ class EditButton extends React.Component<EditButtonInnerProps> {
         const {t, href} = this.props;
 
         const wrapper = (el: ReactElement) => (
-            <a
-                href={href}
-                target="_blank"
-                rel="noreferrer noopener"
-            >
+            <a href={href} target="_blank" rel="noreferrer noopener">
                 {el}
             </a>
         );
 
         return (
-            <Button
-                wrapper={wrapper}
-                className={b()}
-                theme={ButtonThemes.Float}
-            >
-                <EditIcon/>
+            <Button wrapper={wrapper} className={b()} theme={ButtonThemes.Float}>
+                <EditIcon />
                 <span className={b('text')}>{t('edit-text')}</span>
             </Button>
         );

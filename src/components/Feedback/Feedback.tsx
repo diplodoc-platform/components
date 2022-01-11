@@ -39,10 +39,7 @@ interface FeedbackCheckboxes {
     [key: string]: boolean;
 }
 
-type FeedbackInnerProps =
-    & FeedbackProps
-    & WithTranslation
-    & WithTranslationProps;
+type FeedbackInnerProps = FeedbackProps & WithTranslation & WithTranslationProps;
 
 const Feedback: React.FC<FeedbackInnerProps> = (props) => {
     const {
@@ -125,7 +122,13 @@ const Feedback: React.FC<FeedbackInnerProps> = (props) => {
         if (showDislikeVariantsPopup && innerIsDisliked && !isDisliked) {
             setInnerIsDisliked(false);
         }
-    }, [isDisliked, innerIsDisliked, hideFeedbackPopups, setInnerIsDisliked, showDislikeVariantsPopup]);
+    }, [
+        isDisliked,
+        innerIsDisliked,
+        hideFeedbackPopups,
+        setInnerIsDisliked,
+        showDislikeVariantsPopup,
+    ]);
 
     const onSendDislikeInformation = useCallback(() => {
         setShowDislikeSuccessPopup(true);
@@ -135,7 +138,10 @@ const Feedback: React.FC<FeedbackInnerProps> = (props) => {
         if (onSendFeedback) {
             const type = FeedbackType.dislike;
 
-            const additionalInfo = getPreparedFeedbackAdditionalInfo(feedbackComment, feedbackCheckboxes);
+            const additionalInfo = getPreparedFeedbackAdditionalInfo(
+                feedbackComment,
+                feedbackCheckboxes,
+            );
             const data = {
                 type,
                 ...additionalInfo,
@@ -169,7 +175,8 @@ const Feedback: React.FC<FeedbackInnerProps> = (props) => {
     }, [isLiked, onSendFeedback]);
 
     const onChangeDislike = useCallback(() => {
-        if (!isDisliked && !innerIsDisliked) { // Нажать дизлайк и показать окно с доп. информацией
+        if (!isDisliked && !innerIsDisliked) {
+            // Нажать дизлайк и показать окно с доп. информацией
             setShowDislikeVariantsPopup(true);
             setInnerIsDisliked(true);
             setShowLikeSuccessPopup(false);
@@ -181,7 +188,8 @@ const Feedback: React.FC<FeedbackInnerProps> = (props) => {
         } else if (!isDisliked && innerIsDisliked) {
             hideFeedbackPopups();
             setInnerIsDisliked(false);
-        } else if (isDisliked && innerIsDisliked) { // Отжать дизлайк и отправить событие в неопределенное состояние
+        } else if (isDisliked && innerIsDisliked) {
+            // Отжать дизлайк и отправить событие в неопределенное состояние
             hideFeedbackPopups();
             setInnerIsDisliked(false);
 
@@ -199,7 +207,9 @@ const Feedback: React.FC<FeedbackInnerProps> = (props) => {
                 isVerticalView={isVerticalView}
                 tooltipText={t(`${isLiked ? 'cancel-' : ''}like-text`)}
                 setRef={setLikeControlRef}
-                icon={(args) => <LikeIcon className={b('like-button', {active: isLiked, view})} {...args}/>}
+                icon={(args) => (
+                    <LikeIcon className={b('like-button', {active: isLiked, view})} {...args} />
+                )}
             />
         );
     }, [onChangeLike, classNameControl, view, isVerticalView, isLiked, setLikeControlRef, t]);
@@ -212,10 +222,23 @@ const Feedback: React.FC<FeedbackInnerProps> = (props) => {
                 isVerticalView={isVerticalView}
                 tooltipText={t(`${innerIsDisliked ? 'cancel-' : ''}dislike-text`)}
                 setRef={setDislikeControlRef}
-                icon={(args) => <DislikeIcon className={b('like-button', {active: innerIsDisliked, view})} {...args}/>}
+                icon={(args) => (
+                    <DislikeIcon
+                        className={b('like-button', {active: innerIsDisliked, view})}
+                        {...args}
+                    />
+                )}
             />
         );
-    }, [innerIsDisliked, onChangeDislike, classNameControl, view, isVerticalView, setDislikeControlRef, t]);
+    }, [
+        innerIsDisliked,
+        onChangeDislike,
+        classNameControl,
+        view,
+        isVerticalView,
+        setDislikeControlRef,
+        t,
+    ]);
 
     const renderRegularFeedbackControls = useCallback(() => {
         return (
@@ -239,7 +262,7 @@ const Feedback: React.FC<FeedbackInnerProps> = (props) => {
                             onClick={onChangeLike}
                             className={b('control', {view})}
                         >
-                            <LikeIcon className={b('feedback-button', {active: isLiked, view})}/>
+                            <LikeIcon className={b('feedback-button', {active: isLiked, view})} />
                             {t('button-like-text')}
                         </Button>
                         <Button
@@ -249,14 +272,25 @@ const Feedback: React.FC<FeedbackInnerProps> = (props) => {
                             onClick={onChangeDislike}
                             className={b('control', {view})}
                         >
-                            <DislikeIcon className={b('feedback-button', {active: innerIsDisliked, view})}/>
+                            <DislikeIcon
+                                className={b('feedback-button', {active: innerIsDisliked, view})}
+                            />
                             {t('button-dislike-text')}
                         </Button>
                     </div>
                 </div>
             </div>
         );
-    }, [innerIsDisliked, isLiked, view, t, setLikeControlRef, setDislikeControlRef, onChangeLike, onChangeDislike]);
+    }, [
+        innerIsDisliked,
+        isLiked,
+        view,
+        t,
+        setLikeControlRef,
+        setDislikeControlRef,
+        onChangeLike,
+        onChangeDislike,
+    ]);
 
     const renderFeedbackControls = useCallback(() => {
         return view === FeedbackView.Regular
@@ -384,7 +418,10 @@ const Feedback: React.FC<FeedbackInnerProps> = (props) => {
     );
 };
 
-function getPreparedFeedbackAdditionalInfo(feedbackComment: string, feedbackCheckboxes: FeedbackCheckboxes) {
+function getPreparedFeedbackAdditionalInfo(
+    feedbackComment: string,
+    feedbackCheckboxes: FeedbackCheckboxes,
+) {
     const answers = Object.keys(feedbackCheckboxes).reduce((acc, key) => {
         if (feedbackCheckboxes[key]) {
             acc.push(key);

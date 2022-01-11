@@ -21,10 +21,7 @@ export interface TocNavPanelProps extends TocData {
     className?: string;
 }
 
-type TocNavPanelInnerProps =
-    & TocNavPanelProps
-    & WithTranslation
-    & WithTranslationProps;
+type TocNavPanelInnerProps = TocNavPanelProps & WithTranslation & WithTranslationProps;
 
 interface FlatTocItem {
     name: string;
@@ -85,14 +82,12 @@ class TocNavPanel extends React.Component<TocNavPanelInnerProps, TocNavPanelStat
 
         return (
             <div className={b('control', {left: !isNext, right: isNext})}>
-                {tocItem &&
+                {tocItem && (
                     <React.Fragment>
                         <div className={b('control-hint')}>{t(keyHint)}</div>
-                        <div className={b('control-text')}>
-                            {this.renderLink(tocItem, isNext)}
-                        </div>
+                        <div className={b('control-text')}>{this.renderLink(tocItem, isNext)}</div>
                     </React.Fragment>
-                }
+                )}
             </div>
         );
     }
@@ -111,9 +106,9 @@ class TocNavPanel extends React.Component<TocNavPanelInnerProps, TocNavPanelStat
 
         return (
             <a {...linkAttributes} className={b('link')} data-router-shallow>
-                {!isNext && <ArrowLeft/>}
+                {!isNext && <ArrowLeft />}
                 {item.name}
-                {isNext && <ArrowRight/>}
+                {isNext && <ArrowRight />}
             </a>
         );
     }
@@ -142,7 +137,6 @@ class TocNavPanel extends React.Component<TocNavPanelInnerProps, TocNavPanelStat
         }
 
         processItems(props.items);
-
 
         return {flatToc, activeItemIndex};
     }

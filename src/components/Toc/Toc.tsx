@@ -35,7 +35,6 @@ interface TocState {
 }
 
 class Toc extends React.Component<TocProps, TocState> {
-
     contentRef = React.createRef<HTMLDivElement>();
     rootRef = React.createRef<HTMLDivElement>();
 
@@ -66,7 +65,8 @@ class Toc extends React.Component<TocProps, TocState> {
     componentDidUpdate(prevProps: TocProps) {
         const {router, singlePage} = this.props;
 
-        if (prevProps.router.pathname !== router.pathname ||
+        if (
+            prevProps.router.pathname !== router.pathname ||
             prevProps.router.hash !== router.hash ||
             prevProps.singlePage !== singlePage
         ) {
@@ -97,7 +97,7 @@ class Toc extends React.Component<TocProps, TocState> {
         return (
             <div className={b()} ref={this.rootRef}>
                 {this.renderTop()}
-                <div className={b('content', {'offset_top': hideTocHeader})} ref={this.contentRef}>
+                <div className={b('content', {offset_top: hideTocHeader})} ref={this.contentRef}>
                     {content}
                 </div>
             </div>
@@ -127,7 +127,13 @@ class Toc extends React.Component<TocProps, TocState> {
                     }
 
                     if (subItems && subItems.length > 0) {
-                        icon = <ToggleArrow className={b('list-item-icon')} open={opened} thin={true}/>;
+                        icon = (
+                            <ToggleArrow
+                                className={b('list-item-icon')}
+                                open={opened}
+                                thin={true}
+                            />
+                        );
                     }
 
                     if (filteredItemIds.includes(id)) {
@@ -150,7 +156,11 @@ class Toc extends React.Component<TocProps, TocState> {
                     let content = (
                         <div
                             className={b('list-item-text')}
-                            onClick={subItems && subItems.length > 0 ? this.handleItemClick.bind(this, id) : undefined}
+                            onClick={
+                                subItems && subItems.length > 0
+                                    ? this.handleItemClick.bind(this, id)
+                                    : undefined
+                            }
                         >
                             {icon}
                             {text}
@@ -170,7 +180,11 @@ class Toc extends React.Component<TocProps, TocState> {
                         };
 
                         content = (
-                            <a {...linkAttributes} className={b('list-item-link')} data-router-shallow>
+                            <a
+                                {...linkAttributes}
+                                className={b('list-item-link')}
+                                data-router-shallow
+                            >
                                 {content}
                             </a>
                         );
@@ -187,7 +201,11 @@ class Toc extends React.Component<TocProps, TocState> {
                     }
 
                     return (
-                        <li key={index} id={id} className={b('list-item', {main: isMain, active, opened})}>
+                        <li
+                            key={index}
+                            id={id}
+                            className={b('list-item', {main: isMain, active, opened})}
+                        >
                             {content}
                             {subItems && visibleChildren && this.renderList(subItems, false)}
                         </li>
@@ -214,7 +232,11 @@ class Toc extends React.Component<TocProps, TocState> {
             const active = isActiveItem(router, href, singlePage);
 
             topHeader = (
-                <a href={href} className={b('top-header', {active, link: true})} data-router-shallow>
+                <a
+                    href={href}
+                    className={b('top-header', {active, link: true})}
+                    data-router-shallow
+                >
                     <HTML>{title}</HTML>
                 </a>
             );
@@ -228,10 +250,7 @@ class Toc extends React.Component<TocProps, TocState> {
 
         return (
             <div className={b('top', {scrolled: contentScrolled})}>
-                {tocTitleIcon ?
-                    <div className={b('top-header-icon')}>{tocTitleIcon}</div>
-                    : null
-                }
+                {tocTitleIcon ? <div className={b('top-header-icon')}>{tocTitleIcon}</div> : null}
                 {topHeader}
             </div>
         );
@@ -260,7 +279,8 @@ class Toc extends React.Component<TocProps, TocState> {
                     if (typeof flatToc[id].opened === 'undefined') {
                         const isFirstLevel = flatToc[id].parents.length === 0;
 
-                        flatToc[id].opened = isFirstLevel && typeof expanded !== 'undefined' ? expanded : false;
+                        flatToc[id].opened =
+                            isFirstLevel && typeof expanded !== 'undefined' ? expanded : false;
                     }
 
                     processItems(subItems, id);
@@ -283,7 +303,8 @@ class Toc extends React.Component<TocProps, TocState> {
         const {headerHeight = HEADER_DEFAULT_HEIGHT} = this.props;
         const containerHeight = this.containerEl?.offsetHeight ?? 0;
         const footerHeight = this.footerEl?.offsetHeight ?? 0;
-        const scrollDiff = window.scrollY + window.innerHeight + footerHeight - headerHeight - containerHeight;
+        const scrollDiff =
+            window.scrollY + window.innerHeight + footerHeight - headerHeight - containerHeight;
         const rootNode = this.rootRef.current;
 
         if (!rootNode) {
@@ -320,10 +341,9 @@ class Toc extends React.Component<TocProps, TocState> {
         const scrollableHeight = scrollableParent.offsetHeight;
         const scrollableOffset = scrollableParent.scrollTop;
 
-        const itemVisible = (
+        const itemVisible =
             itemOffset >= scrollableOffset &&
-            itemOffset <= scrollableOffset + scrollableHeight - itemHeight
-        );
+            itemOffset <= scrollableOffset + scrollableHeight - itemHeight;
 
         if (!itemVisible) {
             scrollableParent.scrollTop = itemOffset - Math.floor(scrollableHeight / 2) + itemHeight;

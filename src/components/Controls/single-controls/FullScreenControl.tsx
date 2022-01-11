@@ -16,22 +16,10 @@ interface ControlProps {
     size?: ControlSizes;
 }
 
-type ControlInnerProps =
-    & ControlProps
-    & WithTranslation
-    & WithTranslationProps;
+type ControlInnerProps = ControlProps & WithTranslation & WithTranslationProps;
 
 const FullScreenControl = (props: ControlInnerProps) => {
-    const {
-        className,
-        isVerticalView,
-        size,
-        value,
-        onChange,
-        lang,
-        i18n,
-        t,
-    } = props;
+    const {className, isVerticalView, size, value, onChange, lang, i18n, t} = props;
 
     const onClick = useCallback(() => {
         if (onChange) {
@@ -39,11 +27,14 @@ const FullScreenControl = (props: ControlInnerProps) => {
         }
     }, [value, onChange]);
 
-    const onKeyDown = useCallback((event: KeyboardEvent | React.KeyboardEvent) => {
-        if (event.key === 'Escape' && value) {
-            onClick();
-        }
-    }, [value]);
+    const onKeyDown = useCallback(
+        (event: KeyboardEvent | React.KeyboardEvent) => {
+            if (event.key === 'Escape' && value) {
+                onClick();
+            }
+        },
+        [value],
+    );
 
     useEffect(() => {
         document.addEventListener('keydown', onKeyDown);

@@ -28,7 +28,6 @@ interface ScrollspyState {
 type ScrollspyInnerProps = InnerProps<ScrollspyProps, ScrollspyDefaultProps>;
 
 export class Scrollspy extends React.Component<ScrollspyInnerProps, ScrollspyState> {
-
     static defaultProps: ScrollspyDefaultProps = {
         currentClassName: 'Scrollspy',
         sectionOffset: 20,
@@ -151,7 +150,8 @@ export class Scrollspy extends React.Component<ScrollspyInnerProps, ScrollspySta
         }
 
         const {childHeight, maxItemsInView} = this.getContainerValues(containerEl);
-        this.lastItemIndexInView = Math.round(containerEl.scrollTop / childHeight) + maxItemsInView - 1;
+        this.lastItemIndexInView =
+            Math.round(containerEl.scrollTop / childHeight) + maxItemsInView - 1;
 
         this.updateFirstItemIndexInView(maxItemsInView);
     };
@@ -219,7 +219,7 @@ export class Scrollspy extends React.Component<ScrollspyInnerProps, ScrollspySta
     private initItems() {
         const {items} = this.props;
         const targetItems = items
-            .map((item) => (document.getElementById(item.slice(1))))
+            .map((item) => document.getElementById(item.slice(1)))
             .filter(Boolean) as HTMLElement[];
 
         this.setState({targetItems}, this.initSections);

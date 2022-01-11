@@ -18,10 +18,7 @@ export interface VcsLinkProps {
     className?: string;
 }
 
-type VcsLinkInnerProps =
-    & VcsLinkProps
-    & WithTranslation
-    & WithTranslationProps;
+type VcsLinkInnerProps = VcsLinkProps & WithTranslation & WithTranslationProps;
 
 export interface IconProps {
     className: string;
@@ -66,9 +63,9 @@ class VcsLink extends React.Component<VcsLinkInnerProps> {
 
         switch (vcsType) {
             case Vcs.Github:
-                return <GithubIcon {...iconProps}/>;
+                return <GithubIcon {...iconProps} />;
             case Vcs.Arcanum:
-                return <ArcanumIcon {...iconProps}/>;
+                return <ArcanumIcon {...iconProps} />;
             default:
                 return null;
         }

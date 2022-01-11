@@ -29,7 +29,9 @@
         overflow: hidden;
         display: flex;
         flex-direction: column;
-        min-height: calc(100vh - var(--dc-header-height, #{$headerHeight}) - var(--dc-subheader-height));
+        min-height: calc(
+            100vh - var(--dc-header-height, #{$headerHeight}) - var(--dc-subheader-height)
+        );
     }
 
     &__loader-wrapper {
@@ -139,7 +141,8 @@
             padding: 0 24px;
         }
 
-        #{$block}__main, & .dc-nav-toc-panel__content {
+        #{$block}__main,
+        & .dc-nav-toc-panel__content {
             padding-left: 64px;
             padding-right: 64px;
         }
@@ -222,7 +225,8 @@
     }
     /* stylelint-disable declaration-no-important */
     @media screen and (max-width: 1280px) {
-        &_full-screen &__main, &_full-screen .dc-nav-toc-panel__content {
+        &_full-screen &__main,
+        &_full-screen .dc-nav-toc-panel__content {
             padding-left: 40px !important;
             padding-right: 40px !important;
         }
@@ -233,4 +237,3 @@
     }
     /* stylelint-enable declaration-no-important */
 }
-

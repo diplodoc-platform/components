@@ -40,12 +40,14 @@ const ContributorAvatars: React.FC<ContributorAvatarsProps> = (props) => {
         const {url, login, email} = contributor;
         return (
             <Link key={`displayed-contributors-${login || email}`} url={url}>
-                <AvatarWithDescription contributor={contributor} avatarSize={AvatarSizes.SMALL}/>
+                <AvatarWithDescription contributor={contributor} avatarSize={AvatarSizes.SMALL} />
             </Link>
         );
     });
 
-    const hiddenAvatars = <HiddenAvatars contributors={hiddenContributors} avatarsSize={AvatarSizes.SMALL}/>;
+    const hiddenAvatars = (
+        <HiddenAvatars contributors={hiddenContributors} avatarsSize={AvatarSizes.SMALL} />
+    );
 
     const avatars = (
         <Fragment>
@@ -57,7 +59,11 @@ const ContributorAvatars: React.FC<ContributorAvatarsProps> = (props) => {
     return avatars;
 };
 
-function getOneAvatar(contributor: Contributor, isAuthor: boolean, onlyAuthor: boolean): ReactElement {
+function getOneAvatar(
+    contributor: Contributor,
+    isAuthor: boolean,
+    onlyAuthor: boolean,
+): ReactElement {
     const avatarData: AvatarData = {
         contributor,
         size: AvatarSizes.SMALL,
@@ -69,16 +75,17 @@ function getOneAvatar(contributor: Contributor, isAuthor: boolean, onlyAuthor: b
         <div className={b('one_contributor', wrapperModifiers)}>
             <div className={'desktop'}>{getRedirectingAvatar(avatarData, contributor.url)} </div>
             <div className={'mobile'}>
-                {
-                    isAuthor && onlyAuthor
-                        ? getRedirectingAvatar(avatarData, contributor.url, true)
-                        : <AvatarWithDescription contributor={contributor} avatarSize={AvatarSizes.SMALL}/>
-                }
+                {isAuthor && onlyAuthor ? (
+                    getRedirectingAvatar(avatarData, contributor.url, true)
+                ) : (
+                    <AvatarWithDescription
+                        contributor={contributor}
+                        avatarSize={AvatarSizes.SMALL}
+                    />
+                )}
             </div>
             <div>
-                <Link url={contributor.url}>
-                    {getName(contributor, isAuthor)}
-                </Link>
+                <Link url={contributor.url}>{getName(contributor, isAuthor)}</Link>
             </div>
         </div>
     );
@@ -87,7 +94,7 @@ function getOneAvatar(contributor: Contributor, isAuthor: boolean, onlyAuthor: b
 function getRedirectingAvatar(avatarData: AvatarData, url: string, isRedirect = false) {
     return (
         <Link url={url}>
-            <Avatar avatarData={avatarData} isRedirect={isRedirect}/>
+            <Avatar avatarData={avatarData} isRedirect={isRedirect} />
         </Link>
     );
 }

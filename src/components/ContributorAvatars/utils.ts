@@ -13,9 +13,7 @@ export function getUserIdentificator(contributor: Contributor): string {
 }
 
 function getShortContributorName(fullContributorName: string): string {
-    return fullContributorName
-        .split(' ')
-        .reduce((result, current, index) => {
-            return index > 0 ? `${result} ${current.charAt(0)}.` : current;
-        }, '');
+    return fullContributorName.split(' ').reduce((result, current, index) => {
+        return index > 0 ? `${result} ${current.charAt(0)}.` : current;
+    }, '');
 }

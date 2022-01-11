@@ -11,11 +11,5 @@ const b = block('dc-control-button');
 export const ControlButton: React.FC<ButtonProps> = (props) => {
     const {className, size = ControlSizes.S} = props;
 
-    return (
-        <Button
-            {...props}
-            className={b({size}, className)}
-            theme={ButtonThemes.Flat}
-        />
-    );
+    return <Button {...props} className={b({size}, className)} theme={ButtonThemes.Flat} />;
 };

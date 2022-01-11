@@ -16,12 +16,9 @@ export class Tumbler extends React.Component<TumblerProps> {
         const {checked, disabled} = this.props;
 
         return (
-            <div
-                className={b({checked, disabled})}
-                onClick={this.onChange}
-            >
+            <div className={b({checked, disabled})} onClick={this.onChange}>
                 <span className={b('box')}>
-                    <button className={b('button')}/>
+                    <button className={b('button')} />
                 </span>
             </div>
         );

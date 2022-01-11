@@ -36,7 +36,8 @@
     text-decoration: none;
     cursor: pointer;
 
-    &:hover, &:active {
+    &:hover,
+    &:active {
         --dc-text-header-color: var(--yc-color-link-hover);
         color: var(--yc-color-link-hover);
     }

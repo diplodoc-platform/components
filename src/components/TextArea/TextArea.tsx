@@ -90,7 +90,7 @@ export const TextArea: React.FC<TextAreaProps> = React.memo((props) => {
                     })}
                     onClick={handleClear}
                 >
-                    <CloseIcon className={b('close-icon')}/>
+                    <CloseIcon className={b('close-icon')} />
                 </span>
             )}
         </span>

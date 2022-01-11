@@ -49,13 +49,16 @@ const Control = (props: ControlProps) => {
     const getTooltipAlign = useCallback(() => {
         return isVerticalView ? PopperPosition.LEFT_START : PopperPosition.BOTTOM_END;
     }, [isVerticalView]);
-    const _setRef = useCallback((ref: HTMLButtonElement) => {
-        controlRef.current = ref;
+    const _setRef = useCallback(
+        (ref: HTMLButtonElement) => {
+            controlRef.current = ref;
 
-        if (setRef) {
-            setRef(ref);
-        }
-    }, [setRef]);
+            if (setRef) {
+                setRef(ref);
+            }
+        },
+        [setRef],
+    );
 
     const position = getTooltipAlign();
     const Icon = icon;
@@ -71,10 +74,7 @@ const Control = (props: ControlProps) => {
                 className={b(null, className)}
                 size={size}
             >
-                <Icon
-                    width={iconSize}
-                    height={iconSize}
-                />
+                <Icon width={iconSize} height={iconSize} />
             </ControlButton>
             <Popup
                 anchor={controlRef.current}
@@ -83,9 +83,7 @@ const Control = (props: ControlProps) => {
                 className={b('tooltip')}
                 position={position}
             >
-                <span className={b('tooltip-text')}>
-                    {tooltipText}
-                </span>
+                <span className={b('tooltip-text')}>{tooltipText}</span>
             </Popup>
         </React.Fragment>
     );

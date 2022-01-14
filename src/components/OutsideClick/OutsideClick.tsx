@@ -18,17 +18,16 @@ export default class OutsideClick extends React.Component<OutsideClickProps> {
 
     render() {
         const {children} = this.props;
-        return (
-            <div ref={this.ref}>
-                {children}
-            </div>
-        );
+        return <div ref={this.ref}>{children}</div>;
     }
 
     handleOutsideClick = (e: MouseEvent) => {
         const {onOutsideClick, anchor} = this.props;
 
-        if (e.target && !(this.ref?.current?.contains(e.target as Node) || anchor?.contains(e.target as Node))) {
+        if (
+            e.target &&
+            !(this.ref?.current?.contains(e.target as Node) || anchor?.contains(e.target as Node))
+        ) {
             onOutsideClick();
         }
     };

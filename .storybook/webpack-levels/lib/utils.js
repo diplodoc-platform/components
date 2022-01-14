@@ -10,7 +10,6 @@ exports.ensureArray = function ensureArray(value) {
     return Array.isArray(value) ? value : [value];
 };
 
-
 exports.setOutput = function setOutput(config, {filename, chunkFilename}) {
     const devName = '[name].js';
 

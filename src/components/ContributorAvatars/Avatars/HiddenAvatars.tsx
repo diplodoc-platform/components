@@ -33,9 +33,10 @@ const HiddenAvatars: React.FC<HiddenAvatarsProps> = (props) => {
         changeVisiblilityPopup: () => setIsVisiblePopup(false),
     };
 
-    const contributorsCountString = contributorsCount > LOWER_BOUND_MORE_CONTRIBUTORS
-        ? `${LOWER_BOUND_MORE_CONTRIBUTORS}+`
-        : `+${contributorsCount}`;
+    const contributorsCountString =
+        contributorsCount > LOWER_BOUND_MORE_CONTRIBUTORS
+            ? `${LOWER_BOUND_MORE_CONTRIBUTORS}+`
+            : `+${contributorsCount}`;
 
     return (
         <Fragment>
@@ -49,7 +50,7 @@ const HiddenAvatars: React.FC<HiddenAvatarsProps> = (props) => {
             >
                 {contributorsCountString}
             </div>
-            <Details contributors={contributors} popupData={popupData}/>
+            <Details contributors={contributors} popupData={popupData} />
         </Fragment>
     );
 };

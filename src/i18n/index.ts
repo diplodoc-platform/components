@@ -5,13 +5,11 @@ import {Lang} from '../models';
 import ru from './ru.json';
 import en from './en.json';
 
-export default i18n
-    .use(initReactI18next)
-    .init({
-        fallbackLng: Lang.Ru,
-        ns: ['controls', 'mini-toc', 'toc-nav-panel', 'authors'],
-        resources: {ru, en},
-        interpolation: {
-            escapeValue: false,
-        },
-    });
+export default i18n.use(initReactI18next).init({
+    fallbackLng: Lang.Ru,
+    ns: ['controls', 'mini-toc', 'toc-nav-panel', 'authors'],
+    resources: {ru, en},
+    interpolation: {
+        escapeValue: false,
+    },
+});

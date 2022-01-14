@@ -17,9 +17,7 @@ function addRules(config, {browsers, extract, ruleIncludes, ruleExcludes, paths}
         loader: require.resolve('postcss-loader'),
         options: {
             sourceMap: config.sourceMap,
-            plugins: [
-                autoprefixer({browsers}),
-            ],
+            plugins: [autoprefixer({browsers})],
         },
     };
     const sassLoader = {
@@ -49,22 +47,13 @@ function addRules(config, {browsers, extract, ruleIncludes, ruleExcludes, paths}
         test: /\.s?css$/,
         include: ruleIncludes,
         exclude: ruleExcludes,
-        use: [
-            cssLoader,
-            postcssLoader,
-            resolveUrlLoader,
-            sassLoader,
-        ],
+        use: [cssLoader, postcssLoader, resolveUrlLoader, sassLoader],
     };
     const stylusRule = {
         test: /\.styl$/,
         include: ruleIncludes,
         exclude: ruleExcludes,
-        use: [
-            cssLoader,
-            postcssLoader,
-            stylusLoader,
-        ],
+        use: [cssLoader, postcssLoader, stylusLoader],
     };
 
     if (config.isProduction && extract) {
@@ -80,10 +69,12 @@ function addRules(config, {browsers, extract, ruleIncludes, ruleExcludes, paths}
 }
 
 function addPlugins(config, {filename}) {
-    config.plugins.addPlugin(new MiniCSSExtractPlugin({
-        filename: config.isProduction ? filename : '[name].css',
-        chunkFilename: config.isProduction ? filename : '[name].css',
-    }));
+    config.plugins.addPlugin(
+        new MiniCSSExtractPlugin({
+            filename: config.isProduction ? filename : '[name].css',
+            chunkFilename: config.isProduction ? filename : '[name].css',
+        }),
+    );
 }
 
 module.exports = function createStylesLevel(options = {}) {

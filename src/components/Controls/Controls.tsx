@@ -47,11 +47,7 @@ export interface ControlsProps {
     controlSize?: ControlSizes;
 }
 
-
-type ControlsInnerProps =
-    & ControlsProps
-    & WithTranslation
-    & WithTranslationProps;
+type ControlsInnerProps = ControlsProps & WithTranslation & WithTranslationProps;
 
 class Controls extends React.Component<ControlsInnerProps> {
     componentDidUpdate(prevProps: ControlsProps) {
@@ -79,15 +75,8 @@ class Controls extends React.Component<ControlsInnerProps> {
     }
 
     private renderEditLink() {
-        const {
-            vcsUrl,
-            vcsType,
-            showEditControl,
-            singlePage,
-            isVerticalView,
-            controlSize,
-            t,
-        } = this.props;
+        const {vcsUrl, vcsType, showEditControl, singlePage, isVerticalView, controlSize, t} =
+            this.props;
 
         if (!showEditControl || singlePage) {
             return null;
@@ -100,12 +89,7 @@ class Controls extends React.Component<ControlsInnerProps> {
                     isVerticalView={!isVerticalView}
                     className={b('divider')}
                 />
-                <a
-                    href={vcsUrl}
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    className={b('control')}
-                >
+                <a href={vcsUrl} target="_blank" rel="noreferrer noopener" className={b('control')}>
                     <Control
                         size={controlSize}
                         className={b('control')}
@@ -198,7 +182,7 @@ class Controls extends React.Component<ControlsInnerProps> {
 
         return (
             <React.Fragment>
-                <DividerControl className={b('divider')} isVerticalView={!isVerticalView}/>
+                <DividerControl className={b('divider')} isVerticalView={!isVerticalView} />
                 <Feedback
                     lang={lang}
                     singlePage={singlePage}

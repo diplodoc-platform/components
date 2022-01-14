@@ -49,7 +49,7 @@ function getContributorDetails(contributor: Contributor) {
         inDetails: true,
     };
 
-    const avatarImg = (<Avatar avatarData={avatarData}/>);
+    const avatarImg = <Avatar avatarData={avatarData} />;
 
     return (
         <Link url={url} key={`details-${login || email}`}>

@@ -12,8 +12,8 @@ import RusIcon from '../../../../assets/icons/rus.svg';
 import EngIcon from '../../../../assets/icons/eng.svg';
 
 const ITEMS = [
-    {value: Lang.Ru, text: 'Русский', icon: <RusIcon/>},
-    {value: Lang.En, text: 'English', icon: <EngIcon/>},
+    {value: Lang.Ru, text: 'Русский', icon: <RusIcon />},
+    {value: Lang.En, text: 'English', icon: <EngIcon />},
 ];
 
 interface ControlProps {
@@ -24,32 +24,24 @@ interface ControlProps {
     onChangeLang?: (lang: Lang) => void;
 }
 
-type ControlInnerProps =
-    & ControlProps
-    & WithTranslation
-    & WithTranslationProps;
+type ControlInnerProps = ControlProps & WithTranslation & WithTranslationProps;
 
 const LangControl = (props: ControlInnerProps) => {
-    const {
-        className,
-        isVerticalView,
-        size,
-        lang,
-        i18n,
-        onChangeLang,
-        t,
-    } = props;
+    const {className, isVerticalView, size, lang, i18n, onChangeLang, t} = props;
 
     const controlRef = useRef<HTMLButtonElement | null>(null);
     const [isVisiblePopup, setIsVisiblePopup] = useState(false);
     const showPopup = () => setIsVisiblePopup(true);
     const hidePopup = () => setIsVisiblePopup(false);
 
-    const _onChangeLang = useCallback((value: Lang) => {
-        if (onChangeLang) {
-            onChangeLang(value);
-        }
-    }, [onChangeLang]);
+    const _onChangeLang = useCallback(
+        (value: Lang) => {
+            if (onChangeLang) {
+                onChangeLang(value);
+            }
+        },
+        [onChangeLang],
+    );
 
     useEffect(() => {
         i18n.changeLanguage(lang);

@@ -14,11 +14,13 @@
         width: 16px;
     }
 
-    &__control:not(:last-child), &__divider {
+    &__control:not(:last-child),
+    &__divider {
         margin-right: 4px;
     }
 
-    &_vertical &__control:not(:last-child), &_vertical &__divider {
+    &_vertical &__control:not(:last-child),
+    &_vertical &__divider {
         margin-right: 0;
         margin-bottom: 4px;
     }

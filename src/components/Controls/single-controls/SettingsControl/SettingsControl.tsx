@@ -35,10 +35,7 @@ interface ControlProps {
     onChangeTextSize?: (textSize: TextSizes) => void;
 }
 
-type ControlInnerProps =
-    & ControlProps
-    & WithTranslation
-    & WithTranslationProps;
+type ControlInnerProps = ControlProps & WithTranslation & WithTranslationProps;
 
 const SettingsControl = (props: ControlInnerProps) => {
     const {
@@ -65,11 +62,14 @@ const SettingsControl = (props: ControlInnerProps) => {
     const showPopup = () => setIsVisiblePopup(true);
     const hidePopup = () => setIsVisiblePopup(false);
 
-    const makeOnChangeTextSize = useCallback((textSizeKey) => () => {
-        if (onChangeTextSize) {
-            onChangeTextSize(textSizeKey);
-        }
-    }, [onChangeTextSize]);
+    const makeOnChangeTextSize = useCallback(
+        (textSizeKey) => () => {
+            if (onChangeTextSize) {
+                onChangeTextSize(textSizeKey);
+            }
+        },
+        [onChangeTextSize],
+    );
     const _onChangeTheme = useCallback(() => {
         if (onChangeTheme) {
             onChangeTheme(theme === Theme.Dark ? Theme.Light : Theme.Dark);
@@ -91,59 +91,60 @@ const SettingsControl = (props: ControlInnerProps) => {
         const showMiniTocDisabled = fullScreen || singlePage;
 
         return [
-            onChangeWideFormat ? {
-                text: t('label_wide_format'),
-                description: t(`description_wide_format_${wideFormat ? 'enabled' : 'disabled'}`),
-                control: (
-                    <Tumbler
-                        checked={wideFormat}
-                        onChange={_onChangeWideFormat}
-                    />
-                ),
-            } : null,
-            onChangeShowMiniToc ? {
-                text: t('label_show_mini_toc'),
-                description: t('description_show_mini_toc'),
-                control: (
-                    <Tumbler
-                        disabled={showMiniTocDisabled}
-                        checked={showMiniToc}
-                        onChange={_onChangeShowMiniToc}
-                    />
-                ),
-            } : null,
-            onChangeTheme ? {
-                text: t('label_dark_theme'),
-                description: Theme.Light === theme
-                    ? t('description_disabled_dark_theme')
-                    : t('description_enabled_dark_theme'),
-                control: (
-                    <Tumbler
-                        checked={theme === Theme.Dark}
-                        onChange={_onChangeTheme}
-                    />
-                ),
-            } : null,
-            onChangeTextSize ? {
-                text: t('label_text_size'),
-                description: t(`description_${textSize}_text_size`),
-                control: (
-                    <div className={b('text-size-control')}>
-                        {allTextSizes.map((textSizeKey) => (
-                            <ControlButton
-                                key={textSizeKey}
-                                className={b('text-size-button', {
-                                    [textSizeKey]: true,
-                                    active: textSize === textSizeKey,
-                                })}
-                                onClick={makeOnChangeTextSize(textSizeKey)}
-                            >
-                                A
-                            </ControlButton>
-                        ))}
-                    </div>
-                ),
-            } : null,
+            onChangeWideFormat
+                ? {
+                      text: t('label_wide_format'),
+                      description: t(
+                          `description_wide_format_${wideFormat ? 'enabled' : 'disabled'}`,
+                      ),
+                      control: <Tumbler checked={wideFormat} onChange={_onChangeWideFormat} />,
+                  }
+                : null,
+            onChangeShowMiniToc
+                ? {
+                      text: t('label_show_mini_toc'),
+                      description: t('description_show_mini_toc'),
+                      control: (
+                          <Tumbler
+                              disabled={showMiniTocDisabled}
+                              checked={showMiniToc}
+                              onChange={_onChangeShowMiniToc}
+                          />
+                      ),
+                  }
+                : null,
+            onChangeTheme
+                ? {
+                      text: t('label_dark_theme'),
+                      description:
+                          Theme.Light === theme
+                              ? t('description_disabled_dark_theme')
+                              : t('description_enabled_dark_theme'),
+                      control: <Tumbler checked={theme === Theme.Dark} onChange={_onChangeTheme} />,
+                  }
+                : null,
+            onChangeTextSize
+                ? {
+                      text: t('label_text_size'),
+                      description: t(`description_${textSize}_text_size`),
+                      control: (
+                          <div className={b('text-size-control')}>
+                              {allTextSizes.map((textSizeKey) => (
+                                  <ControlButton
+                                      key={textSizeKey}
+                                      className={b('text-size-button', {
+                                          [textSizeKey]: true,
+                                          active: textSize === textSizeKey,
+                                      })}
+                                      onClick={makeOnChangeTextSize(textSizeKey)}
+                                  >
+                                      A
+                                  </ControlButton>
+                              ))}
+                          </div>
+                      ),
+                  }
+                : null,
         ].filter(Boolean);
     }, [
         t,
@@ -171,12 +172,7 @@ const SettingsControl = (props: ControlInnerProps) => {
         controlRef.current = ref;
     }, []);
 
-    if (!(
-        onChangeWideFormat ||
-        onChangeTheme ||
-        onChangeShowMiniToc ||
-        onChangeTextSize
-    )) {
+    if (!(onChangeWideFormat || onChangeTheme || onChangeShowMiniToc || onChangeTextSize)) {
         return null;
     }
 
@@ -200,10 +196,7 @@ const SettingsControl = (props: ControlInnerProps) => {
                 onOutsideClick={hidePopup}
                 position={getPopupPosition(isVerticalView)}
             >
-                <List
-                    items={settingsItems as ListItem[]}
-                    itemHeight={ITEM_HEIGHT}
-                />
+                <List items={settingsItems as ListItem[]} itemHeight={ITEM_HEIGHT} />
             </Popup>
         </React.Fragment>
     );

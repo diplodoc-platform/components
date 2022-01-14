@@ -2,7 +2,20 @@ const webpack = require('webpack');
 const FortTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const {getOption, setOutput} = require('../utils');
 
-function addRule(config, {browsers, langs, bemLevels, ruleIncludes, ruleExcludes, reactHotLoader, cacheLoader, threadLoader, typescript}) {
+function addRule(
+    config,
+    {
+        browsers,
+        langs,
+        bemLevels,
+        ruleIncludes,
+        ruleExcludes,
+        reactHotLoader,
+        cacheLoader,
+        threadLoader,
+        typescript,
+    },
+) {
     const envConfig = {
         targets: browsers,
         modules: false,
@@ -12,17 +25,19 @@ function addRule(config, {browsers, langs, bemLevels, ruleIncludes, ruleExcludes
         test: typescript ? /\.[jt]sx?$/ : /\.jsx?$/,
         include: ruleIncludes,
         exclude: ruleExcludes,
-        use: [{
-            loader: require.resolve('babel-loader'),
-            options: {
-                plugins: [
-                    reactHotLoader && require.resolve('react-hot-loader/babel'),
-                ].filter(Boolean),
-                sourceType: 'unambiguous',
-                cacheDirectory: config.isDevelopment,
-                compact: config.isProduction,
+        use: [
+            {
+                loader: require.resolve('babel-loader'),
+                options: {
+                    plugins: [reactHotLoader && require.resolve('react-hot-loader/babel')].filter(
+                        Boolean,
+                    ),
+                    sourceType: 'unambiguous',
+                    cacheDirectory: config.isDevelopment,
+                    compact: config.isProduction,
+                },
             },
-        }],
+        ],
     };
 
     if (threadLoader) {
@@ -44,17 +59,21 @@ function addRule(config, {browsers, langs, bemLevels, ruleIncludes, ruleExcludes
 }
 
 function addPlugins(config, {langs, buildLang, typescript, forkTsChecker}) {
-    config.plugins.addPlugin(new webpack.ContextReplacementPlugin(
-        /moment[\\/]locale$/,
-        new RegExp(`^\\./(${langs.join('|')})$`)
-    ));
+    config.plugins.addPlugin(
+        new webpack.ContextReplacementPlugin(
+            /moment[\\/]locale$/,
+            new RegExp(`^\\./(${langs.join('|')})$`),
+        ),
+    );
 
     if (typescript) {
-        config.plugins.addPlugin(new FortTsCheckerWebpackPlugin({
-            checkSyntacticErrors: true,
-            useTypescriptIncrementalApi: true,
-            ...forkTsChecker,
-        }));
+        config.plugins.addPlugin(
+            new FortTsCheckerWebpackPlugin({
+                checkSyntacticErrors: true,
+                useTypescriptIncrementalApi: true,
+                ...forkTsChecker,
+            }),
+        );
     }
 }
 
@@ -87,7 +106,17 @@ module.exports = function createJavascriptLevel(options = {}) {
 
     return function javascriptLevel(config) {
         setOutput(config, {filename, chunkFilename});
-        addRule(config, {browsers, langs, bemLevels, ruleIncludes, ruleExcludes, reactHotLoader, cacheLoader, threadLoader, typescript});
+        addRule(config, {
+            browsers,
+            langs,
+            bemLevels,
+            ruleIncludes,
+            ruleExcludes,
+            reactHotLoader,
+            cacheLoader,
+            threadLoader,
+            typescript,
+        });
         addPlugins(config, {langs, buildLang, typescript, forkTsChecker});
         addResolve(config, {typescript, reactHotLoader});
     };

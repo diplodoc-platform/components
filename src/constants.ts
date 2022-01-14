@@ -9,8 +9,8 @@ export const DISLIKE_VARIANTS = {
     ],
     [Lang.En]: [
         'No answer to my question',
-        'Recommendations didn\'t help',
-        'The content doesn\'t match the title',
+        "Recommendations didn't help",
+        "The content doesn't match the title",
         'Other',
     ],
 };

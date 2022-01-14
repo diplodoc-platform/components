@@ -1,11 +1,6 @@
 import React from 'react';
 import cn from 'bem-cn-lite';
-import {
-    ControlSizes,
-    LangControl,
-    FullScreenControl,
-    DividerControl,
-} from '../../../index';
+import {ControlSizes, LangControl, FullScreenControl, DividerControl} from '../../../index';
 import {Lang} from '../../../models';
 
 const headBlock = cn('Header');
@@ -18,13 +13,7 @@ export interface HeaderProps {
     onChangeFullScreen?: (value: boolean) => void;
 }
 
-
-const Header: React.FC<HeaderProps> = ({
-    lang,
-    fullScreen,
-    onChangeFullScreen,
-    onChangeLang,
-}) => {
+const Header: React.FC<HeaderProps> = ({lang, fullScreen, onChangeFullScreen, onChangeLang}) => {
     return (
         <div className={layoutBlock('header')}>
             <div className={headBlock()}>
@@ -35,10 +24,7 @@ const Header: React.FC<HeaderProps> = ({
                     size={ControlSizes.M}
                     className={headBlock('control')}
                 />
-                <DividerControl
-                    size={ControlSizes.M}
-                    className={headBlock('divider')}
-                />
+                <DividerControl size={ControlSizes.M} className={headBlock('divider')} />
                 <LangControl
                     lang={lang}
                     onChangeLang={onChangeLang}

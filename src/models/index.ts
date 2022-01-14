@@ -1,24 +1,24 @@
 export enum Theme {
     Light = 'light',
-    Dark = 'dark'
+    Dark = 'dark',
 }
 
 export enum TextSizes {
     S = 's', // 13px
     M = 'm', // 15px
-    L = 'l' // 17px
+    L = 'l', // 17px
 }
 
 export enum ControlSizes {
     S = 's',
-    M = 'm'
+    M = 'm',
 }
 
 export enum ButtonThemes {
     Flat = 'flat',
     Float = 'float',
     Action = 'action',
-    Like = 'like'
+    Like = 'like',
 }
 
 export interface DocSettings {
@@ -62,7 +62,7 @@ export interface DocLeadingLinks {
 
 export enum Vcs {
     Github = 'github',
-    Arcanum = 'arcanum'
+    Arcanum = 'arcanum',
 }
 
 export interface DocPageData extends DocBasePageData {
@@ -122,7 +122,7 @@ export interface Router {
 
 export enum Lang {
     Ru = 'ru',
-    En = 'en'
+    En = 'en',
 }
 
 export interface Contributor {
@@ -141,7 +141,7 @@ export interface DislikeData {
 export enum FeedbackType {
     like = 'like',
     dislike = 'dislike',
-    indeterminate = 'indeterminate'
+    indeterminate = 'indeterminate',
 }
 
 export interface FeedbackSendData {

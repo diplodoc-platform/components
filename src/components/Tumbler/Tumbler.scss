@@ -26,7 +26,8 @@
         background-color: var(--yc-color-contrast-4-solid);
     }
 
-    &_disabled &__box, &_disabled &__button {
+    &_disabled &__box,
+    &_disabled &__button {
         cursor: initial;
     }
 
@@ -49,7 +50,6 @@
         touch-action: manipulation;
         border: none;
         cursor: pointer;
-
 
         &:before {
             border-width: 0;

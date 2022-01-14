@@ -1,10 +1,13 @@
 @import './socials';
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     box-sizing: inherit;
 }
 
-html, body {
+html,
+body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -39,7 +42,8 @@ html, body {
     --yc-text-display3-line-height: 48px;
 
     --yc-font-family: 'YS Text', 'Helvetica Neue', 'Arial', 'Helvetica', sans-serif;
-    --yc-font-family-monospace: 'SF Mono', 'Monaco', 'Menlo', 'Consolas', 'Ubuntu Mono', 'Liberation Mono', 'DejaVu Sans Mono', 'Courier New', 'Courier', monospace;
+    --yc-font-family-monospace: 'SF Mono', 'Monaco', 'Menlo', 'Consolas', 'Ubuntu Mono',
+        'Liberation Mono', 'DejaVu Sans Mono', 'Courier New', 'Courier', monospace;
 
     --yc-scrollbar-width: 12px;
     --yc-scrollbar-thin-width: 6px;
@@ -64,19 +68,23 @@ body.yc-root {
         height: var(--yc-scrollbar-thin-width);
     }
 
-    &::-webkit-scrollbar-track, *::-webkit-scrollbar-track {
+    &::-webkit-scrollbar-track,
+    *::-webkit-scrollbar-track {
         background: var(--yc-color-scroll-track);
     }
 
-    &::-webkit-scrollbar-corner, *::-webkit-scrollbar-corner {
+    &::-webkit-scrollbar-corner,
+    *::-webkit-scrollbar-corner {
         background: var(--yc-color-scroll-corner);
     }
 
-    &::-webkit-scrollbar-thumb, *::-webkit-scrollbar-thumb {
+    &::-webkit-scrollbar-thumb,
+    *::-webkit-scrollbar-thumb {
         background: var(--yc-color-scroll-handle);
     }
 
-    &::-webkit-scrollbar-thumb:hover, *::-webkit-scrollbar-thumb:hover {
+    &::-webkit-scrollbar-thumb:hover,
+    *::-webkit-scrollbar-thumb:hover {
         background: var(--yc-color-scroll-handle-hover);
     }
 

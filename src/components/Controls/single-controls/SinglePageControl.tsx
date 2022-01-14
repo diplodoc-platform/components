@@ -16,29 +16,16 @@ interface ControlProps {
     size?: ControlSizes;
 }
 
-type ControlInnerProps =
-    & ControlProps
-    & WithTranslation
-    & WithTranslationProps;
+type ControlInnerProps = ControlProps & WithTranslation & WithTranslationProps;
 
 const SinglePageControl = (props: ControlInnerProps) => {
-    const {
-        className,
-        isVerticalView,
-        size,
-        value,
-        onChange,
-        lang,
-        i18n,
-        t,
-    } = props;
+    const {className, isVerticalView, size, value, onChange, lang, i18n, t} = props;
 
     const onClick = useCallback(() => {
         if (onChange) {
             onChange(!value);
         }
     }, [value, onChange]);
-
 
     useEffect(() => {
         i18n.changeLanguage(lang);

@@ -35,12 +35,15 @@ class Output {
     }
 
     build() {
-        return Object.assign({
-            path: this._path,
-            publicPath: this._publicPath,
-            filename: this._filename,
-            chunkFilename: this._chunkFilename,
-        }, this._extend);
+        return Object.assign(
+            {
+                path: this._path,
+                publicPath: this._publicPath,
+                filename: this._filename,
+                chunkFilename: this._chunkFilename,
+            },
+            this._extend,
+        );
     }
 }
 

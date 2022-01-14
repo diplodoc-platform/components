@@ -1,6 +1,9 @@
 import {MutableRefObject, Ref, RefCallback, useMemo} from 'react';
 
-function setRef<T>(value: T | null, ref?: MutableRefObject<T | null> | RefCallback<T | null> | null): void {
+function setRef<T>(
+    value: T | null,
+    ref?: MutableRefObject<T | null> | RefCallback<T | null> | null,
+): void {
     if (typeof ref === 'function') {
         ref(value);
     } else if (ref) {

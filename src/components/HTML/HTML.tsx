@@ -11,11 +11,8 @@ export const HTML: React.FC<HTMLProps> = ({children, block = false, className}) 
         return null;
     }
 
-    return React.createElement(
-        block ? 'div' : 'span',
-        {
-            dangerouslySetInnerHTML: {__html: children},
-            className,
-        },
-    );
+    return React.createElement(block ? 'div' : 'span', {
+        dangerouslySetInnerHTML: {__html: children},
+        className,
+    });
 };

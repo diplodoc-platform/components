@@ -13,7 +13,8 @@
     a {
         color: var(--yc-color-link);
 
-        &:hover, &:active {
+        &:hover,
+        &:active {
             color: var(--yc-color-link-hover);
         }
     }
@@ -26,7 +27,7 @@
         yfm-accent-info: var(--yc-color-base-info),
         yfm-accent-tip: var(--yc-color-base-positive),
         yfm-accent-alert: var(--yc-color-base-danger),
-        yfm-accent-warning: var(--yc-color-base-warning)
+        yfm-accent-warning: var(--yc-color-base-warning),
     );
 
     @each $type, $color in $backgroundColors {
@@ -57,7 +58,8 @@
         background: var(--yc-color-base);
     }
 
-    table thead, table tr:nth-child(2n) {
+    table thead,
+    table tr:nth-child(2n) {
         background: var(--yc-color-base-generic);
     }
 
@@ -73,7 +75,8 @@
         border-bottom-color: var(--yc-color-line-generic);
     }
 
-    .yfm-tab:hover, .yfm-tab:active {
+    .yfm-tab:hover,
+    .yfm-tab:active {
         color: var(--yc-color-link-hover);
     }
 
@@ -92,22 +95,35 @@
 
     // Margin collapse is not applied for a block and header with a negative margin.
     // The margin is summed up. So, we need to take 15px away from the header margin-top
-    h1, h2 {
+    h1,
+    h2 {
         @include fixAnchorPosition(calc(#{$headerMarginTopLarge} - #{$blockMarginBottomMedium}));
         margin-bottom: $blockMarginBottomLarge;
     }
 
-    h3, h4, h5, h6 {
+    h3,
+    h4,
+    h5,
+    h6 {
         @include fixAnchorPosition(calc(#{$headerMarginTopMedium} - #{$blockMarginBottomMedium}));
     }
 
-    h1 + h2, h2 + h3, h3 + h4, h4 + h5, h5 + h6 {
+    h1 + h2,
+    h2 + h3,
+    h3 + h4,
+    h4 + h5,
+    h5 + h6 {
         @include fixAnchorPosition();
     }
 
     // Use 0px for the top offset of the header if it is the first child element,
     // because it is located after the page title
-    h1, h2, h3, h4, h5, h6 {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
         &:first-child {
             @include fixAnchorPosition();
         }
@@ -120,7 +136,12 @@
         margin-top: 20px;
         margin-bottom: 0;
 
-        & + h1, & + h2, & + h3, & + h4, & + h5, & + h6 {
+        & + h1,
+        & + h2,
+        & + h3,
+        & + h4,
+        & + h5,
+        & + h6 {
             @include fixAnchorPosition(#{$headerMarginTopLarge});
         }
     }
@@ -134,7 +155,12 @@
         }
     }
 
-    h1, h2, h3, h4, h5, h6 {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
         .yfm-original-link::before {
             content: none;
         }
@@ -150,7 +176,7 @@
     .yfm-anchor_hidden {
         visibility: hidden;
         &:before {
-            visibility: hidden!important;
+            visibility: hidden !important;
         }
     }
     /* stylelint-enable declaration-no-important */

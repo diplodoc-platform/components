@@ -62,7 +62,7 @@ export const TextAreaControl: React.FC<TextAreaInnerProps> = React.memo((props) 
             control.style.height = 'auto';
             control.style.height = `${control.scrollHeight + 2 * textAreaBorderWidth}px`;
         }
-    }, [rows]);
+    }, [controlRef, rows]);
 
     const onKeyPress = React.useCallback(
         (event: React.KeyboardEvent<HTMLTextAreaElement>) => {

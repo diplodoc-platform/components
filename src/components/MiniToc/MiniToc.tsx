@@ -18,10 +18,7 @@ export interface MinitocProps {
     headerHeight?: number;
 }
 
-type MinitocInnerProps =
-    & MinitocProps
-    & WithTranslation
-    & WithTranslationProps;
+type MinitocInnerProps = MinitocProps & WithTranslation & WithTranslationProps;
 
 class MiniToc extends React.Component<MinitocInnerProps> {
     static propTypes = {
@@ -83,20 +80,16 @@ class MiniToc extends React.Component<MinitocInnerProps> {
     private renderSection = (prevSections: ReactElement[], heading: DocHeadingItem) => {
         return prevSections.concat(
             this.renderItem(heading),
-            heading.items
-                ? heading.items.map((item) => this.renderItem(item, true))
-                : [],
+            heading.items ? heading.items.map((item) => this.renderItem(item, true)) : [],
         );
     };
 
     private renderItem = ({title, href}: DocHeadingItem, isChild = false) => {
         return (
-            <li
-                key={href}
-                data-hash={href}
-                className={b('section', {child: isChild})}
-            >
-                <a href={href} className={b('section-link')} data-router-shallow>{title}</a>
+            <li key={href} data-hash={href} className={b('section', {child: isChild})}>
+                <a href={href} className={b('section-link')} data-router-shallow>
+                    {title}
+                </a>
             </li>
         );
     };

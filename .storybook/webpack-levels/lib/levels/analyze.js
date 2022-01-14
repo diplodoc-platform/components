@@ -9,10 +9,12 @@ module.exports = function createAnalyzeLevel(options = {}) {
 
     return function analyzeLevel(config) {
         if (options) {
-            config.plugins.addPlugin(new BundleAnalyzerPlugin({
-                ...defaultOptions,
-                ...options,
-            }));
+            config.plugins.addPlugin(
+                new BundleAnalyzerPlugin({
+                    ...defaultOptions,
+                    ...options,
+                }),
+            );
         }
     };
 };

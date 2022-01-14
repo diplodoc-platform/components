@@ -18,9 +18,7 @@ const DividerControl = ({
     className,
     isVerticalView = true,
 }: DividerControlProps) => {
-    return (
-        <div className={b({size, vertical: isVerticalView}, className)}/>
-    );
+    return <div className={b({size, vertical: isVerticalView}, className)} />;
 };
 
 export default DividerControl;

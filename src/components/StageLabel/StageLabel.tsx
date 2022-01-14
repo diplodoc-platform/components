@@ -22,12 +22,5 @@ export const StageLabel: React.FC<StageLabelProps> = ({stage, size = 's', classN
 
     const color = colorByStage[stage];
 
-    return (
-        <Mark
-            className={className}
-            text={stage}
-            color={color}
-            size={size}
-        />
-    );
+    return <Mark className={className} text={stage} color={color} size={size} />;
 };

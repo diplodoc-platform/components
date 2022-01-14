@@ -31,7 +31,6 @@ export interface DocLayoutProps {
 }
 
 export class DocLayout extends React.Component<DocLayoutProps> {
-
     static Left = Left;
     static Center = Center;
     static Right = Right;
@@ -51,7 +50,7 @@ export class DocLayout extends React.Component<DocLayoutProps> {
             'regular-page-width': !wideFormat,
             'full-screen': fullScreen,
             'hidden-right': hideRight,
-            'loading': loading,
+            loading: loading,
         };
 
         React.Children.forEach(children, (child) => {
@@ -76,27 +75,32 @@ export class DocLayout extends React.Component<DocLayoutProps> {
             <div className={b(null, className)}>
                 {/* layout direction reverses on mobiles */}
                 <div className={b('mobile-only')}>{footer}</div>
-                {fullScreen ? null :
+                {fullScreen ? null : (
                     <div className={b('left', modes)}>
                         {this.renderToc()}
                         {left}
                     </div>
-                }
+                )}
                 <div className={b('center', modes)}>
                     {center}
                     <div className={b('desktop-only')}>{footer}</div>
                 </div>
-                {fullScreen || hideRight ? null :
-                    <div className={b('right', modes)}>
-                        {right}
-                    </div>
-                }
+                {fullScreen || hideRight ? null : <div className={b('right', modes)}>{right}</div>}
             </div>
         );
     }
 
     private renderToc() {
-        const {toc, router, headerHeight, tocTitleIcon, hideRight, wideFormat, hideTocHeader, hideToc} = this.props;
+        const {
+            toc,
+            router,
+            headerHeight,
+            tocTitleIcon,
+            hideRight,
+            wideFormat,
+            hideTocHeader,
+            hideToc,
+        } = this.props;
 
         if (!toc || hideToc) {
             return null;

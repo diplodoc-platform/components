@@ -23,10 +23,4 @@ export const ToggleArrow: React.FC<ToggleArrowProps> = ({
     thin = false,
     slow = false,
     className,
-}) => (
-    <ChevronIcon
-        className={b({type, open, thin, slow}, className)}
-        width={size}
-        height={size}
-    />
-);
+}) => <ChevronIcon className={b({type, open, thin, slow}, className)} width={size} height={size} />;

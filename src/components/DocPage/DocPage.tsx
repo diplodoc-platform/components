@@ -3,7 +3,16 @@ import ReactDOMServer from 'react-dom/server';
 import block from 'bem-cn-lite';
 import '@doc-tools/transform/dist/js/yfm';
 
-import {FeedbackSendData, DocPageData, DocSettings, Lang, Router, Vcs, TextSizes, Theme} from '../../models';
+import {
+    FeedbackSendData,
+    DocPageData,
+    DocSettings,
+    Lang,
+    Router,
+    Vcs,
+    TextSizes,
+    Theme,
+} from '../../models';
 import {DocLayout} from '../DocLayout';
 import {DocPageTitle} from '../DocPageTitle';
 import {MiniToc} from '../MiniToc';
@@ -139,7 +148,10 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                 </DocLayout.Center>
                 <DocLayout.Right>
                     {/* This key allows recalculating the offset for the mini-toc for Safari */}
-                    <div className={b('aside')} key={getStateKey(this.showMiniToc, wideFormat, singlePage)}>
+                    <div
+                        className={b('aside')}
+                        key={getStateKey(this.showMiniToc, wideFormat, singlePage)}
+                    >
                         {asideMiniToc}
                     </div>
                 </DocLayout.Right>
@@ -185,20 +197,11 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             return null;
         }
 
-        return (
-            <div className={b('loader-wrapper')}>
-                {renderLoader()}
-            </div>
-        );
+        return <div className={b('loader-wrapper')}>{renderLoader()}</div>;
     }
 
     private addLinksToOriginalArticle = () => {
-        const {
-            singlePage,
-            lang,
-            convertPathToOriginalArticle,
-            generatePathToVcs,
-        } = this.props;
+        const {singlePage, lang, convertPathToOriginalArticle, generatePathToVcs} = this.props;
 
         if (singlePage) {
             const elements = document.querySelectorAll('[data-original-article]');
@@ -217,15 +220,17 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                     const linkToOriginal = document.createElement('a');
                     linkToOriginal.href = callSafe(convertPathToOriginalArticle, href);
                     linkToOriginal.className = 'yfm-anchor yfm-original-link';
-                    linkToOriginal.innerHTML = ReactDOMServer.renderToStaticMarkup(<LinkIcon/>);
+                    linkToOriginal.innerHTML = ReactDOMServer.renderToStaticMarkup(<LinkIcon />);
                     linkWrapperEl.append(linkToOriginal);
 
                     /* Create the link to the vcs */
                     if (typeof generatePathToVcs === 'function') {
                         const vcsHref = callSafe(generatePathToVcs, href);
-                        const linkToVcs = createElementFromHTML(ReactDOMServer.renderToStaticMarkup(
-                            <EditButton lang={lang} href={vcsHref}/>,
-                        ));
+                        const linkToVcs = createElementFromHTML(
+                            ReactDOMServer.renderToStaticMarkup(
+                                <EditButton lang={lang} href={vcsHref} />,
+                            ),
+                        );
                         linkWrapperEl.append(linkToVcs);
                         linkWrapperEl.classList.add(b('header-container'));
                     }
@@ -253,7 +258,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
 
         return (
             <div className={b('breadcrumbs')}>
-                <Breadcrumbs items={breadcrumbs}/>
+                <Breadcrumbs items={breadcrumbs} />
             </div>
         );
     }
@@ -280,9 +285,8 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
     private renderPageContributors() {
         const {meta} = this.props;
 
-        const author = this.renderAuthor(!(meta?.contributors?.length));
+        const author = this.renderAuthor(!meta?.contributors?.length);
         const contributors = this.renderContributors();
-
 
         const separator = author && contributors && <div className={b('separator')}>{','}</div>;
 
@@ -318,9 +322,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             return null;
         }
 
-        return (
-            <Contributors lang={lang} users={meta.contributors}/>
-        );
+        return <Contributors lang={lang} users={meta.contributors} />;
     }
 
     private renderContentMiniToc() {
@@ -339,19 +341,26 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                                 <a href={href}>{title}</a>
                                 {items && (
                                     <ul>
-                                        {items.map(({
-                                            title: itemTitle, href: itemHref, level: itemLevel,
-                                        }, idx) => {
-                                            if (itemLevel !== 3) {
-                                                return null;
-                                            }
+                                        {items.map(
+                                            (
+                                                {
+                                                    title: itemTitle,
+                                                    href: itemHref,
+                                                    level: itemLevel,
+                                                },
+                                                idx,
+                                            ) => {
+                                                if (itemLevel !== 3) {
+                                                    return null;
+                                                }
 
-                                            return (
-                                                <li key={idx}>
-                                                    <a href={itemHref}>{itemTitle}</a>
-                                                </li>
-                                            );
-                                        })}
+                                                return (
+                                                    <li key={idx}>
+                                                        <a href={itemHref}>{itemTitle}</a>
+                                                    </li>
+                                                );
+                                            },
+                                        )}
                                     </ul>
                                 )}
                             </li>
@@ -382,7 +391,8 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
         const {headings, router, headerHeight, lang, toc} = this.props;
 
         const emptyHeaderOrSinglePage = headings.length === 0 || toc.singlePage;
-        const soloHeaderWithChildren = headings.length === 1 && headings[0].items && headings[0].items.length >= 1;
+        const soloHeaderWithChildren =
+            headings.length === 1 && headings[0].items && headings[0].items.length >= 1;
 
         if (emptyHeaderOrSinglePage || !(soloHeaderWithChildren || headings.length >= 2)) {
             return null;
@@ -390,21 +400,19 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
 
         return (
             <div className={b('aside-mini-toc')}>
-                <MiniToc headings={headings} router={router} headerHeight={headerHeight} lang={lang}/>
+                <MiniToc
+                    headings={headings}
+                    router={router}
+                    headerHeight={headerHeight}
+                    lang={lang}
+                />
             </div>
         );
     }
 
     private renderFeedback() {
-        const {
-            toc,
-            lang,
-            singlePage,
-            isLiked,
-            isDisliked,
-            onSendFeedback,
-            dislikeVariants,
-        } = this.props;
+        const {toc, lang, singlePage, isLiked, isDisliked, onSendFeedback, dislikeVariants} =
+            this.props;
 
         if (!toc || toc.singlePage) {
             return null;
@@ -448,12 +456,11 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
 
     private isEditable() {
         const {toc, meta, vcsUrl, vcsType} = this.props;
-        const editable = (
+        const editable =
             toc.stage !== 'preview' &&
             meta.stage !== 'preview' &&
             meta.editable !== false &&
-            toc.editable !== false
-        );
+            toc.editable !== false;
 
         return Boolean(editable && vcsUrl && vcsType);
     }

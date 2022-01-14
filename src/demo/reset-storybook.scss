@@ -1,7 +1,8 @@
 @import '../../styles/mixins';
 
 .yc-root {
-    & code[class*='language-'], pre[class*='language-'] {
+    & code[class*='language-'],
+    pre[class*='language-'] {
         background: initial;
         padding: initial;
         margin: 0 0 15px;

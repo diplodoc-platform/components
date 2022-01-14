@@ -39,7 +39,7 @@ const renderLeft = (data: DocLeadingLinks, isRoot?: boolean) => {
 
     return (
         <div className={b('links-left')}>
-            <img src={imgSrc}/>
+            <img src={imgSrc} />
         </div>
     );
 };
@@ -49,7 +49,11 @@ const renderRight = (data: DocLeadingLinks, isRoot?: boolean) => {
     let titleContent;
 
     if (href) {
-        titleContent = <a href={href} className={b('links-link')}>{title}</a>;
+        titleContent = (
+            <a href={href} className={b('links-link')}>
+                {title}
+            </a>
+        );
     } else {
         titleContent = title;
     }
@@ -60,12 +64,11 @@ const renderRight = (data: DocLeadingLinks, isRoot?: boolean) => {
         titleContent = <div className={b('links-title')}>{titleContent}</div>;
     }
 
-
     return (
         <div className={b('links-right')}>
             {titleContent}
             {description && isRoot ? <p className={b('links-description')}>{description}</p> : null}
-            <Links links={links}/>
+            <Links links={links} />
         </div>
     );
 };
@@ -91,14 +94,24 @@ export const Links: React.FC<DocLinksProps> = ({links, isRoot}) => {
 
     return (
         <ul className={b('links', {root: isRoot})}>
-            {links.map((data, index) => <Link key={index} data={data} isRoot={isRoot}/>)}
+            {links.map((data, index) => (
+                <Link key={index} data={data} isRoot={isRoot} />
+            ))}
         </ul>
     );
 };
 
 export const DocLeadingPage: React.FC<DocLeadingPageProps> = ({
     data: {title, description, links},
-    toc, router, lang, headerHeight, wideFormat = defaultWideFormat, hideTocHeader, hideToc, tocTitleIcon, footer,
+    toc,
+    router,
+    lang,
+    headerHeight,
+    wideFormat = defaultWideFormat,
+    hideTocHeader,
+    hideToc,
+    tocTitleIcon,
+    footer,
 }) => {
     const modes = {
         'regular-page-width': !wideFormat,
@@ -116,16 +129,16 @@ export const DocLeadingPage: React.FC<DocLeadingPageProps> = ({
             tocTitleIcon={tocTitleIcon}
             footer={footer}
         >
-            <span/>
+            <span />
             <DocLayout.Center>
                 <main className={b('main')}>
                     <DocPageTitle stage={toc.stage} className={b('title')}>
                         <HTML>{title}</HTML>
                     </DocPageTitle>
                     <div className={b('description')}>
-                        <Text data={description} html block/>
+                        <Text data={description} html block />
                     </div>
-                    <Links links={links} isRoot/>
+                    <Links links={links} isRoot />
                 </main>
             </DocLayout.Center>
         </DocLayout>

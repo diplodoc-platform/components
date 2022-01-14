@@ -67,7 +67,7 @@ export function Checkbox({
         >
             <span className={b('indicator')}>
                 <span className={b('icon')} aria-hidden>
-                    <TickIcon className={b('icon-svg', {type: 'tick'})}/>
+                    <TickIcon className={b('icon-svg', {type: 'tick'})} />
                 </span>
                 <input
                     {...controlProps}
@@ -82,7 +82,7 @@ export function Checkbox({
                     onBlur={onBlur}
                     className={b('control')}
                 />
-                <span className={b('outline')}/>
+                <span className={b('outline')} />
             </span>
             {label && <span className={b('text')}>{label}</span>}
         </label>

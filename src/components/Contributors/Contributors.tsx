@@ -18,7 +18,13 @@ export interface ContributorsProps {
 }
 
 const Contributors: React.FC<ContributorsProps> = (props) => {
-    const {users, lang, onlyAuthor = false, isAuthor = false, translationName = 'contributors'} = props;
+    const {
+        users,
+        lang,
+        onlyAuthor = false,
+        isAuthor = false,
+        translationName = 'contributors',
+    } = props;
     const {t, i18n} = useTranslation(translationName);
 
     useEffect(() => {
@@ -28,7 +34,7 @@ const Contributors: React.FC<ContributorsProps> = (props) => {
     return (
         <div className={b()}>
             <div className={b('title')}>{t('title')}</div>
-            <ContributorAvatars contributors={users} isAuthor={isAuthor} onlyAuthor={onlyAuthor}/>
+            <ContributorAvatars contributors={users} isAuthor={isAuthor} onlyAuthor={onlyAuthor} />
         </div>
     );
 };

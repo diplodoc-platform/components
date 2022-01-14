@@ -18,7 +18,7 @@ addParameters({
             brandUrl: 'https://github.yandex-team.ru/data-ui/docs-components',
         },
         showPanel: true,
-    }
+    },
 });
 addDecorator(addReadme);
 addDecorator(withKnobs);
@@ -26,7 +26,7 @@ addDecorator(withTheme);
 
 addDecorator((Story, context) => (
     <main>
-            <Story {...context}/>
+        <Story {...context} />
     </main>
 ));
 

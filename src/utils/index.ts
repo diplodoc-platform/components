@@ -2,11 +2,16 @@ import {parse} from 'url';
 
 import {Router} from '../models';
 
-export type InnerProps<TProps extends Partial<TDefaultProps>, TDefaultProps> =
-    Omit<TProps, keyof TDefaultProps> &
+export type InnerProps<TProps extends Partial<TDefaultProps>, TDefaultProps> = Omit<
+    TProps,
+    keyof TDefaultProps
+> &
     Required<Pick<TProps, keyof TDefaultProps>>;
 
-export type ChangeHandler<S> = <K extends keyof S, V extends S[K]>(field: K, value?: V) => () => void;
+export type ChangeHandler<S> = <K extends keyof S, V extends S[K]>(
+    field: K,
+    value?: V,
+) => () => void;
 
 export function normalizePath(path?: string | null) {
     return path?.replace(/\/index$/, '/');

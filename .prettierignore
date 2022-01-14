@@ -1,0 +1,10 @@
+# System
+.idea
+.vscode
+.history
+
+# Libs
+node_modules
+
+# Build
+build

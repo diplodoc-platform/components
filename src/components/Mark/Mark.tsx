@@ -15,7 +15,5 @@ export interface MarkProps {
 }
 
 export const Mark: React.FC<MarkProps> = ({text, color = 'blue', size = 's', className}) => {
-    return (
-        <span className={b({color, size}, className)}>{text.toUpperCase()}</span>
-    );
+    return <span className={b({color, size}, className)}>{text.toUpperCase()}</span>;
 };

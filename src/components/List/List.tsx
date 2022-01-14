@@ -26,9 +26,7 @@ export class List extends React.Component<ListProps> {
     render() {
         return (
             <div className={b()}>
-                <div className={b('items')}>
-                    {this.renderItems()}
-                </div>
+                <div className={b('items')}>{this.renderItems()}</div>
             </div>
         );
     }
@@ -52,26 +50,19 @@ export class List extends React.Component<ListProps> {
                 key={index}
                 style={{height: itemHeight}}
                 className={b('item', {
-                    'clickable': isClickable,
-                    'active': isActive,
+                    clickable: isClickable,
+                    active: isActive,
                 })}
                 onClick={this.makeOnItemClick(item)}
             >
-                {icon
-                    ? <div className={b('item-icon')}>{icon}</div>
-                    : null
-                }
+                {icon ? <div className={b('item-icon')}>{icon}</div> : null}
                 <div className={b('item-content')}>
                     <div className={b('item-text')}>{text}</div>
-                    {description
-                        ? <div className={b('item-description')}>{description}</div>
-                        : null
-                    }
+                    {description ? (
+                        <div className={b('item-description')}>{description}</div>
+                    ) : null}
                 </div>
-                {control
-                    ? <div className={b('item-control')}>{control}</div>
-                    : null
-                }
+                {control ? <div className={b('item-control')}>{control}</div> : null}
             </div>
         );
     };
@@ -79,12 +70,6 @@ export class List extends React.Component<ListProps> {
     private renderItems() {
         const {items} = this.props;
 
-        return (
-            <div>
-                {items.map((item: ListItem, index) => (
-                    this.renderItem(item, index)
-                ))}
-            </div>
-        );
+        return <div>{items.map((item: ListItem, index) => this.renderItem(item, index))}</div>;
     }
 }

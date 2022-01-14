@@ -6,13 +6,9 @@ import Components from '../demo/Components';
 const stories = storiesOf('Components', module);
 
 stories.add('DocPage', () => {
-    return (
-        <Components.DocPage/>
-    );
+    return <Components.DocPage />;
 });
 
 stories.add('DocLeadingPage', () => {
-    return (
-        <Components.DocLeadingPage/>
-    );
+    return <Components.DocLeadingPage />;
 });

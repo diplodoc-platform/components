@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import block from 'bem-cn-lite';
 
 import {Button} from '../Button';
@@ -20,19 +20,16 @@ export const BookmarkButton: React.FC<BookmarkButtonProps> = ({
     bookmarkedPage,
     onChangeBookmarkPage,
 }) => {
-    const [pinnedPage, setPinnedPage] = useState(bookmarkedPage);
-
     return (
         <Button
-            className={b({active: pinnedPage})}
+            className={b({active: bookmarkedPage})}
             onClick={() => {
-                setPinnedPage(!pinnedPage);
-                onChangeBookmarkPage(!pinnedPage);
+                onChangeBookmarkPage(!bookmarkedPage);
             }}
             theme={'clear'}
             size="s"
         >
-            {pinnedPage ? <StarActive /> : <StarInactive />}
+            {bookmarkedPage ? <StarActive /> : <StarInactive />}
         </Button>
     );
 };

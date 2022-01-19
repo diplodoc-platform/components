@@ -17,15 +17,15 @@ export function useHighlightedSearchWords({
     html,
     searchWords,
     showSearchBar,
-    onContentMutation,
-    onContentLoaded,
+    onContentMutation: _onContentMutation,
+    onContentLoaded: _onContentLoaded,
     onNotFoundWords,
 }: UseHighlightedSearchWords) {
     const highlightedHtml = useHighlightedHTMLString(html, searchWords, showSearchBar);
 
-    const {wasChangedDOM, _onContentMutation, _onContentLoaded} = useCallbackDOMChange({
-        onContentMutation,
-        onContentLoaded,
+    const {wasChangedDOM, onContentMutation, onContentLoaded} = useCallbackDOMChange({
+        onContentMutation: _onContentMutation,
+        onContentLoaded: _onContentLoaded,
     });
 
     const highlightedDOMElements = useHighlightedDOMElements(
@@ -48,8 +48,8 @@ export function useHighlightedSearchWords({
         highlightedDOMElements,
         searchBarIsVisible,
         wasChangedDOM,
-        _onContentMutation,
-        _onContentLoaded,
+        onContentMutation,
+        onContentLoaded,
     };
 }
 
@@ -139,7 +139,10 @@ type UseCallbackDOMChange = {
     onContentLoaded?: () => void;
 };
 
-function useCallbackDOMChange({onContentMutation, onContentLoaded}: UseCallbackDOMChange) {
+function useCallbackDOMChange({
+    onContentMutation: _onContentMutation,
+    onContentLoaded: _onContentLoaded,
+}: UseCallbackDOMChange) {
     const [wasChangedDOM, setWasChangedDOM] = useState(false);
 
     useEffect(() => {
@@ -149,27 +152,27 @@ function useCallbackDOMChange({onContentMutation, onContentLoaded}: UseCallbackD
     }, [wasChangedDOM]);
 
     /* Callback for dangerouslySetInnerHTML when inserting content */
-    const _onContentMutation = useCallback(() => {
-        if (onContentMutation) {
-            onContentMutation();
+    const onContentMutation = useCallback(() => {
+        if (_onContentMutation) {
+            _onContentMutation();
         }
 
         setWasChangedDOM(true);
-    }, [onContentMutation]);
+    }, [_onContentMutation]);
 
     /* Callback for loading resources after inserting content */
-    const _onContentLoaded = useCallback(() => {
-        if (onContentLoaded) {
-            onContentLoaded();
+    const onContentLoaded = useCallback(() => {
+        if (_onContentLoaded) {
+            _onContentLoaded();
         }
 
         setWasChangedDOM(true);
-    }, [onContentLoaded]);
+    }, [_onContentLoaded]);
 
     return {
         wasChangedDOM,
-        _onContentMutation,
-        _onContentLoaded,
+        onContentMutation,
+        onContentLoaded,
     };
 }
 

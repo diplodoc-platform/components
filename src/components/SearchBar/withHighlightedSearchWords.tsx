@@ -33,8 +33,8 @@ function withHighlightedSearchWords<T extends SearchWordsHighlighterProps>(
             showSearchBar = false,
             onCloseSearchBar,
             onNotFoundWords = () => {},
-            onContentMutation,
-            onContentLoaded,
+            onContentMutation: _onContentMutation,
+            onContentLoaded: _onContentLoaded,
             headerHeight = 0,
             router: {hash},
         } = props;
@@ -51,14 +51,14 @@ function withHighlightedSearchWords<T extends SearchWordsHighlighterProps>(
             highlightedDOMElements,
             searchBarIsVisible,
             wasChangedDOM,
-            _onContentMutation,
-            _onContentLoaded,
+            onContentMutation,
+            onContentLoaded,
         } = useHighlightedSearchWords({
             html,
             searchWords,
             showSearchBar,
-            onContentMutation,
-            onContentLoaded,
+            onContentMutation: _onContentMutation,
+            onContentLoaded: _onContentLoaded,
             onNotFoundWords,
         });
 
@@ -94,8 +94,8 @@ function withHighlightedSearchWords<T extends SearchWordsHighlighterProps>(
                 <Component
                     {...props}
                     html={highlightedHtml}
-                    onContentMutation={_onContentMutation}
-                    onContentLoaded={_onContentLoaded}
+                    onContentMutation={onContentMutation}
+                    onContentLoaded={onContentLoaded}
                     searchCurrentIndex={searchCurrentIndex}
                     searchCountResults={searchCountResults}
                     onCloseSearchBar={onCloseSearchBar}

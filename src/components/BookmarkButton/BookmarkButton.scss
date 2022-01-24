@@ -1,5 +1,8 @@
 .dc-bookmark-button {
-    display: inline-block;
+    &.dc-button {
+        display: inline-block;
+    }
+
     vertical-align: middle;
 
     color: var(--yc-color-text-secondary);

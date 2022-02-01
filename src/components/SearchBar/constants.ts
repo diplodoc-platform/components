@@ -7,6 +7,6 @@ export const HIGHLIGHT_OPTIONS = {
     className: CLASSNAME,
     exclude: [
         `.${CLASSNAME}`, // Exclude the elements to highlight to avoid duplicating the highlight
-        'svg *'
+        'svg *',
     ],
 };

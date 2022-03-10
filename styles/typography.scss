@@ -6,6 +6,7 @@ body.yc-root {
     font-feature-settings: 'liga', 'kern';
     text-size-adjust: 100%;
 
+    /* stylelint-disable-next-line value-keyword-case */
     text-rendering: optimizeLegibility;
 }
 

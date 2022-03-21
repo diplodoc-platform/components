@@ -37,7 +37,6 @@
     "svgo": "svgo --config svgo.config.js",
     "svgo:all": "svgo --config svgo.config.js -r -f .",
     "dev": "npm run storybook:start",
-    "start": "node dist",
     "test": "jest --passWithNoTests",
     "test:update": "jest -u",
     "build:clean": "rimraf build",

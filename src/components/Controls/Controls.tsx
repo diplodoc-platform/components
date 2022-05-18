@@ -45,6 +45,7 @@ export interface ControlsProps {
     className?: string;
     isVerticalView?: boolean;
     controlSize?: ControlSizes;
+    hideFeedbackControls?: boolean;
 }
 
 type ControlsInnerProps = ControlsProps & WithTranslation & WithTranslationProps;
@@ -174,9 +175,10 @@ class Controls extends React.Component<ControlsInnerProps> {
             isDisliked,
             dislikeVariants,
             isVerticalView,
+            hideFeedbackControls,
         } = this.props;
 
-        if (singlePage || !onSendFeedback) {
+        if (singlePage || !onSendFeedback || hideFeedbackControls) {
             return null;
         }
 

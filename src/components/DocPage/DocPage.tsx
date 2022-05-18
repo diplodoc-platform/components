@@ -42,6 +42,9 @@ export interface DocPageProps extends DocPageData, Partial<DocSettings> {
     hideTocHeader?: boolean;
     hideToc?: boolean;
     hideControls?: boolean;
+    hideEditControl?: boolean;
+    hideFeedbackControls?: boolean;
+    hideContributors?: boolean;
     renderLoader?: () => React.ReactNode;
     convertPathToOriginalArticle?: (path: string) => string;
     generatePathToVcs?: (path: string) => string;
@@ -283,7 +286,11 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
     }
 
     private renderPageContributors() {
-        const {meta} = this.props;
+        const {meta, hideContributors} = this.props;
+
+        if (hideContributors) {
+            return null;
+        }
 
         const author = this.renderAuthor(!meta?.contributors?.length);
         const contributors = this.renderContributors();
@@ -411,10 +418,18 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
     }
 
     private renderFeedback() {
-        const {toc, lang, singlePage, isLiked, isDisliked, onSendFeedback, dislikeVariants} =
-            this.props;
+        const {
+            toc,
+            lang,
+            singlePage,
+            isLiked,
+            isDisliked,
+            onSendFeedback,
+            dislikeVariants,
+            hideFeedbackControls,
+        } = this.props;
 
-        if (!toc || toc.singlePage) {
+        if (!toc || toc.singlePage || hideFeedbackControls) {
             return null;
         }
 
@@ -492,13 +507,15 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             isDisliked,
             dislikeVariants,
             hideControls,
+            hideEditControl,
+            hideFeedbackControls,
         } = this.props;
 
         if (hideControls) {
             return null;
         }
 
-        const showEditControl = !fullScreen && this.isEditable();
+        const showEditControl = !hideEditControl && !fullScreen && this.isEditable();
         const isVerticalView = this.getIsVerticalView();
 
         return (
@@ -526,6 +543,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                     onChangeTextSize={onChangeTextSize}
                     onSendFeedback={onSendFeedback}
                     isVerticalView={isVerticalView}
+                    hideFeedbackControls={hideFeedbackControls}
                 />
             </div>
         );

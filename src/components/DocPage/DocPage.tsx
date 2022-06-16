@@ -21,10 +21,19 @@ import {Breadcrumbs} from '../Breadcrumbs';
 import {TocNavPanel} from '../TocNavPanel';
 import {Controls} from '../Controls';
 import {EditButton} from '../EditButton';
+import {SearchBar} from '../SearchBar';
 import {Feedback, FeedbackView} from '../Feedback';
 import Contributors from '../Contributors/Contributors';
+import {withHighlightedSearchWords} from '../SearchBar';
 
-import {callSafe, createElementFromHTML, getHeaderTag, getStateKey, InnerProps} from '../../utils';
+import {
+    callSafe,
+    createElementFromHTML,
+    getHeaderTag,
+    getStateKey,
+    InnerProps,
+    getRandomKey,
+} from '../../utils';
 import {DEFAULT_SETTINGS} from '../../constants';
 
 import LinkIcon from '../../../assets/icons/link.svg';
@@ -34,13 +43,22 @@ import './DocPage.scss';
 
 const b = block('dc-doc-page');
 
-export interface DocPageProps extends DocPageData, Partial<DocSettings> {
+export interface DocPageProps extends DocPageData, DocSettings {
     lang: Lang;
     router: Router;
     headerHeight?: number;
     tocTitleIcon?: React.ReactNode;
     hideTocHeader?: boolean;
     hideToc?: boolean;
+
+    showSearchBar?: boolean;
+    searchQuery?: string;
+    onClickPrevSearch?: () => void;
+    onClickNextSearch?: () => void;
+    onCloseSearchBar?: () => void;
+    searchCurrentIndex?: number;
+    searchCountResults?: number;
+
     hideControls?: boolean;
     hideEditControl?: boolean;
     hideFeedbackControls?: boolean;
@@ -57,27 +75,35 @@ export interface DocPageProps extends DocPageData, Partial<DocSettings> {
     onChangeTheme?: (theme: Theme) => void;
     onChangeTextSize?: (textSize: TextSizes) => void;
     onSendFeedback?: (data: FeedbackSendData) => void;
+    onContentMutation?: () => void;
+    onContentLoaded?: () => void;
 }
 
 type DocPageInnerProps = InnerProps<DocPageProps, DocSettings>;
 type DocPageState = {
     loading: boolean;
+    keyDOM: number;
 };
 
 class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
     static defaultProps: DocSettings = DEFAULT_SETTINGS;
 
     state: DocPageState = {
-        loading: false,
+        loading: true,
+        keyDOM: getRandomKey(),
     };
 
     bodyRef: HTMLDivElement | null = null;
     bodyObserver: MutationObserver | null = null;
 
     componentDidMount(): void {
-        if (this.props.singlePage) {
+        const {singlePage} = this.props;
+
+        if (singlePage) {
             this.addLinksToOriginalArticle();
         }
+
+        this.setState({loading: false});
 
         this.addBodyObserver();
     }
@@ -85,6 +111,10 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
     componentDidUpdate(prevProps: DocPageInnerProps): void {
         if (prevProps.singlePage !== this.props.singlePage) {
             this.setState({loading: true});
+        }
+
+        if (prevProps.html !== this.props.html) {
+            this.setState({keyDOM: getRandomKey()});
         }
     }
 
@@ -135,6 +165,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                 footer={footer}
             >
                 <DocLayout.Center>
+                    {this.renderSearchBar()}
                     {this.renderBreadcrumbs()}
                     {this.renderControls()}
                     <div className={b('main')}>
@@ -162,17 +193,40 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
         );
     }
 
-    private handleBodyMutation = () => {
-        this.setState({loading: false});
+    private handleBodyMutation = (mutationsList: MutationRecord[]) => {
+        const {onContentMutation, onContentLoaded} = this.props;
 
-        if (this.props.singlePage) {
-            this.bodyObserver!.disconnect();
+        if (this.props.singlePage && this.bodyObserver && this.bodyRef) {
+            this.bodyObserver.disconnect();
             this.addLinksToOriginalArticle();
-            this.bodyObserver!.observe(this.bodyRef!, {
+            this.bodyObserver.observe(this.bodyRef, {
                 childList: true,
                 subtree: true,
             });
         }
+
+        if (onContentMutation) {
+            setTimeout(onContentMutation, 0);
+        }
+
+        this.setState({loading: false});
+
+        if (!onContentLoaded) {
+            return;
+        }
+
+        setTimeout(() => {
+            mutationsList
+                .filter(({type}) => type === 'childList')
+                .forEach((mutation) => {
+                    const yfmRoot = mutation.target as HTMLElement;
+                    const yfmImages = [...yfmRoot.querySelectorAll('img')];
+
+                    yfmImages.forEach((img) => {
+                        img.addEventListener('load', onContentLoaded, false);
+                    });
+                });
+        }, 0);
     };
 
     private addBodyObserver() {
@@ -396,6 +450,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
 
     private renderAsideMiniToc() {
         const {headings, router, headerHeight, lang, toc} = this.props;
+        const {keyDOM} = this.state;
 
         const emptyHeaderOrSinglePage = headings.length === 0 || toc.singlePage;
         const soloHeaderWithChildren =
@@ -412,6 +467,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                     router={router}
                     headerHeight={headerHeight}
                     lang={lang}
+                    key={keyDOM}
                 />
             </div>
         );
@@ -485,6 +541,38 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
         return !this.showMiniToc || fullScreen;
     };
 
+    private renderSearchBar = () => {
+        const {
+            showSearchBar,
+            searchQuery,
+            searchCurrentIndex,
+            searchCountResults,
+            onClickPrevSearch,
+            onClickNextSearch,
+            onCloseSearchBar,
+            lang,
+            singlePage,
+        } = this.props;
+
+        if (!showSearchBar || singlePage) {
+            return null;
+        }
+
+        return (
+            <div className={b('search-bar')}>
+                <SearchBar
+                    lang={lang}
+                    searchCurrentIndex={searchCurrentIndex}
+                    searchCountResults={searchCountResults}
+                    onClickPrevSearch={onClickPrevSearch}
+                    onClickNextSearch={onClickNextSearch}
+                    onCloseSearchBar={onCloseSearchBar}
+                    searchQuery={searchQuery}
+                />
+            </div>
+        );
+    };
+
     private renderControls() {
         const {
             lang,
@@ -550,4 +638,4 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
     }
 }
 
-export default DocPage;
+export default withHighlightedSearchWords(DocPage);

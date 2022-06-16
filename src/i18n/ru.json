@@ -60,5 +60,11 @@
     "button-like-text": "Да",
     "button-dislike-text": "Нет",
     "main-question": "Была ли статья полезна?"
+  },
+  "search-bar": {
+    "search-query-label": "Найдено по запросу",
+    "close": "Закрыть",
+    "prev": "Предыдущий",
+    "next": "Следующий"
   }
 }

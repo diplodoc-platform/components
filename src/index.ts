@@ -25,5 +25,6 @@ export * from './components/Control';
 export * from './components/Controls';
 export * from './components/Checkbox';
 export * from './components/BookmarkButton';
+export * from './components/SearchBar';
 
 export * from './models';

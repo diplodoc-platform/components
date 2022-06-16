@@ -20,6 +20,7 @@ export const DEFAULT_SETTINGS = {
     singlePage: false,
     wideFormat: false,
     showMiniToc: true,
+    bookmarkedPage: false,
     theme: Theme.Dark,
     textSize: TextSizes.M,
     isLiked: false,

@@ -75,7 +75,7 @@
         @include link();
     }
 
-    .mobile & {
+    @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
         &__main {
             margin-left: 0;
             margin-bottom: 40px;

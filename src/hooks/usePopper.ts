@@ -45,6 +45,7 @@ export function usePopper(props: PopperProps): PopoverHook {
     const placements = Array.isArray(placement) ? placement : [placement];
 
     const {attributes, styles} = useReactPopper(anchor, popperElement, {
+        strategy: 'fixed',
         modifiers: [
             {name: 'arrow', options: {enabled: Boolean(arrowElement), element: arrowElement}},
             {name: 'offset', options: {offset}},

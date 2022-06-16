@@ -1,12 +1,16 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useState, useEffect} from 'react';
 import cn from 'bem-cn-lite';
-import {DocPage, FeedbackSendData, FeedbackType, Theme} from '../../../index';
+import {
+    DocPage,
+    FeedbackSendData,
+    FeedbackType,
+    Theme,
+} from '../../../index';
 import Header from '../Header/Header';
-import {DEFAULT_SETTINGS} from '../../../constants';
+import {DEFAULT_SETTINGS, DISLIKE_VARIANTS} from '../../../constants';
 import {getIsMobile} from '../../controls/settings';
 import getLangControl from '../../controls/lang';
 import getVcsControl from '../../controls/vcs';
-import {getIsBookmarked} from '../../decorators/bookmark';
 import {getContent} from './data';
 
 import {join} from 'path';
@@ -28,7 +32,6 @@ const DocPageDemo = () => {
     const langValue = getLangControl();
     const vcsType = getVcsControl();
     const isMobile = getIsMobile();
-    const isBookmarked = getIsBookmarked();
     const router = {pathname: '/docs/overview/concepts/quotas-limits'};
 
     const [fullScreen, onChangeFullScreen] = useState(DEFAULT_SETTINGS.fullScreen);
@@ -41,6 +44,10 @@ const DocPageDemo = () => {
     const [isDisliked, setIsDisliked] = useState(DEFAULT_SETTINGS.isDisliked);
     const [isPinned, setIsPinned] = useState(DEFAULT_SETTINGS.isPinned);
     const [lang, onChangeLang] = useState(langValue);
+    const [showSearchBar, setShowSearchBar] = useState(true);
+    const onCloseSearchBar = () => setShowSearchBar(false);
+    const [searchQuery, setSearchQuery] = useState('');
+    const [searchWords, setSearchWords] = useState<string[]>([]);
 
     const onSendFeedback = useCallback((data: FeedbackSendData) => {
         const {type} = data;
@@ -66,14 +73,31 @@ const DocPageDemo = () => {
 
     updateBodyClassName(theme);
 
-    const enableDisableBookmarks = () => {
-        return isBookmarked === 'true'
-            ? {
-                  bookmarkedPage: isPinned,
-                  onChangeBookmarkPage: onChangeBookmarkPage,
-              }
-            : undefined;
-    };
+    useEffect(() => {
+        const newSearchWords = searchQuery.split(' ').filter((word) => {
+            if (!word) {
+                return false;
+            }
+
+            if (searchQuery.length > 10) {
+                return word.length > 3;
+            }
+
+            return true;
+        });
+
+        setSearchWords(newSearchWords);
+    }, [searchQuery]);
+
+    const onNotFoundWords = useCallback(() => {
+        console.log(`Not found words for the query: ${searchQuery}`);
+    }, [searchQuery]);
+    const onContentMutation = useCallback(() => {
+        console.log('onContentMutation');
+    }, []);
+    const onContentLoaded = useCallback(() => {
+        console.log('onContentLoaded');
+    }, []);
 
     const props = {
         ...getContent(lang, singlePage),
@@ -89,6 +113,7 @@ const DocPageDemo = () => {
         showMiniToc,
         onChangeShowMiniToc,
         theme,
+        onNotFoundWords,
         onChangeTheme: (themeValue: Theme) => {
             updateBodyClassName(themeValue);
             onChangeTheme(themeValue);
@@ -100,7 +125,13 @@ const DocPageDemo = () => {
         isLiked,
         isDisliked,
         onSendFeedback,
-        ...enableDisableBookmarks(),
+        bookmarkedPage: isPinned,
+        onChangeBookmarkPage: onChangeBookmarkPage,
+        showSearchBar,
+        searchWords,
+        searchQuery,
+        onCloseSearchBar,
+        useSearchBar: true,
     };
 
     const tocTitleIcon = (
@@ -116,6 +147,10 @@ const DocPageDemo = () => {
     const generatePathToVcs = (path: string) =>
         join(`https://github.com/yandex-cloud/docs/blob/master/${props.lang}`, path);
     const renderLoader = () => 'Loading...';
+    const onChangeSearch = (value: string) => {
+        setShowSearchBar(true);
+        setSearchQuery(value);
+    };
 
     return (
         <div className={isMobile === 'true' ? 'mobile' : 'desktop'}>
@@ -123,8 +158,10 @@ const DocPageDemo = () => {
                 <Header
                     lang={lang}
                     fullScreen={fullScreen}
+                    searchText={searchQuery}
                     onChangeFullScreen={onChangeFullScreen}
                     onChangeLang={onChangeLang}
+                    onChangeSearch={onChangeSearch}
                 />
             )}
             <div className={layoutBlock('content')}>
@@ -134,6 +171,10 @@ const DocPageDemo = () => {
                     convertPathToOriginalArticle={convertPathToOriginalArticle}
                     generatePathToVcs={generatePathToVcs}
                     renderLoader={renderLoader}
+                    onNotFoundWords={onNotFoundWords}
+                    onContentMutation={onContentMutation}
+                    onContentLoaded={onContentLoaded}
+                    dislikeVariants={DISLIKE_VARIANTS[lang]}
                 />
             </div>
         </div>

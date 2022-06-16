@@ -10,6 +10,7 @@ import {
 } from './hooks';
 
 export interface SearchWordsHighlighterProps extends DocPageData {
+    useSearchBar?: boolean;
     searchWords?: string[];
     showSearchBar?: boolean;
     onCloseSearchBar?: () => void;
@@ -37,7 +38,12 @@ function withHighlightedSearchWords<T extends SearchWordsHighlighterProps>(
             onContentLoaded: _onContentLoaded,
             headerHeight = 0,
             router: {hash},
+            useSearchBar = false,
         } = props;
+
+        if (!useSearchBar) {
+            return <Component {...props} />
+        }
 
         const [syncOnScroll, setSyncOnScroll] = useState<boolean>(true);
         const stopSyncOnScroll = useCallback(() => setSyncOnScroll(false), []);

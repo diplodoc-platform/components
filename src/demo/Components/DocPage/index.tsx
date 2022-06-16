@@ -1,11 +1,10 @@
 import React, {useCallback, useState, useEffect} from 'react';
 import cn from 'bem-cn-lite';
 import {
-    DocPage as DocPageBase,
+    DocPage,
     FeedbackSendData,
     FeedbackType,
     Theme,
-    withHighlightedSearchWords,
 } from '../../../index';
 import Header from '../Header/Header';
 import {DEFAULT_SETTINGS, DISLIKE_VARIANTS} from '../../../constants';
@@ -17,7 +16,6 @@ import {getContent} from './data';
 import {join} from 'path';
 
 const layoutBlock = cn('Layout');
-const DocPage = withHighlightedSearchWords(DocPageBase);
 
 function updateBodyClassName(theme: Theme) {
     const bodyEl = document.body;
@@ -133,6 +131,7 @@ const DocPageDemo = () => {
         searchWords,
         searchQuery,
         onCloseSearchBar,
+        useSearchBar: true,
     };
 
     const tocTitleIcon = (

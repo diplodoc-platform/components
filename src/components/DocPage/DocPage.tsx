@@ -24,6 +24,7 @@ import {EditButton} from '../EditButton';
 import {SearchBar} from '../SearchBar';
 import {Feedback, FeedbackView} from '../Feedback';
 import Contributors from '../Contributors/Contributors';
+import {withHighlightedSearchWords} from '../SearchBar';
 
 import {
     callSafe,
@@ -637,4 +638,4 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
     }
 }
 
-export default DocPage;
+export default withHighlightedSearchWords(DocPage);

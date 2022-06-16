@@ -7,7 +7,7 @@ import {Button} from '../Button';
 import {Control} from '../Control';
 import {List, ListItem} from '../List';
 import {TextInput} from '../TextInput';
-import {mailValidation} from '../../utils';
+import {isEmailValid} from '../../utils';
 import {PopperPosition} from '../../hooks';
 import {ButtonThemes, SubscribeData, Lang, SubscribeType} from '../../models';
 
@@ -91,7 +91,7 @@ const Subscribe: React.FC<SubscribeInnerProps> = (props) => {
     }, [hideSubscribePopups]);
 
     const onSendSubscribeInformation = useCallback(() => {
-        if (mailValidation(mail)) {
+        if (isEmailValid(mail)) {
             setShowSubscribeSuccessPopup(true);
             setShowSubscribeVariantsPopup(false);
             setShowError(false);

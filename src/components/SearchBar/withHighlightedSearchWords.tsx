@@ -102,6 +102,10 @@ function withHighlightedSearchWords<T extends SearchWordsHighlighterProps>(
             setSyncOnScroll,
         });
 
+        if (!useSearchBar) {
+            return <Component {...props} />;
+        }
+
         if (searchBarIsVisible) {
             return (
                 <Component

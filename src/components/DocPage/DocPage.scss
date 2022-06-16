@@ -60,7 +60,7 @@
             top: calc(6px + var(--dc-header-height, #{$headerHeight}));
         }
 
-        .mobile & > .dc-controls {
+        @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
             position: static;
         }
 

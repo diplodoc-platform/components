@@ -6,6 +6,8 @@ import {DEFAULT_SETTINGS, DISLIKE_VARIANTS} from '../../../constants';
 import {getIsMobile} from '../../controls/settings';
 import getLangControl from '../../controls/lang';
 import getVcsControl from '../../controls/vcs';
+import {getIsBookmarked} from '../../decorators/bookmark';
+import {getIsSubscribe} from '../../decorators/subscribe';
 import {getContent} from './data';
 
 import {join} from 'path';
@@ -27,6 +29,8 @@ const DocPageDemo = () => {
     const langValue = getLangControl();
     const vcsType = getVcsControl();
     const isMobile = getIsMobile();
+    const isBookmarked = getIsBookmarked();
+    const isSubscribe = getIsSubscribe();
     const router = {pathname: '/docs/overview/concepts/quotas-limits'};
 
     const [fullScreen, onChangeFullScreen] = useState(DEFAULT_SETTINGS.fullScreen);
@@ -68,6 +72,15 @@ const DocPageDemo = () => {
 
     updateBodyClassName(theme);
 
+    const enableDisableBookmarks = () => {
+        return isBookmarked === 'true'
+            ? {
+                  bookmarkedPage: isPinned,
+                  onChangeBookmarkPage: onChangeBookmarkPage,
+              }
+            : undefined;
+    };
+
     useEffect(() => {
         const newSearchWords = searchQuery.split(' ').filter((word) => {
             if (!word) {
@@ -107,6 +120,7 @@ const DocPageDemo = () => {
         onChangeWideFormat,
         showMiniToc,
         onChangeShowMiniToc,
+        onSubscribe: isSubscribe === 'true' ? () => {} : undefined,
         theme,
         onNotFoundWords,
         onChangeTheme: (themeValue: Theme) => {
@@ -127,6 +141,7 @@ const DocPageDemo = () => {
         searchQuery,
         onCloseSearchBar,
         useSearchBar: true,
+        ...enableDisableBookmarks(),
     };
 
     const tocTitleIcon = (

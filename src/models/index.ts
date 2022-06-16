@@ -149,3 +149,13 @@ export interface FeedbackSendData {
     answers?: string[];
     comment?: string;
 }
+
+export enum SubscribeType {
+    documentation = 'documentation',
+    page = 'page',
+}
+
+export interface SubscribeData {
+    mail: string;
+    type: SubscribeType;
+}

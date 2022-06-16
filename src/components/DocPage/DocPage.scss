@@ -60,6 +60,10 @@
             top: calc(6px + var(--dc-header-height, #{$headerHeight}));
         }
 
+        .mobile & > .dc-controls {
+            position: static;
+        }
+
         &_vertical {
             top: calc(6px + var(--dc-header-height, #{$headerHeight}));
             justify-content: center;
@@ -195,7 +199,7 @@
 
     @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
         &__main {
-            padding: 20px 20px 0;
+            padding: 0 20px;
         }
 
         &__breadcrumbs {
@@ -211,7 +215,9 @@
         }
 
         &__controls {
-            display: none;
+            padding-left: 20px;
+
+            position: static;
         }
     }
 

@@ -1,3 +1,6 @@
+@import '../../../styles/mixins';
+@import '../../../styles/variables';
+
 .dc-text-input {
     padding: 0 12px;
     width: 100%;
@@ -7,12 +10,18 @@
 
     color: var(--yc-lego-color-text-primary);
 
-    border: 1px solid var(--yc-lego-color-border-medium-solid);
+    border: 1px solid var(--yc-color-line-generic);
     border-radius: 4px;
     background-color: transparent;
     outline: none;
 
     transition: border-color 0.15s linear;
+
+    &__error {
+        font-size: 13px;
+        color: var(--yc-color-text-danger);
+        margin-top: 2px;
+    }
 
     /* stylelint-disable-next-line selector-no-vendor-prefix */
     &::-webkit-input-placeholder {

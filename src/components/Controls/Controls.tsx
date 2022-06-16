@@ -4,6 +4,7 @@ import {withTranslation, WithTranslation, WithTranslationProps} from 'react-i18n
 
 import {Control} from '../Control';
 import {Feedback, FeedbackView} from '../Feedback';
+import {Subscribe, SubscribeView} from '../Subscribe';
 import {
     FullScreenControl,
     SettingsControl,
@@ -14,7 +15,7 @@ import {
 
 import EditIcon from '../../../assets/icons/edit.svg';
 
-import {Lang, TextSizes, Theme, FeedbackSendData, ControlSizes} from '../../models';
+import {Lang, TextSizes, Theme, FeedbackSendData, ControlSizes, SubscribeData} from '../../models';
 
 import './Controls.scss';
 
@@ -42,6 +43,7 @@ export interface ControlsProps {
     onChangeTheme?: (theme: Theme) => void;
     onChangeTextSize?: (textSize: TextSizes) => void;
     onSendFeedback?: (data: FeedbackSendData) => void;
+    onSubscribe?: (data: SubscribeData) => void;
     className?: string;
     isVerticalView?: boolean;
     controlSize?: ControlSizes;
@@ -71,6 +73,7 @@ class Controls extends React.Component<ControlsInnerProps> {
                 {this.renderCommonControls()}
                 {this.renderEditLink()}
                 {this.renderFeedbackControls()}
+                {this.renderSubscribeControls()}
             </div>
         );
     }
@@ -194,6 +197,28 @@ class Controls extends React.Component<ControlsInnerProps> {
                     onSendFeedback={onSendFeedback}
                     isVerticalView={isVerticalView}
                     view={FeedbackView.Regular}
+                    classNameControl={b('control')}
+                />
+            </React.Fragment>
+        );
+    };
+
+    private renderSubscribeControls = () => {
+        const {lang, singlePage, onSubscribe, isVerticalView} = this.props;
+
+        if (singlePage || !onSubscribe) {
+            return null;
+        }
+
+        return (
+            <React.Fragment>
+                <DividerControl className={b('divider')} isVerticalView={!isVerticalView} />
+                <Subscribe
+                    lang={lang}
+                    singlePage={singlePage}
+                    onSubscribe={onSubscribe}
+                    isVerticalView={isVerticalView}
+                    view={SubscribeView.Regular}
                     classNameControl={b('control')}
                 />
             </React.Fragment>

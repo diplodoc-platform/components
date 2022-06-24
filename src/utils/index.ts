@@ -90,10 +90,8 @@ export function createElementFromHTML(htmlString: string) {
 
 export const getRandomKey = () => Math.random();
 
-export const isEmailValid = (email: string) => {
-    // Regex from http://emailregex.com/
-    const EMAIL_RE =
-        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i;
+export function isEmailHasAtSymbol(email: string) {
+    const EMAIL_RE = /\S+@\S+/;
 
     return EMAIL_RE.test(email);
-};
+}

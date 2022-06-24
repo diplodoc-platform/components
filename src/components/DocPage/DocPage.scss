@@ -58,10 +58,10 @@
         & > .dc-controls {
             position: fixed;
             top: calc(6px + var(--dc-header-height, #{$headerHeight}));
-        }
 
-        @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
-            position: static;
+            @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
+                position: static;
+            }
         }
 
         &_vertical {

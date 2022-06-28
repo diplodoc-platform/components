@@ -1,6 +1,6 @@
 import {radios} from '@storybook/addon-knobs';
 
-export function getIsBookmarked() {
+export function getHasBookmark() {
     const label = 'Bookmark page';
     const options = {
         enabled: 'true',

@@ -215,7 +215,6 @@ class Controls extends React.Component<ControlsInnerProps> {
                 <DividerControl className={b('divider')} isVerticalView={!isVerticalView} />
                 <Subscribe
                     lang={lang}
-                    singlePage={singlePage}
                     onSubscribe={onSubscribe}
                     isVerticalView={isVerticalView}
                     view={SubscribeView.Regular}

@@ -156,6 +156,6 @@ export enum SubscribeType {
 }
 
 export interface SubscribeData {
-    mail: string;
+    email: string;
     type: SubscribeType;
 }

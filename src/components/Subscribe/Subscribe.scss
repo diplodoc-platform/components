@@ -40,7 +40,7 @@ $popupWidth: 320px;
     }
 
     &__success-popup {
-        padding: $popupPadding 50px $popupPadding $popupPadding;
+        padding: $popupPadding;
         width: $popupWidth;
 
         &_view_wide {
@@ -69,7 +69,6 @@ $popupWidth: 320px;
     }
 
     &__variants-actions {
-        //padding-top: 8px;
         display: flex;
         justify-content: flex-end;
     }

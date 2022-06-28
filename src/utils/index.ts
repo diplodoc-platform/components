@@ -90,8 +90,8 @@ export function createElementFromHTML(htmlString: string) {
 
 export const getRandomKey = () => Math.random();
 
-export function isEmailHasAtSymbol(email: string) {
+export function isInvalidEmail(email: string) {
     const EMAIL_RE = /\S+@\S+/;
 
-    return EMAIL_RE.test(email);
+    return !EMAIL_RE.test(email);
 }

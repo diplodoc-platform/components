@@ -99,8 +99,11 @@ const Subscribe: React.FC<SubscribeProps & WithTranslation> = React.memo((props)
                 <SubscribeVariantsPopup
                     visible={showSubscribeVariantsPopup}
                     setVisible={setShowSubscribeVariantsPopup}
-                    setVisibleSuccessPopup={setShowSubscribeSuccessPopup}
                     onSubscribe={onSubscribe}
+                    onSubmit={() => {
+                        setShowSubscribeVariantsPopup(false);
+                        setShowSubscribeSuccessPopup(true);
+                    }}
                     {...{view, isVerticalView, anchor: subscribeControlRef, t}}
                 />
             )}

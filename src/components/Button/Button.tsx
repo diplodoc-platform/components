@@ -17,6 +17,7 @@ export interface ButtonProps {
     size?: string;
     theme?: string;
     active?: boolean;
+    type?: 'button' | 'submit' | 'reset';
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -30,6 +31,7 @@ export const Button: React.FC<ButtonProps> = ({
     size = ControlSizes.M,
     theme = ButtonThemes.Float,
     active = false,
+    type,
 }) => {
     const modes = {size, theme, active};
     const classNames = [b(modes), className].join(' ');
@@ -41,6 +43,7 @@ export const Button: React.FC<ButtonProps> = ({
             ref={buttonRef}
             onMouseOver={onMouseOver}
             onMouseLeave={onMouseLeave}
+            type={type}
         >
             {children}
         </button>

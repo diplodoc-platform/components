@@ -22,24 +22,15 @@ const SubscribeVariantsPopup: React.FC<
         isVerticalView?: boolean;
         view?: SubscribeView;
         onSubscribe?: (data: SubscribeData) => void;
-        setVisibleSuccessPopup: (value: boolean) => void;
+        onSubmit: () => void;
     } & WithTranslation
 > = memo((props) => {
-    const {
-        t,
-        visible,
-        setVisible,
-        anchor,
-        view,
-        isVerticalView,
-        onSubscribe,
-        setVisibleSuccessPopup,
-    } = props;
+    const {t, visible, setVisible, anchor, view, isVerticalView, onSubscribe, onSubmit} = props;
 
     const hide = useCallback(() => setVisible(false), [setVisible]);
 
     const [email, setEmail] = useState('');
-    const [showError, setShowError] = useState(false);
+    const [showError, setShowError] = useState('');
     const [subscribeSelectors, setSubscribeSelectors] = useState(SubscribeType.documentation);
 
     const resetSubscribeAdditionalInfo = useCallback(() => {
@@ -51,31 +42,29 @@ const SubscribeVariantsPopup: React.FC<
             event.preventDefault();
 
             if (isInvalidEmail(email)) {
-                setShowError(true);
+                setShowError(t('email-text-invalid'));
                 return;
             }
 
-            setVisibleSuccessPopup(true);
-            hide();
-            setShowError(false);
+            setShowError('');
 
             if (onSubscribe) {
-                onSubscribe({
-                    email,
-                    type: subscribeSelectors,
-                });
+                try {
+                    onSubscribe({
+                        email,
+                        type: subscribeSelectors,
+                    });
+
+                    onSubmit();
+                } catch (e) {
+                    console.error(e);
+                    setShowError(t('email-request-fail'));
+                }
 
                 resetSubscribeAdditionalInfo();
             }
         },
-        [
-            onSubscribe,
-            email,
-            resetSubscribeAdditionalInfo,
-            subscribeSelectors,
-            hide,
-            setVisibleSuccessPopup,
-        ],
+        [onSubscribe, email, resetSubscribeAdditionalInfo, subscribeSelectors, onSubmit, t],
     );
 
     const renderSubscribeVariantsList = useCallback(() => {
@@ -93,34 +82,29 @@ const SubscribeVariantsPopup: React.FC<
         );
     }, [subscribeSelectors, t]);
 
-    const renderSubscribeVariantsTextArea = useCallback(() => {
+    const renderSubscribeForm = useCallback(() => {
         return (
-            <div className={b('textarea')}>
-                <form onSubmit={onSendSubscribeInformation}>
+            <form onSubmit={onSendSubscribeInformation}>
+                <div className={b('textarea')}>
                     <TextInput
                         placeholder={t('subscribe-documentation-placeholder')}
-                        error={showError ? t('email-text-invalid') : undefined}
+                        error={showError || undefined}
                         text={email}
                         onChange={setEmail}
                     />
-                </form>
-            </div>
+                </div>
+                <div className={b('variants-actions')}>
+                    <Button
+                        theme={ButtonThemes.Action}
+                        className={b('variants-action')}
+                        type={'submit'}
+                    >
+                        {t('subscribe-text')}
+                    </Button>
+                </div>
+            </form>
         );
     }, [email, showError, onSendSubscribeInformation, t]);
-
-    const renderSubscribeVariantsActions = useCallback(() => {
-        return (
-            <div className={b('variants-actions')}>
-                <Button
-                    theme={ButtonThemes.Action}
-                    className={b('variants-action')}
-                    onClick={onSendSubscribeInformation}
-                >
-                    {t('subscribe-text')}
-                </Button>
-            </div>
-        );
-    }, [onSendSubscribeInformation, t]);
 
     return (
         <Popup
@@ -131,8 +115,7 @@ const SubscribeVariantsPopup: React.FC<
             position={getPopupPosition(isVerticalView, view)}
         >
             {renderSubscribeVariantsList()}
-            {renderSubscribeVariantsTextArea()}
-            {renderSubscribeVariantsActions()}
+            {renderSubscribeForm()}
         </Popup>
     );
 });

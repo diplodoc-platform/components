@@ -1,11 +1,6 @@
 import React, {useCallback, useState, useEffect} from 'react';
 import cn from 'bem-cn-lite';
-import {
-    DocPage,
-    FeedbackSendData,
-    FeedbackType,
-    Theme,
-} from '../../../index';
+import {DocPage, FeedbackSendData, FeedbackType, Theme} from '../../../index';
 import Header from '../Header/Header';
 import {DEFAULT_SETTINGS, DISLIKE_VARIANTS} from '../../../constants';
 import {getIsMobile} from '../../controls/settings';

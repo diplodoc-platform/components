@@ -21,10 +21,9 @@ import {Breadcrumbs} from '../Breadcrumbs';
 import {TocNavPanel} from '../TocNavPanel';
 import {Controls} from '../Controls';
 import {EditButton} from '../EditButton';
-import {SearchBar} from '../SearchBar';
+import {SearchBar, withHighlightedSearchWords} from '../SearchBar';
 import {Feedback, FeedbackView} from '../Feedback';
 import Contributors from '../Contributors/Contributors';
-import {withHighlightedSearchWords} from '../SearchBar';
 
 import {
     callSafe,

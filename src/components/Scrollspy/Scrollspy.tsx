@@ -238,6 +238,7 @@ export class Scrollspy extends React.Component<ScrollspyInnerProps, ScrollspySta
 
     private getViewState(hash?: string) {
         const {targetItems, inViewState} = this.state;
+        const {headerHeight} = this.props;
         const currentOffset = window.pageYOffset;
         const visibleItemOffset: boolean[] = [];
         let isOneActive = false;
@@ -250,7 +251,7 @@ export class Scrollspy extends React.Component<ScrollspyInnerProps, ScrollspySta
             }
 
             const offsetTop = item.getBoundingClientRect().top;
-            const isVisibleItem = offsetTop < 1;
+            const isVisibleItem = offsetTop < headerHeight + 1;
 
             if (pureHash) {
                 if (pureHash === item.getAttribute('id')) {

@@ -4,9 +4,9 @@
     display: flex;
     justify-content: center;
     width: 100%;
-    background: var(--yc-color-base);
+    background: var(--yc-color-base-background);
 
-    @include text-size(body-1-short);
+    @include text-size(body-short);
 
     &_fixed {
         position: fixed;

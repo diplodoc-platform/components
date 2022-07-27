@@ -6,7 +6,7 @@
     align-items: center;
     margin: 0 auto;
     height: 100%;
-    background: var(--yc-color-base);
+    background: var(--yc-color-base-background);
 
     @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
         align-items: normal;
@@ -61,8 +61,8 @@
         top: var(--dc-header-height, #{$headerHeight});
         padding-left: 24px;
         width: 252px;
-        background-color: var(--yc-color-base);
-        @include text-size(body-1-short);
+        background-color: var(--yc-color-base-background);
+        @include text-size(body-short);
     }
 
     &__desktop-only {

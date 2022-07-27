@@ -1,9 +1,9 @@
 import React, {memo, useCallback} from 'react';
 import {WithTranslation, withTranslation} from 'react-i18next';
 import block from 'bem-cn-lite';
+import {Popup} from '@yandex-cloud/uikit';
 
 import {SubscribeView} from '../Subscribe';
-import {Popup} from '../../Popup';
 import useTimeout from '../../../hooks/useTimeout';
 import {getPopupPosition} from '../utils';
 
@@ -26,11 +26,11 @@ const SubscribeSuccessPopup: React.FC<
 
     return (
         <Popup
-            anchor={anchor.current}
-            visible={visible}
+            anchorRef={anchor}
+            open={visible}
             onOutsideClick={hide}
             className={b('success-popup', {view})}
-            position={getPopupPosition(isVerticalView, view)}
+            placement={getPopupPosition(isVerticalView, view)}
         >
             <h3 className={b('popup-title')}>{t('verify-title')}</h3>
             <p className={b('popup-text')}>{t('verify-text')}</p>

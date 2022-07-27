@@ -1,5 +1,6 @@
 import React, {useCallback, useEffect} from 'react';
 import {WithTranslation, withTranslation, WithTranslationProps} from 'react-i18next';
+import {Icon as IconComponent} from '@yandex-cloud/uikit';
 
 import {Control} from '../../Control';
 import {ControlSizes, Lang} from '../../../models';
@@ -61,7 +62,9 @@ const FullScreenControl = (props: ControlInnerProps) => {
             className={className}
             isVerticalView={isVerticalView}
             tooltipText={t(`full-screen-text-${activeMode}`)}
-            icon={value ? FullScreenClickedIcon : FullScreenIcon}
+            icon={(args) => (
+                <IconComponent data={value ? FullScreenClickedIcon : FullScreenIcon} {...args} />
+            )}
         />
     );
 };

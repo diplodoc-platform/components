@@ -1,16 +1,13 @@
 import React, {memo, useCallback, useState} from 'react';
 import {WithTranslation, withTranslation} from 'react-i18next';
 import block from 'bem-cn-lite';
+import {Button, List, Popup, TextInput} from '@yandex-cloud/uikit';
 
-import {TextInput} from '../../TextInput';
-import {Popup} from '../../Popup';
 import {SubscribeView} from '../Subscribe';
-import {List, ListItem} from '../../List';
-import {Button} from '../../Button';
 import {isInvalidEmail} from '../../../utils';
 import {getPopupPosition} from '../utils';
 
-import {ButtonThemes, SubscribeData, SubscribeType} from '../../../models';
+import {SubscribeData, SubscribeType} from '../../../models';
 
 const b = block('dc-subscribe');
 
@@ -73,11 +70,19 @@ const SubscribeVariantsPopup: React.FC<
             {value: SubscribeType.page, text: t('subscribe-page-title')},
         ];
 
+        const itemHeight = 36;
+        const itemsHeight = itemHeight * ITEMS.length;
+        const selectedItemIndex = ITEMS.findIndex(({value}) => value === subscribeSelectors);
+
         return (
             <List
-                items={ITEMS as ListItem[]}
-                value={subscribeSelectors}
+                filterable={false}
+                items={ITEMS}
                 onItemClick={(item) => setSubscribeSelectors(item.value as SubscribeType)}
+                selectedItemIndex={selectedItemIndex}
+                itemHeight={itemHeight}
+                itemsHeight={itemsHeight}
+                renderItem={(item) => <div className={b('variant__list-item')}>{item.text}</div>}
             />
         );
     }, [subscribeSelectors, t]);
@@ -87,15 +92,16 @@ const SubscribeVariantsPopup: React.FC<
             <form onSubmit={onSendSubscribeInformation}>
                 <div className={b('textarea')}>
                     <TextInput
+                        size="l"
                         placeholder={t('subscribe-documentation-placeholder')}
                         error={showError || undefined}
-                        text={email}
-                        onChange={setEmail}
+                        value={email}
+                        onUpdate={setEmail}
                     />
                 </div>
                 <div className={b('variants-actions')}>
                     <Button
-                        theme={ButtonThemes.Action}
+                        view="action"
                         className={b('variants-action')}
                         type={'submit'}
                     >
@@ -108,11 +114,11 @@ const SubscribeVariantsPopup: React.FC<
 
     return (
         <Popup
-            anchor={anchor.current}
-            visible={visible}
+            anchorRef={anchor}
+            open={visible}
             onOutsideClick={hide}
             className={b('variants-popup', {view})}
-            position={getPopupPosition(isVerticalView, view)}
+            placement={getPopupPosition(isVerticalView, view)}
         >
             {renderSubscribeVariantsList()}
             {renderSubscribeForm()}

@@ -1,13 +1,9 @@
 import React from 'react';
 import cn from 'bem-cn-lite';
-import {
-    ControlSizes,
-    LangControl,
-    FullScreenControl,
-    DividerControl,
-    TextInput,
-} from '../../../index';
+import {TextInput} from '@yandex-cloud/uikit';
+import {ControlSizes, LangControl, FullScreenControl, DividerControl} from '../../../index';
 import {Lang} from '../../../models';
+import './Header.scss';
 
 const headBlock = cn('Header');
 const layoutBlock = cn('Layout');
@@ -36,21 +32,21 @@ const Header: React.FC<HeaderProps> = ({
                     lang={lang}
                     value={fullScreen}
                     onChange={onChangeFullScreen}
-                    size={ControlSizes.M}
+                    size={ControlSizes.L}
                     className={headBlock('control')}
                 />
-                <DividerControl size={ControlSizes.M} className={headBlock('divider')} />
+                <DividerControl size={ControlSizes.L} className={headBlock('divider')} />
                 <LangControl
                     lang={lang}
                     onChangeLang={onChangeLang}
-                    size={ControlSizes.M}
+                    size={ControlSizes.L}
                     className={headBlock('control')}
                 />
 
                 {onChangeFullScreen ? (
                     <TextInput
-                        text={searchText}
-                        onChange={onChangeSearch}
+                        value={searchText}
+                        onUpdate={onChangeSearch}
                         className={headBlock('control-input')}
                     />
                 ) : null}

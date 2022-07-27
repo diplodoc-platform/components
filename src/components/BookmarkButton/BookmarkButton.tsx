@@ -1,7 +1,7 @@
 import React from 'react';
 import block from 'bem-cn-lite';
 
-import {Button} from '../Button';
+import {Button, Icon as IconComponent} from '@yandex-cloud/uikit';
 
 import StarActive from '../../../assets/icons/star-active.svg';
 import StarInactive from '../../../assets/icons/star-inactive.svg';
@@ -26,10 +26,15 @@ export const BookmarkButton: React.FC<BookmarkButtonProps> = ({
             onClick={() => {
                 onChangeBookmarkPage(!bookmarkedPage);
             }}
-            theme={'clear'}
-            size="s"
+            view="flat-secondary"
         >
-            {bookmarkedPage ? <StarActive /> : <StarInactive />}
+            <Button.Icon>
+                {bookmarkedPage ? (
+                    <IconComponent data={StarActive} size={24} />
+                ) : (
+                    <IconComponent data={StarInactive} size={24} />
+                )}
+            </Button.Icon>
         </Button>
     );
 };

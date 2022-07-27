@@ -41,7 +41,7 @@ $popupWidth: 320px;
 
     &__like-button {
         &_active {
-            color: var(--yc-color-button-accent-background);
+            color: var(--yc-color-base-special);
         }
     }
 
@@ -64,14 +64,14 @@ $popupWidth: 320px;
     }
 
     &__popup-title {
-        font-size: var(--yc-text-body2-font-size);
-        line-height: var(--yc-text-body2-line-height);
+        font-size: var(--yc-text-body-2-font-size);
+        line-height: var(--yc-text-body-2-line-height);
         padding-bottom: 8px;
     }
 
     &__popup-text {
-        font-size: var(--yc-text-body-1-short-font-size);
-        line-height: var(--yc-text-body-1-short-line-height);
+        font-size: var(--yc-text-body-short-font-size);
+        line-height: var(--yc-text-body-short-line-height);
     }
 
     &__variants {
@@ -105,8 +105,8 @@ $popupWidth: 320px;
 
     &__title {
         &_view_wide {
-            font-size: var(--yc-text-body2-font-size);
-            line-height: var(--yc-text-body2-line-height);
+            font-size: var(--yc-text-body-2-font-size);
+            line-height: var(--yc-text-body-2-line-height);
             margin-right: 16px;
             font-weight: 400;
         }
@@ -146,15 +146,8 @@ $popupWidth: 320px;
     }
 
     &__feedback-button {
-        width: 16px;
-        height: 16px;
-
-        &_view_wide {
-            margin-right: 8px;
-        }
-
         &_active {
-            color: var(--yc-color-button-accent-background);
+            color: var(--yc-color-base-special);
         }
     }
 }

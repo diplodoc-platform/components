@@ -2,7 +2,7 @@
 @import '../../../styles/mixins';
 
 .dc-breadcrumbs {
-    @include text-size(body-1-short);
+    @include text-size(body-short);
     width: 100%;
 
     &__items {

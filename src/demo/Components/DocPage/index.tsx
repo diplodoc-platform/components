@@ -1,5 +1,7 @@
-import React, {useCallback, useState, useEffect} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import cn from 'bem-cn-lite';
+import {configure as configureUikit} from '@yandex-cloud/uikit';
+
 import {DocPage, FeedbackSendData, FeedbackType, Theme} from '../../../index';
 import Header from '../Header/Header';
 import {DEFAULT_SETTINGS, DISLIKE_VARIANTS} from '../../../constants';
@@ -66,10 +68,13 @@ const DocPageDemo = () => {
         console.log('Feedback:', data);
     }, []);
 
-    const onChangeBookmarkPage = useCallback(() => {
-        setIsPinned(!isPinned);
-        console.log(`This page pinned: ${isPinned}`);
-    }, [isPinned]);
+    const onChangeBookmarkPage = useCallback(
+        (data: boolean) => {
+            setIsPinned(data);
+            console.log(`This page pinned: ${data}`);
+        },
+        [isPinned],
+    );
 
     updateBodyClassName(theme);
 
@@ -99,12 +104,20 @@ const DocPageDemo = () => {
         console.log('onContentLoaded');
     }, []);
 
+    const onChangeLangWrapper = useCallback(
+        (lang) => {
+            onChangeLang(lang);
+            configureUikit({lang});
+        },
+        [lang],
+    );
+
     const props = {
         ...getContent(lang, singlePage),
         vcsType,
         lang,
+        onChangeLang: onChangeLangWrapper,
         langs,
-        onChangeLang,
         router,
         headerHeight: fullScreen ? 0 : 64,
         fullScreen,

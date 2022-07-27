@@ -6,7 +6,7 @@ $toggleSize: 10px;
 $leftOffset: 57px;
 
 @mixin toc-header {
-    @include text-size(body2);
+    @include text-size(body-2);
     font-weight: 500;
 }
 
@@ -45,7 +45,7 @@ $leftOffset: 57px;
             $headerClass: &;
             position: relative;
 
-            @include text-size(body2);
+            @include text-size(body-2);
             font-weight: 500;
 
             &_link {

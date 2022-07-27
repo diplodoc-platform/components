@@ -10,15 +10,8 @@ export enum TextSizes {
 }
 
 export enum ControlSizes {
-    S = 's',
     M = 'm',
-}
-
-export enum ButtonThemes {
-    Flat = 'flat',
-    Float = 'float',
-    Action = 'action',
-    Like = 'like',
+    L = 'l',
 }
 
 export interface DocSettings {

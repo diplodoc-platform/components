@@ -1,8 +1,7 @@
 import React, {useCallback, useState, useRef} from 'react';
 import block from 'bem-cn-lite';
+import {Popup, Button} from '@yandex-cloud/uikit';
 
-import {ControlButton} from '../ControlButton';
-import {Popup} from '../Popup';
 import {ControlSizes} from '../../models';
 import {PopperPosition} from '../../hooks';
 
@@ -11,8 +10,7 @@ import './Control.scss';
 const b = block('dc-control');
 
 export interface IconProps {
-    width?: number;
-    height?: number;
+    size: number;
 }
 
 export interface ControlProps {
@@ -26,8 +24,8 @@ export interface ControlProps {
 }
 
 const ICONS_SIZES = {
-    [ControlSizes.S]: 16,
-    [ControlSizes.M]: 20,
+    [ControlSizes.M]: 16,
+    [ControlSizes.L]: 20,
 };
 
 const Control = (props: ControlProps) => {
@@ -37,7 +35,7 @@ const Control = (props: ControlProps) => {
         tooltipText,
         isVerticalView,
         setRef,
-        size = ControlSizes.S,
+        size = ControlSizes.M,
         icon,
     } = props;
 
@@ -66,22 +64,25 @@ const Control = (props: ControlProps) => {
 
     return (
         <React.Fragment>
-            <ControlButton
+            <Button
+                view="flat-secondary"
                 onClick={onClick}
-                buttonRef={_setRef}
-                onMouseOver={showTooltip}
+                ref={_setRef}
+                onMouseEnter={showTooltip}
                 onMouseLeave={hideTooltip}
                 className={b(null, className)}
                 size={size}
             >
-                <Icon width={iconSize} height={iconSize} />
-            </ControlButton>
+                <Button.Icon>
+                    <Icon size={iconSize} />
+                </Button.Icon>
+            </Button>
             <Popup
-                anchor={controlRef.current}
-                visible={isVisibleTooltip}
+                anchorRef={controlRef}
+                open={isVisibleTooltip}
                 onOutsideClick={hideTooltip}
                 className={b('tooltip')}
-                position={position}
+                placement={position}
             >
                 <span className={b('tooltip-text')}>{tooltipText}</span>
             </Popup>

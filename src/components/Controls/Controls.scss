@@ -3,7 +3,7 @@
 .dc-controls {
     display: flex;
     align-items: center;
-    @include text-size(body-1-short);
+    @include text-size(body-short);
 
     &_vertical {
         flex-direction: column;
@@ -23,5 +23,23 @@
     &_vertical &__divider {
         margin-right: 0;
         margin-bottom: 4px;
+    }
+
+    &__list {
+        padding: 4px 0;
+
+        &_langs {
+            width: 120px;
+        }
+    }
+
+    &__list-icon {
+        margin-right: 8px;
+    }
+
+    &__lang-item {
+        display: flex;
+        padding: 6px 12px;
+        width: 100%;
     }
 }

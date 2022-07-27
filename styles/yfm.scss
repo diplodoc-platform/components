@@ -4,23 +4,23 @@
 .dc-doc-page .yfm {
     color: var(--yc-color-text-primary);
 
-    --yfm-color-hljs-background: var(--yc-color-base);
+    --yfm-color-hljs-background: var(--yc-color-base-background);
     --yfm-color-hljs-subst: var(--yc-color-text-complementary);
     --yfm-color-hljs-comment: var(--yc-color-text-secondary);
-    --yfm-color-hljs-deletion: var(--yc-color-text-accent);
-    --yfm-color-hljs-section: var(--yc-color-text-accent);
+    --yfm-color-hljs-deletion: var(--yc-color-line-danger);
+    --yfm-color-hljs-section: var(--yc-color-line-danger);
 
     a {
-        color: var(--yc-color-link);
+        color: var(--yc-color-text-link);
 
         &:hover,
         &:active {
-            color: var(--yc-color-link-hover);
+            color: var(--yc-color-text-link-hover);
         }
     }
 
     img {
-        background-color: var(--yc-color-base);
+        background-color: var(--yc-color-base-background);
     }
 
     $backgroundColors: (
@@ -40,7 +40,7 @@
         font-size: var(--dc-code-short-font-size);
         line-height: var(--dc-code-short-line-height);
         padding: var(--dc-code-short-padding);
-        background: var(--yc-color-rain-cloud-12);
+        background: var(--yc-color-base-misc);
         color: var(--yc-color-text-misc);
     }
 
@@ -55,7 +55,7 @@
     table {
         color: var(--yc-color-text-primary);
         border-color: var(--yc-color-line-generic);
-        background: var(--yc-color-base);
+        background: var(--yc-color-base-background);
     }
 
     table thead,
@@ -64,11 +64,11 @@
     }
 
     hr {
-        background-color: var(--yc-color-base);
+        background-color: var(--yc-color-base-background);
     }
 
     blockquote {
-        border-left-color: var(--yc-color-azure-solid);
+        border-left-color: var(--yc-color-base-special);
     }
 
     .yfm-tab-list {
@@ -77,11 +77,11 @@
 
     .yfm-tab:hover,
     .yfm-tab:active {
-        color: var(--yc-color-link-hover);
+        color: var(--yc-color-text-link-hover);
     }
 
     .yfm-tab.active {
-        border-bottom-color: var(--yc-color-azure-solid);
+        border-bottom-color: var(--yc-color-base-special);
     }
 
     /* TODO: move yfm-cut styles to yfm-transform */

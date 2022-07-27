@@ -134,11 +134,11 @@ $avatarWrapperBigSize: 33px;
     }
 
     &__details_name {
-        color: var(--yc-color-contrast);
+        color: var(--yc-color-text-primary);
         line-height: $textLineHeight;
     }
 
-    &__popup.dc-popup {
+    &__popup {
         box-shadow: 0px 3px 24px rgba(0, 0, 0, 0.2);
         @include disable-link-styles;
 

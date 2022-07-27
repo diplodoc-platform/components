@@ -14,7 +14,7 @@ interface DividerControlProps {
 }
 
 const DividerControl = ({
-    size = ControlSizes.S,
+    size = ControlSizes.M,
     className,
     isVerticalView = true,
 }: DividerControlProps) => {

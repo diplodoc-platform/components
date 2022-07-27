@@ -4,10 +4,10 @@ import {WithTranslation, withTranslation} from 'react-i18next';
 
 import {SubscribeSuccessPopup} from './SubscribeSuccessPopup';
 import {SubscribeVariantsPopup} from './SubscribeVariantsPopup';
-import {Button} from '../Button';
+import {Button} from '@yandex-cloud/uikit';
 import {Control} from '../Control';
 
-import {ButtonThemes, SubscribeData, Lang} from '../../models';
+import {SubscribeData, Lang} from '../../models';
 
 import SubscribeIcon from '../../../assets/icons/subscribe.svg';
 
@@ -65,8 +65,8 @@ const Subscribe: React.FC<SubscribeProps & WithTranslation> = React.memo((props)
                     <h3 className={b('title', {view})}>{t('main-question')}</h3>
                     <div className={b('controls', {view})}>
                         <Button
-                            theme={ButtonThemes.Flat}
-                            buttonRef={setSubscribeControlRef}
+                            view="flat-secondary"
+                            ref={setSubscribeControlRef}
                             onClick={onChangeSubscribe}
                             className={b('control', {view})}
                         >

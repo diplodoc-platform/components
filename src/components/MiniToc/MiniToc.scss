@@ -5,9 +5,9 @@
     $class: &;
 
     &__title {
-        @include text-size(body2);
+        @include text-size(body-2);
         font-weight: 500;
-        color: var(--dc-text-header-color);
+        color: var(--yc-color-text-primary);
         margin-bottom: 12px;
     }
 

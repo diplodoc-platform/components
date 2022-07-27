@@ -1,15 +1,12 @@
 import React, {useCallback, useEffect, useState, useRef} from 'react';
 import {WithTranslation, withTranslation, WithTranslationProps} from 'react-i18next';
 import cn from 'bem-cn-lite';
+import {Button, Popup, Switch, List} from '@yandex-cloud/uikit';
 
 import {Control} from '../../../Control';
 import {ControlSizes, Lang, TextSizes, Theme} from '../../../../models';
 
 import SettingsIcon from '../../../../../assets/icons/cog.svg';
-import {Tumbler} from '../../../Tumbler';
-import {ControlButton} from '../../../ControlButton';
-import {Popup} from '../../../Popup';
-import {List, ListItem} from '../../../List';
 
 import {getPopupPosition} from '../utils';
 
@@ -36,6 +33,12 @@ interface ControlProps {
 }
 
 type ControlInnerProps = ControlProps & WithTranslation & WithTranslationProps;
+
+interface SettingControlItem {
+    text: string;
+    description: string;
+    control: Element;
+}
 
 const SettingsControl = (props: ControlInnerProps) => {
     const {
@@ -97,7 +100,7 @@ const SettingsControl = (props: ControlInnerProps) => {
                       description: t(
                           `description_wide_format_${wideFormat ? 'enabled' : 'disabled'}`,
                       ),
-                      control: <Tumbler checked={wideFormat} onChange={_onChangeWideFormat} />,
+                      control: <Switch checked={wideFormat} onChange={_onChangeWideFormat} />,
                   }
                 : null,
             onChangeShowMiniToc
@@ -105,7 +108,7 @@ const SettingsControl = (props: ControlInnerProps) => {
                       text: t('label_show_mini_toc'),
                       description: t('description_show_mini_toc'),
                       control: (
-                          <Tumbler
+                          <Switch
                               disabled={showMiniTocDisabled}
                               checked={showMiniToc}
                               onChange={_onChangeShowMiniToc}
@@ -120,7 +123,7 @@ const SettingsControl = (props: ControlInnerProps) => {
                           Theme.Light === theme
                               ? t('description_disabled_dark_theme')
                               : t('description_enabled_dark_theme'),
-                      control: <Tumbler checked={theme === Theme.Dark} onChange={_onChangeTheme} />,
+                      control: <Switch checked={theme === Theme.Dark} onChange={_onChangeTheme} />,
                   }
                 : null,
             onChangeTextSize
@@ -130,22 +133,28 @@ const SettingsControl = (props: ControlInnerProps) => {
                       control: (
                           <div className={b('text-size-control')}>
                               {allTextSizes.map((textSizeKey) => (
-                                  <ControlButton
+                                  <Button
                                       key={textSizeKey}
                                       className={b('text-size-button', {
                                           [textSizeKey]: true,
-                                          active: textSize === textSizeKey,
                                       })}
+                                      view="flat"
                                       onClick={makeOnChangeTextSize(textSizeKey)}
                                   >
-                                      A
-                                  </ControlButton>
+                                      <Button.Icon
+                                          className={b('text-size-button-icon', {
+                                              active: textSize === textSizeKey,
+                                          })}
+                                      >
+                                          A
+                                      </Button.Icon>
+                                  </Button>
                               ))}
                           </div>
                       ),
                   }
                 : null,
-        ].filter(Boolean);
+        ].filter(Boolean) as unknown as SettingControlItem[];
     }, [
         t,
         textSize,
@@ -190,13 +199,32 @@ const SettingsControl = (props: ControlInnerProps) => {
                 setRef={setRef}
             />
             <Popup
-                anchor={controlRef.current}
-                visible={isVisiblePopup}
+                anchorRef={controlRef}
+                open={isVisiblePopup}
                 className={b('popup')}
                 onOutsideClick={hidePopup}
-                position={getPopupPosition(isVerticalView)}
+                placement={getPopupPosition(isVerticalView)}
             >
-                <List items={settingsItems as ListItem[]} itemHeight={ITEM_HEIGHT} />
+                <List
+                    items={settingsItems}
+                    className={b('list')}
+                    itemHeight={ITEM_HEIGHT}
+                    itemsHeight={ITEM_HEIGHT * settingsItems.length}
+                    filterable={false}
+                    renderItem={(item) => {
+                        return (
+                            <div className={b('list-item')}>
+                                <div className={b('list-item-content')}>
+                                    <div className={b('list-item-text')}>{item.text}</div>
+                                    <div className={b('list-item-description')}>
+                                        {item.description}
+                                    </div>
+                                </div>
+                                <div className={b('list-item-control')}>{item.control}</div>
+                            </div>
+                        );
+                    }}
+                />
             </Popup>
         </React.Fragment>
     );

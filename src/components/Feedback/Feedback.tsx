@@ -1,14 +1,11 @@
 import React, {useCallback, useState, useEffect, useRef} from 'react';
 import block from 'bem-cn-lite';
 import {withTranslation, WithTranslation, WithTranslationProps} from 'react-i18next';
+import {Checkbox, Popup, TextInput, Button, Icon as IconComponent} from '@yandex-cloud/uikit';
 
-import {Popup} from '../Popup';
-import {Button} from '../Button';
-import {Checkbox} from '../Checkbox';
-import {TextArea} from '../TextArea';
 import {Control} from '../Control';
 import {PopperPosition} from '../../hooks';
-import {ButtonThemes, FeedbackSendData, FeedbackType, Lang} from '../../models';
+import {FeedbackSendData, FeedbackType, Lang} from '../../models';
 import {DISLIKE_VARIANTS} from '../../constants';
 
 import LikeIcon from '../../../assets/icons/like.svg';
@@ -208,7 +205,11 @@ const Feedback: React.FC<FeedbackInnerProps> = (props) => {
                 tooltipText={t(`${isLiked ? 'cancel-' : ''}like-text`)}
                 setRef={setLikeControlRef}
                 icon={(args) => (
-                    <LikeIcon className={b('like-button', {active: isLiked, view})} {...args} />
+                    <IconComponent
+                        data={LikeIcon}
+                        className={b('like-button', {active: isLiked, view})}
+                        {...args}
+                    />
                 )}
             />
         );
@@ -223,7 +224,8 @@ const Feedback: React.FC<FeedbackInnerProps> = (props) => {
                 tooltipText={t(`${innerIsDisliked ? 'cancel-' : ''}dislike-text`)}
                 setRef={setDislikeControlRef}
                 icon={(args) => (
-                    <DislikeIcon
+                    <IconComponent
+                        data={DislikeIcon}
                         className={b('like-button', {active: innerIsDisliked, view})}
                         {...args}
                     />
@@ -256,25 +258,34 @@ const Feedback: React.FC<FeedbackInnerProps> = (props) => {
                     <h3 className={b('title', {view})}>{t('main-question')}</h3>
                     <div className={b('controls', {view})}>
                         <Button
-                            theme={ButtonThemes.Like}
-                            active={isLiked}
-                            buttonRef={setLikeControlRef}
+                            size="m"
+                            view="normal"
+                            ref={setLikeControlRef}
                             onClick={onChangeLike}
                             className={b('control', {view})}
                         >
-                            <LikeIcon className={b('feedback-button', {active: isLiked, view})} />
+                            <Button.Icon>
+                                <IconComponent
+                                    data={LikeIcon}
+                                    size={14}
+                                    className={b('feedback-button', {active: isLiked})}
+                                />
+                            </Button.Icon>
                             {t('button-like-text')}
                         </Button>
                         <Button
-                            theme={ButtonThemes.Like}
-                            active={innerIsDisliked}
-                            buttonRef={setDislikeControlRef}
+                            view="normal"
+                            ref={setDislikeControlRef}
                             onClick={onChangeDislike}
                             className={b('control', {view})}
                         >
-                            <DislikeIcon
-                                className={b('feedback-button', {active: innerIsDisliked, view})}
-                            />
+                            <Button.Icon>
+                                <IconComponent
+                                    data={DislikeIcon}
+                                    size={14}
+                                    className={b('feedback-button', {active: innerIsDisliked})}
+                                />
+                            </Button.Icon>
                             {t('button-dislike-text')}
                         </Button>
                     </div>
@@ -299,7 +310,7 @@ const Feedback: React.FC<FeedbackInnerProps> = (props) => {
     }, [view, renderRegularFeedbackControls, renderWideFeedbackControls]);
 
     const renderFeedbackSuccessPopup = useCallback(() => {
-        const anchor = showLikeSuccessPopup ? likeControlRef.current : dislikeControlRef.current;
+        const anchor = showLikeSuccessPopup ? likeControlRef : dislikeControlRef;
         const visible = showLikeSuccessPopup || showDislikeSuccessPopup;
 
         if (!visible) {
@@ -308,11 +319,11 @@ const Feedback: React.FC<FeedbackInnerProps> = (props) => {
 
         return (
             <Popup
-                anchor={anchor}
-                visible={visible}
+                anchorRef={anchor}
+                open={visible}
                 onOutsideClick={hideFeedbackPopups}
                 className={b('success-popup', {view})}
-                position={getPopupPosition()}
+                placement={getPopupPosition()}
             >
                 <h3 className={b('popup-title')}>{t('success-title')}</h3>
                 <p className={b('popup-text')}>{t('success-text')}</p>
@@ -339,13 +350,13 @@ const Feedback: React.FC<FeedbackInnerProps> = (props) => {
                         key={index}
                         className={b('variant')}
                         checked={feedbackCheckboxes[variant]}
-                        onChange={(event) => {
+                        onUpdate={(checked) => {
                             setFeedbackCheckboxes({
                                 ...feedbackCheckboxes,
-                                [variant]: event.target.checked,
+                                [variant]: checked,
                             });
                         }}
-                        label={variant}
+                        content={variant}
                     />
                 ))}
             </div>
@@ -355,14 +366,15 @@ const Feedback: React.FC<FeedbackInnerProps> = (props) => {
     const renderDislikeVariantsTextArea = useCallback(() => {
         return (
             <div className={b('textarea')}>
-                <TextArea
+                <TextInput
+                    multiline
                     size="m"
                     rows={6}
                     placeholder={t('comment-placeholder')}
-                    clear
+                    hasClear
                     value={feedbackComment}
-                    onChange={(_event, value) => {
-                        setFeedbackComment(value);
+                    onChange={(_event) => {
+                        setFeedbackComment(_event.target.value);
                     }}
                 />
             </div>
@@ -373,7 +385,7 @@ const Feedback: React.FC<FeedbackInnerProps> = (props) => {
         return (
             <div className={b('variants-actions')}>
                 <Button
-                    theme={ButtonThemes.Action}
+                    view="action"
                     className={b('variants-action')}
                     onClick={onSendDislikeInformation}
                 >
@@ -401,11 +413,11 @@ const Feedback: React.FC<FeedbackInnerProps> = (props) => {
 
         return (
             <Popup
-                anchor={dislikeControlRef.current}
-                visible={showDislikeVariantsPopup}
+                anchorRef={dislikeControlRef}
+                open={showDislikeVariantsPopup}
                 onOutsideClick={onOutsideClick}
                 className={b('variants-popup', {view})}
-                position={getPopupPosition()}
+                placement={getPopupPosition()}
             >
                 {renderDislikeVariantsContent()}
             </Popup>

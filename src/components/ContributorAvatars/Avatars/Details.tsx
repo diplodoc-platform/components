@@ -1,9 +1,9 @@
 import block from 'bem-cn-lite';
 import React from 'react';
+import {Popup} from '@yandex-cloud/uikit';
 
 import Avatar from './Avatar';
 import Link from '../../Link';
-import {Popup} from '../../Popup';
 import {AvatarData, AvatarSizes, PopupData} from '../models';
 import {getName} from '../utils';
 import {Contributor} from '../../../models';
@@ -28,11 +28,11 @@ const Details: React.FC<DetailsProps> = (props) => {
 
     return (
         <Popup
-            anchor={ref.current}
-            visible={isVisiblePopup}
+            anchorRef={ref}
+            open={isVisiblePopup}
             onOutsideClick={() => changeVisiblilityPopup(false)}
             className={b('popup')}
-            position={PopperPosition.BOTTOM}
+            placement={PopperPosition.BOTTOM}
             hasArrow={true}
         >
             {contributorsDetails}

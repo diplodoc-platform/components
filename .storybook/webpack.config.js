@@ -9,6 +9,7 @@ const assetsRoot = path.resolve(__dirname, '..', 'assets');
 const storybookRoot = path.resolve(__dirname, '..', '.storybook');
 const storybookHost = path.resolve(__dirname, '..', 'node_modules/storybook-host');
 const yfmTransformDir = path.resolve(srcRoot, '../node_modules/@doc-tools/transform');
+const uiKitDir = path.resolve(srcRoot, '../node_modules/@yandex-cloud/uikit');
 
 const ruleIncludes = [
     srcRoot,
@@ -17,6 +18,7 @@ const ruleIncludes = [
     storybookRoot,
     storybookHost,
     yfmTransformDir,
+    uiKitDir,
 ];
 
 const config = new ConfigBuilder();

@@ -1,21 +1,25 @@
-import React, {useCallback, useEffect, useState, useRef} from 'react';
+import React, {useCallback, useEffect, useState, useRef, ReactElement} from 'react';
 import {WithTranslation, withTranslation, WithTranslationProps} from 'react-i18next';
 import allLangs from 'langs';
+import {Popup, Icon as IconComponent, List} from '@yandex-cloud/uikit';
+import block from 'bem-cn-lite';
 
 import {Control} from '../../Control';
 import {ControlSizes, Lang} from '../../../models';
-import {Popup} from '../../Popup';
-import {List, ListItem} from '../../List';
 import {getPopupPosition} from './utils';
 
 import LangIcon from '../../../../assets/icons/lang.svg';
 import RusIcon from '../../../../assets/icons/rus.svg';
 import EngIcon from '../../../../assets/icons/eng.svg';
 
+import '../Controls.scss';
+
 const LEGACY_LANG_ITEMS = [
     {value: Lang.En, text: 'English', icon: <EngIcon />},
     {value: Lang.Ru, text: 'Русский', icon: <RusIcon />},
 ];
+
+const b = block('dc-controls');
 
 interface ControlProps {
     lang: Lang;
@@ -24,6 +28,12 @@ interface ControlProps {
     className?: string;
     size?: ControlSizes;
     onChangeLang?: (lang: Lang) => void;
+}
+
+interface ListItem {
+    value: string;
+    text: string;
+    icon?: ReactElement;
 }
 
 type ControlInnerProps = ControlProps & WithTranslation & WithTranslationProps;
@@ -79,6 +89,10 @@ const LangControl = (props: ControlInnerProps) => {
         return null;
     }
 
+    const itemHeight = 36;
+    const itemsHeight = itemHeight * langItems.length;
+    const selectedItemIndex = langItems.findIndex(({value}) => value === lang);
+
     return (
         <React.Fragment>
             <Control
@@ -87,20 +101,31 @@ const LangControl = (props: ControlInnerProps) => {
                 className={className}
                 isVerticalView={isVerticalView}
                 tooltipText={t('lang-text')}
-                icon={LangIcon}
+                icon={(args) => <IconComponent data={LangIcon} {...args} />}
                 setRef={setRef}
             />
             <Popup
-                anchor={controlRef.current}
-                visible={isVisiblePopup}
+                anchorRef={controlRef}
+                open={isVisiblePopup}
                 onOutsideClick={hidePopup}
-                position={getPopupPosition(isVerticalView)}
+                placement={getPopupPosition(isVerticalView)}
             >
                 <List
-                    items={langItems as ListItem[]}
-                    value={lang}
+                    filterable={false}
+                    className={b('list', {langs: true})}
+                    items={langItems}
                     onItemClick={(item) => {
                         _onChangeLang(item.value as Lang);
+                    }}
+                    selectedItemIndex={selectedItemIndex}
+                    itemHeight={itemHeight}
+                    itemsHeight={itemsHeight}
+                    renderItem={(item) => {
+                        return (
+                            <div className={b('lang-item')}>
+                                <div className={b('list-icon')}>{item.icon}</div> {item.text}
+                            </div>
+                        );
                     }}
                 />
             </Popup>

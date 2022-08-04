@@ -25,18 +25,6 @@ export interface SearchWordsHighlighterProps extends DocPageData {
 function withHighlightedSearchWords<T extends SearchWordsHighlighterProps>(
     Component: React.ComponentType<T>,
 ) {
-    const SearchWordsHighlighterWrapper: React.FC<SearchWordsHighlighterProps & T> = (
-        props,
-    ): JSX.Element | null => {
-        const {useSearchBar = false} = props;
-
-        if (useSearchBar) {
-            return <SearchWordsHighlighter {...props} />;
-        }
-
-        return <Component {...props} />;
-    };
-
     const SearchWordsHighlighter: React.FC<SearchWordsHighlighterProps & T> = (
         props,
     ): JSX.Element | null => {
@@ -119,6 +107,18 @@ function withHighlightedSearchWords<T extends SearchWordsHighlighterProps>(
         }
 
         return <Component {...props} showSearchBar={false} />;
+    };
+
+    const SearchWordsHighlighterWrapper: React.FC<SearchWordsHighlighterProps & T> = (
+        props,
+    ): JSX.Element | null => {
+        const {useSearchBar = false} = props;
+
+        if (useSearchBar) {
+            return <SearchWordsHighlighter {...props} />;
+        }
+
+        return <Component {...props} />;
     };
 
     return SearchWordsHighlighterWrapper;

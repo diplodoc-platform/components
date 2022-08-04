@@ -12,6 +12,7 @@ import {
     Vcs,
     TextSizes,
     Theme,
+    SubscribeData,
 } from '../../models';
 import {DocLayout} from '../DocLayout';
 import {DocPageTitle} from '../DocPageTitle';
@@ -76,6 +77,7 @@ export interface DocPageProps extends DocPageData, DocSettings {
     onSendFeedback?: (data: FeedbackSendData) => void;
     onContentMutation?: () => void;
     onContentLoaded?: () => void;
+    onSubscribe?: (data: SubscribeData) => void;
 }
 
 type DocPageInnerProps = InnerProps<DocPageProps, DocSettings>;
@@ -590,6 +592,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             onChangeTextSize,
             onChangeSinglePage,
             onSendFeedback,
+            onSubscribe,
             isLiked,
             isDisliked,
             dislikeVariants,
@@ -629,6 +632,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                     onChangeTheme={onChangeTheme}
                     onChangeTextSize={onChangeTextSize}
                     onSendFeedback={onSendFeedback}
+                    onSubscribe={onSubscribe}
                     isVerticalView={isVerticalView}
                     hideFeedbackControls={hideFeedbackControls}
                 />

@@ -1,6 +1,10 @@
 .dc-divider-control {
     background: var(--yc-color-line-generic);
 
+    &:first-child {
+        display: none;
+    }
+
     &:not(&_vertical) {
         width: 100%;
         height: 1px;

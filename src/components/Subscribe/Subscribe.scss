@@ -1,0 +1,138 @@
+@import '../../../styles/mixins';
+@import '../../../styles/variables';
+
+$popupWidth: 320px;
+
+@mixin tooltip-in-center {
+    @media screen and (max-width: map-get($screenBreakpoints, 'xs')) {
+        & {
+            // stylelint-disable declaration-no-important
+            right: 0 !important;
+            left: 0 !important;
+            margin: auto;
+        }
+    }
+}
+
+.dc-subscribe {
+    &__container {
+        &_view_wide {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            width: 100%;
+        }
+    }
+
+    &__container-row {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        padding: 28px;
+
+        border: 1px solid var(--yc-color-line-generic);
+        border-radius: 8px;
+
+        &_view_wide {
+            display: flex;
+            align-items: center;
+        }
+    }
+
+    &__success-popup {
+        padding: $popupPadding;
+        width: $popupWidth;
+
+        &_view_wide {
+            @include tooltip-in-center();
+        }
+    }
+
+    &__variants-popup {
+        padding: $popupPadding;
+        width: $popupWidth;
+
+        &_view_wide {
+            @include tooltip-in-center();
+        }
+    }
+
+    &__popup-title {
+        font-size: var(--yc-text-body2-font-size);
+        line-height: var(--yc-text-body2-line-height);
+        padding-bottom: 8px;
+    }
+
+    &__popup-text {
+        font-size: var(--yc-text-body-1-short-font-size);
+        line-height: var(--yc-text-body-1-short-line-height);
+    }
+
+    &__variants-actions {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    &__variants-action {
+        margin-left: 10px;
+    }
+
+    &__textarea {
+        padding: 8px 0;
+    }
+
+    &__title {
+        &_view_wide {
+            font-size: var(--yc-text-body2-font-size);
+            line-height: var(--yc-text-body2-line-height);
+            margin-right: 16px;
+            font-weight: 400;
+        }
+    }
+
+    &__controls {
+        display: flex;
+
+        &_view_wide {
+            display: flex;
+        }
+    }
+
+    &__control {
+        &:last-child {
+            font-size: 13px;
+            line-height: 18px;
+            display: flex;
+            align-items: center;
+        }
+
+        &_view_wide {
+            margin-right: 12px;
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+
+        &_view_regular {
+            margin-right: 4px;
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+
+    &__subscribe-button {
+        width: 16px;
+        height: 16px;
+
+        &_view_wide {
+            margin-right: 8px;
+        }
+
+        &_active {
+            color: var(--yc-color-button-accent-background);
+        }
+    }
+}

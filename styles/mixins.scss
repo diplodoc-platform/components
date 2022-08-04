@@ -90,6 +90,12 @@
     align-self: center;
 }
 
+@mixin text-body-1() {
+    font-size: var(--yc-text-body-1-font-size);
+    line-height: var(--yc-text-body-1-line-height);
+    font-weight: var(--yc-text-body-font-weight);
+}
+
 @mixin desktop-only() {
     @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
         display: none;

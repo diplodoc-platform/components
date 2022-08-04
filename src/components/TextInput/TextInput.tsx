@@ -10,11 +10,13 @@ export interface TextInputProps {
     className?: string;
     placeholder?: string;
     onChange?: Function;
+    error?: string;
 }
 
 export const TextInput: React.FC<TextInputProps> = (props) => {
-    const {className, placeholder, onChange} = props;
+    const {className, placeholder, onChange, error} = props;
     const [value, setValue] = useState(props.text ?? '');
+    const isErrorMsgVisible = typeof error === 'string';
 
     return (
         <span className={className}>
@@ -31,6 +33,7 @@ export const TextInput: React.FC<TextInputProps> = (props) => {
                     }
                 }}
             />
+            {isErrorMsgVisible && <div className={b('error')}>{error}</div>}
         </span>
     );
 };

@@ -6,6 +6,8 @@ import {DEFAULT_SETTINGS, DISLIKE_VARIANTS} from '../../../constants';
 import {getIsMobile} from '../../controls/settings';
 import getLangControl from '../../controls/lang';
 import getVcsControl from '../../controls/vcs';
+import {getHasBookmark} from '../../decorators/bookmark';
+import {getHasSubscribe} from '../../decorators/subscribe';
 import {getContent} from './data';
 
 import {join} from 'path';
@@ -27,6 +29,8 @@ const DocPageDemo = () => {
     const langValue = getLangControl();
     const vcsType = getVcsControl();
     const isMobile = getIsMobile();
+    const hasBookmark = getHasBookmark();
+    const hasSubscribe = getHasSubscribe();
     const router = {pathname: '/docs/overview/concepts/quotas-limits'};
 
     const [fullScreen, onChangeFullScreen] = useState(DEFAULT_SETTINGS.fullScreen);
@@ -37,7 +41,7 @@ const DocPageDemo = () => {
     const [singlePage, onChangeSinglePage] = useState(DEFAULT_SETTINGS.singlePage);
     const [isLiked, setIsLiked] = useState(DEFAULT_SETTINGS.isLiked);
     const [isDisliked, setIsDisliked] = useState(DEFAULT_SETTINGS.isDisliked);
-    const [isPinned, setIsPinned] = useState(DEFAULT_SETTINGS.isPinned);
+    const [isPinned, setIsPinned] = useState(DEFAULT_SETTINGS.isPinned as boolean);
     const [lang, onChangeLang] = useState(langValue);
     const [showSearchBar, setShowSearchBar] = useState(true);
     const onCloseSearchBar = () => setShowSearchBar(false);
@@ -61,10 +65,10 @@ const DocPageDemo = () => {
         console.log('Feedback:', data);
     }, []);
 
-    const onChangeBookmarkPage = useCallback((data: boolean) => {
-        setIsPinned(!data);
-        console.log(`This page pinned: ${data}`);
-    }, []);
+    const onChangeBookmarkPage = useCallback(() => {
+        setIsPinned(!isPinned);
+        console.log(`This page pinned: ${isPinned}`);
+    }, [isPinned]);
 
     updateBodyClassName(theme);
 
@@ -107,6 +111,7 @@ const DocPageDemo = () => {
         onChangeWideFormat,
         showMiniToc,
         onChangeShowMiniToc,
+        onSubscribe: hasSubscribe === 'true' ? () => {} : undefined,
         theme,
         onNotFoundWords,
         onChangeTheme: (themeValue: Theme) => {
@@ -120,13 +125,13 @@ const DocPageDemo = () => {
         isLiked,
         isDisliked,
         onSendFeedback,
-        bookmarkedPage: isPinned,
-        onChangeBookmarkPage: onChangeBookmarkPage,
         showSearchBar,
         searchWords,
         searchQuery,
         onCloseSearchBar,
         useSearchBar: true,
+        bookmarkedPage: hasBookmark === 'true' && isPinned,
+        onChangeBookmarkPage: hasBookmark === 'true' ? onChangeBookmarkPage : undefined,
     };
 
     const tocTitleIcon = (

@@ -89,3 +89,9 @@ export function createElementFromHTML(htmlString: string) {
 }
 
 export const getRandomKey = () => Math.random();
+
+export function isInvalidEmail(email: string) {
+    const EMAIL_RE = /\S+@\S+/;
+
+    return !EMAIL_RE.test(email);
+}

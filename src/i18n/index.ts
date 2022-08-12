@@ -6,7 +6,7 @@ import ru from './ru.json';
 import en from './en.json';
 
 export default i18n.use(initReactI18next).init({
-    fallbackLng: Lang.Ru,
+    fallbackLng: Lang.En,
     ns: ['controls', 'mini-toc', 'toc-nav-panel', 'authors'],
     resources: {ru, en},
     interpolation: {

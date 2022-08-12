@@ -45,6 +45,7 @@ const b = block('dc-doc-page');
 
 export interface DocPageProps extends DocPageData, DocSettings {
     lang: Lang;
+    langs?: string[];
     router: Router;
     headerHeight?: number;
     tocTitleIcon?: React.ReactNode;
@@ -577,6 +578,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
     private renderControls() {
         const {
             lang,
+            langs,
             textSize,
             theme,
             wideFormat,
@@ -612,6 +614,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             <div className={b('controls', {vertical: isVerticalView})}>
                 <Controls
                     lang={lang}
+                    langs={langs}
                     textSize={textSize}
                     theme={theme}
                     wideFormat={wideFormat}

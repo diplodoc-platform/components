@@ -32,6 +32,7 @@ const DocPageDemo = () => {
     const hasBookmark = getHasBookmark();
     const hasSubscribe = getHasSubscribe();
     const router = {pathname: '/docs/overview/concepts/quotas-limits'};
+    const langs = ['ru', 'en', 'cs'];
 
     const [fullScreen, onChangeFullScreen] = useState(DEFAULT_SETTINGS.fullScreen);
     const [wideFormat, onChangeWideFormat] = useState(DEFAULT_SETTINGS.wideFormat);
@@ -102,6 +103,7 @@ const DocPageDemo = () => {
         ...getContent(lang, singlePage),
         vcsType,
         lang,
+        langs,
         onChangeLang,
         router,
         headerHeight: fullScreen ? 0 : 64,

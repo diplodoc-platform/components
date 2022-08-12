@@ -23,6 +23,7 @@ const b = block('dc-controls');
 
 export interface ControlsProps {
     lang: Lang;
+    langs?: string[];
     fullScreen?: boolean;
     singlePage?: boolean;
     wideFormat?: boolean;
@@ -124,6 +125,7 @@ class Controls extends React.Component<ControlsInnerProps> {
             isVerticalView,
             controlSize,
             lang,
+            langs,
         } = this.props;
 
         return (
@@ -152,6 +154,7 @@ class Controls extends React.Component<ControlsInnerProps> {
                 />
                 <LangControl
                     lang={lang}
+                    langs={langs}
                     size={controlSize}
                     onChangeLang={onChangeLang}
                     className={b('control')}

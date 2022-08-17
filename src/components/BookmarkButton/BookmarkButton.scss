@@ -6,7 +6,7 @@
         background-color: transparent;
     }
 
-    &_active .yc-button__icon {
+    &_active &__icon {
         color: var(--yc-color-base-special);
     }
 }

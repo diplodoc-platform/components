@@ -11,6 +11,8 @@ import {SubscribeData, SubscribeType} from '../../../models';
 
 const b = block('dc-subscribe');
 
+const LIST_ITEM_HEIGHT = 36;
+
 const SubscribeVariantsPopup: React.FC<
     {
         anchor: React.RefObject<HTMLElement>;
@@ -70,8 +72,7 @@ const SubscribeVariantsPopup: React.FC<
             {value: SubscribeType.page, text: t('subscribe-page-title')},
         ];
 
-        const itemHeight = 36;
-        const itemsHeight = itemHeight * ITEMS.length;
+        const itemsHeight = LIST_ITEM_HEIGHT * ITEMS.length;
         const selectedItemIndex = ITEMS.findIndex(({value}) => value === subscribeSelectors);
 
         return (
@@ -80,7 +81,7 @@ const SubscribeVariantsPopup: React.FC<
                 items={ITEMS}
                 onItemClick={(item) => setSubscribeSelectors(item.value as SubscribeType)}
                 selectedItemIndex={selectedItemIndex}
-                itemHeight={itemHeight}
+                itemHeight={LIST_ITEM_HEIGHT}
                 itemsHeight={itemsHeight}
                 renderItem={(item) => <div className={b('variant__list-item')}>{item.text}</div>}
             />
@@ -100,11 +101,7 @@ const SubscribeVariantsPopup: React.FC<
                     />
                 </div>
                 <div className={b('variants-actions')}>
-                    <Button
-                        view="action"
-                        className={b('variants-action')}
-                        type={'submit'}
-                    >
+                    <Button view="action" className={b('variants-action')} type={'submit'}>
                         {t('subscribe-text')}
                     </Button>
                 </div>

@@ -68,13 +68,10 @@ const DocPageDemo = () => {
         console.log('Feedback:', data);
     }, []);
 
-    const onChangeBookmarkPage = useCallback(
-        (data: boolean) => {
-            setIsPinned(data);
-            console.log(`This page pinned: ${data}`);
-        },
-        [isPinned],
-    );
+    const onChangeBookmarkPage = useCallback((data: boolean) => {
+        setIsPinned(data);
+        console.log(`This page pinned: ${data}`);
+    }, []);
 
     updateBodyClassName(theme);
 

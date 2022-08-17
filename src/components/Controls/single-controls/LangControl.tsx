@@ -36,6 +36,8 @@ interface ListItem {
     icon?: ReactElement;
 }
 
+const LIST_ITEM_HEIGHT = 36;
+
 type ControlInnerProps = ControlProps & WithTranslation & WithTranslationProps;
 
 const LangControl = (props: ControlInnerProps) => {
@@ -89,8 +91,7 @@ const LangControl = (props: ControlInnerProps) => {
         return null;
     }
 
-    const itemHeight = 36;
-    const itemsHeight = itemHeight * langItems.length;
+    const itemsHeight = LIST_ITEM_HEIGHT * langItems.length;
     const selectedItemIndex = langItems.findIndex(({value}) => value === lang);
 
     return (
@@ -118,7 +119,7 @@ const LangControl = (props: ControlInnerProps) => {
                         _onChangeLang(item.value as Lang);
                     }}
                     selectedItemIndex={selectedItemIndex}
-                    itemHeight={itemHeight}
+                    itemHeight={LIST_ITEM_HEIGHT}
                     itemsHeight={itemsHeight}
                     renderItem={(item) => {
                         return (

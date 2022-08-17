@@ -28,12 +28,8 @@ export const BookmarkButton: React.FC<BookmarkButtonProps> = ({
             }}
             view="flat-secondary"
         >
-            <Button.Icon>
-                {bookmarkedPage ? (
-                    <IconComponent data={StarActive} size={24} />
-                ) : (
-                    <IconComponent data={StarInactive} size={24} />
-                )}
+            <Button.Icon className={b('icon')}>
+                <IconComponent data={bookmarkedPage ? StarActive : StarInactive} size={24} />
             </Button.Icon>
         </Button>
     );

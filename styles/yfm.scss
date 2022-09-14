@@ -52,6 +52,15 @@
         color: var(--yc-color-text-complementary);
     }
 
+    dfn {
+        background: var(--yc-color-base-float);
+        box-shadow: 0 8px 20px var(--yc-color-sfx-shadow);
+    }
+
+    dfn:before {
+        box-shadow: 0 0 0 1px var(--yc-popup-border-color);
+    }
+
     table {
         color: var(--yc-color-text-primary);
         border-color: var(--yc-color-line-generic);

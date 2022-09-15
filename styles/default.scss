@@ -9,6 +9,26 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
+    --dc-header-height: 0;
+    --dc-subheader-height: 40px;
+
+    .yc-root {
+        --yc-scrollbar-thin-width: 6px;
+
+        &::-webkit-scrollbar,
+        *::-webkit-scrollbar {
+            height: var(--yc-scrollbar-thin-width);
+            background: transparent;
+        }
+
+        &::-webkit-scrollbar-track,
+        *::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        --yc-font-family-sans: 'YS Text', 'Helvetica Neue', 'Arial', 'Helvetica', sans-serif;
+    }
 }
 
 #root {

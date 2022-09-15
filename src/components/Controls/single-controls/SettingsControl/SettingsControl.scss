@@ -8,7 +8,7 @@
 
     &__text-size-button {
         &_s {
-            @include text-size(body-short);
+            @include text-size(body-1);
         }
         &_m {
             @include text-size(body-2);
@@ -43,7 +43,7 @@
 
     &__list-item {
         display: flex;
-        padding: 12px 12px;
+        padding: 12px;
         width: 100%;
     }
 

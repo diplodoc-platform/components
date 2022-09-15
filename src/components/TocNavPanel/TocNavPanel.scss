@@ -6,7 +6,7 @@
     width: 100%;
     background: var(--yc-color-base-background);
 
-    @include text-size(body-short);
+    @include text-size(body-1);
 
     &_fixed {
         position: fixed;

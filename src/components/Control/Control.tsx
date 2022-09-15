@@ -10,7 +10,8 @@ import './Control.scss';
 const b = block('dc-control');
 
 export interface IconProps {
-    size: number;
+    width: number;
+    height: number;
 }
 
 export interface ControlProps {
@@ -74,7 +75,7 @@ const Control = (props: ControlProps) => {
                 size={size}
             >
                 <Button.Icon>
-                    <Icon size={iconSize} />
+                    <Icon width={iconSize} height={iconSize} />
                 </Button.Icon>
             </Button>
             <Popup

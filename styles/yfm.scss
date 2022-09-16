@@ -61,6 +61,10 @@
         box-shadow: 0 0 0 1px var(--yc-popup-border-color);
     }
 
+    i:hover {
+        color: var(--yc-color-text-link-hover);
+    }
+
     table {
         color: var(--yc-color-text-primary);
         border-color: var(--yc-color-line-generic);

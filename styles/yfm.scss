@@ -61,10 +61,6 @@
         box-shadow: 0 0 0 1px var(--yc-popup-border-color);
     }
 
-    i:hover {
-        color: var(--yc-color-text-link-hover);
-    }
-
     table {
         color: var(--yc-color-text-primary);
         border-color: var(--yc-color-line-generic);
@@ -104,6 +100,10 @@
 
     .yfm-cut.open .yfm-cut-content {
         padding: 5px 0 0 30px;
+    }
+
+    .yfm-term_title:hover {
+        color: var(--yc-color-text-link-hover);
     }
 
     // Margin collapse is not applied for a block and header with a negative margin.

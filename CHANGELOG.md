@@ -1,5 +1,12 @@
 # История изменений
 
+## [2.3.2](https://github.com/yandex-cloud/docs-components/compare/v2.3.1...v2.3.2) (2022-09-20)
+
+
+### Bug Fixes
+
+* uikit v2 styles ([#100](https://github.com/yandex-cloud/docs-components/issues/100)) ([ac36682](https://github.com/yandex-cloud/docs-components/commit/ac3668268fbc3f4952e779019dbec48524a981b7))
+
 ## [2.3.1](https://github.com/yandex-cloud/docs-components/compare/v2.3.0...v2.3.1) (2022-09-14)
 
 

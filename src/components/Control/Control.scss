@@ -10,7 +10,7 @@
     }
 
     &__tooltip-text {
-        @include text-size(body-short);
+        @include text-size(body-1);
         display: block;
         white-space: nowrap;
     }

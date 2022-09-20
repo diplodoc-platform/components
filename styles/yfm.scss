@@ -102,6 +102,10 @@
         padding: 5px 0 0 30px;
     }
 
+    .yfm-term_title:hover {
+        color: var(--yc-color-text-link-hover);
+    }
+
     // Margin collapse is not applied for a block and header with a negative margin.
     // The margin is summed up. So, we need to take 15px away from the header margin-top
     h1,

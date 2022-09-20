@@ -3,7 +3,7 @@
 .dc-controls {
     display: flex;
     align-items: center;
-    @include text-size(body-short);
+    @include text-size(body-1);
 
     &_vertical {
         flex-direction: column;

@@ -1,6 +1,6 @@
 import block from 'bem-cn-lite';
 import React from 'react';
-import {Popup} from '@yandex-cloud/uikit';
+import {Popup} from '@gravity-ui/uikit';
 
 import Avatar from './Avatar';
 import Link from '../../Link';

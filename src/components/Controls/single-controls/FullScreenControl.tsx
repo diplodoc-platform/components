@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect} from 'react';
 import {WithTranslation, withTranslation, WithTranslationProps} from 'react-i18next';
-import {Icon as IconComponent} from '@yandex-cloud/uikit';
+import {Icon as IconComponent} from '@gravity-ui/uikit';
 
 import {Control} from '../../Control';
 import {ControlSizes, Lang} from '../../../models';

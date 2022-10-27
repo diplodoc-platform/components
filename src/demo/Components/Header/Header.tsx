@@ -1,6 +1,6 @@
 import React from 'react';
 import cn from 'bem-cn-lite';
-import {TextInput} from '@yandex-cloud/uikit';
+import {TextInput} from '@gravity-ui/uikit';
 import {ControlSizes, LangControl, FullScreenControl, DividerControl} from '../../../index';
 import {Lang} from '../../../models';
 import './Header.scss';

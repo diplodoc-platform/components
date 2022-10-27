@@ -7,7 +7,7 @@ import React from 'react';
 import {configure, addDecorator, addParameters} from '@storybook/react';
 import {withKnobs} from '@storybook/addon-knobs';
 import {addReadme} from 'storybook-readme';
-import {configure as configureUikit, Lang} from '@yandex-cloud/uikit/build/esm/components/utils/configure';
+import {configure as configureUikit, Lang} from '@gravity-ui/uikit/build/esm/components/utils/configure';
 
 import withTheme from '../src/demo/decorators/withTheme';
 

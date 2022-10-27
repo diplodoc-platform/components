@@ -1,7 +1,7 @@
 import React, {memo, useCallback} from 'react';
 import {WithTranslation, withTranslation} from 'react-i18next';
 import block from 'bem-cn-lite';
-import {Popup} from '@yandex-cloud/uikit';
+import {Popup} from '@gravity-ui/uikit';
 
 import {SubscribeView} from '../Subscribe';
 import useTimeout from '../../../hooks/useTimeout';

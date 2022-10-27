@@ -4,7 +4,7 @@ import {WithTranslation, withTranslation} from 'react-i18next';
 
 import {SubscribeSuccessPopup} from './SubscribeSuccessPopup';
 import {SubscribeVariantsPopup} from './SubscribeVariantsPopup';
-import {Button} from '@yandex-cloud/uikit';
+import {Button} from '@gravity-ui/uikit';
 import {Control} from '../Control';
 
 import {SubscribeData, Lang} from '../../models';

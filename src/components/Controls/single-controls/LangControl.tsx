@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect, useState, useRef, ReactElement} from 'react';
 import {WithTranslation, withTranslation, WithTranslationProps} from 'react-i18next';
 import allLangs from 'langs';
-import {Popup, Icon as IconComponent, List} from '@yandex-cloud/uikit';
+import {Popup, Icon as IconComponent, List} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 
 import {Control} from '../../Control';

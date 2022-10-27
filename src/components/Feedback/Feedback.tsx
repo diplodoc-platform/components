@@ -1,7 +1,7 @@
 import React, {useCallback, useState, useEffect, useRef} from 'react';
 import block from 'bem-cn-lite';
 import {withTranslation, WithTranslation, WithTranslationProps} from 'react-i18next';
-import {Checkbox, Popup, TextInput, Button, Icon as IconComponent} from '@yandex-cloud/uikit';
+import {Checkbox, Popup, TextInput, Button, Icon as IconComponent} from '@gravity-ui/uikit';
 
 import {Control} from '../Control';
 import {PopperPosition} from '../../hooks';

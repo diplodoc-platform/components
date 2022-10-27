@@ -1,6 +1,6 @@
 import React, {useCallback, useState, useRef} from 'react';
 import block from 'bem-cn-lite';
-import {Popup, Button} from '@yandex-cloud/uikit';
+import {Popup, Button} from '@gravity-ui/uikit';
 
 import {ControlSizes} from '../../models';
 import {PopperPosition} from '../../hooks';

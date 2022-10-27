@@ -1,7 +1,7 @@
 import React, {memo, useCallback, useState} from 'react';
 import {WithTranslation, withTranslation} from 'react-i18next';
 import block from 'bem-cn-lite';
-import {Button, List, Popup, TextInput} from '@yandex-cloud/uikit';
+import {Button, List, Popup, TextInput} from '@gravity-ui/uikit';
 
 import {SubscribeView} from '../Subscribe';
 import {isInvalidEmail} from '../../../utils';

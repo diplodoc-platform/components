@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import cn from 'bem-cn-lite';
-import {configure as configureUikit} from '@yandex-cloud/uikit';
+import {configure as configureUikit} from '@gravity-ui/uikit';
 
 import {DocPage, FeedbackSendData, FeedbackType, Theme} from '../../../index';
 import Header from '../Header/Header';

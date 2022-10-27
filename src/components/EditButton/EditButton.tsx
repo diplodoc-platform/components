@@ -1,7 +1,7 @@
 import React from 'react';
 import block from 'bem-cn-lite';
 import {withTranslation, WithTranslation, WithTranslationProps} from 'react-i18next';
-import {Button, Icon as IconComponent} from '@yandex-cloud/uikit';
+import {Button, Icon as IconComponent} from '@gravity-ui/uikit';
 
 import EditIcon from '../../../assets/icons/edit.svg';
 

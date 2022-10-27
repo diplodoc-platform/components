@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect, useState, useRef} from 'react';
 import {WithTranslation, withTranslation, WithTranslationProps} from 'react-i18next';
 import cn from 'bem-cn-lite';
-import {Button, Popup, Switch, List} from '@yandex-cloud/uikit';
+import {Button, Popup, Switch, List} from '@gravity-ui/uikit';
 
 import {Control} from '../../../Control';
 import {ControlSizes, Lang, TextSizes, Theme} from '../../../../models';

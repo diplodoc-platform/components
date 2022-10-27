@@ -1,7 +1,7 @@
 import React from 'react';
 import block from 'bem-cn-lite';
 
-import {Button, Icon as IconComponent} from '@yandex-cloud/uikit';
+import {Button, Icon as IconComponent} from '@gravity-ui/uikit';
 
 import StarActive from '../../../assets/icons/star-active.svg';
 import StarInactive from '../../../assets/icons/star-inactive.svg';

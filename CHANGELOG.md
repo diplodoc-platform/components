@@ -1,5 +1,17 @@
 # История изменений
 
+## [2.4.0](https://github.com/yandex-cloud/docs-components/compare/v2.3.2...v2.4.0) (2022-11-07)
+
+
+### Features
+
+* @yandex-cloud/uikit -&gt; @gravity-ui/uikit ([9e0219e](https://github.com/yandex-cloud/docs-components/commit/9e0219ed446af0a9a8a7c839cd61e518948f3e12))
+
+
+### Bug Fixes
+
+* uikit text ([2669eda](https://github.com/yandex-cloud/docs-components/commit/2669eda431aaeb6967deab95c1535bbafa53fd77))
+
 ## [2.3.2](https://github.com/yandex-cloud/docs-components/compare/v2.3.1...v2.3.2) (2022-09-20)
 
 

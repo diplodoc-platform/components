@@ -85,7 +85,7 @@
     "@doc-tools/transform": "2.5.7",
     "@storybook/addon-actions": "5.3.21",
     "@storybook/addon-knobs": "5.3.21",
-    "@storybook/react": "5.3.21",
+    "@storybook/react": "6.5.13",
     "@types/enzyme": "3.10.11",
     "@types/jest": "25.2.3",
     "@types/langs": "^2.0.1",

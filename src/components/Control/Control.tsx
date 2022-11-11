@@ -22,6 +22,7 @@ export interface ControlProps {
     className?: string;
     size?: ControlSizes;
     icon: React.FC<IconProps>;
+    popupPosition?: PopperPosition;
 }
 
 const ICONS_SIZES = {
@@ -38,6 +39,7 @@ const Control = (props: ControlProps) => {
         setRef,
         size = ControlSizes.M,
         icon,
+        popupPosition,
     } = props;
 
     const controlRef = useRef<HTMLButtonElement | null>(null);
@@ -46,8 +48,12 @@ const Control = (props: ControlProps) => {
     const showTooltip = () => setIsVisibleTooltip(true);
     const hideTooltip = () => setIsVisibleTooltip(false);
     const getTooltipAlign = useCallback(() => {
+        if (popupPosition) {
+            return popupPosition;
+        }
+
         return isVerticalView ? PopperPosition.LEFT_START : PopperPosition.BOTTOM_END;
-    }, [isVerticalView]);
+    }, [isVerticalView, popupPosition]);
     const _setRef = useCallback(
         (ref: HTMLButtonElement) => {
             controlRef.current = ref;

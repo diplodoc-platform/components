@@ -62,6 +62,18 @@ $leftOffset: 57px;
         }
     }
 
+    &__bottom {
+        flex-grow: 0;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        padding: 4px 10px 20px 0;
+
+        &_scrolled {
+            border-top: 1px solid var(--yc-color-line-generic);
+        }
+    }
+
     &__content {
         --yc-scrollbar-width: 6px;
         --yc-scrollbar-thin-width: 6px;

@@ -11,10 +11,12 @@ import {
     SinglePageControl,
     LangControl,
     DividerControl,
+    PdfControl,
 } from './';
 
 import EditIcon from '../../../assets/icons/edit.svg';
 
+import {PopperPosition} from '../../hooks';
 import {Lang, TextSizes, Theme, FeedbackSendData, ControlSizes, SubscribeData} from '../../models';
 
 import './Controls.scss';
@@ -45,10 +47,12 @@ export interface ControlsProps {
     onChangeTextSize?: (textSize: TextSizes) => void;
     onSendFeedback?: (data: FeedbackSendData) => void;
     onSubscribe?: (data: SubscribeData) => void;
+    pdfLink?: string;
     className?: string;
     isVerticalView?: boolean;
     controlSize?: ControlSizes;
     hideFeedbackControls?: boolean;
+    popupPosition?: PopperPosition;
 }
 
 type ControlsInnerProps = ControlsProps & WithTranslation & WithTranslationProps;
@@ -80,8 +84,16 @@ class Controls extends React.Component<ControlsInnerProps> {
     }
 
     private renderEditLink() {
-        const {vcsUrl, vcsType, showEditControl, singlePage, isVerticalView, controlSize, t} =
-            this.props;
+        const {
+            vcsUrl,
+            vcsType,
+            showEditControl,
+            singlePage,
+            isVerticalView,
+            controlSize,
+            popupPosition,
+            t,
+        } = this.props;
 
         if (!showEditControl || singlePage) {
             return null;
@@ -101,6 +113,7 @@ class Controls extends React.Component<ControlsInnerProps> {
                         isVerticalView={isVerticalView}
                         tooltipText={t(`edit-text-${vcsType}`)}
                         icon={EditIcon}
+                        popupPosition={popupPosition}
                     />
                 </a>
             </React.Fragment>
@@ -126,6 +139,8 @@ class Controls extends React.Component<ControlsInnerProps> {
             controlSize,
             lang,
             langs,
+            popupPosition,
+            pdfLink,
         } = this.props;
 
         return (
@@ -137,6 +152,7 @@ class Controls extends React.Component<ControlsInnerProps> {
                     onChange={onChangeFullScreen}
                     className={b('control')}
                     isVerticalView={isVerticalView}
+                    popupPosition={popupPosition}
                 />
                 <SettingsControl
                     lang={lang}
@@ -151,6 +167,7 @@ class Controls extends React.Component<ControlsInnerProps> {
                     onChangeWideFormat={onChangeWideFormat}
                     className={b('control')}
                     isVerticalView={isVerticalView}
+                    popupPosition={popupPosition}
                 />
                 <LangControl
                     lang={lang}
@@ -159,6 +176,7 @@ class Controls extends React.Component<ControlsInnerProps> {
                     onChangeLang={onChangeLang}
                     className={b('control')}
                     isVerticalView={isVerticalView}
+                    popupPosition={popupPosition}
                 />
                 <SinglePageControl
                     lang={lang}
@@ -167,6 +185,15 @@ class Controls extends React.Component<ControlsInnerProps> {
                     onChange={onChangeSinglePage}
                     className={b('control')}
                     isVerticalView={isVerticalView}
+                    popupPosition={popupPosition}
+                />
+                <PdfControl
+                    lang={lang}
+                    size={controlSize}
+                    pdfLink={pdfLink}
+                    className={b('control')}
+                    isVerticalView={isVerticalView}
+                    popupPosition={popupPosition}
                 />
             </React.Fragment>
         );
@@ -182,6 +209,7 @@ class Controls extends React.Component<ControlsInnerProps> {
             dislikeVariants,
             isVerticalView,
             hideFeedbackControls,
+            popupPosition,
         } = this.props;
 
         if (singlePage || !onSendFeedback || hideFeedbackControls) {
@@ -201,13 +229,14 @@ class Controls extends React.Component<ControlsInnerProps> {
                     isVerticalView={isVerticalView}
                     view={FeedbackView.Regular}
                     classNameControl={b('control')}
+                    popupPosition={popupPosition}
                 />
             </React.Fragment>
         );
     };
 
     private renderSubscribeControls = () => {
-        const {lang, singlePage, onSubscribe, isVerticalView} = this.props;
+        const {lang, singlePage, onSubscribe, isVerticalView, popupPosition} = this.props;
 
         if (singlePage || !onSubscribe) {
             return null;
@@ -222,6 +251,7 @@ class Controls extends React.Component<ControlsInnerProps> {
                     isVerticalView={isVerticalView}
                     view={SubscribeView.Regular}
                     classNameControl={b('control')}
+                    popupPosition={popupPosition}
                 />
             </React.Fragment>
         );

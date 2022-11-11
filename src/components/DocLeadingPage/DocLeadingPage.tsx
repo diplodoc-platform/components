@@ -68,6 +68,7 @@ const renderRight = (data: DocLeadingLinks, isRoot?: boolean) => {
         <div className={b('links-right')}>
             {titleContent}
             {description && isRoot ? <p className={b('links-description')}>{description}</p> : null}
+            {/* eslint-disable-next-line @typescript-eslint/no-use-before-define */}
             <Links links={links} />
         </div>
     );

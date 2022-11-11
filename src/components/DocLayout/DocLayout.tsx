@@ -28,6 +28,9 @@ export interface DocLayoutProps {
     className?: string;
     loading?: boolean;
     footer?: React.ReactNode;
+    singlePage?: boolean;
+    onChangeSinglePage?: (value: boolean) => void;
+    pdfLink?: string;
 }
 
 export class DocLayout extends React.Component<DocLayoutProps> {
@@ -100,6 +103,10 @@ export class DocLayout extends React.Component<DocLayoutProps> {
             wideFormat,
             hideTocHeader,
             hideToc,
+            lang,
+            singlePage,
+            onChangeSinglePage,
+            pdfLink,
         } = this.props;
 
         if (!toc || hideToc) {
@@ -116,6 +123,10 @@ export class DocLayout extends React.Component<DocLayoutProps> {
                     headerHeight={headerHeight}
                     tocTitleIcon={tocTitleIcon}
                     hideTocHeader={hideTocHeader}
+                    lang={lang}
+                    singlePage={singlePage}
+                    onChangeSinglePage={onChangeSinglePage}
+                    pdfLink={pdfLink}
                 />
             </div>
         );

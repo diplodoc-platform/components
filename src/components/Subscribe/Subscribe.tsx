@@ -12,6 +12,7 @@ import {SubscribeData, Lang} from '../../models';
 import SubscribeIcon from '../../../assets/icons/subscribe.svg';
 
 import './Subscribe.scss';
+import {PopperPosition} from '../../hooks';
 
 const b = block('dc-subscribe');
 
@@ -26,10 +27,11 @@ export interface SubscribeProps {
     onSubscribe?: (data: SubscribeData) => void;
     view?: SubscribeView;
     classNameControl?: string;
+    popupPosition?: PopperPosition;
 }
 
 const Subscribe: React.FC<SubscribeProps & WithTranslation> = React.memo((props) => {
-    const {isVerticalView, onSubscribe, view, classNameControl, t} = props;
+    const {isVerticalView, onSubscribe, view, classNameControl, popupPosition, t} = props;
 
     const subscribeControlRef = useRef<HTMLButtonElement | null>(null);
 
@@ -54,9 +56,18 @@ const Subscribe: React.FC<SubscribeProps & WithTranslation> = React.memo((props)
                 tooltipText={t(`subscribe-text`)}
                 setRef={setSubscribeControlRef}
                 icon={(args) => <SubscribeIcon {...args} />}
+                popupPosition={popupPosition}
             />
         );
-    }, [classNameControl, view, isVerticalView, setSubscribeControlRef, onChangeSubscribe, t]);
+    }, [
+        classNameControl,
+        view,
+        isVerticalView,
+        setSubscribeControlRef,
+        onChangeSubscribe,
+        popupPosition,
+        t,
+    ]);
 
     const renderWideSubscribeControls = useCallback(() => {
         return (

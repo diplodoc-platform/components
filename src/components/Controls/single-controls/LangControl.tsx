@@ -7,6 +7,7 @@ import block from 'bem-cn-lite';
 import {Control} from '../../Control';
 import {ControlSizes, Lang} from '../../../models';
 import {getPopupPosition} from './utils';
+import {PopperPosition} from '../../../hooks';
 
 import LangIcon from '../../../../assets/icons/lang.svg';
 import RusIcon from '../../../../assets/icons/rus.svg';
@@ -28,6 +29,7 @@ interface ControlProps {
     className?: string;
     size?: ControlSizes;
     onChangeLang?: (lang: Lang) => void;
+    popupPosition?: PopperPosition;
 }
 
 interface ListItem {
@@ -41,7 +43,17 @@ const LIST_ITEM_HEIGHT = 36;
 type ControlInnerProps = ControlProps & WithTranslation & WithTranslationProps;
 
 const LangControl = (props: ControlInnerProps) => {
-    const {className, isVerticalView, size, lang, langs = [], i18n, onChangeLang, t} = props;
+    const {
+        className,
+        isVerticalView,
+        size,
+        lang,
+        langs = [],
+        i18n,
+        onChangeLang,
+        popupPosition,
+        t,
+    } = props;
 
     const [langItems, setLangItems] = useState<ListItem[]>(LEGACY_LANG_ITEMS);
     const controlRef = useRef<HTMLButtonElement | null>(null);
@@ -104,6 +116,7 @@ const LangControl = (props: ControlInnerProps) => {
                 tooltipText={t('lang-text')}
                 icon={(args) => <IconComponent data={LangIcon} {...args} />}
                 setRef={setRef}
+                popupPosition={popupPosition}
             />
             <Popup
                 anchorRef={controlRef}

@@ -30,6 +30,7 @@ export interface FeedbackProps {
     onSendFeedback?: (data: FeedbackSendData) => void;
     view?: FeedbackView;
     classNameControl?: string;
+    popupPosition?: PopperPosition;
 }
 
 interface FeedbackCheckboxes {
@@ -50,6 +51,7 @@ const Feedback: React.FC<FeedbackInnerProps> = (props) => {
         view,
         classNameControl,
         i18n,
+        popupPosition,
         t,
     } = props;
 
@@ -211,9 +213,19 @@ const Feedback: React.FC<FeedbackInnerProps> = (props) => {
                         {...args}
                     />
                 )}
+                popupPosition={popupPosition}
             />
         );
-    }, [onChangeLike, classNameControl, view, isVerticalView, isLiked, setLikeControlRef, t]);
+    }, [
+        onChangeLike,
+        classNameControl,
+        view,
+        isVerticalView,
+        isLiked,
+        setLikeControlRef,
+        popupPosition,
+        t,
+    ]);
 
     const renderDislikeControl = useCallback(() => {
         return (

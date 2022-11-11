@@ -79,6 +79,7 @@ export interface DocPageProps extends DocPageData, DocSettings {
     onContentMutation?: () => void;
     onContentLoaded?: () => void;
     onSubscribe?: (data: SubscribeData) => void;
+    pdfLink?: string;
 }
 
 type DocPageInnerProps = InnerProps<DocPageProps, DocSettings>;
@@ -139,6 +140,8 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             hideTocHeader,
             hideToc,
             footer,
+            onChangeSinglePage,
+            pdfLink,
         } = this.props;
 
         const asideMiniToc = this.renderAsideMiniToc();
@@ -165,6 +168,9 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                 hideToc={hideToc}
                 loading={this.state.loading}
                 footer={footer}
+                singlePage={singlePage}
+                onChangeSinglePage={onChangeSinglePage}
+                pdfLink={pdfLink}
             >
                 <DocLayout.Center>
                     {this.renderSearchBar()}
@@ -592,7 +598,6 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             onChangeShowMiniToc,
             onChangeTheme,
             onChangeTextSize,
-            onChangeSinglePage,
             onSendFeedback,
             onSubscribe,
             isLiked,
@@ -629,7 +634,6 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                     dislikeVariants={dislikeVariants}
                     showEditControl={showEditControl}
                     onChangeFullScreen={onChangeFullScreen}
-                    onChangeSinglePage={onChangeSinglePage}
                     onChangeWideFormat={onChangeWideFormat}
                     onChangeShowMiniToc={onChangeShowMiniToc}
                     onChangeTheme={onChangeTheme}

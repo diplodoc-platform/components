@@ -1,13 +1,15 @@
 import React from 'react';
 import block from 'bem-cn-lite';
 
-import {TocData, TocItem, Router} from '../../models';
+import {ControlSizes, Lang, Router, TocData, TocItem} from '../../models';
 import {ToggleArrow} from '../ToggleArrow';
 import {HTML} from '../HTML';
+import {Controls} from '../Controls';
 
-import {isExternalHref, isActiveItem} from '../../utils';
+import {isActiveItem, isExternalHref} from '../../utils';
 
 import './Toc.scss';
+import {PopperPosition} from '../../hooks';
 
 const b = block('dc-toc');
 const HEADER_DEFAULT_HEIGHT = 0;
@@ -17,6 +19,10 @@ export interface TocProps extends TocData {
     headerHeight?: number;
     tocTitleIcon?: React.ReactNode;
     hideTocHeader?: boolean;
+    lang: Lang;
+    singlePage?: boolean;
+    onChangeSinglePage?: (value: boolean) => void;
+    pdfLink?: string;
 }
 
 interface FlatTocItem {
@@ -100,6 +106,7 @@ class Toc extends React.Component<TocProps, TocState> {
                 <div className={b('content', {offset_top: hideTocHeader})} ref={this.contentRef}>
                     {content}
                 </div>
+                {this.renderBottom()}
             </div>
         );
     }
@@ -254,6 +261,24 @@ class Toc extends React.Component<TocProps, TocState> {
             <div className={b('top', {scrolled: contentScrolled})}>
                 {tocTitleIcon ? <div className={b('top-header-icon')}>{tocTitleIcon}</div> : null}
                 {topHeader}
+            </div>
+        );
+    }
+
+    private renderBottom() {
+        const {lang, singlePage, onChangeSinglePage, pdfLink} = this.props;
+        const {contentScrolled} = this.state;
+
+        return (
+            <div className={b('bottom', {scrolled: contentScrolled})}>
+                <Controls
+                    lang={lang}
+                    singlePage={singlePage}
+                    onChangeSinglePage={onChangeSinglePage}
+                    popupPosition={PopperPosition.TOP_START}
+                    controlSize={ControlSizes.L}
+                    pdfLink={pdfLink}
+                />
             </div>
         );
     }

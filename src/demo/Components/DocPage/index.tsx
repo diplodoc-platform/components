@@ -35,6 +35,7 @@ const DocPageDemo = () => {
     const hasSubscribe = getHasSubscribe();
     const router = {pathname: '/docs/overview/concepts/quotas-limits'};
     const langs = ['ru', 'en', 'cs'];
+    const pdfLink = 'https://doc.yandex-team.ru/help/diy/diy-guide.pdf';
 
     const [fullScreen, onChangeFullScreen] = useState(DEFAULT_SETTINGS.fullScreen);
     const [wideFormat, onChangeWideFormat] = useState(DEFAULT_SETTINGS.wideFormat);
@@ -101,13 +102,10 @@ const DocPageDemo = () => {
         console.log('onContentLoaded');
     }, []);
 
-    const onChangeLangWrapper = useCallback(
-        (lang) => {
-            onChangeLang(lang);
-            configureUikit({lang});
-        },
-        [lang],
-    );
+    const onChangeLangWrapper = useCallback((value) => {
+        onChangeLang(value);
+        configureUikit({lang: value});
+    }, []);
 
     const props = {
         ...getContent(lang, singlePage),
@@ -144,6 +142,7 @@ const DocPageDemo = () => {
         useSearchBar: true,
         bookmarkedPage: hasBookmark === 'true' && isPinned,
         onChangeBookmarkPage: hasBookmark === 'true' ? onChangeBookmarkPage : undefined,
+        pdfLink,
     };
 
     const tocTitleIcon = (

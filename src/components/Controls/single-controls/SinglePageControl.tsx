@@ -1,8 +1,10 @@
 import React, {useCallback, useEffect} from 'react';
 import {WithTranslation, withTranslation, WithTranslationProps} from 'react-i18next';
+import {Icon as IconComponent} from '@gravity-ui/uikit';
 
 import {Control} from '../../Control';
 import {ControlSizes, Lang} from '../../../models';
+import {PopperPosition} from '../../../hooks';
 
 import SinglePageIcon from '../../../../assets/icons/single-page.svg';
 import SinglePageClickedIcon from '../../../../assets/icons/single-page-clicked.svg';
@@ -14,12 +16,13 @@ interface ControlProps {
     isVerticalView?: boolean;
     className?: string;
     size?: ControlSizes;
+    popupPosition?: PopperPosition;
 }
 
 type ControlInnerProps = ControlProps & WithTranslation & WithTranslationProps;
 
 const SinglePageControl = (props: ControlInnerProps) => {
-    const {className, isVerticalView, size, value, onChange, lang, i18n, t} = props;
+    const {className, isVerticalView, size, value, onChange, lang, i18n, popupPosition, t} = props;
 
     const onClick = useCallback(() => {
         if (onChange) {
@@ -44,7 +47,10 @@ const SinglePageControl = (props: ControlInnerProps) => {
             className={className}
             isVerticalView={isVerticalView}
             tooltipText={t(`single-page-text-${activeMode}`)}
-            icon={value ? SinglePageClickedIcon : SinglePageIcon}
+            icon={(args) => (
+                <IconComponent data={value ? SinglePageClickedIcon : SinglePageIcon} {...args} />
+            )}
+            popupPosition={popupPosition}
         />
     );
 };

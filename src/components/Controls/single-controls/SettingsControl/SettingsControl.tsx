@@ -1,10 +1,11 @@
 import React, {useCallback, useEffect, useState, useRef} from 'react';
 import {WithTranslation, withTranslation, WithTranslationProps} from 'react-i18next';
 import cn from 'bem-cn-lite';
-import {Button, Popup, Switch, List} from '@gravity-ui/uikit';
+import {Button, Popup, Switch, List, Icon as IconComponent} from '@gravity-ui/uikit';
 
 import {Control} from '../../../Control';
 import {ControlSizes, Lang, TextSizes, Theme} from '../../../../models';
+import {PopperPosition} from '../../../../hooks';
 
 import SettingsIcon from '../../../../../assets/icons/cog.svg';
 
@@ -30,6 +31,7 @@ interface ControlProps {
     onChangeShowMiniToc?: (value: boolean) => void;
     onChangeTheme?: (theme: Theme) => void;
     onChangeTextSize?: (textSize: TextSizes) => void;
+    popupPosition?: PopperPosition;
 }
 
 type ControlInnerProps = ControlProps & WithTranslation & WithTranslationProps;
@@ -57,6 +59,7 @@ const SettingsControl = (props: ControlInnerProps) => {
         onChangeWideFormat,
         onChangeShowMiniToc,
         onChangeTextSize,
+        popupPosition,
         t,
     } = props;
 
@@ -195,8 +198,9 @@ const SettingsControl = (props: ControlInnerProps) => {
                 className={className}
                 isVerticalView={isVerticalView}
                 tooltipText={t('settings-text')}
-                icon={SettingsIcon}
                 setRef={setRef}
+                popupPosition={popupPosition}
+                icon={(args) => <IconComponent data={SettingsIcon} {...args} />}
             />
             <Popup
                 anchorRef={controlRef}

@@ -76,5 +76,20 @@
     "close": "Close",
     "prev": "Previous",
     "next": "Next"
+  },
+  "error": {
+    "label_meta-title-403": "No access",
+    "label_meta-title-404": "Page not found",
+    "label_meta-title-500": "An error occurred",
+    "label_title-code": "Error {{code}}",
+    "label_title-403_project": "No access to the project",
+    "label_title-403_page-group": "No access to the page",
+    "label_title-404": "Page doesn't exist",
+    "label_title-500": "The server could not load the page",
+    "label_description-1": "We are already working on this",
+    "label_description-link": "Refresh the page",
+    "label_description-2": ".",
+    "label_link-main": "Back to main page",
+    "label_link-access": "Request access"
   }
 }

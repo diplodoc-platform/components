@@ -27,3 +27,9 @@ export const DEFAULT_SETTINGS = {
     isDisliked: false,
     isPinned: false,
 };
+
+export const ERROR_CODES = {
+    ACCESS_DENIED: 403,
+    NOT_FOUND: 404,
+    SERVER_ERROR: 500,
+};

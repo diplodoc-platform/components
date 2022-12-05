@@ -12,8 +12,8 @@ import './ErrorPage.scss';
 const b = block('ErrorPage');
 
 export interface ErrorPageProps {
-    code: number;
-    lang: Lang;
+    code?: number;
+    lang?: Lang;
     pageGroup?: string;
     receiveAccessUrl?: string;
     img403src?: string;
@@ -24,8 +24,8 @@ export interface ErrorPageProps {
 type ErrorPagePropsInnerProps = ErrorPageProps & WithTranslation & WithTranslationProps;
 
 const ErrorPage = ({
-    code,
-    lang,
+    code = 500,
+    lang = Lang.En,
     i18n,
     t,
     receiveAccessUrl,

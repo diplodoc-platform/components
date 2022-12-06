@@ -20,3 +20,7 @@ stories.add('ErrorPage', () => {
 stories.add('Paginator', () => {
     return <Components.Paginator />;
 });
+
+stories.add('SearchItem', () => {
+    return <Components.SearchItem />;
+});

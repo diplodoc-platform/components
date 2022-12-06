@@ -1,0 +1,33 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.SearchItem {
+    &__title {
+        margin-bottom: 4px;
+    }
+
+    &__link {
+        cursor: pointer;
+        text-decoration: none;
+        color: inherit;
+
+        &:hover,
+        &:active {
+            color: var(--yc-color-text-link-hover);
+        }
+    }
+
+    &__description {
+        display: inline-block;
+        color: var(--yc-color-text-secondary);
+
+        em {
+            font-weight: bolder;
+        }
+
+        &::after {
+            content: '...';
+            display: inline;
+        }
+    }
+}

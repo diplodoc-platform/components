@@ -16,3 +16,7 @@ stories.add('DocLeadingPage', () => {
 stories.add('ErrorPage', () => {
     return <Components.ErrorPage />;
 });
+
+stories.add('Paginator', () => {
+    return <Components.Paginator />;
+});

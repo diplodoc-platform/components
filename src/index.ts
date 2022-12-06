@@ -23,5 +23,6 @@ export * from './components/BookmarkButton';
 export * from './components/SearchBar';
 export * from './components/ErrorPage';
 export * from './components/ErrorBoundary';
+export * from './components/Paginator';
 
 export * from './models';

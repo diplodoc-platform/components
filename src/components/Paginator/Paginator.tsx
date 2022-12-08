@@ -1,4 +1,4 @@
-import React, {ReactNode, useState} from 'react';
+import React, {ReactNode} from 'react';
 import block from 'bem-cn-lite';
 
 import {Button, Icon} from '@gravity-ui/uikit';
@@ -62,7 +62,7 @@ const Paginator = ({
         return Math.min(totalPages, maxPages);
     };
 
-    const [pagesCount] = useState(getPagesCount());
+    const pagesCount = getPagesCount();
 
     if (pagesCount <= 1) {
         return null;
@@ -134,28 +134,26 @@ const Paginator = ({
         return pages;
     };
 
+    const arrowButton = (disable: boolean) => (
+        <Button className={b('icon')} size="s" view={'flat'} disabled={disable}>
+            <Icon data={arrowIcon} size={16} />
+        </Button>
+    );
+
     const pages = getPageConfigs() as PaginatorItemProps<string>[];
 
     pages.unshift({
         key: ArrowType.Prev,
         mods: {type: 'prev'},
         onClick: handleArrowClick,
-        content: (
-            <Button className={b('icon')} size="s" view={'flat'} disabled={page === 1}>
-                <Icon data={arrowIcon} size={16} />
-            </Button>
-        ),
+        content: arrowButton(page === 1),
     });
 
     pages.push({
         key: ArrowType.Next,
         mods: {type: 'next'},
         onClick: handleArrowClick,
-        content: (
-            <Button className={b('icon')} size="s" view={'flat'} disabled={page === pagesCount}>
-                <Icon data={arrowIcon} size={16} />
-            </Button>
-        ),
+        content: arrowButton(page === pagesCount),
     });
 
     return <ul className={b(null, className)}>{pages.map(renderPaginatorItem)}</ul>;

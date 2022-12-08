@@ -3,8 +3,8 @@ import React from 'react';
 import {SearchItem} from '../../../index';
 import data from './page.json';
 
-const PaginatorDemo = () => {
+const SearchItemDemo = () => {
     return <SearchItem item={data} />;
 };
 
-export default PaginatorDemo;
+export default SearchItemDemo;

@@ -25,5 +25,6 @@ export * from './components/ErrorPage';
 export * from './components/ErrorBoundary';
 export * from './components/Paginator';
 export * from './components/SearchItem';
+export * from './components/SearchPage';
 
 export * from './models';

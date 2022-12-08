@@ -8,7 +8,7 @@ const PaginatorDemo = () => {
     return (
         <Paginator
             totalItems={15}
-            onPageChange={(newPage) => setPage(newPage)}
+            onPageChange={setPage}
             className={''}
             isMobile={true}
             itemsPerPage={5}

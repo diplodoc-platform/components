@@ -22,9 +22,10 @@ export interface SearchHighlights {
 export interface SearchItemProps {
     item: ISearchItem;
     className?: string;
+    onClick?: () => void;
 }
 
-const SearchItem = ({item, className}: SearchItemProps) => {
+const SearchItem = ({item, className, onClick}: SearchItemProps) => {
     const {url, title, description, highlights} = item;
 
     /**
@@ -43,7 +44,7 @@ const SearchItem = ({item, className}: SearchItemProps) => {
 
     return (
         <div className={b(null, className)}>
-            <a className={b('link')} href={url}>
+            <a className={b('link')} href={url} onClick={onClick}>
                 <h4 className={b('title')}>
                     <HTML>{title}</HTML>
                 </h4>

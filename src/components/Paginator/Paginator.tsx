@@ -13,12 +13,6 @@ const MOBILE_VISIBLE_PAGES = 1;
 const DESKTOP_VISIBLE_PAGES = 3;
 const MAX_VISIBLE_PAGES = 6;
 
-export type InnerProps<TProps extends Partial<TDefaultProps>, TDefaultProps> = Omit<
-    TProps,
-    keyof TDefaultProps
-> &
-    Required<Pick<TProps, keyof TDefaultProps>>;
-
 export interface ClassNameProps {
     className?: string;
 }
@@ -26,16 +20,16 @@ export interface ClassNameProps {
 interface PaginatorDefaultProps {
     page: number;
     totalItems: number;
-    itemsPerPage: number;
-    maxPages: number;
+    itemsPerPage?: number;
+    maxPages?: number;
 }
 
 export interface PaginatorProps extends Partial<PaginatorDefaultProps>, ClassNameProps {
     onPageChange: (page: number) => void;
-    isMobile: boolean;
+    isMobile?: boolean;
 }
 
-type PaginatorInnerProps = InnerProps<PaginatorProps, PaginatorDefaultProps>;
+type PaginatorInnerProps = PaginatorProps & PaginatorDefaultProps;
 
 interface Modifications {
     [name: string]: string | boolean | undefined;
@@ -59,7 +53,7 @@ const Paginator = ({
     itemsPerPage = 10,
     maxPages = Infinity,
     className,
-    isMobile,
+    isMobile = false,
     onPageChange,
 }: PaginatorInnerProps) => {
     const getPagesCount = () => {

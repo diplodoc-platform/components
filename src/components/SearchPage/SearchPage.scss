@@ -1,0 +1,53 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.dv-search-page {
+    margin-top: 26px;
+    display: flex;
+    justify-content: center;
+
+    &__layout {
+        max-width: $centerBlockWidth;
+        width: 100%;
+    }
+
+    &__search-field-wrapper {
+        display: flex;
+        align-items: center;
+    }
+
+    &__search-button {
+        margin-left: 10px;
+    }
+
+    &__search {
+        &-field,
+        &-item {
+            margin-bottom: 36px;
+        }
+    }
+
+    &__subtitle {
+        margin-bottom: 18px;
+    }
+
+    @media (max-width: map-get($screenBreakpoints, 'md')) {
+        &__layout {
+            padding: 0 12px;
+        }
+    }
+
+    @media (max-width: $mobileViewportMaxWidth) {
+        margin-top: 16px;
+
+        &__search {
+            &-field {
+                margin-bottom: 24px;
+            }
+
+            &-item {
+                margin-bottom: 40px;
+            }
+        }
+    }
+}

@@ -28,7 +28,9 @@ const SearchPageDemo = () => {
                     setItems(getItems(newPage, mockData));
                 }}
                 onSubmit={() => setItems(getItems(page, mockData))}
-                onItemClick={(item) => console.log('Add click analytics.', item)}
+                itemOnClick={(item) => console.log('Click on search result', item)}
+                irrelevantOnClick={(item) => console.log('Click on dislike button', item)}
+                relevantOnClick={(item) => console.log('Click on like  button', item)}
                 itemsPerPage={2}
                 totalItems={mockData.length}
                 lang={langValue}

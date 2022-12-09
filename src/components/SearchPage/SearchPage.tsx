@@ -5,7 +5,7 @@ import {TextInput, Button} from '@gravity-ui/uikit';
 import {withTranslation, WithTranslation, WithTranslationProps} from 'react-i18next';
 
 import {Paginator, PaginatorProps} from '../Paginator';
-import {ISearchItem, SearchItem} from '../SearchItem';
+import {ISearchItem, SearchItem, SearchOnClickProps} from '../SearchItem';
 import {Lang} from '../../models';
 
 import './SearchPage.scss';
@@ -19,12 +19,12 @@ interface SearchPageProps {
     metaTitle?: string;
     onSubmit: () => void;
     onQueryUpdate: (arg: string) => void;
-    onItemClick?: (arg: ISearchItem) => void;
     lang?: Lang;
     isMobile?: boolean;
 }
 
 type SearchPageInnerProps = SearchPageProps &
+    SearchOnClickProps &
     PaginatorProps &
     WithTranslation &
     WithTranslationProps;
@@ -43,8 +43,10 @@ const SearchPage = ({
     itemsPerPage,
     onPageChange,
     onSubmit,
-    onItemClick,
     onQueryUpdate,
+    itemOnClick,
+    irrelevantOnClick,
+    relevantOnClick,
 }: SearchPageInnerProps) => {
     if (i18n.language !== lang) {
         i18n.changeLanguage(lang);
@@ -99,10 +101,13 @@ const SearchPage = ({
                 {items?.length
                     ? items.map((item: ISearchItem) => (
                           <SearchItem
+                              lang={lang}
                               key={item.title}
                               item={item}
                               className={b('search-item')}
-                              onClick={onItemClick ? () => onItemClick(item) : undefined}
+                              itemOnClick={itemOnClick}
+                              irrelevantOnClick={irrelevantOnClick}
+                              relevantOnClick={relevantOnClick}
                           />
                       ))
                     : renderNotFound()}

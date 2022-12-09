@@ -98,6 +98,9 @@
     "search_action": "Search",
     "search_request-query": "Search results",
     "search_not-found-title": "No results found for your request",
-    "search_not-found-text": "Please check the spelling or try another keywords."
+    "search_not-found-text": "Please check the spelling or try another keywords.",
+    "search_mark_like": "like",
+    "search_mark_dislike": "dislike",
+    "search_mark-result-text": "Thank you for your rating!"
   }
 }

@@ -7,7 +7,7 @@
     justify-content: center;
 
     &__layout {
-        max-width: $centerBlockWidth;
+        max-width: $centerBlockMaxWidth;
         width: 100%;
     }
 
@@ -37,7 +37,7 @@
         }
     }
 
-    @media (max-width: $mobileViewportMaxWidth) {
+    @media (max-width: map-get($screenBreakpoints, 'md')) {
         margin-top: 16px;
 
         &__search {

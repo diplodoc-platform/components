@@ -1,8 +1,7 @@
 import React, {useRef} from 'react';
-import {Helmet} from 'react-helmet';
 import block from 'bem-cn-lite';
 import {TextInput, Button} from '@gravity-ui/uikit';
-import {withTranslation, WithTranslation, WithTranslationProps} from 'react-i18next';
+import {TFunction, withTranslation, WithTranslation, WithTranslationProps} from 'react-i18next';
 
 import {Paginator, PaginatorProps} from '../Paginator';
 import {ISearchItem, SearchItem, SearchOnClickProps} from '../SearchItem';
@@ -12,19 +11,33 @@ import './SearchPage.scss';
 
 const b = block('dv-search-page');
 
-interface SearchPageProps {
+interface Translation {
+    t: TFunction<'translation'>;
+}
+
+interface InputProps {
     query: string;
-    items: ISearchItem[];
-    page: number;
-    metaTitle?: string;
     onSubmit: () => void;
     onQueryUpdate: (arg: string) => void;
+}
+
+type RenderInput = {
+    inputRef: React.MutableRefObject<null>;
+} & InputProps &
+    Translation;
+
+interface SearchPageProps {
+    items: ISearchItem[];
+    page: number;
     lang?: Lang;
     isMobile?: boolean;
 }
 
+type RenderFound = SearchPageProps & SearchOnClickProps & PaginatorProps & Translation;
+
 type SearchPageInnerProps = SearchPageProps &
     SearchOnClickProps &
+    InputProps &
     PaginatorProps &
     WithTranslation &
     WithTranslationProps;
@@ -37,8 +50,7 @@ const SearchPage = ({
     isMobile,
     i18n,
     t,
-    metaTitle,
-    totalItems = 0,
+    totalItems,
     maxPages,
     itemsPerPage,
     onPageChange,
@@ -54,69 +66,70 @@ const SearchPage = ({
 
     const inputRef = useRef(null);
 
-    const renderInput = () => {
-        return (
-            <div className={b('search-field')}>
-                <form onSubmit={onSubmit}>
-                    <div className={b('search-field-wrapper')}>
-                        <TextInput
-                            controlRef={inputRef}
-                            size="l"
-                            value={query}
-                            autoFocus={true}
-                            placeholder={t('search_placeholder')}
-                            onUpdate={onQueryUpdate}
-                            hasClear={true}
-                        />
-                        <Button
-                            className={b('search-button')}
-                            view="action"
-                            size="l"
-                            onClick={onSubmit}
-                        >
-                            {t('search_action')}
-                        </Button>
-                    </div>
-                </form>
+    return (
+        <main className={b()}>
+            <div className={b('layout')}>
+                <div className={b('search-input')}>
+                    {renderInput({query, onQueryUpdate, onSubmit, inputRef, t})}
+                </div>
+                <div className={b('content')}>
+                    {items?.length && query ? (
+                        renderFound({
+                            items,
+                            page,
+                            lang,
+                            isMobile,
+                            t,
+                            totalItems,
+                            maxPages,
+                            itemsPerPage,
+                            itemOnClick,
+                            onPageChange,
+                            irrelevantOnClick,
+                            relevantOnClick,
+                        })
+                    ) : (
+                        <div className={b('search-empty')}>
+                            <h3>{t('search_not-found-title')}</h3>
+                            <div>{t('search_not-found-text')}</div>
+                        </div>
+                    )}
+                </div>
             </div>
-        );
-    };
+        </main>
+    );
+};
 
-    const renderNotFound = () => {
-        return (
-            <div className={b('search-empty')}>
-                <h3>{t('search_not-found-title')}</h3>
-                <div>{t('search_not-found-text')}</div>
-            </div>
-        );
-    };
-
-    const renderItems = () => {
-        if (!query) {
-            return null;
-        }
-
-        return (
+function renderFound({
+    lang,
+    items,
+    itemOnClick,
+    irrelevantOnClick,
+    relevantOnClick,
+    page,
+    totalItems = 0,
+    maxPages,
+    onPageChange,
+    itemsPerPage,
+    isMobile,
+    t,
+}: RenderFound) {
+    return (
+        <div className={b('search-result')}>
+            <h3 className={b('subtitle')}>{t('search_request-query')}</h3>
             <div className={b('search-list')}>
-                {items?.length
-                    ? items.map((item: ISearchItem) => (
-                          <SearchItem
-                              lang={lang}
-                              key={item.title}
-                              item={item}
-                              className={b('search-item')}
-                              itemOnClick={itemOnClick}
-                              irrelevantOnClick={irrelevantOnClick}
-                              relevantOnClick={relevantOnClick}
-                          />
-                      ))
-                    : renderNotFound()}
+                {items.map((item: ISearchItem) => (
+                    <SearchItem
+                        lang={lang}
+                        key={item.title}
+                        item={item}
+                        className={b('search-item')}
+                        itemOnClick={itemOnClick}
+                        irrelevantOnClick={irrelevantOnClick}
+                        relevantOnClick={relevantOnClick}
+                    />
+                ))}
             </div>
-        );
-    };
-
-    const renderPaginator = () => {
-        return (
             <div className={b('paginator')}>
                 <Paginator
                     page={page}
@@ -127,36 +140,36 @@ const SearchPage = ({
                     isMobile={isMobile}
                 />
             </div>
-        );
-    };
-
-    const renderFound = () => {
-        return (
-            <div className={b('search-result')}>
-                <h3 className={b('subtitle')}>{t('search_request-query')}</h3>
-                {renderItems()}
-                {renderPaginator()}
-            </div>
-        );
-    };
-
-    const renderResult = () => {
-        if (!query) {
-            return null;
-        }
-
-        return items?.length ? renderFound() : renderNotFound();
-    };
-
-    return (
-        <main className={b()}>
-            <Helmet title={metaTitle} />
-            <div className={b('layout')}>
-                <div className={b('search-input')}>{renderInput()}</div>
-                <div className={b('content')}>{renderResult()}</div>
-            </div>
-        </main>
+        </div>
     );
-};
+}
+
+function renderInput({query, onQueryUpdate, onSubmit, inputRef, t}: RenderInput) {
+    return (
+        <div className={b('search-field')}>
+            <form onSubmit={onSubmit}>
+                <div className={b('search-field-wrapper')}>
+                    <TextInput
+                        controlRef={inputRef}
+                        size="l"
+                        value={query}
+                        autoFocus={true}
+                        placeholder={t('search_placeholder')}
+                        onUpdate={onQueryUpdate}
+                        hasClear={true}
+                    />
+                    <Button
+                        className={b('search-button')}
+                        view="action"
+                        size="l"
+                        onClick={onSubmit}
+                    >
+                        {t('search_action')}
+                    </Button>
+                </div>
+            </form>
+        </div>
+    );
+}
 
 export default withTranslation('search')(SearchPage);

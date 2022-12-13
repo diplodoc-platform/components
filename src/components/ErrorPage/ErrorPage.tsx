@@ -1,5 +1,4 @@
 import React from 'react';
-import {Helmet} from 'react-helmet';
 import block from 'bem-cn-lite';
 import {withTranslation, WithTranslation, WithTranslationProps} from 'react-i18next';
 import {Link, Button} from '@gravity-ui/uikit';
@@ -34,7 +33,6 @@ const ErrorPage = ({
     img404src,
     img500src,
 }: ErrorPagePropsInnerProps): JSX.Element => {
-    let metaTitle;
     let imgSrc;
     let title;
     let description;
@@ -51,7 +49,6 @@ const ErrorPage = ({
 
     switch (code) {
         case ERROR_CODES.ACCESS_DENIED:
-            metaTitle = t('label_meta-title-403');
             imgSrc = img403src;
             title = pageGroup ? t('label_title-403_page-group') : t('label_title-403_project');
             description = (
@@ -68,13 +65,11 @@ const ErrorPage = ({
             );
             break;
         case ERROR_CODES.NOT_FOUND:
-            metaTitle = t('label_meta-title-404');
             imgSrc = img404src;
             title = t('label_title-404');
             description = homeLink;
             break;
         default:
-            metaTitle = t('label_meta-title-500');
             imgSrc = img500src;
             title = t('label_title-500');
             description = (
@@ -91,7 +86,6 @@ const ErrorPage = ({
 
     return (
         <div className={b()}>
-            <Helmet title={metaTitle} />
             {imgSrc && <img src={imgSrc} alt="" width="220" height="220" className={b('image')} />}
             <h1 className={b('code')}>{t('label_title-code', {code})}</h1>
             <h2 className={b('title')}>{title}</h2>

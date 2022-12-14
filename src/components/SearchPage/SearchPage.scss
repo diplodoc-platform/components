@@ -32,13 +32,11 @@
     }
 
     @media (max-width: map-get($screenBreakpoints, 'md')) {
+        margin-top: 16px;
+
         &__layout {
             padding: 0 12px;
         }
-    }
-
-    @media (max-width: map-get($screenBreakpoints, 'md')) {
-        margin-top: 16px;
 
         &__search {
             &-field {

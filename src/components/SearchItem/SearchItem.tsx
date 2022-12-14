@@ -12,13 +12,6 @@ export interface ISearchItem {
     url: string;
     title: string;
     description?: string;
-    highlights?: SearchHighlights;
-}
-
-export interface SearchHighlights {
-    title?: string;
-    content: string;
-    description: string;
 }
 
 export interface SearchOnClickProps {
@@ -48,26 +41,13 @@ const SearchItem = ({
     irrelevantOnClick,
     relevantOnClick,
 }: SearchPageInnerProps) => {
-    const {url, title, description, highlights} = item;
+    const {url, title, description} = item;
 
     if (i18n.language !== lang) {
         i18n.changeLanguage(lang);
     }
 
     const [markedItem, setMarkedItem] = useState(false);
-    /**
-     * Get first existing highlight and remove trailing punctuation marks
-     * (there will be the '...' in the end)
-     */
-
-    const getDescription = () => {
-        return (
-            (highlights && highlights.content) ||
-            (highlights && highlights.description) ||
-            description ||
-            ''
-        ).replace(/[.,!?:;]$/g, '');
-    };
 
     const renderItem = () => {
         return (
@@ -78,7 +58,7 @@ const SearchItem = ({
                     onClick={() => (itemOnClick ? itemOnClick(item) : undefined)}
                 >
                     <span className={b('item-title')}>{title}</span>
-                    <span className={b('item-description')}>{getDescription()}</span>
+                    <span className={b('item-description')}>{description}</span>
                 </a>
                 {irrelevantOnClick && relevantOnClick && (
                     <div className={b('marks')}>

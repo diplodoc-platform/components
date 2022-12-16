@@ -10,8 +10,8 @@ const b = block('SearchItem');
 
 export interface ISearchItem {
     url: string;
-    title: string;
-    description?: string;
+    title: string | HTMLElement;
+    description?: string | HTMLElement;
 }
 
 export interface SearchOnClickProps {
@@ -51,7 +51,7 @@ const SearchItem = ({
 
     const renderItem = () => {
         return (
-            <div className={b('item-wrapper')} key={title}>
+            <div className={b('item-wrapper')}>
                 <a
                     className={b('item')}
                     href={url}

@@ -9,7 +9,6 @@ const SearchPageDemo = () => {
     const langValue = getLangControl();
     const isMobile = getIsMobile();
     const [page, setPage] = useState(1);
-    const [query, setQuery] = useState('test');
     const [items, setItems] = useState(getItems(page, mockData));
 
     function getItems(newPage: number, data: ISearchItem[]): ISearchItem[] {
@@ -19,10 +18,9 @@ const SearchPageDemo = () => {
     return (
         <div className={isMobile === 'true' ? 'mobile' : 'desktop'}>
             <SearchPage
-                query={query}
+                query={'test'}
                 items={items}
                 page={page}
-                onQueryUpdate={setQuery}
                 onPageChange={(newPage) => {
                     setPage(newPage);
                     setItems(getItems(newPage, mockData));

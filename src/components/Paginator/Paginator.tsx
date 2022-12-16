@@ -13,23 +13,29 @@ const MOBILE_VISIBLE_PAGES = 1;
 const DESKTOP_VISIBLE_PAGES = 3;
 const MAX_VISIBLE_PAGES = 6;
 
-export interface ClassNameProps {
-    className?: string;
-}
-
-interface PaginatorDefaultProps {
+export interface PaginatorDefaultProps {
     page: number;
-    totalItems: number;
-    itemsPerPage?: number;
     maxPages?: number;
+    onPageChange: (page: number) => void;
 }
 
-export interface PaginatorProps extends Partial<PaginatorDefaultProps>, ClassNameProps {
-    onPageChange: (page: number) => void;
+export interface PaginatorExtraProps {
+    className?: string;
     isMobile?: boolean;
 }
 
-type PaginatorInnerProps = PaginatorProps & PaginatorDefaultProps;
+export interface Test {
+    aaa: never;
+}
+
+export interface TotalCountItems {
+    totalItems: number;
+    itemsPerPage: number;
+}
+
+export type PaginatorProps = PaginatorDefaultProps & TotalCountItems;
+
+export type PaginatorInnerProps = PaginatorExtraProps & PaginatorProps;
 
 interface Modifications {
     [name: string]: string | boolean | undefined;
@@ -49,8 +55,8 @@ enum ArrowType {
 
 const Paginator = ({
     page = 1,
-    totalItems = 0,
     itemsPerPage = 10,
+    totalItems,
     maxPages = Infinity,
     className,
     isMobile = false,

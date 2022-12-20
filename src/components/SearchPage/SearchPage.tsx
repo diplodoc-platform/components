@@ -1,6 +1,6 @@
 import React, {useRef, useState} from 'react';
 import block from 'bem-cn-lite';
-import {TextInput, Button} from '@gravity-ui/uikit';
+import {TextInput, Button, Loader} from '@gravity-ui/uikit';
 import {TFunction, withTranslation, WithTranslation, WithTranslationProps} from 'react-i18next';
 
 import {Paginator, PaginatorProps} from '../Paginator';
@@ -15,6 +15,10 @@ interface Translation {
     t: TFunction<'translation'>;
 }
 
+interface Loading {
+    loading?: boolean;
+}
+
 interface InputProps {
     query: string;
     onSubmit: (query: string) => void;
@@ -26,11 +30,14 @@ type RenderInput = {
 } & InputProps &
     Translation;
 
-interface SearchPageProps {
+type RenderNoContent = Loading & Translation;
+
+interface SearchPageProps extends Loading {
     items: ISearchItem[];
     page: number;
     lang?: Lang;
     isMobile?: boolean;
+    loading?: boolean;
 }
 
 type RenderFoundProps = SearchPageProps & SearchOnClickProps & PaginatorProps & Translation;
@@ -58,6 +65,7 @@ const SearchPage = ({
     itemOnClick,
     irrelevantOnClick,
     relevantOnClick,
+    loading,
 }: SearchPageInnerProps) => {
     if (i18n.language !== lang) {
         i18n.changeLanguage(lang);
@@ -78,27 +86,22 @@ const SearchPage = ({
                 })}
             </div>
             <div className={b('content')}>
-                {items?.length && query ? (
-                    renderFound({
-                        items,
-                        page,
-                        lang,
-                        isMobile,
-                        t,
-                        totalItems,
-                        maxPages,
-                        itemsPerPage,
-                        itemOnClick,
-                        onPageChange,
-                        irrelevantOnClick,
-                        relevantOnClick,
-                    })
-                ) : (
-                    <div className={b('search-empty')}>
-                        <h3>{t('search_not-found-title')}</h3>
-                        <div>{t('search_not-found-text')}</div>
-                    </div>
-                )}
+                {items?.length && query
+                    ? renderFound({
+                          items,
+                          page,
+                          lang,
+                          isMobile,
+                          t,
+                          totalItems,
+                          maxPages,
+                          itemsPerPage,
+                          itemOnClick,
+                          onPageChange,
+                          irrelevantOnClick,
+                          relevantOnClick,
+                      })
+                    : renderWithoutContent({loading, t})}
             </div>
         </div>
     );
@@ -128,9 +131,13 @@ function renderFound({
                         key={item.url}
                         item={item}
                         className={b('search-item')}
-                        itemOnClick={itemOnClick}
-                        irrelevantOnClick={irrelevantOnClick}
-                        relevantOnClick={relevantOnClick}
+                        itemOnClick={itemOnClick ? (arg) => itemOnClick(arg) : undefined}
+                        irrelevantOnClick={(arg) =>
+                            irrelevantOnClick ? irrelevantOnClick(arg) : undefined
+                        }
+                        relevantOnClick={(arg) =>
+                            relevantOnClick ? relevantOnClick(arg) : undefined
+                        }
                     />
                 ))}
             </div>
@@ -144,6 +151,17 @@ function renderFound({
                     isMobile={isMobile}
                 />
             </div>
+        </div>
+    );
+}
+
+function renderWithoutContent({loading, t}: RenderNoContent) {
+    return loading ? (
+        <Loader />
+    ) : (
+        <div className={b('search-empty')}>
+            <h3>{t('search_not-found-title')}</h3>
+            <div>{t('search_not-found-text')}</div>
         </div>
     );
 }

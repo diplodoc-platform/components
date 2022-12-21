@@ -30,7 +30,7 @@ export interface Test {
 
 export interface TotalCountItems {
     totalItems: number;
-    itemsPerPage: number;
+    itemsPerPage?: number;
 }
 
 export type PaginatorProps = PaginatorDefaultProps & TotalCountItems;

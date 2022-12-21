@@ -132,11 +132,11 @@ function renderFound({
                         item={item}
                         className={b('search-item')}
                         itemOnClick={itemOnClick ? (arg) => itemOnClick(arg) : undefined}
-                        irrelevantOnClick={(arg) =>
-                            irrelevantOnClick ? irrelevantOnClick(arg) : undefined
+                        irrelevantOnClick={
+                            irrelevantOnClick ? (arg) => irrelevantOnClick(arg) : undefined
                         }
-                        relevantOnClick={(arg) =>
-                            relevantOnClick ? relevantOnClick(arg) : undefined
+                        relevantOnClick={
+                            relevantOnClick ? (arg) => relevantOnClick(arg) : undefined
                         }
                     />
                 ))}

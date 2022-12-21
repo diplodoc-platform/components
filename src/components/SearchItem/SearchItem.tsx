@@ -5,13 +5,14 @@ import {Button} from '@gravity-ui/uikit';
 import './SearchItem.scss';
 import {WithTranslation, withTranslation, WithTranslationProps} from 'react-i18next';
 import {Lang} from '../../models';
+import {HTML} from '../HTML';
 
 const b = block('SearchItem');
 
 export interface ISearchItem {
     url: string;
-    title: string | HTMLElement;
-    description?: string | HTMLElement;
+    title: string;
+    description?: string;
 }
 
 export interface SearchOnClickProps {
@@ -57,8 +58,8 @@ const SearchItem = ({
                     href={url}
                     onClick={() => (itemOnClick ? itemOnClick(item) : undefined)}
                 >
-                    <span className={b('item-title')}>{title}</span>
-                    <span className={b('item-description')}>{description}</span>
+                    <HTML className={b('item-title')}>{title}</HTML>
+                    <HTML className={b('item-description')}>{description}</HTML>
                 </a>
                 {irrelevantOnClick && relevantOnClick && (
                     <div className={b('marks')}>

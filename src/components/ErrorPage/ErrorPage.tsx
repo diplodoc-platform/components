@@ -14,6 +14,7 @@ export interface ErrorPageProps {
     code?: number;
     lang?: Lang;
     pageGroup?: string;
+    homeUrl?: string;
     receiveAccessUrl?: string;
     img403src?: string;
     img404src?: string;
@@ -27,6 +28,7 @@ const ErrorPage = ({
     lang = Lang.En,
     i18n,
     t,
+    homeUrl,
     receiveAccessUrl,
     pageGroup,
     img403src,
@@ -36,7 +38,7 @@ const ErrorPage = ({
     let imgSrc;
     let title;
     let description;
-    const href = '/';
+    const href = homeUrl || '/';
     const homeLink = (
         <Link href={href}>
             <Button className={b('description-link')}>{t('label_link-main')}</Button>

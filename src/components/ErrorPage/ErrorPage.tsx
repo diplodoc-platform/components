@@ -77,11 +77,12 @@ const ErrorPage = ({
             description = (
                 <React.Fragment>
                     {t('label_description-1')}
-                    <Link href={''}>
-                        <Button className={b('description-link')}>
-                            {t('label_description-link')}
-                        </Button>
-                    </Link>
+                    <Button
+                        className={b('description-link')}
+                        onClick={() => window.location.reload()}
+                    >
+                        {t('label_description-link')}
+                    </Button>
                 </React.Fragment>
             );
     }

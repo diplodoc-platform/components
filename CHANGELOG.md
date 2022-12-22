@@ -1,5 +1,14 @@
 # История изменений
 
+## [2.5.0](https://github.com/yandex-cloud/docs-components/compare/v2.4.0...v2.5.0) (2022-12-22)
+
+
+### Features
+
+* add SearchPage, SearchItem, Paginator components ([3c44903](https://github.com/yandex-cloud/docs-components/commit/3c44903cf8635ee4e47051a1b4e3fbd74a2a8893))
+* error page & error boundary components ([3fbacca](https://github.com/yandex-cloud/docs-components/commit/3fbacca8c679c43b756f0f07c60524eeb1b02c88))
+* refactor controls & add pdf control button ([39c76f9](https://github.com/yandex-cloud/docs-components/commit/39c76f938e4a0c1ac088dcad9942ad06fd66aa52))
+
 ## [2.4.0](https://github.com/yandex-cloud/docs-components/compare/v2.3.2...v2.4.0) (2022-11-07)
 
 

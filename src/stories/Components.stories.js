@@ -16,3 +16,19 @@ stories.add('DocLeadingPage', () => {
 stories.add('ErrorPage', () => {
     return <Components.ErrorPage />;
 });
+
+stories.add('SearchPage', () => {
+    return <Components.SearchPage />;
+});
+
+stories.add('Paginator', () => {
+    return <Components.Paginator />;
+});
+
+stories.add('SearchItem', () => {
+    return <Components.SearchItem />;
+});
+
+stories.add('Paginator', () => {
+    return <Components.Paginator />;
+});

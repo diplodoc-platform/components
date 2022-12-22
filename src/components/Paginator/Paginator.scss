@@ -1,0 +1,60 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.Paginator {
+    $block: &;
+
+    @include reset-list-style();
+
+    display: flex;
+    align-items: center;
+
+    &__item {
+        $item: &;
+
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        min-width: 28px;
+        min-height: 28px;
+        margin: 4px;
+
+        color: var(--yc-color-text-primary);
+        @include text-size(body-1);
+
+        &_type {
+            &_prev {
+                margin-left: -6px;
+
+                #{$block}__icon {
+                    transform: rotate(180deg);
+                }
+            }
+
+            &_dots {
+                min-width: 0;
+                color: var(--yc-color-text-secondary);
+            }
+
+            &_page {
+                cursor: pointer;
+                border-radius: 14px;
+
+                &:hover {
+                    background: var(--yc-color-base-simple-hover);
+                }
+
+                &#{$item}_active {
+                    color: var(--yc-color-text-light-primary);
+                    background: var(--yc-color-base-special);
+                    cursor: default;
+                }
+            }
+
+            &_next {
+                margin-right: -6px;
+            }
+        }
+    }
+}

@@ -1,5 +1,13 @@
 # История изменений
 
+## [2.5.1](https://github.com/yandex-cloud/docs-components/compare/v2.5.0...v2.5.1) (2022-12-22)
+
+
+### Bug Fixes
+
+* **ErrorPage:** reload 500 err page on click ([2408f77](https://github.com/yandex-cloud/docs-components/commit/2408f777ffc6bdc1defdfb6974b2bb38575460ee))
+* **SearchPage:** paginator border style ([46f47c4](https://github.com/yandex-cloud/docs-components/commit/46f47c4b63624332cc8acbe5d7606ccf48849541))
+
 ## [2.5.0](https://github.com/yandex-cloud/docs-components/compare/v2.4.0...v2.5.0) (2022-12-22)
 
 

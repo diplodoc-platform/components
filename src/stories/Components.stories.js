@@ -12,3 +12,7 @@ stories.add('DocPage', () => {
 stories.add('DocLeadingPage', () => {
     return <Components.DocLeadingPage />;
 });
+
+stories.add('ErrorPage', () => {
+    return <Components.ErrorPage />;
+});

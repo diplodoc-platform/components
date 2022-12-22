@@ -77,5 +77,20 @@
     "close": "Закрыть",
     "prev": "Предыдущий",
     "next": "Следующий"
+  },
+  "error": {
+    "label_meta-title-403": "Нет доступа",
+    "label_meta-title-404": "Страница не найдена",
+    "label_meta-title-500": "Произошла ошибка",
+    "label_title-code": "Ошибка {{code}}",
+    "label_title-403_project": "Нет доступа к проекту",
+    "label_title-403_page-group": "Нет доступа к странице",
+    "label_title-404": "Такой страницы нет",
+    "label_title-500": "Сервер не смог загрузить страницу",
+    "label_description-1": "Мы уже работаем над этим",
+    "label_description-link": "Перезагрузить страницу",
+    "label_description-2": ".",
+    "label_link-main": "Вернуться на главную",
+    "label_link-access": "Запросить доступ"
   }
 }

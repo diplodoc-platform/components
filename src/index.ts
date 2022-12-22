@@ -21,5 +21,7 @@ export * from './components/Control';
 export * from './components/Controls';
 export * from './components/BookmarkButton';
 export * from './components/SearchBar';
+export * from './components/ErrorPage';
+export * from './components/ErrorBoundary';
 
 export * from './models';

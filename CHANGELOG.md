@@ -1,5 +1,12 @@
 # История изменений
 
+## [2.6.0](https://github.com/yandex-cloud/docs-components/compare/v2.5.1...v2.6.0) (2023-01-10)
+
+
+### Features
+
+* Text size in Settings Popup ([f060ff8](https://github.com/yandex-cloud/docs-components/commit/f060ff883a7e9ca9a40b20c818e9902dfc5d8dd0))
+
 ## [2.5.1](https://github.com/yandex-cloud/docs-components/compare/v2.5.0...v2.5.1) (2022-12-22)
 
 

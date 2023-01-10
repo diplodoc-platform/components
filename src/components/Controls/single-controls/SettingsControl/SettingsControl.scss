@@ -26,6 +26,7 @@
 
     &__popup {
         width: 230px;
+        @include text-size(body-1);
     }
 
     &__list {

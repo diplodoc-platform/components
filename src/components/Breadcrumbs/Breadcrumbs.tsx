@@ -19,17 +19,26 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({items, className}) => {
     return (
         <nav className={b(null, className)} aria-label="Breadcrumbs">
             <ol className={b('items')}>
-                {items.map(({name}, index, subItems) => (
+                {items.map(({name, url}, index, subItems) => (
                     <li key={index} className={b('item')}>
-                        <span
-                            className={b('text')}
-                            aria-current={index === subItems.length - 1 ? 'page' : undefined}
-                        >
-                            {name}
-                        </span>
+                        {renderItem({name, url}, index === subItems.length - 1)}
                     </li>
                 ))}
             </ol>
         </nav>
     );
 };
+
+function renderItem({name, url}: BreadcrumbItem, isLast: boolean) {
+    const hasUrl = Boolean(url);
+
+    return React.createElement(
+        hasUrl && !isLast ? 'a' : 'span',
+        {
+            className: b('text', {link: hasUrl}),
+            href: url,
+            ['aria-current']: isLast ? 'page' : null,
+        },
+        name,
+    );
+}

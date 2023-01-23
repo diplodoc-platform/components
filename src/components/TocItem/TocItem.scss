@@ -1,0 +1,45 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.dc-toc-item {
+    cursor: pointer;
+    user-select: none;
+
+    &__link {
+        display: block;
+        text-decoration: none;
+    }
+
+    &__text {
+        position: relative;
+        padding: 7px 12px 7px 20px;
+        word-break: break-word;
+
+        color: var(--yc-color-text-primary);
+
+        &_active {
+            border-radius: 3px;
+            background: var(--yc-color-base-selection);
+        }
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            // hack: to be shure that it will always start from the left of the TOC
+            left: -100vw;
+            height: 100%;
+        }
+
+        &:hover {
+            border-radius: 3px;
+            background: var(--yc-color-base-simple-hover);
+        }
+    }
+
+    &__icon {
+        position: absolute;
+        left: 0;
+    }
+}

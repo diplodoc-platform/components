@@ -1,18 +1,24 @@
 import React from 'react';
 import block from 'bem-cn-lite';
 
+import {parse} from 'url';
+import {omit} from 'lodash';
 import {ControlSizes, Lang, Router, TocData, TocItem} from '../../models';
-import {ToggleArrow} from '../ToggleArrow';
+import {TocItem as Item} from '../TocItem';
 import {HTML} from '../HTML';
 import {Controls} from '../Controls';
 
-import {isActiveItem, isExternalHref} from '../../utils';
+import {isActiveItem, normalizeHash, normalizePath} from '../../utils';
 
 import './Toc.scss';
 import {PopperPosition} from '../../hooks';
 
 const b = block('dc-toc');
 const HEADER_DEFAULT_HEIGHT = 0;
+
+function zip<T>(array: string[], fill: T): Record<string, T> {
+    return array.reduce((acc, item) => Object.assign(acc, {[item]: fill}), {});
+}
 
 export interface TocProps extends TocData {
     router: Router;
@@ -25,50 +31,106 @@ export interface TocProps extends TocData {
     pdfLink?: string;
 }
 
-interface FlatTocItem {
-    name: string;
-    href?: string;
-    parents: string[];
-    opened?: boolean;
+interface TocState {
+    activeId: string | null | undefined;
+    fixedById: Record<string, 'opened' | 'closed'>;
+    contentScrolled: boolean;
 }
 
-interface TocState {
-    flatToc: Record<string, FlatTocItem>;
-    filteredItemIds: string[];
-    filterName: string;
-    contentScrolled: boolean;
-    activeId?: string | null;
+function linkTocItems(
+    parent: TocItem | null,
+    items: TocItem[],
+    itemById: Map<string, TocItem>,
+    parentById: Map<string, TocItem>,
+    itemIdByUrl: Map<string, string>,
+    singlePage?: boolean,
+) {
+    items.forEach((item) => {
+        itemById.set(item.id, item);
+
+        if (item.href) {
+            const {pathname, hash} = parse(item.href);
+            const url = singlePage ? normalizeHash(hash) : normalizePath(pathname);
+
+            itemIdByUrl.set(url as string, item.id);
+        }
+
+        if (parent) {
+            parentById.set(item.id, parent);
+        }
+
+        if (item.items) {
+            linkTocItems(item, item.items, itemById, parentById, itemIdByUrl, singlePage);
+        }
+    });
+}
+
+function getChildIds(item: TocItem): string[] {
+    return (item.items || ([] as TocItem[])).reduce((acc, child) => {
+        return acc.concat([child.id], getChildIds(child));
+    }, [] as string[]);
+}
+
+function getParentIds(item: TocItem, parents: Map<string, TocItem>) {
+    const result = [];
+
+    let parent = parents.get(item.id);
+    while (parent) {
+        result.push(parent.id);
+        parent = parents.get(parent.id);
+    }
+
+    return result;
 }
 
 class Toc extends React.Component<TocProps, TocState> {
     contentRef = React.createRef<HTMLDivElement>();
     rootRef = React.createRef<HTMLDivElement>();
+    activeRef = React.createRef<Item>();
 
     containerEl: HTMLElement | null = null;
     footerEl: HTMLElement | null = null;
 
-    state: TocState = {
-        flatToc: {},
-        filteredItemIds: [],
-        filterName: '',
-        contentScrolled: false,
-        activeId: null,
-    };
+    private itemById: Map<string, TocItem> = new Map();
+
+    private parentById: Map<string, TocItem> = new Map();
+
+    private itemIdByUrl: Map<string, string> = new Map();
+
+    constructor(props: TocProps) {
+        super(props);
+
+        linkTocItems(
+            null,
+            props.items,
+            this.itemById,
+            this.parentById,
+            this.itemIdByUrl,
+            props.singlePage,
+        );
+
+        this.state = this.computeState({
+            fixedById: {},
+            activeId: null,
+            contentScrolled: false,
+        });
+    }
 
     componentDidMount() {
         this.containerEl = document.querySelector('.Layout__content');
         this.footerEl = document.querySelector('.Footer');
         this.setTocHeight();
-        this.setState(this.getState(this.props, this.state), () => this.scrollToActiveItem());
 
         window.addEventListener('scroll', this.handleScroll);
         window.addEventListener('resize', this.handleResize);
         if (this.contentRef && this.contentRef.current) {
             this.contentRef.current.addEventListener('scroll', this.handleContentScroll);
         }
+
+        this.scrollToActiveItem();
     }
 
-    componentDidUpdate(prevProps: TocProps) {
+    componentDidUpdate(prevProps: TocProps, prevState: TocState) {
         const {router, singlePage} = this.props;
 
         if (
@@ -77,7 +139,9 @@ class Toc extends React.Component<TocProps, TocState> {
             prevProps.singlePage !== singlePage
         ) {
             this.setTocHeight();
-            this.setState(this.getState(this.props, this.state), () => this.scrollToActiveItem());
+            this.setState(this.computeState(prevState));
+        } else if (prevState.activeId !== this.state.activeId) {
+            this.scrollToActiveItem();
         }
     }
 
@@ -91,14 +155,7 @@ class Toc extends React.Component<TocProps, TocState> {
 
     render() {
         const {items, hideTocHeader} = this.props;
-        const {filterName, filteredItemIds} = this.state;
-        let content;
-
-        if (filterName.length !== 0 && filteredItemIds.length === 0) {
-            content = this.renderEmpty('');
-        } else {
-            content = items ? this.renderList(items) : this.renderEmpty('');
-        }
+        const content = items ? this.renderList(items) : this.renderEmpty('');
 
         return (
             <div className={b()} ref={this.rootRef}>
@@ -111,118 +168,76 @@ class Toc extends React.Component<TocProps, TocState> {
         );
     }
 
-    private renderList(items: TocItem[], isMain = true) {
-        const {singlePage} = this.props;
-        const {flatToc, filteredItemIds, filterName, activeId} = this.state;
+    computeState(prevState: TocState) {
+        const {singlePage, router} = this.props;
+        const {pathname, hash} = router;
 
-        /* eslint-disable complexity */
+        const activeUrl = singlePage ? normalizeHash(hash) : normalizePath(pathname);
+        const activeId = activeUrl && this.itemIdByUrl.get(activeUrl as string);
+        const activeItem = activeId && (this.itemById.get(activeId) as TocItem);
+
+        let fixedById = prevState.fixedById;
+
+        if (activeItem && prevState.activeId && activeId !== prevState.activeId) {
+            const expandedIds = [activeId].concat(getParentIds(activeItem, this.parentById));
+            const dropClosedSign = expandedIds.filter((id) => prevState.fixedById[id] === 'closed');
+
+            if (dropClosedSign.length) {
+                fixedById = omit(fixedById, dropClosedSign);
+            }
+        }
+
+        return {...prevState, activeId, fixedById};
+    }
+
+    private renderList = (items: TocItem[]) => {
+        const {openItem, closeItem} = this;
+        const {singlePage} = this.props;
+        const {activeId, fixedById} = this.state;
+
+        const activeItem = activeId && this.itemById.get(activeId);
+        const activeScope: Record<string, boolean> = activeItem
+            ? zip([activeId].concat(getParentIds(activeItem, this.parentById)), true)
+            : {};
+
         return (
             <ul className={b('list')}>
-                {items.map(({id, name, href, items: subItems}, index) => {
-                    const opened = flatToc[id] ? flatToc[id].opened : false;
-                    let isOpenFilteredItem = false;
-                    let active = false;
-                    let visibleChildren = Boolean(subItems);
-                    let icon = null;
-                    let text;
+                {items.map((item, index) => {
+                    const main = !this.parentById.get(item.id);
+                    const active =
+                        (singlePage && !activeId && index === 0 && main) || item.id === activeId;
+                    const opened = fixedById[item.id] === 'opened';
+                    const closed = fixedById[item.id] === 'closed';
+                    const expandable = Boolean(item.items && item.items.length > 0);
+                    const expanded =
+                        expandable && !closed && (item.expanded || activeScope[item.id] || opened);
 
-                    if (filteredItemIds.length > 0) {
-                        filteredItemIds.forEach((itemId) => {
-                            if (flatToc[itemId].parents.includes(id)) {
-                                isOpenFilteredItem = true;
-                            }
-                        });
-                    }
-
-                    if (subItems && subItems.length > 0) {
-                        icon = (
-                            <ToggleArrow
-                                className={b('list-item-icon')}
-                                open={opened}
-                                thin={true}
-                            />
-                        );
-                    }
-
-                    if (filteredItemIds.includes(id)) {
-                        const firstEntry = name.toLowerCase().indexOf(filterName.toLowerCase());
-                        isOpenFilteredItem = true;
-
-                        text = (
-                            <React.Fragment>
-                                {name.substring(0, firstEntry)}
-                                <span className={b('list-item-text-match')}>
-                                    {name.substring(firstEntry, firstEntry + filterName.length)}
-                                </span>
-                                {name.substring(firstEntry + filterName.length)}
-                            </React.Fragment>
-                        );
-                    } else {
-                        text = <span>{name}</span>;
-                    }
-
-                    let content = (
-                        <div
-                            className={b('list-item-text')}
-                            onClick={
-                                subItems && subItems.length > 0
-                                    ? this.handleItemClick.bind(this, id)
-                                    : undefined
-                            }
-                        >
-                            {icon}
-                            {text}
-                        </div>
-                    );
-
-                    if (filterName.length > 0 && !isOpenFilteredItem) {
-                        return null;
-                    }
-
-                    if (href) {
-                        const isExternal = isExternalHref(href);
-                        const linkAttributes = {
-                            href,
-                            target: isExternal ? '_blank' : '_self',
-                            rel: isExternal ? 'noopener noreferrer' : undefined,
-                        };
-
-                        content = (
-                            <a
-                                {...linkAttributes}
-                                className={b('list-item-link')}
-                                data-router-shallow
-                            >
-                                {content}
-                            </a>
-                        );
-
-                        active = id === activeId;
-
-                        if (singlePage && !activeId && index === 0 && isMain) {
-                            active = true;
-                        }
-                    }
-
-                    if (subItems && (active || opened)) {
-                        visibleChildren = true;
-                    }
+                    const ref = active ? {ref: this.activeRef} : {};
 
                     return (
                         <li
-                            key={index}
-                            id={id}
-                            className={b('list-item', {main: isMain, active, opened})}
+                            key={item.id}
+                            id={item.id}
+                            className={b('list-item', {main, active, opened: expanded})}
                         >
-                            {content}
-                            {subItems && visibleChildren && this.renderList(subItems, false)}
+                            <Item
+                                {...{
+                                    ...item,
+                                    ...ref,
+                                    active,
+                                    expanded,
+                                    expandable,
+                                    openItem,
+                                    closeItem,
+                                }}
+                            />
+                            {expanded && this.renderList(item.items as TocItem[])}
                         </li>
                     );
                 })}
             </ul>
         );
-        /* eslint-enable complexity */
-    }
+    };
 
     private renderEmpty(text: string) {
         return <div className={b('empty')}>{text}</div>;
@@ -283,49 +298,6 @@ class Toc extends React.Component<TocProps, TocState> {
         );
     }
 
-    private getState(props: TocProps, state: TocState) {
-        const {singlePage} = this.props;
-        const flatToc: Record<string, FlatTocItem> = {};
-        let activeId;
-
-        function processItems(items: TocItem[], parentId?: string) {
-            items.forEach(({id, href, name, items: subItems, expanded}) => {
-                flatToc[id] = state.flatToc[id]
-                    ? {...state.flatToc[id]}
-                    : {name, href, parents: []};
-
-                if (parentId) {
-                    flatToc[id].parents = [parentId, ...flatToc[parentId].parents];
-                }
-
-                if (href && isActiveItem(props.router, href, singlePage)) {
-                    activeId = id;
-                }
-
-                if (subItems) {
-                    if (typeof flatToc[id].opened === 'undefined') {
-                        const isFirstLevel = flatToc[id].parents.length === 0;
-
-                        flatToc[id].opened =
-                            isFirstLevel && typeof expanded !== 'undefined' ? expanded : false;
-                    }
-
-                    processItems(subItems, id);
-                }
-            });
-        }
-
-        processItems(props.items);
-
-        if (activeId) {
-            flatToc[activeId].parents.forEach((id) => {
-                flatToc[id].opened = true;
-            });
-        }
-
-        return {flatToc, activeId};
-    }
-
     private setTocHeight() {
         const {headerHeight = HEADER_DEFAULT_HEIGHT} = this.props;
         const containerHeight = this.containerEl?.offsetHeight ?? 0;
@@ -347,36 +319,6 @@ class Toc extends React.Component<TocProps, TocState> {
         }
     }
 
-    private scrollToActiveItem() {
-        const {activeId} = this.state;
-        const activeElement = activeId && document.getElementById(activeId);
-
-        if (!activeElement) {
-            return;
-        }
-
-        const itemElement = activeElement.querySelector<HTMLDivElement>(`.${b('list-item-text')}`);
-
-        const itemHeight = itemElement?.offsetHeight ?? 0;
-        const itemOffset = activeElement.offsetTop;
-        const scrollableParent = activeElement.offsetParent as HTMLDivElement | null;
-
-        if (!scrollableParent) {
-            return;
-        }
-
-        const scrollableHeight = scrollableParent.offsetHeight;
-        const scrollableOffset = scrollableParent.scrollTop;
-
-        const itemVisible =
-            itemOffset >= scrollableOffset &&
-            itemOffset <= scrollableOffset + scrollableHeight - itemHeight;
-
-        if (!itemVisible) {
-            scrollableParent.scrollTop = itemOffset - Math.floor(scrollableHeight / 2) + itemHeight;
-        }
-    }
-
     private handleScroll = () => {
         this.setTocHeight();
     };
@@ -385,16 +327,12 @@ class Toc extends React.Component<TocProps, TocState> {
         this.setTocHeight();
     };
 
-    private handleItemClick = (id: string) => {
-        this.setState((prevState) => ({
-            flatToc: {
-                ...prevState.flatToc,
-                [id]: {
-                    ...prevState.flatToc[id],
-                    opened: !prevState.flatToc[id].opened,
-                },
-            },
-        }));
+    private scrollToActiveItem = () => {
+        if (!this.activeRef.current) {
+            return;
+        }
+
+        this.activeRef.current.scrollToItem();
     };
 
     private handleContentScroll = () => {
@@ -403,6 +341,29 @@ class Toc extends React.Component<TocProps, TocState> {
         if (contentScrolled !== this.state.contentScrolled) {
             this.setState({contentScrolled});
         }
+    };
+
+    private openItem = (id: string) => {
+        this.setState((prevState) => ({
+            ...prevState,
+            fixedById: {
+                ...prevState.fixedById,
+                [id]: 'opened',
+            },
+        }));
+    };
+
+    private closeItem = (id: string) => {
+        const item = this.itemById.get(id) as TocItem;
+        const ids = getChildIds(item);
+
+        this.setState((prevState) => ({
+            ...prevState,
+            fixedById: {
+                ...omit(prevState.fixedById, ids),
+                [id]: 'closed',
+            },
+        }));
     };
 }
 

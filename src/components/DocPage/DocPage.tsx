@@ -317,7 +317,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
     private renderBreadcrumbs() {
         const {breadcrumbs} = this.props;
 
-        if (!breadcrumbs || breadcrumbs.length === 0) {
+        if (!breadcrumbs || breadcrumbs.length < 2) {
             return null;
         }
 

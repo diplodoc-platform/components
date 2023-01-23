@@ -106,6 +106,7 @@ export interface TocItem {
 
 export interface BreadcrumbItem {
     name: string;
+    url?: string;
 }
 
 export interface Router {

@@ -84,6 +84,9 @@ export interface DocMeta {
     editable?: boolean;
     contributors?: Contributor[];
     author?: Contributor;
+    noIndex?: boolean;
+    alternate?: Record<string, string>;
+    canonical?: string;
     __system?: Record<string, unknown>;
 }
 

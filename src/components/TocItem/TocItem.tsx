@@ -18,8 +18,7 @@ export interface TocItemProps extends ITocItem {
     active: boolean;
     expandable: boolean;
     expanded: boolean;
-    openItem: (id: string) => void;
-    closeItem: (id: string) => void;
+    toggleItem: (id: string, opened: boolean) => void;
 }
 
 class TocItem extends React.Component<TocItemProps> {
@@ -92,21 +91,13 @@ class TocItem extends React.Component<TocItemProps> {
     };
 
     private handleClick = () => {
-        const {id, href, active, expanded, openItem, closeItem} = this.props;
+        const {id, href, active, expanded, toggleItem} = this.props;
 
         if (!active && href) {
             return;
         }
 
-        if (expanded) {
-            closeItem(id);
-            return;
-        }
-
-        if (!expanded) {
-            openItem(id);
-            return;
-        }
+        toggleItem(id, expanded);
     };
 }
 

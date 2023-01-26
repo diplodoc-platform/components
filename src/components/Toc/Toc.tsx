@@ -1,7 +1,6 @@
 import React from 'react';
 import block from 'bem-cn-lite';
 
-import {parse} from 'url';
 import {omit} from 'lodash';
 import {ControlSizes, Lang, Router, TocData, TocItem} from '../../models';
 import {TocItem as Item} from '../TocItem';
@@ -9,6 +8,7 @@ import {HTML} from '../HTML';
 import {Controls} from '../Controls';
 
 import {isActiveItem, normalizeHash, normalizePath} from '../../utils';
+import {TocItemRegistry} from './TocItemRegistry';
 
 import './Toc.scss';
 import {PopperPosition} from '../../hooks';
@@ -35,52 +35,7 @@ interface TocState {
     activeId: string | null | undefined;
     fixedById: Record<string, 'opened' | 'closed'>;
     contentScrolled: boolean;
-}
-
-function linkTocItems(
-    parent: TocItem | null,
-    items: TocItem[],
-    itemById: Map<string, TocItem>,
-    parentById: Map<string, TocItem>,
-    itemIdByUrl: Map<string, string>,
-    singlePage?: boolean,
-) {
-    items.forEach((item) => {
-        itemById.set(item.id, item);
-
-        if (item.href) {
-            const {pathname, hash} = parse(item.href);
-            const url = singlePage ? normalizeHash(hash) : normalizePath(pathname);
-
-            itemIdByUrl.set(url as string, item.id);
-        }
-
-        if (parent) {
-            parentById.set(item.id, parent);
-        }
-
-        if (item.items) {
-            linkTocItems(item, item.items, itemById, parentById, itemIdByUrl, singlePage);
-        }
-    });
-}
-
-function getChildIds(item: TocItem): string[] {
-    return (item.items || ([] as TocItem[])).reduce((acc, child) => {
-        return acc.concat([child.id], getChildIds(child));
-    }, [] as string[]);
-}
-
-function getParentIds(item: TocItem, parents: Map<string, TocItem>) {
-    const result = [];
-
-    let parent = parents.get(item.id);
-    while (parent) {
-        result.push(parent.id);
-        parent = parents.get(parent.id);
-    }
-
-    return result;
+    registry: TocItemRegistry;
 }
 
 class Toc extends React.Component<TocProps, TocState> {
@@ -91,29 +46,19 @@ class Toc extends React.Component<TocProps, TocState> {
     containerEl: HTMLElement | null = null;
     footerEl: HTMLElement | null = null;
 
-    private itemById: Map<string, TocItem> = new Map();
-
-    private parentById: Map<string, TocItem> = new Map();
-
-    private itemIdByUrl: Map<string, string> = new Map();
-
     constructor(props: TocProps) {
         super(props);
 
-        linkTocItems(
-            null,
-            props.items,
-            this.itemById,
-            this.parentById,
-            this.itemIdByUrl,
-            props.singlePage,
-        );
+        this.state = this.computeState(this.getInitialState());
+    }
 
-        this.state = this.computeState({
+    getInitialState() {
+        return {
+            registry: new TocItemRegistry(this.props.items, this.normalizeUrl),
             fixedById: {},
             activeId: null,
             contentScrolled: false,
-        });
+        };
     }
 
     componentDidMount() {
@@ -131,7 +76,13 @@ class Toc extends React.Component<TocProps, TocState> {
     }
 
     componentDidUpdate(prevProps: TocProps, prevState: TocState) {
-        const {router, singlePage} = this.props;
+        const {router, singlePage, items} = this.props;
+
+        let nextState;
+
+        if (prevProps.items !== items) {
+            nextState = this.getInitialState();
+        }
 
         if (
             prevProps.router.pathname !== router.pathname ||
@@ -139,9 +90,14 @@ class Toc extends React.Component<TocProps, TocState> {
             prevProps.singlePage !== singlePage
         ) {
             this.setTocHeight();
-            this.setState(this.computeState(prevState));
+
+            nextState = this.computeState(nextState || prevState);
         } else if (prevState.activeId !== this.state.activeId) {
             this.scrollToActiveItem();
+        }
+
+        if (nextState) {
+            this.setState(nextState);
         }
     }
 
@@ -169,17 +125,16 @@ class Toc extends React.Component<TocProps, TocState> {
     }
 
     computeState(prevState: TocState) {
-        const {singlePage, router} = this.props;
+        const {router} = this.props;
         const {pathname, hash} = router;
 
-        const activeUrl = singlePage ? normalizeHash(hash) : normalizePath(pathname);
-        const activeId = activeUrl && this.itemIdByUrl.get(activeUrl as string);
-        const activeItem = activeId && (this.itemById.get(activeId) as TocItem);
+        const activeUrl = this.normalizeUrl(pathname, hash);
+        const activeId = activeUrl && this.state.registry.getIdByUrl(activeUrl as string);
 
         let fixedById = prevState.fixedById;
 
-        if (activeItem && prevState.activeId && activeId !== prevState.activeId) {
-            const expandedIds = [activeId].concat(getParentIds(activeItem, this.parentById));
+        if (activeId && prevState.activeId && activeId !== prevState.activeId) {
+            const expandedIds = [activeId].concat(this.state.registry.getParentIds(activeId));
             const dropClosedSign = expandedIds.filter((id) => prevState.fixedById[id] === 'closed');
 
             if (dropClosedSign.length) {
@@ -190,20 +145,26 @@ class Toc extends React.Component<TocProps, TocState> {
         return {...prevState, activeId, fixedById};
     }
 
+    private normalizeUrl = (path: string, hash: string | undefined) => {
+        const {singlePage} = this.props;
+
+        return singlePage ? normalizeHash(hash) : normalizePath(path);
+    };
+
     private renderList = (items: TocItem[]) => {
-        const {openItem, closeItem} = this;
+        const {toggleItem} = this;
         const {singlePage} = this.props;
         const {activeId, fixedById} = this.state;
 
-        const activeItem = activeId && this.itemById.get(activeId);
+        const activeItem = activeId && this.state.registry.getItemById(activeId);
         const activeScope: Record<string, boolean> = activeItem
-            ? zip([activeId].concat(getParentIds(activeItem, this.parentById)), true)
+            ? zip([activeId].concat(this.state.registry.getParentIds(activeId)), true)
             : {};
 
         return (
             <ul className={b('list')}>
                 {items.map((item, index) => {
-                    const main = !this.parentById.get(item.id);
+                    const main = !this.state.registry.getParentId(item.id);
                     const active =
                         (singlePage && !activeId && index === 0 && main) || item.id === activeId;
                     const opened = fixedById[item.id] === 'opened';
@@ -227,8 +188,7 @@ class Toc extends React.Component<TocProps, TocState> {
                                     active,
                                     expanded,
                                     expandable,
-                                    openItem,
-                                    closeItem,
+                                    toggleItem,
                                 }}
                             />
                             {expanded && this.renderList(item.items as TocItem[])}
@@ -354,8 +314,7 @@ class Toc extends React.Component<TocProps, TocState> {
     };
 
     private closeItem = (id: string) => {
-        const item = this.itemById.get(id) as TocItem;
-        const ids = getChildIds(item);
+        const ids = this.state.registry.getChildIds(id);
 
         this.setState((prevState) => ({
             ...prevState,
@@ -364,6 +323,14 @@ class Toc extends React.Component<TocProps, TocState> {
                 [id]: 'closed',
             },
         }));
+    };
+
+    private toggleItem = (id: string, opened: boolean) => {
+        if (opened) {
+            this.closeItem(id);
+        } else {
+            this.openItem(id);
+        }
     };
 }
 

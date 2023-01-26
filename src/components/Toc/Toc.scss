@@ -101,11 +101,6 @@ $leftOffset: 57px;
                 color: var(--yc-color-text-primary);
             }
 
-            //&_active {
-            //    border-radius: 3px;
-            //    background: var(--yc-color-base-selection);
-            //}
-
             &:not(&_opened) > #{$class}__list {
                 display: none;
             }

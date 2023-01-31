@@ -1,5 +1,12 @@
 # История изменений
 
+## [2.6.2](https://github.com/yandex-cloud/docs-components/compare/v2.6.1...v2.6.2) (2023-01-31)
+
+
+### Bug Fixes
+
+* **toc:** Fix missed registry in toc ([edfd3cb](https://github.com/yandex-cloud/docs-components/commit/edfd3cbdb1614425444bbf6169ae520fdb59bd16))
+
 ## [2.6.1](https://github.com/yandex-cloud/docs-components/compare/v2.6.0...v2.6.1) (2023-01-31)
 
 

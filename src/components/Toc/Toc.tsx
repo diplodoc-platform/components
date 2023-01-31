@@ -129,12 +129,12 @@ class Toc extends React.Component<TocProps, TocState> {
         const {pathname, hash} = router;
 
         const activeUrl = this.normalizeUrl(pathname, hash);
-        const activeId = activeUrl && this.state.registry.getIdByUrl(activeUrl as string);
+        const activeId = activeUrl && prevState.registry.getIdByUrl(activeUrl as string);
 
         let fixedById = prevState.fixedById;
 
         if (activeId && prevState.activeId && activeId !== prevState.activeId) {
-            const expandedIds = [activeId].concat(this.state.registry.getParentIds(activeId));
+            const expandedIds = [activeId].concat(prevState.registry.getParentIds(activeId));
             const dropClosedSign = expandedIds.filter((id) => prevState.fixedById[id] === 'closed');
 
             if (dropClosedSign.length) {

@@ -2,7 +2,7 @@
 
 # YFM Docs Components
 
-Компоненты для Yandex Flavored Markdown Documentation
+Компоненты для Yandex Flavored Markdown Documentation.
 
 ## License
 

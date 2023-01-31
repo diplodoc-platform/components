@@ -1,5 +1,12 @@
 # История изменений
 
+## [2.6.1](https://github.com/yandex-cloud/docs-components/compare/v2.6.0...v2.6.1) (2023-01-31)
+
+
+### Bug Fixes
+
+* **docs:** Fix docs for version bump ([eb071c2](https://github.com/yandex-cloud/docs-components/commit/eb071c2f249ff1053cdfecc3bb97adf25a7e14d6))
+
 ## [2.6.0](https://github.com/yandex-cloud/docs-components/compare/v2.5.1...v2.6.0) (2023-01-10)
 
 

@@ -144,7 +144,6 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             pdfLink,
         } = this.props;
 
-        const asideMiniToc = this.renderAsideMiniToc();
         const hideMiniToc = !this.showMiniToc;
         const modes = {
             'regular-page-width': !wideFormat,
@@ -194,7 +193,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                         className={b('aside')}
                         key={getStateKey(this.showMiniToc, wideFormat, singlePage)}
                     >
-                        {asideMiniToc}
+                        {hideMiniToc ? null : this.renderAsideMiniToc()}
                     </div>
                 </DocLayout.Right>
             </DocLayout>
@@ -305,9 +304,17 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
     };
 
     get showMiniToc() {
-        const {showMiniToc, singlePage} = this.props;
+        const {showMiniToc, singlePage, headings, toc} = this.props;
 
         if (singlePage) {
+            return false;
+        }
+
+        const emptyHeaderOrSinglePage = headings.length === 0 || toc.singlePage;
+        const soloHeaderWithChildren =
+            headings.length === 1 && headings[0].items && headings[0].items.length >= 1;
+
+        if (emptyHeaderOrSinglePage || !(soloHeaderWithChildren || headings.length >= 2)) {
             return false;
         }
 
@@ -457,16 +464,8 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
     }
 
     private renderAsideMiniToc() {
-        const {headings, router, headerHeight, lang, toc} = this.props;
+        const {headings, router, headerHeight, lang} = this.props;
         const {keyDOM} = this.state;
-
-        const emptyHeaderOrSinglePage = headings.length === 0 || toc.singlePage;
-        const soloHeaderWithChildren =
-            headings.length === 1 && headings[0].items && headings[0].items.length >= 1;
-
-        if (emptyHeaderOrSinglePage || !(soloHeaderWithChildren || headings.length >= 2)) {
-            return null;
-        }
 
         return (
             <div className={b('aside-mini-toc')}>

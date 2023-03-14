@@ -1,5 +1,12 @@
 # История изменений
 
+## [2.6.3](https://github.com/yandex-cloud/docs-components/compare/v2.6.2...v2.6.3) (2023-03-14)
+
+
+### Bug Fixes
+
+* use hideMiniToc props for  mini toc and content mini toc ([#126](https://github.com/yandex-cloud/docs-components/issues/126)) ([2d426cc](https://github.com/yandex-cloud/docs-components/commit/2d426ccb554901a8238d3d7bb8ff147f99581be0))
+
 ## [2.6.2](https://github.com/yandex-cloud/docs-components/compare/v2.6.1...v2.6.2) (2023-01-31)
 
 

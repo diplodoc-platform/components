@@ -144,7 +144,6 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             pdfLink,
         } = this.props;
 
-        const asideMiniToc = this.renderAsideMiniToc();
         const hideMiniToc = !this.showMiniToc;
         const modes = {
             'regular-page-width': !wideFormat,
@@ -194,7 +193,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                         className={b('aside')}
                         key={getStateKey(this.showMiniToc, wideFormat, singlePage)}
                     >
-                        {hideMiniToc ? null : asideMiniToc}
+                        {hideMiniToc ? null : this.renderAsideMiniToc()}
                     </div>
                 </DocLayout.Right>
             </DocLayout>

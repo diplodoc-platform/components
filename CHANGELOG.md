@@ -1,5 +1,14 @@
 # История изменений
 
+## [2.7.0](https://github.com/yandex-cloud/docs-components/compare/v2.6.3...v2.7.0) (2023-03-20)
+
+
+### Features
+
+* **deps:** update uikit up to v4 ([7b81a9b](https://github.com/yandex-cloud/docs-components/commit/7b81a9b5663979c9198247a671a8a9f92cb498e7))
+* **nvm:** add .nvmrc ([8122d3b](https://github.com/yandex-cloud/docs-components/commit/8122d3b90eb49e55dc5625072076a6cc65f0aeee))
+* **README:** add installation info ([2e78bc5](https://github.com/yandex-cloud/docs-components/commit/2e78bc5e2701fe18f530c6c70e4f43ce2e9d8ca6))
+
 ## [2.6.3](https://github.com/yandex-cloud/docs-components/compare/v2.6.2...v2.6.3) (2023-03-14)
 
 

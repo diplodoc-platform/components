@@ -1,28 +1,14 @@
 @import '../../../styles/mixins';
+@import '../../../styles/variables';
 
 .dc-controls {
     display: flex;
     align-items: center;
     @include text-size(body-1);
 
-    &_vertical {
-        flex-direction: column;
-    }
-
-    &_vertical &__divider {
-        height: 1px;
-        width: 16px;
-    }
-
     &__control:not(:last-child),
     &__divider {
         margin-right: 4px;
-    }
-
-    &_vertical &__control:not(:last-child),
-    &_vertical &__divider {
-        margin-right: 0;
-        margin-bottom: 4px;
     }
 
     &__list {
@@ -41,5 +27,22 @@
         display: flex;
         padding: 6px 12px;
         width: 100%;
+    }
+
+    @media (min-width: map-get($screenBreakpoints, 'md')) {
+        &_vertical {
+            flex-direction: column;
+        }
+
+        &_vertical &__divider {
+            height: 1px;
+            width: 16px;
+        }
+
+        &_vertical &__control:not(:last-child),
+        &_vertical &__divider {
+            margin-right: 0;
+            margin-bottom: 4px;
+        }
     }
 }

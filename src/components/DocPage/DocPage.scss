@@ -64,13 +64,15 @@
             }
         }
 
-        &_vertical {
-            top: calc(6px + var(--dc-header-height, #{$headerHeight}));
-            justify-content: center;
-            height: auto;
-            width: 36px;
-            position: absolute;
-            right: 0;
+        @media (min-width: map-get($screenBreakpoints, 'md')) {
+            &_vertical {
+                top: calc(6px + var(--dc-header-height, #{$headerHeight}));
+                justify-content: center;
+                height: auto;
+                width: 36px;
+                position: absolute;
+                right: 0;
+            }
         }
     }
 

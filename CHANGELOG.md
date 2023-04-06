@@ -1,5 +1,12 @@
 # История изменений
 
+## [2.7.1](https://github.com/yandex-cloud/docs-components/compare/v2.7.0...v2.7.1) (2023-04-06)
+
+
+### Bug Fixes
+
+* Fix vertical Controls for mobile screen ([61e843c](https://github.com/yandex-cloud/docs-components/commit/61e843c042364f40066512a452d4a94349758bde))
+
 ## [2.7.0](https://github.com/yandex-cloud/docs-components/compare/v2.6.3...v2.7.0) (2023-03-20)
 
 

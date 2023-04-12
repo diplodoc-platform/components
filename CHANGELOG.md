@@ -1,5 +1,12 @@
 # История изменений
 
+## [2.7.2](https://github.com/yandex-cloud/docs-components/compare/v2.7.1...v2.7.2) (2023-04-12)
+
+
+### Bug Fixes
+
+* add gap between feedback buttons ([#134](https://github.com/yandex-cloud/docs-components/issues/134)) ([0842e87](https://github.com/yandex-cloud/docs-components/commit/0842e871ee267aded804ace891dde99d7a0bb84e))
+
 ## [2.7.1](https://github.com/yandex-cloud/docs-components/compare/v2.7.0...v2.7.1) (2023-04-06)
 
 

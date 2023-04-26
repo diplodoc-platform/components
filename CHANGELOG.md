@@ -1,5 +1,12 @@
 # История изменений
 
+## [2.7.3](https://github.com/yandex-cloud/docs-components/compare/v2.7.2...v2.7.3) (2023-04-26)
+
+
+### Bug Fixes
+
+* control gap ([#136](https://github.com/yandex-cloud/docs-components/issues/136)) ([42397a3](https://github.com/yandex-cloud/docs-components/commit/42397a3b1152a975c3aa75df32c02b9c8d5af1e0))
+
 ## [2.7.2](https://github.com/yandex-cloud/docs-components/compare/v2.7.1...v2.7.2) (2023-04-12)
 
 

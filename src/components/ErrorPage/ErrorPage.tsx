@@ -16,9 +16,6 @@ export interface ErrorPageProps {
     pageGroup?: string;
     homeUrl?: string;
     receiveAccessUrl?: string;
-    img403src?: string;
-    img404src?: string;
-    img500src?: string;
 }
 
 type ErrorPagePropsInnerProps = ErrorPageProps & WithTranslation & WithTranslationProps;
@@ -31,11 +28,7 @@ const ErrorPage = ({
     homeUrl,
     receiveAccessUrl,
     pageGroup,
-    img403src,
-    img404src,
-    img500src,
 }: ErrorPagePropsInnerProps): JSX.Element => {
-    let imgSrc;
     let title;
     let description;
     const href = homeUrl || '/';
@@ -51,7 +44,6 @@ const ErrorPage = ({
 
     switch (code) {
         case ERROR_CODES.ACCESS_DENIED:
-            imgSrc = img403src;
             title = pageGroup ? t('label_title-403_page-group') : t('label_title-403_project');
             description = (
                 <React.Fragment>
@@ -67,12 +59,10 @@ const ErrorPage = ({
             );
             break;
         case ERROR_CODES.NOT_FOUND:
-            imgSrc = img404src;
             title = t('label_title-404');
             description = homeLink;
             break;
         default:
-            imgSrc = img500src;
             title = t('label_title-500');
             description = (
                 <React.Fragment>
@@ -89,7 +79,13 @@ const ErrorPage = ({
 
     return (
         <div className={b()}>
-            {imgSrc && <img src={imgSrc} alt="" width="220" height="220" className={b('image')} />}
+            <img
+                src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+                alt={`Error image for ${code} code`}
+                width="230"
+                height="230"
+                className={b('image', {code: code.toString()})}
+            />
             <h1 className={b('code')}>{t('label_title-code', {code})}</h1>
             <h2 className={b('title')}>{title}</h2>
             <p className={b('description')}>{description}</p>

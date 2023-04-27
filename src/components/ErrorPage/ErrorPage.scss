@@ -11,6 +11,18 @@
 
     &__image {
         margin-bottom: 40px;
+
+        //The images for error page are supposed to be installed via "background-image"
+        &_code {
+            &_403 {
+            }
+
+            &_404 {
+            }
+
+            &_500 {
+            }
+        }
     }
 
     &__code {

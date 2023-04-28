@@ -12,15 +12,18 @@
     &__image {
         margin-bottom: 40px;
 
-        //The images for error page are supposed to be installed via "background-image"
+        //The images for error page are supposed to be installed via overriding "background-image" variable
         &_code {
             &_403 {
+                background-image: var(--dc-error-image-403);
             }
 
             &_404 {
+                background-image: var(--dc-error-image-404);
             }
 
             &_500 {
+                background-image: var(--dc-error-image-500);
             }
         }
     }

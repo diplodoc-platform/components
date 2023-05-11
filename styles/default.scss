@@ -13,6 +13,10 @@ body {
     --dc-header-height: 0;
     --dc-subheader-height: 40px;
 
+    --dc-error-image-403: url('data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=');
+    --dc-error-image-404: url('data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=');
+    --dc-error-image-500: url('data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=');
+
     .yc-root {
         --yc-scrollbar-thin-width: 6px;
 

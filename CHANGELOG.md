@@ -1,5 +1,12 @@
 # История изменений
 
+## [2.8.0](https://github.com/yandex-cloud/docs-components/compare/v2.7.3...v2.8.0) (2023-05-11)
+
+
+### Features
+
+* error page support background-image ([#138](https://github.com/yandex-cloud/docs-components/issues/138)) ([7c67989](https://github.com/yandex-cloud/docs-components/commit/7c679890139b8458f471a38b55d393a7d7eff100))
+
 ## [2.7.3](https://github.com/yandex-cloud/docs-components/compare/v2.7.2...v2.7.3) (2023-04-26)
 
 

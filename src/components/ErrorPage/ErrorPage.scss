@@ -10,6 +10,8 @@
     text-align: center;
 
     &__image {
+        width: 230px;
+        height: 230px;
         margin-bottom: 40px;
 
         //The images for error page are supposed to be installed via overriding "background-image" variable

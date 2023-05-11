@@ -79,11 +79,8 @@ const ErrorPage = ({
 
     return (
         <div className={b()}>
-            <img
-                src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
-                alt={`Error image for ${code} code`}
-                width="230"
-                height="230"
+            <div
+                title={`Error image for ${code} code`}
                 className={b('image', {code: code.toString()})}
             />
             <h1 className={b('code')}>{t('label_title-code', {code})}</h1>

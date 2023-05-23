@@ -1,7 +1,7 @@
 {
   "extends": "@yandex-cloud/tsconfig/tsconfig",
   "compilerOptions": {
-    "module": "esNext",
+    "module": "commonjs",
     "allowJs": false,
     "importHelpers": true,
     "resolveJsonModule": true,

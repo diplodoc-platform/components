@@ -14,6 +14,10 @@
         height: 230px;
         margin-bottom: 40px;
 
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
+
         //The images for error page are supposed to be installed via overriding "background-image" variable
         &_code {
             &_403 {

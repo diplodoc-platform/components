@@ -1,5 +1,12 @@
 # История изменений
 
+## [2.8.1](https://github.com/yandex-cloud/docs-components/compare/v2.8.0...v2.8.1) (2023-05-31)
+
+
+### Bug Fixes
+
+* fit background image ([#141](https://github.com/yandex-cloud/docs-components/issues/141)) ([f49c5ff](https://github.com/yandex-cloud/docs-components/commit/f49c5ff4f77870fecf0c74acc8c51cac3d34458c))
+
 ## [2.8.0](https://github.com/yandex-cloud/docs-components/compare/v2.7.3...v2.8.0) (2023-05-11)
 
 

@@ -50,6 +50,7 @@
     "pre-commit": "lint-staged"
   },
   "dependencies": {
+    "@doc-tools/transform": "^3.1.0",
     "@gravity-ui/uikit": "^4.3.0",
     "@popperjs/core": "^2.11.2",
     "bem-cn-lite": "4.1.0",
@@ -82,7 +83,6 @@
     "@babel/preset-react": "7.16.7",
     "@babel/preset-typescript": "7.16.7",
     "@babel/runtime": "7.17.2",
-    "@doc-tools/transform": "2.5.7",
     "@storybook/addon-actions": "5.3.21",
     "@storybook/addon-knobs": "5.3.21",
     "@storybook/react": "5.3.21",

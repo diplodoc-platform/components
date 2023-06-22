@@ -1,5 +1,5 @@
 import React, {ReactElement} from 'react';
-import _ from 'lodash';
+import {isEqual, debounce} from 'lodash';
 import scrollIntoView from 'scroll-into-view-if-needed';
 
 import {InnerProps} from '../../utils';
@@ -68,11 +68,11 @@ export class Scrollspy extends React.Component<ScrollspyInnerProps, ScrollspySta
         const {items, router} = this.props;
         const {inViewState} = this.state;
 
-        if (!_.isEqual(inViewState, prevState.inViewState)) {
+        if (!isEqual(inViewState, prevState.inViewState)) {
             this.scrollToListItem();
         }
 
-        if (!_.isEqual(items, prevProps.items) || prevProps.router.pathname !== router.pathname) {
+        if (!isEqual(items, prevProps.items) || prevProps.router.pathname !== router.pathname) {
             this.initItems();
         }
 
@@ -293,7 +293,7 @@ export class Scrollspy extends React.Component<ScrollspyInnerProps, ScrollspySta
     };
 
     // eslint-disable-next-line @typescript-eslint/member-ordering, react/sort-comp
-    private handleScrollDebounced = _.debounce(this.handleScroll, 100);
+    private handleScrollDebounced = debounce(this.handleScroll, 100);
 
     private pauseScrollHandler() {
         // wait for the end of smooth auto-scroll

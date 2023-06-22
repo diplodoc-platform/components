@@ -1,5 +1,5 @@
 import {useEffect, useRef, useState, useCallback} from 'react';
-import _ from 'lodash';
+import {throttle} from 'lodash';
 
 import {getHighlightedItemIndexInView, highlight, scrollToItem} from './utils';
 import {CLASSNAME, CLASSNAME_SELECTED, HIGHLIGHT_OPTIONS} from './constants';
@@ -369,7 +369,7 @@ export function useCurrentWordSelectionSyncScrollEffect({
         headerHeight,
     ]);
 
-    const handleScrollThrottled = _.throttle(handleScroll, 50);
+    const handleScrollThrottled = throttle(handleScroll, 50);
 
     useEffect(() => {
         if (searchBarIsVisible) {

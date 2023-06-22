@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState, useRef, ReactElement} from 'react';
+import React, {useCallback, useEffect, useState, useRef} from 'react';
 import {WithTranslation, withTranslation, WithTranslationProps} from 'react-i18next';
 import allLangs from 'langs';
 import {Popup, Icon as IconComponent, List} from '@gravity-ui/uikit';
@@ -10,14 +10,12 @@ import {getPopupPosition} from './utils';
 import {PopperPosition} from '../../../hooks';
 
 import LangIcon from '../../../../assets/icons/lang.svg';
-import RusIcon from '../../../../assets/icons/rus.svg';
-import EngIcon from '../../../../assets/icons/eng.svg';
 
 import '../Controls.scss';
 
 const LEGACY_LANG_ITEMS = [
-    {value: Lang.En, text: 'English', icon: <EngIcon />},
-    {value: Lang.Ru, text: 'Русский', icon: <RusIcon />},
+    {value: Lang.En, text: 'English', icon: '🇬🇧'},
+    {value: Lang.Ru, text: 'Русский', icon: '🇷🇺'},
 ];
 
 const b = block('dc-controls');
@@ -35,7 +33,7 @@ interface ControlProps {
 interface ListItem {
     value: string;
     text: string;
-    icon?: ReactElement;
+    icon?: string;
 }
 
 const LIST_ITEM_HEIGHT = 36;

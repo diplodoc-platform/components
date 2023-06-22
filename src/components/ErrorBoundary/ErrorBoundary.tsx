@@ -1,5 +1,5 @@
 import React from 'react';
-import _ from 'lodash';
+import {isEqual} from 'lodash';
 
 import {ErrorPage} from '../ErrorPage';
 
@@ -12,7 +12,7 @@ class ErrorBoundary extends React.Component<ErrorBoundaryState> {
     state: ErrorBoundaryState = {};
 
     componentDidUpdate(prevProps: ErrorBoundaryState) {
-        if (this.state.error && !_.isEqual(this.props, prevProps)) {
+        if (this.state.error && !isEqual(this.props, prevProps)) {
             this.setState({error: undefined, errorInfo: undefined});
         }
     }

@@ -60,9 +60,9 @@ export enum Vcs {
 
 export interface DocPageData extends DocBasePageData {
     leading?: false;
-    breadcrumbs: BreadcrumbItem[];
+    breadcrumbs?: BreadcrumbItem[];
     html: string;
-    title: string;
+    title?: string;
     headings: DocHeadingItem[];
     meta: DocMeta;
     vcsUrl?: string;
@@ -88,7 +88,7 @@ export interface DocMeta {
 }
 
 export interface TocData {
-    title: string;
+    title?: string;
     href: string;
     items: TocItem[];
     stage?: string;

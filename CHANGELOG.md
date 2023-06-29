@@ -1,5 +1,13 @@
 # История изменений
 
+## [2.8.2](https://github.com/yandex-cloud/docs-components/compare/v2.8.1...v2.8.2) (2023-06-29)
+
+
+### Bug Fixes
+
+* Make types more flexible ([e82d360](https://github.com/yandex-cloud/docs-components/commit/e82d360e2218f4d81fbbacc67f7ac23388a9f6b2))
+* Optimize build size ([90b6a91](https://github.com/yandex-cloud/docs-components/commit/90b6a9182ecca6d615b564fc1a128005e49def94))
+
 ## [2.8.1](https://github.com/yandex-cloud/docs-components/compare/v2.8.0...v2.8.1) (2023-05-31)
 
 

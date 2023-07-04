@@ -376,7 +376,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
     private renderAuthor(onlyAuthor: boolean) {
         const {meta, lang} = this.props;
 
-        if (!meta?.author) {
+        if (!meta?.author || typeof meta?.author !== 'object') {
             return null;
         }
 

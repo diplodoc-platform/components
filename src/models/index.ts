@@ -83,7 +83,7 @@ export interface DocMeta {
     stage?: string;
     editable?: boolean;
     contributors?: Contributor[];
-    author?: Contributor;
+    author?: unknown | Contributor;
     __system?: Record<string, unknown>;
 }
 

@@ -1,6 +1,6 @@
 import {parse} from 'url';
 
-import {Router} from '../models';
+import {Contributor, Router} from '../models';
 
 export type InnerProps<TProps extends Partial<TDefaultProps>, TDefaultProps> = Omit<
     TProps,
@@ -94,4 +94,14 @@ export function isInvalidEmail(email: string) {
     const EMAIL_RE = /\S+@\S+/;
 
     return !EMAIL_RE.test(email);
+}
+
+export function isContributor(contributor: unknown): contributor is Contributor {
+    if (!contributor) {
+        return false;
+    }
+
+    const {login, name, email} = contributor as Contributor;
+
+    return Boolean(login || name || email);
 }

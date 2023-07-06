@@ -33,6 +33,7 @@ import {
     getStateKey,
     InnerProps,
     getRandomKey,
+    isContributor,
 } from '../../utils';
 import {DEFAULT_SETTINGS} from '../../constants';
 
@@ -376,7 +377,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
     private renderAuthor(onlyAuthor: boolean) {
         const {meta, lang} = this.props;
 
-        if (!meta?.author || typeof meta?.author !== 'object') {
+        if (!isContributor(meta?.author)) {
             return null;
         }
 

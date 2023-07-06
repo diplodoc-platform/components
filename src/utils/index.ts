@@ -97,11 +97,17 @@ export function isInvalidEmail(email: string) {
 }
 
 export function isContributor(contributor: unknown): contributor is Contributor {
-    if (!contributor) {
+    if (!contributor || typeof contributor !== 'object') {
         return false;
     }
 
-    const {login, name, email} = contributor as Contributor;
+    const fields = ['login', 'name', 'email'];
 
-    return Boolean(login || name || email);
+    for (const field of fields) {
+        if (field in contributor) {
+            return true;
+        }
+    }
+
+    return false;
 }

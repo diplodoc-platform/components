@@ -29,6 +29,10 @@ const ErrorPage = ({
     receiveAccessUrl,
     pageGroup,
 }: ErrorPagePropsInnerProps): JSX.Element => {
+    if (i18n.language !== lang) {
+        i18n.changeLanguage(lang);
+    }
+
     let title;
     let description;
     const href = homeUrl || '/';
@@ -37,10 +41,6 @@ const ErrorPage = ({
             <Button className={b('description-link')}>{t('label_link-main')}</Button>
         </Link>
     );
-
-    if (i18n.language !== lang) {
-        i18n.changeLanguage(lang);
-    }
 
     switch (code) {
         case ERROR_CODES.ACCESS_DENIED:

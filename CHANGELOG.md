@@ -1,5 +1,12 @@
 # История изменений
 
+## [2.8.3](https://github.com/yandex-cloud/docs-components/compare/v2.8.2...v2.8.3) (2023-07-06)
+
+
+### Bug Fixes
+
+* **ErrorPage:** Inconsistent back button translation ([b7f93e5](https://github.com/yandex-cloud/docs-components/commit/b7f93e5f3547a0b1903c3bd6dc2f6e29dc5a9a4b))
+
 ## [2.8.2](https://github.com/yandex-cloud/docs-components/compare/v2.8.1...v2.8.2) (2023-06-29)
 
 

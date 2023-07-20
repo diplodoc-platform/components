@@ -9,19 +9,7 @@ export function getName(contributor: Contributor, useFullName = false): string {
 export function getUserIdentificator(contributor: Contributor): string {
     const {name, email, login} = contributor;
 
-    if (typeof name === 'string' && name.length) {
-        return name;
-    }
-
-    if (typeof login === 'string' && login.length) {
-        return login;
-    }
-
-    if (typeof email === 'string' && email.length) {
-        return email;
-    }
-
-    return '';
+    return name || email || login || '';
 }
 
 function getShortContributorName(fullContributorName: string): string {

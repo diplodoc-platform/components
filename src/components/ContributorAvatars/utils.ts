@@ -9,7 +9,7 @@ export function getName(contributor: Contributor, useFullName = false): string {
 export function getUserIdentificator(contributor: Contributor): string {
     const {name, email, login} = contributor;
 
-    return name || login || email;
+    return name || email || login || '';
 }
 
 function getShortContributorName(fullContributorName: string): string {

@@ -122,9 +122,9 @@ export enum Lang {
 export interface Contributor {
     avatar: string;
     login: string;
-    name: string;
-    email: string;
     url: string;
+    name: string | null;
+    email: string | null;
 }
 
 export interface DislikeData {

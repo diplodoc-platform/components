@@ -101,7 +101,7 @@ export function isContributor(contributor: unknown): contributor is Contributor 
         return false;
     }
 
-    const fields = ['login', 'name', 'email'];
+    const fields = ['avatar', 'login', 'url', 'name', 'email'];
 
     for (const field of fields) {
         if (field in contributor) {

@@ -9,7 +9,7 @@
 To build the project correctly you need to install `python@2`.
 Visit [python.org/downloads](https://www.python.org/downloads/release/python-2718/) to get the latest version.
 
-Install Dependencies:
+Install Dependencies
 
 ```shell
 npm ci

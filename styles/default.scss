@@ -10,7 +10,7 @@ body {
     padding: 0;
     box-sizing: border-box;
 
-    --dc-header-height: 0;
+    --dc-header-height: 64px;
     --dc-subheader-height: 40px;
 
     --dc-error-image-403: url('data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=');
@@ -31,6 +31,10 @@ body {
             background: transparent;
         }
     }
+}
+
+html {
+    scroll-padding-top: var(--dc-header-height);
 }
 
 #root {

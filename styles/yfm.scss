@@ -110,7 +110,7 @@
     // The margin is summed up. So, we need to take 15px away from the header margin-top
     h1,
     h2 {
-        @include fixAnchorPosition(calc(#{$headerMarginTopLarge} - #{$blockMarginBottomMedium}));
+        @include setHeadingPadding(calc(#{$headerMarginTopLarge} - #{$blockMarginBottomMedium}));
         margin-bottom: $blockMarginBottomLarge;
     }
 
@@ -118,15 +118,7 @@
     h4,
     h5,
     h6 {
-        @include fixAnchorPosition(calc(#{$headerMarginTopMedium} - #{$blockMarginBottomMedium}));
-    }
-
-    h1 + h2,
-    h2 + h3,
-    h3 + h4,
-    h4 + h5,
-    h5 + h6 {
-        @include fixAnchorPosition();
+        @include setHeadingPadding(calc(#{$headerMarginTopMedium} - #{$blockMarginBottomMedium}));
     }
 
     // Use 0px for the top offset of the header if it is the first child element,
@@ -138,7 +130,28 @@
     h5,
     h6 {
         &:first-child {
-            @include fixAnchorPosition();
+            @include setHeadingPadding();
+        }
+    }
+
+    h1 + h2,
+    h2 + h3,
+    h3 + h4,
+    h4 + h5,
+    h5 + h6 {
+        padding-top: 0;
+    }
+
+    table {
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            /* stylelint-disable-next-line declaration-no-important */
+            padding-top: 0 !important;
+            margin-bottom: 0;
         }
     }
 
@@ -155,7 +168,7 @@
         & + h4,
         & + h5,
         & + h6 {
-            @include fixAnchorPosition(#{$headerMarginTopLarge});
+            @include setHeadingPadding(#{$headerMarginTopLarge});
         }
     }
 

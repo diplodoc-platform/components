@@ -11,9 +11,8 @@
     list-style: none;
 }
 
-@mixin fixAnchorPosition($offset: 0px) {
-    padding-top: calc(var(--dc-header-height, #{$headerHeight}));
-    margin-top: calc(#{$offset} - var(--dc-header-height, #{$headerHeight}));
+@mixin setHeadingPadding($offset: 0px) {
+    padding-top: calc(var(--dc-header-height, #{$headerHeight}) - #{$offset});
 }
 
 @mixin reset-link-style() {

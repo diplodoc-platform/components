@@ -1,12 +1,12 @@
 .dc-bookmark-button {
     vertical-align: middle;
-    margin: 0 4px 4px 4px;
+    margin: 0 4px 4px;
 
     &:hover::before {
         background-color: transparent;
     }
 
     &_active &__icon {
-        color: var(--yc-color-base-special);
+        color: var(--g-color-base-brand);
     }
 }

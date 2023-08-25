@@ -30,7 +30,7 @@ $popupWidth: 320px;
         width: 100%;
         padding: 28px;
 
-        border: 1px solid var(--yc-color-line-generic);
+        border: 1px solid var(--g-color-line-generic);
         border-radius: 8px;
 
         &_view_wide {
@@ -41,7 +41,7 @@ $popupWidth: 320px;
 
     &__like-button {
         &_active {
-            color: var(--yc-color-base-special);
+            color: var(--g-color-base-brand);
         }
     }
 
@@ -64,14 +64,14 @@ $popupWidth: 320px;
     }
 
     &__popup-title {
-        font-size: var(--yc-text-body-2-font-size);
-        line-height: var(--yc-text-body-2-line-height);
+        font-size: var(--g-text-body-2-font-size);
+        line-height: var(--g-text-body-2-line-height);
         padding-bottom: 8px;
     }
 
     &__popup-text {
-        font-size: var(--yc-text-body-short-font-size);
-        line-height: var(--yc-text-body-short-line-height);
+        font-size: var(--g-text-body-short-font-size);
+        line-height: var(--g-text-body-short-line-height);
     }
 
     &__variants {
@@ -105,8 +105,8 @@ $popupWidth: 320px;
 
     &__title {
         &_view_wide {
-            font-size: var(--yc-text-body-2-font-size);
-            line-height: var(--yc-text-body-2-line-height);
+            font-size: var(--g-text-body-2-font-size);
+            line-height: var(--g-text-body-2-line-height);
             margin-right: 16px;
             font-weight: 400;
         }
@@ -148,7 +148,7 @@ $popupWidth: 320px;
 
     &__feedback-button {
         &_active {
-            color: var(--yc-color-base-special);
+            color: var(--g-color-base-brand);
         }
     }
 }

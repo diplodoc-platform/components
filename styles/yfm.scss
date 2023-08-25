@@ -2,32 +2,32 @@
 @import './variables';
 
 .dc-doc-page .yfm {
-    color: var(--yc-color-text-primary);
+    color: var(--g-color-text-primary);
 
-    --yfm-color-hljs-background: var(--yc-color-base-background);
-    --yfm-color-hljs-subst: var(--yc-color-text-complementary);
-    --yfm-color-hljs-comment: var(--yc-color-text-secondary);
-    --yfm-color-hljs-deletion: var(--yc-color-line-danger);
-    --yfm-color-hljs-section: var(--yc-color-line-danger);
+    --yfm-color-hljs-background: var(--g-color-base-background);
+    --yfm-color-hljs-subst: var(--g-color-text-complementary);
+    --yfm-color-hljs-comment: var(--g-color-text-secondary);
+    --yfm-color-hljs-deletion: var(--g-color-line-danger);
+    --yfm-color-hljs-section: var(--g-color-line-danger);
 
     a {
-        color: var(--yc-color-text-link);
+        color: var(--g-color-text-link);
 
         &:hover,
         &:active {
-            color: var(--yc-color-text-link-hover);
+            color: var(--g-color-text-link-hover);
         }
     }
 
     img {
-        background-color: var(--yc-color-base-background);
+        background-color: var(--g-color-base-background);
     }
 
     $backgroundColors: (
-        yfm-accent-info: var(--yc-color-base-info),
-        yfm-accent-tip: var(--yc-color-base-positive),
-        yfm-accent-alert: var(--yc-color-base-danger),
-        yfm-accent-warning: var(--yc-color-base-warning),
+        yfm-accent-info: var(--g-color-base-info-light),
+        yfm-accent-tip: var(--g-color-base-positive-light),
+        yfm-accent-alert: var(--g-color-base-danger-light),
+        yfm-accent-warning: var(--g-color-base-warning-light),
     );
 
     @each $type, $color in $backgroundColors {
@@ -40,57 +40,57 @@
         font-size: var(--dc-code-short-font-size);
         line-height: var(--dc-code-short-line-height);
         padding: var(--dc-code-short-padding);
-        background: var(--yc-color-base-misc);
-        color: var(--yc-color-text-misc);
+        background: var(--g-color-base-misc-light);
+        color: var(--g-color-text-misc);
     }
 
     pre > code {
         font-size: var(--dc-code-font-size);
         line-height: var(--dc-code-line-height);
         padding: 16px;
-        background: var(--yc-color-base-misc);
-        color: var(--yc-color-text-complementary);
+        background: var(--g-color-base-misc-light);
+        color: var(--g-color-text-complementary);
     }
 
     dfn {
-        background: var(--yc-color-base-float);
-        box-shadow: 0 8px 20px var(--yc-color-sfx-shadow);
+        background: var(--g-color-base-float);
+        box-shadow: 0 8px 20px var(--g-color-sfx-shadow);
     }
 
     dfn:before {
-        box-shadow: 0 0 0 1px var(--yc-popup-border-color);
+        box-shadow: 0 0 0 1px var(--g-color-line-generic-solid);
     }
 
     table {
-        color: var(--yc-color-text-primary);
-        border-color: var(--yc-color-line-generic);
-        background: var(--yc-color-base-background);
+        color: var(--g-color-text-primary);
+        border-color: var(--g-color-line-generic);
+        background: var(--g-color-base-background);
     }
 
     table thead,
     table tr:nth-child(2n) {
-        background: var(--yc-color-base-generic);
+        background: var(--g-color-base-generic);
     }
 
     hr {
-        background-color: var(--yc-color-base-background);
+        background-color: var(--g-color-base-background);
     }
 
     blockquote {
-        border-left-color: var(--yc-color-base-special);
+        border-left-color: var(--g-color-base-brand);
     }
 
     .yfm-tab-list {
-        border-bottom-color: var(--yc-color-line-generic);
+        border-bottom-color: var(--g-color-line-generic);
     }
 
     .yfm-tab:hover,
     .yfm-tab:active {
-        color: var(--yc-color-text-link-hover);
+        color: var(--g-color-text-link-hover);
     }
 
     .yfm-tab.active {
-        border-bottom-color: var(--yc-color-base-special);
+        border-bottom-color: var(--g-color-base-brand);
     }
 
     /* TODO: move yfm-cut styles to yfm-transform */
@@ -103,7 +103,7 @@
     }
 
     .yfm-term_title:hover {
-        color: var(--yc-color-text-link-hover);
+        color: var(--g-color-text-link-hover);
     }
 
     // Margin collapse is not applied for a block and header with a negative margin.
@@ -145,7 +145,7 @@
     .yfm-page__delimeter {
         height: 4px;
         border-radius: 2px;
-        background: var(--yc-color-line-generic);
+        background: var(--g-color-line-generic);
         margin-top: 20px;
         margin-bottom: 0;
 

@@ -88,7 +88,7 @@ const Control = (props: ControlProps) => {
                 anchorRef={controlRef}
                 open={isVisibleTooltip}
                 onOutsideClick={hideTooltip}
-                className={b('tooltip')}
+                contentClassName={b('tooltip')}
                 placement={position}
             >
                 <span className={b('tooltip-text')}>{tooltipText}</span>

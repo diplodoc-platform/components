@@ -9,7 +9,7 @@
 
         &:hover,
         &:active {
-            color: var(--yc-color-text-link-hover);
+            color: var(--g-color-text-link-hover);
         }
     }
 
@@ -63,17 +63,17 @@
         &-title,
         &-title &-search-token {
             @include link();
-            color: var(--yc-color-text-primary);
+            color: var(--g-color-text-primary);
             @include text-size(subheader-3);
         }
 
         &-title:hover &-search-token {
-            color: var(--yc-color-text-link-hover);
+            color: var(--g-color-text-link-hover);
         }
 
         &-description {
             display: inline-block;
-            color: var(--yc-color-text-secondary);
+            color: var(--g-color-text-secondary);
 
             em {
                 font-weight: bolder;
@@ -85,7 +85,7 @@
             }
         }
         &-description &-search-token {
-            color: var(--yc-color-text-primary);
+            color: var(--g-color-text-primary);
         }
     }
 }

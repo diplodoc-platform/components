@@ -29,7 +29,7 @@ const SubscribeSuccessPopup: React.FC<
             anchorRef={anchor}
             open={visible}
             onOutsideClick={hide}
-            className={b('success-popup', {view})}
+            contentClassName={b('success-popup', {view})}
             placement={getPopupPosition(isVerticalView, view)}
         >
             <h3 className={b('popup-title')}>{t('verify-title')}</h3>

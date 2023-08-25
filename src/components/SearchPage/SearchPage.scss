@@ -33,7 +33,7 @@
 
     &__paginator {
         padding: 10px 0;
-        border-top: 1px solid var(--yc-color-line-generic);
+        border-top: 1px solid var(--g-color-line-generic);
     }
 
     @media (max-width: map-get($screenBreakpoints, 'md')) {

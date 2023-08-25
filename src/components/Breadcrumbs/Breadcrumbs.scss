@@ -12,7 +12,7 @@
         overflow: hidden;
         text-overflow: ellipsis;
 
-        color: var(--yc-color-text-secondary);
+        color: var(--g-color-text-secondary);
     }
 
     &__item {
@@ -21,14 +21,14 @@
         &::after {
             content: '\a0/ ';
             margin: 0 5px;
-            color: var(--yc-color-text-hint);
+            color: var(--g-color-text-hint);
         }
 
         &:last-child::after {
             display: none;
         }
         &:last-child {
-            color: var(--yc-color-text-primary);
+            color: var(--g-color-text-primary);
         }
     }
 

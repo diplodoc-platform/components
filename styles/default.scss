@@ -18,11 +18,11 @@ body {
     --dc-error-image-500: url('data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=');
 
     .yc-root {
-        --yc-scrollbar-thin-width: 6px;
+        --g-scrollbar-width: 6px;
 
         &::-webkit-scrollbar,
         *::-webkit-scrollbar {
-            height: var(--yc-scrollbar-thin-width);
+            height: var(--g-scrollbar-width);
             background: transparent;
         }
 

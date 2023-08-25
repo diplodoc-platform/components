@@ -205,7 +205,7 @@ const SettingsControl = (props: ControlInnerProps) => {
             <Popup
                 anchorRef={controlRef}
                 open={isVisiblePopup}
-                className={b('popup')}
+                contentClassName={b('popup')}
                 onOutsideClick={hidePopup}
                 placement={getPopupPosition(isVerticalView)}
             >

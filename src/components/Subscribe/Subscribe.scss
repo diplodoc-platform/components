@@ -30,7 +30,7 @@ $popupWidth: 320px;
         width: 100%;
         padding: 28px;
 
-        border: 1px solid var(--yc-color-line-generic);
+        border: 1px solid var(--g-color-line-generic);
         border-radius: 8px;
 
         &_view_wide {
@@ -58,14 +58,14 @@ $popupWidth: 320px;
     }
 
     &__popup-title {
-        font-size: var(--yc-text-body2-font-size);
-        line-height: var(--yc-text-body2-line-height);
+        font-size: var(--g-text-body2-font-size);
+        line-height: var(--g-text-body2-line-height);
         padding-bottom: 8px;
     }
 
     &__popup-text {
-        font-size: var(--yc-text-body-1-font-size);
-        line-height: var(--yc-text-body-1-line-height);
+        font-size: var(--g-text-body-1-font-size);
+        line-height: var(--g-text-body-1-line-height);
     }
 
     &__variants-actions {
@@ -87,8 +87,8 @@ $popupWidth: 320px;
 
     &__title {
         &_view_wide {
-            font-size: var(--yc-text-body2-font-size);
-            line-height: var(--yc-text-body2-line-height);
+            font-size: var(--g-text-body2-font-size);
+            line-height: var(--g-text-body2-line-height);
             margin-right: 16px;
             font-weight: 400;
         }
@@ -136,7 +136,7 @@ $popupWidth: 320px;
         }
 
         &_active {
-            color: var(--yc-color-button-accent-background);
+            color: var(--g-color-button-accent-background);
         }
     }
 }

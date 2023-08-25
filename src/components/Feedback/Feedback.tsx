@@ -1,7 +1,7 @@
 import React, {useCallback, useState, useEffect, useRef} from 'react';
 import block from 'bem-cn-lite';
 import {withTranslation, WithTranslation, WithTranslationProps} from 'react-i18next';
-import {Checkbox, Popup, TextInput, Button, Icon as IconComponent} from '@gravity-ui/uikit';
+import {Checkbox, Popup, TextArea, Button, Icon as IconComponent} from '@gravity-ui/uikit';
 
 import {Control} from '../Control';
 import {PopperPosition} from '../../hooks';
@@ -334,7 +334,7 @@ const Feedback: React.FC<FeedbackInnerProps> = (props) => {
                 anchorRef={anchor}
                 open={visible}
                 onOutsideClick={hideFeedbackPopups}
-                className={b('success-popup', {view})}
+                contentClassName={b('success-popup', {view})}
                 placement={getPopupPosition()}
             >
                 <h3 className={b('popup-title')}>{t('success-title')}</h3>
@@ -378,8 +378,7 @@ const Feedback: React.FC<FeedbackInnerProps> = (props) => {
     const renderDislikeVariantsTextArea = useCallback(() => {
         return (
             <div className={b('textarea')}>
-                <TextInput
-                    multiline
+                <TextArea
                     size="m"
                     rows={6}
                     placeholder={t('comment-placeholder')}

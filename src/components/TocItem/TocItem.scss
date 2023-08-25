@@ -15,11 +15,11 @@
         padding: 7px 12px 7px 20px;
         word-break: break-word;
 
-        color: var(--yc-color-text-primary);
+        color: var(--g-color-text-primary);
 
         &_active {
             border-radius: 3px;
-            background: var(--yc-color-base-selection);
+            background: var(--g-color-base-selection);
         }
 
         &::before {
@@ -34,7 +34,7 @@
 
         &:hover {
             border-radius: 3px;
-            background: var(--yc-color-base-simple-hover);
+            background: var(--g-color-base-simple-hover);
         }
     }
 

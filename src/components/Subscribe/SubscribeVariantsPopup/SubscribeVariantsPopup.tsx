@@ -114,7 +114,7 @@ const SubscribeVariantsPopup: React.FC<
             anchorRef={anchor}
             open={visible}
             onOutsideClick={hide}
-            className={b('variants-popup', {view})}
+            contentClassName={b('variants-popup', {view})}
             placement={getPopupPosition(isVerticalView, view)}
         >
             {renderSubscribeVariantsList()}

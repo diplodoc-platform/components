@@ -20,7 +20,7 @@
 
     &__text-size-button-icon {
         &_active {
-            color: var(--yc-color-base-special);
+            color: var(--g-color-base-brand);
         }
     }
 
@@ -49,7 +49,7 @@
     }
 
     &__list-item-description {
-        color: var(--yc-color-text-secondary);
+        color: var(--g-color-text-secondary);
     }
 
     &__list-item-control {

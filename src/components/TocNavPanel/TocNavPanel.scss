@@ -4,7 +4,7 @@
     display: flex;
     justify-content: center;
     width: 100%;
-    background: var(--yc-color-base-background);
+    background: var(--g-color-base-background);
 
     @include text-size(body-1);
 
@@ -13,7 +13,7 @@
         bottom: 0;
         z-index: 1000;
         left: 0;
-        border-top: 1px solid var(--yc-color-line-generic);
+        border-top: 1px solid var(--g-color-line-generic);
     }
 
     &_fixed &__control-hint {
@@ -59,7 +59,7 @@
     }
 
     &__control-hint {
-        color: var(--yc-color-text-hint);
+        color: var(--g-color-text-hint);
     }
 
     &__control-text {
@@ -71,7 +71,7 @@
         display: flex;
         align-items: center;
         min-height: 32px;
-        color: var(--yc-color-text-primary);
+        color: var(--g-color-text-primary);
         font-weight: 500;
     }
 }

@@ -34,6 +34,7 @@ const Details: React.FC<DetailsProps> = (props) => {
             open={isVisiblePopup}
             onOutsideClick={() => changeVisiblilityPopup(false)}
             className={b('popup')}
+            contentClassName={b('popup_content')}
             placement={PopperPosition.BOTTOM}
             hasArrow={true}
         >

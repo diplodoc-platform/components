@@ -1,8 +1,8 @@
 @import './variables';
 
 @mixin text-size($name) {
-    font-size: var(--yc-text-#{$name}-font-size);
-    line-height: var(--yc-text-#{$name}-line-height);
+    font-size: var(--g-text-#{$name}-font-size);
+    line-height: var(--g-text-#{$name}-line-height);
 }
 
 @mixin reset-list-style() {
@@ -32,13 +32,13 @@
 @mixin link() {
     @include islands-focus();
 
-    color: var(--yc-color-text-link);
+    color: var(--g-color-text-link);
     text-decoration: none;
     cursor: pointer;
 
     &:hover,
     &:active {
-        color: var(--yc-color-text-link-hover);
+        color: var(--g-color-text-link-hover);
     }
 }
 
@@ -84,9 +84,9 @@
 }
 
 @mixin text-body-1() {
-    font-size: var(--yc-text-body-1-font-size);
-    line-height: var(--yc-text-body-1-line-height);
-    font-weight: var(--yc-text-body-font-weight);
+    font-size: var(--g-text-body-1-font-size);
+    line-height: var(--g-text-body-1-line-height);
+    font-weight: var(--g-text-body-font-weight);
 }
 
 @mixin desktop-only() {

@@ -65,7 +65,7 @@
   "peerDependencies": {
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
-    "@doc-tools/transform": "^2.0.0"
+    "@doc-tools/transform": "^3.10.2"
   },
   "devDependencies": {
     "@babel/core": "7.17.5",
@@ -82,7 +82,7 @@
     "@babel/preset-react": "7.16.7",
     "@babel/preset-typescript": "7.16.7",
     "@babel/runtime": "7.17.2",
-    "@doc-tools/transform": "2.5.7",
+    "@doc-tools/transform": "^3.10.2",
     "@storybook/addon-actions": "5.3.21",
     "@storybook/addon-knobs": "5.3.21",
     "@storybook/react": "5.3.21",

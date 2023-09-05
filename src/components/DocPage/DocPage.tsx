@@ -1,41 +1,41 @@
 import React from 'react';
-import ReactDOMServer from 'react-dom/server';
+
 import block from 'bem-cn-lite';
 import '@doc-tools/transform/dist/js/yfm';
+import ReactDOMServer from 'react-dom/server';
 
+import {DEFAULT_SETTINGS} from '../../constants';
 import {
-    FeedbackSendData,
     DocPageData,
     DocSettings,
+    FeedbackSendData,
     Lang,
     Router,
-    Vcs,
+    SubscribeData,
     TextSizes,
     Theme,
-    SubscribeData,
+    Vcs,
 } from '../../models';
-import {DocLayout} from '../DocLayout';
-import {DocPageTitle} from '../DocPageTitle';
-import {MiniToc} from '../MiniToc';
-import {HTML} from '../HTML';
-import {Breadcrumbs} from '../Breadcrumbs';
-import {TocNavPanel} from '../TocNavPanel';
-import {Controls} from '../Controls';
-import {EditButton} from '../EditButton';
-import {SearchBar, withHighlightedSearchWords} from '../SearchBar';
-import {Feedback, FeedbackView} from '../Feedback';
-import Contributors from '../Contributors/Contributors';
-
 import {
+    InnerProps,
     callSafe,
     createElementFromHTML,
     getHeaderTag,
-    getStateKey,
-    InnerProps,
     getRandomKey,
+    getStateKey,
     isContributor,
 } from '../../utils';
-import {DEFAULT_SETTINGS} from '../../constants';
+import {Breadcrumbs} from '../Breadcrumbs';
+import Contributors from '../Contributors/Contributors';
+import {Controls} from '../Controls';
+import {DocLayout} from '../DocLayout';
+import {DocPageTitle} from '../DocPageTitle';
+import {EditButton} from '../EditButton';
+import {Feedback, FeedbackView} from '../Feedback';
+import {HTML} from '../HTML';
+import {MiniToc} from '../MiniToc';
+import {SearchBar, withHighlightedSearchWords} from '../SearchBar';
+import {TocNavPanel} from '../TocNavPanel';
 
 import LinkIcon from '../../../assets/icons/link.svg';
 

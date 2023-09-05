@@ -1,7 +1,8 @@
 import React from 'react';
+
+import {Button, Link} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 import {withTranslation, WithTranslation, WithTranslationProps} from 'react-i18next';
-import {Link, Button} from '@gravity-ui/uikit';
 
 import {Lang} from '../../models';
 import {ERROR_CODES} from '../../constants';
@@ -38,7 +39,7 @@ const ErrorPage = ({
     const href = homeUrl || '/';
     const homeLink = (
         <Link href={href}>
-            <Button className={b('description-link')}>{t('label_link-main')}</Button>
+            <Button className={b('description-link')}>{t<string>('label_link-main')}</Button>
         </Link>
     );
 
@@ -51,7 +52,7 @@ const ErrorPage = ({
                     {receiveAccessUrl && (
                         <Link href={receiveAccessUrl} target="_blank" rel="noopener noreferrer">
                             <Button view="action" className={b('description-link')}>
-                                {t('label_link-access')}
+                                {t<string>('label_link-access')}
                             </Button>
                         </Link>
                     )}
@@ -66,12 +67,12 @@ const ErrorPage = ({
             title = t('label_title-500');
             description = (
                 <React.Fragment>
-                    {t('label_description-1')}
+                    {t<string>('label_description-1')}
                     <Button
                         className={b('description-link')}
                         onClick={() => window.location.reload()}
                     >
-                        {t('label_description-link')}
+                        {t<string>('label_description-link')}
                     </Button>
                 </React.Fragment>
             );
@@ -83,7 +84,7 @@ const ErrorPage = ({
                 title={`Error image for ${code} code`}
                 className={b('image', {code: code.toString()})}
             />
-            <h1 className={b('code')}>{t('label_title-code', {code})}</h1>
+            <h1 className={b('code')}>{t<string>('label_title-code', {code})}</h1>
             <h2 className={b('title')}>{title}</h2>
             <p className={b('description')}>{description}</p>
         </div>

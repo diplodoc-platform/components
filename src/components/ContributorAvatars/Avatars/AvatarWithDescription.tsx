@@ -1,8 +1,9 @@
 import React, {Fragment, useRef, useState} from 'react';
 
-import Avatar from './Avatar';
-import {AvatarData, AvatarSizes, PopupData} from '../models';
 import {Contributor} from '../../../models';
+import {AvatarData, AvatarSizes, PopupData} from '../models';
+
+import Avatar from './Avatar';
 import Details from './Details';
 
 interface AvatarWithDescriptionProps {

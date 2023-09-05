@@ -1,8 +1,9 @@
-import block from 'bem-cn-lite';
 import React, {BaseSyntheticEvent} from 'react';
 
-import {AvatarData, AvatarSizes, PopupData} from '../models';
+import block from 'bem-cn-lite';
+
 import {Contributor} from '../../../models';
+import {AvatarData, AvatarSizes, PopupData} from '../models';
 import {getUserIdentificator} from '../utils';
 
 import '../ContributorAvatars.scss';

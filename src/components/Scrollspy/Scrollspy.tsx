@@ -1,9 +1,10 @@
 import React, {ReactElement} from 'react';
-import {isEqual, debounce} from 'lodash';
+
+import {debounce, isEqual} from 'lodash';
 import scrollIntoView from 'scroll-into-view-if-needed';
 
-import {InnerProps} from '../../utils';
 import {Router} from '../../models';
+import {InnerProps} from '../../utils';
 
 interface ScrollspyDefaultProps {
     currentClassName: string;

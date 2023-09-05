@@ -1,8 +1,9 @@
-import {useEffect, useRef, useState, useCallback} from 'react';
+import {SyntheticEvent, useCallback, useEffect, useRef, useState} from 'react';
+
 import {throttle} from 'lodash';
 
-import {getHighlightedItemIndexInView, highlight, scrollToItem} from './utils';
 import {CLASSNAME, CLASSNAME_SELECTED, HIGHLIGHT_OPTIONS} from './constants';
+import {getHighlightedItemIndexInView, highlight, scrollToItem} from './utils';
 
 type UseHighlightedSearchWords = {
     html: string;
@@ -223,7 +224,7 @@ export function useSearchBarNavigation({
     }, [highlightedDOMElements, headerHeight, hash]);
 
     const onClickNextSearch = useCallback(
-        (e) => {
+        (e: SyntheticEvent) => {
             e.stopPropagation();
             e.preventDefault();
 
@@ -244,7 +245,7 @@ export function useSearchBarNavigation({
     );
 
     const onClickPrevSearch = useCallback(
-        (e) => {
+        (e: SyntheticEvent) => {
             e.stopPropagation();
             e.preventDefault();
 

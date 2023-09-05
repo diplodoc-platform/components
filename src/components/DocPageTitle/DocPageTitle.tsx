@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {PropsWithChildren} from 'react';
+
 import block from 'bem-cn-lite';
 
-import {StageLabel, StageType} from '../StageLabel';
 import {BookmarkButton} from '../BookmarkButton';
 
 import './DocPageTitle.scss';
@@ -15,7 +15,7 @@ export interface DocPageTitleProps {
     onChangeBookmarkPage?: (value: boolean) => void;
 }
 
-export const DocPageTitle: React.FC<DocPageTitleProps> = ({
+export const DocPageTitle: React.FC<PropsWithChildren<DocPageTitleProps>> = ({
     children,
     stage,
     className,

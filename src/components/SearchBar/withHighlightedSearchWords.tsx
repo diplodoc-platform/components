@@ -1,12 +1,12 @@
-import React, {useState, useCallback, useEffect} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 
 import {DocPageData, Router} from '../../models';
 
 import {
-    useHighlightedSearchWords,
-    useSearchBarNavigation,
     useCurrentWordSelectionEffect,
     useCurrentWordSelectionSyncScrollEffect,
+    useHighlightedSearchWords,
+    useSearchBarNavigation,
 } from './hooks';
 
 export interface SearchWordsHighlighterProps extends DocPageData {

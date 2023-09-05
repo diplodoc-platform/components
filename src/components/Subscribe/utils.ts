@@ -1,5 +1,6 @@
-import {SubscribeView} from './Subscribe';
 import {PopperPosition} from '../../hooks';
+
+import {SubscribeView} from './Subscribe';
 
 export const getPopupPosition = (isVerticalView: boolean | undefined, view?: SubscribeView) => {
     if (!view || view === SubscribeView.Regular) {

@@ -1,13 +1,15 @@
-import block from 'bem-cn-lite';
 import React, {Fragment, ReactElement} from 'react';
 
+import block from 'bem-cn-lite';
+
 import {Contributor} from '../../models';
-import {getName} from './utils';
-import {AvatarData, AvatarSizes} from './models';
-import HiddenAvatars from './Avatars/HiddenAvatars';
-import AvatarWithDescription from './Avatars/AvatarWithDescription';
 import Link from '../Link';
+
 import Avatar from './Avatars/Avatar';
+import AvatarWithDescription from './Avatars/AvatarWithDescription';
+import HiddenAvatars from './Avatars/HiddenAvatars';
+import {AvatarData, AvatarSizes} from './models';
+import {getName} from './utils';
 
 import './ContributorAvatars.scss';
 

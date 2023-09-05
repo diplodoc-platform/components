@@ -1,6 +1,7 @@
 import React from 'react';
 
 import block from 'bem-cn-lite';
+
 import './Mark.scss';
 
 const b = block('dc-mark');

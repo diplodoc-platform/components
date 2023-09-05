@@ -1,13 +1,15 @@
-import block from 'bem-cn-lite';
 import React from 'react';
-import {Popup} from '@gravity-ui/uikit';
 
-import Avatar from './Avatar';
+import {Popup} from '@gravity-ui/uikit';
+import block from 'bem-cn-lite';
+
+import {PopperPosition} from '../../../hooks';
+import {Contributor} from '../../../models';
 import Link from '../../Link';
 import {AvatarData, AvatarSizes, PopupData} from '../models';
 import {getName} from '../utils';
-import {Contributor} from '../../../models';
-import {PopperPosition} from '../../../hooks';
+
+import Avatar from './Avatar';
 
 import '../ContributorAvatars.scss';
 

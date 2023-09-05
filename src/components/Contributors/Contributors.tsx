@@ -33,7 +33,7 @@ const Contributors: React.FC<ContributorsProps> = (props) => {
 
     return (
         <div className={b()}>
-            <div className={b('title')}>{t('title')}</div>
+            <div className={b('title')}>{t<string>('title')}</div>
             <ContributorAvatars contributors={users} isAuthor={isAuthor} onlyAuthor={onlyAuthor} />
         </div>
     );

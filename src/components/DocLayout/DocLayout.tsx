@@ -1,4 +1,5 @@
-import React, {ReactElement} from 'react';
+import React, {PropsWithChildren, ReactElement} from 'react';
+
 import block from 'bem-cn-lite';
 
 import {TocData, Router, Lang} from '../../models';
@@ -9,9 +10,9 @@ import './DocLayout.scss';
 
 const b = block('dc-doc-layout');
 
-const Left: React.FC = () => null;
-const Center: React.FC = () => null;
-const Right: React.FC = () => null;
+const Left: React.FC<PropsWithChildren> = () => null;
+const Center: React.FC<PropsWithChildren> = () => null;
+const Right: React.FC<PropsWithChildren> = () => null;
 
 export interface DocLayoutProps {
     toc: TocData;

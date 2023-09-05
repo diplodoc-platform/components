@@ -1,4 +1,5 @@
 import React from 'react';
+
 import {Mark, MarkColor} from '../Mark';
 
 export type StageType = 'preview' | 'new';

@@ -1,4 +1,6 @@
 import React from 'react';
+
+import {Icon} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 import {withTranslation, WithTranslation, WithTranslationProps} from 'react-i18next';
 import {useHotkeys} from 'react-hotkeys-hook';
@@ -57,7 +59,9 @@ const SearchBar: React.FC<SearchBarInnerProps> = (props) => {
                     <Control
                         onClick={onClickPrevSearch}
                         tooltipText={`${t('prev')} (${hotkeysPrev})`}
-                        icon={(args) => <ArrowIcon {...args} />}
+                        icon={(args) => (
+                            <Icon data={ArrowLeftIcon} className={b('next-arrow')} {...args} />
+                        )}
                     />
                     <span className={b('counter')}>
                         {searchCurrentIndex}/{searchCountResults}
@@ -65,22 +69,26 @@ const SearchBar: React.FC<SearchBarInnerProps> = (props) => {
                     <Control
                         onClick={onClickNextSearch}
                         tooltipText={`${t('next')} (${hotkeysNext})`}
-                        icon={(args) => <ArrowIcon {...args} className={b('next-arrow')} />}
+                        icon={(args) => (
+                            <Icon data={ArrowLeftIcon} className={b('next-arrow')} {...args} />
+                        )}
                     />
                 </div>
-                <span className={b('search-query-label')}>{t('search-query-label')}:&nbsp;</span>
+                <span className={b('search-query-label')}>
+                    {t<string>('search-query-label')}:&nbsp;
+                </span>
                 <span className={b('search-query')}>{searchQuery}</span>
             </div>
             <div className={b('right')}>
                 <Control
                     onClick={onCloseSearchBar}
                     tooltipText={t('close')}
-                    icon={() => <CloseIcon width="10" height="10" />}
+                    icon={() => <Icon data={CloseIcon} size={10} />}
                 />
             </div>
         </div>
     );
-};
+});
 
 SearchBar.displayName = 'DCSearchBar';
 

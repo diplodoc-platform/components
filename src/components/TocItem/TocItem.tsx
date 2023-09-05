@@ -2,9 +2,8 @@ import React from 'react';
 import block from 'bem-cn-lite';
 
 import {TocItem as ITocItem} from '../../models';
-import {ToggleArrow} from '../ToggleArrow';
-
 import {isExternalHref} from '../../utils';
+import {ToggleArrow} from '../ToggleArrow';
 
 import './TocItem.scss';
 

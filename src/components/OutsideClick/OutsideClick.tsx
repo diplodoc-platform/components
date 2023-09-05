@@ -1,11 +1,11 @@
-import React, {createRef} from 'react';
+import React, {PropsWithChildren, createRef} from 'react';
 
 export interface OutsideClickProps {
     onOutsideClick: () => void;
     anchor?: HTMLElement | null;
 }
 
-export default class OutsideClick extends React.Component<OutsideClickProps> {
+export default class OutsideClick extends React.Component<PropsWithChildren<OutsideClickProps>> {
     ref = createRef<HTMLDivElement>();
 
     componentDidMount() {

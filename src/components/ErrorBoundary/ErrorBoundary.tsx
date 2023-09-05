@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {PropsWithChildren} from 'react';
+
 import {isEqual} from 'lodash';
 
 import {ErrorPage} from '../ErrorPage';
@@ -8,7 +9,7 @@ interface ErrorBoundaryState {
     errorInfo?: unknown;
 }
 
-class ErrorBoundary extends React.Component<ErrorBoundaryState> {
+class ErrorBoundary extends React.Component<PropsWithChildren<ErrorBoundaryState>> {
     state: ErrorBoundaryState = {};
 
     componentDidUpdate(prevProps: ErrorBoundaryState) {

@@ -1,13 +1,13 @@
 import React from 'react';
+
 import block from 'bem-cn-lite';
 
 import {DocLeadingPageData, DocLeadingLinks, Router, Lang} from '../../models';
+import {DEFAULT_SETTINGS} from '../../constants';
 import {DocLayout} from '../DocLayout';
 import {DocPageTitle} from '../DocPageTitle';
-import {Text} from '../Text';
 import {HTML} from '../HTML';
-
-import {DEFAULT_SETTINGS} from '../../constants';
+import {Text} from '../Text';
 
 import './DocLeadingPage.scss';
 

@@ -1,6 +1,7 @@
 import React, {useRef, useState} from 'react';
+
+import {Button, Loader, TextInput} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
-import {TextInput, Button, Loader} from '@gravity-ui/uikit';
 import {TFunction, withTranslation, WithTranslation, WithTranslationProps} from 'react-i18next';
 
 import {Paginator, PaginatorProps} from '../Paginator';
@@ -123,7 +124,7 @@ function renderFound({
 }: RenderFoundProps) {
     return (
         <div className={b('search-result')}>
-            <h3 className={b('subtitle')}>{t('search_request-query')}</h3>
+            <h3 className={b('subtitle')}>{t<string>('search_request-query')}</h3>
             <div className={b('search-list')}>
                 {items.map((item: ISearchItem) => (
                     <SearchItem
@@ -160,8 +161,8 @@ function renderWithoutContent({loading, t}: RenderNoContent) {
         <Loader />
     ) : (
         <div className={b('search-empty')}>
-            <h3>{t('search_not-found-title')}</h3>
-            <div>{t('search_not-found-text')}</div>
+            <h3>{t<string>('search_not-found-title')}</h3>
+            <div>{t<string>('search_not-found-text')}</div>
         </div>
     );
 }
@@ -194,7 +195,7 @@ function renderInput({query, onQueryUpdate, onSubmit, inputRef, t}: RenderInput)
                             onSubmit(query);
                         }}
                     >
-                        {t('search_action')}
+                        {t<string>('search_action')}
                     </Button>
                 </div>
             </form>

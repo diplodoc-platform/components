@@ -1,7 +1,7 @@
 import React from 'react';
-import block from 'bem-cn-lite';
 
-import {Button, Icon as IconComponent} from '@gravity-ui/uikit';
+import {Button, Icon} from '@gravity-ui/uikit';
+import block from 'bem-cn-lite';
 
 import StarActive from '../../../assets/icons/star-active.svg';
 import StarInactive from '../../../assets/icons/star-inactive.svg';
@@ -29,7 +29,7 @@ export const BookmarkButton: React.FC<BookmarkButtonProps> = ({
             view="flat-secondary"
         >
             <Button.Icon className={b('icon')}>
-                <IconComponent data={bookmarkedPage ? StarActive : StarInactive} size={24} />
+                <Icon data={bookmarkedPage ? StarActive : StarInactive} size={24} />
             </Button.Icon>
         </Button>
     );

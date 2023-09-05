@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "ESNext",
+    "target": "ES2017",
+    "outDir": "build/cjs",
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx"]
+}

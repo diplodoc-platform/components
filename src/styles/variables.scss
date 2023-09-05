@@ -1,0 +1,18 @@
+// Sizes
+$headerHeight: 0px;
+$normalOffset: 20px;
+$miniTocOffset: 56px;
+$blockMarginBottomLarge: 20px;
+$blockMarginBottomMedium: 15px;
+$headerMarginTopLarge: 40px;
+$headerMarginTopMedium: 32px;
+$popupPadding: 16px;
+$centerBlockMaxWidth: 736px;
+
+$screenBreakpoints: (
+    'xs': 375px,
+    'sm': 577px,
+    'md': 769px,
+    'lg': 1081px,
+    'xl': 1185px,
+);

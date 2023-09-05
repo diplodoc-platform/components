@@ -25,14 +25,14 @@
   "scripts": {
     "deps:install": "npm ci",
     "deps:truncate": "npm prune --production",
-    "lint": "run-p lint:js lint:styles lint:prettier",
-    "lint:fix": "run-s lint:js:fix lint:styles:fix lint:prettier:fix",
-    "lint:js": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
-    "lint:js:fix": "eslint 'src/**/*.{js,jsx,ts,tsx}' --quiet --fix",
-    "lint:styles": "stylelint src/**/*.scss",
-    "lint:styles:fix": "stylelint **/*.scss --fix",
-    "lint:prettier": "prettier --check 'src/**/*.{js,jsx,ts,tsx,css,scss,json,yaml,yml,md}'",
-    "lint:prettier:fix": "prettier --write 'src/**/*.{js,jsx,ts,tsx,css,scss,json,yaml,yml,md}'",
+    "lint": "run-p _lint:js _lint:styles _lint:prettier",
+    "lint:fix": "run-s _lint:js:fix _lint:styles:fix _lint:prettier:fix",
+    "_lint:js": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
+    "_lint:js:fix": "npm run _lint:js -- --quiet --fix",
+    "_lint:prettier": "prettier --check 'src/**/*.{js,jsx,ts,tsx}'",
+    "_lint:prettier:fix": "prettier --write 'src/**/*.{js,jsx,ts,tsx}'",
+    "_lint:styles": "stylelint src/**/*.scss",
+    "_lint:styles:fix": "npm run _lint:styles -- --fix",
     "typecheck": "tsc --noEmit",
     "test": "exit 0",
     "build:clean": "rimraf build",
@@ -63,38 +63,37 @@
   },
   "devDependencies": {
     "@doc-tools/transform": "^3.10.2",
+    "@gravity-ui/eslint-config": "^2.2.0",
+    "@gravity-ui/prettier-config": "^1.0.1",
+    "@gravity-ui/stylelint-config": "^3.0.0",
+    "@gravity-ui/tsconfig": "^1.0.0",
     "@types/langs": "^2.0.1",
     "@types/lodash": "4.14.179",
     "@types/react": "16.14.23",
     "@types/react-dom": "16.9.14",
-    "@yandex-cloud/eslint-config": "1.0.0",
-    "@yandex-cloud/prettier-config": "1.0.0",
-    "@yandex-cloud/stylelint-config": "1.1.0",
-    "@yandex-cloud/tsconfig": "1.0.0",
-    "autoprefixer": "9.8.8",
     "copyfiles": "2.4.1",
-    "eslint": "8.10.0",
-    "husky": "7.0.4",
-    "lint-staged": "12.3.5",
     "node-sass": "4.14.1",
     "npm-run-all": "4.1.5",
-    "postcss": "8.4.8",
-    "prettier": "2.5.1",
-    "stylelint": "14.5.3",
+    "autoprefixer": "^10.4.15",
+    "eslint": "^8.48.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^14.0.1",
+    "postcss": "^8.4.28",
+    "prettier": "^2.8.8",
+    "stylelint": "^15.10.3",
     "svgo": "2.8.0",
-    "typescript": "4.6.2",
-    "webpack-manifest-plugin": "2.2.0"
+    "typescript": "^5.2.2"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "eslint --max-warnings=0 --fix",
+    "src/**/*.{js,jsx,ts,tsx}": [
+      "eslint --max-warnings=0 --fix -c eslint.publish.json",
       "prettier --write"
     ],
-    "*.{css,scss}": [
+    "src/**/*.{css,scss}": [
       "stylelint --fix",
       "prettier --write"
     ],
-    "*.{json,yaml,yml,md}": [
+    "src/**/*.{json,yaml,yml,md}": [
       "prettier --write"
     ],
     "*.svg": [

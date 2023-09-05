@@ -6,8 +6,8 @@ import {Control} from '../../Control';
 import {ControlSizes, Lang} from '../../../models';
 
 import FullScreenClickedIcon from '../../../../assets/icons/full-screen-clicked.svg';
-import FullScreenIcon from '../../../../assets/icons/full-screen.svg';
 import {PopperPosition} from '../../../hooks';
+import FullScreenIcon from '@gravity-ui/icons/svgs/square-dashed.svg';
 
 interface ControlProps {
     lang: Lang;

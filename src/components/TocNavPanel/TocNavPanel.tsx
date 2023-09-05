@@ -5,10 +5,10 @@ import {withTranslation, WithTranslation, WithTranslationProps} from 'react-i18n
 
 import {TocData, TocItem, Router, Lang} from '../../models';
 
-import ArrowLeft from '../../../assets/icons/arrow-left.svg';
-import ArrowRight from '../../../assets/icons/arrow-right.svg';
 
 import {isExternalHref, isActiveItem} from '../../utils';
+import ArrowLeft from '@gravity-ui/icons/svgs/arrow-left.svg';
+import ArrowRight from '@gravity-ui/icons/svgs/arrow-right.svg';
 
 import './TocNavPanel.scss';
 

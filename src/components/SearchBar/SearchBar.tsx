@@ -8,8 +8,8 @@ import {useHotkeys} from 'react-hotkeys-hook';
 import {Control} from '../Control';
 
 import {Lang} from '../../models';
-import CloseIcon from '../../../assets/icons/close.svg';
-import ArrowIcon from '../../../assets/icons/search-bar-arrow.svg';
+import ArrowLeftIcon from '@gravity-ui/icons/svgs/chevron-left.svg';
+import CloseIcon from '@gravity-ui/icons/svgs/xmark.svg';
 
 import './SearchBar.scss';
 

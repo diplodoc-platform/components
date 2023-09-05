@@ -13,15 +13,33 @@
     "build",
     "styles"
   ],
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./build/esm/index.d.js",
+        "style": "./build/index.css",
+        "default": "./build/esm/index.js"
+      },
+      "require": {
+        "types": "./build/cjs/index.d.js",
+        "style": "./build/index.css",
+        "default": "./build/cjs/index.js"
+      },
+      "default": {
+        "types": "./build/esm/index.d.js",
+        "style": "./build/index.css",
+        "default": "./build/esm/index.js"
+      }
+    },
+    "./assets/icons/*.svg": "./assets/icons/*.svg",
+    "./styles": "./build/index.css"
+  },
   "sideEffects": [
-    "./build/index.js",
-    "./build/i18n/index.js",
-    "./src/index.ts",
-    "./src/i18n/index.ts",
+    "*.css",
     "*.scss"
   ],
-  "main": "build/index.js",
-  "typings": "build/index.d.ts",
+  "main": "build/esm/index.js",
+  "typings": "build/esm/index.d.ts",
   "scripts": {
     "deps:install": "npm ci",
     "deps:truncate": "npm prune --production",
@@ -35,10 +53,15 @@
     "_lint:styles:fix": "npm run _lint:styles -- --fix",
     "typecheck": "tsc --noEmit",
     "test": "exit 0",
+    "dev": "run-s build:clean build:compile _dev:watch",
+    "_dev:watch": "run-p _build:watch _storybook:watch",
     "build:clean": "rimraf build",
-    "build:copy": "copyfiles -u 1 \"src/components/**/*.scss\" \"src/components/**/*.svg\" build",
-    "build:compile": "tsc -p tsconfig.publish.json",
-    "build": "npm run build:clean && npm run build:compile && npm run build:copy",
+    "build:compile": "./esbuild/build.js",
+    "_build:declarations:esm": "tsc --emitDeclarationOnly -p tsconfig.esm.json",
+    "_build:declarations:cjs": "tsc --emitDeclarationOnly -p tsconfig.cjs.json",
+    "build": "run-s build:clean build:compile _build:declarations:*",
+    "_build:watch": "./esbuild/build.js --watch",
+    "_storybook:watch": "cd demo && start-storybook -p 7008",
     "prepublishOnly": "npm run lint && npm run test && npm run build",
     "prepare": "husky install",
     "pre-commit": "lint-staged"
@@ -72,14 +95,15 @@
     "@types/lodash": "4.14.179",
     "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
-    "copyfiles": "2.4.1",
-    "node-sass": "4.14.1",
-    "npm-run-all": "4.1.5",
     "autoprefixer": "^10.4.15",
+    "esbuild": "^0.19.2",
+    "esbuild-sass-plugin": "^2.13.0",
     "eslint": "^8.48.0",
     "husky": "^8.0.3",
     "lint-staged": "^14.0.1",
+    "npm-run-all": "^4.1.5",
     "postcss": "^8.4.28",
+    "postcss-preset-env": "^9.1.2",
     "prettier": "^2.8.8",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",

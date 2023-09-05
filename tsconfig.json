@@ -7,7 +7,6 @@
     "resolveJsonModule": true,
     "declaration": true,
     "jsx": "react",
-    "outDir": "build",
     "target": "ESNext",
     "baseUrl": "."
   },

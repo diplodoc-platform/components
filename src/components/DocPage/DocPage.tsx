@@ -1,7 +1,6 @@
 import React from 'react';
 
 import block from 'bem-cn-lite';
-import '@doc-tools/transform/dist/js/yfm';
 import ReactDOMServer from 'react-dom/server';
 
 import {DEFAULT_SETTINGS} from '../../constants';
@@ -39,7 +38,6 @@ import {TocNavPanel} from '../TocNavPanel';
 
 import LinkIcon from '../../../assets/icons/link.svg';
 
-import '@doc-tools/transform/dist/css/yfm.css';
 import './DocPage.scss';
 
 const b = block('dc-doc-page');

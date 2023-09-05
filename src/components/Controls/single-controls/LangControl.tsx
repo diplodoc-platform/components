@@ -9,7 +9,7 @@ import {ControlSizes, Lang} from '../../../models';
 import {getPopupPosition} from './utils';
 import {PopperPosition} from '../../../hooks';
 
-import LangIcon from '../../../../assets/icons/lang.svg';
+import LangIcon from '@gravity-ui/icons/svgs/globe.svg';
 
 import '../Controls.scss';
 

@@ -7,9 +7,9 @@ import {Control} from '../../../Control';
 import {ControlSizes, Lang, TextSizes, Theme} from '../../../../models';
 import {PopperPosition} from '../../../../hooks';
 
-import SettingsIcon from '../../../../../assets/icons/cog.svg';
-
 import {getPopupPosition} from '../utils';
+
+import SettingsIcon from '@gravity-ui/icons/svgs/gear.svg';
 
 import './SettingsControl.scss';
 

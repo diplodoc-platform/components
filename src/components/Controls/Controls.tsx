@@ -14,10 +14,10 @@ import {
     PdfControl,
 } from './';
 
-import EditIcon from '../../../assets/icons/edit.svg';
 
 import {PopperPosition} from '../../hooks';
 import {Lang, TextSizes, Theme, FeedbackSendData, ControlSizes, SubscribeData} from '../../models';
+import EditIcon from '@gravity-ui/icons/svgs/pencil.svg';
 
 import './Controls.scss';
 

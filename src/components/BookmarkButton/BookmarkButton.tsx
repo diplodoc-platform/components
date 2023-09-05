@@ -3,8 +3,8 @@ import React from 'react';
 import {Button, Icon} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 
-import StarActive from '../../../assets/icons/star-active.svg';
-import StarInactive from '../../../assets/icons/star-inactive.svg';
+import StarActive from '@gravity-ui/icons/svgs/star-fill.svg';
+import StarInactive from '@gravity-ui/icons/svgs/star.svg';
 
 import './BookmarkButton.scss';
 

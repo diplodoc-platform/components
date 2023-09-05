@@ -8,8 +8,8 @@ import {PopperPosition} from '../../hooks';
 import {FeedbackSendData, FeedbackType, Lang} from '../../models';
 import {DISLIKE_VARIANTS} from '../../constants';
 
-import LikeIcon from '../../../assets/icons/like.svg';
-import DislikeIcon from '../../../assets/icons/dislike.svg';
+import DislikeActiveIcon from '@gravity-ui/icons/svgs/thumbs-down-fill.svg';
+import DislikeIcon from '@gravity-ui/icons/svgs/thumbs-down.svg';
 
 import './Feedback.scss';
 

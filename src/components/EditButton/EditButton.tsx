@@ -3,9 +3,9 @@ import block from 'bem-cn-lite';
 import {withTranslation, WithTranslation, WithTranslationProps} from 'react-i18next';
 import {Button, Icon as IconComponent} from '@gravity-ui/uikit';
 
-import EditIcon from '../../../assets/icons/edit.svg';
 
 import {Lang} from '../../models';
+import EditIcon from '@gravity-ui/icons/svgs/pencil.svg';
 
 import './EditButton.scss';
 

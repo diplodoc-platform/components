@@ -1,13 +1,14 @@
 {
-  "extends": "@yandex-cloud/tsconfig/tsconfig",
+  "extends": "@gravity-ui/tsconfig/tsconfig",
   "compilerOptions": {
-    "module": "esNext",
+    "module": "ESNext",
     "allowJs": false,
     "importHelpers": true,
     "resolveJsonModule": true,
     "declaration": true,
     "jsx": "react",
     "outDir": "build",
+    "target": "ESNext",
     "baseUrl": "."
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"]

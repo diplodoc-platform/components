@@ -1,32 +1,28 @@
-import React, {memo, useCallback, useState} from 'react';
-import {WithTranslation, withTranslation} from 'react-i18next';
-import block from 'bem-cn-lite';
 import {Button, List, Popup, TextInput} from '@gravity-ui/uikit';
+import block from 'bem-cn-lite';
+import React, {SyntheticEvent, memo, useCallback, useContext, useState} from 'react';
 
-import {SubscribeView} from '../Subscribe';
-import {isInvalidEmail} from '../../../utils';
-import {getPopupPosition} from '../utils';
-
+import {useTranslation} from '../../../hooks';
 import {SubscribeData, SubscribeType} from '../../../models';
+import {isInvalidEmail} from '../../../utils';
+import {ControlsLayoutContext} from '../../Controls/ControlsLayout';
+import {SubscribeView} from '../Subscribe';
+import {getPopupPosition} from '../utils';
 
 const b = block('dc-subscribe');
 
 const LIST_ITEM_HEIGHT = 36;
 
-const SubscribeVariantsPopup: React.FC<
-    {
-        anchor: React.RefObject<HTMLElement>;
-        visible: boolean;
-        setVisible: (value: boolean) => void;
-        isVerticalView?: boolean;
-        view?: SubscribeView;
-        onSubscribe?: (data: SubscribeData) => void;
-        onSubmit: () => void;
-    } & WithTranslation
-> = memo((props) => {
-    const {t, visible, setVisible, anchor, view, isVerticalView, onSubscribe, onSubmit} = props;
-
-    const hide = useCallback(() => setVisible(false), [setVisible]);
+const SubscribeVariantsPopup = memo<{
+    anchor: React.RefObject<HTMLElement>;
+    view?: SubscribeView;
+    onSubscribe?: (data: SubscribeData) => void;
+    onSubmit: () => void;
+    onOutsideClick: () => void;
+}>((props) => {
+    const {t} = useTranslation('controls');
+    const {isVerticalView} = useContext(ControlsLayoutContext);
+    const {anchor, view, onSubscribe, onSubmit, onOutsideClick} = props;
 
     const [email, setEmail] = useState('');
     const [showError, setShowError] = useState('');
@@ -37,7 +33,7 @@ const SubscribeVariantsPopup: React.FC<
     }, []);
 
     const onSendSubscribeInformation = useCallback(
-        (event) => {
+        (event: SyntheticEvent) => {
             event.preventDefault();
 
             if (isInvalidEmail(email)) {
@@ -56,7 +52,6 @@ const SubscribeVariantsPopup: React.FC<
 
                     onSubmit();
                 } catch (e) {
-                    console.error(e);
                     setShowError(t('email-request-fail'));
                 }
 
@@ -102,7 +97,7 @@ const SubscribeVariantsPopup: React.FC<
                 </div>
                 <div className={b('variants-actions')}>
                     <Button view="action" className={b('variants-action')} type={'submit'}>
-                        {t('subscribe-text')}
+                        {t<string>('subscribe-text')}
                     </Button>
                 </div>
             </form>
@@ -112,8 +107,8 @@ const SubscribeVariantsPopup: React.FC<
     return (
         <Popup
             anchorRef={anchor}
-            open={visible}
-            onOutsideClick={hide}
+            open={true}
+            onOutsideClick={onOutsideClick}
             contentClassName={b('variants-popup', {view})}
             placement={getPopupPosition(isVerticalView, view)}
         >
@@ -125,4 +120,4 @@ const SubscribeVariantsPopup: React.FC<
 
 SubscribeVariantsPopup.displayName = 'SubscribeVariantsPopup';
 
-export default withTranslation('controls')(SubscribeVariantsPopup);
+export default SubscribeVariantsPopup;

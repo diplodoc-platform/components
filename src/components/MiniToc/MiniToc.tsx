@@ -1,10 +1,8 @@
-import React, {ReactElement} from 'react';
-import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
+import React, {memo, useMemo} from 'react';
 
-import {withTranslation, WithTranslation, WithTranslationProps} from 'react-i18next';
-
-import {DocHeadingItem, Router, Lang} from '../../models';
+import {useTranslation} from '../../hooks';
+import {DocHeadingItem, Router} from '../../models';
 import {Scrollspy} from '../Scrollspy';
 
 import './MiniToc.scss';
@@ -12,59 +10,44 @@ import './MiniToc.scss';
 const b = block('dc-mini-toc');
 
 export interface MinitocProps {
-    lang: Lang;
     headings: DocHeadingItem[];
     router: Router;
     headerHeight?: number;
 }
 
-type MinitocInnerProps = MinitocProps & WithTranslation & WithTranslationProps;
+export interface MinitocSectionProps {
+    headings: DocHeadingItem[];
+    router: Router;
+    headerHeight?: number;
+}
 
-class MiniToc extends React.Component<MinitocInnerProps> {
-    static propTypes = {
-        headings: PropTypes.array.isRequired,
-    };
+interface FlatHeadingItem {
+    title: string;
+    href: string;
+    isChild: boolean;
+}
 
-    componentDidUpdate(prevProps: MinitocProps) {
-        const {i18n, lang} = this.props;
-        if (prevProps.lang !== lang) {
-            i18n.changeLanguage(lang);
-        }
+function getFlatHeadings(items: DocHeadingItem[], isChild = false): FlatHeadingItem[] {
+    return items.reduce((result, {href, title, items: subItems}) => {
+        return result.concat({title, href, isChild}, getFlatHeadings(subItems || [], true));
+    }, [] as FlatHeadingItem[]);
+}
+
+const MiniToc = memo<MinitocProps>(({headings, router, headerHeight}) => {
+    const {t} = useTranslation('mini-toc');
+    const flatHeadings = useMemo(() => getFlatHeadings(headings), [headings]);
+    const sectionHrefs = useMemo(
+        () => flatHeadings.map<string>(({href}) => href, []),
+        [flatHeadings],
+    );
+
+    if (flatHeadings.length === 0) {
+        return null;
     }
 
-    render() {
-        const {lang, i18n, t} = this.props;
-
-        if (i18n.language !== lang) {
-            i18n.changeLanguage(lang);
-        }
-
-        return (
-            <div className={b()}>
-                <div className={b('title')}>{t('title')}:</div>
-                {this.renderSections()}
-            </div>
-        );
-    }
-
-    private renderSections() {
-        const {headings, router, headerHeight} = this.props;
-
-        if (headings.length === 0) {
-            return null;
-        }
-
-        const sectionHrefs = headings.reduce<string[]>((prevHrefs, {href, items}) => {
-            const children = items ? items.map(({href: itemHref}) => itemHref) : [];
-
-            return prevHrefs.concat(href, children);
-        }, []);
-
-        if (sectionHrefs.length === 0) {
-            return null;
-        }
-
-        return (
+    return (
+        <div className={b()}>
+            <div className={b('title')}>{t<string>('title')}:</div>
             <Scrollspy
                 className={b('sections')}
                 currentClassName={b('section', {active: true})}
@@ -72,27 +55,18 @@ class MiniToc extends React.Component<MinitocInnerProps> {
                 router={router}
                 headerHeight={headerHeight}
             >
-                {headings.reduce(this.renderSection, [])}
+                {flatHeadings.map(({href, title, isChild}) => (
+                    <li key={href} data-hash={href} className={b('section', {child: isChild})}>
+                        <a href={href} className={b('section-link')} data-router-shallow>
+                            {title}
+                        </a>
+                    </li>
+                ))}
             </Scrollspy>
-        );
-    }
+        </div>
+    );
+});
 
-    private renderSection = (prevSections: ReactElement[], heading: DocHeadingItem) => {
-        return prevSections.concat(
-            this.renderItem(heading),
-            heading.items ? heading.items.map((item) => this.renderItem(item, true)) : [],
-        );
-    };
+MiniToc.displayName = 'MiniToc';
 
-    private renderItem = ({title, href}: DocHeadingItem, isChild = false) => {
-        return (
-            <li key={href} data-hash={href} className={b('section', {child: isChild})}>
-                <a href={href} className={b('section-link')} data-router-shallow>
-                    {title}
-                </a>
-            </li>
-        );
-    };
-}
-
-export default withTranslation('mini-toc')(MiniToc);
+export default MiniToc;

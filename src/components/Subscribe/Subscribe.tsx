@@ -1,18 +1,16 @@
-import React, {useCallback, useState, useRef} from 'react';
+import SubscribeIcon from '@gravity-ui/icons/svgs/envelope.svg';
+import {Button, Icon} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
-import {WithTranslation, withTranslation} from 'react-i18next';
+import React, {PropsWithChildren, forwardRef, memo, useCallback, useContext, useRef} from 'react';
 
-import {SubscribeSuccessPopup} from './SubscribeSuccessPopup';
-import {SubscribeVariantsPopup} from './SubscribeVariantsPopup';
-import {Button} from '@gravity-ui/uikit';
+import {usePopupState, useTranslation} from '../../hooks';
+import {SubscribeData} from '../../models';
 import {Control} from '../Control';
-
-import {SubscribeData, Lang} from '../../models';
-
-import SubscribeIcon from '../../../assets/icons/subscribe.svg';
+import {ControlsLayoutContext} from '../Controls/ControlsLayout';
 
 import './Subscribe.scss';
-import {PopperPosition} from '../../hooks';
+import {SubscribeSuccessPopup} from './SubscribeSuccessPopup';
+import {SubscribeVariantsPopup} from './SubscribeVariantsPopup';
 
 const b = block('dc-subscribe');
 
@@ -22,100 +20,116 @@ export enum SubscribeView {
 }
 
 export interface SubscribeProps {
-    lang: Lang;
-    isVerticalView?: boolean;
-    onSubscribe?: (data: SubscribeData) => void;
+    onSubscribe: (data: SubscribeData) => void;
     view?: SubscribeView;
-    classNameControl?: string;
-    popupPosition?: PopperPosition;
 }
 
-const Subscribe: React.FC<SubscribeProps & WithTranslation> = React.memo((props) => {
-    const {isVerticalView, onSubscribe, view, classNameControl, popupPosition, t} = props;
+type SubscribeControlProps = {
+    view: SubscribeView;
+    onChangeSubscribe: () => void;
+};
 
-    const subscribeControlRef = useRef<HTMLButtonElement | null>(null);
+const SubscribeControl = memo(
+    forwardRef<HTMLButtonElement, SubscribeControlProps>(({view, onChangeSubscribe}, ref) => {
+        const {isVerticalView, popupPosition, controlClassName, controlSize} =
+            useContext(ControlsLayoutContext);
+        const {t} = useTranslation('controls');
 
-    const [showSubscribeSuccessPopup, setShowSubscribeSuccessPopup] = useState(false);
-    const [showSubscribeVariantsPopup, setShowSubscribeVariantsPopup] = useState(false);
+        if (view === SubscribeView.Wide) {
+            return (
+                <Button
+                    view="flat-secondary"
+                    ref={ref}
+                    onClick={onChangeSubscribe}
+                    className={b('control', {view})}
+                >
+                    <Button.Icon>
+                        <Icon data={SubscribeIcon} size={16} />
+                    </Button.Icon>
+                    {t<string>('button-Subscribe-text')}
+                </Button>
+            );
+        }
 
-    const setSubscribeControlRef = useCallback((ref) => {
-        subscribeControlRef.current = ref;
-    }, []);
-
-    const onChangeSubscribe = useCallback(() => {
-        setShowSubscribeVariantsPopup(!showSubscribeVariantsPopup);
-        setShowSubscribeSuccessPopup(false);
-    }, [showSubscribeVariantsPopup]);
-
-    const renderSubscribeControl = useCallback(() => {
         return (
             <Control
+                ref={ref}
                 onClick={onChangeSubscribe}
-                className={b('control', {view}, classNameControl)}
+                size={controlSize}
+                className={b('control', {view}, controlClassName)}
                 isVerticalView={isVerticalView}
                 tooltipText={t(`subscribe-text`)}
-                setRef={setSubscribeControlRef}
                 icon={(args) => <SubscribeIcon {...args} />}
                 popupPosition={popupPosition}
             />
         );
-    }, [
-        classNameControl,
-        view,
-        isVerticalView,
-        setSubscribeControlRef,
-        onChangeSubscribe,
-        popupPosition,
-        t,
-    ]);
+    }),
+);
 
-    const renderWideSubscribeControls = useCallback(() => {
+SubscribeControl.displayName = 'SubscribeControl';
+
+const SubscribeControlsLayout = memo<PropsWithChildren<{view: SubscribeView}>>(
+    ({view, children}) => {
+        const {t} = useTranslation('controls');
+
+        if (view === SubscribeView.Regular) {
+            return <React.Fragment>{children}</React.Fragment>;
+        }
+
         return (
             <div className={b('container', {view})}>
                 <div className={b('container-row', {view})}>
-                    <h3 className={b('title', {view})}>{t('main-question')}</h3>
-                    <div className={b('controls', {view})}>
-                        <Button
-                            view="flat-secondary"
-                            ref={setSubscribeControlRef}
-                            onClick={onChangeSubscribe}
-                            className={b('control', {view})}
-                        >
-                            <SubscribeIcon className={b('subscribe-button')} />
-                            {t('button-Subscribe-text')}
-                        </Button>
-                    </div>
+                    <h3 className={b('title', {view})}>{t<string>('main-question')}</h3>
+                    <div className={b('controls', {view})}>{children}</div>
                 </div>
             </div>
         );
-    }, [view, setSubscribeControlRef, onChangeSubscribe, t]);
+    },
+);
 
-    const renderSubscribeControls = useCallback(() => {
-        return view === SubscribeView.Regular
-            ? renderSubscribeControl()
-            : renderWideSubscribeControls();
-    }, [view, renderSubscribeControl, renderWideSubscribeControls]);
+SubscribeControlsLayout.displayName = 'SubscribeControlsLayout';
+
+const Subscribe = memo<SubscribeProps>((props) => {
+    const {view = SubscribeView.Regular, onSubscribe} = props;
+
+    const subscribeControlRef = useRef<HTMLButtonElement | null>(null);
+
+    const successPopup = usePopupState({autoclose: 60000});
+    const variantsPopup = usePopupState();
+
+    const onChangeSubscribe = useCallback(() => {
+        variantsPopup.toggle();
+        successPopup.close();
+    }, [successPopup, variantsPopup]);
+
+    const onSubmitVariants = useCallback(() => {
+        variantsPopup.close();
+        successPopup.open();
+    }, [successPopup, variantsPopup]);
 
     return (
         <React.Fragment>
-            {renderSubscribeControls()}
-            {showSubscribeSuccessPopup && subscribeControlRef.current && (
+            <SubscribeControlsLayout view={view}>
+                <SubscribeControl
+                    ref={subscribeControlRef}
+                    view={view}
+                    onChangeSubscribe={onChangeSubscribe}
+                />
+            </SubscribeControlsLayout>
+            {successPopup.visible && subscribeControlRef.current && (
                 <SubscribeSuccessPopup
-                    visible={showSubscribeSuccessPopup}
-                    setVisible={setShowSubscribeSuccessPopup}
-                    {...{view, isVerticalView, anchor: subscribeControlRef, t}}
+                    view={view}
+                    anchor={subscribeControlRef}
+                    onOutsideClick={successPopup.close}
                 />
             )}
-            {showSubscribeVariantsPopup && subscribeControlRef.current && (
+            {variantsPopup.visible && subscribeControlRef.current && (
                 <SubscribeVariantsPopup
-                    visible={showSubscribeVariantsPopup}
-                    setVisible={setShowSubscribeVariantsPopup}
+                    view={view}
+                    anchor={subscribeControlRef}
+                    onOutsideClick={variantsPopup.close}
                     onSubscribe={onSubscribe}
-                    onSubmit={() => {
-                        setShowSubscribeVariantsPopup(false);
-                        setShowSubscribeSuccessPopup(true);
-                    }}
-                    {...{view, isVerticalView, anchor: subscribeControlRef, t}}
+                    onSubmit={onSubmitVariants}
                 />
             )}
         </React.Fragment>
@@ -124,4 +138,4 @@ const Subscribe: React.FC<SubscribeProps & WithTranslation> = React.memo((props)
 
 Subscribe.displayName = 'Subscribe';
 
-export default withTranslation('controls')(Subscribe);
+export default Subscribe;

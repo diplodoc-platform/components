@@ -1,18 +1,16 @@
-import React from 'react';
-
 import block from 'bem-cn-lite';
 import {omit} from 'lodash';
-import {ControlSizes, Lang, Router, TocData, TocItem} from '../../models';
+import React from 'react';
 
 import {PopperPosition} from '../../hooks';
+import {ControlSizes, Router, TocData, TocItem} from '../../models';
 import {isActiveItem, normalizeHash, normalizePath} from '../../utils';
-import {Controls} from '../Controls';
+import {Controls, ControlsLayout} from '../Controls';
 import {HTML} from '../HTML';
 import {TocItem as Item} from '../TocItem';
 
-import {TocItemRegistry} from './TocItemRegistry';
-
 import './Toc.scss';
+import {TocItemRegistry} from './TocItemRegistry';
 
 const b = block('dc-toc');
 const HEADER_DEFAULT_HEIGHT = 0;
@@ -26,7 +24,6 @@ export interface TocProps extends TocData {
     headerHeight?: number;
     tocTitleIcon?: React.ReactNode;
     hideTocHeader?: boolean;
-    lang: Lang;
     singlePage?: boolean;
     onChangeSinglePage?: (value: boolean) => void;
     pdfLink?: string;
@@ -242,19 +239,21 @@ class Toc extends React.Component<TocProps, TocState> {
     }
 
     private renderBottom() {
-        const {lang, singlePage, onChangeSinglePage, pdfLink} = this.props;
+        const {singlePage, onChangeSinglePage, pdfLink} = this.props;
         const {contentScrolled} = this.state;
 
         return (
             <div className={b('bottom', {scrolled: contentScrolled})}>
-                <Controls
-                    lang={lang}
-                    singlePage={singlePage}
-                    onChangeSinglePage={onChangeSinglePage}
-                    popupPosition={PopperPosition.TOP_START}
+                <ControlsLayout
                     controlSize={ControlSizes.L}
-                    pdfLink={pdfLink}
-                />
+                    popupPosition={PopperPosition.TOP_START}
+                >
+                    <Controls
+                        singlePage={singlePage}
+                        onChangeSinglePage={onChangeSinglePage}
+                        pdfLink={pdfLink}
+                    />
+                </ControlsLayout>
             </div>
         );
     }

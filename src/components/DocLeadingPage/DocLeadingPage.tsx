@@ -1,9 +1,8 @@
+import block from 'bem-cn-lite';
 import React from 'react';
 
-import block from 'bem-cn-lite';
-
-import {DocLeadingPageData, DocLeadingLinks, Router, Lang} from '../../models';
 import {DEFAULT_SETTINGS} from '../../constants';
+import {DocLeadingLinks, DocLeadingPageData, Router} from '../../models';
 import {DocLayout} from '../DocLayout';
 import {DocPageTitle} from '../DocPageTitle';
 import {HTML} from '../HTML';
@@ -17,7 +16,6 @@ const {wideFormat: defaultWideFormat} = DEFAULT_SETTINGS;
 
 export interface DocLeadingPageProps extends DocLeadingPageData {
     router: Router;
-    lang: Lang;
     headerHeight?: number;
     wideFormat?: boolean;
     hideTocHeader?: boolean;
@@ -106,7 +104,6 @@ export const DocLeadingPage: React.FC<DocLeadingPageProps> = ({
     data: {title, description, links},
     toc,
     router,
-    lang,
     headerHeight,
     wideFormat = defaultWideFormat,
     hideTocHeader,
@@ -122,7 +119,6 @@ export const DocLeadingPage: React.FC<DocLeadingPageProps> = ({
         <DocLayout
             toc={toc}
             router={router}
-            lang={lang}
             headerHeight={headerHeight}
             className={b(modes)}
             hideTocHeader={hideTocHeader}

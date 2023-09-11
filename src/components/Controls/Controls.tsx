@@ -1,28 +1,27 @@
-import React from 'react';
 import block from 'bem-cn-lite';
-import {withTranslation, WithTranslation, WithTranslationProps} from 'react-i18next';
+import React, {memo, useContext} from 'react';
 
-import {Control} from '../Control';
+import {FeedbackSendData, Lang, SubscribeData, TextSizes, Theme} from '../../models';
 import {Feedback, FeedbackView} from '../Feedback';
 import {Subscribe, SubscribeView} from '../Subscribe';
+
+import './Controls.scss';
+import {ControlsLayoutContext} from './ControlsLayout';
+
 import {
+    DividerControl,
+    EditControl,
     FullScreenControl,
+    LangControl,
+    PdfControl,
     SettingsControl,
     SinglePageControl,
-    LangControl,
-    DividerControl,
-    PdfControl,
 } from './';
-
-import {PopperPosition} from '../../hooks';
-import {Lang, TextSizes, Theme, FeedbackSendData, ControlSizes, SubscribeData} from '../../models';
-import EditIcon from '@gravity-ui/icons/svgs/pencil.svg';
-import './Controls.scss';
 
 const b = block('dc-controls');
 
 export interface ControlsProps {
-    lang: Lang;
+    lang?: Lang;
     langs?: string[];
     fullScreen?: boolean;
     singlePage?: boolean;
@@ -32,10 +31,8 @@ export interface ControlsProps {
     textSize?: TextSizes;
     vcsUrl?: string;
     vcsType?: string;
-    showEditControl?: boolean;
     isLiked?: boolean;
     isDisliked?: boolean;
-    dislikeVariants?: string[];
     onChangeLang?: (lang: Lang) => void;
     onChangeFullScreen?: (value: boolean) => void;
     onChangeSinglePage?: (value: boolean) => void;
@@ -47,213 +44,137 @@ export interface ControlsProps {
     onSubscribe?: (data: SubscribeData) => void;
     pdfLink?: string;
     className?: string;
-    isVerticalView?: boolean;
-    controlSize?: ControlSizes;
+    hideEditControl?: boolean;
     hideFeedbackControls?: boolean;
-    popupPosition?: PopperPosition;
 }
 
-type ControlsInnerProps = ControlsProps & WithTranslation & WithTranslationProps;
+type Defined = {
+    [P in keyof ControlsProps]-?: ControlsProps[P];
+};
 
-class Controls extends React.Component<ControlsInnerProps> {
-    componentDidUpdate(prevProps: ControlsProps) {
-        const {i18n, lang} = this.props;
+const Controls = memo<ControlsProps>((props) => {
+    const {isVerticalView} = useContext(ControlsLayoutContext);
+    const {
+        className,
+        fullScreen,
+        singlePage,
+        theme,
+        wideFormat,
+        showMiniToc,
+        hideEditControl,
+        hideFeedbackControls,
+        textSize,
+        onChangeFullScreen,
+        onChangeTheme,
+        onChangeShowMiniToc,
+        onChangeTextSize,
+        onChangeWideFormat,
+        onChangeLang,
+        onChangeSinglePage,
+        onSendFeedback,
+        onSubscribe,
+        lang,
+        langs,
+        pdfLink,
+        vcsUrl,
+        vcsType,
+        isLiked,
+        isDisliked,
+    } = props;
 
-        if (prevProps.lang !== lang) {
-            i18n.changeLanguage(lang);
-        }
-    }
+    const withFullscreenControl = Boolean(onChangeFullScreen);
+    const withSettingsControl = Boolean(
+        onChangeWideFormat || onChangeTheme || onChangeShowMiniToc || onChangeTextSize,
+    );
+    const withLangControl = Boolean(lang && onChangeLang);
+    const withSinglePageControl = Boolean(onChangeSinglePage);
+    const withPdfControl = Boolean(pdfLink);
+    const withEditControl = Boolean(!singlePage && !hideEditControl && vcsUrl);
+    const withFeedbackControl = Boolean(!singlePage && !hideFeedbackControls && onSendFeedback);
+    const withSubscribeControls = Boolean(!singlePage && onSubscribe);
 
-    render() {
-        const {lang, i18n, className, isVerticalView} = this.props;
+    const controls = [
+        withFullscreenControl && (
+            <FullScreenControl
+                key="fullscreen-control"
+                value={fullScreen}
+                onChange={onChangeFullScreen}
+            />
+        ),
+        withSettingsControl && (
+            <SettingsControl
+                key="settings-control"
+                theme={theme}
+                wideFormat={wideFormat}
+                showMiniToc={showMiniToc}
+                textSize={textSize}
+                onChangeTheme={onChangeTheme}
+                onChangeShowMiniToc={onChangeShowMiniToc}
+                onChangeTextSize={onChangeTextSize}
+                onChangeWideFormat={onChangeWideFormat}
+            />
+        ),
+        withLangControl && (
+            <LangControl
+                key="lang-control"
+                lang={lang as Lang}
+                langs={langs}
+                onChangeLang={onChangeLang as Defined['onChangeLang']}
+            />
+        ),
+        withSinglePageControl && (
+            <SinglePageControl
+                key="single-page-control"
+                value={singlePage}
+                onChange={onChangeSinglePage as Defined['onChangeSinglePage']}
+            />
+        ),
+        withPdfControl && <PdfControl key="pdf-control" pdfLink={pdfLink as Defined['pdfLink']} />,
+        '---',
+        withEditControl && (
+            <EditControl
+                key="edit-control"
+                vcsUrl={vcsUrl as Defined['vcsUrl']}
+                vcsType={vcsType as Defined['vcsType']}
+            />
+        ),
+        '---',
+        withFeedbackControl && (
+            <Feedback
+                key="feedback-control"
+                isLiked={isLiked}
+                isDisliked={isDisliked}
+                onSendFeedback={onSendFeedback as Defined['onSendFeedback']}
+                view={FeedbackView.Regular}
+            />
+        ),
+        '---',
+        withSubscribeControls && (
+            <Subscribe
+                key="subscribe-control"
+                onSubscribe={onSubscribe as Defined['onSubscribe']}
+                view={SubscribeView.Regular}
+            />
+        ),
+    ]
+        .filter(Boolean)
+        .reduce((result, control, index, array) => {
+            if (control === '---') {
+                if (array[index - 1] && array[index + 1] && array[index + 1] !== '---') {
+                    result.push(
+                        <DividerControl key={'divider-' + index} className={b('divider')} />,
+                    );
+                }
+            } else {
+                result.push(control as React.ReactElement);
+            }
 
-        if (i18n.language !== lang) {
-            i18n.changeLanguage(lang);
-        }
+            return result;
+        }, [] as React.ReactElement[]);
 
-        return (
-            <div className={b({vertical: isVerticalView}, className)}>
-                {this.renderCommonControls()}
-                {this.renderEditLink()}
-                {this.renderFeedbackControls()}
-                {this.renderSubscribeControls()}
-            </div>
-        );
-    }
+    return <div className={b({vertical: isVerticalView}, className)}>{controls}</div>;
+});
 
-    private renderEditLink() {
-        const {
-            vcsUrl,
-            vcsType,
-            showEditControl,
-            singlePage,
-            isVerticalView,
-            controlSize,
-            popupPosition,
-            t,
-        } = this.props;
+Controls.displayName = 'DCControls';
 
-        if (!showEditControl || singlePage) {
-            return null;
-        }
-
-        return (
-            <React.Fragment>
-                <DividerControl
-                    size={controlSize}
-                    isVerticalView={!isVerticalView}
-                    className={b('divider')}
-                />
-                <a href={vcsUrl} target="_blank" rel="noreferrer noopener" className={b('control')}>
-                    <Control
-                        size={controlSize}
-                        className={b('control')}
-                        isVerticalView={isVerticalView}
-                        tooltipText={t(`edit-text-${vcsType}`)}
-                        icon={EditIcon}
-                        popupPosition={popupPosition}
-                    />
-                </a>
-            </React.Fragment>
-        );
-    }
-
-    private renderCommonControls() {
-        const {
-            fullScreen,
-            singlePage,
-            theme,
-            wideFormat,
-            showMiniToc,
-            textSize,
-            onChangeFullScreen,
-            onChangeTheme,
-            onChangeShowMiniToc,
-            onChangeTextSize,
-            onChangeWideFormat,
-            onChangeLang,
-            onChangeSinglePage,
-            isVerticalView,
-            controlSize,
-            lang,
-            langs,
-            popupPosition,
-            pdfLink,
-        } = this.props;
-
-        return (
-            <React.Fragment>
-                <FullScreenControl
-                    lang={lang}
-                    size={controlSize}
-                    value={fullScreen}
-                    onChange={onChangeFullScreen}
-                    className={b('control')}
-                    isVerticalView={isVerticalView}
-                    popupPosition={popupPosition}
-                />
-                <SettingsControl
-                    lang={lang}
-                    size={controlSize}
-                    theme={theme}
-                    wideFormat={wideFormat}
-                    showMiniToc={showMiniToc}
-                    textSize={textSize}
-                    onChangeTheme={onChangeTheme}
-                    onChangeShowMiniToc={onChangeShowMiniToc}
-                    onChangeTextSize={onChangeTextSize}
-                    onChangeWideFormat={onChangeWideFormat}
-                    className={b('control')}
-                    isVerticalView={isVerticalView}
-                    popupPosition={popupPosition}
-                />
-                <LangControl
-                    lang={lang}
-                    langs={langs}
-                    size={controlSize}
-                    onChangeLang={onChangeLang}
-                    className={b('control')}
-                    isVerticalView={isVerticalView}
-                    popupPosition={popupPosition}
-                />
-                <SinglePageControl
-                    lang={lang}
-                    size={controlSize}
-                    value={singlePage}
-                    onChange={onChangeSinglePage}
-                    className={b('control')}
-                    isVerticalView={isVerticalView}
-                    popupPosition={popupPosition}
-                />
-                <PdfControl
-                    lang={lang}
-                    size={controlSize}
-                    pdfLink={pdfLink}
-                    className={b('control')}
-                    isVerticalView={isVerticalView}
-                    popupPosition={popupPosition}
-                />
-            </React.Fragment>
-        );
-    }
-
-    private renderFeedbackControls = () => {
-        const {
-            lang,
-            singlePage,
-            onSendFeedback,
-            isLiked,
-            isDisliked,
-            dislikeVariants,
-            isVerticalView,
-            hideFeedbackControls,
-            popupPosition,
-        } = this.props;
-
-        if (singlePage || !onSendFeedback || hideFeedbackControls) {
-            return null;
-        }
-
-        return (
-            <React.Fragment>
-                <DividerControl className={b('divider')} isVerticalView={!isVerticalView} />
-                <Feedback
-                    lang={lang}
-                    singlePage={singlePage}
-                    isLiked={isLiked}
-                    isDisliked={isDisliked}
-                    dislikeVariants={dislikeVariants}
-                    onSendFeedback={onSendFeedback}
-                    isVerticalView={isVerticalView}
-                    view={FeedbackView.Regular}
-                    classNameControl={b('control')}
-                    popupPosition={popupPosition}
-                />
-            </React.Fragment>
-        );
-    };
-
-    private renderSubscribeControls = () => {
-        const {lang, singlePage, onSubscribe, isVerticalView, popupPosition} = this.props;
-
-        if (singlePage || !onSubscribe) {
-            return null;
-        }
-
-        return (
-            <React.Fragment>
-                <DividerControl className={b('divider')} isVerticalView={!isVerticalView} />
-                <Subscribe
-                    lang={lang}
-                    onSubscribe={onSubscribe}
-                    isVerticalView={isVerticalView}
-                    view={SubscribeView.Regular}
-                    classNameControl={b('control')}
-                    popupPosition={popupPosition}
-                />
-            </React.Fragment>
-        );
-    };
-}
-
-export default withTranslation('controls')(Controls);
+export default Controls;

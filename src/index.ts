@@ -1,6 +1,3 @@
-// init i18n
-import './i18n';
-
 export * from './components/Breadcrumbs';
 export * from './components/DocLayout';
 export * from './components/DocLeadingPage';
@@ -27,4 +24,6 @@ export * from './components/Paginator';
 export * from './components/SearchItem';
 export * from './components/SearchPage';
 
+export * from './config';
 export * from './models';
+export * from './constants';

@@ -1,11 +1,9 @@
-import React from 'react';
-
 import {Button, Link} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
-import {withTranslation, WithTranslation, WithTranslationProps} from 'react-i18next';
+import React from 'react';
 
-import {Lang} from '../../models';
 import {ERROR_CODES} from '../../constants';
+import {useTranslation} from '../../hooks';
 
 import './ErrorPage.scss';
 
@@ -13,29 +11,20 @@ const b = block('ErrorPage');
 
 export interface ErrorPageProps {
     code?: number;
-    lang?: Lang;
     pageGroup?: string;
     homeUrl?: string;
     receiveAccessUrl?: string;
 }
 
-type ErrorPagePropsInnerProps = ErrorPageProps & WithTranslation & WithTranslationProps;
-
-const ErrorPage = ({
+const ErrorPage: React.FC<ErrorPageProps> = ({
     code = 500,
-    lang = Lang.En,
-    i18n,
-    t,
     homeUrl,
     receiveAccessUrl,
     pageGroup,
-}: ErrorPagePropsInnerProps): JSX.Element => {
-    if (i18n.language !== lang) {
-        i18n.changeLanguage(lang);
-    }
-
+}) => {
     let title;
     let description;
+    const {t} = useTranslation('error');
     const href = homeUrl || '/';
     const homeLink = (
         <Link href={href}>
@@ -91,4 +80,4 @@ const ErrorPage = ({
     );
 };
 
-export default withTranslation('error')(ErrorPage);
+export default ErrorPage;

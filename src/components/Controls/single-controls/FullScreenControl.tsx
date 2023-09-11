@@ -1,27 +1,22 @@
-import React, {useCallback, useEffect} from 'react';
-import {WithTranslation, withTranslation, WithTranslationProps} from 'react-i18next';
-import {Icon as IconComponent} from '@gravity-ui/uikit';
-
-import {Control} from '../../Control';
-import {ControlSizes, Lang} from '../../../models';
-
-import FullScreenClickedIcon from '../../../../assets/icons/full-screen-clicked.svg';
+import FullScreenClickedIcon from '@gravity-ui/icons/svgs/square-dashed-circle.svg';
 import FullScreenIcon from '@gravity-ui/icons/svgs/square-dashed.svg';
+import {Icon} from '@gravity-ui/uikit';
+import React, {memo, useCallback, useContext, useEffect} from 'react';
+
+import {useTranslation} from '../../../hooks';
+import {Control} from '../../Control';
+import {ControlsLayoutContext} from '../ControlsLayout';
 
 interface ControlProps {
-    lang: Lang;
     value?: boolean;
     onChange?: (value: boolean) => void;
-    isVerticalView?: boolean;
-    className?: string;
-    size?: ControlSizes;
-    popupPosition?: PopperPosition;
 }
 
-type ControlInnerProps = ControlProps & WithTranslation & WithTranslationProps;
-
-const FullScreenControl = (props: ControlInnerProps) => {
-    const {className, isVerticalView, size, value, onChange, lang, popupPosition, i18n, t} = props;
+const FullScreenControl = memo<ControlProps>((props) => {
+    const {t} = useTranslation('controls');
+    const {controlClassName, controlSize, isVerticalView, popupPosition} =
+        useContext(ControlsLayoutContext);
+    const {value, onChange} = props;
 
     const onClick = useCallback(() => {
         if (onChange) {
@@ -46,29 +41,23 @@ const FullScreenControl = (props: ControlInnerProps) => {
         };
     }, [onKeyDown]);
 
-    useEffect(() => {
-        i18n.changeLanguage(lang);
-    }, [i18n, lang]);
-
     const activeMode = value ? 'enabled' : 'disabled';
-
-    if (!onChange) {
-        return null;
-    }
 
     return (
         <Control
-            size={size}
+            size={controlSize}
             onClick={onClick}
-            className={className}
+            className={controlClassName}
             isVerticalView={isVerticalView}
             tooltipText={t(`full-screen-text-${activeMode}`)}
             icon={(args) => (
-                <IconComponent data={value ? FullScreenClickedIcon : FullScreenIcon} {...args} />
+                <Icon data={value ? FullScreenClickedIcon : FullScreenIcon} {...args} />
             )}
             popupPosition={popupPosition}
         />
     );
-};
+});
 
-export default withTranslation('controls')(FullScreenControl);
+FullScreenControl.displayName = 'FullScreenControl';
+
+export default FullScreenControl;

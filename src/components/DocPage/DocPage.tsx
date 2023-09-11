@@ -1,8 +1,8 @@
-import React from 'react';
-
 import block from 'bem-cn-lite';
+import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 
+import LinkIcon from '../../../assets/icons/link.svg';
 import {DEFAULT_SETTINGS} from '../../constants';
 import {
     DocPageData,
@@ -24,19 +24,17 @@ import {
     getStateKey,
     isContributor,
 } from '../../utils';
+import {BookmarkButton} from '../BookmarkButton';
 import {Breadcrumbs} from '../Breadcrumbs';
 import Contributors from '../Contributors/Contributors';
-import {Controls} from '../Controls';
+import {Controls, ControlsLayout, EditControl} from '../Controls';
 import {DocLayout} from '../DocLayout';
 import {DocPageTitle} from '../DocPageTitle';
-import {EditButton} from '../EditButton';
 import {Feedback, FeedbackView} from '../Feedback';
 import {HTML} from '../HTML';
 import {MiniToc} from '../MiniToc';
 import {SearchBar, withHighlightedSearchWords} from '../SearchBar';
 import {TocNavPanel} from '../TocNavPanel';
-
-import LinkIcon from '../../../assets/icons/link.svg';
 
 import './DocPage.scss';
 
@@ -48,7 +46,6 @@ export interface DocPageProps extends DocPageData, DocSettings {
     router: Router;
     headerHeight?: number;
     tocTitleIcon?: React.ReactNode;
-    hideTocHeader?: boolean;
     hideToc?: boolean;
 
     showSearchBar?: boolean;
@@ -59,6 +56,7 @@ export interface DocPageProps extends DocPageData, DocSettings {
     searchCurrentIndex?: number;
     searchCountResults?: number;
 
+    hideTocHeader?: boolean;
     hideControls?: boolean;
     hideEditControl?: boolean;
     hideFeedbackControls?: boolean;
@@ -130,7 +128,6 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
         const {
             toc,
             router,
-            lang,
             headerHeight,
             wideFormat,
             fullScreen,
@@ -155,7 +152,6 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             <DocLayout
                 toc={toc}
                 router={router}
-                lang={lang}
                 headerHeight={headerHeight}
                 className={b(modes)}
                 fullScreen={fullScreen}
@@ -264,7 +260,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
     }
 
     private addLinksToOriginalArticle = () => {
-        const {singlePage, lang, convertPathToOriginalArticle, generatePathToVcs} = this.props;
+        const {singlePage, convertPathToOriginalArticle, generatePathToVcs, vcsType} = this.props;
 
         if (singlePage) {
             const elements = document.querySelectorAll('[data-original-article]');
@@ -291,7 +287,12 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                         const vcsHref = callSafe(generatePathToVcs, href);
                         const linkToVcs = createElementFromHTML(
                             ReactDOMServer.renderToStaticMarkup(
-                                <EditButton lang={lang} href={vcsHref} />,
+                                <EditControl
+                                    vcsUrl={vcsHref}
+                                    vcsType={vcsType}
+                                    view={'wide'}
+                                    className={b('edit-button')}
+                                />,
                             ),
                         );
                         linkWrapperEl.append(linkToVcs);
@@ -336,19 +337,21 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
 
     private renderTitle() {
         const {title, meta, bookmarkedPage, onChangeBookmarkPage} = this.props;
+        const withBookmarks = onChangeBookmarkPage;
 
         if (!title) {
             return null;
         }
 
         return (
-            <DocPageTitle
-                stage={meta.stage}
-                className={b('title')}
-                bookmarkedPage={bookmarkedPage}
-                onChangeBookmarkPage={onChangeBookmarkPage}
-            >
+            <DocPageTitle stage={meta.stage} className={b('title')}>
                 <HTML>{title}</HTML>
+                {withBookmarks && (
+                    <BookmarkButton
+                        isBookmarked={Boolean(bookmarkedPage)}
+                        onBookmark={onChangeBookmarkPage}
+                    />
+                )}
             </DocPageTitle>
         );
     }
@@ -373,7 +376,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
     }
 
     private renderAuthor(onlyAuthor: boolean) {
-        const {meta, lang} = this.props;
+        const {meta} = this.props;
 
         if (!isContributor(meta?.author)) {
             return null;
@@ -381,7 +384,6 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
 
         return (
             <Contributors
-                lang={lang}
                 users={[meta.author]}
                 onlyAuthor={onlyAuthor}
                 translationName={'authors'}
@@ -391,13 +393,13 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
     }
 
     private renderContributors() {
-        const {meta, lang} = this.props;
+        const {meta} = this.props;
 
         if (!meta?.contributors || meta.contributors.length === 0) {
             return null;
         }
 
-        return <Contributors lang={lang} users={meta.contributors} />;
+        return <Contributors users={meta.contributors} />;
     }
 
     private renderContentMiniToc() {
@@ -463,7 +465,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
     }
 
     private renderAsideMiniToc() {
-        const {headings, router, headerHeight, lang} = this.props;
+        const {headings, router, headerHeight} = this.props;
         const {keyDOM} = this.state;
 
         return (
@@ -472,7 +474,6 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                     headings={headings}
                     router={router}
                     headerHeight={headerHeight}
-                    lang={lang}
                     key={keyDOM}
                 />
             </div>
@@ -480,32 +481,17 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
     }
 
     private renderFeedback() {
-        const {
-            toc,
-            lang,
-            singlePage,
-            isLiked,
-            isDisliked,
-            onSendFeedback,
-            dislikeVariants,
-            hideFeedbackControls,
-        } = this.props;
+        const {singlePage, isLiked, isDisliked, onSendFeedback, hideFeedbackControls} = this.props;
 
-        if (!toc || toc.singlePage || hideFeedbackControls) {
+        if (singlePage || hideFeedbackControls || !onSendFeedback) {
             return null;
         }
-
-        const isVerticalView = this.getIsVerticalView();
 
         return (
             <div className={b('feedback')}>
                 <Feedback
-                    isVerticalView={isVerticalView}
-                    lang={lang}
-                    singlePage={singlePage}
                     isLiked={isLiked}
                     isDisliked={isDisliked}
-                    dislikeVariants={dislikeVariants}
                     onSendFeedback={onSendFeedback}
                     view={FeedbackView.Wide}
                 />
@@ -514,16 +500,15 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
     }
 
     private renderTocNavPanel() {
-        const {toc, router, fullScreen, lang} = this.props;
+        const {toc, singlePage, router, fullScreen} = this.props;
 
-        if (!toc || toc.singlePage) {
+        if (singlePage) {
             return null;
         }
 
         return (
             <TocNavPanel
                 {...toc}
-                lang={lang}
                 router={router}
                 fixed={fullScreen}
                 className={b('toc-nav-panel')}
@@ -556,7 +541,6 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             onClickPrevSearch,
             onClickNextSearch,
             onCloseSearchBar,
-            lang,
             singlePage,
         } = this.props;
 
@@ -567,7 +551,6 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
         return (
             <div className={b('search-bar')}>
                 <SearchBar
-                    lang={lang}
                     searchCurrentIndex={searchCurrentIndex}
                     searchCountResults={searchCountResults}
                     onClickPrevSearch={onClickPrevSearch}
@@ -600,7 +583,6 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             onSubscribe,
             isLiked,
             isDisliked,
-            dislikeVariants,
             hideControls,
             hideEditControl,
             hideFeedbackControls,
@@ -610,37 +592,36 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             return null;
         }
 
-        const showEditControl = !hideEditControl && !fullScreen && this.isEditable();
         const isVerticalView = this.getIsVerticalView();
 
         return (
             <div className={b('controls', {vertical: isVerticalView})}>
-                <Controls
-                    lang={lang}
-                    langs={langs}
-                    textSize={textSize}
-                    theme={theme}
-                    wideFormat={wideFormat}
-                    showMiniToc={this.showMiniToc}
-                    fullScreen={fullScreen}
-                    singlePage={singlePage}
-                    onChangeLang={onChangeLang}
-                    vcsUrl={vcsUrl as string}
-                    vcsType={vcsType as Vcs}
-                    isLiked={isLiked}
-                    isDisliked={isDisliked}
-                    dislikeVariants={dislikeVariants}
-                    showEditControl={showEditControl}
-                    onChangeFullScreen={onChangeFullScreen}
-                    onChangeWideFormat={onChangeWideFormat}
-                    onChangeShowMiniToc={onChangeShowMiniToc}
-                    onChangeTheme={onChangeTheme}
-                    onChangeTextSize={onChangeTextSize}
-                    onSendFeedback={onSendFeedback}
-                    onSubscribe={onSubscribe}
-                    isVerticalView={isVerticalView}
-                    hideFeedbackControls={hideFeedbackControls}
-                />
+                <ControlsLayout isVerticalView={isVerticalView}>
+                    <Controls
+                        lang={lang}
+                        langs={langs}
+                        textSize={textSize}
+                        theme={theme}
+                        wideFormat={wideFormat}
+                        showMiniToc={this.showMiniToc}
+                        fullScreen={fullScreen}
+                        singlePage={singlePage}
+                        vcsUrl={vcsUrl as string}
+                        vcsType={vcsType as Vcs}
+                        isLiked={isLiked}
+                        isDisliked={isDisliked}
+                        onChangeLang={onChangeLang}
+                        onChangeFullScreen={onChangeFullScreen}
+                        onChangeWideFormat={onChangeWideFormat}
+                        onChangeShowMiniToc={onChangeShowMiniToc}
+                        onChangeTheme={onChangeTheme}
+                        onChangeTextSize={onChangeTextSize}
+                        onSendFeedback={onSendFeedback}
+                        onSubscribe={onSubscribe}
+                        hideEditControl={hideEditControl || fullScreen || !this.isEditable()}
+                        hideFeedbackControls={hideFeedbackControls}
+                    />
+                </ControlsLayout>
             </div>
         );
     }

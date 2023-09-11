@@ -1,3 +1,5 @@
+import type {Loc} from '../config/i18n';
+
 export enum Theme {
     Light = 'light',
     Dark = 'dark',
@@ -12,6 +14,11 @@ export enum TextSizes {
 export enum ControlSizes {
     M = 'm',
     L = 'l',
+}
+
+export interface Config {
+    lang?: string;
+    loc?: Loc;
 }
 
 export interface DocSettings {

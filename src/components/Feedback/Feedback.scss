@@ -39,12 +39,6 @@ $popupWidth: 320px;
         }
     }
 
-    &__like-button {
-        &_active {
-            color: var(--g-color-base-brand);
-        }
-    }
-
     &__success-popup {
         padding: $popupPadding 50px $popupPadding $popupPadding;
         width: $popupWidth;
@@ -143,12 +137,6 @@ $popupWidth: 320px;
             &:last-child {
                 margin-right: 0;
             }
-        }
-    }
-
-    &__feedback-button {
-        &_active {
-            color: var(--g-color-base-brand);
         }
     }
 }

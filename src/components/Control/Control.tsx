@@ -1,9 +1,9 @@
-import React, {useCallback, useState, useRef} from 'react';
+import {Button, Popup} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
-import {Popup, Button} from '@gravity-ui/uikit';
+import React, {forwardRef, useCallback, useImperativeHandle, useRef} from 'react';
 
+import {PopperPosition, usePopupState} from '../../hooks';
 import {ControlSizes} from '../../models';
-import {PopperPosition} from '../../hooks';
 
 import './Control.scss';
 
@@ -30,23 +30,21 @@ const ICONS_SIZES = {
     [ControlSizes.L]: 20,
 };
 
-const Control = (props: ControlProps) => {
+const Control = forwardRef((props: ControlProps, ref) => {
     const {
         onClick,
         className,
         tooltipText,
         isVerticalView,
-        setRef,
         size = ControlSizes.M,
         icon,
         popupPosition,
     } = props;
 
     const controlRef = useRef<HTMLButtonElement | null>(null);
-    const [isVisibleTooltip, setIsVisibleTooltip] = useState(false);
 
-    const showTooltip = () => setIsVisibleTooltip(true);
-    const hideTooltip = () => setIsVisibleTooltip(false);
+    const popupState = usePopupState({autoclose: 3000});
+
     const getTooltipAlign = useCallback(() => {
         if (popupPosition) {
             return popupPosition;
@@ -54,16 +52,8 @@ const Control = (props: ControlProps) => {
 
         return isVerticalView ? PopperPosition.LEFT_START : PopperPosition.BOTTOM_END;
     }, [isVerticalView, popupPosition]);
-    const _setRef = useCallback(
-        (ref: HTMLButtonElement) => {
-            controlRef.current = ref;
 
-            if (setRef) {
-                setRef(ref);
-            }
-        },
-        [setRef],
-    );
+    useImperativeHandle(ref, () => controlRef.current, [controlRef]);
 
     const position = getTooltipAlign();
     const Icon = icon;
@@ -74,9 +64,9 @@ const Control = (props: ControlProps) => {
             <Button
                 view="flat-secondary"
                 onClick={onClick}
-                ref={_setRef}
-                onMouseEnter={showTooltip}
-                onMouseLeave={hideTooltip}
+                ref={controlRef}
+                onMouseEnter={popupState.open}
+                onMouseLeave={popupState.close}
                 className={b(null, className)}
                 size={size}
             >
@@ -84,18 +74,20 @@ const Control = (props: ControlProps) => {
                     <Icon width={iconSize} height={iconSize} />
                 </Button.Icon>
             </Button>
-            <Popup
-                anchorRef={controlRef}
-                open={isVisibleTooltip}
-                onOutsideClick={hideTooltip}
-                contentClassName={b('tooltip')}
-                placement={position}
-            >
-                <span className={b('tooltip-text')}>{tooltipText}</span>
-            </Popup>
+            {controlRef.current && (
+                <Popup
+                    anchorRef={controlRef}
+                    open={popupState.visible}
+                    onOutsideClick={popupState.close}
+                    contentClassName={b('tooltip')}
+                    placement={position}
+                >
+                    <span className={b('tooltip-text')}>{tooltipText}</span>
+                </Popup>
+            )}
         </React.Fragment>
     );
-};
+});
 
 Control.displayName = 'DCControl';
 

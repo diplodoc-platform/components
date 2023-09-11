@@ -72,6 +72,12 @@
     "button-dislike-text": "Нет",
     "main-question": "Была ли статья полезна?"
   },
+  "feedback-variants": {
+    "irrelevant-answer": "Нет ответа на мой вопрос",
+    "useless-recs": "Рекомендации не помогли",
+    "content-mismatch": "Содержание не соответствует заголовку",
+    "other": "Другое"
+  },
   "search-bar": {
     "search-query-label": "Найдено по запросу",
     "close": "Закрыть",

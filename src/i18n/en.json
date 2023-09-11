@@ -72,6 +72,12 @@
     "button-dislike-text": "No",
     "main-question": "Was the article helpful?"
   },
+  "feedback-variants": {
+    "irrelevant-answer": "No answer to my question",
+    "useless-recs": "Recommendations didn't help",
+    "content-mismatch": "The content doesn't match the title",
+    "other": "Other"
+  },
   "search-bar": {
     "search-query-label": "Found on request",
     "close": "Close",

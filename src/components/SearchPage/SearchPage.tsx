@@ -1,20 +1,14 @@
-import React, {useRef, useState} from 'react';
-
 import {Button, Loader, TextInput} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
-import {TFunction, withTranslation, WithTranslation, WithTranslationProps} from 'react-i18next';
+import React, {useRef, useState} from 'react';
 
+import {useTranslation} from '../../hooks';
 import {Paginator, PaginatorProps} from '../Paginator';
 import {ISearchItem, SearchItem, SearchOnClickProps} from '../SearchItem';
-import {Lang} from '../../models';
 
 import './SearchPage.scss';
 
 const b = block('dc-search-page');
-
-interface Translation {
-    t: TFunction<'translation'>;
-}
 
 interface Loading {
     loading?: boolean;
@@ -28,88 +22,22 @@ interface InputProps {
 type RenderInput = {
     inputRef: React.MutableRefObject<null>;
     onQueryUpdate: (arg: string) => void;
-} & InputProps &
-    Translation;
+} & InputProps;
 
-type RenderNoContent = Loading & Translation;
+type RenderNoContent = Loading;
 
 interface SearchPageProps extends Loading {
     items: ISearchItem[];
     page: number;
-    lang?: Lang;
     isMobile?: boolean;
     loading?: boolean;
 }
 
-type RenderFoundProps = SearchPageProps & SearchOnClickProps & PaginatorProps & Translation;
+type RenderFoundProps = SearchPageProps & SearchOnClickProps & PaginatorProps;
 
-type SearchPageInnerProps = SearchPageProps &
-    SearchOnClickProps &
-    InputProps &
-    PaginatorProps &
-    WithTranslation &
-    WithTranslationProps;
+type SearchPageInnerProps = SearchPageProps & SearchOnClickProps & InputProps & PaginatorProps;
 
-const SearchPage = ({
-    query = '',
-    items = [],
-    page = 1,
-    lang = Lang.En,
-    isMobile,
-    i18n,
-    t,
-    totalItems,
-    maxPages,
-    itemsPerPage,
-    onPageChange,
-    onSubmit,
-    itemOnClick,
-    irrelevantOnClick,
-    relevantOnClick,
-    loading,
-}: SearchPageInnerProps) => {
-    if (i18n.language !== lang) {
-        i18n.changeLanguage(lang);
-    }
-
-    const inputRef = useRef(null);
-    const [currentQuery, setCurrentQuery] = useState(query);
-
-    return (
-        <div className={b('layout')}>
-            <div className={b('search-input')}>
-                {renderInput({
-                    query: currentQuery,
-                    onQueryUpdate: setCurrentQuery,
-                    onSubmit,
-                    inputRef,
-                    t,
-                })}
-            </div>
-            <div className={b('content')}>
-                {items?.length && query
-                    ? renderFound({
-                          items,
-                          page,
-                          lang,
-                          isMobile,
-                          t,
-                          totalItems,
-                          maxPages,
-                          itemsPerPage,
-                          itemOnClick,
-                          onPageChange,
-                          irrelevantOnClick,
-                          relevantOnClick,
-                      })
-                    : renderWithoutContent({loading, t})}
-            </div>
-        </div>
-    );
-};
-
-function renderFound({
-    lang,
+const FoundBlock: React.FC<RenderFoundProps> = ({
     items,
     itemOnClick,
     irrelevantOnClick,
@@ -120,25 +48,21 @@ function renderFound({
     onPageChange,
     itemsPerPage,
     isMobile,
-    t,
-}: RenderFoundProps) {
+}) => {
+    const {t} = useTranslation('search');
+
     return (
         <div className={b('search-result')}>
             <h3 className={b('subtitle')}>{t<string>('search_request-query')}</h3>
             <div className={b('search-list')}>
                 {items.map((item: ISearchItem) => (
                     <SearchItem
-                        lang={lang}
                         key={item.url}
                         item={item}
                         className={b('search-item')}
-                        itemOnClick={itemOnClick ? (arg) => itemOnClick(arg) : undefined}
-                        irrelevantOnClick={
-                            irrelevantOnClick ? (arg) => irrelevantOnClick(arg) : undefined
-                        }
-                        relevantOnClick={
-                            relevantOnClick ? (arg) => relevantOnClick(arg) : undefined
-                        }
+                        itemOnClick={itemOnClick}
+                        irrelevantOnClick={irrelevantOnClick}
+                        relevantOnClick={relevantOnClick}
                     />
                 ))}
             </div>
@@ -154,9 +78,11 @@ function renderFound({
             </div>
         </div>
     );
-}
+};
 
-function renderWithoutContent({loading, t}: RenderNoContent) {
+const WithoutContentBlock: React.FC<RenderNoContent> = ({loading}) => {
+    const {t} = useTranslation('search');
+
     return loading ? (
         <Loader />
     ) : (
@@ -165,9 +91,11 @@ function renderWithoutContent({loading, t}: RenderNoContent) {
             <div>{t<string>('search_not-found-text')}</div>
         </div>
     );
-}
+};
 
-function renderInput({query, onQueryUpdate, onSubmit, inputRef, t}: RenderInput) {
+const InputBlock: React.FC<RenderInput> = ({query, onQueryUpdate, onSubmit, inputRef}) => {
+    const {t} = useTranslation('search');
+
     return (
         <div className={b('search-field')}>
             <form
@@ -201,6 +129,60 @@ function renderInput({query, onQueryUpdate, onSubmit, inputRef, t}: RenderInput)
             </form>
         </div>
     );
-}
+};
 
-export default withTranslation('search')(SearchPage);
+const SearchPage = ({
+    query = '',
+    items = [],
+    page = 1,
+    isMobile,
+    totalItems,
+    maxPages,
+    itemsPerPage,
+    onPageChange,
+    onSubmit,
+    itemOnClick,
+    irrelevantOnClick,
+    relevantOnClick,
+    loading,
+}: SearchPageInnerProps) => {
+    const inputRef = useRef(null);
+    const [currentQuery, setCurrentQuery] = useState(query);
+
+    return (
+        <div className={b('layout')}>
+            <div className={b('search-input')}>
+                <InputBlock
+                    {...{
+                        query: currentQuery,
+                        onQueryUpdate: setCurrentQuery,
+                        onSubmit,
+                        inputRef,
+                    }}
+                />
+            </div>
+            <div className={b('content')}>
+                {items?.length && query ? (
+                    <FoundBlock
+                        {...{
+                            items,
+                            page,
+                            isMobile,
+                            totalItems,
+                            maxPages,
+                            itemsPerPage,
+                            itemOnClick,
+                            onPageChange,
+                            irrelevantOnClick,
+                            relevantOnClick,
+                        }}
+                    />
+                ) : (
+                    <WithoutContentBlock loading={loading} />
+                )}
+            </div>
+        </div>
+    );
+};
+
+export default SearchPage;

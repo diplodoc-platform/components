@@ -1,15 +1,13 @@
-import React, {useCallback, useEffect, useState, useRef} from 'react';
-import {WithTranslation, withTranslation, WithTranslationProps} from 'react-i18next';
-import cn from 'bem-cn-lite';
-import {Button, Popup, Switch, List, Icon as IconComponent} from '@gravity-ui/uikit';
-
-import {Control} from '../../../Control';
-import {ControlSizes, Lang, TextSizes, Theme} from '../../../../models';
-import {PopperPosition} from '../../../../hooks';
-
-import {getPopupPosition} from '../utils';
-
 import SettingsIcon from '@gravity-ui/icons/svgs/gear.svg';
+import {Button, Icon, List, Popup, Switch} from '@gravity-ui/uikit';
+import cn from 'bem-cn-lite';
+import React, {ReactElement, useCallback, useContext, useRef, useState} from 'react';
+
+import {useTranslation} from '../../../../hooks';
+import {TextSizes, Theme} from '../../../../models';
+import {Control} from '../../../Control';
+import {ControlsLayoutContext} from '../../ControlsLayout';
+import {getPopupPosition} from '../utils';
 
 import './SettingsControl.scss';
 
@@ -23,32 +21,23 @@ interface ControlProps {
     showMiniToc?: boolean;
     theme?: Theme;
     textSize?: TextSizes;
-    lang: Lang;
-    isVerticalView?: boolean;
-    className?: string;
-    size?: ControlSizes;
     onChangeWideFormat?: (value: boolean) => void;
     onChangeShowMiniToc?: (value: boolean) => void;
     onChangeTheme?: (theme: Theme) => void;
     onChangeTextSize?: (textSize: TextSizes) => void;
-    popupPosition?: PopperPosition;
 }
-
-type ControlInnerProps = ControlProps & WithTranslation & WithTranslationProps;
 
 interface SettingControlItem {
     text: string;
     description: string;
-    control: Element;
+    control: ReactElement;
 }
 
-const SettingsControl = (props: ControlInnerProps) => {
+const SettingsControl = (props: ControlProps) => {
+    const {t} = useTranslation('controls');
+    const {controlClassName, controlSize, isVerticalView, popupPosition} =
+        useContext(ControlsLayoutContext);
     const {
-        className,
-        isVerticalView,
-        size,
-        lang,
-        i18n,
         textSize,
         theme,
         wideFormat,
@@ -59,8 +48,6 @@ const SettingsControl = (props: ControlInnerProps) => {
         onChangeWideFormat,
         onChangeShowMiniToc,
         onChangeTextSize,
-        popupPosition,
-        t,
     } = props;
 
     const controlRef = useRef<HTMLButtonElement | null>(null);
@@ -68,8 +55,8 @@ const SettingsControl = (props: ControlInnerProps) => {
     const showPopup = () => setIsVisiblePopup(true);
     const hidePopup = () => setIsVisiblePopup(false);
 
-    const makeOnChangeTextSize = useCallback(
-        (textSizeKey) => () => {
+    const _onChangeTextSize = useCallback(
+        (textSizeKey: TextSizes) => () => {
             if (onChangeTextSize) {
                 onChangeTextSize(textSizeKey);
             }
@@ -142,7 +129,7 @@ const SettingsControl = (props: ControlInnerProps) => {
                                           [textSizeKey]: true,
                                       })}
                                       view="flat"
-                                      onClick={makeOnChangeTextSize(textSizeKey)}
+                                      onClick={_onChangeTextSize(textSizeKey)}
                                   >
                                       <Button.Icon
                                           className={b('text-size-button-icon', {
@@ -166,41 +153,29 @@ const SettingsControl = (props: ControlInnerProps) => {
         showMiniToc,
         fullScreen,
         singlePage,
-        onChangeTheme,
-        onChangeWideFormat,
-        onChangeShowMiniToc,
         _onChangeTheme,
         _onChangeWideFormat,
         _onChangeShowMiniToc,
+        _onChangeTextSize,
+        onChangeWideFormat,
+        onChangeShowMiniToc,
+        onChangeTheme,
         onChangeTextSize,
-        makeOnChangeTextSize,
     ]);
-
-    useEffect(() => {
-        i18n.changeLanguage(lang);
-    }, [i18n, lang]);
-
-    const setRef = useCallback((ref: HTMLButtonElement) => {
-        controlRef.current = ref;
-    }, []);
-
-    if (!(onChangeWideFormat || onChangeTheme || onChangeShowMiniToc || onChangeTextSize)) {
-        return null;
-    }
 
     const settingsItems = getSettingsItems();
 
     return (
         <React.Fragment>
             <Control
-                size={size}
+                ref={controlRef}
+                size={controlSize}
                 onClick={showPopup}
-                className={className}
+                className={controlClassName}
                 isVerticalView={isVerticalView}
                 tooltipText={t('settings-text')}
-                setRef={setRef}
                 popupPosition={popupPosition}
-                icon={(args) => <IconComponent data={SettingsIcon} {...args} />}
+                icon={(args) => <Icon data={SettingsIcon} {...args} />}
             />
             <Popup
                 anchorRef={controlRef}
@@ -215,7 +190,7 @@ const SettingsControl = (props: ControlInnerProps) => {
                     itemHeight={ITEM_HEIGHT}
                     itemsHeight={ITEM_HEIGHT * settingsItems.length}
                     filterable={false}
-                    renderItem={(item) => {
+                    renderItem={(item: SettingControlItem) => {
                         return (
                             <div className={b('list-item')}>
                                 <div className={b('list-item-content')}>
@@ -234,4 +209,4 @@ const SettingsControl = (props: ControlInnerProps) => {
     );
 };
 
-export default withTranslation('controls')(SettingsControl);
+export default SettingsControl;

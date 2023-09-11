@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
-import block from 'bem-cn-lite';
 import {Button} from '@gravity-ui/uikit';
+import block from 'bem-cn-lite';
+import React, {memo, useState} from 'react';
+
+import {useTranslation} from '../../hooks';
+import {HTML} from '../HTML';
 
 import './SearchItem.scss';
-import {WithTranslation, withTranslation, WithTranslationProps} from 'react-i18next';
-import {Lang} from '../../models';
-import {HTML} from '../HTML';
 
 const b = block('SearchItem');
 
@@ -24,86 +24,74 @@ export interface SearchOnClickProps {
 export interface SearchItemProps {
     item: ISearchItem;
     className?: string;
-    lang?: Lang;
 }
 
-type SearchPageInnerProps = SearchItemProps &
-    SearchOnClickProps &
-    WithTranslation &
-    WithTranslationProps;
+type SearchPageInnerProps = SearchItemProps & SearchOnClickProps;
 
-const SearchItem = ({
-    item,
-    className,
-    lang = Lang.En,
-    i18n,
-    t,
-    itemOnClick,
-    irrelevantOnClick,
-    relevantOnClick,
-}: SearchPageInnerProps) => {
-    const {url, title, description} = item;
+const SearchItem = memo<SearchPageInnerProps>(
+    ({item, className, itemOnClick, irrelevantOnClick, relevantOnClick}) => {
+        const {t} = useTranslation('search');
+        const {url, title, description} = item;
 
-    if (i18n.language !== lang) {
-        i18n.changeLanguage(lang);
-    }
+        const [markedItem, setMarkedItem] = useState(false);
 
-    const [markedItem, setMarkedItem] = useState(false);
-
-    const renderItem = () => {
-        return (
-            <div className={b('item-wrapper')}>
-                <a
-                    className={b('item')}
-                    href={url}
-                    onClick={() => (itemOnClick ? itemOnClick(item) : undefined)}
-                >
-                    <HTML className={b('item-title')}>{title}</HTML>
-                    <HTML className={b('item-description')}>{description}</HTML>
-                </a>
-                {irrelevantOnClick && relevantOnClick && (
-                    <div className={b('marks')}>
-                        <div className={b('marks-wrapper')}>
-                            {markedItem ? (
-                                <span className={b('marks-text')}>
-                                    {t('search_mark-result-text')}
-                                </span>
-                            ) : (
-                                <div>
-                                    <Button
-                                        size="s"
-                                        className={b('mark')}
-                                        onClick={() => {
-                                            setMarkedItem(true);
-                                            if (irrelevantOnClick) {
-                                                irrelevantOnClick(item);
-                                            }
-                                        }}
-                                    >
-                                        {t('search_mark_dislike')}
-                                    </Button>
-                                    <Button
-                                        size="s"
-                                        className={b('mark')}
-                                        onClick={() => {
-                                            setMarkedItem(true);
-                                            if (relevantOnClick) {
-                                                relevantOnClick(item);
-                                            }
-                                        }}
-                                    >
-                                        {t('search_mark_like')}
-                                    </Button>
-                                </div>
-                            )}
+        const renderItem = () => {
+            return (
+                <div className={b('item-wrapper')}>
+                    <a
+                        className={b('item')}
+                        href={url}
+                        onClick={() => (itemOnClick ? itemOnClick(item) : undefined)}
+                    >
+                        <HTML className={b('item-title')}>{title}</HTML>
+                        <HTML className={b('item-description')}>{description}</HTML>
+                    </a>
+                    {irrelevantOnClick && relevantOnClick && (
+                        <div className={b('marks')}>
+                            <div className={b('marks-wrapper')}>
+                                {markedItem ? (
+                                    <span className={b('marks-text')}>
+                                        {t<string>('search_mark-result-text')}
+                                    </span>
+                                ) : (
+                                    <div>
+                                        <Button
+                                            size="s"
+                                            className={b('mark')}
+                                            onClick={() => {
+                                                setMarkedItem(true);
+                                                if (irrelevantOnClick) {
+                                                    irrelevantOnClick(item);
+                                                }
+                                            }}
+                                        >
+                                            {t<string>('search_mark_dislike')}
+                                        </Button>
+                                        <Button
+                                            size="s"
+                                            className={b('mark')}
+                                            onClick={() => {
+                                                setMarkedItem(true);
+                                                if (relevantOnClick) {
+                                                    relevantOnClick(item);
+                                                }
+                                            }}
+                                        >
+                                            {t<string>('search_mark_like')}
+                                        </Button>
+                                    </div>
+                                )}
+                            </div>
                         </div>
-                    </div>
-                )}
-            </div>
-        );
-    };
+                    )}
+                </div>
+            );
+        };
 
-    return <div className={b(null, className)}>{renderItem()}</div>;
-};
+        return <div className={b(null, className)}>{renderItem()}</div>;
+    },
+);
 
-export default withTranslation('search')(SearchItem);
+SearchItem.displayName = 'SearchItem';
+
+export default SearchItem;

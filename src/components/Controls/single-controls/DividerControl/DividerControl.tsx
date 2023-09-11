@@ -1,24 +1,20 @@
-import React from 'react';
 import cn from 'bem-cn-lite';
+import React, {useContext} from 'react';
 
-import {ControlSizes} from '../../../../models';
+import {ControlsLayoutContext} from '../../ControlsLayout';
 
 import './DividerControl.scss';
 
 const b = cn('dc-divider-control');
 
 interface DividerControlProps {
-    size?: ControlSizes;
     className?: string;
-    isVerticalView?: boolean;
 }
 
-const DividerControl = ({
-    size = ControlSizes.M,
-    className,
-    isVerticalView = true,
-}: DividerControlProps) => {
-    return <div className={b({size, vertical: isVerticalView}, className)} />;
+const DividerControl: React.FC<DividerControlProps> = ({className}) => {
+    const {isVerticalView, controlSize} = useContext(ControlsLayoutContext);
+
+    return <div className={b({size: controlSize, vertical: !isVerticalView}, className)} />;
 };
 
 export default DividerControl;

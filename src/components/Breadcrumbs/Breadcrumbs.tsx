@@ -1,6 +1,5 @@
-import React from 'react';
-
 import block from 'bem-cn-lite';
+import React from 'react';
 
 import {BreadcrumbItem} from '../../models';
 
@@ -12,6 +11,7 @@ export interface BreadcrumbsProps {
     items: BreadcrumbItem[];
     className?: string;
 }
+
 export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({items, className}) => {
     if (!items || !items.length) {
         return null;

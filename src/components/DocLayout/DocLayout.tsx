@@ -1,8 +1,7 @@
+import block from 'bem-cn-lite';
 import React, {PropsWithChildren, ReactElement} from 'react';
 
-import block from 'bem-cn-lite';
-
-import {TocData, Router, Lang} from '../../models';
+import {Router, TocData} from '../../models';
 import {getStateKey} from '../../utils';
 import {Toc} from '../Toc';
 
@@ -17,7 +16,6 @@ const Right: React.FC<PropsWithChildren> = () => null;
 export interface DocLayoutProps {
     toc: TocData;
     router: Router;
-    lang: Lang;
     children: (ReactElement | null)[] | ReactElement<unknown, React.FC>;
     fullScreen?: boolean;
     hideRight?: boolean;
@@ -104,7 +102,6 @@ export class DocLayout extends React.Component<DocLayoutProps> {
             wideFormat,
             hideTocHeader,
             hideToc,
-            lang,
             singlePage,
             onChangeSinglePage,
             pdfLink,
@@ -124,7 +121,6 @@ export class DocLayout extends React.Component<DocLayoutProps> {
                     headerHeight={headerHeight}
                     tocTitleIcon={tocTitleIcon}
                     hideTocHeader={hideTocHeader}
-                    lang={lang}
                     singlePage={singlePage}
                     onChangeSinglePage={onChangeSinglePage}
                     pdfLink={pdfLink}

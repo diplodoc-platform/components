@@ -32,7 +32,11 @@
       }
     },
     "./assets/icons/*.svg": "./assets/icons/*.svg",
-    "./styles": "./build/index.css"
+    "./styles": "./build/index.css",
+    "./themes/*": {
+      "style": "./build/themes/*/index.css",
+      "default": "./build/themes/*/index.css"
+    }
   },
   "sideEffects": [
     "*.css",
@@ -45,8 +49,8 @@
     "deps:truncate": "npm prune --production",
     "lint": "run-p _lint:js _lint:styles _lint:prettier",
     "lint:fix": "run-s _lint:js:fix _lint:styles:fix _lint:prettier:fix",
-    "_lint:js": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
-    "_lint:js:fix": "npm run _lint:js -- --quiet --fix",
+    "_lint:js": "eslint '**/*.{js,jsx,ts,tsx}'",
+    "_lint:js:fix": "npm run _lint:js -- --fix",
     "_lint:prettier": "prettier --check 'src/**/*.{js,jsx,ts,tsx}'",
     "_lint:prettier:fix": "prettier --write 'src/**/*.{js,jsx,ts,tsx}'",
     "_lint:styles": "stylelint src/**/*.scss",
@@ -61,7 +65,7 @@
     "_build:declarations:cjs": "tsc --emitDeclarationOnly -p tsconfig.cjs.json",
     "build": "run-s build:clean build:compile _build:declarations:*",
     "_build:watch": "./esbuild/build.js --watch",
-    "_storybook:watch": "cd demo && start-storybook -p 7008",
+    "_storybook:watch": "cd demo && npm run storybook",
     "prepublishOnly": "npm run lint && npm run test && npm run build",
     "prepare": "husky install",
     "pre-commit": "lint-staged"
@@ -78,7 +82,8 @@
     "react-hotkeys-hook": "^3.3.1",
     "react-i18next": "11.15.6",
     "react-popper": "^2.2.5",
-    "scroll-into-view-if-needed": "2.2.29"
+    "scroll-into-view-if-needed": "2.2.29",
+    "url": "^0.11.1"
   },
   "peerDependencies": {
     "react": ">=16.8.0 || >=17.0.0 || >=18.0.0",
@@ -106,20 +111,22 @@
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "rimraf": "^5.0.1",
+    "sass": "^1.66.1",
     "stylelint": "^15.10.3",
     "svgo": "2.8.0",
     "typescript": "^5.2.2"
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx}": [
-      "eslint --max-warnings=0 --fix -c eslint.publish.json",
+    "**/*.{js,jsx,ts,tsx}": [
+      "eslint --max-warnings=0 --fix -c .eslintrc.publish.js",
       "prettier --write"
     ],
-    "src/**/*.{css,scss}": [
+    "**/*.{css,scss}": [
       "stylelint --fix",
       "prettier --write"
     ],
-    "src/**/*.{json,yaml,yml,md}": [
+    "**/*.{json,yaml,yml,md}": [
       "prettier --write"
     ],
     "*.svg": [

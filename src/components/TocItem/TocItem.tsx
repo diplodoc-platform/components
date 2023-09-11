@@ -1,5 +1,5 @@
-import React from 'react';
 import block from 'bem-cn-lite';
+import React from 'react';
 
 import {TocItem as ITocItem} from '../../models';
 import {isExternalHref} from '../../utils';

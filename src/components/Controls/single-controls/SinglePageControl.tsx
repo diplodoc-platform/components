@@ -1,58 +1,44 @@
-import React, {useCallback, useEffect} from 'react';
-import {WithTranslation, withTranslation, WithTranslationProps} from 'react-i18next';
-import {Icon as IconComponent} from '@gravity-ui/uikit';
+import {ChevronsCollapseToLine, ChevronsExpandToLines} from '@gravity-ui/icons';
+import block from 'bem-cn-lite';
+import React, {memo, useCallback, useContext} from 'react';
 
+import {useTranslation} from '../../../hooks';
 import {Control} from '../../Control';
-import {ControlSizes, Lang} from '../../../models';
-import {PopperPosition} from '../../../hooks';
-
-import SinglePageIcon from '../../../../assets/icons/single-page.svg';
-import SinglePageClickedIcon from '../../../../assets/icons/single-page-clicked.svg';
+import {ControlsLayoutContext} from '../ControlsLayout';
 
 interface ControlProps {
-    lang: Lang;
     value?: boolean;
-    onChange?: (value: boolean) => void;
-    isVerticalView?: boolean;
-    className?: string;
-    size?: ControlSizes;
-    popupPosition?: PopperPosition;
+    onChange: (value: boolean) => void;
 }
 
-type ControlInnerProps = ControlProps & WithTranslation & WithTranslationProps;
+const b = block('dc-controls');
 
-const SinglePageControl = (props: ControlInnerProps) => {
-    const {className, isVerticalView, size, value, onChange, lang, i18n, popupPosition, t} = props;
+const SinglePageControl = memo<ControlProps>((props) => {
+    const {t} = useTranslation('controls');
+    const {controlClassName, controlSize, isVerticalView, popupPosition} =
+        useContext(ControlsLayoutContext);
+    const {value, onChange} = props;
 
     const onClick = useCallback(() => {
-        if (onChange) {
-            onChange(!value);
-        }
+        onChange(!value);
     }, [value, onChange]);
 
-    useEffect(() => {
-        i18n.changeLanguage(lang);
-    }, [i18n, lang]);
-
     const activeMode = value ? 'enabled' : 'disabled';
-
-    if (!onChange) {
-        return null;
-    }
+    const Icon = value ? ChevronsExpandToLines : ChevronsCollapseToLine;
 
     return (
         <Control
-            size={size}
+            size={controlSize}
             onClick={onClick}
-            className={className}
+            className={controlClassName}
             isVerticalView={isVerticalView}
             tooltipText={t(`single-page-text-${activeMode}`)}
-            icon={(args) => (
-                <IconComponent data={value ? SinglePageClickedIcon : SinglePageIcon} {...args} />
-            )}
+            icon={(args) => <Icon className={b('icon-rotated')} {...args} />}
             popupPosition={popupPosition}
         />
     );
-};
+});
 
-export default withTranslation('controls')(SinglePageControl);
+SinglePageControl.displayName = 'SinglePageControl';
+
+export default SinglePageControl;

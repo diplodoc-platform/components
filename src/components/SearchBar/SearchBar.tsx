@@ -1,22 +1,18 @@
-import React from 'react';
-
-import {Icon} from '@gravity-ui/uikit';
-import block from 'bem-cn-lite';
-import {withTranslation, WithTranslation, WithTranslationProps} from 'react-i18next';
-import {useHotkeys} from 'react-hotkeys-hook';
-
-import {Control} from '../Control';
-
-import {Lang} from '../../models';
 import ArrowLeftIcon from '@gravity-ui/icons/svgs/chevron-left.svg';
 import CloseIcon from '@gravity-ui/icons/svgs/xmark.svg';
+import {Icon} from '@gravity-ui/uikit';
+import block from 'bem-cn-lite';
+import React, {memo} from 'react';
+import {useHotkeys} from 'react-hotkeys-hook';
+
+import {useTranslation} from '../../hooks';
+import {Control} from '../Control';
 
 import './SearchBar.scss';
 
 const b = block('dc-search-bar');
 
 export interface SearchBarProps {
-    lang: Lang;
     searchQuery?: string;
     onClickPrevSearch?: () => void;
     onClickNextSearch?: () => void;
@@ -25,15 +21,11 @@ export interface SearchBarProps {
     searchCountResults?: number;
 }
 
-type SearchBarInnerProps = SearchBarProps & WithTranslation & WithTranslationProps;
-
 const noop = () => {};
 
-const SearchBar: React.FC<SearchBarInnerProps> = (props) => {
+const SearchBar = memo<SearchBarProps>((props) => {
+    const {t} = useTranslation('search-bar');
     const {
-        t,
-        i18n,
-        lang,
         searchQuery,
         searchCurrentIndex,
         searchCountResults,
@@ -48,10 +40,6 @@ const SearchBar: React.FC<SearchBarInnerProps> = (props) => {
     useHotkeys(hotkeysPrev, onClickPrevSearch, hotkeysOptions, [onClickPrevSearch]);
     useHotkeys(hotkeysNext, onClickNextSearch, hotkeysOptions, [onClickNextSearch]);
 
-    if (i18n.language !== lang) {
-        i18n.changeLanguage(lang);
-    }
-
     return (
         <div className={b()}>
             <div className={b('left')}>
@@ -59,9 +47,7 @@ const SearchBar: React.FC<SearchBarInnerProps> = (props) => {
                     <Control
                         onClick={onClickPrevSearch}
                         tooltipText={`${t('prev')} (${hotkeysPrev})`}
-                        icon={(args) => (
-                            <Icon data={ArrowLeftIcon} className={b('next-arrow')} {...args} />
-                        )}
+                        icon={(args) => <Icon data={ArrowLeftIcon} {...args} />}
                     />
                     <span className={b('counter')}>
                         {searchCurrentIndex}/{searchCountResults}
@@ -83,7 +69,7 @@ const SearchBar: React.FC<SearchBarInnerProps> = (props) => {
                 <Control
                     onClick={onCloseSearchBar}
                     tooltipText={t('close')}
-                    icon={() => <Icon data={CloseIcon} size={10} />}
+                    icon={() => <Icon data={CloseIcon} size={16} />}
                 />
             </div>
         </div>
@@ -92,4 +78,4 @@ const SearchBar: React.FC<SearchBarInnerProps> = (props) => {
 
 SearchBar.displayName = 'DCSearchBar';
 
-export default withTranslation('search-bar')(SearchBar);
+export default SearchBar;

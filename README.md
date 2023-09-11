@@ -4,6 +4,47 @@
 
 Компоненты для Yandex Flavored Markdown Documentation.
 
+## Installation
+
+`npm i @diplodoc/components`
+
+## Usage
+
+Append js
+
+```js
+// In most cases append transform runtime
+import "@doc-tools/transform/dist/js/yfm.js";
+
+// configure components
+import {configure as configureUikit} from '@gravity-ui/uikit';
+import {configure as configureDocs} from '@diplodoc/components';
+
+configureUikit({lang: 'ru'});
+
+// can be reconfigured in any moment
+configureDocs({
+    lang: 'ru',
+    // optionally configure allowed translations
+    loc: {ru, en, tr, ...}
+})
+```
+
+Append css
+
+```css
+/*project.css*/
+
+/*Append components styles*/
+@import '@diplodoc/components';
+
+/*Append components theme*/
+@import '@diplodoc/components/themes/common';
+
+/*In most cases append transform styles*/
+@import '@doc-tools/transform/dist/css/yfm.css';
+```
+
 ## Development
 
 To build the project correctly you need to install `python@2`.

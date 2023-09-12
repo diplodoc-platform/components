@@ -70,6 +70,9 @@ $avatarWrapperBigSize: 33px;
         & {
             border-radius: 50%;
             box-shadow: 0 0 0 $avatarBorder var(--g-color-line-generic-accent);
+            border: 0;
+            color: inherit;
+            cursor: inherit;
         }
 
         &_size_small {

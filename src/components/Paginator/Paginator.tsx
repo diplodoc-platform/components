@@ -77,7 +77,7 @@ const Paginator = ({
                 key={`page_${key}`}
                 className={b('item', mods)}
                 onClick={onClick && onClick.bind(this, key)}
-                aria-current={Boolean(mods.active) || undefined}
+                aria-current={mods.active ? 'page' : undefined}
             >
                 {content}
             </li>

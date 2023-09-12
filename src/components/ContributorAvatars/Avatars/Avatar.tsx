@@ -44,7 +44,7 @@ const Avatar: React.FC<AvatarProps> = (props) => {
     const initials = getInitials(contributor);
 
     return (
-        <div
+        <button
             key={key}
             className={b('avatar', {size, default: true})}
             ref={ref}
@@ -56,7 +56,7 @@ const Avatar: React.FC<AvatarProps> = (props) => {
             }
         >
             {initials}
-        </div>
+        </button>
     );
 };
 

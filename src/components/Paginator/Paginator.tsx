@@ -4,6 +4,8 @@ import {ArrowRight} from '@gravity-ui/icons';
 import {Button} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 
+import {useTranslation} from '../../hooks';
+
 import './Paginator.scss';
 
 const b = block('Paginator');
@@ -23,18 +25,12 @@ export interface PaginatorExtraProps {
     isMobile?: boolean;
 }
 
-export interface Test {
-    aaa: never;
-}
-
 export interface TotalCountItems {
     totalItems: number;
     itemsPerPage?: number;
 }
 
-export type PaginatorProps = PaginatorDefaultProps & TotalCountItems;
-
-export type PaginatorInnerProps = PaginatorExtraProps & PaginatorProps;
+export type PaginatorProps = PaginatorExtraProps & PaginatorDefaultProps & TotalCountItems;
 
 interface Modifications {
     [name: string]: string | boolean | undefined;
@@ -60,7 +56,9 @@ const Paginator = ({
     className,
     isMobile = false,
     onPageChange,
-}: PaginatorInnerProps) => {
+}: PaginatorProps) => {
+    const {t} = useTranslation('paginator');
+
     const getPagesCount = () => {
         const totalPages = Math.ceil(totalItems / itemsPerPage);
 
@@ -79,6 +77,7 @@ const Paginator = ({
                 key={`page_${key}`}
                 className={b('item', mods)}
                 onClick={onClick && onClick.bind(this, key)}
+                aria-current={Boolean(mods.active) || undefined}
             >
                 {content}
             </li>
@@ -139,8 +138,16 @@ const Paginator = ({
         return pages;
     };
 
-    const arrowButton = (disable: boolean) => (
-        <Button className={b('icon')} size="s" view={'flat'} disabled={disable}>
+    const arrowButton = (disable: boolean, label: string) => (
+        <Button
+            className={b('icon')}
+            size="s"
+            view={'flat'}
+            disabled={disable}
+            extraProps={{
+                'aria-label': label,
+            }}
+        >
             <ArrowRight width={16} height={16} />
         </Button>
     );
@@ -151,14 +158,14 @@ const Paginator = ({
         key: ArrowType.Prev,
         mods: {type: 'prev'},
         onClick: handleArrowClick,
-        content: arrowButton(page === 1),
+        content: arrowButton(page === 1, t('prev')),
     });
 
     pages.push({
         key: ArrowType.Next,
         mods: {type: 'next'},
         onClick: handleArrowClick,
-        content: arrowButton(page === pagesCount),
+        content: arrowButton(page === pagesCount, t('next')),
     });
 
     return <ul className={b(null, className)}>{pages.map(renderPaginatorItem)}</ul>;

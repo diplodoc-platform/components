@@ -108,5 +108,9 @@
     "search_mark_like": "like",
     "search_mark_dislike": "dislike",
     "search_mark-result-text": "Thank you for your rating!"
+  },
+  "paginator": {
+    "next": "Next page",
+    "prev": "Previous page"
   }
 }

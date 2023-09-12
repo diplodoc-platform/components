@@ -14,7 +14,7 @@ interface AvatarWithDescriptionProps {
 const AvatarWithDescription: React.FC<AvatarWithDescriptionProps> = (props) => {
     const {contributor, avatarSize} = props;
 
-    const controlRef = useRef<HTMLImageElement | null>(null);
+    const controlRef = useRef<(HTMLButtonElement & HTMLImageElement) | null>(null);
     const [isVisiblePopup, setIsVisiblePopup] = useState(false);
 
     const changeVisiblilityPopup = (visible?: boolean) => {

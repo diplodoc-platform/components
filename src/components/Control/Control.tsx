@@ -2,6 +2,7 @@ import React, {forwardRef, useCallback, useImperativeHandle, useRef} from 'react
 
 import {Button, Popup} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
+import {ButtonProps} from '@gravity-ui/uikit/build/esm/components/Button/Button';
 
 import {PopperPosition, usePopupState} from '../../hooks';
 import {ControlSizes} from '../../models';
@@ -24,6 +25,7 @@ export interface ControlProps {
     size?: ControlSizes;
     icon: React.FC<IconProps>;
     popupPosition?: PopperPosition;
+    buttonExtraProps?: ButtonProps['extraProps'];
 }
 
 const ICONS_SIZES = {
@@ -40,6 +42,7 @@ const Control = forwardRef((props: ControlProps, ref) => {
         size = ControlSizes.M,
         icon,
         popupPosition,
+        buttonExtraProps: extraProps,
     } = props;
 
     const controlRef = useRef<HTMLButtonElement | null>(null);
@@ -70,6 +73,10 @@ const Control = forwardRef((props: ControlProps, ref) => {
                 onMouseLeave={popupState.close}
                 className={b(null, className)}
                 size={size}
+                extraProps={{
+                    'aria-label': tooltipText,
+                    ...extraProps,
+                }}
             >
                 <Button.Icon>
                     <Icon width={iconSize} height={iconSize} />

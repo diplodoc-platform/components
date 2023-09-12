@@ -177,6 +177,9 @@ const SettingsControl = (props: ControlProps) => {
                 tooltipText={t('settings-text')}
                 popupPosition={popupPosition}
                 icon={Gear}
+                buttonExtraProps={{
+                    'aria-expanded': isVisiblePopup,
+                }}
             />
             <Popup
                 anchorRef={controlRef}

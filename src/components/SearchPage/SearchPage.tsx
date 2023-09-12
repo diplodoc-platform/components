@@ -75,6 +75,7 @@ const FoundBlock: React.FC<RenderFoundProps> = ({
                     onPageChange={onPageChange}
                     itemsPerPage={itemsPerPage}
                     isMobile={isMobile}
+                    lang={lang}
                 />
             </div>
         </div>

@@ -22,7 +22,7 @@ const HiddenAvatars: React.FC<HiddenAvatarsProps> = (props) => {
     const {contributors, avatarsSize} = props;
     const contributorsCount = contributors.length;
 
-    const controlRef = useRef<HTMLButtonElement | null>(null);
+    const controlRef = useRef<(HTMLButtonElement & HTMLImageElement) | null>(null);
     const [isVisiblePopup, setIsVisiblePopup] = useState(false);
 
     if (contributorsCount === 0) {

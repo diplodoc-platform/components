@@ -108,5 +108,9 @@
     "search_mark_like": "то, что нужно",
     "search_mark_dislike": "вообще не про то",
     "search_mark-result-text": "Спасибо за оценку!"
+  },
+  "paginator": {
+    "next": "Следующая страница",
+    "prev": "Предыдущая страница"
   }
 }

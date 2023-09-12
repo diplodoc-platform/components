@@ -116,6 +116,7 @@ export class Scrollspy extends React.Component<ScrollspyInnerProps, ScrollspySta
                     className={childClassNames}
                     onClick={this.handleSectionClick}
                     ref={this.itemRefs[index]}
+                    aria-current={inViewState[index] ? 'location' : undefined}
                 >
                     {child.props.children}
                 </ChildTag>

@@ -1,7 +1,7 @@
 import {Contributor} from '../../models';
 
 export type PopupData = {
-    ref: React.MutableRefObject<HTMLImageElement | null>;
+    ref: React.MutableRefObject<HTMLButtonElement | null>;
     isVisiblePopup: boolean;
     changeVisiblilityPopup: (visible?: boolean) => void;
 };

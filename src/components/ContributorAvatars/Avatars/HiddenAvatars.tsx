@@ -22,7 +22,7 @@ const HiddenAvatars: React.FC<HiddenAvatarsProps> = (props) => {
     const {contributors, avatarsSize} = props;
     const contributorsCount = contributors.length;
 
-    const controlRef = useRef<HTMLImageElement | null>(null);
+    const controlRef = useRef<HTMLButtonElement | null>(null);
     const [isVisiblePopup, setIsVisiblePopup] = useState(false);
 
     if (contributorsCount === 0) {
@@ -42,16 +42,17 @@ const HiddenAvatars: React.FC<HiddenAvatarsProps> = (props) => {
 
     return (
         <Fragment>
-            <div
+            <button
                 className={b('avatar', {size: avatarsSize})}
                 ref={controlRef}
                 onClick={(event: BaseSyntheticEvent) => {
                     setIsVisiblePopup(!isVisiblePopup);
                     event.preventDefault();
                 }}
+                aria-expanded={isVisiblePopup}
             >
                 {contributorsCountString}
-            </div>
+            </button>
             <Details contributors={contributors} popupData={popupData} />
         </Fragment>
     );

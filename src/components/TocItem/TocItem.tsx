@@ -22,7 +22,7 @@ export interface TocItemProps extends ITocItem {
 }
 
 class TocItem extends React.Component<TocItemProps> {
-    contentRef = React.createRef<HTMLDivElement>();
+    contentRef = React.createRef<HTMLButtonElement>();
 
     render() {
         const {name, href, active, expandable, expanded} = this.props;
@@ -31,14 +31,15 @@ class TocItem extends React.Component<TocItemProps> {
             <ToggleArrow className={b('icon')} open={expanded} thin={true} />
         ) : null;
         const content = (
-            <div
+            <button
                 ref={href ? null : this.contentRef}
                 className={b('text', {active})}
                 onClick={expandable && !href ? this.handleClick : undefined}
+                aria-expanded={expanded}
             >
                 {icon}
                 {text}
-            </div>
+            </button>
         );
 
         if (!href) {

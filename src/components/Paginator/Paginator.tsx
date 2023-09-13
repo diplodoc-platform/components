@@ -1,9 +1,7 @@
-import React, {ReactNode} from 'react';
-
-import {Button, Icon} from '@gravity-ui/uikit';
+import {ArrowRight} from '@gravity-ui/icons';
+import {Button} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
-
-import ArrowRightIcon from '@gravity-ui/icons/svgs/arrow-right.svg';
+import React, {ReactNode} from 'react';
 
 import './Paginator.scss';
 
@@ -142,7 +140,7 @@ const Paginator = ({
 
     const arrowButton = (disable: boolean) => (
         <Button className={b('icon')} size="s" view={'flat'} disabled={disable}>
-            <Icon data={ArrowRightIcon} size={16} />
+            <ArrowRight width={16} height={16} />
         </Button>
     );
 

@@ -1,5 +1,5 @@
-import SubscribeIcon from '@gravity-ui/icons/svgs/envelope.svg';
-import {Button, Icon} from '@gravity-ui/uikit';
+import {Envelope} from '@gravity-ui/icons';
+import {Button} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 import React, {PropsWithChildren, forwardRef, memo, useCallback, useContext, useRef} from 'react';
 
@@ -44,7 +44,7 @@ const SubscribeControl = memo(
                     className={b('control', {view})}
                 >
                     <Button.Icon>
-                        <Icon data={SubscribeIcon} size={16} />
+                        <Envelope width={16} height={16} />
                     </Button.Icon>
                     {t<string>('button-Subscribe-text')}
                 </Button>
@@ -59,7 +59,7 @@ const SubscribeControl = memo(
                 className={b('control', {view}, controlClassName)}
                 isVerticalView={isVerticalView}
                 tooltipText={t(`subscribe-text`)}
-                icon={(args) => <SubscribeIcon {...args} />}
+                icon={Envelope}
                 popupPosition={popupPosition}
             />
         );

@@ -11,7 +11,6 @@ const tsconfigJson = require('../tsconfig.json');
 
 const {FileWatcher} = require('./FileWatcher');
 const {SparsedBuild} = require('./SparsedBuild');
-const {useFromSourcePlugin} = require('./use-from-source-plugin');
 
 const {
     compilerOptions: {target},
@@ -31,7 +30,6 @@ async function build({path, format}) {
                 outdir: `./build${format ? '/' + format : ''}`,
                 format: format,
                 plugins: [
-                    useFromSourcePlugin(/\.svg$/),
                     sparsed.plugin,
                     sassPlugin({
                         async transform(source) {

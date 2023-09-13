@@ -1,4 +1,4 @@
-import ChevronIcon from '@gravity-ui/icons/svgs/chevron-right.svg';
+import {ChevronRight} from '@gravity-ui/icons';
 import block from 'bem-cn-lite';
 import React from 'react';
 
@@ -22,4 +22,6 @@ export const ToggleArrow: React.FC<ToggleArrowProps> = ({
     thin = false,
     slow = false,
     className,
-}) => <ChevronIcon className={b({type, open, thin, slow}, className)} width={size} height={size} />;
+}) => (
+    <ChevronRight className={b({type, open, thin, slow}, className)} width={size} height={size} />
+);

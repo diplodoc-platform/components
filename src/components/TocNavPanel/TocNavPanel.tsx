@@ -1,6 +1,4 @@
-import ArrowLeftIcon from '@gravity-ui/icons/svgs/arrow-left.svg';
-import ArrowRightIcon from '@gravity-ui/icons/svgs/arrow-right.svg';
-import {Icon} from '@gravity-ui/uikit';
+import {ArrowLeft, ArrowRight} from '@gravity-ui/icons';
 import block from 'bem-cn-lite';
 import React, {memo, useMemo} from 'react';
 
@@ -53,12 +51,12 @@ function getBoundingItems(flatToc: FlatTocItem[], router: Router) {
     };
 }
 
-const TocNavControl = memo<{isNext?: boolean; item: FlatTocItem}>(({item, isNext}) => {
+const TocNavControl = memo<{isNext?: boolean; item: FlatTocItem | null}>(({item, isNext}) => {
     const {t} = useTranslation('toc-nav-panel');
     const keyHint = isNext ? 'hint_next' : 'hint_previous';
-    const isExternal = isExternalHref(item.href);
+    const isExternal = item && isExternalHref(item.href);
     const linkAttributes = {
-        href: item.href,
+        href: item?.href,
         target: isExternal ? '_blank' : '_self',
         rel: isExternal ? 'noopener noreferrer' : undefined,
     };
@@ -70,9 +68,9 @@ const TocNavControl = memo<{isNext?: boolean; item: FlatTocItem}>(({item, isNext
                     <div className={b('control-hint')}>{t<string>(keyHint)}</div>
                     <div className={b('control-text')}>
                         <a {...linkAttributes} className={b('link')} data-router-shallow>
-                            {!isNext && <Icon data={ArrowLeftIcon} size={16} />}
+                            {!isNext && <ArrowLeft width={16} height={16} />}
                             {item.name}
-                            {isNext && <Icon data={ArrowRightIcon} size={16} />}
+                            {isNext && <ArrowRight width={16} height={16} />}
                         </a>
                     </div>
                 </React.Fragment>
@@ -97,8 +95,8 @@ const TocNavPanel = memo<TocNavPanelProps>(({items, router, fixed, className}) =
     return (
         <div className={b({fixed}, className)}>
             <div className={b('content')}>
-                {prevItem && <TocNavControl item={prevItem} />}
-                {nextItem && <TocNavControl item={nextItem} isNext={true} />}
+                {<TocNavControl item={prevItem} />}
+                {<TocNavControl item={nextItem} isNext={true} />}
             </div>
         </div>
     );

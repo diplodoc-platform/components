@@ -9,7 +9,8 @@
     "url": "git@github.com:yandex-cloud/docs-components.git"
   },
   "files": [
-    "build"
+    "build",
+    "i18n"
   ],
   "exports": {
     ".": {
@@ -30,6 +31,7 @@
       }
     },
     "./styles": "./build/index.css",
+    "./i18n/*": "./i18n/*",
     "./themes/*": {
       "style": "./build/themes/*/index.css",
       "default": "./build/themes/*/index.css"

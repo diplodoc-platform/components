@@ -7,16 +7,15 @@ const {resolve} = require('node:path');
 const postcss = require('postcss');
 const postcssPresetEnv = require('postcss-preset-env');
 
-const tsconfigJson = require('../tsconfig.json');
-
 const {FileWatcher} = require('./FileWatcher');
 const {SparsedBuild} = require('./SparsedBuild');
 
-const {
-    compilerOptions: {target},
-} = tsconfigJson;
-
 async function build({path, format}) {
+    const tsconfig = require(`../tsconfig${format ? '.' + format : ''}.json`);
+    const {
+        compilerOptions: {target},
+    } = tsconfig;
+
     const watcher = new FileWatcher(process.argv.indexOf('--watch') > -1);
     const sparsed = new SparsedBuild(
         async (entry) => {
@@ -29,6 +28,9 @@ async function build({path, format}) {
                 outbase: './src',
                 outdir: `./build${format ? '/' + format : ''}`,
                 format: format,
+                loader: {
+                    '.json': 'text',
+                },
                 plugins: [
                     sparsed.plugin,
                     sassPlugin({

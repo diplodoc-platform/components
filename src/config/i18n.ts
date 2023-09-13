@@ -1,9 +1,10 @@
 import i18n, {TFunction} from 'i18next';
 import {initReactI18next} from 'react-i18next';
 
+import {Lang} from '../models';
+
 import en from '../i18n/en.json';
 import ru from '../i18n/ru.json';
-import {Lang} from '../models';
 
 export type Loc = Record<string, typeof en>;
 
@@ -17,7 +18,10 @@ let initializePromise: Promise<TFunction> | null = null;
 export const configureI18N = ({lang, loc}: I18NConfig) => {
     if (initializePromise === null) {
         lang = lang || Lang.En;
-        loc = loc || {ru, en};
+        loc = loc || {
+            ru: JSON.parse(ru as unknown as string),
+            en: JSON.parse(en as unknown as string),
+        };
 
         initializePromise = i18n.use(initReactI18next).init({
             lng: lang,

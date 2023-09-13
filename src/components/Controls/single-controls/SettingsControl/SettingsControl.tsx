@@ -1,7 +1,8 @@
+import React, {ReactElement, useCallback, useContext, useRef, useState} from 'react';
+
 import {Gear} from '@gravity-ui/icons';
 import {Button, List, Popup, Switch} from '@gravity-ui/uikit';
 import cn from 'bem-cn-lite';
-import React, {ReactElement, useCallback, useContext, useRef, useState} from 'react';
 
 import {useTranslation} from '../../../../hooks';
 import {TextSizes, Theme} from '../../../../models';

@@ -1,7 +1,8 @@
+import React from 'react';
+
 import {Star, StarFill} from '@gravity-ui/icons';
 import {Button} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
-import React from 'react';
 
 import './BookmarkButton.scss';
 

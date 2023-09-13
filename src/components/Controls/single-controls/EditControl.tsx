@@ -1,7 +1,8 @@
+import React, {memo, useContext} from 'react';
+
 import {Pencil} from '@gravity-ui/icons';
 import {Button} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
-import React, {memo, useContext} from 'react';
 
 import {useTranslation} from '../../../hooks';
 import {Control} from '../../Control';

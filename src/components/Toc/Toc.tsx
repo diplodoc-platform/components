@@ -1,6 +1,7 @@
+import React from 'react';
+
 import block from 'bem-cn-lite';
 import {omit} from 'lodash';
-import React from 'react';
 
 import {PopperPosition} from '../../hooks';
 import {ControlSizes, Router, TocData, TocItem} from '../../models';
@@ -9,8 +10,9 @@ import {Controls, ControlsLayout} from '../Controls';
 import {HTML} from '../HTML';
 import {TocItem as Item} from '../TocItem';
 
-import './Toc.scss';
 import {TocItemRegistry} from './TocItemRegistry';
+
+import './Toc.scss';
 
 const b = block('dc-toc');
 const HEADER_DEFAULT_HEIGHT = 0;

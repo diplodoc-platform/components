@@ -1,5 +1,6 @@
-import block from 'bem-cn-lite';
 import React, {PropsWithChildren, ReactElement} from 'react';
+
+import block from 'bem-cn-lite';
 
 import {Router, TocData} from '../../models';
 import {getStateKey} from '../../utils';

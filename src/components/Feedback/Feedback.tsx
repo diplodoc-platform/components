@@ -1,14 +1,16 @@
-import block from 'bem-cn-lite';
 import React, {PropsWithChildren, useCallback, useEffect, useRef, useState} from 'react';
+
+import block from 'bem-cn-lite';
 
 import {usePopupState, useTranslation} from '../../hooks';
 import {FeedbackSendData, FeedbackType} from '../../models';
 
-import './Feedback.scss';
 import DislikeControl from './controls/DislikeControl';
 import DislikeVariantsPopup, {FormData} from './controls/DislikeVariantsPopup';
 import LikeControl from './controls/LikeControl';
 import SuccessPopup from './controls/SuccessPopup';
+
+import './Feedback.scss';
 
 const b = block('dc-feedback');
 

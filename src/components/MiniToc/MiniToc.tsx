@@ -1,5 +1,6 @@
-import block from 'bem-cn-lite';
 import React, {memo, useMemo} from 'react';
+
+import block from 'bem-cn-lite';
 
 import {useTranslation} from '../../hooks';
 import {DocHeadingItem, Router} from '../../models';

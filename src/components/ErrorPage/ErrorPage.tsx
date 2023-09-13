@@ -1,6 +1,7 @@
+import React from 'react';
+
 import {Button, Link} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
-import React from 'react';
 
 import {ERROR_CODES} from '../../constants';
 import {useTranslation} from '../../hooks';

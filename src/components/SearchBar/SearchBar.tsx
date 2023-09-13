@@ -1,6 +1,7 @@
+import React, {memo} from 'react';
+
 import {ChevronLeft, Xmark} from '@gravity-ui/icons';
 import block from 'bem-cn-lite';
-import React, {memo} from 'react';
 import {useHotkeys} from 'react-hotkeys-hook';
 
 import {useTranslation} from '../../hooks';

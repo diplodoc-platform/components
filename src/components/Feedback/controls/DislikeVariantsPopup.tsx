@@ -1,5 +1,3 @@
-import {Button, Checkbox, Popup, TextArea} from '@gravity-ui/uikit';
-import block from 'bem-cn-lite';
 import React, {
     RefObject,
     SyntheticEvent,
@@ -12,6 +10,9 @@ import React, {
     useRef,
     useState,
 } from 'react';
+
+import {Button, Checkbox, Popup, TextArea} from '@gravity-ui/uikit';
+import block from 'bem-cn-lite';
 
 import {PopperPosition, useTranslation} from '../../../hooks';
 import {ControlsLayoutContext} from '../../Controls/ControlsLayout';

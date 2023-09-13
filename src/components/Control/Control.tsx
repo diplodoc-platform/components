@@ -1,6 +1,7 @@
+import React, {forwardRef, useCallback, useImperativeHandle, useRef} from 'react';
+
 import {Button, Popup} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
-import React, {forwardRef, useCallback, useImperativeHandle, useRef} from 'react';
 
 import {PopperPosition, usePopupState} from '../../hooks';
 import {ControlSizes} from '../../models';

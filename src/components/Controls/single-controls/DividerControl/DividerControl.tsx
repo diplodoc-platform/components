@@ -1,5 +1,6 @@
-import cn from 'bem-cn-lite';
 import React, {useContext} from 'react';
+
+import cn from 'bem-cn-lite';
 
 import {ControlsLayoutContext} from '../../ControlsLayout';
 

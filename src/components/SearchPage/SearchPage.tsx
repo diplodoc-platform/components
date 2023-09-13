@@ -1,6 +1,7 @@
+import React, {useRef, useState} from 'react';
+
 import {Button, Loader, TextInput} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
-import React, {useRef, useState} from 'react';
 
 import {useTranslation} from '../../hooks';
 import {Paginator, PaginatorProps} from '../Paginator';

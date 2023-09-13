@@ -1,16 +1,18 @@
+import React, {PropsWithChildren, forwardRef, memo, useCallback, useContext, useRef} from 'react';
+
 import {Envelope} from '@gravity-ui/icons';
 import {Button} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
-import React, {PropsWithChildren, forwardRef, memo, useCallback, useContext, useRef} from 'react';
 
 import {usePopupState, useTranslation} from '../../hooks';
 import {SubscribeData} from '../../models';
 import {Control} from '../Control';
 import {ControlsLayoutContext} from '../Controls/ControlsLayout';
 
-import './Subscribe.scss';
 import {SubscribeSuccessPopup} from './SubscribeSuccessPopup';
 import {SubscribeVariantsPopup} from './SubscribeVariantsPopup';
+
+import './Subscribe.scss';
 
 const b = block('dc-subscribe');
 

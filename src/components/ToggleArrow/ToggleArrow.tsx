@@ -1,6 +1,7 @@
+import React from 'react';
+
 import {ChevronRight} from '@gravity-ui/icons';
 import block from 'bem-cn-lite';
-import React from 'react';
 
 import './ToggleArrow.scss';
 

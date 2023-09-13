@@ -1,6 +1,5 @@
-import DislikeActiveIcon from '@gravity-ui/icons/svgs/thumbs-down-fill.svg';
-import DislikeIcon from '@gravity-ui/icons/svgs/thumbs-down.svg';
-import {Button, Icon} from '@gravity-ui/uikit';
+import {ThumbsDown, ThumbsDownFill} from '@gravity-ui/icons';
+import {Button} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 import React, {forwardRef, memo, useContext} from 'react';
 
@@ -25,11 +24,13 @@ const DislikeControl = memo(
         const {isVerticalView, controlClassName} = useContext(ControlsLayoutContext);
         const tooltipText = isDisliked ? t('cancel-dislike-text') : t('dislike-text');
 
+        const Icon = isDisliked ? ThumbsDownFill : ThumbsDown;
+
         if (view === FeedbackView.Wide) {
             return (
                 <Button view="normal" ref={ref} onClick={onClick} className={b('control', {view})}>
                     <Button.Icon>
-                        <Icon data={isDisliked ? DislikeActiveIcon : DislikeIcon} size={14} />
+                        <Icon width={14} height={14} />
                     </Button.Icon>
                     {t<string>('button-dislike-text')}
                 </Button>
@@ -43,9 +44,7 @@ const DislikeControl = memo(
                 isVerticalView={isVerticalView}
                 tooltipText={tooltipText}
                 ref={ref}
-                icon={(args) => (
-                    <Icon data={isDisliked ? DislikeActiveIcon : DislikeIcon} {...args} />
-                )}
+                icon={Icon}
             />
         );
     }),

@@ -1,6 +1,5 @@
-import StarActive from '@gravity-ui/icons/svgs/star-fill.svg';
-import StarInactive from '@gravity-ui/icons/svgs/star.svg';
-import {Button, Icon} from '@gravity-ui/uikit';
+import {Star, StarFill} from '@gravity-ui/icons';
+import {Button} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 import React from 'react';
 
@@ -15,6 +14,8 @@ export interface BookmarkButtonProps {
 }
 
 export const BookmarkButton: React.FC<BookmarkButtonProps> = ({isBookmarked, onBookmark}) => {
+    const Icon = isBookmarked ? StarFill : Star;
+
     return (
         <Button
             className={b({active: isBookmarked})}
@@ -24,7 +25,7 @@ export const BookmarkButton: React.FC<BookmarkButtonProps> = ({isBookmarked, onB
             view="flat-secondary"
         >
             <Button.Icon className={b('icon')}>
-                <Icon data={isBookmarked ? StarActive : StarInactive} size={24} />
+                <Icon width={24} height={24} />
             </Button.Icon>
         </Button>
     );

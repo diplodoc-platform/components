@@ -1,5 +1,5 @@
-import LangIcon from '@gravity-ui/icons/svgs/globe.svg';
-import {Icon, List, Popup} from '@gravity-ui/uikit';
+import {Globe} from '@gravity-ui/icons';
+import {List, Popup} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 import allLangs from 'langs';
 import React, {useCallback, useContext, useMemo, useRef} from 'react';
@@ -91,7 +91,7 @@ const LangControl = (props: ControlProps) => {
                 className={controlClassName}
                 isVerticalView={isVerticalView}
                 tooltipText={t('lang-text')}
-                icon={(args) => <Icon data={LangIcon} {...args} />}
+                icon={Globe}
                 popupPosition={popupPosition}
             />
             {popupState.visible && (

@@ -1,5 +1,5 @@
-import SettingsIcon from '@gravity-ui/icons/svgs/gear.svg';
-import {Button, Icon, List, Popup, Switch} from '@gravity-ui/uikit';
+import {Gear} from '@gravity-ui/icons';
+import {Button, List, Popup, Switch} from '@gravity-ui/uikit';
 import cn from 'bem-cn-lite';
 import React, {ReactElement, useCallback, useContext, useRef, useState} from 'react';
 
@@ -175,7 +175,7 @@ const SettingsControl = (props: ControlProps) => {
                 isVerticalView={isVerticalView}
                 tooltipText={t('settings-text')}
                 popupPosition={popupPosition}
-                icon={(args) => <Icon data={SettingsIcon} {...args} />}
+                icon={Gear}
             />
             <Popup
                 anchorRef={controlRef}

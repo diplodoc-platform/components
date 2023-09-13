@@ -1,6 +1,4 @@
-import FullScreenClickedIcon from '@gravity-ui/icons/svgs/square-dashed-circle.svg';
-import FullScreenIcon from '@gravity-ui/icons/svgs/square-dashed.svg';
-import {Icon} from '@gravity-ui/uikit';
+import {SquareDashed, SquareDashedCircle} from '@gravity-ui/icons';
 import React, {memo, useCallback, useContext, useEffect} from 'react';
 
 import {useTranslation} from '../../../hooks';
@@ -42,6 +40,7 @@ const FullScreenControl = memo<ControlProps>((props) => {
     }, [onKeyDown]);
 
     const activeMode = value ? 'enabled' : 'disabled';
+    const Icon = value ? SquareDashedCircle : SquareDashed;
 
     return (
         <Control
@@ -50,9 +49,7 @@ const FullScreenControl = memo<ControlProps>((props) => {
             className={controlClassName}
             isVerticalView={isVerticalView}
             tooltipText={t(`full-screen-text-${activeMode}`)}
-            icon={(args) => (
-                <Icon data={value ? FullScreenClickedIcon : FullScreenIcon} {...args} />
-            )}
+            icon={Icon}
             popupPosition={popupPosition}
         />
     );

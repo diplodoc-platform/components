@@ -1,6 +1,5 @@
-import LikeActiveIcon from '@gravity-ui/icons/svgs/thumbs-up-fill.svg';
-import LikeIcon from '@gravity-ui/icons/svgs/thumbs-up.svg';
-import {Button, Icon} from '@gravity-ui/uikit';
+import {ThumbsUp, ThumbsUpFill} from '@gravity-ui/icons';
+import {Button} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 import React, {forwardRef, memo, useContext} from 'react';
 
@@ -27,6 +26,8 @@ const LikeControl = memo(
         const {isVerticalView, popupPosition, controlClassName} = useContext(ControlsLayoutContext);
         const tooltipText = isLiked ? t('cancel-like-text') : t('like-text');
 
+        const Icon = isLiked ? ThumbsUpFill : ThumbsUp;
+
         if (view === FeedbackView.Wide) {
             return (
                 <Button
@@ -37,7 +38,7 @@ const LikeControl = memo(
                     className={b('control', {view})}
                 >
                     <Button.Icon>
-                        <Icon data={isLiked ? LikeActiveIcon : LikeIcon} size={14} />
+                        <Icon width={14} height={14} />
                     </Button.Icon>
                     {t<string>('button-like-text')}
                 </Button>
@@ -51,7 +52,7 @@ const LikeControl = memo(
                 isVerticalView={isVerticalView}
                 tooltipText={tooltipText}
                 ref={ref}
-                icon={(args) => <Icon data={isLiked ? LikeActiveIcon : LikeIcon} {...args} />}
+                icon={Icon}
                 popupPosition={popupPosition}
             />
         );

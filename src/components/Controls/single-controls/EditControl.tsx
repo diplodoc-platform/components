@@ -1,5 +1,5 @@
-import EditIcon from '@gravity-ui/icons/svgs/pencil.svg';
-import {Button, Icon} from '@gravity-ui/uikit';
+import {Pencil} from '@gravity-ui/icons';
+import {Button} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 import React, {memo, useContext} from 'react';
 
@@ -26,7 +26,7 @@ const EditControl = memo<EditControlProps>(({vcsUrl, vcsType = 'github', view, c
             <a href={vcsUrl} target="_blank" rel="noreferrer noopener">
                 <Button className={b('control', {view}, className)} view="raised">
                     <Button.Icon>
-                        <Icon data={EditIcon} size={14} />
+                        <Pencil width={14} height={14} />
                     </Button.Icon>
                     <span className={b('edit-text')}>{t<string>('edit-text')}</span>
                 </Button>
@@ -46,7 +46,7 @@ const EditControl = memo<EditControlProps>(({vcsUrl, vcsType = 'github', view, c
                 className={controlClassName}
                 isVerticalView={isVerticalView}
                 tooltipText={t(`edit-text-${vcsType}`)}
-                icon={EditIcon}
+                icon={Pencil}
                 popupPosition={popupPosition}
             />
         </a>

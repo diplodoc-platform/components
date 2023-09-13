@@ -1,11 +1,10 @@
-import ArrowLeftIcon from '@gravity-ui/icons/svgs/chevron-left.svg';
-import CloseIcon from '@gravity-ui/icons/svgs/xmark.svg';
-import {Icon} from '@gravity-ui/uikit';
+import {ChevronLeft, Xmark} from '@gravity-ui/icons';
 import block from 'bem-cn-lite';
 import React, {memo} from 'react';
 import {useHotkeys} from 'react-hotkeys-hook';
 
 import {useTranslation} from '../../hooks';
+import {ControlSizes} from '../../models';
 import {Control} from '../Control';
 
 import './SearchBar.scss';
@@ -47,7 +46,7 @@ const SearchBar = memo<SearchBarProps>((props) => {
                     <Control
                         onClick={onClickPrevSearch}
                         tooltipText={`${t('prev')} (${hotkeysPrev})`}
-                        icon={(args) => <Icon data={ArrowLeftIcon} {...args} />}
+                        icon={ChevronLeft}
                     />
                     <span className={b('counter')}>
                         {searchCurrentIndex}/{searchCountResults}
@@ -55,9 +54,7 @@ const SearchBar = memo<SearchBarProps>((props) => {
                     <Control
                         onClick={onClickNextSearch}
                         tooltipText={`${t('next')} (${hotkeysNext})`}
-                        icon={(args) => (
-                            <Icon data={ArrowLeftIcon} className={b('next-arrow')} {...args} />
-                        )}
+                        icon={(args) => <ChevronLeft className={b('next-arrow')} {...args} />}
                     />
                 </div>
                 <span className={b('search-query-label')}>
@@ -67,9 +64,10 @@ const SearchBar = memo<SearchBarProps>((props) => {
             </div>
             <div className={b('right')}>
                 <Control
+                    size={ControlSizes.M}
                     onClick={onCloseSearchBar}
                     tooltipText={t('close')}
-                    icon={() => <Icon data={CloseIcon} size={16} />}
+                    icon={Xmark}
                 />
             </div>
         </div>

@@ -1,5 +1,6 @@
-import block from 'bem-cn-lite';
 import React, {PropsWithChildren, createContext} from 'react';
+
+import block from 'bem-cn-lite';
 
 import {PopperPosition} from '../../hooks';
 import {ControlSizes} from '../../models';

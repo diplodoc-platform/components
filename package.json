@@ -116,12 +116,12 @@
   },
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx}": [
-      "eslint --max-warnings=0 --fix -c .eslintrc.publish.js",
-      "prettier --write"
+      "prettier --write",
+      "eslint --max-warnings=0 --fix -c .eslintrc.publish.js"
     ],
     "**/*.{css,scss}": [
-      "stylelint --fix",
-      "prettier --write"
+      "prettier --write",
+      "stylelint --fix"
     ],
     "**/*.{json,yaml,yml,md}": [
       "prettier --write"

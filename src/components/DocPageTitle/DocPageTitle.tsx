@@ -1,5 +1,6 @@
-import block from 'bem-cn-lite';
 import React, {PropsWithChildren} from 'react';
+
+import block from 'bem-cn-lite';
 
 import {StageLabel, StageType} from '../StageLabel';
 

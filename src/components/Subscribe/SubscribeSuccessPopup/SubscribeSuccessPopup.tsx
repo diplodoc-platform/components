@@ -1,6 +1,7 @@
+import React, {memo, useContext} from 'react';
+
 import {Popup} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
-import React, {memo, useContext} from 'react';
 
 import {useTranslation} from '../../../hooks';
 import {ControlsLayoutContext} from '../../Controls/ControlsLayout';

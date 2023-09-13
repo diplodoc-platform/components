@@ -1,5 +1,6 @@
-import {SquareDashed, SquareDashedCircle} from '@gravity-ui/icons';
 import React, {memo, useCallback, useContext, useEffect} from 'react';
+
+import {SquareDashed, SquareDashedCircle} from '@gravity-ui/icons';
 
 import {useTranslation} from '../../../hooks';
 import {Control} from '../../Control';

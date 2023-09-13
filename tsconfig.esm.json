@@ -3,7 +3,7 @@
   "compilerOptions": {
     "module": "ESNext",
     "target": "ES2017",
-    "outDir": "build/cjs",
+    "outDir": "build/esm"
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"]
 }

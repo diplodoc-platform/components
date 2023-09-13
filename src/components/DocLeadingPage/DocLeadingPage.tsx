@@ -1,5 +1,6 @@
-import block from 'bem-cn-lite';
 import React from 'react';
+
+import block from 'bem-cn-lite';
 
 import {DEFAULT_SETTINGS} from '../../constants';
 import {DocLeadingLinks, DocLeadingPageData, Router} from '../../models';

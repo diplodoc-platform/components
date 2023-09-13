@@ -1,11 +1,11 @@
-import block from 'bem-cn-lite';
 import React, {memo, useContext} from 'react';
+
+import block from 'bem-cn-lite';
 
 import {FeedbackSendData, Lang, SubscribeData, TextSizes, Theme} from '../../models';
 import {Feedback, FeedbackView} from '../Feedback';
 import {Subscribe, SubscribeView} from '../Subscribe';
 
-import './Controls.scss';
 import {ControlsLayoutContext} from './ControlsLayout';
 
 import {
@@ -17,6 +17,8 @@ import {
     SettingsControl,
     SinglePageControl,
 } from './';
+
+import './Controls.scss';
 
 const b = block('dc-controls');
 

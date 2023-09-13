@@ -1,6 +1,16 @@
 const assert = require('node:assert');
 const {statSync, existsSync} = require('node:fs');
-const {join, resolve} = require('node:path');
+const {join, resolve, extname} = require('node:path');
+
+const INLINE_LOADERS = ['text', 'binary', 'base64', 'dataurl'];
+
+const inlinedFiles = (loader) => {
+    const inline = Object.keys(loader).filter((ext) => {
+        return INLINE_LOADERS.includes(loader[ext]);
+    });
+
+    return (file) => inline.includes(extname(file));
+};
 
 class SparsedBuild {
     constructor(context, {extension} = {}) {
@@ -22,16 +32,20 @@ class SparsedBuild {
             setup: ({onResolve, initialOptions}) => {
                 const {
                     bundle,
+                    loader = {},
                     resolveExtensions = ['.tsx', '.ts', '.jsx', '.js', '.css', '.json'],
                 } = initialOptions;
 
                 assert(bundle === true, `Option 'bundle' should be 'true' for sparsed build`);
+
+                const shouldSkip = inlinedFiles(loader);
 
                 onResolve({filter: /.*/}, async ({path, resolveDir, kind}) => {
                     if (kind === 'entry-point') {
                         return {};
                     }
 
+                    // TODO: resolve ts aliases
                     if (!path.match(/^\.{1,2}/)) {
                         return {external: true};
                     }
@@ -41,6 +55,10 @@ class SparsedBuild {
                         resolveExtensions,
                         true,
                     );
+
+                    if (shouldSkip(fullpath)) {
+                        return {};
+                    }
 
                     if (!this._has(fullpath)) {
                         await this.build(fullpath);

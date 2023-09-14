@@ -1,0 +1,260 @@
+{
+  "html": "<p>Yandex.Cloud services can be subject to quotas and limits:</p>\n<ul>\n<li><em>Quotas</em> are organizational restrictions that can be changed by technical support on request.</li>\n<li><em>Limits</em> are technical restrictions due to the Yandex.Cloud architecture specifics. The limits cannot be changed.</li>\n</ul>\n<p>You can view your current account quotas in the <a href=\"https://console.cloud.yandex.com/cloud?section=quotas\" target=\"_blank\" rel=\"noreferrer noopener\">management console</a>.</p>\n<p>When designing your infrastructure in Yandex.Cloud, consider the limits as the boundary of opportunities that Yandex Cloud can provide to you. Quotas are changeable restrictions that can potentially be increased to the values of limits.</p>\n<h2 id=\"quotas\"><a href=\"#quotas\" class=\"yfm-anchor\" aria-hidden=\"true\"></a>Why quotas are needed</h2>\n<p>Quotas serve as a soft restriction for requesting resources, and allow Yandex Cloud to guarantee the stability of the service: new users cannot take up too much resources for testing purposes. If you are ready to use more resources, contact the <a href=\"https://console.cloud.yandex.com/support\" target=\"_blank\" rel=\"noreferrer noopener\">technical support</a> and tell us exactly which quotas you need to increase, and how.</p>\n<p>Technical support decides whether or not to increase quotas on an individual basis.</p>\n<h2 id=\"quotas-and-limits-defaults-for-yandex.cloud-services\"><a href=\"#quotas-and-limits-defaults-for-yandex.cloud-services\" class=\"yfm-anchor\" aria-hidden=\"true\"></a>Quotas and limits defaults for Yandex.Cloud services</h2>\n<p>Quotas are listed with default values that match the quotas of the <a href=\"../../free-trial/\">trial period</a>.</p>\n<h3 id=\"compute\"><a href=\"#compute\" class=\"yfm-anchor\" aria-hidden=\"true\"></a>Yandex Compute Cloud</h3>\n<h4 id=\"quotas1\"><a href=\"#quotas1\" class=\"yfm-anchor\" aria-hidden=\"true\"></a><a href=\"#quotas\" class=\"yfm-anchor\" aria-hidden=\"true\"></a>Quotas</h4>\n<table>\n<thead>\n<tr>\n<th>Type of limit</th>\n<th>Value</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Number of virtual machines per cloud</td>\n<td>12</td>\n</tr>\n<tr>\n<td>Total number of vCPUs for all VMs per cloud</td>\n<td>32</td>\n</tr>\n<tr>\n<td>Total virtual memory for all VMs per cloud</td>\n<td>128 GB</td>\n</tr>\n<tr>\n<td>Total number of disks per cloud</td>\n<td>32</td>\n</tr>\n<tr>\n<td>Total SSD storage capacity per cloud</td>\n<td>200 GB</td>\n</tr>\n<tr>\n<td>Total HDD storage capacity per cloud</td>\n<td>500 GB</td>\n</tr>\n<tr>\n<td>Total number of disk snapshots per cloud</td>\n<td>32</td>\n</tr>\n<tr>\n<td>Total storage capacity of all disk snapshots per cloud</td>\n<td>400 GB</td>\n</tr>\n<tr>\n<td>Number of images per cloud</td>\n<td>8</td>\n</tr>\n<tr>\n<td>Number of instance groups per cloud</td>\n<td>10</td>\n</tr>\n<tr>\n<td>Total number of GPUs for all VMs per cloud*</td>\n<td>0</td>\n</tr>\n<tr>\n<td>Number of concurrent <a href=\"../../api-design-guide/concepts/operation\">operations</a> in the cloud</td>\n<td>15</td>\n</tr>\n<tr>\n<td>Maximum number of VM instances in a <a href=\"../../compute/concepts/placement-groups\">placement group</a></td>\n<td>5</td>\n</tr>\n<tr>\n<td>Maximum number of placement groups per cloud</td>\n<td>2</td>\n</tr>\n</tbody>\n</table>\n<p>* To create a VM with a GPU, contact <a href=\"https://cloud.yandex.com/support\" target=\"_blank\" rel=\"noreferrer noopener\">technical support</a>.</p>\n<h4 id=\"limits-vm\"><a href=\"#limits-vm\" class=\"yfm-anchor\" aria-hidden=\"true\"></a><a href=\"#limits-vm\" class=\"yfm-anchor\" aria-hidden=\"true\"></a>VM limits</h4>\n<table>\n<thead>\n<tr>\n<th>Type of limit</th>\n<th>Value</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Maximum number of vCPUs per VM</td>\n<td>32 and 64 for Intel Broadwell and Intel Cascade Lake <a href=\"../../compute/concepts/vm-platforms\">platforms</a>, respectively</td>\n</tr>\n<tr>\n<td>Maximum virtual memory per VM</td>\n<td>256 GB and 512 GB for Intel Broadwell and Intel Cascade Lake <a href=\"../../compute/concepts/vm-platforms\">platforms</a>, respectively</td>\n</tr>\n<tr>\n<td>Maximum number of disks connected to a single VM</td>\n<td>7</td>\n</tr>\n<tr>\n<td>Maximum number of GPUs connected to a single VM</td>\n<td>4</td>\n</tr>\n<tr>\n<td>Maximum number of vCPUs for VMs with GPUs</td>\n<td>32</td>\n</tr>\n<tr>\n<td>Maximum RAM for VMs with GPUs</td>\n<td>384</td>\n</tr>\n</tbody>\n</table>\n<h4 id=\"limits-disks\"><a href=\"#limits-disks\" class=\"yfm-anchor\" aria-hidden=\"true\"></a><a href=\"#limits-disks\" class=\"yfm-anchor\" aria-hidden=\"true\"></a>Disk limits</h4>\n<div class=\"yfm-tabs\">\n<div class=\"yfm-tab-list\" role=\"tablist\">\n<div id=\"ugtajnp8\" class=\"yfm-tab active\" role=\"tab\" aria-controls=\"b9cu9e45\" aria-selected=\"true\" tabindex=\"0\">Network SSD</div>\n<div id=\"8e9hdjxx\" class=\"yfm-tab\" role=\"tab\" aria-controls=\"pkup3n2p\" aria-selected=\"false\" tabindex=\"-1\">Network HDD</div>\n</div>\n<div id=\"b9cu9e45\" class=\"yfm-tab-panel active\" role=\"tabpanel\" aria-labelledby=\"ugtajnp8\" data-title=\"Network SSD\">\n<table>\n<thead>\n<tr>\n<th>Type of limit</th>\n<th>Value</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Maximum disk size</td>\n<td>4 TB</td>\n</tr>\n<tr>\n<td>Maximum disk snapshot size</td>\n<td>4 TB</td>\n</tr>\n<tr>\n<td><a href=\"../../compute/concepts/disk#rw\">Allocation unit size</a></td>\n<td>32 GB</td>\n</tr>\n<tr>\n<td>Maximum<a href=\"../../compute/concepts/limits#max_iops\">*</a> <a href=\"../../compute/concepts/disk#rw\">IOPS</a> for writes, per disk</td>\n<td>40,000</td>\n</tr>\n<tr>\n<td>Maximum<a href=\"../../compute/concepts/limits#max_iops\">*</a> IOPS for writes, per allocation unit</td>\n<td>1000</td>\n</tr>\n<tr>\n<td>Maximum<a href=\"../../compute/concepts/limits#max_bandwidth\">**</a> <a href=\"../../compute/concepts/disk#rw\">bandwidth</a> for writes, per disk</td>\n<td>450 MB/s</td>\n</tr>\n<tr>\n<td>Maximum<a href=\"../../compute/concepts/limits#max_bandwidth\">**</a> bandwidth for writes, per allocation unit</td>\n<td>15 MB/s</td>\n</tr>\n<tr>\n<td>Maximum<a href=\"../../compute/concepts/limits#max_iops\">*</a> IOPS for reads, per disk</td>\n<td>12,000</td>\n</tr>\n<tr>\n<td>Maximum<a href=\"../../compute/concepts/limits#max_iops\">*</a> IOPS for reads, per allocation unit</td>\n<td>400</td>\n</tr>\n<tr>\n<td>Maximum<a href=\"../../compute/concepts/limits#max_bandwidth\">**</a> bandwidth for reads, per disk</td>\n<td>450 MB/s</td>\n</tr>\n<tr>\n<td>Maximum<a href=\"../../compute/concepts/limits#max_bandwidth\">**</a> bandwidth for reads, per allocation unit</td>\n<td>15 MB/s</td>\n</tr>\n</tbody>\n</table>\n</div>\n<div id=\"pkup3n2p\" class=\"yfm-tab-panel\" role=\"tabpanel\" aria-labelledby=\"8e9hdjxx\" data-title=\"Network HDD\">\n<table>\n<thead>\n<tr>\n<th>Type of limit</th>\n<th>Value</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Maximum disk size</td>\n<td>4 TB</td>\n</tr>\n<tr>\n<td>Maximum disk snapshot size</td>\n<td>4 TB</td>\n</tr>\n<tr>\n<td><a href=\"../../compute/concepts/disk#rw\">Allocation unit size</a></td>\n<td>256 GB</td>\n</tr>\n<tr>\n<td>Maximum<a href=\"../../compute/concepts/limits#max_iops\">*</a> <a href=\"../../compute/concepts/disk#rw\">IOPS</a> for writes, per disk</td>\n<td>11,000</td>\n</tr>\n<tr>\n<td>Maximum<a href=\"../../compute/concepts/limits#max_iops\">*</a> IOPS for writes, per allocation unit</td>\n<td>300</td>\n</tr>\n<tr>\n<td>Maximum<a href=\"../../compute/concepts/limits#max_bandwidth\">**</a> <a href=\"../../compute/concepts/disk#rw\">bandwidth</a> for writes, per disk</td>\n<td>240 MB/s</td>\n</tr>\n<tr>\n<td>Maximum<a href=\"../../compute/concepts/limits#max_bandwidth\">**</a> bandwidth for writes, per allocation unit</td>\n<td>30 MB/s</td>\n</tr>\n<tr>\n<td>Maximum<a href=\"../../compute/concepts/limits#max_iops\">*</a> IOPS for reads, per disk</td>\n<td>300</td>\n</tr>\n<tr>\n<td>Maximum<a href=\"../../compute/concepts/limits#max_iops\">*</a> IOPS for reads, per allocation unit</td>\n<td>100</td>\n</tr>\n<tr>\n<td>Maximum<a href=\"../../compute/concepts/limits#max_bandwidth\">**</a> bandwidth for reads, per disk</td>\n<td>240 MB/s</td>\n</tr>\n<tr>\n<td>Maximum<a href=\"../../compute/concepts/limits#max_bandwidth\">**</a> bandwidth for reads, per allocation unit</td>\n<td>30 MB/s</td>\n</tr>\n</tbody>\n</table>\n</div>\n</div>\n<h5 id=\"max_iops\"><a href=\"#max_iops\" class=\"yfm-anchor\" aria-hidden=\"true\"></a><a href=\"#max_iops\" class=\"yfm-anchor\" aria-hidden=\"true\"></a>*</h5>\n<p>To achieve maximum IOPS, we recommend performing read and write operations that are 4 KB and less.</p>\n<h5 id=\"max_bandwidth\"><a href=\"#max_bandwidth\" class=\"yfm-anchor\" aria-hidden=\"true\"></a><a href=\"#max_bandwidth\" class=\"yfm-anchor\" aria-hidden=\"true\"></a>**</h5>\n<p>To achieve the maximum possible bandwidth, we recommend performing 4 MB reads and writes.</p>\n<h3 id=\"storage\"><a href=\"#storage\" class=\"yfm-anchor\" aria-hidden=\"true\"></a>Yandex Object Storage</h3>\n<h4 id=\"quotas2\"><a href=\"#quotas2\" class=\"yfm-anchor\" aria-hidden=\"true\"></a><a href=\"#quotas\" class=\"yfm-anchor\" aria-hidden=\"true\"></a>Quotas</h4>\n<table>\n<thead>\n<tr>\n<th>Type of limit</th>\n<th>Value</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Storage volume in a cloud</td>\n<td>5 TB</td>\n</tr>\n<tr>\n<td>Number of buckets per cloud</td>\n<td>25</td>\n</tr>\n</tbody>\n</table>\n<h4 id=\"limits\"><a href=\"#limits\" class=\"yfm-anchor\" aria-hidden=\"true\"></a><a href=\"#limits\" class=\"yfm-anchor\" aria-hidden=\"true\"></a>Limits</h4>\n<table>\n<thead>\n<tr>\n<th>Type of limit</th>\n<th>Value</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Maximum object size</td>\n<td>5 TB</td>\n</tr>\n<tr>\n<td>Total header size per request to the HTTP API</td>\n<td>8 KB</td>\n</tr>\n<tr>\n<td>Size of user-defined metadata in an object</td>\n<td>2 KB</td>\n</tr>\n<tr>\n<td>Maximum size of data to be uploaded per request</td>\n<td>5 GB</td>\n</tr>\n<tr>\n<td>Minimum size of data parts for multipart uploading, except the last one</td>\n<td>5 MB</td>\n</tr>\n<tr>\n<td>Maximum number of parts in multi-part uploading</td>\n<td>10,000</td>\n</tr>\n</tbody>\n</table>\n<h3 id=\"vpc\"><a href=\"#vpc\" class=\"yfm-anchor\" aria-hidden=\"true\"></a>Yandex Virtual Private Cloud</h3>\n<h4 id=\"quotas3\"><a href=\"#quotas3\" class=\"yfm-anchor\" aria-hidden=\"true\"></a><a href=\"#quotas\" class=\"yfm-anchor\" aria-hidden=\"true\"></a>Quotas</h4>\n<table>\n<thead>\n<tr>\n<th>Type of limit</th>\n<th>Value</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Number of cloud networks per cloud</td>\n<td>2</td>\n</tr>\n<tr>\n<td>Number of subnets per cloud</td>\n<td>6</td>\n</tr>\n<tr>\n<td>Number of all public IP addresses per cloud</td>\n<td>8</td>\n</tr>\n<tr>\n<td>Number of static public IP addresses per cloud</td>\n<td>2</td>\n</tr>\n<tr>\n<td>Number of route tables per cloud</td>\n<td>8</td>\n</tr>\n<tr>\n<td>Number of static routes per cloud</td>\n<td>256</td>\n</tr>\n</tbody>\n</table>\n<h4 id=\"limits1\"><a href=\"#limits1\" class=\"yfm-anchor\" aria-hidden=\"true\"></a><a href=\"#limits\" class=\"yfm-anchor\" aria-hidden=\"true\"></a>Limits</h4>\n<table>\n<thead>\n<tr>\n<th>Type of limit</th>\n<th>Value</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Minimum CIDR size for a subnet</td>\n<td>/28</td>\n</tr>\n<tr>\n<td>Maximum CIDR size for a subnet</td>\n<td>/16</td>\n</tr>\n<tr>\n<td>Maximum number of simultaneous TCP/UDP connections per VM</td>\n<td>50000</td>\n</tr>\n</tbody>\n</table>\n<h4 id=\"egress-traffic-filter\"><a href=\"#egress-traffic-filter\" class=\"yfm-anchor\" aria-hidden=\"true\"></a><a href=\"#egress-traffic-filter\" class=\"yfm-anchor\" aria-hidden=\"true\"></a>Filtering outgoing traffic</h4>\n<p>Yandex.Cloud always blocks outgoing traffic to TCP port 25:</p>\n<ul>\n<li>To any servers on the internet other than Yandex.Mail servers.</li>\n<li>To Yandex Compute Cloud VMs when accessed via a public IP address.</li>\n</ul>\n<p>Yandex.Cloud may open TCP port 25 by request via technical support if you comply with <a href=\"https://yandex.com/legal/cloud_aup/\" target=\"_blank\" rel=\"noreferrer noopener\">Acceptable Use Policy</a>. Yandex.Cloud is entitled to block outgoing traffic on TCP port 25 if you violate the Use Policy.</p>\n<h3 id=\"resource-manager\"><a href=\"#resource-manager\" class=\"yfm-anchor\" aria-hidden=\"true\"></a>Yandex Resource Manager</h3>\n<p>There are no quotas or limits for Yandex Resource Manager.</p>\n<h3 id=\"load-balancer\"><a href=\"#load-balancer\" class=\"yfm-anchor\" aria-hidden=\"true\"></a>Yandex Load Balancer</h3>\n<h4 id=\"quotas4\"><a href=\"#quotas4\" class=\"yfm-anchor\" aria-hidden=\"true\"></a><a href=\"#quotas\" class=\"yfm-anchor\" aria-hidden=\"true\"></a>Quotas</h4>\n<table>\n<thead>\n<tr>\n<th>Type of limit</th>\n<th>Value</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Number of load balancers per cloud</td>\n<td>2</td>\n</tr>\n<tr>\n<td>Number of target groups per cloud</td>\n<td>2</td>\n</tr>\n</tbody>\n</table>\n<h4 id=\"limits2\"><a href=\"#limits2\" class=\"yfm-anchor\" aria-hidden=\"true\"></a><a href=\"#limits\" class=\"yfm-anchor\" aria-hidden=\"true\"></a>Limits</h4>\n<table>\n<thead>\n<tr>\n<th>Type of limit</th>\n<th>Value</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Number of resources per target group</td>\n<td>254</td>\n</tr>\n<tr>\n<td>Number of listening ports</td>\n<td>10</td>\n</tr>\n<tr>\n<td>Number of health checks per attached target group</td>\n<td>1</td>\n</tr>\n<tr>\n<td>Status check protocol</td>\n<td>TCP, HTTP</td>\n</tr>\n</tbody>\n</table>\n<h4 id=\"other-restrictions\"><a href=\"#other-restrictions\" class=\"yfm-anchor\" aria-hidden=\"true\"></a><a href=\"#other-restrictions\" class=\"yfm-anchor\" aria-hidden=\"true\"></a>Other restrictions</h4>\n<p>A particular target group can only contain target resources from a single cloud network.</p>\n<p>A target group can include resources that are connected to the same subnet within a single availability zone.</p>\n<p>You can create a load balancer without a listener.</p>\n<p>Health checks are transmitted from the IP address range <code>198.18.235.0/24</code>.</p>\n<p>When connecting resources to the load balancer, keep in mind the <a href=\"../../vpc/concepts/limits#limits\">limit</a> on the maximum number of simultaneous TCP/UDP connections per VM.</p>\n<h3 id=\"mch\"><a href=\"#mch\" class=\"yfm-anchor\" aria-hidden=\"true\"></a>Yandex Managed Service for ClickHouse</h3>\n<h4 id=\"quotas5\"><a href=\"#quotas5\" class=\"yfm-anchor\" aria-hidden=\"true\"></a><a href=\"#quotas\" class=\"yfm-anchor\" aria-hidden=\"true\"></a>Quotas</h4>\n<table>\n<thead>\n<tr>\n<th>Type of limit</th>\n<th>Value</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Number of clusters per cloud</td>\n<td>16</td>\n</tr>\n<tr>\n<td>Total number of processor cores for all DB hosts per cloud</td>\n<td>64</td>\n</tr>\n<tr>\n<td>Total virtual memory for all DB hosts per cloud</td>\n<td>512 GB</td>\n</tr>\n<tr>\n<td>Total storage capacity for all clusters per cloud</td>\n<td>4096 GB</td>\n</tr>\n</tbody>\n</table>\n<h4 id=\"limits3\"><a href=\"#limits3\" class=\"yfm-anchor\" aria-hidden=\"true\"></a><a href=\"#limits\" class=\"yfm-anchor\" aria-hidden=\"true\"></a>Limits</h4>\n<table>\n<thead>\n<tr>\n<th>Type of limit</th>\n<th>Value</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Lowest host class</td>\n<td>b1.nano (<a href=\"../../compute/concepts/performance-levels\">5%</a> × 2 vCPU Intel Broadwell, 2 GB RAM)</td>\n</tr>\n<tr>\n<td>Highest host class</td>\n<td>m2.8xlarge (64 vCPU Intel Cascade Lake, 512 GB RAM)</td>\n</tr>\n<tr>\n<td>Maximum number of hosts in the cluster</td>\n<td>10</td>\n</tr>\n<tr>\n<td>Maximum network storage capacity</td>\n<td>4096 GB</td>\n</tr>\n<tr>\n<td>Maximum local storage capacity</td>\n<td>1400 GB</td>\n</tr>\n</tbody>\n</table>\n<h3 id=\"mmg\"><a href=\"#mmg\" class=\"yfm-anchor\" aria-hidden=\"true\"></a>Yandex Managed Service for MongoDB</h3>\n<h4 id=\"quotas6\"><a href=\"#quotas6\" class=\"yfm-anchor\" aria-hidden=\"true\"></a><a href=\"#quotas\" class=\"yfm-anchor\" aria-hidden=\"true\"></a>Quotas</h4>\n<table>\n<thead>\n<tr>\n<th>Type of limit</th>\n<th>Value</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Number of clusters per cloud</td>\n<td>16</td>\n</tr>\n<tr>\n<td>Total number of processor cores for all DB hosts per cloud</td>\n<td>64</td>\n</tr>\n<tr>\n<td>Total virtual memory for all DB hosts per cloud</td>\n<td>512 GB</td>\n</tr>\n<tr>\n<td>Total storage capacity for all clusters per cloud</td>\n<td>4096 GB</td>\n</tr>\n</tbody>\n</table>\n<h4 id=\"limits4\"><a href=\"#limits4\" class=\"yfm-anchor\" aria-hidden=\"true\"></a><a href=\"#limits\" class=\"yfm-anchor\" aria-hidden=\"true\"></a>Limits</h4>\n<table>\n<thead>\n<tr>\n<th>Type of limit</th>\n<th>Value</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Lowest host class</td>\n<td>b1.nano (<a href=\"../../compute/concepts/performance-levels\">5%</a> × 2 vCPU Intel Broadwell, 2 GB RAM)</td>\n</tr>\n<tr>\n<td>Highest host class</td>\n<td>m2.8xlarge (64 vCPU Intel Cascade Lake, 512 GB RAM)</td>\n</tr>\n<tr>\n<td>Maximum number of hosts per cluster MongoDB</td>\n<td>5</td>\n</tr>\n<tr>\n<td>Maximum storage capacity for a cluster MongoDB</td>\n<td>512 GB</td>\n</tr>\n</tbody>\n</table>\n<h3 id=\"mmy\"><a href=\"#mmy\" class=\"yfm-anchor\" aria-hidden=\"true\"></a>Yandex Managed Service for MySQL</h3>\n<h4 id=\"quotas7\"><a href=\"#quotas7\" class=\"yfm-anchor\" aria-hidden=\"true\"></a><a href=\"#quotas\" class=\"yfm-anchor\" aria-hidden=\"true\"></a>Quotas</h4>\n<table>\n<thead>\n<tr>\n<th>Type of limit</th>\n<th>Value</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Number of clusters per cloud</td>\n<td>16</td>\n</tr>\n<tr>\n<td>Total number of processor cores for all DB hosts per cloud</td>\n<td>64</td>\n</tr>\n<tr>\n<td>Total virtual memory for all DB hosts per cloud</td>\n<td>512 GB</td>\n</tr>\n<tr>\n<td>Total storage capacity for all clusters per cloud</td>\n<td>4096 GB</td>\n</tr>\n</tbody>\n</table>\n<h4 id=\"limits5\"><a href=\"#limits5\" class=\"yfm-anchor\" aria-hidden=\"true\"></a><a href=\"#limits\" class=\"yfm-anchor\" aria-hidden=\"true\"></a>Limits</h4>\n<table>\n<thead>\n<tr>\n<th>Type of limit</th>\n<th>Value</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Lowest host class</td>\n<td>b1.nano (<a href=\"../../compute/concepts/performance-levels\">5%</a> × 2 vCPU Intel Broadwell, 2 GB RAM)</td>\n</tr>\n<tr>\n<td>Highest host class</td>\n<td>m2.8xlarge (64 vCPU Intel Cascade Lake, 512 GB RAM)</td>\n</tr>\n<tr>\n<td>Maximum number of hosts per cluster</td>\n<td>7</td>\n</tr>\n<tr>\n<td>Maximum network storage capacity</td>\n<td>2048 GB</td>\n</tr>\n<tr>\n<td>Maximum local storage capacity</td>\n<td>1400 GB</td>\n</tr>\n</tbody>\n</table>\n<h3 id=\"mpg\"><a href=\"#mpg\" class=\"yfm-anchor\" aria-hidden=\"true\"></a>Yandex Managed Service for PostgreSQL</h3>\n<h4 id=\"quotas8\"><a href=\"#quotas8\" class=\"yfm-anchor\" aria-hidden=\"true\"></a><a href=\"#quotas\" class=\"yfm-anchor\" aria-hidden=\"true\"></a>Quotas</h4>\n<table>\n<thead>\n<tr>\n<th>Type of limit</th>\n<th>Value</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Number of clusters per cloud</td>\n<td>16</td>\n</tr>\n<tr>\n<td>Total number of processor cores for all DB hosts per cloud</td>\n<td>64</td>\n</tr>\n<tr>\n<td>Total virtual memory for all DB hosts per cloud</td>\n<td>512 GB</td>\n</tr>\n<tr>\n<td>Total storage capacity for all clusters per cloud</td>\n<td>4096 GB</td>\n</tr>\n</tbody>\n</table>\n<h4 id=\"limits6\"><a href=\"#limits6\" class=\"yfm-anchor\" aria-hidden=\"true\"></a><a href=\"#limits\" class=\"yfm-anchor\" aria-hidden=\"true\"></a>Limits</h4>\n<table>\n<thead>\n<tr>\n<th>Type of limit</th>\n<th>Value</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Lowest host class</td>\n<td>b1.nano (<a href=\"../../compute/concepts/performance-levels\">5%</a> × 2 vCPU Intel Broadwell, 2 GB RAM)</td>\n</tr>\n<tr>\n<td>Highest host class</td>\n<td>m2.8xlarge (64 vCPU Intel Cascade Lake, 512 GB RAM)</td>\n</tr>\n<tr>\n<td>Maximum number of hosts per cluster</td>\n<td>10</td>\n</tr>\n<tr>\n<td>Maximum network storage capacity</td>\n<td>2048 GB</td>\n</tr>\n<tr>\n<td>Maximum local storage capacity</td>\n<td>1400 GB</td>\n</tr>\n</tbody>\n</table>\n<h3 id=\"mrd\"><a href=\"#mrd\" class=\"yfm-anchor\" aria-hidden=\"true\"></a>Yandex Managed Service for Redis</h3>\n<h4 id=\"quotas9\" quotas=\"\"><a href=\"#quotas9\" class=\"yfm-anchor\" aria-hidden=\"true\"></a><a href=\"#quotas\" class=\"yfm-anchor\" aria-hidden=\"true\"></a>Quotas</h4>\n<table>\n<thead>\n<tr>\n<th>Type of limit</th>\n<th>Value</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Number of clusters per cloud</td>\n<td>16</td>\n</tr>\n<tr>\n<td>Total number of processor cores for all DB hosts per cloud</td>\n<td>64</td>\n</tr>\n<tr>\n<td>Total virtual memory for all hosts per cloud</td>\n<td>512 GB</td>\n</tr>\n<tr>\n<td>Total disk storage capacity for all clusters per cloud</td>\n<td>4096 GB</td>\n</tr>\n</tbody>\n</table>\n<h4 id=\"limits7\" limits=\"\"><a href=\"#limits7\" class=\"yfm-anchor\" aria-hidden=\"true\"></a><a href=\"#limits\" class=\"yfm-anchor\" aria-hidden=\"true\"></a>Limits</h4>\n<table>\n<thead>\n<tr>\n<th>Type of limit</th>\n<th>Value</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Lowest host class</td>\n<td>b1.nano (<code>burstable</code> with 2 GB RAM)</td>\n</tr>\n<tr>\n<td>Highest host class</td>\n<td>hm1.9xlarge (<code>high-memory</code> with 256 GB RAM)</td>\n</tr>\n<tr>\n<td>Maximum number of hosts per cluster</td>\n<td>7</td>\n</tr>\n<tr>\n<td>Minimum disk size per cluster</td>\n<td>2 times more than the amount of RAM selected</td>\n</tr>\n<tr>\n<td>Maximum disk size per cluster</td>\n<td>8 times more than the amount of RAM selected</td>\n</tr>\n</tbody>\n</table>\n<h3 id=\"mq\"><a href=\"#mq\" class=\"yfm-anchor\" aria-hidden=\"true\"></a>Yandex Message Queue</h3>\n<h4 id=\"quotas10\"><a href=\"#quotas10\" class=\"yfm-anchor\" aria-hidden=\"true\"></a><a href=\"#quotas\" class=\"yfm-anchor\" aria-hidden=\"true\"></a>Quotas</h4>\n<h5 id=\"messages\"><a href=\"#messages\" class=\"yfm-anchor\" aria-hidden=\"true\"></a><a href=\"#messages\" class=\"yfm-anchor\" aria-hidden=\"true\"></a>Messages</h5>\n<table>\n<thead>\n<tr>\n<th>Type of limit</th>\n<th>Value</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Number of <code>SendMessage</code> and <code>SendMessageBatch</code> calls per queue</td>\n<td>300 calls per second for standard queues<br/><br/>30 calls per second for FIFO queues</td>\n</tr>\n<tr>\n<td>Number of <code>ReceiveMessage</code> calls per queue</td>\n<td>300 calls per second for standard queues<br/><br/>30 calls per second for FIFO queues</td>\n</tr>\n<tr>\n<td>Number of <code>DeleteMessage</code> and <code>DeleteMessageBatch</code> calls per queue</td>\n<td>300 calls per second for standard queues<br/><br/>30 calls per second for FIFO queues</td>\n</tr>\n<tr>\n<td>Number of <code>ChangeMessageVisibility</code> and <code>ChangeMessageVisibilityBatch</code> calls per queue</td>\n<td>300 calls per second for standard queues<br/><br/>30 calls per second for FIFO queues</td>\n</tr>\n<tr>\n<td>Number of <code>CreateQueue calls</code> per cloud</td>\n<td>2 calls per second</td>\n</tr>\n<tr>\n<td>Number of <code>DeleteQueue calls</code> per cloud</td>\n<td>5 calls per second</td>\n</tr>\n<tr>\n<td>Number of other request calls per cloud</td>\n<td>100 calls per second</td>\n</tr>\n<tr>\n<td>Number of queues per cloud</td>\n<td>10</td>\n</tr>\n</tbody>\n</table>\n<h4 id=\"limits8\"><a href=\"#limits8\" class=\"yfm-anchor\" aria-hidden=\"true\"></a><a href=\"#limits\" class=\"yfm-anchor\" aria-hidden=\"true\"></a>Limits</h4>\n<h5 id=\"queues\"><a href=\"#queues\" class=\"yfm-anchor\" aria-hidden=\"true\"></a><a href=\"#queues\" class=\"yfm-anchor\" aria-hidden=\"true\"></a>Queues</h5>\n<table>\n<thead>\n<tr>\n<th>Type of limit</th>\n<th>Value</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Minimum message enqueue delay (<code>DelaySeconds</code> parameter)</td>\n<td>0 seconds</td>\n</tr>\n<tr>\n<td>Maximum message enqueue delay (<code>DelaySeconds</code> parameter)</td>\n<td>900 seconds (15 minutes)</td>\n</tr>\n<tr>\n<td>Number of messages being processed per standard queue</td>\n<td>120,000</td>\n</tr>\n<tr>\n<td>Number of messages being processed per FIFO queue</td>\n<td>20,000</td>\n</tr>\n<tr>\n<td>Queue name</td>\n<td>Maximum of 80 characters, including numbers, small and capital Latin letters, hyphens, and underscores. The name of a FIFO queue must end with the <code>.fifo</code> suffix.</td>\n</tr>\n</tbody>\n</table>\n<h5 id=\"messages1\"><a href=\"#messages1\" class=\"yfm-anchor\" aria-hidden=\"true\"></a><a href=\"#messages1\" class=\"yfm-anchor\" aria-hidden=\"true\"></a>Messages</h5>\n<table>\n<thead>\n<tr>\n<th>Type of limit</th>\n<th>Value</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Batch entry ID</td>\n<td>Maximum of 80 characters, including numbers, small and capital Latin letters, hyphens, and underscores.</td>\n</tr>\n<tr>\n<td>Maximum number of message attributes</td>\n<td>10</td>\n</tr>\n<tr>\n<td>Maximum number of entries per batch</td>\n<td>10</td>\n</tr>\n<tr>\n<td>Message content</td>\n<td>XML, JSON, and unformatted text. The following Unicode characters are supported: <ul><li><code>#x9</code></li> <li><code>#xA</code></li> <li><code>#xD</code></li> <li>from <code>#x20</code> to <code>#xD7FF</code></li> <li>from <code>#xE000</code> to <code>#xFFFD</code></li> <li>from <code>#x10000</code> to <code>#x10FFFF</code></li></ul></td>\n</tr>\n<tr>\n<td>Maximum period for retaining messages in a queue</td>\n<td>1209600 seconds (14 days)</td>\n</tr>\n<tr>\n<td>Minimum period for retaining messages in a queue</td>\n<td>60 seconds (1 minute)</td>\n</tr>\n<tr>\n<td>Maximum message enqueue delay (<code>DelaySeconds</code> parameter)</td>\n<td>900 seconds (15 minutes)</td>\n</tr>\n<tr>\n<td>Minimum message enqueue delay (<code>DelaySeconds</code> parameter)</td>\n<td>0 seconds</td>\n</tr>\n<tr>\n<td>Maximum message size</td>\n<td>262144 bytes (256 KB)</td>\n</tr>\n<tr>\n<td>Minimum message size</td>\n<td>1 byte</td>\n</tr>\n<tr>\n<td>Maximum message visibility timeout</td>\n<td>12 hours</td>\n</tr>\n<tr>\n<td>Minimum message visibility timeout</td>\n<td>0 seconds</td>\n</tr>\n<tr>\n<td>Maximum  clients <a href=\"../../message-queue/concepts/long-polling\">waiting time</a> to wait for the message from an empty queue (<code>WaitTimeSeconds</code> parameter)</td>\n<td>20 seconds</td>\n</tr>\n</tbody>\n</table>\n<h3 id=\"speechkit\"><a href=\"#speechkit\" class=\"yfm-anchor\" aria-hidden=\"true\"></a>Yandex SpeechKit</h3>\n<h4 id=\"speechkit-quotas\"><a href=\"#speechkit-quotas\" class=\"yfm-anchor\" aria-hidden=\"true\"></a><a href=\"#speechkit-quotas\" class=\"yfm-anchor\" aria-hidden=\"true\"></a>Quotas</h4>\n<table>\n<thead>\n<tr>\n<th>Type of limit</th>\n<th>Value</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td><a href=\"../../speechkit/stt/request\"><strong>Short audio recognition</strong></a></td>\n<td></td>\n</tr>\n<tr>\n<td>Requests per second</td>\n<td>20</td>\n</tr>\n<tr>\n<td><a href=\"../../speechkit/stt/streaming\"><strong>Streaming mode of short audio recognition</strong></a></td>\n<td></td>\n</tr>\n<tr>\n<td>Requests per second</td>\n<td>40</td>\n</tr>\n<tr>\n<td><a href=\"../../speechkit/stt/streaming\"><strong>Long audio recognition</strong></a></td>\n<td></td>\n</tr>\n<tr>\n<td>Recognition requests per hour</td>\n<td>500</td>\n</tr>\n<tr>\n<td>Operation status check requests per hour</td>\n<td>2500</td>\n</tr>\n<tr>\n<td>Billable hours of audio per day</td>\n<td>10,000</td>\n</tr>\n<tr>\n<td><a href=\"../../speechkit/tts/request\"><strong>Speech synthesis</strong></a></td>\n<td></td>\n</tr>\n<tr>\n<td>Requests per second</td>\n<td>40</td>\n</tr>\n</tbody>\n</table>\n<h4 id=\"speechkit-limits\"><a href=\"#speechkit-limits\" class=\"yfm-anchor\" aria-hidden=\"true\"></a><a href=\"#speechkit-limits\" class=\"yfm-anchor\" aria-hidden=\"true\"></a>Limits</h4>\n<table>\n<thead>\n<tr>\n<th>Type of limit</th>\n<th>Value</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td><a href=\"../../speechkit/stt/request\"><strong>Short audio recognition</strong></a></td>\n<td></td>\n</tr>\n<tr>\n<td>Maximum file size</td>\n<td>1 MB</td>\n</tr>\n<tr>\n<td>Maximum duration of audio</td>\n<td>30 seconds</td>\n</tr>\n<tr>\n<td>Maximum number of audio channels</td>\n<td>1</td>\n</tr>\n<tr>\n<td><a href=\"../../speechkit/stt/streaming\"><strong>Streaming mode of short audio recognition</strong></a></td>\n<td></td>\n</tr>\n<tr>\n<td>Maximum duration of transmitted audio for the entire session</td>\n<td>5 minutes</td>\n</tr>\n<tr>\n<td>Maximum size of transmitted audio data</td>\n<td>10 MB</td>\n</tr>\n<tr>\n<td>Maximum number of audio channels</td>\n<td>1</td>\n</tr>\n<tr>\n<td><a href=\"../../speechkit/stt/streaming\"><strong>Long audio recognition</strong></a></td>\n<td></td>\n</tr>\n<tr>\n<td>Maximum file size</td>\n<td>1 GB</td>\n</tr>\n<tr>\n<td>Maximum duration of audio</td>\n<td>4 hours</td>\n</tr>\n<tr>\n<td>Period for storing recognition results on the server</td>\n<td>3 days</td>\n</tr>\n<tr>\n<td><a href=\"../../speechkit/tts/request\"><strong>Speech synthesis</strong></a></td>\n<td></td>\n</tr>\n<tr>\n<td>Maximum request size</td>\n<td>5000 characters</td>\n</tr>\n</tbody>\n</table>\n<h3 id=\"translate\"><a href=\"#translate\" class=\"yfm-anchor\" aria-hidden=\"true\"></a>Yandex Translate</h3>\n<h4 id=\"translate-quotas\"><a href=\"#translate-quotas\" class=\"yfm-anchor\" aria-hidden=\"true\"></a><a href=\"#translate-quotas\" class=\"yfm-anchor\" aria-hidden=\"true\"></a>Quotas</h4>\n<table>\n<thead>\n<tr>\n<th>Type of limit</th>\n<th>Value</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Calls of a single API method per second</td>\n<td>20</td>\n</tr>\n<tr>\n<td>Characters sent for translation per hour</td>\n<td>1 million</td>\n</tr>\n<tr>\n<td>Characters sent for language detection per hour</td>\n<td>1 million</td>\n</tr>\n</tbody>\n</table>\n<h4 id=\"translate-limits\"><a href=\"#translate-limits\" class=\"yfm-anchor\" aria-hidden=\"true\"></a><a href=\"#translate-limits\" class=\"yfm-anchor\" aria-hidden=\"true\"></a>Limits</h4>\n<p>There are no limits in the service. For limitations on the field values in the request body, see the <a href=\"../../translate/api-ref/Translation/\">API reference</a>.</p>\n<h3 id=\"vision\"><a href=\"#vision\" class=\"yfm-anchor\" aria-hidden=\"true\"></a>Yandex Vision</h3>\n<h4 id=\"vision-quotas\"><a href=\"#vision-quotas\" class=\"yfm-anchor\" aria-hidden=\"true\"></a><a href=\"#vision-quotas\" class=\"yfm-anchor\" aria-hidden=\"true\"></a>Quotas</h4>\n<table>\n<thead>\n<tr>\n<th>Type of limit</th>\n<th>Value</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Number of requests per second</td>\n<td>10</td>\n</tr>\n<tr>\n<td><a href=\"../../vision/concepts/ocr/\">Text recognition attempts per second</a></td>\n<td>5</td>\n</tr>\n<tr>\n<td><a href=\"../../vision/concepts/face-detection/\">Face detection attempts per second</a></td>\n<td>5</td>\n</tr>\n<tr>\n<td><a href=\"../../vision/concepts/classification/\">Image classification attempts per second</a></td>\n<td>5</td>\n</tr>\n</tbody>\n</table>\n<h4 id=\"vision-limits\"><a href=\"#vision-limits\" class=\"yfm-anchor\" aria-hidden=\"true\"></a><a href=\"#vision-limits\" class=\"yfm-anchor\" aria-hidden=\"true\"></a>Limits</h4>\n<table>\n<thead>\n<tr>\n<th>Type of limit</th>\n<th>Value</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Maximum file size</td>\n<td>1 MB</td>\n</tr>\n<tr>\n<td>Maximum image size</td>\n<td>20 MP (length × width)</td>\n</tr>\n<tr>\n<td>Maximum number of pages in a PDF file</td>\n<td>8</td>\n</tr>\n</tbody>\n</table>\n",
+  "title": "Quotas and limits",
+  "headings": [
+    {
+      "title": "Why quotas are needed",
+      "href": "#quotas",
+      "level": 2
+    },
+    {
+      "title": "Quotas and limits defaults for Yandex.Cloud services",
+      "href": "#quotas-and-limits-defaults-for-yandex.cloud-services",
+      "level": 2,
+      "items": [
+        {
+          "title": "Yandex Compute Cloud",
+          "href": "#compute",
+          "level": 3,
+          "items": []
+        },
+        {
+          "title": "Yandex Object Storage",
+          "href": "#storage",
+          "level": 3,
+          "items": []
+        },
+        {
+          "title": "Yandex Virtual Private Cloud",
+          "href": "#vpc",
+          "level": 3,
+          "items": []
+        },
+        {
+          "title": "Yandex Resource Manager",
+          "href": "#resource-manager",
+          "level": 3
+        },
+        {
+          "title": "Yandex Load Balancer",
+          "href": "#load-balancer",
+          "level": 3,
+          "items": []
+        },
+        {
+          "title": "Yandex Managed Service for ClickHouse",
+          "href": "#mch",
+          "level": 3,
+          "items": []
+        },
+        {
+          "title": "Yandex Managed Service for MongoDB",
+          "href": "#mmg",
+          "level": 3,
+          "items": []
+        },
+        {
+          "title": "Yandex Managed Service for MySQL",
+          "href": "#mmy",
+          "level": 3,
+          "items": []
+        },
+        {
+          "title": "Yandex Managed Service for PostgreSQL",
+          "href": "#mpg",
+          "level": 3,
+          "items": []
+        },
+        {
+          "title": "Yandex Managed Service for Redis",
+          "href": "#mrd",
+          "level": 3,
+          "items": []
+        },
+        {
+          "title": "Yandex Message Queue",
+          "href": "#mq",
+          "level": 3,
+          "items": []
+        },
+        {
+          "title": "Yandex SpeechKit",
+          "href": "#speechkit",
+          "level": 3,
+          "items": []
+        },
+        {
+          "title": "Yandex Translate",
+          "href": "#translate",
+          "level": 3,
+          "items": []
+        },
+        {
+          "title": "Yandex Vision",
+          "href": "#vision",
+          "level": 3,
+          "items": []
+        }
+      ]
+    }
+  ],
+  "meta": {
+    "author": {
+      "avatar": "",
+      "email": "robot-dataui-vcs@yandex-team.ru",
+      "login": "",
+      "name": "",
+      "url": "http://yandex.ru/"
+    },
+    "contributors": [
+      {
+        "avatar": "https://avatars.githubusercontent.com/u/2485945?v=6",
+        "email": "robot-dataui-vcs@yandex-team.ru",
+        "login": "",
+        "name": "DataUI VCS Robot",
+        "url": ""
+      },
+      {
+        "avatar": "",
+        "email": "skanunnikov@yandex-team.ru",
+        "login": "",
+        "name": "Sergey Kanunnikov",
+        "url": ""
+      },
+      {
+        "avatar": "https://avatars.githubusercontent.com/u/2485935?v=4",
+        "email": "",
+        "login": "zamulla",
+        "name": "Aleksey Zamulla",
+        "url": "http://yandex.ru/"
+      },
+      {
+        "avatar": "https://avatars.githubusercontent.com/u/2485945?v=6",
+        "email": "migelle@yandex-team.ru",
+        "login": "migelle",
+        "name": "",
+        "url": "http://yandex.ru/"
+      },
+      {
+        "avatar": "https://avatars.githubusercontent.com/u/2485945?v=6",
+        "email": "leeuw@yandex-team.ru",
+        "login": "",
+        "name": "",
+        "url": "http://yandex.ru/"
+      },
+      {
+        "avatar": "",
+        "email": "dottir@yandex-team.ru",
+        "login": "",
+        "name": "Anastasia Karavaeva",
+        "url": ""
+      }
+    ]
+  },
+  "toc": {
+    "title": "Yandex.Cloud overview",
+    "href": "/docs/overview/",
+    "items": [
+      {
+        "name": "Yandex.Cloud services",
+        "href": "/docs/overview/concepts/services",
+        "id": "86fb5a9101b917e55d57955e41a4a773"
+      },
+      {
+        "name": "Equivalent services on other platforms",
+        "expanded": true,
+        "items": [
+          {
+            "name": "Overview",
+            "href": "/docs/overview/platform-comparison/",
+            "id": "db26ca551a9e94ece774f19a472cc500"
+          },
+          {
+            "name": "Equivalents for Amazon Web Services",
+            "href": "/docs/overview/platform-comparison/aws",
+            "id": "c735da730d10e0f31b4b9a722251c0f0"
+          },
+          {
+            "name": "Equivalents for Google Cloud Platform",
+            "href": "/docs/overview/platform-comparison/gcp",
+            "id": "f7aff73e87f0aca60595896b050a002d"
+          },
+          {
+            "name": "Equivalents for Microsoft Azure",
+            "href": "/docs/overview/platform-comparison/azure",
+            "id": "ca1deb97788e2d54631f4908ac1b5ca6"
+          }
+        ],
+        "id": "c5625beecf9017c1290bd748fd9dc854"
+      },
+      {
+        "name": "Availability zones",
+        "href": "/docs/overview/concepts/geo-scope",
+        "id": "685e6c38153524c07dcd17f415e1f516"
+      },
+      {
+        "name": "Getting started",
+        "href": "/docs/overview/quickstart",
+        "id": "ab338ee86e023121249934c955ed9810"
+      },
+      {
+        "name": "Release stages",
+        "href": "/docs/overview/concepts/launch-stages",
+        "id": "de2baab2bd603f5630a1a398d25fa370"
+      },
+      {
+        "name": "Quotas and limits",
+        "href": "/docs/overview/concepts/quotas-limits",
+        "id": "a3bb97002572fbdca0f056d75d42acd2"
+      },
+      {
+        "name": "API",
+        "href": "/docs/overview/api",
+        "id": "136bdc27253376a450eee99e4539c186"
+      },
+      {
+        "name": "Security and compliance",
+        "items": [
+          {
+            "name": "Security bulletin",
+            "href": "/docs/overview/security-bulletins/",
+            "id": "51e1474da0ee2ab04126285a0e3ca7df"
+          },
+          {
+            "name": "Rules for performing external security scans",
+            "href": "/docs/overview/compliance/pentest",
+            "id": "50ced679abe4df4b724e5b2dc462846e"
+          }
+        ],
+        "id": "a2541cbb86e50d2f6ed9c2eba245611d"
+      },
+      {
+        "name": "Deleting user data",
+        "href": "/docs/overview/concepts/data-deletion",
+        "id": "bba0c3f3dc2cd1b71c1aeb83d67d77a8"
+      },
+      {
+        "name": "SLA",
+        "href": "/docs/overview/sla",
+        "id": "1636c6203504367fc47f73077e95ebad"
+      },
+      {
+        "name": "Questions and answers",
+        "href": "/docs/overview/qa",
+        "id": "6293190c6aa223973af0014e104c70ef"
+      }
+    ]
+  },
+  "breadcrumbs": [
+    {
+      "name": "Documentation"
+    },
+    {
+      "name": "Quotas and limits"
+    }
+  ],
+  "filePath": "/cache/c12878f1-cc2e-445f-8f96-7374fe76b074/en/overview/concepts/quotas-limits.md",
+  "githubUrl": "https://github.com/yandex-cloud/docs/tree/master/en/overview/concepts/quotas-limits.md",
+  "vcsType": "github",
+  "vcsUrl": "https://github.com/yandex-cloud/docs/tree/master/en/overview/concepts/quotas-limits.md"
+}

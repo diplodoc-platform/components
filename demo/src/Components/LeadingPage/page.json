@@ -1,0 +1,1486 @@
+{
+  "toc": {
+    "title": "Yandex Compute Cloud",
+    "href": "/docs/compute/",
+    "items": [
+      {
+        "name": "Начало работы",
+        "items": [
+          {
+            "name": "Обзор",
+            "href": "/docs/compute/quickstart/",
+            "id": "2b1fc8b8c3fb717e87c9bf403f56d997"
+          },
+          {
+            "name": "Создание виртуальной машины Linux",
+            "href": "/docs/compute/quickstart/quick-create-linux",
+            "id": "525156d7631981ed1fd0025eb2d38ac6"
+          },
+          {
+            "name": "Создание виртуальной машины Windows",
+            "href": "/docs/compute/quickstart/quick-create-windows",
+            "id": "33f2b39cbddb23929b4fa20ba78367b3"
+          },
+          {
+            "name": "Создание группы виртуальных машин",
+            "href": "/docs/compute/quickstart/ig",
+            "id": "d4b7d652f22d3e137f6fcc4e33669046"
+          }
+        ],
+        "id": "e7bade82ebbf6557c6fe306cfe69b62a"
+      },
+      {
+        "name": "Пошаговые инструкции",
+        "items": [
+          {
+            "name": "Все инструкции",
+            "href": "/docs/compute/operations/",
+            "id": "0d611622724e5dff64175797fa90000b"
+          },
+          {
+            "name": "Создание виртуальной машины",
+            "items": [
+              {
+                "name": "Создать ВМ Linux",
+                "href": "/docs/compute/operations/vm-create/create-linux-vm",
+                "id": "097b0c0dae78bb8f7c5b4bf995531f8b"
+              },
+              {
+                "name": "Создать ВМ Windows",
+                "href": "/docs/compute/operations/vm-create/create-windows-vm",
+                "id": "96c6d6fb217fe80f746bb14dc0d58891"
+              },
+              {
+                "name": "Создать ВМ из набора дисков",
+                "href": "/docs/compute/operations/vm-create/create-from-disks",
+                "id": "744fe79d8c1a08b1221b171ccf161cc8"
+              },
+              {
+                "name": "Создать ВМ с дисками из снимков",
+                "href": "/docs/compute/operations/vm-create/create-from-snapshots",
+                "id": "1c15840f0022321f21b9451e050816ab"
+              },
+              {
+                "name": "Создать ВМ из пользовательского образа",
+                "href": "/docs/compute/operations/vm-create/create-from-user-image",
+                "id": "f9d73a7be5ad533ee12c7490c0c56ac0"
+              },
+              {
+                "name": "Создать прерываемую ВМ",
+                "href": "/docs/compute/operations/vm-create/create-preemptible-vm",
+                "id": "448dbdd7f0bd62eda18a8e78e8948364"
+              },
+              {
+                "name": "Создать ВМ c GPU",
+                "href": "/docs/compute/operations/vm-create/create-vm-with-gpu",
+                "id": "4ce394283f98084a41183f22732ba4c0"
+              }
+            ],
+            "id": "202d23c522cc4abcc765fe0c8d314cd6"
+          },
+          {
+            "name": "DSVM",
+            "items": [
+              {
+                "name": "Обзор",
+                "href": "/docs/compute/operations/dsvm/",
+                "id": "06e6e1f19b30eb9e0ae287bd39aa5fbb"
+              },
+              {
+                "name": "Создать ВМ из публичного образа DSVM",
+                "href": "/docs/compute/operations/dsvm/quickstart",
+                "id": "5838b5b6bfad03e5a6a039d24e4f06a8"
+              }
+            ],
+            "id": "893a628d7a9e1540ab14394b1b2be78d"
+          },
+          {
+            "name": "Группы размещения",
+            "items": [
+              {
+                "name": "Создать группу размещения",
+                "href": "/docs/compute/operations/placement-groups/create",
+                "id": "742efaa6e0058c84979823eee6d26c48"
+              },
+              {
+                "name": "Удалить группу размещения",
+                "href": "/docs/compute/operations/placement-groups/delete",
+                "id": "dd141f3f258b5f18b57be7817eea42dc"
+              },
+              {
+                "name": "Создать ВМ в группе размещения",
+                "href": "/docs/compute/operations/placement-groups/create-vm-in-pg",
+                "id": "8cc9dfba72f9ac7c34ed89ae81a4a064"
+              },
+              {
+                "name": "Добавить ВМ в группу размещения",
+                "href": "/docs/compute/operations/placement-groups/add-vm",
+                "id": "0eccdbf70eb5012f7cb19bc1cae42fea"
+              },
+              {
+                "name": "Исключить ВМ из группы размещения",
+                "href": "/docs/compute/operations/placement-groups/delete-vm",
+                "id": "29c3cda26e600165be543bda66ff2141"
+              }
+            ],
+            "id": "649653e7b44375c7530d29ac2d713ffc"
+          },
+          {
+            "name": "Образы с предустановленным ПО",
+            "items": [
+              {
+                "name": "Создать ВМ из публичного образа",
+                "href": "/docs/compute/operations/images-with-pre-installed-software/create",
+                "id": "53d082e0dd61e3fb71d1b58050ba3d48"
+              },
+              {
+                "name": "Настроить ПО",
+                "href": "/docs/compute/operations/images-with-pre-installed-software/setup",
+                "id": "b725ab490b39c14796dc3b5e701b0340"
+              },
+              {
+                "name": "Работа с ВМ на базе публичного образа",
+                "href": "/docs/compute/operations/images-with-pre-installed-software/operate",
+                "id": "2aa01248658d9bca73f8883faa62618b"
+              },
+              {
+                "name": "Получить список публичных образов",
+                "href": "/docs/compute/operations/images-with-pre-installed-software/get-list",
+                "id": "c5f78060588b30093f078c2ad2499649"
+              }
+            ],
+            "id": "eaae70b245e84cae69729647e56141b3"
+          },
+          {
+            "name": "Получение информации о виртуальной машине",
+            "items": [
+              {
+                "name": "Получить информацию о ВМ",
+                "href": "/docs/compute/operations/vm-info/get-info",
+                "id": "d3f6dd43a99d56e80e092f01b8318dc1"
+              },
+              {
+                "name": "Получить вывод последовательного порта",
+                "href": "/docs/compute/operations/vm-info/get-serial-port-output",
+                "id": "8cb88af2ed1ef49294dd4cf03cdc0b98"
+              }
+            ],
+            "id": "9657fcaf9ecc34ebd98ed890a8d479b9"
+          },
+          {
+            "name": "Управление виртуальной машиной",
+            "items": [
+              {
+                "name": "Остановить и запустить ВМ",
+                "href": "/docs/compute/operations/vm-control/vm-stop-and-start",
+                "id": "c9285f14c796379c07a4d93ba04013b7"
+              },
+              {
+                "name": "Подключить диск к ВМ",
+                "href": "/docs/compute/operations/vm-control/vm-attach-disk",
+                "id": "b25d5f41f89b869d23eb1e6435950945"
+              },
+              {
+                "name": "Отключить диск от ВМ",
+                "href": "/docs/compute/operations/vm-control/vm-detach-disk",
+                "id": "2e23067c1366b0d315c2f9d580eeb950"
+              },
+              {
+                "name": "Перенести ВМ в другую зону доступности",
+                "href": "/docs/compute/operations/vm-control/vm-change-zone",
+                "id": "f4db404dbb16896066e1f2ae17b9394c"
+              },
+              {
+                "name": "Сделать публичный IP-адрес ВМ статическим",
+                "href": "/docs/compute/operations/vm-control/vm-set-static-ip",
+                "id": "7df529e93e61f30a3c9cefbcd2d271b3"
+              },
+              {
+                "name": "Изменить ВМ",
+                "href": "/docs/compute/operations/vm-control/vm-update",
+                "id": "a024103c9a61c19a5c3b938a5ee98668"
+              },
+              {
+                "name": "Изменить вычислительные ресурсы ВМ",
+                "href": "/docs/compute/operations/vm-control/vm-update-resources",
+                "id": "8b28bdcdf089ec44140802dd69a86048"
+              },
+              {
+                "name": "Удалить ВМ",
+                "href": "/docs/compute/operations/vm-control/vm-delete",
+                "id": "edae79bd12dd5c7d2d2337a63cff1170"
+              }
+            ],
+            "id": "41b5d169b5a879a9f26f53b638af3c80"
+          },
+          {
+            "name": "Работа на виртуальной машине",
+            "items": [
+              {
+                "name": "Подключиться к ВМ по SSH",
+                "href": "/docs/compute/operations/vm-connect/ssh",
+                "id": "4937b718ce8d5dba56f42dfca2229ae9"
+              },
+              {
+                "name": "Подключиться к ВМ по RDP",
+                "href": "/docs/compute/operations/vm-connect/rdp",
+                "id": "8009e4f53b5126a98b29b1939042236b"
+              },
+              {
+                "name": "Подключиться к ВМ через PowerShell",
+                "href": "/docs/compute/operations/vm-connect/powershell",
+                "id": "f1b9415a33ad3d2c3e18b4fdf4d46a66"
+              },
+              {
+                "name": "Работа с Yandex.Cloud изнутри ВМ",
+                "href": "/docs/compute/operations/vm-connect/auth-inside-vm",
+                "id": "70d4e6376271a28d85f84cfa71740d10"
+              },
+              {
+                "name": "Установить NVIDIA-драйверы",
+                "href": "/docs/compute/operations/vm-operate/install-nvidia-drivers",
+                "id": "0a5b26c3353cb05eb4914658e13ee8b6"
+              },
+              {
+                "name": "Восстановить доступ к ВМ",
+                "href": "/docs/compute/operations/vm-connect/recovery-access",
+                "id": "5fa057a38e18bb78203114ca09fef3f4"
+              }
+            ],
+            "id": "d334bd798474237e73ac29f1591cb43d"
+          },
+          {
+            "name": "Создание нового диска",
+            "items": [
+              {
+                "name": "Создать пустой диcк",
+                "href": "/docs/compute/operations/disk-create/empty",
+                "id": "2125a206cb1625ab58042778415fba12"
+              },
+              {
+                "name": "Создать пустой диск с блоком большого размера",
+                "href": "/docs/compute/operations/disk-create/empty-disk-blocksize",
+                "id": "846c476e44dcc470d99a13eb821ba99a"
+              },
+              {
+                "name": "Создать нереплицируемый диск",
+                "href": "/docs/compute/operations/disk-create/nonreplicated",
+                "id": "83dda0e7796b8eeb920633ff1761af3b"
+              }
+            ],
+            "id": "7e21fff691b7e021939e0f64977b0a32"
+          },
+          {
+            "name": "Управление диском",
+            "items": [
+              {
+                "name": "Создать снимок диска",
+                "href": "/docs/compute/operations/disk-control/create-snapshot",
+                "id": "0cc9f2e81dc6fdc2e6aa63870dffba47"
+              },
+              {
+                "name": "Изменить диск",
+                "href": "/docs/compute/operations/disk-control/update",
+                "id": "3e9beba4dafd9f7e3e9d477086a838d9"
+              },
+              {
+                "name": "Удалить диcк",
+                "href": "/docs/compute/operations/disk-control/delete",
+                "id": "32c2adb207b86021e04d396b8e2f490f"
+              },
+              {
+                "name": "Удалить снимок диска",
+                "href": "/docs/compute/operations/snapshot-control/delete",
+                "id": "8d4126c099cbecd7a0fa7892684d4a4e"
+              }
+            ],
+            "id": "09bf4f27793a28dd8486b631182bb756"
+          },
+          {
+            "name": "Группы размещения дисков",
+            "items": [
+              {
+                "name": "Создать группу размещения дисков",
+                "href": "/docs/compute/operations/disk-placement-groups/create",
+                "id": "e24064c1c66e9b8d130932fbb73ec91d"
+              },
+              {
+                "name": "Удалить диск из группы размещения",
+                "href": "/docs/compute/operations/disk-placement-groups/remove-disk",
+                "id": "603617df3ee117be0180b5d25272b8f9"
+              }
+            ],
+            "id": "2e1a239532bb45c6010ca9c13a59acf4"
+          },
+          {
+            "name": "Создание нового образа",
+            "items": [
+              {
+                "name": "Подготовить образ диска",
+                "href": "/docs/compute/operations/image-create/custom-image",
+                "id": "c62b6f69dd4210d8621629962882fb3c"
+              },
+              {
+                "name": "Загрузить свой образ",
+                "href": "/docs/compute/operations/image-create/upload",
+                "id": "9c9f49866e0e27f9d82c53c5c867494e"
+              }
+            ],
+            "id": "13e495f58a5a6827f0cdef10f18fd750"
+          },
+          {
+            "name": "Управление образом",
+            "items": [
+              {
+                "name": "Удалить образ",
+                "href": "/docs/compute/operations/image-control/delete",
+                "id": "9e68880ee44a373113ae28dd97c01880"
+              }
+            ],
+            "id": "afd841339862d4f32b8e3acb3bb20c49"
+          },
+          {
+            "name": "Управление серийной консолью",
+            "items": [
+              {
+                "name": "Начало работы",
+                "href": "/docs/compute/operations/serial-console/",
+                "id": "e9d715705edc19799d721119678c9ba9"
+              },
+              {
+                "name": "Подключиться к серийной консоли по SSH",
+                "href": "/docs/compute/operations/serial-console/connect-ssh",
+                "id": "d6febb580c9522013585bdd67669e8c7"
+              },
+              {
+                "name": "Подключиться к серийной консоли с помощью CLI",
+                "href": "/docs/compute/operations/serial-console/connect-cli",
+                "id": "e030afc9cc525dd989aba4885b382e09"
+              },
+              {
+                "name": "Запустить командную оболочку в Windows SAC",
+                "href": "/docs/compute/operations/serial-console/windows-sac",
+                "id": "150209a9224a84f4486d55e062d00f13"
+              },
+              {
+                "name": "Отключить доступ к серийной консоли",
+                "href": "/docs/compute/operations/serial-console/disable",
+                "id": "d7f703bee09caa5415e1d2e2b735d5d4"
+              }
+            ],
+            "id": "ffc8951f2fa849ea203d7e24ab6e7186"
+          },
+          {
+            "name": "Создание группы виртуальных машин",
+            "items": [
+              {
+                "name": "Создать группу ВМ фиксированного размера",
+                "href": "/docs/compute/operations/instance-groups/create-fixed-group",
+                "id": "dbfd6456f8e16d76b0a3a1964e1f60b8"
+              },
+              {
+                "name": "Создать группу ВМ фиксированного размера с сетевым балансировщиком",
+                "href": "/docs/compute/operations/instance-groups/create-with-balancer",
+                "id": "38b1095f5e2b6149bd3ac710bcac5fe2"
+              },
+              {
+                "name": "Создать автоматически масштабируемую группу ВМ",
+                "href": "/docs/compute/operations/instance-groups/create-autoscaled-group",
+                "id": "e21f55f1b5c7254008c2e37e39db4ab5"
+              },
+              {
+                "name": "Создать группу ВМ с Container Optimized Image",
+                "href": "/docs/compute/operations/instance-groups/create-with-coi",
+                "id": "e922f477fedcf68783003128e6836fec"
+              }
+            ],
+            "id": "29ce44223e454ceb013860c3f5e7b2b2"
+          },
+          {
+            "name": "Получение информации о группе виртуальных машин",
+            "items": [
+              {
+                "name": "Получить список групп ВМ",
+                "href": "/docs/compute/operations/instance-groups/get-list",
+                "id": "6e849183d448865595463c5d388d3d9a"
+              },
+              {
+                "name": "Получить информацию о группе ВМ",
+                "href": "/docs/compute/operations/instance-groups/get-info",
+                "id": "856fcfc3d82e23d1f26a526e7324376b"
+              },
+              {
+                "name": "Получить список ВМ в группе",
+                "href": "/docs/compute/operations/instance-groups/get-list-instances",
+                "id": "c7f0bfa8c3a9a752ca4e4e2812f7418a"
+              }
+            ],
+            "id": "9a1f185f2447a61c048f9d5a05204a89"
+          },
+          {
+            "name": "Управление группой виртуальных машин",
+            "items": [
+              {
+                "name": "Изменить группу ВМ",
+                "href": "/docs/compute/operations/instance-groups/update",
+                "id": "dbbd57f0cd5b113b99bcea2322513ca1"
+              },
+              {
+                "name": "Настроить проверку состояния приложения на ВМ",
+                "href": "/docs/compute/operations/instance-groups/enable-autohealing",
+                "id": "e3a003e332b4de7ce0c2e4c49804833f"
+              },
+              {
+                "name": "Обновить группу",
+                "items": [
+                  {
+                    "name": "Постепенное обновление",
+                    "href": "/docs/compute/operations/instance-groups/deploy/rolling-update",
+                    "id": "f2538229a48e285028645250e3b27fff"
+                  },
+                  {
+                    "name": "Обновление без простоя",
+                    "href": "/docs/compute/operations/instance-groups/deploy/zero-downtime",
+                    "id": "8a267fa54d9b5d8c564a451fbdd97018"
+                  }
+                ],
+                "id": "cc0a67aa8973db0dc7ff8d56b9e6d863"
+              },
+              {
+                "name": "Остановить группу ВМ",
+                "href": "/docs/compute/operations/instance-groups/stop",
+                "id": "6e7e81f59e17b5091f7c4287fb214773"
+              },
+              {
+                "name": "Запустить группу ВМ",
+                "href": "/docs/compute/operations/instance-groups/start",
+                "id": "57585d922551d33e5ca925732579ab5a"
+              },
+              {
+                "name": "Удалить группу ВМ",
+                "href": "/docs/compute/operations/instance-groups/delete",
+                "id": "a2b5a96ee776d990a8b1b5e1dc5ec5b3"
+              }
+            ],
+            "id": "e223df49ee0b73df2dd3d473c5e160ed"
+          },
+          {
+            "name": "Выделенные хосты",
+            "items": [
+              {
+                "name": "Создать ВМ в группе выделенных хостов",
+                "href": "/docs/compute/operations/dedicated-host/running-host-group-vms",
+                "id": "edf35741be1188f978c526a39b3fa618"
+              },
+              {
+                "name": "Создать ВМ на выделенном хосте",
+                "href": "/docs/compute/operations/dedicated-host/running-host-vms",
+                "id": "a7371db28a644d2cd8126488f212d2c4"
+              }
+            ],
+            "id": "9b6d2dc4f06cb2b63dd03933a843010e"
+          }
+        ],
+        "id": "06211b0dd4947721dc2b15cbc35cd783"
+      },
+      {
+        "name": "Yandex Container Solution",
+        "href": "/docs/cos",
+        "id": "4f713cceebd273aec0ce8d54e3bfd61c"
+      },
+      {
+        "name": "Сценарии использования",
+        "items": [
+          {
+            "name": "Настройка синхронизации времени NTP",
+            "href": "/docs/compute/solutions/ntp",
+            "id": "699440aa8e2a2ca7bbb347e239c9425d"
+          },
+          {
+            "name": "Работа с группой ВМ с автоматическим масштабированием",
+            "href": "/docs/compute/solutions/vm-autoscale",
+            "id": "c62f66e69535d261ad97ad9b8c87fb84"
+          },
+          {
+            "name": "Развертывание Remote Desktop Gateway",
+            "href": "/docs/compute/solutions/rds-gw",
+            "id": "02f5baeed5dfc97441e48500770ef4cb"
+          }
+        ],
+        "id": "62111ba2dea597fa4b7e1aed31fc64e7"
+      },
+      {
+        "name": "Концепции",
+        "items": [
+          {
+            "name": "Взаимосвязь ресурсов",
+            "href": "/docs/compute/concepts/",
+            "id": "2d00d0fab5f8529b918b661e1920f18e"
+          },
+          {
+            "name": "Виртуальные машины",
+            "items": [
+              {
+                "name": "Обзор",
+                "href": "/docs/compute/concepts/vm",
+                "id": "6ce77159075b0937bf43463b19400ac4"
+              },
+              {
+                "name": "Платформы",
+                "href": "/docs/compute/concepts/vm-platforms",
+                "id": "c075341cb0ab99ce4f3e01f7971efd60"
+              },
+              {
+                "name": "Уровни производительности vCPU",
+                "href": "/docs/compute/concepts/performance-levels",
+                "id": "d4e4d102765748f7ca142e1e2053ff91"
+              },
+              {
+                "name": "Прерываемые виртуальные машины",
+                "href": "/docs/compute/concepts/preemptible-vm",
+                "id": "32ba37896370ce863d61279ac041cff3"
+              },
+              {
+                "name": "Сеть на виртуальной машине",
+                "href": "/docs/compute/concepts/network",
+                "id": "2558324b1932419f89cfc9dabfb171d2"
+              },
+              {
+                "name": "Программно-ускоренная сеть",
+                "href": "/docs/compute/concepts/software-accelerated-network",
+                "id": "4793a03826725c8fdeeb913058beb5f2"
+              },
+              {
+                "name": "Динамическая миграция",
+                "href": "/docs/compute/concepts/live-migration",
+                "id": "8d595bf47cbd0d2e019445199a7dfe6e"
+              },
+              {
+                "name": "Группы размещения ВМ",
+                "href": "/docs/compute/concepts/placement-groups",
+                "id": "d0f1db64f7ba8d0e59de5fd0fda2e59a"
+              },
+              {
+                "name": "Статусы",
+                "href": "/docs/compute/concepts/vm-statuses",
+                "id": "43b3b28bc7b0ebe379f7c8c35e5e5b34"
+              },
+              {
+                "name": "Метаданные",
+                "href": "/docs/compute/concepts/vm-metadata",
+                "id": "e1c95b834834045659eff415f7025d8a"
+              }
+            ],
+            "id": "1d6c11690e2bf720c57adce97f7dc5a7"
+          },
+          {
+            "name": "Графические ускорители GPU и vGPU",
+            "href": "/docs/compute/concepts/gpus",
+            "id": "8667ac4e98c101e4bf99a29ac2b3940a"
+          },
+          {
+            "name": "Диски",
+            "items": [
+              {
+                "name": "Обзор",
+                "href": "/docs/compute/concepts/disk",
+                "id": "abb707d81ac66d8487efff92266d797f"
+              },
+              {
+                "name": "Снимки дисков",
+                "href": "/docs/compute/concepts/snapshot",
+                "id": "c55c22b709a7854abb9d78028022992b"
+              },
+              {
+                "name": "Группы размещения нереплицируемых дисков",
+                "href": "/docs/compute/concepts/disk-placement-group",
+                "id": "9f4c67900412fb1f107a4bb4c2938603"
+              }
+            ],
+            "id": "342192a76b117ba7a1790f1af41452be"
+          },
+          {
+            "name": "Образы",
+            "href": "/docs/compute/concepts/image",
+            "id": "933a6662d39cd2dbac5f0d716a6b3b06"
+          },
+          {
+            "name": "Группы виртуальных машин",
+            "items": [
+              {
+                "name": "Обзор",
+                "href": "/docs/compute/concepts/instance-groups/",
+                "id": "7868565e9b66bae20549b5a2bc29447e"
+              },
+              {
+                "name": "Доступ",
+                "href": "/docs/compute/concepts/instance-groups/access",
+                "id": "2d44df48a11dd67359b8b9d5f5a19f44"
+              },
+              {
+                "name": "Шаблон виртуальной машины",
+                "href": "/docs/compute/concepts/instance-groups/instance-template",
+                "id": "57cb89522dfe46be0adb7e60dfe7b489"
+              },
+              {
+                "name": "Переменные в шаблоне виртуальной машины",
+                "href": "/docs/compute/concepts/instance-groups/variables-in-the-template",
+                "id": "91fdb579790f8fa9f094dd0b9f31585d"
+              },
+              {
+                "name": "Политики",
+                "items": [
+                  {
+                    "name": "Обзор",
+                    "href": "/docs/compute/concepts/instance-groups/policies/",
+                    "id": "f3466c602803fc8e81092476f1b983b5"
+                  },
+                  {
+                    "name": "Политика распределения",
+                    "href": "/docs/compute/concepts/instance-groups/policies/allocation-policy",
+                    "id": "5e905361837425dae46e9c1262be7245"
+                  },
+                  {
+                    "name": "Политика развертывания",
+                    "href": "/docs/compute/concepts/instance-groups/policies/deploy-policy",
+                    "id": "b40369d01a92f89c002d92865e51a7a7"
+                  },
+                  {
+                    "name": "Политика масштабирования",
+                    "href": "/docs/compute/concepts/instance-groups/policies/scale-policy",
+                    "id": "3bc7477a5b720f275645c9fdf7e668d9"
+                  }
+                ],
+                "id": "476b12b1ce9b4697c490bb1683c17f95"
+              },
+              {
+                "name": "Типы масштабирования",
+                "href": "/docs/compute/concepts/instance-groups/scale",
+                "id": "9a9478592e46cd197131be9045fd67bf"
+              },
+              {
+                "name": "Автоматическое восстановление",
+                "href": "/docs/compute/concepts/instance-groups/autohealing",
+                "id": "1cc2dd77752e0865498cdaf85cbb210e"
+              },
+              {
+                "name": "Обновление",
+                "items": [
+                  {
+                    "name": "Обзор",
+                    "href": "/docs/compute/concepts/instance-groups/deploy/",
+                    "id": "a368e738b64acd3c2e1d22609fbbaeb5"
+                  },
+                  {
+                    "name": "Распределение виртуальных машин по зонам",
+                    "href": "/docs/compute/concepts/instance-groups/deploy/zones",
+                    "id": "cdbc90b2e1196525fbb8407846c6940e"
+                  },
+                  {
+                    "name": "Алгоритм развертывания",
+                    "href": "/docs/compute/concepts/instance-groups/deploy/deploy",
+                    "id": "1ccf766d02dc0eb838f5db7354130323"
+                  },
+                  {
+                    "name": "Правила обновления виртуальных машин",
+                    "href": "/docs/compute/concepts/instance-groups/deploy/instance",
+                    "id": "418a33538fe126aa74fefe1f03b63df9"
+                  },
+                  {
+                    "name": "Изменение дополнительных дисков в шаблоне виртуальной машины",
+                    "href": "/docs/compute/concepts/instance-groups/deploy/secondary-disk",
+                    "id": "522dce017feed3b00b1f10d7bdd0149b"
+                  }
+                ],
+                "id": "6d2d48de86f064426741d71455085e25"
+              },
+              {
+                "name": "Статусы",
+                "href": "/docs/compute/concepts/instance-groups/statuses",
+                "id": "31db35561f58a4494b24f3145559b3f4"
+              }
+            ],
+            "id": "fbe7550f4fe70a41146457532da3d6f2"
+          },
+          {
+            "name": "Выделенный хост",
+            "href": "/docs/compute/concepts/dedicated-host",
+            "id": "760f698a1e11b8f15102348be64658db"
+          },
+          {
+            "name": "Резервное копирование",
+            "href": "/docs/compute/concepts/backups",
+            "id": "c60dedf0e50bab29bc0c924d9c1a609a"
+          },
+          {
+            "name": "Квоты и лимиты",
+            "href": "/docs/compute/concepts/limits",
+            "id": "f921689102dc26f2c275626950a932bc"
+          }
+        ],
+        "id": "fb4285a2292fce2292d1cc009322b02e"
+      },
+      {
+        "name": "Управление доступом",
+        "href": "/docs/compute/security/",
+        "id": "46e626b38a31451a1dc4dc759d1d4de3"
+      },
+      {
+        "name": "Правила тарификации",
+        "items": [
+          {
+            "name": "Действующие правила",
+            "href": "/docs/compute/pricing",
+            "id": "1739ac88cfe4424b5a4f22a90e8d780b"
+          },
+          {
+            "name": "Архив",
+            "items": [
+              {
+                "name": "До 1 января 2019 года",
+                "href": "/docs/compute/pricing-archive/pricing-01012019",
+                "id": "15f10124ab26784a2f0f8c72baa8d40a"
+              },
+              {
+                "name": "С 1 января до 1 марта 2019 года",
+                "href": "/docs/compute/pricing-archive/pricing-01032019",
+                "id": "9b350bc153ed60ca00be3fe7ad4059a0"
+              },
+              {
+                "name": "С 1 марта до 1 мая 2019 года",
+                "href": "/docs/compute/pricing-archive/pricing-30042019",
+                "id": "86db546d079e3bd7445d6d1f69757243"
+              }
+            ],
+            "id": "222722de5e9ba1ce9165b1b99524aa55"
+          }
+        ],
+        "id": "3bc947ea79e55d6ff2b6d9e5eb74ddca"
+      },
+      {
+        "name": "Справочник API (англ.)",
+        "items": [
+          {
+            "name": "Authentication",
+            "href": "/docs/compute/api-ref/authentication",
+            "id": "4065c2b4fcec9060399cab5e8636bda8"
+          },
+          {
+            "name": "gRPC",
+            "items": [
+              {
+                "name": "Overview",
+                "href": "/docs/compute/api-ref/grpc/",
+                "id": "7d33758f3b8effb2a5d0e9d6cdbdaf6a"
+              },
+              {
+                "name": "DiskPlacementGroupService",
+                "href": "/docs/compute/api-ref/grpc/disk_placement_group_service",
+                "id": "fc9b237bce3986734dbc7133e81db823"
+              },
+              {
+                "name": "DiskService",
+                "href": "/docs/compute/api-ref/grpc/disk_service",
+                "id": "183568887f8002b1d805ef31000ee8ab"
+              },
+              {
+                "name": "DiskTypeService",
+                "href": "/docs/compute/api-ref/grpc/disk_type_service",
+                "id": "43880210bbcd80a05f2397386d753a50"
+              },
+              {
+                "name": "HostGroupService",
+                "href": "/docs/compute/api-ref/grpc/host_group_service",
+                "id": "14b2b64ff13ae0d432308f15c9633b40"
+              },
+              {
+                "name": "HostTypeService",
+                "href": "/docs/compute/api-ref/grpc/host_type_service",
+                "id": "15cd45977a9b8a946e47cbea1808a8c9"
+              },
+              {
+                "name": "ImageService",
+                "href": "/docs/compute/api-ref/grpc/image_service",
+                "id": "83dfefde5b5e75865193adc192ccb451"
+              },
+              {
+                "name": "InstanceService",
+                "href": "/docs/compute/api-ref/grpc/instance_service",
+                "id": "c766edb445cb0951fbce81ec973129cf"
+              },
+              {
+                "name": "PlacementGroupService",
+                "href": "/docs/compute/api-ref/grpc/placement_group_service",
+                "id": "39758d87c7686a9c4461cf751f827ef8"
+              },
+              {
+                "name": "SnapshotService",
+                "href": "/docs/compute/api-ref/grpc/snapshot_service",
+                "id": "a5458c54835ff07d7146829edac1ecc3"
+              },
+              {
+                "name": "ZoneService",
+                "href": "/docs/compute/api-ref/grpc/zone_service",
+                "id": "4f71b442d3512c41e1bf1ee5fafba42c"
+              },
+              {
+                "name": "InstanceGroupService",
+                "href": "/docs/compute/api-ref/grpc/instance_group_service",
+                "id": "eb8b6d6d7f0b6f2403cdf953368fe79d"
+              },
+              {
+                "name": "OperationService",
+                "href": "/docs/compute/api-ref/grpc/operation_service",
+                "id": "d66c6d778116d6d68fe5feb94e50d916"
+              }
+            ],
+            "id": "1303e29f9c971322530f90473943f153"
+          },
+          {
+            "name": "REST",
+            "items": [
+              {
+                "name": "Overview",
+                "href": "/docs/compute/api-ref/",
+                "id": "206dafd3cbc05521d69e3e17a7e027fd"
+              },
+              {
+                "name": "Disk",
+                "items": [
+                  {
+                    "name": "Overview",
+                    "href": "/docs/compute/api-ref/Disk/",
+                    "id": "10c2dc04ad65390102cb067d3c63591d"
+                  },
+                  {
+                    "name": "create",
+                    "href": "/docs/compute/api-ref/Disk/create",
+                    "id": "57fd42d9dbf2a79c725246d6027dec60"
+                  },
+                  {
+                    "name": "delete",
+                    "href": "/docs/compute/api-ref/Disk/delete",
+                    "id": "27fcdea4b5a38c4778acf381b7f323e6"
+                  },
+                  {
+                    "name": "get",
+                    "href": "/docs/compute/api-ref/Disk/get",
+                    "id": "387479b42e1e5e5fabb3f74f1db71606"
+                  },
+                  {
+                    "name": "list",
+                    "href": "/docs/compute/api-ref/Disk/list",
+                    "id": "3507f355b267bc78f2c752d4f72061ad"
+                  },
+                  {
+                    "name": "listOperations",
+                    "href": "/docs/compute/api-ref/Disk/listOperations",
+                    "id": "a9b86fee5b49d955310beab3c9e8094f"
+                  },
+                  {
+                    "name": "update",
+                    "href": "/docs/compute/api-ref/Disk/update",
+                    "id": "a156926cd7645b84651382131f937ba3"
+                  }
+                ],
+                "id": "d3fe77edd4d0f4dd9fc65d4f397ac71e"
+              },
+              {
+                "name": "DiskPlacementGroup",
+                "items": [
+                  {
+                    "name": "Overview",
+                    "href": "/docs/compute/api-ref/DiskPlacementGroup/",
+                    "id": "7cb17d1db5e91657508864de04489db7"
+                  },
+                  {
+                    "name": "create",
+                    "href": "/docs/compute/api-ref/DiskPlacementGroup/create",
+                    "id": "18d27168befb2e9ccc082f6d148b080b"
+                  },
+                  {
+                    "name": "delete",
+                    "href": "/docs/compute/api-ref/DiskPlacementGroup/delete",
+                    "id": "2ff143ecd3c6d5ac416ef4976ffd016b"
+                  },
+                  {
+                    "name": "get",
+                    "href": "/docs/compute/api-ref/DiskPlacementGroup/get",
+                    "id": "aa2d8f50e64933aba7523e507c8c81d3"
+                  },
+                  {
+                    "name": "list",
+                    "href": "/docs/compute/api-ref/DiskPlacementGroup/list",
+                    "id": "33656e7a90b6e9c8fe4f42c217a33a83"
+                  },
+                  {
+                    "name": "listDisks",
+                    "href": "/docs/compute/api-ref/DiskPlacementGroup/listDisks",
+                    "id": "83b5a71eaa9987c18ff7feab53417adf"
+                  },
+                  {
+                    "name": "listOperations",
+                    "href": "/docs/compute/api-ref/DiskPlacementGroup/listOperations",
+                    "id": "045e47f69b810ec6b79fff741ce0752a"
+                  },
+                  {
+                    "name": "update",
+                    "href": "/docs/compute/api-ref/DiskPlacementGroup/update",
+                    "id": "549ef65faf30eea0b0a3ac44658ed21a"
+                  }
+                ],
+                "id": "91ec069554da6e246478cb3d782bd637"
+              },
+              {
+                "name": "DiskType",
+                "items": [
+                  {
+                    "name": "Overview",
+                    "href": "/docs/compute/api-ref/DiskType/",
+                    "id": "e80ac2765bd3b557fe1dfcf2b918129f"
+                  },
+                  {
+                    "name": "get",
+                    "href": "/docs/compute/api-ref/DiskType/get",
+                    "id": "5b6fe17b678326f1774a000e3349bf9b"
+                  },
+                  {
+                    "name": "list",
+                    "href": "/docs/compute/api-ref/DiskType/list",
+                    "id": "a99237dfcf1c7261cc7118f8104ed04c"
+                  }
+                ],
+                "id": "0777ffeb4aa87404830de3d98d24806c"
+              },
+              {
+                "name": "HostGroup",
+                "items": [
+                  {
+                    "name": "Overview",
+                    "href": "/docs/compute/api-ref/HostGroup/",
+                    "id": "fd4788d84c5fe50da6387191a371cf99"
+                  },
+                  {
+                    "name": "create",
+                    "href": "/docs/compute/api-ref/HostGroup/create",
+                    "id": "1d7fead29ab1e5f657db327579290b9d"
+                  },
+                  {
+                    "name": "delete",
+                    "href": "/docs/compute/api-ref/HostGroup/delete",
+                    "id": "a41f33ed5c62843d7e6cf22cccdd677b"
+                  },
+                  {
+                    "name": "get",
+                    "href": "/docs/compute/api-ref/HostGroup/get",
+                    "id": "c1fed3a1da8b1d44b31bcf5e95d61f83"
+                  },
+                  {
+                    "name": "list",
+                    "href": "/docs/compute/api-ref/HostGroup/list",
+                    "id": "f472b2cc137d83848c2719ce8654da88"
+                  },
+                  {
+                    "name": "listHosts",
+                    "href": "/docs/compute/api-ref/HostGroup/listHosts",
+                    "id": "4db59034471bd3eb4797f96824e70654"
+                  },
+                  {
+                    "name": "listInstances",
+                    "href": "/docs/compute/api-ref/HostGroup/listInstances",
+                    "id": "7ce7be6bf220ae58e510ccd32016187d"
+                  },
+                  {
+                    "name": "listOperations",
+                    "href": "/docs/compute/api-ref/HostGroup/listOperations",
+                    "id": "bd1fb46734dc731fc4382fc9a47abec6"
+                  },
+                  {
+                    "name": "update",
+                    "href": "/docs/compute/api-ref/HostGroup/update",
+                    "id": "fa1f4d1cdf2572e1429e503f4fa8ae1a"
+                  }
+                ],
+                "id": "b1705d18eaccc471487091dfc65838e6"
+              },
+              {
+                "name": "HostType",
+                "items": [
+                  {
+                    "name": "Overview",
+                    "href": "/docs/compute/api-ref/HostType/",
+                    "id": "da1073582ae7dc920a070c35e78e57fa"
+                  },
+                  {
+                    "name": "get",
+                    "href": "/docs/compute/api-ref/HostType/get",
+                    "id": "3ad68c7cb512d76d533b09137430f526"
+                  },
+                  {
+                    "name": "list",
+                    "href": "/docs/compute/api-ref/HostType/list",
+                    "id": "23673587930ef8826c09b29de3f43d98"
+                  }
+                ],
+                "id": "d62dedb95fa88bf5d213408e619f6291"
+              },
+              {
+                "name": "Image",
+                "items": [
+                  {
+                    "name": "Overview",
+                    "href": "/docs/compute/api-ref/Image/",
+                    "id": "12f38909e9e20dd8a17ae95ce54d8596"
+                  },
+                  {
+                    "name": "create",
+                    "href": "/docs/compute/api-ref/Image/create",
+                    "id": "9e1a4a6496addad0b97be9b17dc11bcb"
+                  },
+                  {
+                    "name": "delete",
+                    "href": "/docs/compute/api-ref/Image/delete",
+                    "id": "cb0dac57aa204abd6104ce028ece8639"
+                  },
+                  {
+                    "name": "get",
+                    "href": "/docs/compute/api-ref/Image/get",
+                    "id": "49d88ad14c50de30f2bc6d55db88f0d2"
+                  },
+                  {
+                    "name": "getLatestByFamily",
+                    "href": "/docs/compute/api-ref/Image/getLatestByFamily",
+                    "id": "de72019255b5c136dba632a365348847"
+                  },
+                  {
+                    "name": "list",
+                    "href": "/docs/compute/api-ref/Image/list",
+                    "id": "de5ded9c8f876bc16fb093e71b5bfe7c"
+                  },
+                  {
+                    "name": "listOperations",
+                    "href": "/docs/compute/api-ref/Image/listOperations",
+                    "id": "d6d4979c0534148c56a56305361b2257"
+                  },
+                  {
+                    "name": "update",
+                    "href": "/docs/compute/api-ref/Image/update",
+                    "id": "dd33eb8bfb4ad1308b133604ba0e6626"
+                  }
+                ],
+                "id": "8f62f52989f1eeaa0b9a43faf1c6d2c2"
+              },
+              {
+                "name": "Instance",
+                "items": [
+                  {
+                    "name": "Overview",
+                    "href": "/docs/compute/api-ref/Instance/",
+                    "id": "59c61b8c709f1a65662cc9c353e2000c"
+                  },
+                  {
+                    "name": "addOneToOneNat",
+                    "href": "/docs/compute/api-ref/Instance/addOneToOneNat",
+                    "id": "16c0de22c1badc8ccd180782bcd642ad"
+                  },
+                  {
+                    "name": "attachDisk",
+                    "href": "/docs/compute/api-ref/Instance/attachDisk",
+                    "id": "b6c923e6fc373a2efba43726f53a3ecb"
+                  },
+                  {
+                    "name": "create",
+                    "href": "/docs/compute/api-ref/Instance/create",
+                    "id": "c66ce715d6cb184d064cf7cc9694a14b"
+                  },
+                  {
+                    "name": "delete",
+                    "href": "/docs/compute/api-ref/Instance/delete",
+                    "id": "20d98520f4495fe6fd3d6b1aa2d6df0f"
+                  },
+                  {
+                    "name": "detachDisk",
+                    "href": "/docs/compute/api-ref/Instance/detachDisk",
+                    "id": "c0efb15408b03219f2ae8d0c0515c7c2"
+                  },
+                  {
+                    "name": "get",
+                    "href": "/docs/compute/api-ref/Instance/get",
+                    "id": "3ab1bf4644f6c25270ea6ef7245000f8"
+                  },
+                  {
+                    "name": "getSerialPortOutput",
+                    "href": "/docs/compute/api-ref/Instance/getSerialPortOutput",
+                    "id": "5c90204a67e5c2b65315f1e4418c5aba"
+                  },
+                  {
+                    "name": "list",
+                    "href": "/docs/compute/api-ref/Instance/list",
+                    "id": "3bc78b14cbac79c4fbcd9f897bbe52ea"
+                  },
+                  {
+                    "name": "listOperations",
+                    "href": "/docs/compute/api-ref/Instance/listOperations",
+                    "id": "0838d206cb281f0ee5f383b572d1b180"
+                  },
+                  {
+                    "name": "removeOneToOneNat",
+                    "href": "/docs/compute/api-ref/Instance/removeOneToOneNat",
+                    "id": "982c875a3d410a13db74c36cb4a1f1b4"
+                  },
+                  {
+                    "name": "restart",
+                    "href": "/docs/compute/api-ref/Instance/restart",
+                    "id": "2e15cb3d8ad4d1d05e87addd2ae85f71"
+                  },
+                  {
+                    "name": "start",
+                    "href": "/docs/compute/api-ref/Instance/start",
+                    "id": "1d6e14276ae4343534a750d3c617f58e"
+                  },
+                  {
+                    "name": "stop",
+                    "href": "/docs/compute/api-ref/Instance/stop",
+                    "id": "3fded9541f39283ee3e24cd67858b50b"
+                  },
+                  {
+                    "name": "update",
+                    "href": "/docs/compute/api-ref/Instance/update",
+                    "id": "11fc6acf5cab9ab1b1238f5390ed5903"
+                  },
+                  {
+                    "name": "updateMetadata",
+                    "href": "/docs/compute/api-ref/Instance/updateMetadata",
+                    "id": "9befc40838dd8e56183ab82c6eae2ecb"
+                  },
+                  {
+                    "name": "updateNetworkInterface",
+                    "href": "/docs/compute/api-ref/Instance/updateNetworkInterface",
+                    "id": "b087a67c55a0ddbc13c1e108cb5729b0"
+                  }
+                ],
+                "id": "75621caf15b2ac16d9793e595d75758c"
+              },
+              {
+                "name": "PlacementGroup",
+                "items": [
+                  {
+                    "name": "Overview",
+                    "href": "/docs/compute/api-ref/PlacementGroup/",
+                    "id": "6e99bc9c10355a62957300d95b8e129f"
+                  },
+                  {
+                    "name": "create",
+                    "href": "/docs/compute/api-ref/PlacementGroup/create",
+                    "id": "45d68e07a4f69e223bfa96c5c54fed0b"
+                  },
+                  {
+                    "name": "delete",
+                    "href": "/docs/compute/api-ref/PlacementGroup/delete",
+                    "id": "578831ec3cfceccc19fa464fbdacdb3c"
+                  },
+                  {
+                    "name": "get",
+                    "href": "/docs/compute/api-ref/PlacementGroup/get",
+                    "id": "386083f739b14e9b696aa6d63e27cca7"
+                  },
+                  {
+                    "name": "list",
+                    "href": "/docs/compute/api-ref/PlacementGroup/list",
+                    "id": "2be8f3cd703838f80351e4a7c93e5694"
+                  },
+                  {
+                    "name": "listInstances",
+                    "href": "/docs/compute/api-ref/PlacementGroup/listInstances",
+                    "id": "eefe4737ebdf94e38c15c4c37fb7ea8f"
+                  },
+                  {
+                    "name": "listOperations",
+                    "href": "/docs/compute/api-ref/PlacementGroup/listOperations",
+                    "id": "8e89dc9276515e4b64f98f3b0e22f72a"
+                  },
+                  {
+                    "name": "update",
+                    "href": "/docs/compute/api-ref/PlacementGroup/update",
+                    "id": "ce58a7d9e59acf1993debd6207fef553"
+                  }
+                ],
+                "id": "fa71bc1d3b6e7d2946c63add21c445d0"
+              },
+              {
+                "name": "Snapshot",
+                "items": [
+                  {
+                    "name": "Overview",
+                    "href": "/docs/compute/api-ref/Snapshot/",
+                    "id": "e3fa043c876b999d6ce86ce04c789706"
+                  },
+                  {
+                    "name": "create",
+                    "href": "/docs/compute/api-ref/Snapshot/create",
+                    "id": "675fa7429c69e7c860b92496ff6eebaf"
+                  },
+                  {
+                    "name": "delete",
+                    "href": "/docs/compute/api-ref/Snapshot/delete",
+                    "id": "0c405401a906732839dcaae0979e06b4"
+                  },
+                  {
+                    "name": "get",
+                    "href": "/docs/compute/api-ref/Snapshot/get",
+                    "id": "58a9e37a93fe61f9ea09989e26aabddd"
+                  },
+                  {
+                    "name": "list",
+                    "href": "/docs/compute/api-ref/Snapshot/list",
+                    "id": "f0d7cc1c7dc6b422efbbf804a50886b9"
+                  },
+                  {
+                    "name": "listOperations",
+                    "href": "/docs/compute/api-ref/Snapshot/listOperations",
+                    "id": "965270fffcfdaaa95151496ac1b3313f"
+                  },
+                  {
+                    "name": "update",
+                    "href": "/docs/compute/api-ref/Snapshot/update",
+                    "id": "9f895c5e30f4bcd3b9c667c4757aeb99"
+                  }
+                ],
+                "id": "5ee42b468ddb414e2a8c7f29f8004018"
+              },
+              {
+                "name": "Zone",
+                "items": [
+                  {
+                    "name": "Overview",
+                    "href": "/docs/compute/api-ref/Zone/",
+                    "id": "d98945085a2a15d5534f216061bc2830"
+                  },
+                  {
+                    "name": "get",
+                    "href": "/docs/compute/api-ref/Zone/get",
+                    "id": "856253b846a25e8df3cc9ee6e2aefdd5"
+                  },
+                  {
+                    "name": "list",
+                    "href": "/docs/compute/api-ref/Zone/list",
+                    "id": "4589276c0069a5da6d180a2469b95150"
+                  }
+                ],
+                "id": "87637f8990558328af315e0be8cc5645"
+              },
+              {
+                "name": "Operation",
+                "items": [
+                  {
+                    "name": "Overview",
+                    "href": "/docs/compute/api-ref/Operation/",
+                    "id": "af31006d769dd452e3db35fc50aeb40f"
+                  },
+                  {
+                    "name": "get",
+                    "href": "/docs/compute/api-ref/Operation/get",
+                    "id": "6a3541298c2be2b9efb0159646ff4006"
+                  }
+                ],
+                "id": "6659a4de82e1b552285059d510a31b02"
+              },
+              {
+                "name": "InstanceGroup",
+                "items": [
+                  {
+                    "name": "Overview",
+                    "href": "/docs/compute/api-ref/InstanceGroup/",
+                    "id": "422ad4733fc1f431c6251bcaad1aef5c"
+                  },
+                  {
+                    "name": "list",
+                    "href": "/docs/compute/api-ref/InstanceGroup/list",
+                    "id": "aa28579ea49b026f5ff102f43caad4dc"
+                  },
+                  {
+                    "name": "get",
+                    "href": "/docs/compute/api-ref/InstanceGroup/get",
+                    "id": "444644e0a8093f0bcd80b1f686d0c128"
+                  },
+                  {
+                    "name": "listLogRecords",
+                    "href": "/docs/compute/api-ref/InstanceGroup/listLogRecords",
+                    "id": "1efb47decccf2cc2b9af872bb9d157eb"
+                  },
+                  {
+                    "name": "updateFromYaml",
+                    "href": "/docs/compute/api-ref/InstanceGroup/updateFromYaml",
+                    "id": "9585f5a13966e6aa6b0dabc0909d2a9d"
+                  },
+                  {
+                    "name": "updateAccessBindings",
+                    "href": "/docs/compute/api-ref/InstanceGroup/updateAccessBindings",
+                    "id": "344d58cc7834cc665e2d56b291b76e2f"
+                  },
+                  {
+                    "name": "stop",
+                    "href": "/docs/compute/api-ref/InstanceGroup/stop",
+                    "id": "3517e5448f34444c781ce803389411ca"
+                  },
+                  {
+                    "name": "start",
+                    "href": "/docs/compute/api-ref/InstanceGroup/start",
+                    "id": "240d9ffc106d620af16b733ea025a3a3"
+                  },
+                  {
+                    "name": "delete",
+                    "href": "/docs/compute/api-ref/InstanceGroup/delete",
+                    "id": "61525a20eb261219f092afd049dd203e"
+                  },
+                  {
+                    "name": "listInstances",
+                    "href": "/docs/compute/api-ref/InstanceGroup/listInstances",
+                    "id": "8ae489d16fbb65a7b6014cd180006dcd"
+                  },
+                  {
+                    "name": "createFromYaml",
+                    "href": "/docs/compute/api-ref/InstanceGroup/createFromYaml",
+                    "id": "c6ac1c0c0a86478f2f1abf6a9cb05cdc"
+                  },
+                  {
+                    "name": "update",
+                    "href": "/docs/compute/api-ref/InstanceGroup/update",
+                    "id": "db66fae49886770f8e1a085c3d768e66"
+                  },
+                  {
+                    "name": "setAccessBindings",
+                    "href": "/docs/compute/api-ref/InstanceGroup/setAccessBindings",
+                    "id": "13f8eb2b63c7957da2f83ec3e55bc046"
+                  },
+                  {
+                    "name": "listOperations",
+                    "href": "/docs/compute/api-ref/InstanceGroup/listOperations",
+                    "id": "4b933c0b6f02c32d0d79f5142fa6156e"
+                  },
+                  {
+                    "name": "create",
+                    "href": "/docs/compute/api-ref/InstanceGroup/create",
+                    "id": "cd15bb21eb1d72c71dc12e9707781275"
+                  },
+                  {
+                    "name": "listAccessBindings",
+                    "href": "/docs/compute/api-ref/InstanceGroup/listAccessBindings",
+                    "id": "e4f8edc4d48ecc2ce465ec3b55f6d1ec"
+                  }
+                ],
+                "id": "b7a4e142bc80f9a5150c1cdaaa210892"
+              }
+            ],
+            "id": "bdf1444c41a074065430400fa317354a"
+          }
+        ],
+        "id": "84782b84f9addcd45b1809bee30342ed"
+      },
+      {
+        "name": "Вопросы и ответы",
+        "items": [
+          {
+            "name": "Общие вопросы",
+            "href": "/docs/compute/qa/general",
+            "id": "20cbea75319a2f7c9ff3a2b579238327"
+          },
+          {
+            "name": "Виртуальные машины",
+            "href": "/docs/compute/qa/vm",
+            "id": "387c884cf5075a3837b5f3efd7df9ad4"
+          },
+          {
+            "name": "Диски и снимки",
+            "href": "/docs/compute/qa/disks",
+            "id": "0f3cf57b87ab585e6ba472ff5a2e850c"
+          },
+          {
+            "name": "Аварийное восстановление",
+            "href": "/docs/compute/qa/disaster-recovery",
+            "id": "26ef1411439e23e7c68a9d26c3cf923c"
+          },
+          {
+            "name": "Лицензирование",
+            "href": "/docs/compute/qa/licensing",
+            "id": "7192931858e7517337a2535ddc4ae630"
+          },
+          {
+            "name": "Все вопросы на одной странице",
+            "href": "/docs/compute/qa/all",
+            "id": "9c694a04c9e955a9c8ec10010c6f179f"
+          }
+        ],
+        "id": "1c4e87c19c3c976038a9de66e1a50663"
+      }
+    ],
+    "base": "ru/compute"
+  },
+  "leading": true,
+  "data": {
+    "title": "Yandex Compute Cloud",
+    "description": [
+      "Сервис Yandex Compute Cloud предоставляет масштабируемые вычислительные мощности для создания виртуальных машин и управления ими. Сервис поддерживает <a href=\"https://cloud.yandex.ru/docs/compute/concepts/preemptible-vm\">прерываемые</a> виртуальные машины, а также отказоустойчивые <a href=\"https://cloud.yandex.ru/docs/compute/concepts/instance-groups/\">группы виртуальных машин</a>.",
+      "Вы можете подключать к виртуальным машинам диски с образами на базе OC Linux и Windows, доступные в <a href=\"https://cloud.yandex.ru/marketplace\">Marketplace</a>. Каждый диск автоматически реплицируется внутри своей зоны доступности, что обеспечивает надежное хранение данных. Также, для удобного переноса данных с одного диска на другой, Compute Cloud поддерживает <a href=\"https://cloud.yandex.ru/docs/compute/concepts/snapshot\">снимки дисков</a>.",
+      "Инфраструктура Yandex.Cloud <a href=\"https://storage.yandexcloud.net/yc-compliance/conformance_ru_pdp.pdf\">защищена</a> в соответствии с Федеральным законом Российской Федерации «О персональных данных» № 152-ФЗ.",
+      "Для сервиса действует <a href=\"https://yandex.ru/legal/cloud_sla\">соглашение об уровне обслуживания</a>. Уровень обслуживания сервиса определен в документе <a href=\"https://yandex.ru/legal/cloud_sla_compute\">Уровень обслуживания Yandex Compute Cloud</a>."
+    ],
+    "meta": {
+      "title": "Yandex Compute Cloud"
+    },
+    "links": [
+      {
+        "title": "Начало работы",
+        "description": "Создайте первую виртуальную машину или группу ВМ",
+        "imgSrc": "http://s3.mds.yandex.net/catboost-opensource/icon__loss-functions.png",
+        "links": [
+          {
+            "title": "Ссылка 1",
+            "imgSrc": "http://s3.mds.yandex.net/catboost-opensource/icon__loss-functions.png",
+            "href": "#"
+          }
+        ]
+      },
+      {
+        "title": "Пошаговые инструкции",
+        "description": "Инструкции по выполнению рутинных операций",
+        "href": "operations/"
+      },
+      {
+        "title": "Концепции",
+        "description": "Узнайте про взаимосвязь виртуальных машин, дисков, снимков и образов",
+        "href": "concepts/"
+      },
+      {
+        "title": "Справочник API (англ.)",
+        "description": "Описание методов HTTP API",
+        "href": "api-ref/"
+      },
+      {
+        "title": "Квоты и лимиты",
+        "description": "Технические и организационные ограничения сервиса",
+        "href": "concepts/limits"
+      },
+      {
+        "title": "Управление доступом",
+        "description": "Настройте права доступа для работы с сервисом",
+        "href": "security/"
+      },
+      {
+        "title": "Правила тарификации",
+        "description": "Цены и правила расчета стоимости услуг сервиса",
+        "href": "pricing"
+      }
+    ]
+  },
+  "meta": {
+    "description": "",
+    "author": {
+      "avatar": "https://storage.yandexcloud.net/cloud-www-assets/constructor/content-program/icons/yandexcloud.svg",
+      "email": "",
+      "login": "",
+      "name": "Yandex.Cloud",
+      "url": "https://cloud.yandex.ru/"
+    }
+  }
+}

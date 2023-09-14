@@ -1,7 +1,3 @@
-import {join} from 'path';
-
-import React, {useCallback, useEffect, useState} from 'react';
-
 import {
     DEFAULT_SETTINGS,
     DocPage,
@@ -13,11 +9,12 @@ import {
 } from '@diplodoc/components';
 import {configure as configureUikit} from '@gravity-ui/uikit';
 import cn from 'bem-cn-lite';
-
-import {getContent} from './data';
+import {join} from 'path';
+import React, {useCallback, useEffect, useState} from 'react';
 
 import {updateBodyClassName} from '../utils';
 
+import {getContent} from './data';
 import './index.scss';
 
 const layoutBlock = cn('Layout');
@@ -107,6 +104,7 @@ const useFeedback = () => {
             setIsDisliked(false);
         }
 
+        // eslint-disable-next-line no-console
         console.log('Feedback:', data);
     }, []);
 
@@ -150,6 +148,7 @@ const useSearchResults = (searchQuery) => {
     }, [searchQuery]);
 
     const onNotFoundWords = useCallback(() => {
+        // eslint-disable-next-line no-console
         console.log(`Not found words for the query: ${searchQuery}`);
     }, [searchQuery]);
     const onCloseSearchBar = useCallback(() => {
@@ -169,6 +168,7 @@ const useBookmarks = () => {
     const [isPinned, setIsPinned] = useState(DEFAULT_SETTINGS.isPinned as boolean);
     const onChangeBookmarkPage = useCallback((data: boolean) => {
         setIsPinned(data);
+        // eslint-disable-next-line no-console
         console.log(`This page pinned: ${data}`);
     }, []);
 

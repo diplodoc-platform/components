@@ -60,7 +60,7 @@ export interface DocLeadingLinks {
     links?: DocLeadingLinks[];
 }
 
-export enum Vcs {
+export enum VcsType {
     Github = 'github',
     Arcanum = 'arcanum',
 }
@@ -73,7 +73,7 @@ export interface DocPageData extends DocBasePageData {
     headings: DocHeadingItem[];
     meta: DocMeta;
     vcsUrl?: string;
-    vcsType?: Vcs;
+    vcsType?: VcsType;
 }
 
 export interface DocHeadingItem {

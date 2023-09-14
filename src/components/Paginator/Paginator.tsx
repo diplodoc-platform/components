@@ -1,7 +1,7 @@
-import React, {ReactNode} from 'react';
-
-import {ArrowRight} from '@gravity-ui/icons';
+import {ArrowLeft, ArrowRight} from '@gravity-ui/icons';
 import {Button} from '@gravity-ui/uikit';
+import block from 'bem-cn-lite';
+import React, {ReactNode} from 'react';
 
 import {useTranslation} from '../../hooks';
 
@@ -137,19 +137,26 @@ const Paginator = ({
         return pages;
     };
 
-    const arrowButton = (disable: boolean, label: string) => (
-        <Button
-            className={b('icon')}
-            size="s"
-            view={'flat'}
-            disabled={disable}
-            extraProps={{
-                'aria-label': label,
-            }}
-        >
-            <ArrowRight width={16} height={16} />
-        </Button>
-    );
+    const arrowButton = (disable: boolean, type: string) => {
+        const label = type === 'prev' ? t('prev') : t('next');
+        const Icon = type === 'prev' ? ArrowLeft : ArrowRight;
+
+        return (
+            <Button
+                className={b('icon')}
+                size="s"
+                view={'flat'}
+                disabled={disable}
+                extraProps={{
+                    'aria-label': label,
+                }}
+            >
+                <Button.Icon>
+                    <Icon width={16} height={16} />
+                </Button.Icon>
+            </Button>
+        );
+    };
 
     const pages = getPageConfigs() as PaginatorItemProps<string>[];
 
@@ -157,14 +164,14 @@ const Paginator = ({
         key: ArrowType.Prev,
         mods: {type: 'prev'},
         onClick: handleArrowClick,
-        content: arrowButton(page === 1, t('prev')),
+        content: arrowButton(page === 1, 'prev'),
     });
 
     pages.push({
         key: ArrowType.Next,
         mods: {type: 'next'},
         onClick: handleArrowClick,
-        content: arrowButton(page === pagesCount, t('next')),
+        content: arrowButton(page === pagesCount, 'next'),
     });
 
     return <ul className={b(null, className)}>{pages.map(renderPaginatorItem)}</ul>;

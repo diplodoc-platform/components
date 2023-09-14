@@ -25,11 +25,7 @@
 
         &_type {
             &_prev {
-                margin-left: -6px;
-
-                #{$block}__icon {
-                    transform: rotate(180deg);
-                }
+                margin-right: -6px;
             }
 
             &_dots {
@@ -53,7 +49,7 @@
             }
 
             &_next {
-                margin-right: -6px;
+                margin-left: -6px;
             }
         }
     }

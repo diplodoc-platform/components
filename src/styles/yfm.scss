@@ -10,6 +10,17 @@
     --yfm-color-hljs-deletion: var(--g-color-line-danger);
     --yfm-color-hljs-section: var(--g-color-line-danger);
 
+    &::-webkit-scrollbar,
+    *::-webkit-scrollbar {
+        height: var(--g-scrollbar-width);
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-track,
+    *::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
     a {
         color: var(--g-color-text-link);
 

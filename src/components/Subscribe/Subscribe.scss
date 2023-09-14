@@ -126,17 +126,4 @@ $popupWidth: 320px;
             }
         }
     }
-
-    &__subscribe-button {
-        width: 16px;
-        height: 16px;
-
-        &_view_wide {
-            margin-right: 8px;
-        }
-
-        &_active {
-            color: var(--g-color-button-accent-background);
-        }
-    }
 }

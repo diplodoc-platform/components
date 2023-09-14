@@ -5,7 +5,8 @@
     width: 100%;
     height: 100%;
     border-radius: 5px;
-    box-shadow: 0px 3px 10px var(--g-color-sfx-shadow);
+    box-sizing: border-box;
+    box-shadow: 0px 3px 10px var(--g-color-base-generic-accent);
     padding: 11px;
     display: flex;
     align-items: center;
@@ -64,12 +65,5 @@ $hl-class: '.dc-search-highlighted';
 
     &_selected {
         background: var(--dc-text-highlight-selected);
-    }
-}
-
-.yc-root_theme_dark {
-    & #{$hl-class},
-    & #{$hl-class}_selected {
-        color: var(--g-color-text-inverted-primary);
     }
 }

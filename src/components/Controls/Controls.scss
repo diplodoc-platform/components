@@ -30,6 +30,10 @@
         width: 100%;
     }
 
+    &__icon-rotated {
+        transform: rotate(90deg);
+    }
+
     @media (min-width: map-get($screenBreakpoints, 'md')) {
         &_vertical {
             flex-direction: column;

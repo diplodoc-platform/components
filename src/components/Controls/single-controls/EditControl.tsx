@@ -1,8 +1,7 @@
-import React, {memo, useContext} from 'react';
-
 import {Pencil} from '@gravity-ui/icons';
 import {Button} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
+import React, {memo, useContext} from 'react';
 
 import {useTranslation} from '../../../hooks';
 import {Control} from '../../Control';
@@ -29,7 +28,7 @@ const EditControl = memo<EditControlProps>(({vcsUrl, vcsType = 'github', view, c
                     <Button.Icon>
                         <Pencil width={14} height={14} />
                     </Button.Icon>
-                    <span className={b('edit-text')}>{t<string>('edit-text')}</span>
+                    <span>{t<string>('edit-text')}</span>
                 </Button>
             </a>
         );

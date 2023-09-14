@@ -1,6 +1,5 @@
-import React from 'react';
-
 import block from 'bem-cn-lite';
+import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 
 import {DEFAULT_SETTINGS} from '../../constants';
@@ -13,7 +12,7 @@ import {
     SubscribeData,
     TextSizes,
     Theme,
-    Vcs,
+    VcsType,
 } from '../../models';
 import {
     InnerProps,
@@ -614,7 +613,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                         fullScreen={fullScreen}
                         singlePage={singlePage}
                         vcsUrl={vcsUrl as string}
-                        vcsType={vcsType as Vcs}
+                        vcsType={vcsType as VcsType}
                         isLiked={isLiked}
                         isDisliked={isDisliked}
                         onChangeLang={onChangeLang}

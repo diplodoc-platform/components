@@ -1,0 +1,92 @@
+@import './light';
+@import './light-hc';
+@import './dark';
+@import './dark-hc';
+
+.g-root {
+    --g-font-family-sans: 'YS Text', 'Helvetica Neue', 'Arial', 'Helvetica', sans-serif;
+
+    --g-text-header-font-weight: 500;
+    --g-text-subheader-font-weight: 500;
+    --g-text-display-font-weight: 500;
+    --g-text-accent-font-weight: 500;
+
+    --g-scrollbar-width: 6px;
+
+    --dc-text-highlight: var(--g-color-base-warning-heavy);
+    --dc-text-highlight-selected: #ffab3b;
+    --dc-header-height: 0px;
+    --dc-subheader-height: 40px;
+
+    --dc-error-image-403: url('data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=');
+    --dc-error-image-404: url('data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=');
+    --dc-error-image-500: url('data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=');
+
+    &_theme_light {
+        @include yc-colors-private-light;
+
+        --g-color-base-background: rgb(255, 255, 255);
+        --g-color-base-brand: var(--g-color-private-blue-550-solid);
+        --g-color-base-brand-hover: var(--g-color-private-blue-600-solid);
+        --g-color-base-selection: var(--g-color-private-blue-100);
+        --g-color-base-selection-hover: var(--g-color-private-blue-200);
+        --g-color-line-brand: var(--g-color-private-blue-550-solid);
+        --g-color-text-brand: var(--g-color-private-blue-600-solid);
+        --g-color-text-brand-heavy: var(--g-color-private-blue-700-solid);
+        --g-color-text-brand-contrast: var(--g-color-text-light-primary);
+        --g-color-text-link: var(--g-color-private-blue-600-solid);
+        --g-color-text-link-hover: var(--g-color-private-blue-800-solid);
+    }
+
+    &_theme_light-hc {
+        @include yc-colors-private-light-hc;
+
+        --g-color-base-background: rgb(255, 255, 255);
+        --g-color-base-brand: var(--g-color-private-blue-600-solid);
+        --g-color-base-brand-hover: var(--g-color-private-blue-800-solid);
+        --g-color-base-selection: var(--g-color-private-blue-250);
+        --g-color-base-selection-hover: var(--g-color-private-blue-350);
+        --g-color-line-brand: var(--g-color-private-blue-600-solid);
+        --g-color-text-brand: var(--g-color-private-blue-650-solid);
+        --g-color-text-brand-heavy: var(--g-color-private-blue-900-solid);
+        --g-color-text-brand-contrast: var(--g-color-text-light-primary);
+        --g-color-text-link: var(--g-color-private-blue-650-solid);
+        --g-color-text-link-hover: var(--g-color-private-blue-850-solid);
+    }
+
+    &_theme_dark {
+        @include yc-colors-private-dark;
+
+        --dc-text-highlight-selected: var(--g-color-text-inverted-primary);
+
+        --g-color-base-background: rgb(45, 44, 51);
+        --g-color-base-brand: var(--g-color-private-blue-550-solid);
+        --g-color-base-brand-hover: var(--g-color-private-blue-600-solid);
+        --g-color-base-selection: var(--g-color-private-blue-150);
+        --g-color-base-selection-hover: var(--g-color-private-blue-200);
+        --g-color-line-brand: var(--g-color-private-blue-550-solid);
+        --g-color-text-brand: var(--g-color-private-blue-600-solid);
+        --g-color-text-brand-heavy: var(--g-color-private-blue-700-solid);
+        --g-color-text-brand-contrast: var(--g-color-text-light-primary);
+        --g-color-text-link: var(--g-color-private-blue-600-solid);
+        --g-color-text-link-hover: var(--g-color-private-blue-850-solid);
+    }
+
+    &_theme_dark-hc {
+        @include yc-colors-private-dark-hc;
+
+        --dc-text-highlight-selected: var(--g-color-text-inverted-primary);
+
+        --g-color-base-background: rgb(34, 35, 38);
+        --g-color-base-brand: var(--g-color-private-blue-500-solid);
+        --g-color-base-brand-hover: var(--g-color-private-blue-650-solid);
+        --g-color-base-selection: var(--g-color-private-blue-250);
+        --g-color-base-selection-hover: var(--g-color-private-blue-400);
+        --g-color-line-brand: var(--g-color-private-blue-550-solid);
+        --g-color-text-brand: var(--g-color-private-blue-650-solid);
+        --g-color-text-brand-heavy: var(--g-color-private-blue-850-solid);
+        --g-color-text-brand-contrast: var(--g-color-text-light-primary);
+        --g-color-text-link: var(--g-color-private-blue-650-solid);
+        --g-color-text-link-hover: var(--g-color-private-blue-750-solid);
+    }
+}

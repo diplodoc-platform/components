@@ -6,17 +6,32 @@
     user-select: none;
 
     &__link {
+        --g-focus-border-radius: 4px;
+
         display: block;
         text-decoration: none;
+        border-radius: var(--g-focus-border-radius);
+
+        &:focus {
+            outline: 2px solid var(--g-color-line-focus);
+            outline-offset: -2px; // as outline on focues goes out of toc's borders
+        }
+        &:focus:not(:focus-visible) {
+            outline: 0;
+        }
     }
 
     &__text {
+        --g-focus-border-radius: 4px;
+
         position: relative;
         padding: 7px 12px 7px 20px;
         word-break: break-word;
         background-color: transparent;
         border: 0;
         text-align: initial;
+        width: 100%;
+        border-radius: var(--g-focus-border-radius);
 
         color: var(--g-color-text-primary);
 
@@ -38,6 +53,13 @@
         &:hover {
             border-radius: 3px;
             background: var(--g-color-base-simple-hover);
+        }
+        &:focus {
+            outline: 2px solid var(--g-color-line-focus);
+            outline-offset: -2px; // as outline on focues goes out of toc's borders
+        }
+        &:focus:not(:focus-visible) {
+            outline: 0;
         }
     }
 

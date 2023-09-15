@@ -1,6 +1,5 @@
-import React, {memo, useContext} from 'react';
-
 import {Icon} from '@gravity-ui/uikit';
+import React, {memo, useContext} from 'react';
 
 import {useTranslation} from '../../../hooks';
 import {Control} from '../../Control';
@@ -24,16 +23,17 @@ const PdfControl = memo<ControlProps>((props) => {
     const {pdfLink} = props;
 
     return (
-        <a href={pdfLink} target="_blank" rel="noreferrer noopener">
-            <Control
-                size={controlSize}
-                className={controlClassName}
-                isVerticalView={isVerticalView}
-                tooltipText={t('pdf-text')}
-                icon={(args) => <Icon data={PdfIcon} {...args} />}
-                popupPosition={popupPosition}
-            />
-        </a>
+        <Control
+            size={controlSize}
+            className={controlClassName}
+            isVerticalView={isVerticalView}
+            tooltipText={t('pdf-text')}
+            icon={(args) => <Icon data={PdfIcon} {...args} />}
+            popupPosition={popupPosition}
+            href={pdfLink}
+            target="_blank"
+            rel="noreferrer noopener"
+        />
     );
 });
 

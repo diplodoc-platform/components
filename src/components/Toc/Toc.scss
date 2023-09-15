@@ -52,11 +52,18 @@ $leftOffset: 57px;
                 @include reset-link-style();
                 display: flex;
                 align-items: center;
+                border-radius: var(--g-focus-border-radius);
 
                 &:hover {
                     @include link();
 
                     color: var(--g-color-text-primary);
+                }
+                &:focus {
+                    outline: 2px solid var(--g-color-line-focus);
+                }
+                &:focus:not(:focus-visible) {
+                    outline: 0;
                 }
             }
         }

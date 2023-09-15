@@ -125,6 +125,7 @@ const LangControl = (props: ControlProps) => {
                 tooltipText={t('lang-text')}
                 icon={Globe}
                 popupPosition={popupPosition}
+                isTooltipHidden={popupState.visible}
             />
         </Popover>
     );

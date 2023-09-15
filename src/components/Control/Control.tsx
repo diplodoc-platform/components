@@ -1,7 +1,6 @@
-import React, {forwardRef, useCallback, useImperativeHandle, useRef} from 'react';
-
 import {Button, ButtonProps, Popup} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
+import React, {forwardRef, useCallback, useImperativeHandle, useRef} from 'react';
 
 import {PopperPosition, usePopupState} from '../../hooks';
 import {ControlSizes} from '../../models';
@@ -20,6 +19,7 @@ export interface ControlProps {
     setRef?: (ref: HTMLButtonElement) => void;
     isVerticalView?: boolean;
     tooltipText: string;
+    isTooltipHidden?: boolean;
     className?: string;
     href?: string;
     target?: string;
@@ -40,6 +40,7 @@ const Control = forwardRef((props: ControlProps, ref) => {
         onClick,
         className,
         tooltipText,
+        isTooltipHidden,
         isVerticalView,
         size = ControlSizes.M,
         icon,
@@ -93,7 +94,7 @@ const Control = forwardRef((props: ControlProps, ref) => {
             {controlRef.current && (
                 <Popup
                     anchorRef={controlRef}
-                    open={popupState.visible}
+                    open={isTooltipHidden ? false : popupState.visible}
                     onOutsideClick={popupState.close}
                     contentClassName={b('tooltip')}
                     placement={position}

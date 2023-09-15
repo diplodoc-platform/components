@@ -1,7 +1,6 @@
-import React, {forwardRef, useCallback, useImperativeHandle, useRef} from 'react';
-
 import {Button, ButtonProps, Popup} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
+import React, {forwardRef, useCallback, useImperativeHandle, useRef} from 'react';
 
 import {PopperPosition, usePopupState} from '../../hooks';
 import {ControlSizes} from '../../models';
@@ -21,6 +20,9 @@ export interface ControlProps {
     isVerticalView?: boolean;
     tooltipText: string;
     className?: string;
+    href?: string;
+    target?: string;
+    rel?: string;
     size?: ControlSizes;
     icon: React.FC<IconProps>;
     popupPosition?: PopperPosition;
@@ -42,6 +44,9 @@ const Control = forwardRef((props: ControlProps, ref) => {
         icon,
         popupPosition,
         buttonExtraProps: extraProps,
+        href,
+        target,
+        rel,
     } = props;
 
     const controlRef = useRef<HTMLButtonElement | null>(null);
@@ -72,6 +77,9 @@ const Control = forwardRef((props: ControlProps, ref) => {
                 onMouseLeave={popupState.close}
                 className={b(null, className)}
                 size={size}
+                href={href}
+                target={target}
+                rel={rel}
                 extraProps={{
                     'aria-label': tooltipText,
                     ...extraProps,

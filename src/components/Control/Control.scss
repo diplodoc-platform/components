@@ -1,6 +1,9 @@
 @import '../../styles/mixins';
 
 .dc-control {
+    &::before {
+        outline-offset: -2px; // as outline on focues goes out of toc's borders
+    }
     &__tooltip {
         display: flex;
         align-items: center;

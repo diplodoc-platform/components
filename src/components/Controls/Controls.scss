@@ -25,9 +25,21 @@
     }
 
     &__lang-item {
+        --g-focus-border-radius: 4px;
+
         display: flex;
-        padding: 6px 12px;
+        align-items: center;
         width: 100%;
+        height: 100%;
+        border-radius: var(--g-focus-border-radius);
+        border: 0;
+        padding: 0 12px;
+        color: inherit;
+        cursor: inherit;
+        background-color: inherit;
+        font-family: inherit;
+
+        @include focusable(-2px);
     }
 
     &__icon-rotated {

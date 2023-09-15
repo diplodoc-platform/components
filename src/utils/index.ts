@@ -60,34 +60,6 @@ export function callSafe(func: ((path: string) => string) | undefined, path: str
     throw new Error('Path converter should be a function');
 }
 
-export function getHeaderTag(el: HTMLElement) {
-    let resultEl: HTMLElement = el;
-
-    while (!isHeaderTag(resultEl) && resultEl.tagName !== 'BODY') {
-        if (!resultEl.parentElement) {
-            break;
-        }
-
-        resultEl = resultEl.parentElement;
-    }
-
-    if (!isHeaderTag(resultEl) || resultEl.tagName === 'BODY') {
-        return null;
-    }
-
-    return resultEl;
-}
-function isHeaderTag(el: HTMLElement) {
-    return ['H1', 'H2', 'H3', 'H4', 'H5', 'H6'].includes(el.tagName);
-}
-
-export function createElementFromHTML(htmlString: string) {
-    const div = document.createElement('div');
-    div.innerHTML = htmlString.trim();
-
-    return div.firstChild as Node;
-}
-
 export const getRandomKey = () => Math.random();
 
 export function isInvalidEmail(email: string) {

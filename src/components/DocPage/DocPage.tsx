@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {ReactPortal} from 'react';
 
+import {Link} from '@gravity-ui/icons';
 import block from 'bem-cn-lite';
-import ReactDOMServer from 'react-dom/server';
+import {createPortal} from 'react-dom';
 
 import {DEFAULT_SETTINGS} from '../../constants';
 import {
@@ -15,15 +16,7 @@ import {
     Theme,
     VcsType,
 } from '../../models';
-import {
-    InnerProps,
-    callSafe,
-    createElementFromHTML,
-    getHeaderTag,
-    getRandomKey,
-    getStateKey,
-    isContributor,
-} from '../../utils';
+import {InnerProps, callSafe, getRandomKey, getStateKey, isContributor} from '../../utils';
 import {BookmarkButton} from '../BookmarkButton';
 import {Breadcrumbs} from '../Breadcrumbs';
 import Contributors from '../Contributors/Contributors';
@@ -35,13 +28,6 @@ import {HTML} from '../HTML';
 import {MiniToc} from '../MiniToc';
 import {SearchBar, withHighlightedSearchWords} from '../SearchBar';
 import {TocNavPanel} from '../TocNavPanel';
-
-// TODO(V3): replace with gravity-ui
-const LinkIcon = `
-    <svg width="14" height="14" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path fill-rule="evenodd" clip-rule="evenodd" d="M13.294 2.214 11.767.684c-.911-.912-2.499-.912-3.41 0L6.83 2.214a2.412 2.412 0 0 0-.147 3.233L7.936 4.19a.66.66 0 0 1 .132-.738l1.527-1.53a.658.658 0 0 1 .934 0l1.527 1.53a.664.664 0 0 1 0 .936l-1.527 1.53a.68.68 0 0 1-.734.129L8.54 7.306c.43.356.958.559 1.523.559.644 0 1.249-.251 1.705-.707l1.527-1.53a2.42 2.42 0 0 0 0-3.414zM9.532 5.69a.876.876 0 0 0-1.237-1.239l-.082.082-1.238 1.24-1.189 1.19-1.237 1.24-.082.082a.876.876 0 0 0 1.237 1.24l.082-.083 1.238-1.239 1.189-1.191 1.237-1.24.082-.082zm-3.601 4.833c.2-.2.24-.494.131-.738L7.316 8.53a2.412 2.412 0 0 1-.148 3.233l-1.527 1.529A2.392 2.392 0 0 1 3.937 14c-.645 0-1.25-.25-1.705-.707l-1.527-1.53a2.421 2.421 0 0 1 0-3.415L2.232 6.82c.854-.856 2.299-.898 3.227-.146L4.207 7.927a.65.65 0 0 0-.737.131l-1.528 1.53a.664.664 0 0 0 0 .936l1.527 1.53a.68.68 0 0 0 .935 0l1.527-1.53z" fill="currentColor"/>
-    </svg>
-`;
 
 import './DocPage.scss';
 
@@ -188,6 +174,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                         {this.renderTocNavPanel()}
                     </div>
                     {this.renderLoader()}
+                    {this.renderSinglePageControls()}
                 </DocLayout.Center>
                 <DocLayout.Right>
                     {/* This key allows recalculating the offset for the mini-toc for Safari */}
@@ -266,46 +253,70 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
         return <div className={b('loader-wrapper')}>{renderLoader()}</div>;
     }
 
-    private addLinksToOriginalArticle = () => {
+    private renderSinglePageControls() {
         const {singlePage, convertPathToOriginalArticle, generatePathToVcs, vcsType} = this.props;
 
-        if (singlePage) {
-            const elements = document.querySelectorAll('[data-original-article]');
-            for (const el of elements) {
-                const href = el.getAttribute('data-original-article') || '';
-                const linkWrapperEl = getHeaderTag(el as HTMLElement);
+        if (!this.bodyRef || !singlePage) {
+            return null;
+        }
 
-                if (linkWrapperEl) {
-                    /* Hide anchors */
-                    const anchors = linkWrapperEl.querySelectorAll('.yfm-anchor');
-                    for (const anchor of anchors) {
-                        anchor.classList.add('yfm-anchor_hidden');
-                    }
+        const headers = Array.from(this.bodyRef.querySelectorAll('[data-original-article]'));
 
-                    /* Create the link to the original article */
-                    const linkToOriginal = document.createElement('a');
-                    linkToOriginal.href = callSafe(convertPathToOriginalArticle, href);
-                    linkToOriginal.className = 'yfm-anchor yfm-original-link';
-                    linkToOriginal.innerHTML = LinkIcon;
-                    linkWrapperEl.append(linkToOriginal);
+        return headers.reduce((acc, header, index) => {
+            const href = callSafe(
+                convertPathToOriginalArticle,
+                header.getAttribute('data-original-article') || '',
+            );
 
-                    /* Create the link to the vcs */
-                    if (typeof generatePathToVcs === 'function') {
-                        const vcsHref = callSafe(generatePathToVcs, href);
-                        const linkToVcs = createElementFromHTML(
-                            ReactDOMServer.renderToStaticMarkup(
+            if (href && header) {
+                const vcsHref = callSafe(generatePathToVcs, href);
+
+                acc.push(
+                    createPortal(
+                        <>
+                            <a className="yfm-anchor yfm-original-link" href={href}>
+                                <Link />
+                            </a>
+                            {vcsHref && (
                                 <EditControl
                                     vcsUrl={vcsHref}
                                     vcsType={vcsType}
                                     view={'wide'}
                                     className={b('edit-button')}
-                                />,
-                            ),
-                        );
-                        linkWrapperEl.append(linkToVcs);
-                        linkWrapperEl.classList.add(b('header-container'));
-                    }
+                                />
+                            )}
+                        </>,
+                        header,
+                        'key-' + index,
+                    ),
+                );
+            }
+
+            return acc;
+        }, [] as ReactPortal[]);
+    }
+
+    private addLinksToOriginalArticle = () => {
+        const {singlePage, generatePathToVcs} = this.props;
+
+        if (!this.bodyRef || !singlePage) {
+            return;
+        }
+
+        const headers = Array.from(this.bodyRef.querySelectorAll('[data-original-article]'));
+
+        for (const header of headers) {
+            /* Hide anchors */
+            const anchors = header.querySelectorAll('.yfm-anchor');
+            for (const anchor of anchors) {
+                if (!anchor.classList.contains('yfm-original-link')) {
+                    anchor.classList.add('yfm-anchor_hidden');
                 }
+            }
+
+            /* Create the link to the vcs */
+            if (typeof generatePathToVcs === 'function') {
+                header.classList.add(b('header-container'));
             }
         }
     };

@@ -1,18 +1,16 @@
-import React, {useCallback, useContext, useMemo, useRef} from 'react';
-
 import {Globe} from '@gravity-ui/icons';
-import {List, Popup} from '@gravity-ui/uikit';
+import {List, Popover} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 import allLangs from 'langs';
+import React, {useCallback, useContext, useMemo, useRef} from 'react';
 
 import {usePopupState, useTranslation} from '../../../hooks';
 import {Lang} from '../../../models';
 import {Control} from '../../Control';
+import '../Controls.scss';
 import {ControlsLayoutContext} from '../ControlsLayout';
 
 import {getPopupPosition} from './utils';
-
-import '../Controls.scss';
 
 const ICONS: Record<string, string> = {
     en: '🇬🇧',
@@ -68,10 +66,10 @@ const LangControl = (props: ControlProps) => {
     }, [langs]);
     const renderItem = useCallback((item: ListItem) => {
         return (
-            <div className={b('lang-item')}>
+            <button className={b('lang-item')}>
                 <div className={b('list-icon')}>{item.icon}</div>
                 {item.text}
-            </div>
+            </button>
         );
     }, []);
     const onItemClick = useCallback(
@@ -83,9 +81,41 @@ const LangControl = (props: ControlProps) => {
 
     const itemsHeight = LIST_ITEM_HEIGHT * langItems.length;
     const selectedItemIndex = langItems.findIndex(({value}) => value === lang);
+    const onOpenChange = useCallback(
+        (opened: boolean) => {
+            if (opened) {
+                popupState.open();
+            } else {
+                popupState.close();
+            }
+        },
+        [popupState],
+    );
 
     return (
-        <React.Fragment>
+        <Popover
+            autoclosable={false}
+            openOnHover={false}
+            focusTrap
+            autoFocus
+            restoreFocusRef={controlRef}
+            placement={getPopupPosition(isVerticalView)}
+            onCloseClick={popupState.close}
+            onOpenChange={onOpenChange}
+            content={
+                <List
+                    filterable={false}
+                    className={b('list', {langs: true})}
+                    items={langItems}
+                    onItemClick={onItemClick}
+                    selectedItemIndex={selectedItemIndex}
+                    itemHeight={LIST_ITEM_HEIGHT}
+                    itemsHeight={itemsHeight}
+                    renderItem={renderItem}
+                    role={'list'}
+                />
+            }
+        >
             <Control
                 ref={controlRef}
                 size={controlSize}
@@ -96,26 +126,7 @@ const LangControl = (props: ControlProps) => {
                 icon={Globe}
                 popupPosition={popupPosition}
             />
-            {popupState.visible && (
-                <Popup
-                    anchorRef={controlRef}
-                    open={true}
-                    onOutsideClick={popupState.close}
-                    placement={getPopupPosition(isVerticalView)}
-                >
-                    <List
-                        filterable={false}
-                        className={b('list', {langs: true})}
-                        items={langItems}
-                        onItemClick={onItemClick}
-                        selectedItemIndex={selectedItemIndex}
-                        itemHeight={LIST_ITEM_HEIGHT}
-                        itemsHeight={itemsHeight}
-                        renderItem={renderItem}
-                    />
-                </Popup>
-            )}
-        </React.Fragment>
+        </Popover>
     );
 };
 

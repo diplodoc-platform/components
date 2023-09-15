@@ -166,55 +166,54 @@ const SettingsControl = (props: ControlProps) => {
     const settingsItems = getSettingsItems();
 
     return (
-        <React.Fragment>
-            <Popover
-                autoclosable={false}
-                openOnHover={false}
-                focusTrap
-                autoFocus
-                restoreFocusRef={controlRef}
-                contentClassName={b('popup')}
-                onCloseClick={hidePopup}
-                onOpenChange={setIsVisiblePopup}
-                placement={getPopupPosition(isVerticalView)}
-                content={
-                    <List
-                        items={settingsItems}
-                        className={b('list')}
-                        itemHeight={ITEM_HEIGHT}
-                        itemsHeight={ITEM_HEIGHT * settingsItems.length}
-                        filterable={false}
-                        renderItem={(item: SettingControlItem) => {
-                            return (
-                                <div className={b('list-item')}>
-                                    <div className={b('list-item-content')}>
-                                        <div className={b('list-item-text')}>{item.text}</div>
-                                        <div className={b('list-item-description')}>
-                                            {item.description}
-                                        </div>
+        <Popover
+            autoclosable={false}
+            openOnHover={false}
+            focusTrap
+            autoFocus
+            restoreFocusRef={controlRef}
+            contentClassName={b('popup')}
+            onCloseClick={hidePopup}
+            onOpenChange={setIsVisiblePopup}
+            placement={getPopupPosition(isVerticalView)}
+            content={
+                <List
+                    role={'list'}
+                    items={settingsItems}
+                    className={b('list')}
+                    itemHeight={ITEM_HEIGHT}
+                    itemsHeight={ITEM_HEIGHT * settingsItems.length}
+                    filterable={false}
+                    renderItem={(item: SettingControlItem) => {
+                        return (
+                            <div className={b('list-item')}>
+                                <div className={b('list-item-content')}>
+                                    <div className={b('list-item-text')}>{item.text}</div>
+                                    <div className={b('list-item-description')}>
+                                        {item.description}
                                     </div>
-                                    <div className={b('list-item-control')}>{item.control}</div>
                                 </div>
-                            );
-                        }}
-                    />
-                }
-            >
-                <Control
-                    ref={controlRef}
-                    size={controlSize}
-                    onClick={showPopup}
-                    className={controlClassName}
-                    isVerticalView={isVerticalView}
-                    tooltipText={t('settings-text')}
-                    popupPosition={popupPosition}
-                    icon={Gear}
-                    buttonExtraProps={{
-                        'aria-expanded': isVisiblePopup,
+                                <div className={b('list-item-control')}>{item.control}</div>
+                            </div>
+                        );
                     }}
                 />
-            </Popover>
-        </React.Fragment>
+            }
+        >
+            <Control
+                ref={controlRef}
+                size={controlSize}
+                onClick={showPopup}
+                className={controlClassName}
+                isVerticalView={isVerticalView}
+                tooltipText={t('settings-text')}
+                popupPosition={popupPosition}
+                icon={Gear}
+                buttonExtraProps={{
+                    'aria-expanded': isVisiblePopup,
+                }}
+            />
+        </Popover>
     );
 };
 

@@ -176,6 +176,7 @@ const SettingsControl = (props: ControlProps) => {
             onCloseClick={hidePopup}
             onOpenChange={setIsVisiblePopup}
             placement={getPopupPosition(isVerticalView)}
+            className={controlClassName}
             content={
                 <List
                     role={'list'}
@@ -204,7 +205,6 @@ const SettingsControl = (props: ControlProps) => {
                 ref={controlRef}
                 size={controlSize}
                 onClick={showPopup}
-                className={controlClassName}
                 isVerticalView={isVerticalView}
                 tooltipText={t('settings-text')}
                 popupPosition={popupPosition}

@@ -102,8 +102,10 @@ const LangControl = (props: ControlProps) => {
             placement={getPopupPosition(isVerticalView)}
             onCloseClick={popupState.close}
             onOpenChange={onOpenChange}
+            className={controlClassName}
             content={
                 <List
+                    role={'list'}
                     filterable={false}
                     className={b('list', {langs: true})}
                     items={langItems}
@@ -112,7 +114,6 @@ const LangControl = (props: ControlProps) => {
                     itemHeight={LIST_ITEM_HEIGHT}
                     itemsHeight={itemsHeight}
                     renderItem={renderItem}
-                    role={'list'}
                 />
             }
         >
@@ -120,7 +121,6 @@ const LangControl = (props: ControlProps) => {
                 ref={controlRef}
                 size={controlSize}
                 onClick={popupState.open}
-                className={controlClassName}
                 isVerticalView={isVerticalView}
                 tooltipText={t('lang-text')}
                 icon={Globe}

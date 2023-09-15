@@ -73,6 +73,10 @@ $avatarWrapperBigSize: 33px;
             border: 0;
             color: inherit;
             cursor: inherit;
+            background-color: inherit;
+            padding: 0;
+            align-items: initial;
+            font-family: inherit;
         }
 
         &_size_small {
@@ -119,8 +123,6 @@ $avatarWrapperBigSize: 33px;
             text-align: center;
             display: flex;
             justify-content: center;
-            padding-left: 3px;
-            padding-right: 1px;
             margin: 0 $avatarBorder;
             box-shadow: 0 0 0 $avatarBorder var(--g-color-line-generic-accent);
         }

@@ -47,6 +47,8 @@
 
         cursor: pointer;
         text-overflow: ellipsis;
+        border-radius: var(--g-focus-border-radius);
+        @include focusable();
 
         &-title,
         &-description {

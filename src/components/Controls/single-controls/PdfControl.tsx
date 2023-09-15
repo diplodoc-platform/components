@@ -1,5 +1,6 @@
-import {Icon} from '@gravity-ui/uikit';
 import React, {memo, useContext} from 'react';
+
+import {Icon} from '@gravity-ui/uikit';
 
 import {useTranslation} from '../../../hooks';
 import {Control} from '../../Control';

@@ -30,12 +30,7 @@
             color: var(--g-color-text-link-hover);
         }
 
-        &:focus {
-            outline: 2px solid var(--g-color-line-focus);
-        }
-        &:focus:not(:focus-visible) {
-            outline: 0;
-        }
+        @include focusable();
         &.yfm-anchor {
             &:focus::before {
                 visibility: visible;
@@ -115,12 +110,7 @@
         &:active {
             color: var(--g-color-text-link-hover);
         }
-        &:focus {
-            outline: 2px solid var(--g-color-line-focus);
-        }
-        &:focus:not(:focus-visible) {
-            outline: 0;
-        }
+        @include focusable();
     }
 
     .yfm-tab.active {

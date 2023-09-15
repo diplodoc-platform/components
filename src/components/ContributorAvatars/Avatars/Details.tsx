@@ -1,11 +1,10 @@
 import React from 'react';
 
-import {Popup} from '@gravity-ui/uikit';
+import {Link, Popup} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 
 import {PopperPosition} from '../../../hooks';
 import {Contributor} from '../../../models';
-import Link from '../../Link';
 import {AvatarData, AvatarSizes, PopupData} from '../models';
 import {getName} from '../utils';
 
@@ -55,7 +54,7 @@ function getContributorDetails(contributor: Contributor) {
     const avatarImg = <Avatar avatarData={avatarData} />;
 
     return (
-        <Link url={url} key={`details-${login || email}`}>
+        <Link href={url} key={`details-${login || email}`}>
             <div className={b('details')}>
                 {avatarImg}
                 <div className={b('details_name')}>{getName(contributor, true)}</div>

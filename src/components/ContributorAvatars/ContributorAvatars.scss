@@ -97,6 +97,8 @@ $avatarWrapperBigSize: 33px;
             font-size: $avatarTextFontSize;
             font-weight: $avatarTextFontWeight;
         }
+
+        @include focusable(1px);
     }
 
     &__displayed_avatars {
@@ -106,6 +108,9 @@ $avatarWrapperBigSize: 33px;
         & > * {
             margin-left: $avatarBorder;
             margin-right: calc(#{$avatarBorder} + #{$avatarsDistance});
+        }
+        & a {
+            border-radius: 50%; // to have rounded outline on focus as all avatars rounded
         }
     }
 

@@ -13,7 +13,7 @@ module.exports = {
                     order: 'asc',
                 },
                 'newlines-between': 'always',
-                groups: [['builtin', 'external'], 'internal', 'parent', 'sibling', 'index'],
+                groups: ['builtin', 'external', 'internal', ['sibling', 'parent'], 'index'],
                 warnOnUnassignedImports: true,
                 pathGroups: [
                     {

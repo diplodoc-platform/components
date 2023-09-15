@@ -1,6 +1,5 @@
-import React from 'react';
-
 import block from 'bem-cn-lite';
+import React from 'react';
 
 import {TocItem as ITocItem} from '../../models';
 import {isExternalHref} from '../../utils';
@@ -36,6 +35,7 @@ class TocItem extends React.Component<TocItemProps> {
                 className={b('text', {active})}
                 onClick={expandable && !href ? this.handleClick : undefined}
                 aria-expanded={expanded}
+                tabIndex={expandable ? 0 : -1}
             >
                 {icon}
                 {text}

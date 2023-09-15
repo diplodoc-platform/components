@@ -1,8 +1,7 @@
-import React, {ReactElement, useCallback, useContext, useRef, useState} from 'react';
-
 import {Gear} from '@gravity-ui/icons';
-import {Button, List, Popup, Switch} from '@gravity-ui/uikit';
+import {Button, List, Popover, Switch} from '@gravity-ui/uikit';
 import cn from 'bem-cn-lite';
+import React, {ReactElement, useCallback, useContext, useRef, useState} from 'react';
 
 import {useTranslation} from '../../../../hooks';
 import {TextSizes, Theme} from '../../../../models';
@@ -168,47 +167,53 @@ const SettingsControl = (props: ControlProps) => {
 
     return (
         <React.Fragment>
-            <Control
-                ref={controlRef}
-                size={controlSize}
-                onClick={showPopup}
-                className={controlClassName}
-                isVerticalView={isVerticalView}
-                tooltipText={t('settings-text')}
-                popupPosition={popupPosition}
-                icon={Gear}
-                buttonExtraProps={{
-                    'aria-expanded': isVisiblePopup,
-                }}
-            />
-            <Popup
-                anchorRef={controlRef}
-                open={isVisiblePopup}
+            <Popover
+                autoclosable={false}
+                openOnHover={false}
+                focusTrap
+                autoFocus
+                restoreFocusRef={controlRef}
                 contentClassName={b('popup')}
-                onOutsideClick={hidePopup}
+                onCloseClick={hidePopup}
+                onOpenChange={setIsVisiblePopup}
                 placement={getPopupPosition(isVerticalView)}
-            >
-                <List
-                    items={settingsItems}
-                    className={b('list')}
-                    itemHeight={ITEM_HEIGHT}
-                    itemsHeight={ITEM_HEIGHT * settingsItems.length}
-                    filterable={false}
-                    renderItem={(item: SettingControlItem) => {
-                        return (
-                            <div className={b('list-item')}>
-                                <div className={b('list-item-content')}>
-                                    <div className={b('list-item-text')}>{item.text}</div>
-                                    <div className={b('list-item-description')}>
-                                        {item.description}
+                content={
+                    <List
+                        items={settingsItems}
+                        className={b('list')}
+                        itemHeight={ITEM_HEIGHT}
+                        itemsHeight={ITEM_HEIGHT * settingsItems.length}
+                        filterable={false}
+                        renderItem={(item: SettingControlItem) => {
+                            return (
+                                <div className={b('list-item')}>
+                                    <div className={b('list-item-content')}>
+                                        <div className={b('list-item-text')}>{item.text}</div>
+                                        <div className={b('list-item-description')}>
+                                            {item.description}
+                                        </div>
                                     </div>
+                                    <div className={b('list-item-control')}>{item.control}</div>
                                 </div>
-                                <div className={b('list-item-control')}>{item.control}</div>
-                            </div>
-                        );
+                            );
+                        }}
+                    />
+                }
+            >
+                <Control
+                    ref={controlRef}
+                    size={controlSize}
+                    onClick={showPopup}
+                    className={controlClassName}
+                    isVerticalView={isVerticalView}
+                    tooltipText={t('settings-text')}
+                    popupPosition={popupPosition}
+                    icon={Gear}
+                    buttonExtraProps={{
+                        'aria-expanded': isVisiblePopup,
                     }}
                 />
-            </Popup>
+            </Popover>
         </React.Fragment>
     );
 };

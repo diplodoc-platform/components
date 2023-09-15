@@ -212,6 +212,7 @@ const SettingsControl = (props: ControlProps) => {
                 buttonExtraProps={{
                     'aria-expanded': isVisiblePopup,
                 }}
+                isTooltipHidden={isVisiblePopup}
             />
         </Popover>
     );

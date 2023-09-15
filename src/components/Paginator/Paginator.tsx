@@ -1,8 +1,7 @@
-import React, {ReactNode} from 'react';
-
 import {ArrowLeft, ArrowRight} from '@gravity-ui/icons';
 import {Button} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
+import React, {ReactNode} from 'react';
 
 import {useTranslation} from '../../hooks';
 
@@ -139,7 +138,7 @@ const Paginator = ({
     };
 
     const arrowButton = (disable: boolean, type: string) => {
-        const label = type === 'prev' ? t('prev') : t('next');
+        const label = t(type);
         const Icon = type === 'prev' ? ArrowLeft : ArrowRight;
 
         return (

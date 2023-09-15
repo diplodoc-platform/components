@@ -1,9 +1,9 @@
 import React, {Fragment, ReactElement} from 'react';
 
+import {Link} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 
 import {Contributor} from '../../models';
-import Link from '../Link';
 
 import Avatar from './Avatars/Avatar';
 import AvatarWithDescription from './Avatars/AvatarWithDescription';
@@ -41,7 +41,11 @@ const ContributorAvatars: React.FC<ContributorAvatarsProps> = (props) => {
     const displayedAvatars = displayedContributors.map((contributor: Contributor) => {
         const {url, login, email} = contributor;
         return (
-            <Link key={`displayed-contributors-${login || email}`} url={url}>
+            <Link
+                key={`displayed-contributors-${login || email}`}
+                href={url}
+                extraProps={{tabIndex: contributor.avatar ? undefined : -1}} // as Avatar component may be button
+            >
                 <AvatarWithDescription contributor={contributor} avatarSize={AvatarSizes.SMALL} />
             </Link>
         );
@@ -87,15 +91,16 @@ function getOneAvatar(
                 )}
             </div>
             <div>
-                <Link url={contributor.url}>{getName(contributor, isAuthor)}</Link>
+                <Link href={contributor.url}>{getName(contributor, isAuthor)}</Link>
             </div>
         </div>
     );
 }
 
 function getRedirectingAvatar(avatarData: AvatarData, url: string, isRedirect = false) {
+    // as Avatar component may be a button, one need to set tabIndex
     return (
-        <Link url={url}>
+        <Link href={url} extraProps={{tabIndex: avatarData.contributor.avatar ? undefined : -1}}>
             <Avatar avatarData={avatarData} isRedirect={isRedirect} />
         </Link>
     );

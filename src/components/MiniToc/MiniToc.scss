@@ -26,6 +26,8 @@
 
         & > #{$class}__section-link {
             border-left-color: var(--g-color-line-generic);
+
+            @include focusable(-2px);
         }
 
         &-link {

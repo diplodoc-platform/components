@@ -208,16 +208,12 @@ const DocPageDemo = (args) => {
         ...getContent(lang, singlePage),
         vcsType,
         router,
-        // headerHeight: fullScreen ? 0 : 64,
-        // headerHeight: fullScreen ? 0 : 64,
         fullScreen,
         wideFormat,
         showMiniToc,
         theme,
         textSize,
         singlePage,
-        // bookmarkedPage: hasBookmark === 'true' && isPinned,
-        // onChangeBookmarkPage: hasBookmark === 'true' ? onChangeBookmarkPage : undefined,
     };
 
     Object.assign(
@@ -248,6 +244,7 @@ const DocPageDemo = (args) => {
                 convertPathToOriginalArticle={convertPathToOriginalArticle}
                 generatePathToVcs={generatePathToVcs}
                 renderLoader={renderLoader}
+                // TODO: return highlight examples
                 // onContentMutation={onContentMutation}
                 // onContentLoaded={onContentLoaded}
             />

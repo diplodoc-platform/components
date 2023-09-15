@@ -144,8 +144,10 @@ $avatarWrapperBigSize: 33px;
     }
 
     &__popup_content {
-        & > *:not(:first-child) {
-            margin: $detailsIndent;
+        padding: $detailsIndent;
+
+        & > *:not(:last-child) {
+            margin-bottom: $detailsIndent;
         }
     }
 }

@@ -1,16 +1,18 @@
+import React, {useCallback, useContext, useMemo, useRef} from 'react';
+
 import {Globe} from '@gravity-ui/icons';
 import {List, Popover} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 import allLangs from 'langs';
-import React, {useCallback, useContext, useMemo, useRef} from 'react';
 
 import {usePopupState, useTranslation} from '../../../hooks';
 import {Lang} from '../../../models';
 import {Control} from '../../Control';
-import '../Controls.scss';
 import {ControlsLayoutContext} from '../ControlsLayout';
 
 import {getPopupPosition} from './utils';
+
+import '../Controls.scss';
 
 const ICONS: Record<string, string> = {
     en: '🇬🇧',

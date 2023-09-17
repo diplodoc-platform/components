@@ -1,7 +1,7 @@
 module.exports = {
     extends: [
         '@gravity-ui/eslint-config',
-        process.env.npm && '@gravity-ui/eslint-config/prettier',
+        process.env.npm_command && '@gravity-ui/eslint-config/prettier',
     ].filter(Boolean),
     root: true,
     rules: {

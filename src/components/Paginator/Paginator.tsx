@@ -1,7 +1,8 @@
+import React, {ReactNode} from 'react';
+
 import {ArrowLeft, ArrowRight} from '@gravity-ui/icons';
 import {Button} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
-import React, {ReactNode} from 'react';
 
 import {useTranslation} from '../../hooks';
 

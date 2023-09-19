@@ -1,5 +1,64 @@
 # История изменений
 
+## [3.0.0](https://github.com/yandex-cloud/docs-components/compare/v2.8.3...v3.0.0) (2023-09-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* Rename Vcs enum
+* Removed public assets export
+* Big v3 changes
+* Remove direct dependency on @doc-tools/transform
+* Rebuild project with esbuild
+* Replace icons with equal from uikit
+* **deps:** Migrate to uikit@5
+* Update react and uikit deps
+
+### Features
+
+* Add `configure` util ([0f10de2](https://github.com/yandex-cloud/docs-components/commit/0f10de24d943c9f50695e499577a7baf8bfb9c40))
+* Add common theme ([60c284b](https://github.com/yandex-cloud/docs-components/commit/60c284b9622e51c95d1e04f47ccbc09e55feebaa))
+* add label and expanded state for control buttons ([a6d7670](https://github.com/yandex-cloud/docs-components/commit/a6d7670863b8edd34a9ec757f6bf214d4f055a85))
+* added focus styles for avatars and mini-toc ([d152de0](https://github.com/yandex-cloud/docs-components/commit/d152de0c325ea0596859436df7f2376a686cadac))
+* added focus styles for search item ([fd47821](https://github.com/yandex-cloud/docs-components/commit/fd478214bbe9fcb27ebdfec07ce07d2aa3a8af2a))
+* added focus styles for toc ([62e1f3d](https://github.com/yandex-cloud/docs-components/commit/62e1f3d9a695b2ca61801870557a8b89285cda00))
+* Big v3 changes ([195566b](https://github.com/yandex-cloud/docs-components/commit/195566bc07f8e8538e66584917173826ce6b4add))
+* **deps:** Migrate to uikit@5 ([a74f713](https://github.com/yandex-cloud/docs-components/commit/a74f713ac56e18d01051ebc09a9073ce77ea1cf0))
+* fix typings, add labels for paginator buttons ([cba0226](https://github.com/yandex-cloud/docs-components/commit/cba02265130d2817f261d47dbc40698d6662ad26))
+* language control ([754e9d7](https://github.com/yandex-cloud/docs-components/commit/754e9d758226d0a46fada0c74f58e2b5055dd2fe))
+* more focus styles for the links ([6486f9e](https://github.com/yandex-cloud/docs-components/commit/6486f9eb4f4e830c051847ef00f8476bd3e1bf71))
+* prev next page links with focus styles ([c2fcb44](https://github.com/yandex-cloud/docs-components/commit/c2fcb44981b06e60057df1ea6ca6ab808710064b))
+* Rebuild project with esbuild ([bb22364](https://github.com/yandex-cloud/docs-components/commit/bb223641068d2785b7a0deb975d7c1e90e946e6a))
+* Remove direct dependency on @doc-tools/transform ([2bad237](https://github.com/yandex-cloud/docs-components/commit/2bad2379fa0031444b5c928ad3e36d9d5cd17d58))
+* Removed public assets export ([478cfa9](https://github.com/yandex-cloud/docs-components/commit/478cfa901306071273abf1b3225c3dfe2bd8552f))
+* Rename Vcs enum ([101dbc8](https://github.com/yandex-cloud/docs-components/commit/101dbc83e999008e5e0afb9496d18352bc9edc4d))
+* Replace icons with equal from uikit ([eaeca8a](https://github.com/yandex-cloud/docs-components/commit/eaeca8a4252cfa462be3a17fa0a8851c62e41c12))
+* scrollspy sets aria-current=location ([153774a](https://github.com/yandex-cloud/docs-components/commit/153774a3dea9165972834623edfb02a3c66d3b83))
+* settings and language controls with focus trap ([900a8ba](https://github.com/yandex-cloud/docs-components/commit/900a8ba0da32d2cb982fa2c00845be8a78801822))
+* settings with focus trap ([a29c906](https://github.com/yandex-cloud/docs-components/commit/a29c9064d2a36e068424355980851cd4fe8eb89e))
+* Update @doc-tools/transform ([c30ad4f](https://github.com/yandex-cloud/docs-components/commit/c30ad4f0a22c60318434b55bead668587c5d4999))
+* Update react and uikit deps ([e7753b0](https://github.com/yandex-cloud/docs-components/commit/e7753b0df89c15182115fee0aabbe99505c7a19b))
+* use button as toc item ([7787104](https://github.com/yandex-cloud/docs-components/commit/7787104c3408fe16de3869ffe609e60670fc69ea))
+* use button for hidden avatars ([cbcb321](https://github.com/yandex-cloud/docs-components/commit/cbcb321156e7b36f07f81083f75d90982cebbfed))
+
+
+### Bug Fixes
+
+* avatar styles ([c29c7ce](https://github.com/yandex-cloud/docs-components/commit/c29c7ced6a849775b9456d822cc0da21dcfd7df5))
+* **Breadcrumbs:** Fix link styles ([d588cf7](https://github.com/yandex-cloud/docs-components/commit/d588cf770f45df5f97e39cab99ef94a7f4095bc7))
+* correct import ([03c5fba](https://github.com/yandex-cloud/docs-components/commit/03c5fba8d12a9ca172ca5f5d8c35a99bb45133af))
+* Fix contributors popup paddings ([005f08b](https://github.com/yandex-cloud/docs-components/commit/005f08b06221bf6fa19e4d020a6de8a45b2972b2))
+* Fix i18n build for old webpack ([88a2660](https://github.com/yandex-cloud/docs-components/commit/88a2660a78bb791e0152a232d169cc0f96faac5a))
+* Fix package json exports and scripts ([e00708a](https://github.com/yandex-cloud/docs-components/commit/e00708af1bc47960f1603dd4d42b030d538f62bc))
+* Fix paginator icon ([fd6b3c0](https://github.com/yandex-cloud/docs-components/commit/fd6b3c06355dfa1f2733485e37d81d180b48f092))
+* fixing bugs ([521d7fa](https://github.com/yandex-cloud/docs-components/commit/521d7fae087f0c7c2ed181314068dee1d47de28a))
+* margin styles ([5b9e3a1](https://github.com/yandex-cloud/docs-components/commit/5b9e3a15bd9bfe0435dae911f41269822a3c1658))
+* Replace link icon with equal from gravity-ui ([8ca725b](https://github.com/yandex-cloud/docs-components/commit/8ca725ba9e8cb923cc0675a8520139278e30f5a4))
+* return eslint ([ec5fbb3](https://github.com/yandex-cloud/docs-components/commit/ec5fbb3ecb296a2a9ba687c08bdedefa41bc1d99))
+* Small style changes ([9776c14](https://github.com/yandex-cloud/docs-components/commit/9776c142e526716a21428376d8126029ae0541a2))
+* use correct aria-current fpr the paginator ([427305b](https://github.com/yandex-cloud/docs-components/commit/427305b47fced9675f36db4d48abbcfe73a6ea1a))
+* use translation correctly in paginator ([10d08b5](https://github.com/yandex-cloud/docs-components/commit/10d08b590dcecc1f2aa1c174bbdf6a32748b095f))
+
 ## [2.8.3](https://github.com/yandex-cloud/docs-components/compare/v2.8.2...v2.8.3) (2023-07-06)
 
 

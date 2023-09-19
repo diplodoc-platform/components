@@ -34,5 +34,12 @@
 
     &__text {
         white-space: nowrap;
+
+        &_link {
+            outline: none;
+            color: var(--g-color-text-link);
+            text-decoration: none;
+            cursor: pointer;
+        }
     }
 }

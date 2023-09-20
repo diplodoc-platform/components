@@ -173,11 +173,12 @@ const SettingsControl = (props: ControlProps) => {
             focusTrap
             autoFocus
             restoreFocusRef={controlRef}
-            contentClassName={b('popup')}
             onCloseClick={hidePopup}
             onOpenChange={setIsVisiblePopup}
             placement={getPopupPosition(isVerticalView)}
             className={controlClassName}
+            contentClassName={b('popup')}
+            tooltipContentClassName={b('popup-tooltip')}
             content={
                 <List
                     role={'list'}

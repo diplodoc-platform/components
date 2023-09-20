@@ -105,6 +105,7 @@ const LangControl = (props: ControlProps) => {
             onCloseClick={popupState.close}
             onOpenChange={onOpenChange}
             className={controlClassName}
+            tooltipContentClassName={b('popup-tooltip')}
             content={
                 <List
                     role={'list'}

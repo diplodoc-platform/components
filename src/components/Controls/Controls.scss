@@ -46,6 +46,10 @@
         transform: rotate(90deg);
     }
 
+    &__popup-tooltip {
+        padding: 0;
+    }
+
     @media (min-width: map-get($screenBreakpoints, 'md')) {
         &_vertical {
             flex-direction: column;

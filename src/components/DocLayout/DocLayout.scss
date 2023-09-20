@@ -61,6 +61,7 @@
         top: var(--dc-header-height, #{$headerHeight});
         padding-left: 24px;
         width: 252px;
+        box-sizing: border-box;
         background-color: var(--g-color-base-background);
         @include text-size(body-1);
     }

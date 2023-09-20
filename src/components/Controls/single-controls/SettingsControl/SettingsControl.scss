@@ -29,6 +29,10 @@
         @include text-size(body-1);
     }
 
+    &__popup-tooltip {
+        padding: 0;
+    }
+
     &__list {
         padding: 4px 0;
         width: 230px;

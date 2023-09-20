@@ -32,10 +32,10 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({items, className}) => {
 };
 
 function renderItem({name, url}: BreadcrumbItem, isLast: boolean) {
-    const hasUrl = Boolean(url);
+    const hasUrl = url && !isLast;
 
     return React.createElement(
-        hasUrl && !isLast ? 'a' : 'span',
+        hasUrl ? 'a' : 'span',
         {
             className: b('text', {link: hasUrl}),
             href: url,

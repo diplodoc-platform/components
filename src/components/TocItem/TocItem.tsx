@@ -30,17 +30,18 @@ class TocItem extends React.Component<TocItemProps> {
         const icon = expandable ? (
             <ToggleArrow className={b('icon')} open={expanded} thin={true} />
         ) : null;
-        const content = (
-            <button
-                ref={href ? null : this.contentRef}
-                className={b('text', {active})}
-                onClick={expandable && !href ? this.handleClick : undefined}
-                aria-expanded={expandable ? expanded : undefined}
-                tabIndex={expandable ? 0 : -1}
-            >
-                {icon}
-                {text}
-            </button>
+
+        const content = React.createElement(
+            href ? 'div' : 'button',
+            {
+                ref: href ? null : this.contentRef,
+                className: b('text', {active}),
+                onClick: expandable && !href ? this.handleClick : undefined,
+                'aria-expanded': expandable ? expanded : undefined,
+                tabIndex: expandable ? 0 : -1,
+            },
+            icon,
+            text,
         );
 
         if (!href) {

@@ -1,4 +1,4 @@
-[![NPM version](https://img.shields.io/npm/v/@doc-tools/components.svg?style=flat)](https://www.npmjs.org/package/@doc-tools/components)
+[![NPM version](https://img.shields.io/npm/v/@diplodoc/components.svg?style=flat)](https://www.npmjs.org/package/@diplodoc/components)
 
 # YFM Docs Components
 

@@ -520,7 +520,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
     private renderTocNavPanel() {
         const {toc, singlePage, router, fullScreen} = this.props;
 
-        if (singlePage) {
+        if (!toc || singlePage) {
             return null;
         }
 

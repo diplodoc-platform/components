@@ -1,5 +1,12 @@
 # История изменений
 
+## [3.0.5](https://github.com/diplodoc-platform/components/compare/v3.0.4...v3.0.5) (2023-09-29)
+
+
+### Bug Fixes
+
+* add pointer style for toc item ([#164](https://github.com/diplodoc-platform/components/issues/164)) ([7158242](https://github.com/diplodoc-platform/components/commit/715824229b21c5e1699af2749ee65e5224b6d7ed))
+
 ## [3.0.4](https://github.com/diplodoc-platform/components/compare/v3.0.3...v3.0.4) (2023-09-29)
 
 

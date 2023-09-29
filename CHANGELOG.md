@@ -1,5 +1,13 @@
 # История изменений
 
+## [3.0.4](https://github.com/diplodoc-platform/components/compare/v3.0.3...v3.0.4) (2023-09-29)
+
+
+### Bug Fixes
+
+* not render navigation with empty toc ([877bc7b](https://github.com/diplodoc-platform/components/commit/877bc7b679c8054bda29c9586085cbbf53fb7bc8))
+* permissions ([74e243f](https://github.com/diplodoc-platform/components/commit/74e243f93cff11b67227810e7c215d6bc0768db6))
+
 ## [3.0.3](https://github.com/yandex-cloud/docs-components/compare/v3.0.2...v3.0.3) (2023-09-20)
 
 ### Bug Fixes

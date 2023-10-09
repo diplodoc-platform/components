@@ -43,6 +43,7 @@
     @if $mode == 'box-shadow' {
         &:focus {
             box-shadow: 0 0 0 2px var(--g-color-line-focus);
+            outline: 0;
         }
         &:focus:not(:focus-visible) {
             box-shadow: none;

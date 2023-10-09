@@ -30,7 +30,7 @@
             color: var(--g-color-text-link-hover);
         }
 
-        @include focusable();
+        @include focusable(0, 'box-shadow');
         &.yfm-anchor {
             &:focus::before {
                 visibility: visible;

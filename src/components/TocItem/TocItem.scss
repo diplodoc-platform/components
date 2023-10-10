@@ -18,6 +18,11 @@
     &__text {
         --g-focus-border-radius: 4px;
 
+        display: block;
+        font-family: inherit;
+        font-size: inherit;
+        font-weight: inherit;
+
         position: relative;
         padding: 7px 12px 7px 20px;
         box-sizing: border-box;

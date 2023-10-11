@@ -1,5 +1,12 @@
 # История изменений
 
+## [3.1.0](https://github.com/diplodoc-platform/components/compare/v3.0.5...v3.1.0) (2023-10-11)
+
+
+### Features
+
+* new focus type ([#172](https://github.com/diplodoc-platform/components/issues/172)) ([c99bc32](https://github.com/diplodoc-platform/components/commit/c99bc3246efbd197e9525555cccff1b648d6e709))
+
 ## [3.0.5](https://github.com/diplodoc-platform/components/compare/v3.0.4...v3.0.5) (2023-09-29)
 
 

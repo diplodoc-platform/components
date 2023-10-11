@@ -70,6 +70,7 @@ export interface DocPageProps extends DocPageData, DocSettings {
     onContentLoaded?: () => void;
     onSubscribe?: (data: SubscribeData) => void;
     pdfLink?: string;
+    onMiniTocItemClick?: (event: MouseEvent) => void;
 }
 
 type DocPageInnerProps = InnerProps<DocPageProps, DocSettings>;
@@ -483,7 +484,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
     }
 
     private renderAsideMiniToc() {
-        const {headings, router, headerHeight} = this.props;
+        const {headings, router, headerHeight, onMiniTocItemClick} = this.props;
         const {keyDOM} = this.state;
 
         return (
@@ -493,6 +494,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                     router={router}
                     headerHeight={headerHeight}
                     key={keyDOM}
+                    onItemClick={onMiniTocItemClick}
                 />
             </div>
         );

@@ -14,6 +14,7 @@ export interface MinitocProps {
     headings: DocHeadingItem[];
     router: Router;
     headerHeight?: number;
+    onItemClick?: (event: MouseEvent) => void;
 }
 
 export interface MinitocSectionProps {
@@ -34,7 +35,7 @@ function getFlatHeadings(items: DocHeadingItem[], isChild = false): FlatHeadingI
     }, [] as FlatHeadingItem[]);
 }
 
-const MiniToc = memo<MinitocProps>(({headings, router, headerHeight}) => {
+const MiniToc = memo<MinitocProps>(({headings, router, headerHeight, onItemClick}) => {
     const {t} = useTranslation('mini-toc');
     const flatHeadings = useMemo(() => getFlatHeadings(headings), [headings]);
     const sectionHrefs = useMemo(
@@ -55,6 +56,7 @@ const MiniToc = memo<MinitocProps>(({headings, router, headerHeight}) => {
                 items={sectionHrefs}
                 router={router}
                 headerHeight={headerHeight}
+                onSectionClick={onItemClick}
             >
                 {flatHeadings.map(({href, title, isChild}) => (
                     <li key={href} data-hash={href} className={b('section', {child: isChild})}>

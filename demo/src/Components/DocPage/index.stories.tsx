@@ -53,6 +53,10 @@ const useSettings = () => {
         onChangeShowMiniToc,
         textSize,
         onChangeTextSize,
+        onMiniTocItemClick: (event: MouseEvent) => {
+            // eslint-disable-next-line no-console
+            console.log((event.target as HTMLAnchorElement).hash);
+        },
     };
 };
 

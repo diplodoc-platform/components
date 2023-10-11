@@ -221,7 +221,7 @@ export class Scrollspy extends React.Component<ScrollspyInnerProps, ScrollspySta
     private initItems() {
         const {items} = this.props;
         const targetItems = items
-            .map((item) => document.getElementById(item.slice(1)))
+            .map((item) => document.getElementById(item.split('#')[1]))
             .filter(Boolean) as HTMLElement[];
 
         this.setState({targetItems}, this.initSections);

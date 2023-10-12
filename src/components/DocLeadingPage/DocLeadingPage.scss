@@ -56,9 +56,10 @@
             min-width: 280px;
             max-width: 400px;
             width: calc(50% - 20px);
-            padding-bottom: 40px;
+            padding-top: 15px;
+            padding-bottom: 15px;
             margin-bottom: $blockMarginBottomLarge;
-            border-bottom: 1px solid var(--g-color-line-generic);
+            border-top: 1px solid var(--g-color-line-generic);
         }
     }
 

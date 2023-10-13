@@ -1,5 +1,19 @@
 # История изменений
 
+## [3.2.0](https://github.com/diplodoc-platform/components/compare/v3.1.0...v3.2.0) (2023-10-13)
+
+
+### Features
+
+* allow scroll spy item href to start not with # ([b6ad6ff](https://github.com/diplodoc-platform/components/commit/b6ad6ff609305197a8579e8593c95e27249bd597))
+* **DocPage:** added new prop for minitoc onclick handler ([ee0b1dc](https://github.com/diplodoc-platform/components/commit/ee0b1dcb611cea52753be8db35f616535717eede))
+
+
+### Bug Fixes
+
+* **TocItem:** Fix missing styles in TocItem ([9921c6d](https://github.com/diplodoc-platform/components/commit/9921c6d922180ac4c1225901f5b6451031637d3c))
+* udpate link item border style ([b73688c](https://github.com/diplodoc-platform/components/commit/b73688cf85753f1bec7a11142f4854feeec4f571))
+
 ## [3.1.0](https://github.com/diplodoc-platform/components/compare/v3.0.5...v3.1.0) (2023-10-11)
 
 

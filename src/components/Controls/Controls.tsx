@@ -174,6 +174,10 @@ const Controls = memo<ControlsProps>((props) => {
             return result;
         }, [] as React.ReactElement[]);
 
+    if (!controls.length) {
+        return null;
+    }
+
     return <div className={b({vertical: isVerticalView}, className)}>{controls}</div>;
 });
 

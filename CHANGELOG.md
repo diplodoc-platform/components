@@ -1,5 +1,12 @@
 # История изменений
 
+## [3.3.0](https://github.com/diplodoc-platform/components/compare/v3.2.0...v3.3.0) (2023-10-27)
+
+
+### Features
+
+* adding id prop for HTML component ([#183](https://github.com/diplodoc-platform/components/issues/183)) ([d8770f7](https://github.com/diplodoc-platform/components/commit/d8770f7c9786c487066b26475194574d3fd01c5f))
+
 ## [3.2.0](https://github.com/diplodoc-platform/components/compare/v3.1.0...v3.2.0) (2023-10-13)
 
 

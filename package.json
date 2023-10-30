@@ -12,6 +12,10 @@
     "build",
     "src/i18n"
   ],
+  "engines": {
+    "node": ">=18",
+    "npm": ">=9.*"
+  },
   "exports": {
     ".": {
       "import": {
@@ -115,6 +119,12 @@
     "stylelint": "^15.10.3",
     "svgo": "2.8.0",
     "typescript": "^5.2.2"
+  },
+  "overrides": {
+    "react-sortable-hoc": {
+      "react": "^18.2.0",
+      "react-dom": "^18.2.0"
+    }
   },
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx}": [

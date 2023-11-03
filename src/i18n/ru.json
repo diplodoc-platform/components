@@ -46,7 +46,11 @@
     "lang-control-text-en": "English"
   },
   "mini-toc": {
-    "title": "В этой статье"
+    "title": "В этой статье",
+    "description": "Содержание текущей статьи"
+  },
+  "toc": {
+    "description": "Содержание"
   },
   "toc-nav-panel": {
     "hint_previous": "Предыдущая",

@@ -46,7 +46,11 @@
     "lang-control-text-en": "English"
   },
   "mini-toc": {
-    "title": "In this article"
+    "title": "In this article",
+    "description": "Current article contents"
+  },
+  "toc": {
+    "description": "Table of contents"
   },
   "toc-nav-panel": {
     "hint_previous": "Previous",

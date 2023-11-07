@@ -2,9 +2,7 @@ import React from 'react';
 
 import block from 'bem-cn-lite';
 import {omit} from 'lodash';
-import {WithTranslation} from 'react-i18next';
 
-import {withTranslation} from '../../hoc/withTranslation';
 import {PopperPosition} from '../../hooks';
 import {ControlSizes, Router, TocData, TocItem} from '../../models';
 import {isActiveItem, normalizeHash, normalizePath} from '../../utils';
@@ -23,7 +21,7 @@ function zip<T>(array: string[], fill: T): Record<string, T> {
     return array.reduce((acc, item) => Object.assign(acc, {[item]: fill}), {});
 }
 
-export interface TocProps extends TocData, WithTranslation {
+export interface TocProps extends TocData {
     router: Router;
     headerHeight?: number;
     tocTitleIcon?: React.ReactNode;
@@ -155,7 +153,7 @@ class Toc extends React.Component<TocProps, TocState> {
 
     private renderList = (items: TocItem[]) => {
         const {toggleItem} = this;
-        const {singlePage, t} = this.props;
+        const {singlePage, title} = this.props;
         const {activeId, fixedById} = this.state;
 
         const activeItem = activeId && this.state.registry.getItemById(activeId);
@@ -164,7 +162,7 @@ class Toc extends React.Component<TocProps, TocState> {
             : {};
 
         return (
-            <ul className={b('list')} aria-label={t('description')}>
+            <ul className={b('list')} aria-label={title}>
                 {items.map((item, index) => {
                     const main = !this.state.registry.getParentId(item.id);
                     const active =
@@ -338,4 +336,4 @@ class Toc extends React.Component<TocProps, TocState> {
     };
 }
 
-export default withTranslation('toc')(Toc);
+export default Toc;

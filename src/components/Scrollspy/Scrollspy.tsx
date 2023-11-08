@@ -1,4 +1,4 @@
-import React, {ReactElement} from 'react';
+import React, {HTMLProps, ReactElement} from 'react';
 
 import {debounce, isEqual} from 'lodash';
 import scrollIntoView from 'scroll-into-view-if-needed';
@@ -12,7 +12,9 @@ interface ScrollspyDefaultProps {
     headerHeight: number;
 }
 
-export interface ScrollspyProps extends Partial<ScrollspyDefaultProps> {
+export interface ScrollspyProps
+    extends Partial<ScrollspyDefaultProps>,
+        Partial<HTMLProps<HTMLUListElement>> {
     items: string[];
     children: ReactElement[];
     router: Router;
@@ -93,7 +95,7 @@ export class Scrollspy extends React.Component<ScrollspyInnerProps, ScrollspySta
     }
 
     render() {
-        const {children, currentClassName, className} = this.props;
+        const {children, currentClassName, className, ...rest} = this.props;
         const {inViewState} = this.state;
 
         const items = children.map((child, index) => {
@@ -124,7 +126,7 @@ export class Scrollspy extends React.Component<ScrollspyInnerProps, ScrollspySta
         });
 
         return (
-            <ul className={className} ref={this.containerRef}>
+            <ul className={className} ref={this.containerRef} {...rest}>
                 {items}
             </ul>
         );

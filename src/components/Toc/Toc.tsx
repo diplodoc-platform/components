@@ -1,5 +1,6 @@
 import React from 'react';
 
+import {getUniqId} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 import {omit} from 'lodash';
 
@@ -45,11 +46,13 @@ class Toc extends React.Component<TocProps, TocState> {
 
     containerEl: HTMLElement | null = null;
     footerEl: HTMLElement | null = null;
+    tocTopId: string;
 
     constructor(props: TocProps) {
         super(props);
 
         this.state = this.computeState(this.getInitialState());
+        this.tocTopId = getUniqId();
     }
 
     getInitialState() {
@@ -162,7 +165,7 @@ class Toc extends React.Component<TocProps, TocState> {
             : {};
 
         return (
-            <ul className={b('list')}>
+            <ul className={b('list')} aria-labelledby={this.tocTopId}>
                 {items.map((item, index) => {
                     const main = !this.state.registry.getParentId(item.id);
                     const active =
@@ -233,8 +236,12 @@ class Toc extends React.Component<TocProps, TocState> {
         }
 
         return (
-            <div className={b('top', {scrolled: contentScrolled})}>
-                {tocTitleIcon ? <div className={b('top-header-icon')}>{tocTitleIcon}</div> : null}
+            <div className={b('top', {scrolled: contentScrolled})} id={this.tocTopId}>
+                {tocTitleIcon ? (
+                    <div className={b('top-header-icon')} aria-hidden={'true'}>
+                        {tocTitleIcon}
+                    </div>
+                ) : null}
                 {topHeader}
             </div>
         );

@@ -1,5 +1,12 @@
 # История изменений
 
+## [3.4.0](https://github.com/diplodoc-platform/components/compare/v3.3.1...v3.4.0) (2023-11-08)
+
+
+### Features
+
+* add labels for toc and mini toc ([#187](https://github.com/diplodoc-platform/components/issues/187)) ([70a30a2](https://github.com/diplodoc-platform/components/commit/70a30a2fa735a75b89d3b1331201829857a1c18c))
+
 ## [3.3.1](https://github.com/diplodoc-platform/components/compare/v3.3.0...v3.3.1) (2023-10-30)
 
 

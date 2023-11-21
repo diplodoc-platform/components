@@ -6,6 +6,7 @@ import {PopperPosition} from '../../hooks';
 import {ControlSizes} from '../../models';
 
 type ControlsLayoutProps = {
+    isWideView?: boolean;
     isVerticalView?: boolean;
     controlClassName?: string;
     controlSize?: ControlSizes;
@@ -14,6 +15,7 @@ type ControlsLayoutProps = {
 
 export const ControlsLayoutContext = createContext<ControlsLayoutProps>({
     controlClassName: '',
+    isWideView: false,
     isVerticalView: false,
     controlSize: ControlSizes.M,
     popupPosition: PopperPosition.BOTTOM_END,
@@ -22,6 +24,7 @@ export const ControlsLayoutContext = createContext<ControlsLayoutProps>({
 const b = block('dc-controls');
 
 export const ControlsLayout: React.FC<PropsWithChildren<ControlsLayoutProps>> = ({
+    isWideView,
     isVerticalView,
     controlClassName,
     controlSize,
@@ -32,6 +35,7 @@ export const ControlsLayout: React.FC<PropsWithChildren<ControlsLayoutProps>> = 
         <ControlsLayoutContext.Provider
             value={{
                 controlClassName: controlClassName || b('control'),
+                isWideView: isWideView,
                 isVerticalView: isVerticalView,
                 controlSize: controlSize,
                 popupPosition: popupPosition,

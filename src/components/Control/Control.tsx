@@ -18,6 +18,7 @@ export interface IconProps {
 export interface ControlProps {
     onClick?: () => void;
     setRef?: (ref: HTMLButtonElement) => void;
+    isWideView?: boolean;
     isVerticalView?: boolean;
     tooltipText: string;
     isTooltipHidden?: boolean;
@@ -42,6 +43,7 @@ const Control = forwardRef((props: ControlProps, ref) => {
         className,
         tooltipText,
         isTooltipHidden,
+        isWideView,
         isVerticalView,
         size = ControlSizes.M,
         icon,
@@ -91,6 +93,7 @@ const Control = forwardRef((props: ControlProps, ref) => {
                 <Button.Icon>
                     <Icon width={iconSize} height={iconSize} />
                 </Button.Icon>
+                {isWideView ? tooltipText : null}
             </Button>
             {controlRef.current && (
                 <Popup

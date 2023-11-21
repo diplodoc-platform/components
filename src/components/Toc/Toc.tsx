@@ -2,7 +2,7 @@ import React from 'react';
 
 import {getUniqId} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
-import {omit} from 'lodash';
+import omit from 'lodash/omit';
 
 import {PopperPosition} from '../../hooks';
 import {ControlSizes, Router, TocData, TocItem} from '../../models';

@@ -1,5 +1,19 @@
 # История изменений
 
+## [3.5.0](https://github.com/diplodoc-platform/components/compare/v3.4.0...v3.5.0) (2023-11-21)
+
+
+### Features
+
+* **Controls:** Add optional isWideView prop ([94c9198](https://github.com/diplodoc-platform/components/commit/94c91982292bf20b5ae4cdb2acf590a21320ac2b))
+
+
+### Bug Fixes
+
+* Fix build size ([4dcbdb3](https://github.com/diplodoc-platform/components/commit/4dcbdb39184ab72fb3d274b284b4574120f3bcc1))
+* Remove YSText from font-family ([cd14b69](https://github.com/diplodoc-platform/components/commit/cd14b6984291da96eb23e593482d83ee094b8ef4))
+* Small fixes for mobile view ([95498e7](https://github.com/diplodoc-platform/components/commit/95498e7a3f6de907cd83a19843224e0e00ee1bf8))
+
 ## [3.4.0](https://github.com/diplodoc-platform/components/compare/v3.3.1...v3.4.0) (2023-11-08)
 
 

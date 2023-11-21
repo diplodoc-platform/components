@@ -1,6 +1,6 @@
 import {SyntheticEvent, useCallback, useEffect, useRef, useState} from 'react';
 
-import {throttle} from 'lodash';
+import throttle from 'lodash/throttle';
 
 import {CLASSNAME, CLASSNAME_SELECTED, HIGHLIGHT_OPTIONS} from './constants';
 import {getHighlightedItemIndexInView, highlight, scrollToItem} from './utils';
@@ -304,6 +304,7 @@ export function useCurrentWordSelectionEffect({
             const item = highlightedDOMElements[searchCurrentIndex - 1];
             item.classList.add(CLASSNAME_SELECTED);
         } catch (e) {
+            // eslint-disable-next-line no-console
             console.error(e);
         }
     }, [highlightedDOMElements, searchCurrentIndex, wasChangedDOM]);

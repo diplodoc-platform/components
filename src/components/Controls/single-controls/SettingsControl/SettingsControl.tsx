@@ -36,7 +36,7 @@ interface SettingControlItem {
 
 const SettingsControl = (props: ControlProps) => {
     const {t} = useTranslation('controls');
-    const {controlClassName, controlSize, isVerticalView, popupPosition} =
+    const {controlClassName, controlSize, isVerticalView, isWideView, popupPosition} =
         useContext(ControlsLayoutContext);
     const {
         textSize,
@@ -207,6 +207,7 @@ const SettingsControl = (props: ControlProps) => {
                 ref={controlRef}
                 size={controlSize}
                 onClick={showPopup}
+                isWideView={isWideView}
                 isVerticalView={isVerticalView}
                 tooltipText={t('settings-text')}
                 popupPosition={popupPosition}

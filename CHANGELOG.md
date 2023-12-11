@@ -1,5 +1,12 @@
 # История изменений
 
+## [3.5.1](https://github.com/diplodoc-platform/components/compare/v3.5.0...v3.5.1) (2023-12-11)
+
+
+### Bug Fixes
+
+* Update uikit ([50d9ac9](https://github.com/diplodoc-platform/components/commit/50d9ac9f264a53fd376055ae5c89c9cffff9b7e0))
+
 ## [3.5.0](https://github.com/diplodoc-platform/components/compare/v3.4.0...v3.5.0) (2023-11-21)
 
 

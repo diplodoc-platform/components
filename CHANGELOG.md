@@ -1,5 +1,12 @@
 # История изменений
 
+## [3.6.0](https://github.com/diplodoc-platform/components/compare/v3.5.1...v3.6.0) (2023-12-20)
+
+
+### Features
+
+* **Settings:** Add settings mobile view ([739c30b](https://github.com/diplodoc-platform/components/commit/739c30b2398c71e8d4232926482d7dbbfbcddb11))
+
 ## [3.5.1](https://github.com/diplodoc-platform/components/compare/v3.5.0...v3.5.1) (2023-12-11)
 
 

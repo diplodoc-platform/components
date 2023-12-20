@@ -29,7 +29,7 @@
         @include text-size(body-1);
     }
 
-    &__popup-tooltip {
+    &__popup-tooltip-content {
         padding: 0;
     }
 
@@ -60,5 +60,25 @@
         display: flex;
         align-items: center;
         margin-left: auto;
+    }
+
+    @media (max-width: map-get($screenBreakpoints, 'md')) {
+        &__popup {
+            width: 100vw;
+        }
+
+        &__popup-tooltip {
+            position: fixed;
+            inset: var(--header-height) 0px auto 0px !important;
+            transform: translate3d(0,0,0) !important;
+        }
+
+        &__popup-tooltip-content {
+            max-width: 100%;
+        }
+
+        &__list {
+            width: 100%;
+        }
     }
 }

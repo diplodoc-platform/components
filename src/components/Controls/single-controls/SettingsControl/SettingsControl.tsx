@@ -36,7 +36,7 @@ interface SettingControlItem {
 
 const SettingsControl = (props: ControlProps) => {
     const {t} = useTranslation('controls');
-    const {controlClassName, controlSize, isVerticalView, isWideView, popupPosition} =
+    const {controlClassName, controlSize, isVerticalView, isWideView, isMobileView, popupPosition} =
         useContext(ControlsLayoutContext);
     const {
         textSize,
@@ -178,7 +178,9 @@ const SettingsControl = (props: ControlProps) => {
             placement={getPopupPosition(isVerticalView)}
             className={controlClassName}
             contentClassName={b('popup')}
-            tooltipContentClassName={b('popup-tooltip')}
+            tooltipClassName={b('popup-tooltip')}
+            tooltipContentClassName={b('popup-tooltip-content')}
+            hasArrow={!isMobileView}
             content={
                 <List
                     role={'list'}

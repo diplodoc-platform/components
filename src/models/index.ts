@@ -124,6 +124,7 @@ export interface Router {
 export enum Lang {
     Ru = 'ru',
     En = 'en',
+    He = 'he',
 }
 
 export interface Contributor {

@@ -11,6 +11,16 @@
         &_vertical {
             transform: rotate(90deg);
         }
+
+        [dir='rtl'] & {
+            &_horizontal {
+                transform: rotate(180deg);
+            }
+
+            &_vertical {
+                transform: rotate(90deg);
+            }
+        }
     }
 
     &_open {

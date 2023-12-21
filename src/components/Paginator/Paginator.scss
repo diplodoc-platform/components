@@ -9,6 +9,10 @@
     display: flex;
     align-items: center;
 
+    [dir='rtl'] & {
+        flex-direction: row-reverse;
+    }
+
     &__item {
         $item: &;
 

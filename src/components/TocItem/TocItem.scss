@@ -36,6 +36,10 @@
 
         color: var(--g-color-text-primary);
 
+        [dir='rtl'] & {
+            padding: 7px 20px 7px 12px;
+        }
+
         &_active {
             border-radius: 3px;
             background: var(--g-color-base-selection);
@@ -61,5 +65,9 @@
     &__icon {
         position: absolute;
         left: 0;
+
+        [dir='rtl'] & {
+            right: 0;
+        }
     }
 }

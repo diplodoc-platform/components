@@ -1,6 +1,7 @@
 import {Lang} from '../../../../src';
 
 import pageContentEn from './page-en.json';
+import pageContentHe from './page-he.json';
 import pageContentRu from './page-ru.json';
 import singlePageContentEn from './single-page-en.json';
 import singlePageContentRu from './single-page-ru.json';
@@ -14,6 +15,8 @@ export const getContent = (lang: Lang, singlePage: boolean) => {
 
     if (lang === 'ru') {
         return pageContentRu;
+    } else if (lang === 'he') {
+        return pageContentHe;
     }
 
     return pageContentEn;

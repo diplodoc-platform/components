@@ -55,6 +55,11 @@
         position: absolute;
         right: 7px;
 
+        [dir='rtl'] & {
+            flex-direction: row-reverse;
+            left: -210px;
+        }
+
         & > .dc-controls {
             position: fixed;
             top: calc(6px + var(--dc-header-height, #{$headerHeight}));

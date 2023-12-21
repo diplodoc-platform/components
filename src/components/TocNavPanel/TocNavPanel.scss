@@ -51,10 +51,20 @@
 
         &_left svg {
             margin-right: 6px;
+
+            [dir='rtl'] & {
+                margin-left: 6px;
+                transform: rotate(180deg);
+            }
         }
 
         &_right svg {
             margin-left: 6px;
+
+            [dir='rtl'] & {
+                margin-right: 6px;
+                transform: rotate(180deg);
+            }
         }
     }
 

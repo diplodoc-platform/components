@@ -43,6 +43,10 @@ $leftOffset: 57px;
             display: flex;
             margin-right: 5px;
             flex-shrink: 0;
+
+            [dir='rtl'] & {
+                margin-left: 5px;
+            }
         }
 
         &-header {
@@ -114,6 +118,10 @@ $leftOffset: 57px;
             // recurcive padding
             > #{$class}__list {
                 padding-left: 20px;
+
+                [dir='rtl'] & {
+                    padding-right: 20px;
+                }
             }
         }
     }

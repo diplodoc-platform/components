@@ -47,11 +47,12 @@
     }
 
     &__list-icon {
-        margin-right: 8px;
+        margin-inline-end: 8px;
     }
 
     &__list-item {
         display: flex;
+        justify-content: space-between;
         padding: 12px;
         width: 100%;
 
@@ -67,10 +68,5 @@
     &__list-item-control {
         display: flex;
         align-items: center;
-        margin-left: auto;
-
-        [dir='rtl'] & {
-            margin: 0 auto 0 0;
-        }
     }
 }

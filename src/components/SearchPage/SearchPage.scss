@@ -2,7 +2,7 @@
 @import '../../styles/mixins';
 
 .dc-search-page {
-    margin-top: 26px;
+    margin-block-start: 26px;
     display: flex;
     justify-content: center;
 
@@ -21,27 +21,27 @@
     }
 
     &__search-button {
-        margin-left: 10px;
+        margin-inline-start: 10px;
     }
 
     &__search {
         &-field,
         &-item {
-            margin-bottom: 36px;
+            margin-block-end: 36px;
         }
     }
 
     &__subtitle {
-        margin-bottom: 18px;
+        margin-block-end: 18px;
     }
 
     &__paginator {
         padding: 10px 0;
-        border-top: 1px solid var(--g-color-line-generic);
+        border-block-start: 1px solid var(--g-color-line-generic);
     }
 
     @media (max-width: map-get($screenBreakpoints, 'md')) {
-        margin-top: 16px;
+        margin-block-start: 16px;
 
         &__layout {
             padding: 0 12px;
@@ -49,11 +49,11 @@
 
         &__search {
             &-field {
-                margin-bottom: 24px;
+                margin-block-end: 24px;
             }
 
             &-item {
-                margin-bottom: 40px;
+                margin-block-end: 40px;
             }
         }
     }

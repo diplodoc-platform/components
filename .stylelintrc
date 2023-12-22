@@ -3,6 +3,7 @@
     "plugins": ["stylelint-use-logical"],
     "rules": {
         "csstools/use-logical": ["always", {"except": ["float", "width", "min-width", "max-width", "height", "min-height", "max-height"]}],
-        "declaration-colon-space-after": "always-single-line"
+        "declaration-colon-space-after": "always-single-line",
+        "declaration-block-no-redundant-longhand-properties": null
     }
 }

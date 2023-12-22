@@ -12,8 +12,8 @@
 }
 
 @mixin fixAnchorPosition($offset: 0px) {
-    padding-top: calc(var(--dc-header-height, #{$headerHeight}));
-    margin-top: calc(#{$offset} - var(--dc-header-height, #{$headerHeight}));
+    padding-block-start: calc(var(--dc-header-height, #{$headerHeight}));
+    margin-block-start: calc(#{$offset} - var(--dc-header-height, #{$headerHeight}));
 }
 
 @mixin reset-link-style() {
@@ -103,7 +103,7 @@
 @mixin contributors-text() {
     font-size: 13px;
     font-weight: 400;
-    margin-right: 5px;
+    margin-inline-end: 5px;
     align-self: center;
 }
 

@@ -1,5 +1,12 @@
 # История изменений
 
+## [3.7.0](https://github.com/diplodoc-platform/components/compare/v3.6.0...v3.7.0) (2023-12-22)
+
+
+### Features
+
+* RTL support ([#195](https://github.com/diplodoc-platform/components/issues/195)) ([e5e81b7](https://github.com/diplodoc-platform/components/commit/e5e81b745b1afbeead127542b60460438c1fa37f))
+
 ## [3.6.0](https://github.com/diplodoc-platform/components/compare/v3.5.1...v3.6.0) (2023-12-20)
 
 

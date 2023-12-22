@@ -36,6 +36,10 @@
 
         color: var(--g-color-text-primary);
 
+        [dir='rtl'] & {
+            padding: 7px 20px 7px 12px;
+        }
+
         &_active {
             border-radius: 3px;
             background: var(--g-color-base-selection);
@@ -44,10 +48,10 @@
         &::before {
             content: '';
             position: absolute;
-            top: 0;
-            right: 0;
+            inset-block-start: 0;
+            inset-inline-end: 0;
             // hack: to be shure that it will always start from the left of the TOC
-            left: -100vw;
+            inset-inline-start: -100vw;
             height: 100%;
         }
 
@@ -60,6 +64,6 @@
 
     &__icon {
         position: absolute;
-        left: 0;
+        inset-inline-start: 0;
     }
 }

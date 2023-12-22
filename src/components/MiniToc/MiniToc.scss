@@ -8,7 +8,7 @@
         @include text-size(body-2);
         font-weight: 500;
         color: var(--g-color-text-primary);
-        margin-bottom: 12px;
+        margin-block-end: 12px;
     }
 
     &__sections {
@@ -25,7 +25,7 @@
         display: block;
 
         & > #{$class}__section-link {
-            border-left-color: var(--g-color-line-generic);
+            border-inline-start-color: var(--g-color-line-generic);
 
             @include focusable(-2px);
         }
@@ -37,7 +37,7 @@
             min-height: 28px;
 
             color: var(--g-color-text-secondary);
-            border-left: 2px solid transparent;
+            border-inline-start: 2px solid transparent;
             text-decoration: none;
 
             &:hover {
@@ -47,13 +47,13 @@
 
         &_child {
             #{$class}__section-link {
-                padding-left: 25px;
+                padding-inline-start: 25px;
             }
         }
 
         &_active > #{$class}__section-link {
             color: var(--g-color-text-primary);
-            border-left-color: var(--g-color-text-primary);
+            border-inline-start-color: var(--g-color-text-primary);
         }
     }
 }

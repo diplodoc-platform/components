@@ -4,6 +4,10 @@
     &__text-size-control {
         display: flex;
         align-items: center;
+
+        [dir='rtl'] & {
+            flex-direction: row-reverse;
+        }
     }
 
     &__text-size-button {
@@ -43,13 +47,17 @@
     }
 
     &__list-icon {
-        margin-right: 8px;
+        margin-inline-end: 8px;
     }
 
     &__list-item {
         display: flex;
         padding: 12px;
         width: 100%;
+
+        [dir='rtl'] & {
+            flex-direction: row-reverse;
+        }
     }
 
     &__list-item-description {
@@ -59,7 +67,15 @@
     &__list-item-control {
         display: flex;
         align-items: center;
-        margin-left: auto;
+        margin-inline-start: auto;
+
+        [dir='rtl'] & {
+            margin-inline-end: auto;
+        }
+
+        [dir='rtl'] & > label {
+            transform: rotate(180deg);
+        }
     }
 
     @media (max-width: map-get($screenBreakpoints, 'md')) {

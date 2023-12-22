@@ -96,11 +96,11 @@
     }
 
     blockquote {
-        border-left-color: var(--g-color-base-brand);
+        border-inline-start-color: var(--g-color-base-brand);
     }
 
     .yfm-tab-list {
-        border-bottom-color: var(--g-color-line-generic);
+        border-block-end-color: var(--g-color-line-generic);
     }
 
     .yfm-tab {
@@ -114,12 +114,12 @@
     }
 
     .yfm-tab.active {
-        border-bottom-color: var(--g-color-base-brand);
+        border-block-end-color: var(--g-color-base-brand);
     }
 
     /* TODO: move yfm-cut styles to yfm-transform */
     .yfm-cut {
-        margin-bottom: $blockMarginBottomMedium;
+        margin-block-end: $blockMarginBottomMedium;
     }
 
     .yfm-cut.open .yfm-cut-content {
@@ -131,11 +131,11 @@
     }
 
     // Margin collapse is not applied for a block and header with a negative margin.
-    // The margin is summed up. So, we need to take 15px away from the header margin-top
+    // The margin is summed up. So, we need to take 15px away from the header margin-block-start
     h1,
     h2 {
         @include fixAnchorPosition(calc(#{$headerMarginTopLarge} - #{$blockMarginBottomMedium}));
-        margin-bottom: $blockMarginBottomLarge;
+        margin-block-end: $blockMarginBottomLarge;
     }
 
     h3,
@@ -170,8 +170,8 @@
         height: 4px;
         border-radius: 2px;
         background: var(--g-color-line-generic);
-        margin-top: 20px;
-        margin-bottom: 0;
+        margin-block-start: 20px;
+        margin-block-end: 0;
 
         & + h1,
         & + h2,

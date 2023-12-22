@@ -17,11 +17,11 @@ $leftOffset: 57px;
     flex-direction: column;
     height: calc(100vh - var(--dc-header-height, #{$headerHeight}));
     overflow-y: hidden;
-    border-right: 1px solid var(--g-color-line-generic);
+    border-inline-end: 1px solid var(--g-color-line-generic);
 
     .mobile & {
-        border-top: 1px solid var(--g-color-line-generic);
-        border-right: none;
+        border-block-start: 1px solid var(--g-color-line-generic);
+        border-inline-end: none;
     }
 
     &__empty {
@@ -36,12 +36,12 @@ $leftOffset: 57px;
         padding: 10px 10px 8px 0;
 
         &_scrolled {
-            border-bottom: 1px solid var(--g-color-line-generic);
+            border-block-end: 1px solid var(--g-color-line-generic);
         }
 
         &-header-icon {
             display: flex;
-            margin-right: 5px;
+            margin-inline-end: 5px;
             flex-shrink: 0;
         }
 
@@ -77,7 +77,7 @@ $leftOffset: 57px;
         padding: 4px 10px 20px 0;
 
         &_scrolled {
-            border-top: 1px solid var(--g-color-line-generic);
+            border-block-start: 1px solid var(--g-color-line-generic);
         }
     }
 
@@ -90,7 +90,7 @@ $leftOffset: 57px;
         scrollbar-width: thin;
 
         &_offset_top {
-            padding-top: 24px;
+            padding-block-start: 24px;
         }
     }
 
@@ -113,13 +113,13 @@ $leftOffset: 57px;
 
             // recurcive padding
             > #{$class}__list {
-                padding-left: 20px;
+                padding-inline-start: 20px;
             }
         }
     }
 
     &__content > &__list {
-        padding-right: 21px;
-        padding-bottom: 30px;
+        padding-inline-end: 21px;
+        padding-block-end: 30px;
     }
 }

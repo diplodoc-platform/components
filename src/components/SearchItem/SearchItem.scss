@@ -20,14 +20,14 @@
 
     &__marks {
         height: 16px;
-        margin-top: 10px;
+        margin-block-start: 10px;
     }
 
     &__mark {
-        margin-right: 20px;
+        margin-inline-end: 20px;
 
         &:last-child {
-            margin-right: 0;
+            margin-inline-end: 0;
         }
     }
 
@@ -36,7 +36,7 @@
     }
 
     &__item-wrapper {
-        margin-bottom: 20px;
+        margin-block-end: 20px;
         @include text-size(body-1);
     }
 
@@ -59,7 +59,7 @@
         }
 
         &-title {
-            margin-bottom: 4px;
+            margin-block-end: 4px;
         }
 
         &-title,

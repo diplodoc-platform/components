@@ -10,10 +10,10 @@
 
     &_fixed {
         position: fixed;
-        bottom: 0;
+        inset-block-end: 0;
         z-index: 1000;
-        left: 0;
-        border-top: 1px solid var(--g-color-line-generic);
+        inset-inline-start: 0;
+        border-block-start: 1px solid var(--g-color-line-generic);
     }
 
     &_fixed &__control-hint {
@@ -45,16 +45,26 @@
         }
 
         & svg {
-            margin-top: -1px;
+            margin-block-start: -1px;
             min-width: 16px;
         }
 
         &_left svg {
-            margin-right: 6px;
+            margin-inline-end: 6px;
+
+            [dir='rtl'] & {
+                margin-inline-start: 6px;
+                transform: rotate(180deg);
+            }
         }
 
         &_right svg {
-            margin-left: 6px;
+            margin-inline-start: 6px;
+
+            [dir='rtl'] & {
+                margin-inline-end: 6px;
+                transform: rotate(180deg);
+            }
         }
     }
 

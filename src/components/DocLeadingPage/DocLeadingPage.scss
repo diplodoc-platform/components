@@ -12,7 +12,7 @@
     }
 
     &__main {
-        margin-bottom: 40px;
+        margin-block-end: 40px;
         padding: 0 40px;
     }
 
@@ -41,13 +41,13 @@
 
         &_root {
             flex-direction: row;
-            margin-top: 70px;
-            margin-bottom: -$blockMarginBottomLarge;
+            margin-block-start: 70px;
+            margin-block-end: -$blockMarginBottomLarge;
         }
     }
 
     &__links-left {
-        padding-right: 10px;
+        padding-inline-end: 10px;
     }
 
     &__links-item {
@@ -56,10 +56,10 @@
             min-width: 280px;
             max-width: 400px;
             width: calc(50% - 20px);
-            padding-top: 15px;
-            padding-bottom: 15px;
-            margin-bottom: $blockMarginBottomLarge;
-            border-top: 1px solid var(--g-color-line-generic);
+            padding-block-start: 15px;
+            padding-block-end: 15px;
+            margin-block-end: $blockMarginBottomLarge;
+            border-block-start: 1px solid var(--g-color-line-generic);
         }
     }
 
@@ -67,7 +67,7 @@
         &_root {
             @include heading4();
 
-            margin-bottom: 10px;
+            margin-block-end: 10px;
             font-weight: 500;
         }
     }
@@ -78,8 +78,8 @@
 
     @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
         &__main {
-            margin-left: 0;
-            margin-bottom: 40px;
+            margin-inline-start: 0;
+            margin-block-end: 40px;
             padding: 0 20px;
         }
 

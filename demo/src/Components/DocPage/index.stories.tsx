@@ -60,9 +60,24 @@ const useSettings = () => {
     };
 };
 
+const useDirection = (lang) => {
+    const [dir, onChangeDir] = useState('ltr');
+
+    useEffect(() => {
+        if (lang === 'he') {
+            onChangeDir('rtl');
+        } else {
+            onChangeDir('ltr');
+        }
+
+        document.dir = dir;
+    }, [lang, dir]);
+};
+
 const useLangs = () => {
-    const langs = ['ru', 'en', 'cs'];
+    const langs = ['ru', 'en', 'cs', 'he'];
     const [lang, onChangeLang] = useState(DEFAULT_SETTINGS.lang);
+    useDirection(lang);
 
     return {
         lang,

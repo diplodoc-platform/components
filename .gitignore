@@ -10,3 +10,4 @@ node_modules
 # Generated content
 /build
 /storybook-static
+/demo/storybook-static

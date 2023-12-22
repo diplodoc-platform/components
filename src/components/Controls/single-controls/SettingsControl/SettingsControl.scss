@@ -4,6 +4,10 @@
     &__text-size-control {
         display: flex;
         align-items: center;
+
+        [dir='rtl'] & {
+            flex-direction: row-reverse;
+        }
     }
 
     &__text-size-button {
@@ -50,6 +54,10 @@
         display: flex;
         padding: 12px;
         width: 100%;
+
+        [dir='rtl'] & {
+            flex-direction: row-reverse;
+        }
     }
 
     &__list-item-description {
@@ -60,6 +68,14 @@
         display: flex;
         align-items: center;
         margin-left: auto;
+
+        [dir='rtl'] & {
+            margin: 0 auto 0 0;
+        }
+
+        [dir='rtl'] & > label {
+            transform: rotate(180deg);
+        }
     }
 
     @media (max-width: map-get($screenBreakpoints, 'md')) {

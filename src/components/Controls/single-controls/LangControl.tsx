@@ -17,11 +17,13 @@ import '../Controls.scss';
 const ICONS: Record<string, string> = {
     en: '🇬🇧',
     ru: '🇷🇺',
+    he: '🇮🇱',
 };
-const DEFAULT_LANGS = ['en', 'ru'];
+const DEFAULT_LANGS = ['en', 'ru', 'he'];
 const LEGACY_LANG_ITEMS = [
     {value: Lang.En, text: 'English', icon: '🇬🇧'},
     {value: Lang.Ru, text: 'Русский', icon: '🇷🇺'},
+    {value: Lang.He, text: 'Hebrew', icon: '🇮🇱'},
 ];
 
 const b = block('dc-controls');

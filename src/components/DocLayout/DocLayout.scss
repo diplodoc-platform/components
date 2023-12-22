@@ -20,7 +20,7 @@
 
     &__right {
         width: 176px;
-        padding-right: 24px;
+        padding-inline-end: 24px;
         &_full-screen,
         &_hidden-right {
             flex: initial;
@@ -58,8 +58,8 @@
     &__toc {
         position: fixed;
         z-index: 100;
-        top: var(--dc-header-height, #{$headerHeight});
-        padding-left: 24px;
+        inset-block-start: var(--dc-header-height, #{$headerHeight});
+        padding-inline-start: 24px;
         width: 252px;
         box-sizing: content-box;
         background-color: var(--g-color-base-background);

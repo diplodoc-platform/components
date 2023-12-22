@@ -38,7 +38,7 @@ $avatarWrapperBigSize: 33px;
 
         @media screen and (max-width: map-get($screenBreakpoints, 'sm')) {
             &_onlyAuthor > *:last-child {
-                margin-left: 5px;
+                margin-inline-start: 5px;
             }
 
             & > *:last-child,
@@ -51,7 +51,7 @@ $avatarWrapperBigSize: 33px;
             }
 
             & > *:not(:last-child) {
-                margin-right: 0px;
+                margin-inline-end: 0px;
             }
         }
 
@@ -61,7 +61,7 @@ $avatarWrapperBigSize: 33px;
             }
 
             & > *:last-child {
-                margin-right: 0px;
+                margin-inline-end: 0px;
             }
         }
     }
@@ -106,8 +106,8 @@ $avatarWrapperBigSize: 33px;
         @include disable-link-styles;
 
         & > * {
-            margin-left: $avatarBorder;
-            margin-right: calc(#{$avatarBorder} + #{$avatarsDistance});
+            margin-inline-start: $avatarBorder;
+            margin-inline-end: calc(#{$avatarBorder} + #{$avatarsDistance});
         }
         & a {
             border-radius: 50%; // to have rounded outline on focus as all avatars rounded
@@ -157,7 +157,7 @@ $avatarWrapperBigSize: 33px;
         padding: $detailsIndent;
 
         & > *:not(:last-child) {
-            margin-bottom: $detailsIndent;
+            margin-block-end: $detailsIndent;
         }
     }
 }

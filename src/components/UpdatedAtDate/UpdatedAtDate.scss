@@ -1,0 +1,10 @@
+@import '../../styles/mixins';
+
+.updated-at-date {
+    display: flex;
+    margin: 0 0 32px;
+
+    &__title {
+        @include contributors-text();
+    }
+}

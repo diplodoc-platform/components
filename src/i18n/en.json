@@ -113,5 +113,8 @@
   "paginator": {
     "next": "Next page",
     "prev": "Previous page"
+  },
+  "updated-at-date": {
+    "label-updated-at": "Updated at"
   }
 }

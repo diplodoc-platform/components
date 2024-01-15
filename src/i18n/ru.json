@@ -113,5 +113,8 @@
   "paginator": {
     "next": "Следующая страница",
     "prev": "Предыдущая страница"
+  },
+  "updated-at-date": {
+    "label-updated-at": "Обновлено"
   }
 }

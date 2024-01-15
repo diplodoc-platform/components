@@ -1,4 +1,4 @@
-import React, {ReactPortal} from 'react';
+import React, {Fragment, ReactPortal} from 'react';
 
 import {Link} from '@gravity-ui/icons';
 import block from 'bem-cn-lite';
@@ -28,6 +28,7 @@ import {HTML} from '../HTML';
 import {MiniToc} from '../MiniToc';
 import {SearchBar, withHighlightedSearchWords} from '../SearchBar';
 import {TocNavPanel} from '../TocNavPanel';
+import UpdatedAtDate from '../UpdatedAtDate/UpdatedAtDate';
 
 import './DocPage.scss';
 
@@ -382,16 +383,28 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             return null;
         }
 
+        const updatedAt = this.renderUpdatedAt(meta?.updatedAt);
         const author = this.renderAuthor(!meta?.contributors?.length);
         const contributors = this.renderContributors();
 
-        const separator = author && contributors && <div className={b('separator')}>{','}</div>;
-
         return (
             <div className={b('page-contributors')}>
-                {author} {separator} {contributors}
+                {[updatedAt, author, contributors].filter(Boolean).map((element, idx, arr) => (
+                    <Fragment key={idx}>
+                        {element}
+                        {arr.length - 1 !== idx && <div className={b('separator')}>{','}</div>}
+                    </Fragment>
+                ))}
             </div>
         );
+    }
+
+    private renderUpdatedAt(updatedAt?: string) {
+        if (!updatedAt) {
+            return null;
+        }
+
+        return <UpdatedAtDate updatedAt={updatedAt} />;
     }
 
     private renderAuthor(onlyAuthor: boolean) {

@@ -8,7 +8,7 @@ import {getUserIdentificator} from '../utils';
 
 import '../ContributorAvatars.scss';
 
-const b = block('contributor-avatars');
+const b = block('dc-contributor-avatars');
 
 interface AvatarProps {
     avatarData: AvatarData;

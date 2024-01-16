@@ -13,7 +13,7 @@ import {getName} from './utils';
 
 import './ContributorAvatars.scss';
 
-const b = block('contributor-avatars');
+const b = block('dc-contributor-avatars');
 
 const MAX_DISPLAYED_CONTRIBUTORS = 3;
 

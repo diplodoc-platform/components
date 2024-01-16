@@ -1,4 +1,4 @@
-import React, {Fragment, ReactPortal} from 'react';
+import React, {ReactPortal} from 'react';
 
 import {Link} from '@gravity-ui/icons';
 import block from 'bem-cn-lite';
@@ -389,9 +389,9 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
 
         return (
             <div className={b('page-contributors')}>
-                {[author, contributors, updatedAt].filter(Boolean).map((element, idx) => (
-                    <Fragment key={idx}>{element}</Fragment>
-                ))}
+                {author}
+                {contributors}
+                {updatedAt}
             </div>
         );
     }

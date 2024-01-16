@@ -19,7 +19,7 @@ const UpdatedAtDate: React.FC<UpdatedAtDateProps> = ({updatedAt}) => {
 
     const updatedAtFormatted = useMemo(() => {
         const {localeCode} = getConfig();
-        return format(updatedAt, 'longDateTime', localeCode);
+        return format(updatedAt, 'longDate', localeCode);
     }, [updatedAt]);
 
     return (

@@ -30,9 +30,8 @@ const ContributorAvatars: React.FC<ContributorAvatarsProps> = (props) => {
         return null;
     }
 
-    if (contributors.length === 1) {
-        const oneAvatar = getOneAvatar(contributors[0], isAuthor, onlyAuthor);
-        return oneAvatar;
+    if (isAuthor && contributors.length === 1) {
+        return getOneAvatar(contributors[0], isAuthor, onlyAuthor);
     }
 
     const displayedContributors = [...contributors];

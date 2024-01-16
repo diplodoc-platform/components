@@ -383,16 +383,16 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             return null;
         }
 
-        const updatedAt = this.renderUpdatedAt(meta?.updatedAt);
         const author = this.renderAuthor(!meta?.contributors?.length);
         const contributors = this.renderContributors();
+        const updatedAt = this.renderUpdatedAt(meta?.updatedAt);
 
         return (
             <div className={b('page-contributors')}>
-                {[updatedAt, author, contributors].filter(Boolean).map((element, idx, arr) => (
+                {[author, contributors, updatedAt].filter(Boolean).map((element, idx, arr) => (
                     <Fragment key={idx}>
                         {element}
-                        {arr.length - 1 !== idx && <div className={b('separator')}>{','}</div>}
+                        {arr.length - 1 !== idx && <div className={b('separator')} />}
                     </Fragment>
                 ))}
             </div>

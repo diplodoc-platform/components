@@ -73,9 +73,5 @@ export const format = (
     formatCode: keyof DateTimeFormatter,
     localeCode = defaultRegion,
 ) => {
-    let result = getDateTimeFormatter(localeCode)[formatCode].format(new Date(date));
-    if (formatCode === 'longDate' && ['ru-RU', 'ru-KZ'].includes(localeCode)) {
-        result = result.replace(/\sг\.$/, '');
-    }
-    return result;
+    return getDateTimeFormatter(localeCode)[formatCode].format(new Date(date));
 };

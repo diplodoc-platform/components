@@ -8,16 +8,14 @@ import {format} from '../../utils/date';
 
 import './UpdatedAtDate.scss';
 
-const b = block('updated-at-date');
+const b = block('dc-updated-at-date');
 
 export interface UpdatedAtDateProps {
     updatedAt: string;
-    translationName?: string;
 }
 
-const UpdatedAtDate: React.FC<UpdatedAtDateProps> = (props) => {
-    const {updatedAt, translationName = 'updated-at-date'} = props;
-    const {t} = useTranslation(translationName);
+const UpdatedAtDate: React.FC<UpdatedAtDateProps> = ({updatedAt}) => {
+    const {t} = useTranslation('updated-at-date');
 
     const updatedAtFormatted = useMemo(() => {
         const {localeCode} = getConfig();

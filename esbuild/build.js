@@ -37,7 +37,7 @@ async function build({path, format}) {
                         async transform(source) {
                             const {css} = await postcss([
                                 autoprefixer({cascade: false}),
-                                postcssPresetEnv({stage: 0}),
+                                postcssPresetEnv({stage: 3}),
                             ]).process(source, {from: undefined});
 
                             return css;

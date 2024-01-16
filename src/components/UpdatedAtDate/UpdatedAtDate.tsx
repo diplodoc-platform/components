@@ -2,7 +2,7 @@ import React, {memo, useMemo} from 'react';
 
 import block from 'bem-cn-lite';
 
-import {configure, getConfig} from '../../config';
+import {getConfig} from '../../config';
 import {useTranslation} from '../../hooks';
 import {format} from '../../utils/date';
 
@@ -20,9 +20,8 @@ const UpdatedAtDate: React.FC<UpdatedAtDateProps> = (props) => {
     const {t} = useTranslation(translationName);
 
     const updatedAtFormatted = useMemo(() => {
-        configure();
-        const config = getConfig();
-        return format(updatedAt, 'longDateTime', config.localeCode);
+        const {localeCode} = getConfig();
+        return format(updatedAt, 'longDateTime', localeCode);
     }, [updatedAt]);
 
     return (

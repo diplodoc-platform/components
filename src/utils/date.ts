@@ -10,7 +10,7 @@ interface DateTimeFormatter {
     year: Intl.DateTimeFormat;
 }
 
-const defaultRegion = 'ru-RU';
+const defaultRegion = 'en';
 
 const dateTimeFormatters: Map<string, DateTimeFormatter> = new Map();
 
@@ -72,4 +72,10 @@ export const format = (
     date: string | number,
     formatCode: keyof DateTimeFormatter,
     localeCode = defaultRegion,
-) => getDateTimeFormatter(localeCode)[formatCode].format(new Date(date));
+) => {
+    let result = getDateTimeFormatter(localeCode)[formatCode].format(new Date(date));
+    if (formatCode === 'longDate' && ['ru-RU', 'ru-KZ'].includes(localeCode)) {
+        result = result.replace(/\sг\.$/, '');
+    }
+    return result;
+};

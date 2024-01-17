@@ -30,7 +30,7 @@ const ContributorAvatars: React.FC<ContributorAvatarsProps> = (props) => {
         return null;
     }
 
-    if (isAuthor && contributors.length === 1) {
+    if (contributors.length === 1) {
         return getOneAvatar(contributors[0], isAuthor, onlyAuthor);
     }
 
@@ -78,17 +78,7 @@ function getOneAvatar(
 
     return (
         <div className={b('one_contributor', wrapperModifiers)}>
-            <div className={'desktop'}>{getRedirectingAvatar(avatarData, contributor.url)} </div>
-            <div className={'mobile'}>
-                {isAuthor && onlyAuthor ? (
-                    getRedirectingAvatar(avatarData, contributor.url, true)
-                ) : (
-                    <AvatarWithDescription
-                        contributor={contributor}
-                        avatarSize={AvatarSizes.SMALL}
-                    />
-                )}
-            </div>
+            {getRedirectingAvatar(avatarData, contributor.url)}
             <div>
                 <Link href={contributor.url}>{getName(contributor, isAuthor)}</Link>
             </div>

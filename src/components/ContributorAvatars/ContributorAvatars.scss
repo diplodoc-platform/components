@@ -32,37 +32,13 @@ $avatarWrapperBigSize: 33px;
         margin: 0 $avatarBorder;
         @include disable-link-styles;
 
+        a:hover,
+        a:active {
+            color: var(--g-color-text-link-hover);
+        }
+
         & > * {
             @include contributors-text();
-        }
-
-        @media screen and (max-width: map-get($screenBreakpoints, 'sm')) {
-            &_onlyAuthor > *:last-child {
-                margin-left: 5px;
-            }
-
-            & > *:last-child,
-            & > .desktop {
-                display: none;
-            }
-
-            &_onlyAuthor > *:last-child {
-                display: block;
-            }
-
-            & > *:not(:last-child) {
-                margin-right: 0px;
-            }
-        }
-
-        @media screen and (min-width: map-get($screenBreakpoints, 'sm')) {
-            & > .mobile {
-                display: none;
-            }
-
-            & > *:last-child {
-                margin-right: 0px;
-            }
         }
     }
 

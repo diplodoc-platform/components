@@ -2,9 +2,10 @@
 
 .dc-updated-at-date {
     display: flex;
-    margin: 0 0 32px;
-
     font-size: 13px;
     font-weight: 400;
-    align-self: center;
+
+    &__wrapper {
+        align-self: center;
+    }
 }

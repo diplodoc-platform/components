@@ -135,7 +135,7 @@
     }
 
     &__title {
-        margin-bottom: 8px;
+        margin-bottom: 12px;
 
         @include text-size(display-2);
     }
@@ -236,8 +236,17 @@
 
     &__page-contributors {
         display: flex;
-        & > div + div {
-            margin-left: 20px;
+        margin-bottom: 24px;
+        flex-wrap: wrap;
+
+        & > div {
+            margin-right: 20px;
+            margin-bottom: 8px;
+            line-height: 24px;
+        }
+
+        & > div:last-child {
+            margin-right: 0;
         }
     }
 

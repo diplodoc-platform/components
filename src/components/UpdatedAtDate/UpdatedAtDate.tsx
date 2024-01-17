@@ -24,7 +24,9 @@ const UpdatedAtDate: React.FC<UpdatedAtDateProps> = ({updatedAt}) => {
 
     return (
         <div className={b()}>
-            {t<string>('title')} {updatedAtFormatted}
+            <div className={b('wrapper')}>
+                {t<string>('title')} {updatedAtFormatted}
+            </div>
         </div>
     );
 };

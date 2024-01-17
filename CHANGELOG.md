@@ -1,5 +1,12 @@
 # История изменений
 
+## [3.8.0](https://github.com/diplodoc-platform/components/compare/v3.7.0...v3.8.0) (2024-01-17)
+
+
+### Features
+
+* **DocPage:** Add updatedAt meta ([#198](https://github.com/diplodoc-platform/components/issues/198)) ([ee421ab](https://github.com/diplodoc-platform/components/commit/ee421abf8964498466913dd8f211c23fc071e500))
+
 ## [3.7.0](https://github.com/diplodoc-platform/components/compare/v3.6.0...v3.7.0) (2023-12-22)
 
 

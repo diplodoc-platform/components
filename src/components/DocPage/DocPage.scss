@@ -258,6 +258,11 @@
     @media screen and (min-width: 1024px) {
         &#{&}_full-screen#{&}_regular-page-width &__controls_vertical {
             right: -36px;
+
+            [dir='rtl'] & {
+                left: -36px;
+                right: auto;
+            }
         }
     }
     /* stylelint-disable declaration-no-important */

@@ -6,30 +6,32 @@
     &_type {
         &_horizontal {
             transform: rotate(0deg);
+
+            [dir='rtl'] & {
+                transform: rotate(180deg);
+            }
         }
 
         &_vertical {
             transform: rotate(90deg);
-        }
-
-        [dir='rtl'] & {
-            &_horizontal {
-                transform: rotate(180deg);
-            }
-
-            &_vertical {
-                transform: rotate(90deg);
-            }
         }
     }
 
     &_open {
         &#{$root}_type_horizontal {
             transform: rotate(90deg);
+
+            [dir='rtl'] & {
+                transform: rotate(90deg);
+            }
         }
 
         &#{$root}_type_vertical {
             transform: rotate(-90deg);
+
+            [dir='rtl'] & {
+                transform: rotate(90deg);
+            }
         }
     }
 

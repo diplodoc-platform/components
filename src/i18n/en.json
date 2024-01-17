@@ -57,7 +57,7 @@
     "title": "Written by"
   },
   "contributors": {
-    "title": "improved by"
+    "title": "Improved by"
   },
   "feedback": {
     "like-text": "Helpful",
@@ -113,5 +113,8 @@
   "paginator": {
     "next": "Next page",
     "prev": "Previous page"
+  },
+  "updated-at-date": {
+    "title": "Updated at"
   }
 }

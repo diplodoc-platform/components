@@ -12,7 +12,7 @@ import Avatar from './Avatar';
 
 import '../ContributorAvatars.scss';
 
-const b = block('contributor-avatars');
+const b = block('dc-contributor-avatars');
 
 interface DetailsProps {
     contributors: Contributor[];

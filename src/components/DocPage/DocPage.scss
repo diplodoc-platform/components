@@ -135,7 +135,7 @@
     }
 
     &__title {
-        margin-bottom: 8px;
+        margin-bottom: 12px;
 
         @include text-size(display-2);
     }
@@ -234,13 +234,20 @@
         }
     }
 
-    &__separator {
-        margin: 0 5px 32px 0;
-        align-self: center;
-    }
-
     &__page-contributors {
         display: flex;
+        margin-bottom: 24px;
+        flex-wrap: wrap;
+
+        & > div {
+            margin-right: 20px;
+            margin-bottom: 8px;
+            line-height: 24px;
+        }
+
+        & > div:last-child {
+            margin-right: 0;
+        }
     }
 
     @media screen and (max-width: 1440px) {

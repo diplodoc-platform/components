@@ -9,7 +9,7 @@ import Details from './Details';
 
 import '../ContributorAvatars.scss';
 
-const b = block('contributor-avatars');
+const b = block('dc-contributor-avatars');
 
 const LOWER_BOUND_MORE_CONTRIBUTORS = 9;
 

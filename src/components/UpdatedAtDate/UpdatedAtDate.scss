@@ -1,0 +1,11 @@
+@import '../../styles/mixins';
+
+.dc-updated-at-date {
+    display: flex;
+    font-size: 13px;
+    font-weight: 400;
+
+    &__wrapper {
+        align-self: center;
+    }
+}

@@ -19,6 +19,7 @@ export enum ControlSizes {
 export interface Config {
     lang?: string;
     loc?: Loc;
+    localeCode?: string;
 }
 
 export interface DocSettings {
@@ -92,6 +93,7 @@ export interface DocMeta {
     contributors?: Contributor[];
     author?: unknown | Contributor;
     __system?: Record<string, unknown>;
+    updatedAt?: string;
 }
 
 export interface TocData {

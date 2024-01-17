@@ -13,7 +13,7 @@ import {getName} from './utils';
 
 import './ContributorAvatars.scss';
 
-const b = block('contributor-avatars');
+const b = block('dc-contributor-avatars');
 
 const MAX_DISPLAYED_CONTRIBUTORS = 3;
 
@@ -31,8 +31,7 @@ const ContributorAvatars: React.FC<ContributorAvatarsProps> = (props) => {
     }
 
     if (contributors.length === 1) {
-        const oneAvatar = getOneAvatar(contributors[0], isAuthor, onlyAuthor);
-        return oneAvatar;
+        return getOneAvatar(contributors[0], isAuthor, onlyAuthor);
     }
 
     const displayedContributors = [...contributors];
@@ -79,17 +78,7 @@ function getOneAvatar(
 
     return (
         <div className={b('one_contributor', wrapperModifiers)}>
-            <div className={'desktop'}>{getRedirectingAvatar(avatarData, contributor.url)} </div>
-            <div className={'mobile'}>
-                {isAuthor && onlyAuthor ? (
-                    getRedirectingAvatar(avatarData, contributor.url, true)
-                ) : (
-                    <AvatarWithDescription
-                        contributor={contributor}
-                        avatarSize={AvatarSizes.SMALL}
-                    />
-                )}
-            </div>
+            {getRedirectingAvatar(avatarData, contributor.url)}
             <div>
                 <Link href={contributor.url}>{getName(contributor, isAuthor)}</Link>
             </div>

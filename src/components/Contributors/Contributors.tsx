@@ -8,7 +8,7 @@ import {ContributorAvatars} from '../ContributorAvatars';
 
 import './Contributors.scss';
 
-const b = block('contributors');
+const b = block('dc-contributors');
 
 export interface ContributorsProps {
     users: Contributor[];

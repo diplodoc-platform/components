@@ -4,5 +4,7 @@
     display: flex;
     margin: 0 0 32px;
 
-    @include contributors-text();
+    font-size: 13px;
+    font-weight: 400;
+    align-self: center;
 }

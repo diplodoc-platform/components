@@ -56,8 +56,8 @@
         right: 7px;
 
         [dir='rtl'] & {
-            flex-direction: row-reverse;
-            left: -210px;
+            left: 7px;
+            right: auto;
         }
 
         & > .dc-controls {

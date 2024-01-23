@@ -14,10 +14,6 @@
     &__search-field-wrapper {
         display: flex;
         align-items: center;
-
-        [dir='rtl'] & {
-            flex-direction: row-reverse;
-        }
     }
 
     &__search-button {

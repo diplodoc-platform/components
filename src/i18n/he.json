@@ -1,0 +1,117 @@
+{
+  "controls": {
+    "label_wide_format": "פורמט רחב",
+    "description_wide_format_enabled": "התאפשר",
+    "description_wide_format_disabled": "הושבת",
+    "label_show_mini_toc": "ניווט לכתבה",
+    "description_show_mini_toc": "הצג את הניווט",
+    "label_dark_theme": "ערכת נושא כהה",
+    "description_enabled_dark_theme": "התאפשר",
+    "description_disabled_dark_theme": "הושבת",
+    "label_text_size": "גודל פונט",
+    "description_s_text_size": "קטן",
+    "description_m_text_size": "ברירת מחדל",
+    "description_l_text_size": "רחב",
+    "full-screen-text-enabled": "יציאה ממצב קריאה (Esc)",
+    "full-screen-text-disabled": "מצב קריאה",
+    "single-page-text-enabled": "יציאה ממצב עמוד בודד",
+    "single-page-text-disabled": "מצב עמוד בודד",
+    "pdf-text": "PDF",
+    "edit-text-github": "עריכה ב-GitHub",
+    "edit-text-arcanum": "עריכה ב-Arcanum",
+    "edit-text": "עריכה",
+    "settings-text": "הגדרות",
+    "lang-text": "שפה",
+    "like-text": "שימושי",
+    "dislike-text": "לא שימושי",
+    "cancel-like-text": "הפך לפחות טוב",
+    "cancel-dislike-text": "השתפר",
+    "feedback-success-title": "תודה!",
+    "feedback-success-text": "התשובה שלכם תסייע לשפר את התיעוד",
+    "dislike-variants-title": "ספרו לנו מה הבעיה עם הכתבה",
+    "subscribe-text": "הירשמו",
+    "subscribe-documentation-title": "להירשם לתיעוד",
+    "unsubscribe-documentation-title": "לבטל את הרישום מהתיעוד",
+    "subscribe-documentation-placeholder": "הזינו את המייל שלכם",
+    "subscribe-page-title": "להירשם לעמוד הנוכחי",
+    "unsubscribe-page-title": "לבטל את הרישום מהעמוד",
+    "email-text-invalid": "כתובת מייל לא חוקית",
+    "email-request-fail": "סליחה, בקשת הרישום נכשלה, אנא נסו שוב מאוחר יותר",
+    "verify-title": "בדקו את המייל שלכם",
+    "verify-text": "תודה על ההרשמה, מייל האימות נשלח אליכם אנא עקבו אחרי הקישור כדי להשלים את ההרשמה",
+    "send-action-text": "לשלוח",
+    "skip-action-text": "לדלג",
+    "feedback-comment-placeholder": "מידע נוסף יהיה שימושי",
+    "lang-control-text-ru": "Русский",
+    "lang-control-text-en": "English"
+  },
+  "mini-toc": {
+    "title": "במאמר הזה",
+    "description": "תוכן נוכחי במאמר"
+  },
+  "toc-nav-panel": {
+    "hint_previous": "הקודם",
+    "hint_next": "הבא"
+  },
+  "authors": {
+    "title": "נכתב על ידי"
+  },
+  "contributors": {
+    "title": "שופר על ידי"
+  },
+  "feedback": {
+    "like-text": "שימושי",
+    "dislike-text": "לא שימושי",
+    "cancel-like-text": "הפך לפחות טוב",
+    "cancel-dislike-text": "השתפר",
+    "success-title": "תודה!",
+    "success-text": "התשובה שלכם תסייע לשפר את התיעוד",
+    "dislike-variants-title": "ספרו לנו מה הבעיה עם הכתבה",
+    "send-action-text": "לשלוח",
+    "comment-placeholder": "מידע נוסף יהיה שימושי",
+    "button-like-text": "כן",
+    "button-dislike-text": "לא",
+    "main-question": "האם המאמר היה שימושי?"
+  },
+  "feedback-variants": {
+    "irrelevant-answer": "אין תשובה לשאלה שלי",
+    "useless-recs": "ההמלצות לא סייעו",
+    "content-mismatch": "התוכן לא תואם לכותרת",
+    "other": "אחר"
+  },
+  "search-bar": {
+    "search-query-label": "נמצא לפי דרישה",
+    "close": "סגירה",
+    "prev": "הקודם",
+    "next": "הבא"
+  },
+  "error": {
+    "label_meta-title-403": "אין גישה",
+    "label_meta-title-404": "העמוד לא נמצא",
+    "label_meta-title-500": "קרתה שגיאה",
+    "label_title-code": "שגיאה {{קוד}}",
+    "label_title-403_project": "אין גישה לפרויקט",
+    "label_title-403_page-group": "אין גישה לעמוד",
+    "label_title-404": "הדף אינו קיים",
+    "label_title-500": "הדף לא נטען על ידי השרת",
+    "label_description-1": "אנחנו כבר עובדים על זה.",
+    "label_description-link": "רעננו את העמוד",
+    "label_description-2": ".",
+    "label_link-main": "חזרה לדף הראשי",
+    "label_link-access": "בקשת גישה"
+  },
+  "search": {
+    "search_placeholder": "חיפוש",
+    "search_action": "חיפוש",
+    "search_request-query": "תוצאות חיפוש",
+    "search_not-found-title": "אין תוצאות לבקשה שלך",
+    "search_not-found-text": "נא לבדוק את האיות או לנסות מילות מפתח אחרות",
+    "search_mark_like": "אהבתי",
+    "search_mark_dislike": "לא אהבתי",
+    "search_mark-result-text": "תודה על הדירוג! "
+  },
+  "paginator": {
+    "next": "העמוד הבא",
+    "prev": "העמוד הקודם"
+  }
+}

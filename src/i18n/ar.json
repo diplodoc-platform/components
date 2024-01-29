@@ -1,0 +1,117 @@
+{
+  "controls": {
+    "label_wide_format": "تنسيق واسع",
+    "description_wide_format_enabled": "مفعل",
+    "description_wide_format_disabled": "معطل",
+    "label_show_mini_toc": "قوالب التصفح في المقال",
+    "description_show_mini_toc": "عرض قوالب التصفح",
+    "label_dark_theme": "الوضع الداكن",
+    "description_enabled_dark_theme": "مفعل",
+    "description_disabled_dark_theme": "معطل",
+    "label_text_size": "حجم الخط",
+    "description_s_text_size": "صغير",
+    "description_m_text_size": "افتراضي",
+    "description_l_text_size": "كبير",
+    "full-screen-text-enabled": "الخروج من وضع القراءة (Esc)",
+    "full-screen-text-disabled": "وضع القراءة",
+    "single-page-text-enabled": "الخروج من وضع الصفحة الواحدة",
+    "single-page-text-disabled": "وضع الصفحة الواحدة",
+    "pdf-text": "PDF",
+    "edit-text-github": "تحرير على GitHub",
+    "edit-text-arcanum": "تحرير على Arcanum",
+    "edit-text": "تحرير",
+    "settings-text": "الإعدادات",
+    "lang-text": "اللغة",
+    "like-text": "مفيد",
+    "dislike-text": "غير مفيد",
+    "cancel-like-text": "ازداد الأمر سوءًا",
+    "cancel-dislike-text": "تحسنت الأمور",
+    "feedback-success-title": "شكرًا لك!",
+    "feedback-success-text": "إجابتك ستساعد على تحسين الوثيقة",
+    "dislike-variants-title": "أخبرنا عن الأخطاء الموجودة في المقال",
+    "subscribe-text": "اشتراك",
+    "subscribe-documentation-title": "اشتراك في الوثائق",
+    "unsubscribe-documentation-title": "إلغاء الاشتراك في الوثائق",
+    "subscribe-documentation-placeholder": "أدخل بريدك الإلكتروني",
+    "subscribe-page-title": "اشتراك في الصفحة الحالية",
+    "unsubscribe-page-title": "إلغاء الاشتراك من الصفحة",
+    "email-text-invalid": "عنوان البريد الإلكتروني غير صالح",
+    "email-request-fail": "عذرًا، فشل طلب الاشتراك، يرجى المحاولة مرة أخرى لاحقًا",
+    "verify-title": "يرجى تأكيد بريدك الإلكتروني",
+    "verify-text": "شكرًا على اشتراكك، لقد أرسلنا لك بريدًا إلكترونيًا للتأكيد لإكمال اشتراكك، يرجى النقر على الرابط الموجود في البريد الإلكتروني",
+    "send-action-text": "إرسال",
+    "skip-action-text": "تخطي",
+    "feedback-comment-placeholder": "المعلومات الإضافية ستكون مفيدة",
+    "lang-control-text-ru": "الروسية",
+    "lang-control-text-en": "الإنجليزية"
+  },
+  "mini-toc": {
+    "title": "في هذا المقال",
+    "description": "مضمون المقال الحالي"
+  },
+  "toc-nav-panel": {
+    "hint_previous": "السابق",
+    "hint_next": "التالي"
+  },
+  "authors": {
+    "title": "من تأليف"
+  },
+  "contributors": {
+    "title": "من تنقيح"
+  },
+  "feedback": {
+    "like-text": "مفيد",
+    "dislike-text": "غير مفيد",
+    "cancel-like-text": "ازداد الأمر سوءًا",
+    "cancel-dislike-text": "تحسنت الأمور",
+    "success-title": "شكرًا لك!",
+    "success-text": "إجابتك ستساعد على تحسين الوثيقة",
+    "dislike-variants-title": "أخبرنا عن الأخطاء الموجودة في المقال",
+    "send-action-text": "إرسال",
+    "comment-placeholder": "المعلومات الإضافية ستكون مفيدة",
+    "button-like-text": "نعم",
+    "button-dislike-text": "لا",
+    "main-question": "هل كانت المقال مفيدًا؟"
+  },
+  "feedback-variants": {
+    "irrelevant-answer": "لم أتلقى ردًا عن سؤالي",
+    "useless-recs": "لم تكن التوصيات مفيدة",
+    "content-mismatch": "المحتوى غير ذي صلة بالعنوان",
+    "other": "غير ذلك"
+  },
+  "search-bar": {
+    "search-query-label": "تم العثور عليه وفقًا لبحثي",
+    "close": "إغلاق",
+    "prev": "السابق",
+    "next": "التالي"
+  },
+  "error": {
+    "label_meta-title-403": "لا يمكنني الوصول إلى المحتوى",
+    "label_meta-title-404": "تعذّر العثور على الصفحة",
+    "label_meta-title-500": "حدث خطأ ما",
+    "label_title-code": "خطأ {{code}}",
+    "label_title-403_project": "إمكانية الوصول إلى المشروع غير متاحة",
+    "label_title-403_page-group": "إمكانية الوصول إلى الصفحة غير متاحة",
+    "label_title-404": "الصفحة غير موجودة",
+    "label_title-500": "تعذّر على الخادم تحميل الصفحة",
+    "label_description-1": "نقوم بمعالجة هذا الأمر حاليًا",
+    "label_description-link": "يرجى تحديث الصفحة",
+    "label_description-2": ".",
+    "label_link-main": "العودة إلى الصفحة الرئيسية",
+    "label_link-access": "طلب الوصول"
+  },
+  "search": {
+    "search_placeholder": "بحث",
+    "search_action": "بحث",
+    "search_request-query": "نتائج البحث",
+    "search_not-found-title": "تعذّر العثور على نتائج لطلبك",
+    "search_not-found-text": "يرجى مراجعة الكتابة الإملائية للكلمات أو تجربة كلمات مفتاحية أخرى.",
+    "search_mark_like": "إعجاب",
+    "search_mark_dislike": "عدم إعجاب",
+    "search_mark-result-text": "نشكرك على تقييمك!"
+  },
+  "paginator": {
+    "next": "الصفحة التالية",
+    "prev": "الصفحة السابقة"
+  }
+}

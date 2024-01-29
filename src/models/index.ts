@@ -127,6 +127,10 @@ export enum Lang {
     Ru = 'ru',
     En = 'en',
     He = 'he',
+    Es = 'es',
+    Fr = 'fr',
+    Cs = 'cs',
+    Ar = 'ar',
 }
 
 export interface Contributor {

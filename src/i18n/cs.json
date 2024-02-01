@@ -1,0 +1,120 @@
+{
+  "controls": {
+    "label_wide_format": "Široký formát",
+    "description_wide_format_enabled": "Povoleno",
+    "description_wide_format_disabled": "Zakázáno",
+    "label_show_mini_toc": "Navigace k článku",
+    "description_show_mini_toc": "Zobrazit navigaci",
+    "label_dark_theme": "Tmavé téma",
+    "description_enabled_dark_theme": "Povoleno",
+    "description_disabled_dark_theme": "Zakázáno",
+    "label_text_size": "Velikost písma",
+    "description_s_text_size": "Malé",
+    "description_m_text_size": "Výchozí",
+    "description_l_text_size": "Velké",
+    "full-screen-text-enabled": "Ukončení režimu čtení (Esc)",
+    "full-screen-text-disabled": "Režim čtení",
+    "single-page-text-enabled": "Ukončení režimu jedné stránky",
+    "single-page-text-disabled": "Režim jedné stránky",
+    "pdf-text": "PDF",
+    "edit-text-github": "Upravit na GitHubu",
+    "edit-text-arcanum": "Upravit na Arcanum",
+    "edit-text": "Upravit",
+    "settings-text": "Nastavení",
+    "lang-text": "Jazyk",
+    "like-text": "Užitečné",
+    "dislike-text": "Není užitečné",
+    "cancel-like-text": "Je to horší",
+    "cancel-dislike-text": "Je to lepší",
+    "feedback-success-title": "Děkujeme!",
+    "feedback-success-text": "Vaše odpověď nám pomůže dokumentaci vylepšit",
+    "dislike-variants-title": "Řekněte nám, co je na článku špatně",
+    "subscribe-text": "Přihlásit se k odběru",
+    "subscribe-documentation-title": "Přihlásit se k odběru dokumentace",
+    "unsubscribe-documentation-title": "Odhlásit se z odběru dokumentace",
+    "subscribe-documentation-placeholder": "Zadejte svou e-mailovou adresu",
+    "subscribe-page-title": "Přihlásit se k odběru aktuální stránky",
+    "unsubscribe-page-title": "Odhlásit z odběru stránky",
+    "email-text-invalid": "Neplatná e-mailová adresa",
+    "email-request-fail": "Je nám líto, požadavek na přihlášení k odběru se nezdařil, zkuste to prosím později",
+    "verify-title": "Ověřte svůj e-mail",
+    "verify-text": "Děkujeme za přihlášení k odběru, odeslali jsme vám ověřovací e-mail. Přihlášení k odběru dokončete pomocí odkazu v e-mailu.",
+    "send-action-text": "Odeslat",
+    "skip-action-text": "Přeskočit",
+    "feedback-comment-placeholder": "Budou užitečné další informace",
+    "lang-control-text-ru": "Русский",
+    "lang-control-text-en": "English"
+  },
+  "mini-toc": {
+    "title": "V tomto článku",
+    "description": "Obsah aktuálního článku"
+  },
+  "toc-nav-panel": {
+    "hint_previous": "Předchozí",
+    "hint_next": "Další"
+  },
+  "authors": {
+    "title": "Napsal(a)"
+  },
+  "contributors": {
+    "title": "vylepšil(a)"
+  },
+  "feedback": {
+    "like-text": "Užitečné",
+    "dislike-text": "Není užitečné",
+    "cancel-like-text": "Je to horší",
+    "cancel-dislike-text": "Je to lepší",
+    "success-title": "Děkujeme!",
+    "success-text": "Vaše odpověď nám pomůže dokumentaci vylepšit",
+    "dislike-variants-title": "Řekněte nám, co je na článku špatně",
+    "send-action-text": "Odeslat",
+    "comment-placeholder": "Budou užitečné další informace",
+    "button-like-text": "Ano",
+    "button-dislike-text": "Ne",
+    "main-question": "Byl článek užitečný?"
+  },
+  "feedback-variants": {
+    "irrelevant-answer": "Žádná odpověď na mou otázku",
+    "useless-recs": "Doporučení nepomohla",
+    "content-mismatch": "Obsah neodpovídá názvu",
+    "other": "Jiné"
+  },
+  "search-bar": {
+    "search-query-label": "Vyhledáno na vyžádání",
+    "close": "Zavřít",
+    "prev": "Předchozí",
+    "next": "Další"
+  },
+  "error": {
+    "label_meta-title-403": "Bez přístupu",
+    "label_meta-title-404": "Stránka nebyla nalezena",
+    "label_meta-title-500": "Došlo k chybě",
+    "label_title-code": "Chyba {{code}}",
+    "label_title-403_project": "Projekt není přístupný",
+    "label_title-403_page-group": "Stránka není přístupná",
+    "label_title-404": "Stránka neexistuje",
+    "label_title-500": "Server nemůže načíst stránku",
+    "label_description-1": "Už na tom pracujeme",
+    "label_description-link": "Obnovit stránku",
+    "label_description-2": ".",
+    "label_link-main": "Zpět na hlavní stránku",
+    "label_link-access": "Požádat o přístup"
+  },
+  "search": {
+    "search_placeholder": "Hledat",
+    "search_action": "Hledat",
+    "search_request-query": "Výsledky hledání",
+    "search_not-found-title": "Pro váš požadavek nebyly nalezeny žádné výsledky",
+    "search_not-found-text": "Zkontrolujte překlepy nebo zkuste použít jiná klíčová slova.",
+    "search_mark_like": "líbí",
+    "search_mark_dislike": "nelíbí",
+    "search_mark-result-text": "Děkujeme za vaše hodnocení!"
+  },
+  "paginator": {
+    "next": "Další stránka",
+    "prev": "Předchozí stránka"
+  },
+  "updated-at-date": {
+    "title": "Aktualizováno na"
+  }
+}

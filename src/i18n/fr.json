@@ -1,0 +1,120 @@
+{
+  "controls": {
+    "label_wide_format": "Format large",
+    "description_wide_format_enabled": "Activé",
+    "description_wide_format_disabled": "Désactivé",
+    "label_show_mini_toc": "Navigation pour l’article",
+    "description_show_mini_toc": "Afficher la navigation",
+    "label_dark_theme": "Thème sombre",
+    "description_enabled_dark_theme": "Activé",
+    "description_disabled_dark_theme": "Désactivé",
+    "label_text_size": "Taille de la police",
+    "description_s_text_size": "Petite",
+    "description_m_text_size": "Par défaut",
+    "description_l_text_size": "Grande",
+    "full-screen-text-enabled": "Quitter le mode de lecture (Esc)",
+    "full-screen-text-disabled": "Mode de lecture",
+    "single-page-text-enabled": "Quitter le mode page unique",
+    "single-page-text-disabled": "Mode page unique",
+    "pdf-text": "PDF",
+    "edit-text-github": "Modifier sur GitHub",
+    "edit-text-arcanum": "Modifier sur Arcanum",
+    "edit-text": "Modifier",
+    "settings-text": "Paramètres",
+    "lang-text": "Langue",
+    "like-text": "Utile",
+    "dislike-text": "Pas utile",
+    "cancel-like-text": "Ça s’est empiré",
+    "cancel-dislike-text": "Ça s’est amélioré",
+    "feedback-success-title": "Merci !",
+    "feedback-success-text": "Votre réponse permettra d’améliorer la documentation",
+    "dislike-variants-title": "Dites-nous ce qui ne va pas dans l’article",
+    "subscribe-text": "S’abonner",
+    "subscribe-documentation-title": "S’abonner à la documentation",
+    "unsubscribe-documentation-title": "Se désabonner de la documentation",
+    "subscribe-documentation-placeholder": "Entrer votre adresse électronique",
+    "subscribe-page-title": "S’abonner à la page actuelle",
+    "unsubscribe-page-title": "Se désabonner de la page",
+    "email-text-invalid": "Adresse électronique invalide",
+    "email-request-fail": "Désolé, la demande d’abonnement a échoué, veuillez réessayer plus tard",
+    "verify-title": "Vérifier votre adresse électronique",
+    "verify-text": "Merci de vous être abonné, votre courriel de vérification a été envoyé. Veuillez cliquer sur le lien contenu dans le courriel pour finaliser votre abonnement.",
+    "send-action-text": "Envoyer",
+    "skip-action-text": "Sauter",
+    "feedback-comment-placeholder": "Des informations supplémentaires seraient utiles",
+    "lang-control-text-ru": "Русский",
+    "lang-control-text-en": "English"
+  },
+  "mini-toc": {
+    "title": "Dans cet article",
+    "description": "Contenu de l’article actuel"
+  },
+  "toc-nav-panel": {
+    "hint_previous": "Précédent",
+    "hint_next": "Suivant"
+  },
+  "authors": {
+    "title": "Rédigé par"
+  },
+  "contributors": {
+    "title": "amélioré par"
+  },
+  "feedback": {
+    "like-text": "Utile",
+    "dislike-text": "Pas utile",
+    "cancel-like-text": "Ça s’est empiré",
+    "cancel-dislike-text": "Ça s’est amélioré",
+    "success-title": "Merci !",
+    "success-text": "Votre réponse permettra d’améliorer la documentation",
+    "dislike-variants-title": "Dites-nous ce qui ne va pas dans l’article",
+    "send-action-text": "Envoyer",
+    "comment-placeholder": "Des informations supplémentaires seraient utiles",
+    "button-like-text": "Oui",
+    "button-dislike-text": "Non",
+    "main-question": "L’article vous a-t-il été utile ?"
+  },
+  "feedback-variants": {
+    "irrelevant-answer": "Pas de réponse à ma question",
+    "useless-recs": "Les recommandations n’ont pas été utiles",
+    "content-mismatch": "Le contenu ne correspond pas au titre",
+    "other": "Autre"
+  },
+  "search-bar": {
+    "search-query-label": "Trouvé sur demande",
+    "close": "Fermer",
+    "prev": "Précédent",
+    "next": "Suivant"
+  },
+  "error": {
+    "label_meta-title-403": "Pas d’accès",
+    "label_meta-title-404": "Page non trouvée",
+    "label_meta-title-500": "Une erreur s’est produite",
+    "label_title-code": "Erreur {{code}}",
+    "label_title-403_project": "Pas d’accès au projet",
+    "label_title-403_page-group": "Pas d’accès à la page",
+    "label_title-404": "La page n’existe pas",
+    "label_title-500": "Le serveur n’a pas pu charger la page",
+    "label_description-1": "Nous y travaillons déjà",
+    "label_description-link": "Actualiser la page",
+    "label_description-2": ".",
+    "label_link-main": "Retour à la page principale",
+    "label_link-access": "Demander l’accès"
+  },
+  "search": {
+    "search_placeholder": "Rechercher",
+    "search_action": "Rechercher",
+    "search_request-query": "Résultats de la recherche",
+    "search_not-found-title": "Aucun résultat n’a été trouvé pour votre requête",
+    "search_not-found-text": "Veuillez vérifier l’orthographe ou essayer un autre mot-clé.",
+    "search_mark_like": "aimer",
+    "search_mark_dislike": "ne pas aimer",
+    "search_mark-result-text": "Merci pour votre évaluation !"
+  },
+  "paginator": {
+    "next": "Page suivante",
+    "prev": "Page précédente"
+  },
+  "updated-at-date": {
+    "title": "Mis à jour à"
+  }
+}

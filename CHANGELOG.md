@@ -1,5 +1,18 @@
 # История изменений
 
+## [3.9.0](https://github.com/diplodoc-platform/components/compare/v3.8.0...v3.9.0) (2024-02-01)
+
+
+### Features
+
+* support he-IL, es-ES, fr-FR, cs-CZ, ar-SA langs ([#201](https://github.com/diplodoc-platform/components/issues/201)) ([1f8e259](https://github.com/diplodoc-platform/components/commit/1f8e25941711cbe1d5c2eef4da788f0b4b8c1ec4))
+
+
+### Bug Fixes
+
+* **rtl:** search & doc pages ([0416163](https://github.com/diplodoc-platform/components/commit/04161630840b0280b542f1fa70c9a4040d019090))
+* **rtl:** toggle arrow & vertical controls ([3148685](https://github.com/diplodoc-platform/components/commit/314868508dd8f59a5afc11be8aadd7d2f5650d1f))
+
 ## [3.8.0](https://github.com/diplodoc-platform/components/compare/v3.7.0...v3.8.0) (2024-01-17)
 
 

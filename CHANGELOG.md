@@ -1,5 +1,12 @@
 # История изменений
 
+## [3.9.1](https://github.com/diplodoc-platform/components/compare/v3.9.0...v3.9.1) (2024-02-15)
+
+
+### Bug Fixes
+
+* prevent fb popup alt axis overflow ([#203](https://github.com/diplodoc-platform/components/issues/203)) ([a6f4af2](https://github.com/diplodoc-platform/components/commit/a6f4af20e4a4102f7b20641ac86632775087e55d))
+
 ## [3.9.0](https://github.com/diplodoc-platform/components/compare/v3.8.0...v3.9.0) (2024-02-01)
 
 

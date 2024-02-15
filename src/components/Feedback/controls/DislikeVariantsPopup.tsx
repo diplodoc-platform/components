@@ -164,7 +164,12 @@ const DislikeVariantsPopup: React.FC<DislikeVariantsPopupProps> = memo(
                 onOutsideClick={onOutsideClick}
                 contentClassName={b('variants-popup', {view})}
                 placement={position}
-                modifiers={[{name: 'preventOverflow', options: {padding: 1, altBoundary: true, altAxis: true}}]}
+                modifiers={[
+                    {
+                        name: 'preventOverflow',
+                        options: {padding: 1, altBoundary: true, altAxis: true},
+                    },
+                ]}
             >
                 <h3 className={b('popup-title')}>{t<string>('dislike-variants-title')}</h3>
                 <form onSubmit={onFormSubmit}>

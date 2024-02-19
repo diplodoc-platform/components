@@ -23,7 +23,7 @@
     --dc-error-image-500: url('data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=');
 
     &_theme_light {
-        @include yc-colors-private-light;
+        @include g-colors-private-light;
 
         --g-color-base-background: rgb(255, 255, 255);
         --g-color-base-brand: var(--g-color-private-blue-550-solid);
@@ -39,7 +39,7 @@
     }
 
     &_theme_light-hc {
-        @include yc-colors-private-light-hc;
+        @include g-colors-private-light-hc;
 
         --g-color-base-background: rgb(255, 255, 255);
         --g-color-base-brand: var(--g-color-private-blue-600-solid);
@@ -55,7 +55,7 @@
     }
 
     &_theme_dark {
-        @include yc-colors-private-dark;
+        @include g-colors-private-dark;
 
         --dc-text-highlight-selected: var(--g-color-text-inverted-primary);
 
@@ -73,7 +73,7 @@
     }
 
     &_theme_dark-hc {
-        @include yc-colors-private-dark-hc;
+        @include g-colors-private-dark-hc;
 
         --dc-text-highlight-selected: var(--g-color-text-inverted-primary);
 

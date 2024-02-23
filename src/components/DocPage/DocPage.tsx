@@ -1,7 +1,6 @@
 import React, {ReactPortal} from 'react';
 
 import {Link} from '@gravity-ui/icons';
-import {ThemeProvider} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 import {createPortal} from 'react-dom';
 
@@ -134,7 +133,6 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             footer,
             onChangeSinglePage,
             pdfLink,
-            theme,
         } = this.props;
 
         const hideMiniToc = !this.showMiniToc;
@@ -146,7 +144,6 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
         };
 
         return (
-            <ThemeProvider theme={theme}>
                 <DocLayout
                     toc={toc}
                     router={router}
@@ -191,7 +188,6 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                         </div>
                     </DocLayout.Right>
                 </DocLayout>
-            </ThemeProvider>
         );
     }
 

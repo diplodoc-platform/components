@@ -1,6 +1,6 @@
 import React, {SyntheticEvent, memo, useCallback, useContext, useState} from 'react';
 
-import {Button, List, Popup, TextInput} from '@gravity-ui/uikit';
+import {Button, List, Popup, TextInput, useDirection} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 
 import {useTranslation} from '../../../hooks';
@@ -8,7 +8,7 @@ import {SubscribeData, SubscribeType} from '../../../models';
 import {isInvalidEmail} from '../../../utils';
 import {ControlsLayoutContext} from '../../Controls/ControlsLayout';
 import {SubscribeView} from '../Subscribe';
-import {getPopupPosition} from '../utils';
+import {getSubscribePopupPosition} from '../utils';
 
 const b = block('dc-subscribe');
 
@@ -23,6 +23,7 @@ const SubscribeVariantsPopup = memo<{
 }>((props) => {
     const {t} = useTranslation('controls');
     const {isVerticalView} = useContext(ControlsLayoutContext);
+    const direction = useDirection();
     const {anchor, view, onSubscribe, onSubmit, onOutsideClick} = props;
 
     const [email, setEmail] = useState('');
@@ -111,7 +112,7 @@ const SubscribeVariantsPopup = memo<{
             open={true}
             onOutsideClick={onOutsideClick}
             contentClassName={b('variants-popup', {view})}
-            placement={getPopupPosition(isVerticalView, view)}
+            placement={getSubscribePopupPosition(isVerticalView, view, direction)}
         >
             {renderSubscribeVariantsList()}
             {renderSubscribeForm()}

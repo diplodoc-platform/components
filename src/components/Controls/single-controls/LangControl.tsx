@@ -7,10 +7,10 @@ import allLangs from 'langs';
 
 import {usePopupState, useTranslation} from '../../../hooks';
 import {Lang} from '../../../models';
+import {getPopupPosition} from '../../../utils';
 import {Control} from '../../Control';
 import {ControlsLayoutContext} from '../ControlsLayout';
 
-import {getPopupPosition} from './utils';
 
 import '../Controls.scss';
 

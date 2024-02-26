@@ -1,8 +1,8 @@
 import {parse} from 'url';
 
-import {ThemeContextProps} from "@gravity-ui/uikit";
+import {ThemeContextProps} from '@gravity-ui/uikit';
 
-import {PopperPosition} from "../hooks";
+import {PopperPosition} from '../hooks';
 import {Contributor, Router} from '../models';
 
 export type InnerProps<TProps extends Partial<TDefaultProps>, TDefaultProps> = Omit<
@@ -87,8 +87,11 @@ export function isContributor(contributor: unknown): contributor is Contributor 
     return false;
 }
 
-export const getPopupPosition = (isVerticalView: boolean | undefined, direction?: ThemeContextProps['direction']) => {
-    if(isVerticalView && direction === 'rtl') {
+export const getPopupPosition = (
+    isVerticalView: boolean | undefined,
+    direction?: ThemeContextProps['direction'],
+) => {
+    if (isVerticalView && direction === 'rtl') {
         return PopperPosition.RIGHT_START;
     }
 

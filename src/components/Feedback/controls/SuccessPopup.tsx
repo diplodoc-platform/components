@@ -4,7 +4,7 @@ import {Popup, useDirection} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 
 import {PopperPosition, useTranslation} from '../../../hooks';
-import {getPopupPosition} from "../../../utils";
+import {getPopupPosition} from '../../../utils';
 import {ControlsLayoutContext} from '../../Controls/ControlsLayout';
 import {FeedbackView} from '../Feedback';
 
@@ -24,11 +24,11 @@ const SuccessPopup = memo<SuccessPopupProps>(({visible, anchor, onOutsideClick, 
 
     const position = useMemo(() => {
         if (!view || view === FeedbackView.Regular) {
-            return getPopupPosition(isVerticalView, direction)
+            return getPopupPosition(isVerticalView, direction);
         }
 
         return PopperPosition.RIGHT;
-    }, [isVerticalView, view]);
+    }, [isVerticalView, view, direction]);
 
     return (
         <Popup

@@ -11,7 +11,6 @@ import {getPopupPosition} from '../../../utils';
 import {Control} from '../../Control';
 import {ControlsLayoutContext} from '../ControlsLayout';
 
-
 import '../Controls.scss';
 
 const ICONS: Record<string, string> = {

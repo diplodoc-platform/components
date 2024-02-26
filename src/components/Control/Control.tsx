@@ -5,7 +5,7 @@ import block from 'bem-cn-lite';
 
 import {PopperPosition, usePopupState} from '../../hooks';
 import {ControlSizes} from '../../models';
-import {getPopupPosition} from "../../utils";
+import {getPopupPosition} from '../../utils';
 
 import './Control.scss';
 
@@ -65,8 +65,8 @@ const Control = forwardRef((props: ControlProps, ref) => {
             return popupPosition;
         }
 
-        return getPopupPosition(isVerticalView, direction)
-    }, [isVerticalView, popupPosition]);
+        return getPopupPosition(isVerticalView, direction);
+    }, [isVerticalView, popupPosition, direction]);
 
     useImperativeHandle(ref, () => controlRef.current, [controlRef]);
 

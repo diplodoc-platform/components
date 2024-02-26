@@ -15,7 +15,7 @@ import {Button, Checkbox, Popup, TextArea, useDirection} from '@gravity-ui/uikit
 import block from 'bem-cn-lite';
 
 import {PopperPosition, useTranslation} from '../../../hooks';
-import {getPopupPosition} from "../../../utils";
+import {getPopupPosition} from '../../../utils';
 import {ControlsLayoutContext} from '../../Controls/ControlsLayout';
 import {FeedbackView} from '../Feedback';
 
@@ -136,11 +136,11 @@ const DislikeVariantsPopup: React.FC<DislikeVariantsPopupProps> = memo(
 
         const position = useMemo(() => {
             if (!view || view === FeedbackView.Regular) {
-                return getPopupPosition(isVerticalView, direction)
+                return getPopupPosition(isVerticalView, direction);
             }
 
             return PopperPosition.RIGHT;
-        }, [isVerticalView, view]);
+        }, [isVerticalView, view, direction]);
 
         const feedbackComment = useRef<FormPart<string> | null>(null);
         const feedbackCheckboxes = useRef<FormPart<string[]> | null>(null);

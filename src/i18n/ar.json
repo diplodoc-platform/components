@@ -28,7 +28,7 @@
     "cancel-dislike-text": "تحسنت الأمور",
     "feedback-success-title": "شكرًا لك!",
     "feedback-success-text": "إجابتك ستساعد على تحسين الوثيقة",
-    "dislike-variants-title": "أخبرنا عن الأخطاء الموجودة في المقال",
+    "dislike-variants-title": "أخبرنا بالأخطاء الموجودة في المقال",
     "subscribe-text": "اشتراك",
     "subscribe-documentation-title": "اشتراك في الوثائق",
     "unsubscribe-documentation-title": "إلغاء الاشتراك في الوثائق",
@@ -38,9 +38,9 @@
     "email-text-invalid": "عنوان البريد الإلكتروني غير صالح",
     "email-request-fail": "عذرًا، فشل طلب الاشتراك، يرجى المحاولة مرة أخرى لاحقًا",
     "verify-title": "يرجى تأكيد بريدك الإلكتروني",
-    "verify-text": "شكرًا على اشتراكك، لقد أرسلنا لك بريدًا إلكترونيًا للتأكيد لإكمال اشتراكك، يرجى النقر على الرابط الموجود في البريد الإلكتروني",
+    "verify-text": "شكرًا على اشتراكك، لقد أرسلنا إليك بريدًا إلكترونيًّا للتأكيد لإكمال اشتراكك، يرجى النقر على الرابط الموجود في البريد الإلكتروني",
     "send-action-text": "إرسال",
-    "skip-action-text": "تخطي",
+    "skip-action-text": "تخطٍّ",
     "feedback-comment-placeholder": "المعلومات الإضافية ستكون مفيدة",
     "lang-control-text-ru": "الروسية",
     "lang-control-text-en": "الإنجليزية"
@@ -66,15 +66,15 @@
     "cancel-dislike-text": "تحسنت الأمور",
     "success-title": "شكرًا لك!",
     "success-text": "إجابتك ستساعد على تحسين الوثيقة",
-    "dislike-variants-title": "أخبرنا عن الأخطاء الموجودة في المقال",
+    "dislike-variants-title": "أخبرنا بالأخطاء الموجودة في المقال",
     "send-action-text": "إرسال",
     "comment-placeholder": "المعلومات الإضافية ستكون مفيدة",
     "button-like-text": "نعم",
     "button-dislike-text": "لا",
-    "main-question": "هل كانت المقال مفيدًا؟"
+    "main-question": "هل كان المقال مفيدًا؟"
   },
   "feedback-variants": {
-    "irrelevant-answer": "لم أتلقى ردًا عن سؤالي",
+    "irrelevant-answer": "لم أتلقَّ ردًّا على سؤالي",
     "useless-recs": "لم تكن التوصيات مفيدة",
     "content-mismatch": "المحتوى غير ذي صلة بالعنوان",
     "other": "غير ذلك"
@@ -94,7 +94,7 @@
     "label_title-403_page-group": "إمكانية الوصول إلى الصفحة غير متاحة",
     "label_title-404": "الصفحة غير موجودة",
     "label_title-500": "تعذّر على الخادم تحميل الصفحة",
-    "label_description-1": "نقوم بمعالجة هذا الأمر حاليًا",
+    "label_description-1": "نقوم بمعالجة هذا الأمر حاليًّا",
     "label_description-link": "يرجى تحديث الصفحة",
     "label_description-2": ".",
     "label_link-main": "العودة إلى الصفحة الرئيسية",

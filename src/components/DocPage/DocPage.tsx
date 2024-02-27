@@ -84,14 +84,18 @@ type DocPageState = {
 class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
     static defaultProps: DocSettings = DEFAULT_SETTINGS;
 
-    state: DocPageState = {
-        loading: true,
-        keyDOM: getRandomKey(),
-    };
-
+    state: DocPageState;
     bodyRef: HTMLDivElement | null = null;
     bodyObserver: MutationObserver | null = null;
 
+    constructor(props: DocPageInnerProps) {
+        super(props);
+
+        this.state = {
+            loading: props.singlePage,
+            keyDOM: getRandomKey(),
+        };
+    }
     componentDidMount(): void {
         const {singlePage} = this.props;
 

@@ -4,7 +4,7 @@ import {ThemeProvider} from '@gravity-ui/uikit';
 
 export const WithTheme: Decorator = (Story, context) => {
     return (
-        <ThemeProvider theme={context.globals.theme}>
+        <ThemeProvider theme={context.globals.theme} direction={context.globals.direction}>
             <Story />
         </ThemeProvider>
     );

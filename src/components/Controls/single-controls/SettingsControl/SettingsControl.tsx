@@ -1,14 +1,14 @@
 import React, {ReactElement, useCallback, useContext, useRef, useState} from 'react';
 
 import {Gear} from '@gravity-ui/icons';
-import {Button, List, Popover, Switch} from '@gravity-ui/uikit';
+import {Button, List, Popover, Switch, useDirection} from '@gravity-ui/uikit';
 import cn from 'bem-cn-lite';
 
 import {useTranslation} from '../../../../hooks';
 import {TextSizes, Theme} from '../../../../models';
+import {getPopupPosition} from '../../../../utils';
 import {Control} from '../../../Control';
 import {ControlsLayoutContext} from '../../ControlsLayout';
-import {getPopupPosition} from '../utils';
 
 import './SettingsControl.scss';
 
@@ -52,6 +52,8 @@ const SettingsControl = (props: ControlProps) => {
     } = props;
 
     const controlRef = useRef<HTMLButtonElement | null>(null);
+    const direction = useDirection();
+
     const [isVisiblePopup, setIsVisiblePopup] = useState(false);
     const showPopup = () => setIsVisiblePopup(true);
     const hidePopup = () => setIsVisiblePopup(false);
@@ -175,7 +177,7 @@ const SettingsControl = (props: ControlProps) => {
             restoreFocusRef={controlRef}
             onCloseClick={hidePopup}
             onOpenChange={setIsVisiblePopup}
-            placement={getPopupPosition(isVerticalView)}
+            placement={getPopupPosition(isVerticalView, direction)}
             className={controlClassName}
             contentClassName={b('popup')}
             tooltipClassName={b('popup-tooltip')}

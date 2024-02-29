@@ -5,9 +5,6 @@
         display: flex;
         align-items: center;
 
-        [dir='rtl'] & {
-            flex-direction: row-reverse;
-        }
     }
 
     &__text-size-button {
@@ -55,9 +52,6 @@
         padding: 12px;
         width: 100%;
 
-        [dir='rtl'] & {
-            flex-direction: row-reverse;
-        }
     }
 
     &__list-item-description {

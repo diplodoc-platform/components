@@ -1,7 +1,6 @@
 import React, {ReactPortal} from 'react';
 
 import {Link} from '@gravity-ui/icons';
-import {ThemeProvider} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 import {createPortal} from 'react-dom';
 
@@ -138,7 +137,6 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             footer,
             onChangeSinglePage,
             pdfLink,
-            theme,
         } = this.props;
 
         const hideMiniToc = !this.showMiniToc;
@@ -150,52 +148,50 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
         };
 
         return (
-            <ThemeProvider theme={theme}>
-                <DocLayout
-                    toc={toc}
-                    router={router}
-                    headerHeight={headerHeight}
-                    className={b(modes)}
-                    fullScreen={fullScreen}
-                    hideRight={hideMiniToc}
-                    tocTitleIcon={tocTitleIcon}
-                    wideFormat={wideFormat}
-                    hideTocHeader={hideTocHeader}
-                    hideToc={hideToc}
-                    loading={this.state.loading}
-                    footer={footer}
-                    singlePage={singlePage}
-                    onChangeSinglePage={onChangeSinglePage}
-                    pdfLink={pdfLink}
-                >
-                    <DocLayout.Center>
-                        {this.renderSearchBar()}
-                        {this.renderBreadcrumbs()}
-                        {this.renderControls()}
-                        <div className={b('main')}>
-                            <main className={b('content')}>
-                                {this.renderTitle()}
-                                {this.renderPageContributors()}
-                                {hideMiniToc ? null : this.renderContentMiniToc()}
-                                {this.renderBody()}
-                                {this.renderFeedback()}
-                            </main>
-                            {this.renderTocNavPanel()}
-                        </div>
-                        {this.renderLoader()}
-                        {this.renderSinglePageControls()}
-                    </DocLayout.Center>
-                    <DocLayout.Right>
-                        {/* This key allows recalculating the offset for the mini-toc for Safari */}
-                        <div
-                            className={b('aside')}
-                            key={getStateKey(this.showMiniToc, wideFormat, singlePage)}
-                        >
-                            {hideMiniToc ? null : this.renderAsideMiniToc()}
-                        </div>
-                    </DocLayout.Right>
-                </DocLayout>
-            </ThemeProvider>
+            <DocLayout
+                toc={toc}
+                router={router}
+                headerHeight={headerHeight}
+                className={b(modes)}
+                fullScreen={fullScreen}
+                hideRight={hideMiniToc}
+                tocTitleIcon={tocTitleIcon}
+                wideFormat={wideFormat}
+                hideTocHeader={hideTocHeader}
+                hideToc={hideToc}
+                loading={this.state.loading}
+                footer={footer}
+                singlePage={singlePage}
+                onChangeSinglePage={onChangeSinglePage}
+                pdfLink={pdfLink}
+            >
+                <DocLayout.Center>
+                    {this.renderSearchBar()}
+                    {this.renderBreadcrumbs()}
+                    {this.renderControls()}
+                    <div className={b('main')}>
+                        <main className={b('content')}>
+                            {this.renderTitle()}
+                            {this.renderPageContributors()}
+                            {hideMiniToc ? null : this.renderContentMiniToc()}
+                            {this.renderBody()}
+                            {this.renderFeedback()}
+                        </main>
+                        {this.renderTocNavPanel()}
+                    </div>
+                    {this.renderLoader()}
+                    {this.renderSinglePageControls()}
+                </DocLayout.Center>
+                <DocLayout.Right>
+                    {/* This key allows recalculating the offset for the mini-toc for Safari */}
+                    <div
+                        className={b('aside')}
+                        key={getStateKey(this.showMiniToc, wideFormat, singlePage)}
+                    >
+                        {hideMiniToc ? null : this.renderAsideMiniToc()}
+                    </div>
+                </DocLayout.Right>
+            </DocLayout>
         );
     }
 

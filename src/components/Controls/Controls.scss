@@ -41,9 +41,6 @@
 
         @include focusable(-2px);
 
-        [dir='rtl'] & {
-            flex-direction: row-reverse;
-        }
     }
 
     &__icon-rotated {

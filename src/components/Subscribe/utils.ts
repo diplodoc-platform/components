@@ -1,10 +1,17 @@
+import {ThemeContextProps} from '@gravity-ui/uikit';
+
 import {PopperPosition} from '../../hooks';
+import {getPopupPosition} from '../../utils';
 
 import {SubscribeView} from './Subscribe';
 
-export const getPopupPosition = (isVerticalView: boolean | undefined, view?: SubscribeView) => {
+export const getSubscribePopupPosition = (
+    isVerticalView: boolean | undefined,
+    view?: SubscribeView,
+    direction?: ThemeContextProps['direction'],
+) => {
     if (!view || view === SubscribeView.Regular) {
-        return isVerticalView ? PopperPosition.LEFT_START : PopperPosition.BOTTOM_END;
+        return getPopupPosition(isVerticalView, direction);
     }
 
     return PopperPosition.RIGHT;

@@ -16,6 +16,9 @@ Append js
 // In most cases append transform runtime
 import "@doc-tools/transform/dist/js/yfm.js";
 
+import {createRoot} from 'react-dom/client';
+import {ThemeProvider} from '@gravity-ui/uikit';
+
 // configure components
 import {configure as configureUikit} from '@gravity-ui/uikit';
 import {configure as configureDocs} from '@diplodoc/components';
@@ -28,6 +31,14 @@ configureDocs({
     // optionally configure allowed translations
     loc: {ru, en, tr, ...}
 })
+
+// The theme must be applied. To do that wrap your app in ThemeProvider
+const root = createRoot(document.getElementById('root'));
+root.render(
+    <ThemeProvider theme="light">
+        <App />
+    </ThemeProvider>,
+);
 ```
 
 Append css

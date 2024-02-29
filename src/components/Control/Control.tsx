@@ -1,10 +1,11 @@
 import React, {forwardRef, useCallback, useImperativeHandle, useRef} from 'react';
 
-import {Button, ButtonProps, Popup} from '@gravity-ui/uikit';
+import {Button, ButtonProps, Popup, useDirection} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 
 import {PopperPosition, usePopupState} from '../../hooks';
 import {ControlSizes} from '../../models';
+import {getPopupPosition} from '../../utils';
 
 import './Control.scss';
 
@@ -57,14 +58,15 @@ const Control = forwardRef((props: ControlProps, ref) => {
     const controlRef = useRef<HTMLButtonElement | null>(null);
 
     const popupState = usePopupState({autoclose: 3000});
+    const direction = useDirection();
 
     const getTooltipAlign = useCallback(() => {
         if (popupPosition) {
             return popupPosition;
         }
 
-        return isVerticalView ? PopperPosition.LEFT_START : PopperPosition.BOTTOM_END;
-    }, [isVerticalView, popupPosition]);
+        return getPopupPosition(isVerticalView, direction);
+    }, [isVerticalView, popupPosition, direction]);
 
     useImperativeHandle(ref, () => controlRef.current, [controlRef]);
 

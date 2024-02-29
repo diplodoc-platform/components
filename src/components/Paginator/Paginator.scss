@@ -9,10 +9,6 @@
     display: flex;
     align-items: center;
 
-    [dir='rtl'] & {
-        flex-direction: row-reverse;
-        justify-content: flex-end;
-    }
 
     &__item {
         $item: &;
@@ -30,7 +26,11 @@
 
         &_type {
             &_prev {
-                margin-left: -6px;
+                margin: 4px 6px 4px 0;
+
+                [dir='rtl'] & {
+                    transform: rotate(180deg);
+                }
             }
 
             &_dots {
@@ -54,7 +54,11 @@
             }
 
             &_next {
-                margin-right: -6px;
+                margin: 4px 0 4px 6px;
+
+                [dir='rtl'] & {
+                    transform: rotate(180deg);
+                }
             }
         }
     }

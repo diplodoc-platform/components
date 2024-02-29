@@ -1,124 +1,121 @@
 # История изменений
 
-## [3.9.1](https://github.com/diplodoc-platform/components/compare/v3.9.0...v3.9.1) (2024-02-15)
+## [4.0.0](https://github.com/diplodoc-platform/components/compare/v3.9.1...v4.0.0) (2024-02-29)
 
+### ⚠ BREAKING CHANGES
+
+- uikit update ([#207](https://github.com/diplodoc-platform/components/issues/207)) ([347e933](https://github.com/diplodoc-platform/components/commit/347e933362c6553795b0fdea082e9aeb786b6a9c))
+- **deps:** update gravity-ui v6 ([#205](https://github.com/diplodoc-platform/components/issues/205)) ([84a22c8](https://github.com/diplodoc-platform/components/commit/84a22c8812ec1b37615f2c19f5c2db2ef039b4d2))
+
+[Full changelog](./versions/v4/CHANGELOG.md)
 
 ### Bug Fixes
 
-* prevent fb popup alt axis overflow ([#203](https://github.com/diplodoc-platform/components/issues/203)) ([a6f4af2](https://github.com/diplodoc-platform/components/commit/a6f4af20e4a4102f7b20641ac86632775087e55d))
+- ar translation ([#208](https://github.com/diplodoc-platform/components/issues/208)) ([1368d36](https://github.com/diplodoc-platform/components/commit/1368d3632e8e83072d89b4a9163b4b10c7a39449))
+- Fix loading state ([#209](https://github.com/diplodoc-platform/components/issues/209)) ([40ed545](https://github.com/diplodoc-platform/components/commit/40ed54528ca6fb42a39c6eea91804a6b8334995d))
+
+## [3.9.1](https://github.com/diplodoc-platform/components/compare/v3.9.0...v3.9.1) (2024-02-15)
+
+### Bug Fixes
+
+- prevent fb popup alt axis overflow ([#203](https://github.com/diplodoc-platform/components/issues/203)) ([a6f4af2](https://github.com/diplodoc-platform/components/commit/a6f4af20e4a4102f7b20641ac86632775087e55d))
 
 ## [3.9.0](https://github.com/diplodoc-platform/components/compare/v3.8.0...v3.9.0) (2024-02-01)
 
-
 ### Features
 
-* support he-IL, es-ES, fr-FR, cs-CZ, ar-SA langs ([#201](https://github.com/diplodoc-platform/components/issues/201)) ([1f8e259](https://github.com/diplodoc-platform/components/commit/1f8e25941711cbe1d5c2eef4da788f0b4b8c1ec4))
-
+- support he-IL, es-ES, fr-FR, cs-CZ, ar-SA langs ([#201](https://github.com/diplodoc-platform/components/issues/201)) ([1f8e259](https://github.com/diplodoc-platform/components/commit/1f8e25941711cbe1d5c2eef4da788f0b4b8c1ec4))
 
 ### Bug Fixes
 
-* **rtl:** search & doc pages ([0416163](https://github.com/diplodoc-platform/components/commit/04161630840b0280b542f1fa70c9a4040d019090))
-* **rtl:** toggle arrow & vertical controls ([3148685](https://github.com/diplodoc-platform/components/commit/314868508dd8f59a5afc11be8aadd7d2f5650d1f))
+- **rtl:** search & doc pages ([0416163](https://github.com/diplodoc-platform/components/commit/04161630840b0280b542f1fa70c9a4040d019090))
+- **rtl:** toggle arrow & vertical controls ([3148685](https://github.com/diplodoc-platform/components/commit/314868508dd8f59a5afc11be8aadd7d2f5650d1f))
 
 ## [3.8.0](https://github.com/diplodoc-platform/components/compare/v3.7.0...v3.8.0) (2024-01-17)
 
-
 ### Features
 
-* **DocPage:** Add updatedAt meta ([#198](https://github.com/diplodoc-platform/components/issues/198)) ([ee421ab](https://github.com/diplodoc-platform/components/commit/ee421abf8964498466913dd8f211c23fc071e500))
+- **DocPage:** Add updatedAt meta ([#198](https://github.com/diplodoc-platform/components/issues/198)) ([ee421ab](https://github.com/diplodoc-platform/components/commit/ee421abf8964498466913dd8f211c23fc071e500))
 
 ## [3.7.0](https://github.com/diplodoc-platform/components/compare/v3.6.0...v3.7.0) (2023-12-22)
 
-
 ### Features
 
-* RTL support ([#195](https://github.com/diplodoc-platform/components/issues/195)) ([e5e81b7](https://github.com/diplodoc-platform/components/commit/e5e81b745b1afbeead127542b60460438c1fa37f))
+- RTL support ([#195](https://github.com/diplodoc-platform/components/issues/195)) ([e5e81b7](https://github.com/diplodoc-platform/components/commit/e5e81b745b1afbeead127542b60460438c1fa37f))
 
 ## [3.6.0](https://github.com/diplodoc-platform/components/compare/v3.5.1...v3.6.0) (2023-12-20)
 
-
 ### Features
 
-* **Settings:** Add settings mobile view ([739c30b](https://github.com/diplodoc-platform/components/commit/739c30b2398c71e8d4232926482d7dbbfbcddb11))
+- **Settings:** Add settings mobile view ([739c30b](https://github.com/diplodoc-platform/components/commit/739c30b2398c71e8d4232926482d7dbbfbcddb11))
 
 ## [3.5.1](https://github.com/diplodoc-platform/components/compare/v3.5.0...v3.5.1) (2023-12-11)
 
-
 ### Bug Fixes
 
-* Update uikit ([50d9ac9](https://github.com/diplodoc-platform/components/commit/50d9ac9f264a53fd376055ae5c89c9cffff9b7e0))
+- Update uikit ([50d9ac9](https://github.com/diplodoc-platform/components/commit/50d9ac9f264a53fd376055ae5c89c9cffff9b7e0))
 
 ## [3.5.0](https://github.com/diplodoc-platform/components/compare/v3.4.0...v3.5.0) (2023-11-21)
 
-
 ### Features
 
-* **Controls:** Add optional isWideView prop ([94c9198](https://github.com/diplodoc-platform/components/commit/94c91982292bf20b5ae4cdb2acf590a21320ac2b))
-
+- **Controls:** Add optional isWideView prop ([94c9198](https://github.com/diplodoc-platform/components/commit/94c91982292bf20b5ae4cdb2acf590a21320ac2b))
 
 ### Bug Fixes
 
-* Fix build size ([4dcbdb3](https://github.com/diplodoc-platform/components/commit/4dcbdb39184ab72fb3d274b284b4574120f3bcc1))
-* Remove YSText from font-family ([cd14b69](https://github.com/diplodoc-platform/components/commit/cd14b6984291da96eb23e593482d83ee094b8ef4))
-* Small fixes for mobile view ([95498e7](https://github.com/diplodoc-platform/components/commit/95498e7a3f6de907cd83a19843224e0e00ee1bf8))
+- Fix build size ([4dcbdb3](https://github.com/diplodoc-platform/components/commit/4dcbdb39184ab72fb3d274b284b4574120f3bcc1))
+- Remove YSText from font-family ([cd14b69](https://github.com/diplodoc-platform/components/commit/cd14b6984291da96eb23e593482d83ee094b8ef4))
+- Small fixes for mobile view ([95498e7](https://github.com/diplodoc-platform/components/commit/95498e7a3f6de907cd83a19843224e0e00ee1bf8))
 
 ## [3.4.0](https://github.com/diplodoc-platform/components/compare/v3.3.1...v3.4.0) (2023-11-08)
 
-
 ### Features
 
-* add labels for toc and mini toc ([#187](https://github.com/diplodoc-platform/components/issues/187)) ([70a30a2](https://github.com/diplodoc-platform/components/commit/70a30a2fa735a75b89d3b1331201829857a1c18c))
+- add labels for toc and mini toc ([#187](https://github.com/diplodoc-platform/components/issues/187)) ([70a30a2](https://github.com/diplodoc-platform/components/commit/70a30a2fa735a75b89d3b1331201829857a1c18c))
 
 ## [3.3.1](https://github.com/diplodoc-platform/components/compare/v3.3.0...v3.3.1) (2023-10-30)
 
-
 ### Bug Fixes
 
-* **infra:** engines, overrides react/react-dom ([f2144e2](https://github.com/diplodoc-platform/components/commit/f2144e22a022efbbc6caa09b32be1892d664a068))
-* **storybook/infra:** override react ([842a9f7](https://github.com/diplodoc-platform/components/commit/842a9f752b95bf89f31b6f78d1307b4de7b8f932))
+- **infra:** engines, overrides react/react-dom ([f2144e2](https://github.com/diplodoc-platform/components/commit/f2144e22a022efbbc6caa09b32be1892d664a068))
+- **storybook/infra:** override react ([842a9f7](https://github.com/diplodoc-platform/components/commit/842a9f752b95bf89f31b6f78d1307b4de7b8f932))
 
 ## [3.3.0](https://github.com/diplodoc-platform/components/compare/v3.2.0...v3.3.0) (2023-10-27)
 
-
 ### Features
 
-* adding id prop for HTML component ([#183](https://github.com/diplodoc-platform/components/issues/183)) ([d8770f7](https://github.com/diplodoc-platform/components/commit/d8770f7c9786c487066b26475194574d3fd01c5f))
+- adding id prop for HTML component ([#183](https://github.com/diplodoc-platform/components/issues/183)) ([d8770f7](https://github.com/diplodoc-platform/components/commit/d8770f7c9786c487066b26475194574d3fd01c5f))
 
 ## [3.2.0](https://github.com/diplodoc-platform/components/compare/v3.1.0...v3.2.0) (2023-10-13)
 
-
 ### Features
 
-* allow scroll spy item href to start not with # ([b6ad6ff](https://github.com/diplodoc-platform/components/commit/b6ad6ff609305197a8579e8593c95e27249bd597))
-* **DocPage:** added new prop for minitoc onclick handler ([ee0b1dc](https://github.com/diplodoc-platform/components/commit/ee0b1dcb611cea52753be8db35f616535717eede))
-
+- allow scroll spy item href to start not with # ([b6ad6ff](https://github.com/diplodoc-platform/components/commit/b6ad6ff609305197a8579e8593c95e27249bd597))
+- **DocPage:** added new prop for minitoc onclick handler ([ee0b1dc](https://github.com/diplodoc-platform/components/commit/ee0b1dcb611cea52753be8db35f616535717eede))
 
 ### Bug Fixes
 
-* **TocItem:** Fix missing styles in TocItem ([9921c6d](https://github.com/diplodoc-platform/components/commit/9921c6d922180ac4c1225901f5b6451031637d3c))
-* udpate link item border style ([b73688c](https://github.com/diplodoc-platform/components/commit/b73688cf85753f1bec7a11142f4854feeec4f571))
+- **TocItem:** Fix missing styles in TocItem ([9921c6d](https://github.com/diplodoc-platform/components/commit/9921c6d922180ac4c1225901f5b6451031637d3c))
+- udpate link item border style ([b73688c](https://github.com/diplodoc-platform/components/commit/b73688cf85753f1bec7a11142f4854feeec4f571))
 
 ## [3.1.0](https://github.com/diplodoc-platform/components/compare/v3.0.5...v3.1.0) (2023-10-11)
 
-
 ### Features
 
-* new focus type ([#172](https://github.com/diplodoc-platform/components/issues/172)) ([c99bc32](https://github.com/diplodoc-platform/components/commit/c99bc3246efbd197e9525555cccff1b648d6e709))
+- new focus type ([#172](https://github.com/diplodoc-platform/components/issues/172)) ([c99bc32](https://github.com/diplodoc-platform/components/commit/c99bc3246efbd197e9525555cccff1b648d6e709))
 
 ## [3.0.5](https://github.com/diplodoc-platform/components/compare/v3.0.4...v3.0.5) (2023-09-29)
 
-
 ### Bug Fixes
 
-* add pointer style for toc item ([#164](https://github.com/diplodoc-platform/components/issues/164)) ([7158242](https://github.com/diplodoc-platform/components/commit/715824229b21c5e1699af2749ee65e5224b6d7ed))
+- add pointer style for toc item ([#164](https://github.com/diplodoc-platform/components/issues/164)) ([7158242](https://github.com/diplodoc-platform/components/commit/715824229b21c5e1699af2749ee65e5224b6d7ed))
 
 ## [3.0.4](https://github.com/diplodoc-platform/components/compare/v3.0.3...v3.0.4) (2023-09-29)
 
-
 ### Bug Fixes
 
-* not render navigation with empty toc ([877bc7b](https://github.com/diplodoc-platform/components/commit/877bc7b679c8054bda29c9586085cbbf53fb7bc8))
-* permissions ([74e243f](https://github.com/diplodoc-platform/components/commit/74e243f93cff11b67227810e7c215d6bc0768db6))
+- not render navigation with empty toc ([877bc7b](https://github.com/diplodoc-platform/components/commit/877bc7b679c8054bda29c9586085cbbf53fb7bc8))
+- permissions ([74e243f](https://github.com/diplodoc-platform/components/commit/74e243f93cff11b67227810e7c215d6bc0768db6))
 
 ## [3.0.3](https://github.com/yandex-cloud/docs-components/compare/v3.0.2...v3.0.3) (2023-09-20)
 

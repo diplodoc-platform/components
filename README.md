@@ -35,7 +35,7 @@ configureDocs({
 // The theme must be applied. To do that wrap your app in ThemeProvider
 const root = createRoot(document.getElementById('root'));
 root.render(
-    <ThemeProvider theme="light">
+    <ThemeProvider theme="light" direction="ltr">
         <App />
     </ThemeProvider>,
 );

@@ -13,16 +13,11 @@ import {ControlsLayoutContext} from '../ControlsLayout';
 
 import '../Controls.scss';
 
-const ICONS: Record<string, string> = {
-    en: '🇬🇧',
-    ru: '🇷🇺',
-    he: '🇮🇱',
-};
 const DEFAULT_LANGS = ['en', 'ru', 'he'];
 const LEGACY_LANG_ITEMS = [
-    {value: Lang.En, text: 'English', icon: '🇬🇧'},
-    {value: Lang.Ru, text: 'Русский', icon: '🇷🇺'},
-    {value: Lang.He, text: 'Hebrew', icon: '🇮🇱'},
+    {value: Lang.En, text: 'English'},
+    {value: Lang.Ru, text: 'Русский'},
+    {value: Lang.He, text: 'Hebrew'},
 ];
 
 const b = block('dc-controls');
@@ -36,7 +31,6 @@ interface ControlProps {
 interface ListItem {
     value: string;
     text: string;
-    icon?: string;
 }
 
 const LIST_ITEM_HEIGHT = 36;
@@ -59,7 +53,6 @@ const LangControl = (props: ControlProps) => {
                     ? {
                           text: langData.name,
                           value: langData['1'],
-                          icon: ICONS[code] || '',
                       }
                     : undefined;
             })
@@ -68,12 +61,7 @@ const LangControl = (props: ControlProps) => {
         return preparedLangs.length ? preparedLangs : LEGACY_LANG_ITEMS;
     }, [langs]);
     const renderItem = useCallback((item: ListItem) => {
-        return (
-            <button className={b('lang-item')}>
-                <div className={b('list-icon')}>{item.icon}</div>
-                {item.text}
-            </button>
-        );
+        return <button className={b('lang-item')}>{item.text}</button>;
     }, []);
     const onItemClick = useCallback(
         (item: ListItem) => {

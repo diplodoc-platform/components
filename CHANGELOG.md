@@ -1,5 +1,12 @@
 # История изменений
 
+## [4.1.0](https://github.com/diplodoc-platform/components/compare/v4.0.0...v4.1.0) (2024-03-18)
+
+
+### Features
+
+* stop using emoji icons for language ([#218](https://github.com/diplodoc-platform/components/issues/218)) ([85c53e9](https://github.com/diplodoc-platform/components/commit/85c53e93d0adf21f82badaa106553db6095b8dcb))
+
 ## [4.0.0](https://github.com/diplodoc-platform/components/compare/v3.9.1...v4.0.0) (2024-02-29)
 
 ### ⚠ BREAKING CHANGES

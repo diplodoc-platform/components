@@ -48,7 +48,7 @@ export interface DocLeadingPageData extends DocBasePageData {
     data: DocLeadingData;
 }
 
-export interface PageConstructorData extends DocBasePageData {
+export interface ConstructorPageData extends DocBasePageData {
     leading: true;
     data: PageContent & {fullScreen: boolean};
 }
@@ -178,5 +178,5 @@ export interface SubscribeData {
 export enum DocumentType {
     Base = 'BASE',
     Leading = 'LEADING',
-    PageConstructor = 'PAGE_CONSTRUCTOR',
+    ConstructorPage = 'CONSTRUCTOR_PAGE',
 }

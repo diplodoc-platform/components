@@ -11,7 +11,7 @@ import {
 import block from 'bem-cn-lite';
 
 import {DEFAULT_SETTINGS} from '../../constants';
-import {DocumentType, PageConstructorData, Router, Theme} from '../../models';
+import {ConstructorPageData, DocumentType, Router, Theme} from '../../models';
 import {DocLayout} from '../DocLayout';
 
 const b = block('dc-doc-page');
@@ -21,7 +21,7 @@ const bPCRow = block('pc-constructor-row');
 
 const {wideFormat: defaultWideFormat} = DEFAULT_SETTINGS;
 
-export interface PageConstructorProps extends PageConstructorData {
+export interface ConstructorPageProps extends ConstructorPageData {
     router: Router;
     headerHeight?: number;
     wideFormat?: boolean;
@@ -41,7 +41,7 @@ export const ConstructorRow = ({children}: WithChildren<{}>) =>
         </Row>
     ) : null;
 
-export const PageConstructor: React.FC<PageConstructorProps> = ({
+export const ConstructorPage: React.FC<ConstructorPageProps> = ({
     data,
     toc,
     router,
@@ -77,7 +77,7 @@ export const PageConstructor: React.FC<PageConstructorProps> = ({
             <DocLayout.Center>
                 <div className={b('main')}>
                     <main className={b('content')}>
-                        {type === DocumentType.PageConstructor && (
+                        {type === DocumentType.ConstructorPage && (
                             <div className={b('')}>
                                 <div className={bPC('wrapper')}>
                                     {data?.blocks && themedBackground && (

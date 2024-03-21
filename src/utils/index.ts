@@ -2,16 +2,16 @@ import {parse} from 'url';
 
 import {ThemeContextProps} from '@gravity-ui/uikit';
 
+import {ConstructorPage} from '../components/ConstructorPage';
 import {DocLeadingPage} from '../components/DocLeadingPage';
 import {DocPage} from '../components/DocPage';
-import {PageConstructor} from '../components/PageConstructor';
 import {PopperPosition} from '../hooks';
 import {
+    ConstructorPageData,
     Contributor,
     DocLeadingPageData,
     DocPageData,
     DocumentType,
-    PageConstructorData,
     Router,
 } from '../models';
 
@@ -112,7 +112,7 @@ export function getPageByType(type: DocumentType) {
     const PageTypes = {
         [DocumentType.Base]: DocPage,
         [DocumentType.Leading]: DocLeadingPage,
-        [DocumentType.PageConstructor]: PageConstructor,
+        [DocumentType.ConstructorPage]: ConstructorPage,
     };
 
     return PageTypes[type] || null;
@@ -121,11 +121,11 @@ export function getPageByType(type: DocumentType) {
 export function getPageType({
     data,
     leading,
-}: DocLeadingPageData | (DocPageData & {data?: undefined}) | PageConstructorData): DocumentType {
+}: DocLeadingPageData | (DocPageData & {data?: undefined}) | ConstructorPageData): DocumentType {
     if (leading && data) {
         return Object.prototype.hasOwnProperty.call(data, 'links')
             ? DocumentType.Leading
-            : DocumentType.PageConstructor;
+            : DocumentType.ConstructorPage;
     }
 
     return DocumentType.Base;

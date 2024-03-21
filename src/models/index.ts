@@ -39,17 +39,17 @@ export interface DocSettings {
 
 export interface DocBasePageData {
     toc: TocData;
-    isYaml?: boolean;
+    leading?: boolean;
     footer?: React.ReactNode;
 }
 
 export interface DocLeadingPageData extends DocBasePageData {
-    isYaml: true;
+    leading: true;
     data: DocLeadingData;
 }
 
 export interface PageConstructorData extends DocBasePageData {
-    isYaml: true;
+    leading: true;
     data: PageContent & {fullScreen: boolean};
 }
 
@@ -74,7 +74,7 @@ export enum VcsType {
 }
 
 export interface DocPageData extends DocBasePageData {
-    isYaml?: false;
+    leading?: false;
     breadcrumbs?: BreadcrumbItem[];
     html: string;
     title?: string;

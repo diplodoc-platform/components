@@ -120,9 +120,9 @@ export function getPageByType(type: DocumentType) {
 
 export function getPageType({
     data,
-    isYaml,
+    leading,
 }: DocLeadingPageData | (DocPageData & {data?: undefined}) | PageConstructorData): DocumentType {
-    if (isYaml && data) {
+    if (leading && data) {
         return Object.prototype.hasOwnProperty.call(data, 'links')
             ? DocumentType.Leading
             : DocumentType.PageConstructor;

@@ -1,3 +1,5 @@
+import {PageContent} from '@gravity-ui/page-constructor';
+
 import type {Loc} from '../config/i18n';
 
 export enum Theme {
@@ -37,13 +39,18 @@ export interface DocSettings {
 
 export interface DocBasePageData {
     toc: TocData;
-    leading?: boolean;
+    isYaml?: boolean;
     footer?: React.ReactNode;
 }
 
 export interface DocLeadingPageData extends DocBasePageData {
-    leading: true;
+    isYaml: true;
     data: DocLeadingData;
+}
+
+export interface PageConstructorData extends DocBasePageData {
+    isYaml: true;
+    data: PageContent & {fullScreen: boolean};
 }
 
 export interface DocLeadingData {
@@ -67,7 +74,7 @@ export enum VcsType {
 }
 
 export interface DocPageData extends DocBasePageData {
-    leading?: false;
+    isYaml?: false;
     breadcrumbs?: BreadcrumbItem[];
     html: string;
     title?: string;
@@ -166,4 +173,10 @@ export enum SubscribeType {
 export interface SubscribeData {
     email: string;
     type: SubscribeType;
+}
+
+export enum DocumentType {
+    Base = 'BASE',
+    Leading = 'LEADING',
+    PageConstructor = 'PAGE_CONSTRUCTOR',
 }

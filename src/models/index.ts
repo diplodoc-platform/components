@@ -1,5 +1,3 @@
-import {PageContent} from '@gravity-ui/page-constructor';
-
 import type {Loc} from '../config/i18n';
 
 export enum Theme {
@@ -48,9 +46,12 @@ export interface DocLeadingPageData extends DocBasePageData {
     data: DocLeadingData;
 }
 
-export interface ConstructorPageData extends DocBasePageData {
+export interface DocContentPageData extends DocBasePageData {
     leading: true;
-    data: PageContent & {fullScreen: boolean};
+    data: {
+        fullScreen?: boolean;
+    };
+    children?: React.ReactNode;
 }
 
 export interface DocLeadingData {
@@ -178,5 +179,5 @@ export interface SubscribeData {
 export enum DocumentType {
     Base = 'BASE',
     Leading = 'LEADING',
-    ConstructorPage = 'CONSTRUCTOR_PAGE',
+    PageConstructor = 'PAGE_CONSTRUCTOR',
 }

@@ -18,15 +18,21 @@ const TocLabel: FC<TocLabelProps> = ({label}) => {
 
     let labelElement = null;
     if (label?.title) {
+        const hasDescription = Boolean(label.description);
         labelElement = (
-            <Label size={'xs'} theme={label.theme} className={b()}>
+            <Label size={'xs'} theme={label.theme} className={b({offset: !hasDescription})}>
                 {label.title}
             </Label>
         );
-        if (label.description) {
+        if (hasDescription) {
             const placement = direction === 'rtl' ? 'left' : 'right';
             labelElement = (
-                <Popover content={label.description} placement={placement} size={'s'}>
+                <Popover
+                    content={label.description}
+                    placement={placement}
+                    size={'s'}
+                    className={b({offset: true})}
+                >
                     {labelElement}
                 </Popover>
             );

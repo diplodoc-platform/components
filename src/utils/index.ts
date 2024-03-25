@@ -35,6 +35,22 @@ export function isActiveItem(router: Router, href: string, singlePage?: boolean)
     return normalizePath(router.pathname) === normalizePath(parse(href).pathname);
 }
 
+/*
+Алгоритм:
+1. Нормализируем хеш, если он присутствует
+2. Сплитим по ../ так как это приписка перейти назад
+3. Подсчитываем кол-во переходов назад и добавляем + 1 для перехода языка наверх
+4. Генерируем префикс из повторябщихся элементов
+5. Обьединяем результат
+*/
+export function getLangPath(router: Router, lang: string) {
+    const path = router.hash ? normalizeHash(router.hash) : normalizePath(router.pathname);
+    const route = path?.split('../') || [];
+    const prefixesCount = route.length;
+    const prefix = Array(prefixesCount).fill('../').join('');
+    return `${prefix}${lang}/${route[route.length - 1] || ''}`;
+}
+
 export function isExternalHref(href: string) {
     return href.startsWith('http') || href.startsWith('//');
 }

@@ -27,3 +27,4 @@ export * from './components/SearchPage';
 export * from './config';
 export * from './models';
 export * from './constants';
+export * from './utils';

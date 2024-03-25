@@ -3,7 +3,7 @@
   "description": "React components for drawing Diplodoc documentation",
   "author": "YFM Team <yfm-team@yandex.ru>",
   "license": "MIT",
-  "version": "4.1.0",
+  "version": "4.2.0",
   "repository": {
     "type": "git",
     "url": "git@github.com:yandex-cloud/docs-components.git"

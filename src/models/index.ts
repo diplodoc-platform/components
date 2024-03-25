@@ -48,6 +48,14 @@ export interface DocLeadingPageData extends DocBasePageData {
     data: DocLeadingData;
 }
 
+export interface DocContentPageData extends DocBasePageData {
+    leading: true;
+    data: {
+        fullScreen?: boolean;
+    };
+    children?: React.ReactNode;
+}
+
 export interface DocLeadingData {
     title: string;
     description: string | string[];
@@ -175,4 +183,10 @@ export enum SubscribeType {
 export interface SubscribeData {
     email: string;
     type: SubscribeType;
+}
+
+export enum DocumentType {
+    Base = 'BASE',
+    Leading = 'LEADING',
+    PageConstructor = 'PAGE_CONSTRUCTOR',
 }

@@ -2,9 +2,11 @@
 @import '../../styles/mixins';
 
 .dc-toc-label {
-    margin-left: 10px;
+    &_offset {
+        margin-left: 10px;
 
-    [dir='rtl'] & {
-        margin-right: 10px;
+        [dir='rtl'] & {
+            margin-right: 10px;
+        }
     }
 }

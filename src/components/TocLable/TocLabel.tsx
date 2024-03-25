@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 
-import {Label, Popover, useDirection} from '@gravity-ui/uikit';
+import {Label, Popover} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 
 import {TocLabel as TocLabelType} from '../../models';
@@ -14,8 +14,6 @@ interface TocLabelProps {
 }
 
 const TocLabel: FC<TocLabelProps> = ({label}) => {
-    const direction = useDirection();
-
     let labelElement = null;
     if (label?.title) {
         const hasDescription = Boolean(label.description);
@@ -25,11 +23,10 @@ const TocLabel: FC<TocLabelProps> = ({label}) => {
             </Label>
         );
         if (hasDescription) {
-            const placement = direction === 'rtl' ? 'left' : 'right';
             labelElement = (
                 <Popover
                     content={label.description}
-                    placement={placement}
+                    placement={'right'}
                     size={'s'}
                     className={b({offset: true})}
                 >

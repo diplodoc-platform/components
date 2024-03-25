@@ -4,9 +4,5 @@
 .dc-toc-label {
     &_offset {
         margin-left: 10px;
-
-        [dir='rtl'] & {
-            margin-right: 10px;
-        }
     }
 }

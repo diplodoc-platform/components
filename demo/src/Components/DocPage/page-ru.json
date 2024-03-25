@@ -119,6 +119,11 @@
   "toc": {
     "title": "Обзор платформы",
     "href": "/docs/overview/",
+    "label": {
+      "title": "Новое",
+      "description": "Это новый раздел",
+      "theme": "info"
+    },
     "items": [
       {
         "name": "Сервисы Яндекс.Облака",

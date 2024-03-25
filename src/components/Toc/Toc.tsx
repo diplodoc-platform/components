@@ -9,6 +9,7 @@ import {isActiveItem, normalizeHash, normalizePath} from '../../utils';
 import {Controls, ControlsLayout} from '../Controls';
 import {HTML} from '../HTML';
 import {TocItem as Item} from '../TocItem';
+import TocLabel from '../TocLable/TocLabel';
 
 import {TocItemRegistry} from './TocItemRegistry';
 
@@ -204,7 +205,7 @@ class Toc extends React.Component<TocProps, TocState> {
     }
 
     private renderTop() {
-        const {router, title, href, tocTitleIcon, hideTocHeader, singlePage} = this.props;
+        const {router, title, href, tocTitleIcon, hideTocHeader, singlePage, label} = this.props;
         const {contentScrolled} = this.state;
         let topHeader;
 
@@ -236,6 +237,7 @@ class Toc extends React.Component<TocProps, TocState> {
             <div className={b('top', {scrolled: contentScrolled})}>
                 {tocTitleIcon ? <div className={b('top-header-icon')}>{tocTitleIcon}</div> : null}
                 {topHeader}
+                {label ? <TocLabel label={label} /> : null}
             </div>
         );
     }

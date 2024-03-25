@@ -1,5 +1,18 @@
 # История изменений
 
+## [4.2.0](https://github.com/diplodoc-platform/components/compare/v4.1.0...v4.2.0) (2024-03-25)
+
+
+### Features
+
+* add page-constructor page type ([#220](https://github.com/diplodoc-platform/components/issues/220)) ([cbf6b79](https://github.com/diplodoc-platform/components/commit/cbf6b79b52cd493dc8ecab06ef2b0ba081e8009f))
+* **toc:** Add toc label ([60914c2](https://github.com/diplodoc-platform/components/commit/60914c25a750d8611c0077629d3e2f1aa199f607))
+
+
+### Bug Fixes
+
+* add offset for wrapper ([db017da](https://github.com/diplodoc-platform/components/commit/db017da2850d1855ebd1023bd137d6d518c6a14f))
+
 ## [4.1.0](https://github.com/diplodoc-platform/components/compare/v4.0.0...v4.1.0) (2024-03-18)
 
 

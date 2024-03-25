@@ -2,8 +2,18 @@ import {parse} from 'url';
 
 import {ThemeContextProps} from '@gravity-ui/uikit';
 
+import {DocContentPage} from '../components/DocContentPage';
+import {DocLeadingPage} from '../components/DocLeadingPage';
+import {DocPage} from '../components/DocPage';
 import {PopperPosition} from '../hooks';
-import {Contributor, Router} from '../models';
+import {
+    Contributor,
+    DocContentPageData,
+    DocLeadingPageData,
+    DocPageData,
+    DocumentType,
+    Router,
+} from '../models';
 
 export type InnerProps<TProps extends Partial<TDefaultProps>, TDefaultProps> = Omit<
     TProps,
@@ -113,3 +123,26 @@ export const getPopupPosition = (
 
     return isVerticalView ? PopperPosition.LEFT_START : PopperPosition.BOTTOM_END;
 };
+
+export function getPageByType(type: DocumentType) {
+    const PageTypes = {
+        [DocumentType.Base]: DocPage,
+        [DocumentType.Leading]: DocLeadingPage,
+        [DocumentType.PageConstructor]: DocContentPage,
+    };
+
+    return PageTypes[type] || null;
+}
+
+export function getPageType({
+    data,
+    leading,
+}: DocLeadingPageData | (DocPageData & {data?: undefined}) | DocContentPageData): DocumentType {
+    if (leading && data) {
+        return Object.prototype.hasOwnProperty.call(data, 'links')
+            ? DocumentType.Leading
+            : DocumentType.PageConstructor;
+    }
+
+    return DocumentType.Base;
+}

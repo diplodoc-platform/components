@@ -3,7 +3,7 @@
   "description": "React components for drawing Diplodoc documentation",
   "author": "YFM Team <yfm-team@yandex.ru>",
   "license": "MIT",
-  "version": "4.1.0",
+  "version": "4.2.0",
   "repository": {
     "type": "git",
     "url": "git@github.com:yandex-cloud/docs-components.git"
@@ -75,7 +75,7 @@
   },
   "dependencies": {
     "@gravity-ui/icons": "^2.5.0",
-    "@gravity-ui/uikit": "^6.1.1",
+    "@gravity-ui/uikit": "^6.2.0",
     "@popperjs/core": "^2.11.2",
     "bem-cn-lite": "4.1.0",
     "i18next": "^19.9.2",

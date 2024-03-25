@@ -155,6 +155,11 @@
   "toc": {
     "title": "Yandex.Cloud overview",
     "href": "/docs/overview/",
+    "label": {
+      "title": "NEW",
+      "description": "This it new section",
+      "theme": "info"
+    },
     "items": [
       {
         "name": "Yandex.Cloud services",

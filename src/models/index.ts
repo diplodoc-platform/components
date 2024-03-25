@@ -1,3 +1,5 @@
+import {LabelProps} from '@gravity-ui/uikit/build/esm/components/Label/Label';
+
 import type {Loc} from '../config/i18n';
 
 export enum Theme {
@@ -96,6 +98,12 @@ export interface DocMeta {
     updatedAt?: string;
 }
 
+export interface TocLabel {
+    title: string;
+    description?: string;
+    theme?: LabelProps['theme'];
+}
+
 export interface TocData {
     title?: string;
     href: string;
@@ -103,6 +111,7 @@ export interface TocData {
     stage?: string;
     editable?: boolean;
     singlePage?: boolean;
+    label?: TocLabel;
 }
 
 export interface TocItem {

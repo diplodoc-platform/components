@@ -120,6 +120,11 @@
   "toc": {
     "title": "סקירת פלטפורמה",
     "href": "/docs/overview/",
+    "label": {
+      "title": "חדש",
+      "description": "זה זה סעיף חדש",
+      "theme": "info"
+    },
     "items": [
       {
         "name": "שירותי Yandex.Cloud",

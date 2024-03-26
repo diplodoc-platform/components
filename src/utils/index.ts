@@ -46,12 +46,12 @@ export function isActiveItem(router: Router, href: string, singlePage?: boolean)
 }
 
 /*
-Алгоритм:
-1. Нормализируем хеш, если он присутствует
-2. Сплитим по ../ так как это приписка перейти назад
-3. Подсчитываем кол-во переходов назад и добавляем + 1 для перехода языка наверх
-4. Генерируем префикс из повторябщихся элементов
-5. Обьединяем результат
+Algorithm:
+1. Normalize hash route if it presents
+2. Split by "../"
+3. Count splits and add 1 more to sutisfy the pattern /(base)/(language)/(router)
+4. Generate prefix fom splitted pattern
+5. Join the result
 */
 export function getLangPath(router: Router, lang: string) {
     const path = router.hash ? normalizeHash(router.hash) : normalizePath(router.pathname);

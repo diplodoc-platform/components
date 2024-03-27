@@ -32,8 +32,8 @@ $leftOffset: 57px;
         flex-grow: 0;
         flex-shrink: 0;
         display: flex;
-        align-items: center;
         padding: 10px 10px 8px 0;
+        align-items: flex-start;
 
         &_scrolled {
             border-bottom: 1px solid var(--g-color-line-generic);

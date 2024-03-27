@@ -27,7 +27,7 @@ export type ChangeHandler<S> = <K extends keyof S, V extends S[K]>(
 ) => () => void;
 
 export function normalizePath(path?: string | null) {
-    return path?.replace(/\/index$/, '/');
+    return path?.replace(/\.html$/, '')?.replace(/\/index$/, '/');
 }
 
 export function normalizeHash(hash?: string | null) {
@@ -48,17 +48,13 @@ export function isActiveItem(router: Router, href: string, singlePage?: boolean)
 /*
 Algorithm:
 1. Normalize hash route if it presents
-2. Split by "../"
-3. Count splits and add 1 more to sutisfy the pattern /(base)/(language)/(router)
-4. Generate prefix fom splitted pattern
+2. Split by "../" and take the last value
 5. Join the result
 */
 export function getLangPath(router: Router, lang: string) {
     const path = router.hash ? normalizeHash(router.hash) : normalizePath(router.pathname);
     const route = path?.split('../') || [];
-    const prefixesCount = route.length;
-    const prefix = Array(prefixesCount).fill('../').join('');
-    return `${prefix}${lang}/${route[route.length - 1] || ''}`;
+    return `../${lang}/${route[route.length - 1] || ''}`;
 }
 
 export function isExternalHref(href: string) {

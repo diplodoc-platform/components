@@ -5,13 +5,14 @@ import {List, Popover} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 import allLangs from 'langs';
 
-import {usePopupState, useTranslation} from '../../../hooks';
-import {Lang} from '../../../models';
-import {getPopupPosition} from '../../../utils';
-import {Control} from '../../Control';
-import {ControlsLayoutContext} from '../ControlsLayout';
+import {usePopupState, useTranslation} from '../../../../hooks';
+import {Lang} from '../../../../models';
+import {getPopupPosition} from '../../../../utils';
+import {Control} from '../../../Control';
+import {ControlsLayoutContext} from '../../ControlsLayout';
 
-import '../Controls.scss';
+import '../../Controls.scss';
+import './LangControl.scss';
 
 const DEFAULT_LANGS = ['en', 'ru', 'he'];
 const LEGACY_LANG_ITEMS = [

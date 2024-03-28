@@ -36,7 +36,7 @@ const b = block('dc-doc-page');
 
 export interface DocPageProps extends DocPageData, DocSettings {
     lang: Lang;
-    langs?: string[];
+    langs?: Lang[];
     router: Router;
     headerHeight?: number;
     tocTitleIcon?: React.ReactNode;

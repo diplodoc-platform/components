@@ -24,7 +24,7 @@ const b = block('dc-controls');
 
 export interface ControlsProps {
     lang?: Lang;
-    langs?: string[];
+    langs?: Lang[];
     fullScreen?: boolean;
     singlePage?: boolean;
     wideFormat?: boolean;

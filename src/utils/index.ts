@@ -135,9 +135,9 @@ export function getPageType({
     leading,
 }: DocLeadingPageData | (DocPageData & {data?: undefined}) | DocContentPageData): DocumentType {
     if (leading && data) {
-        return Object.prototype.hasOwnProperty.call(data, 'links')
-            ? DocumentType.Leading
-            : DocumentType.PageConstructor;
+        return Object.prototype.hasOwnProperty.call(data, 'blocks')
+            ? DocumentType.PageConstructor
+            : DocumentType.Leading;
     }
 
     return DocumentType.Base;

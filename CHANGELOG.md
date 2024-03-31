@@ -1,5 +1,21 @@
 # История изменений
 
+## [4.3.0](https://github.com/diplodoc-platform/components/compare/v4.2.0...v4.3.0) (2024-03-31)
+
+
+### Features
+
+* add getLangPath comment algorithm description ([84d68d4](https://github.com/diplodoc-platform/components/commit/84d68d4311bd0f57e2e303c193ec156d9e14c1b7))
+* hide lang control if no langs ([#228](https://github.com/diplodoc-platform/components/issues/228)) ([43b0be5](https://github.com/diplodoc-platform/components/commit/43b0be5207f9936d55f5d2da35ca886e7f4dd056))
+* use base uri path ([4c00bae](https://github.com/diplodoc-platform/components/commit/4c00baeac9d00ecf86502dba5974e99ee6f3143f))
+* use base uri path ([0390e0a](https://github.com/diplodoc-platform/components/commit/0390e0a33399e1447f6940ad6e6cae7fc137bbd5))
+
+
+### Bug Fixes
+
+* **Toc:** align items ([#226](https://github.com/diplodoc-platform/components/issues/226)) ([f16bb2f](https://github.com/diplodoc-platform/components/commit/f16bb2fef2982a7dd64f41e15629e2a16a032e09))
+* use blocks key to define page type ([#229](https://github.com/diplodoc-platform/components/issues/229)) ([fe016ef](https://github.com/diplodoc-platform/components/commit/fe016ef82f38ce445d9a7dc2854a69dabb90d57a))
+
 ## [4.2.0](https://github.com/diplodoc-platform/components/compare/v4.1.0...v4.2.0) (2024-03-25)
 
 

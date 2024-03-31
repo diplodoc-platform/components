@@ -54,6 +54,10 @@ type Defined = {
     [P in keyof ControlsProps]-?: ControlsProps[P];
 };
 
+function hasLangs(langs?: Lang[]) {
+    return langs?.length && langs.length > 1;
+}
+
 const Controls = memo<ControlsProps>((props) => {
     const {isVerticalView} = useContext(ControlsLayoutContext);
     const {
@@ -88,7 +92,7 @@ const Controls = memo<ControlsProps>((props) => {
     const withSettingsControl = Boolean(
         onChangeWideFormat || onChangeTheme || onChangeShowMiniToc || onChangeTextSize,
     );
-    const withLangControl = Boolean(lang && onChangeLang);
+    const withLangControl = Boolean(lang && hasLangs(langs) && onChangeLang);
     const withSinglePageControl = Boolean(onChangeSinglePage);
     const withPdfControl = Boolean(pdfLink);
     const withEditControl = Boolean(!singlePage && !hideEditControl && vcsUrl);

@@ -24,13 +24,11 @@ interface FlatTocItem {
 
 function getFlatToc(items: TocItem[]): FlatTocItem[] {
     return items.reduce((result, {href, name, items: subItems}) => {
-        const part: FlatTocItem[] = subItems ? getFlatToc(subItems) : [];
-
         if (href) {
-            part.push({name, href});
+            result.push({name, href});
         }
 
-        return result.concat(part);
+        return result.concat(getFlatToc(subItems || []));
     }, [] as FlatTocItem[]);
 }
 

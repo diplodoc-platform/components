@@ -1,5 +1,17 @@
 # История изменений
 
+## [4.4.0](https://github.com/diplodoc-platform/components/compare/v4.3.0...v4.4.0) (2024-04-03)
+
+
+### Features
+
+* add lang html extention ([27a3dd0](https://github.com/diplodoc-platform/components/commit/27a3dd05c072690ec21f947292cedfe2784dc0ea))
+
+
+### Bug Fixes
+
+* Fix toc navigation items sequence ([689111d](https://github.com/diplodoc-platform/components/commit/689111dfa52598a59e4c737ff6e057fec30cd6bc))
+
 ## [4.3.0](https://github.com/diplodoc-platform/components/compare/v4.2.0...v4.3.0) (2024-03-31)
 
 

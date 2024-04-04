@@ -1,0 +1,117 @@
+{
+  "controls": {
+    "label_wide_format": "Keng format",
+    "description_wide_format_enabled": "Yoqilgan",
+    "description_wide_format_disabled": "Oʻchirilgan",
+    "label_show_mini_toc": "Joriy maqola ichida navigatsiya",
+    "description_show_mini_toc": "Navigatsiyani koʻrsatish",
+    "label_dark_theme": "Tungi mavzu",
+    "description_enabled_dark_theme": "Yoqilgan",
+    "description_disabled_dark_theme": "Oʻchirilgan",
+    "label_text_size": "Matn oʻlchami",
+    "description_s_text_size": "Kichraytirilgan",
+    "description_m_text_size": "Birlamchi sozlama",
+    "description_l_text_size": "Kattalashtirilgan",
+    "full-screen-text-enabled": "Mutolaa rejimidan chiqish (Esc)",
+    "full-screen-text-disabled": "Mutolaa rejimi",
+    "single-page-text-enabled": "Bir sahifali rejimdan chiqish",
+    "single-page-text-disabled": "Bir sahifali rejim",
+    "pdf-text": "PDF",
+    "edit-text-github": "GitHub orqali tahrirlash",
+    "edit-text-arcanum": "Arcanum orqali tahrirlash",
+    "edit-text": "Tahrirlash",
+    "settings-text": "Sozlamalar",
+    "lang-text": "Til",
+    "like-text": "Maqola foyda berdi",
+    "dislike-text": "Maqola foyda bermadi",
+    "cancel-like-text": "Battarlashdi",
+    "cancel-dislike-text": "Yaxshilandi",
+    "feedback-success-title": "Rahmat!",
+    "feedback-success-text": "Javobingiz hujjatnomani yaxshilashda asqatadi",
+    "subscribe-text": "Obuna",
+    "subscribe-documentation-title": "Butun hujjatga obuna",
+    "unsubscribe-documentation-title": "Hujjatnomaga obunadan chiqish",
+    "subscribe-documentation-placeholder": "Email manzilingizni kiriting",
+    "subscribe-page-title": "Joriy sahifaga obuna",
+    "unsubscribe-page-title": "Sahifaga obunadan chiqish",
+    "email-text-invalid": "Email manzili xato",
+    "email-request-fail": "Xatolik yuz berdi. Urinishni bir necha daqiqadan keyin takrorlang",
+    "verify-title": "Email manzilingizni tasdiqlang",
+    "verify-text": "Email manzilingizga tarkibida uning toʻgʻriligini tasdiqlash uchun havola mavjud xabar yuborildi. Xabardagi havola orqali kirib, obunani yakunlang.",
+    "dislike-variants-title": "Maqolada nima notoʻgʻri ekanini tushuntiring",
+    "send-action-text": "Yuborish",
+    "skip-action-text": "Oʻtkazib yuborish",
+    "feedback-comment-placeholder": "Qoʻshimcha axborot foyda beradi",
+    "lang-control-text-ru": "Rus",
+    "lang-control-text-en": "Ingliz"
+  },
+  "mini-toc": {
+    "title": "Bu maqolada",
+    "description": "Joriy maqola mazmuni"
+  },
+  "toc-nav-panel": {
+    "hint_previous": "Avvalgisi",
+    "hint_next": "Keyingisi"
+  },
+  "authors": {
+    "title": "Maqola yaratilgan sana"
+  },
+  "contributors": {
+    "title": "yaxshilandi"
+  },
+  "feedback": {
+    "like-text": "Maqola foyda berdi",
+    "dislike-text": "Maqola foyda bermadi",
+    "cancel-like-text": "Battarlashdi",
+    "cancel-dislike-text": "Yaxshilandi",
+    "success-title": "Rahmat!",
+    "success-text": "Javobingiz hujjatnomani yaxshilashda asqatadi",
+    "dislike-variants-title": "Maqolada nima notoʻgʻri ekanini tushuntiring",
+    "send-action-text": "Yuborish",
+    "comment-placeholder": "Qoʻshimcha axborot foyda beradi",
+    "button-like-text": "Ha",
+    "button-dislike-text": "Yoʻq",
+    "main-question": "Maqola foyda berdimi?"
+  },
+  "feedback-variants": {
+    "irrelevant-answer": "Savolimga javob yoʻq",
+    "useless-recs": "Tavsiyalar yordam bermadi",
+    "content-mismatch": "Mazmuni sarlavhaga mos emas",
+    "other": "Boshqa"
+  },
+  "search-bar": {
+    "search-query-label": "Soʻrov asosida topildi",
+    "close": "Yopish",
+    "prev": "Avvalgisi",
+    "next": "Keyingisi"
+  },
+  "error": {
+    "label_meta-title-403": "Kirishga ruxsat yoʻq",
+    "label_meta-title-404": "Sahifa topilmadi",
+    "label_meta-title-500": "Xatolik yuz berdi",
+    "label_title-code": "Xatolik {{code}}",
+    "label_title-403_project": "Loyihaga kirishga ruxsat yoʻq",
+    "label_title-403_page-group": "Sahifaga kirishga ruxsat yoʻq",
+    "label_title-404": "Bunday sahifa mavjud emas",
+    "label_title-500": "Server sahifani yuklolmayapti",
+    "label_description-1": "Bu masala ustida ishlayapmiz",
+    "label_description-link": "Yangilashga urining",
+    "label_description-2": ".",
+    "label_link-main": "Asosiyga qaytish",
+    "label_link-access": "Kirishga ruxsat soʻrash"
+  },
+  "search": {
+    "search_placeholder": "Qidiruv",
+    "search_action": "Kerakli",
+    "search_request-query": "Qidiruv soʻrovi natijalari",
+    "search_not-found-title": "Qidiruv soʻrovingiz boʻyicha hech narsa topilmadi",
+    "search_not-found-text": "Toʻgʻri yozilganini tekshiring yoki boshqa kalit soʻzlar bilan urining.",
+    "search_mark_like": "narsani qidirish",
+    "search_mark_dislike": "mutlaqo bu emas",
+    "search_mark-result-text": "Baho uchun rahmat!"
+  },
+  "paginator": {
+    "next": "Keyingi sahifa",
+    "prev": "Avvalgi sahifa"
+  }
+}

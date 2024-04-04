@@ -3,7 +3,8 @@
   "compilerOptions": {
     "module": "CommonJS",
     "target": "ES2017",
-    "outDir": "build/cjs"
+    "outDir": "build/cjs",
+    "resolveJsonModule": true
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"]
 }

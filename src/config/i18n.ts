@@ -4,12 +4,21 @@ import {initReactI18next} from 'react-i18next';
 import {Lang} from '../models';
 
 import ar from '../i18n/ar.json';
+import bg from '../i18n/bg.json';
 import cs from '../i18n/cs.json';
+import el from '../i18n/el.json';
 import en from '../i18n/en.json';
 import es from '../i18n/es.json';
+import et from '../i18n/et.json';
 import fr from '../i18n/fr.json';
 import he from '../i18n/he.json';
+import kk from '../i18n/kk.json';
+import pt from '../i18n/pt.json';
 import ru from '../i18n/ru.json';
+import tr from '../i18n/tr.json';
+import uz from '../i18n/uz.json';
+import zhTw from '../i18n/zh-tw.json';
+import zh from '../i18n/zh.json';
 
 export type Loc = Record<string, typeof en>;
 
@@ -23,6 +32,7 @@ let initializePromise: Promise<TFunction> | null = null;
 export const configureI18N = ({lang, loc}: I18NConfig) => {
     if (initializePromise === null) {
         lang = lang || Lang.En;
+
         loc = loc || {
             ru: JSON.parse(ru as unknown as string),
             en: JSON.parse(en as unknown as string),
@@ -31,6 +41,15 @@ export const configureI18N = ({lang, loc}: I18NConfig) => {
             cs: JSON.parse(cs as unknown as string),
             he: JSON.parse(he as unknown as string),
             ar: JSON.parse(ar as unknown as string),
+            bg: JSON.parse(bg as unknown as string),
+            et: JSON.parse(et as unknown as string),
+            el: JSON.parse(el as unknown as string),
+            kk: JSON.parse(kk as unknown as string),
+            pt: JSON.parse(pt as unknown as string),
+            tr: JSON.parse(tr as unknown as string),
+            uz: JSON.parse(uz as unknown as string),
+            zh: JSON.parse(zh as unknown as string),
+            'zh-tw': JSON.parse(zhTw as unknown as string),
         };
 
         initializePromise = i18n.use(initReactI18next).init({

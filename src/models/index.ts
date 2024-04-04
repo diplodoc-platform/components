@@ -148,6 +148,15 @@ export enum Lang {
     Fr = 'fr',
     Cs = 'cs',
     Ar = 'ar',
+    Bg = 'bg',
+    El = 'el',
+    Et = 'et',
+    Kk = 'kk',
+    Pt = 'pt',
+    Tr = 'tr',
+    Uz = 'uz',
+    Zh = 'zh',
+    ZhTw = 'zh-tw',
 }
 
 export interface Contributor {

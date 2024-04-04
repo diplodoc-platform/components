@@ -1,0 +1,117 @@
+{
+  "controls": {
+    "label_wide_format": "Laiformaat",
+    "description_wide_format_enabled": "Sisselülitatud",
+    "description_wide_format_disabled": "Väljalülitatud",
+    "label_show_mini_toc": "Praeguses artiklis navigeerimine",
+    "description_show_mini_toc": "Näita navigeerimist",
+    "label_dark_theme": "Tume teema",
+    "description_enabled_dark_theme": "Sisselülitatud",
+    "description_disabled_dark_theme": "Väljalülitatud",
+    "label_text_size": "Teksti suurus",
+    "description_s_text_size": "Vähendatud",
+    "description_m_text_size": "Vaikimisi",
+    "description_l_text_size": "Suurendatud",
+    "full-screen-text-enabled": "Välju lugemisrežiimist (Esc)",
+    "full-screen-text-disabled": "Lugemisrežiim",
+    "single-page-text-enabled": "Ühe lehekülje režiimist väljumine",
+    "single-page-text-disabled": "Ühe lehekülje režiim",
+    "pdf-text": "PDF",
+    "edit-text-github": "GitHubi redigeerimine",
+    "edit-text-arcanum": "Arcanumi redigeerimine",
+    "edit-text": "Redigeeri",
+    "settings-text": "Seaded",
+    "lang-text": "Keel",
+    "like-text": "Kasulik artikkel",
+    "dislike-text": "Mittekasulik artikkel",
+    "cancel-like-text": "Muutus halvemaks",
+    "cancel-dislike-text": "Muutus paremaks",
+    "feedback-success-title": "Aitäh.",
+    "feedback-success-text": "Teie vastus aitab muuta dokumendid paremaks",
+    "subscribe-text": "Tellida",
+    "subscribe-documentation-title": "Tellida kogu dokument",
+    "unsubscribe-documentation-title": "Loobuda dokumentide tellimisest",
+    "subscribe-documentation-placeholder": "Sisestage oma e-post",
+    "subscribe-page-title": "Tellida praegune lehekülg",
+    "unsubscribe-page-title": "Loobuda leheküljest",
+    "email-text-invalid": "Ebaõige e-posti aadress",
+    "email-request-fail": "Tekkis viga. Proovige palun mõne minuti pärast.",
+    "verify-title": "Kinnitage oma postiaadress",
+    "verify-text": "Teie postkasti on saadetud e-kiri, mis sisaldab linki teie e-posti aadressi õigsuse kinnitamiseks. Palun järgige e-kirjas olevat linki, et tellimus lõpule viia.",
+    "dislike-variants-title": "Öelge, mis on artiklis valesti",
+    "send-action-text": "Saada",
+    "skip-action-text": "Jäta vahele",
+    "feedback-comment-placeholder": "Lisateave on kasulik",
+    "lang-control-text-ru": "Vene",
+    "lang-control-text-en": "Inglise"
+  },
+  "mini-toc": {
+    "title": "Selles artiklis",
+    "description": "Praeguse artikli sisu"
+  },
+  "toc-nav-panel": {
+    "hint_previous": "Eelnev",
+    "hint_next": "Järgnev"
+  },
+  "authors": {
+    "title": "Selle artikli on koostanud"
+  },
+  "contributors": {
+    "title": "parandatud"
+  },
+  "feedback": {
+    "like-text": "Kasulik artikkel",
+    "dislike-text": "Mittekasulik artikkel",
+    "cancel-like-text": "Muutus halvemaks",
+    "cancel-dislike-text": "Muutus paremaks",
+    "success-title": "Aitäh.",
+    "success-text": "Teie vastus aitab muuta dokumendid paremaks",
+    "dislike-variants-title": "Öelge, mis on artiklis valesti",
+    "send-action-text": "Saada",
+    "comment-placeholder": "Lisateave on kasulik",
+    "button-like-text": "Jah",
+    "button-dislike-text": "Ei",
+    "main-question": "Kas artikkel oli kasulik?"
+  },
+  "feedback-variants": {
+    "irrelevant-answer": "Ei vastanud mu küsimusele",
+    "useless-recs": "Soovitused ei aidanud",
+    "content-mismatch": "Sisu ei vasta pealkirjale",
+    "other": "Muu"
+  },
+  "search-bar": {
+    "search-query-label": "Päringu tulemused",
+    "close": "Sulge",
+    "prev": "Eelnev",
+    "next": "Järgnev"
+  },
+  "error": {
+    "label_meta-title-403": "Ei ole kättesaadav",
+    "label_meta-title-404": "Lehekülge ei leitud",
+    "label_meta-title-500": "Tekkis viga",
+    "label_title-code": "Viga {{code}}",
+    "label_title-403_project": "Projektile puudub juurdepääs",
+    "label_title-403_page-group": "Lehele puudub juurdepääs",
+    "label_title-404": "Selline leht puudub",
+    "label_title-500": "Server ei suuda lehekülge allalaadida",
+    "label_description-1": "Me jube töötame sellega",
+    "label_description-link": "Laadi lehekülg alla",
+    "label_description-2": ".",
+    "label_link-main": "Tagasi pealehele",
+    "label_link-access": "Küsi juurdepääsu"
+  },
+  "search": {
+    "search_placeholder": "Otsing",
+    "search_action": "Leia",
+    "search_request-query": "Päringu tulemused",
+    "search_not-found-title": "Teie pärngu põhjal ei leitud midagi",
+    "search_not-found-text": "Palun kontrollige õiget õigekirja või proovige teisi märksõnu.",
+    "search_mark_like": "see, mis vaja",
+    "search_mark_dislike": "asi ei ole üldse selles",
+    "search_mark-result-text": "Täname hinnangu eest!"
+  },
+  "paginator": {
+    "next": "Järgmine lehekülg",
+    "prev": "Eelmine lehekülg"
+  }
+}

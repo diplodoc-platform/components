@@ -1,0 +1,117 @@
+{
+  "controls": {
+    "label_wide_format": "Кең формат",
+    "description_wide_format_enabled": "Қосулы",
+    "description_wide_format_disabled": "Сөндірулі",
+    "label_show_mini_toc": "Ағымдағы мақала бойынша навигация",
+    "description_show_mini_toc": "Навигацияны көрсету",
+    "label_dark_theme": "Күңгірт тақырып",
+    "description_enabled_dark_theme": "Қосулы",
+    "description_disabled_dark_theme": "Сөндірулі",
+    "label_text_size": "Мәтін өлшемі",
+    "description_s_text_size": "Кішірейтілген",
+    "description_m_text_size": "Әдепкі түрде",
+    "description_l_text_size": "Үлкейтілген",
+    "full-screen-text-enabled": "Оқу режимінен шығу (Esc)",
+    "full-screen-text-disabled": "Оқу режимі",
+    "single-page-text-enabled": "Бір беттік режимнен шығу",
+    "single-page-text-disabled": "Бір беттік режим",
+    "pdf-text": "PDF",
+    "edit-text-github": "GitHub арқылы өңдеу",
+    "edit-text-arcanum": "Arcanum арқылы өңдеу",
+    "edit-text": "Өңдеу",
+    "settings-text": "Баптаулар ",
+    "lang-text": "Тіл",
+    "like-text": "Мақала пайдалы болды",
+    "dislike-text": "Мақаланың пайдасы жоқ",
+    "cancel-like-text": "Нашарлап кетті",
+    "cancel-dislike-text": "Жақсара түсті",
+    "feedback-success-title": "Рақмет!",
+    "feedback-success-text": "Сіздің жауабыңыз құжаттаманы жақсартуға көмектеседі",
+    "subscribe-text": "Жазылу",
+    "subscribe-documentation-title": "Бүкіл құжатқа жазылу",
+    "unsubscribe-documentation-title": "Құжаттамаға жазылымнан бас тарту",
+    "subscribe-documentation-placeholder": "Өз email-ді енгізіңіз",
+    "subscribe-page-title": "Ағымдағы бетке жазылу",
+    "unsubscribe-page-title": "Бетке жазылымнан бас тарту",
+    "email-text-invalid": "Электрондық поштаның мекенжайы дұрыс емес",
+    "email-request-fail": "Қате туындады. Әрекетті бірнеше минуттан кейін қайталауды сұраймыз",
+    "verify-title": "Өз поштаңызды растаңыз",
+    "verify-text": "Сіздің пошта жәшігіңізге e-mail мекенжайының дұрыс екендігін растауға арналған сілтемесі бар хат жіберілді. Жазылымды аяқтау үшін хаттағы сілтеме арқылы өтуді сұраймыз.",
+    "dislike-variants-title": "Мақаланың несі дұрыс еместігі туралы айтып беруді сұраймыз",
+    "send-action-text": "Жіберу",
+    "skip-action-text": "Өткізіп жіберу",
+    "feedback-comment-placeholder": "Қосымша ақпарат пайдалы болады",
+    "lang-control-text-ru": "Орысша",
+    "lang-control-text-en": "English"
+  },
+  "mini-toc": {
+    "title": "Бұл мақалада",
+    "description": "Осы мақаланы мазмұны"
+  },
+  "toc-nav-panel": {
+    "hint_previous": "Алдыңғы",
+    "hint_next": "Келесі"
+  },
+  "authors": {
+    "title": "Мақала жасалды"
+  },
+  "contributors": {
+    "title": "жақсартылды"
+  },
+  "feedback": {
+    "like-text": "Мақала пайдалы болды",
+    "dislike-text": "Мақаланың пайдасы жоқ",
+    "cancel-like-text": "Нашарлап кетті",
+    "cancel-dislike-text": "Жақсара түсті",
+    "success-title": "Рақмет!",
+    "success-text": "Сіздің жауабыңыз құжаттаманы жақсартуға көмектеседі",
+    "dislike-variants-title": "Мақаланың несі дұрыс еместігі туралы айтып беруді сұраймыз",
+    "send-action-text": "Жіберу",
+    "comment-placeholder": "Қосымша ақпарат пайдалы болады",
+    "button-like-text": "Иә",
+    "button-dislike-text": "Жоқ",
+    "main-question": "Мақала пайдалы болды ма?"
+  },
+  "feedback-variants": {
+    "irrelevant-answer": "Менің сұрағыма жауап жоқ",
+    "useless-recs": "Ұсынымдар көмектеспеді",
+    "content-mismatch": "Мазмұны тақырыбына сай келмейді",
+    "other": "Басқасы"
+  },
+  "search-bar": {
+    "search-query-label": "Сұрау бойынша табылғаны",
+    "close": "Жабу",
+    "prev": "Алдыңғы",
+    "next": "Келесі"
+  },
+  "error": {
+    "label_meta-title-403": "Қолжетімділік жоқ",
+    "label_meta-title-404": "Парақша табылмады",
+    "label_meta-title-500": "Қате туындады",
+    "label_title-code": "Қате {{code}}",
+    "label_title-403_project": "Жобаға қолжетімділік жоқ",
+    "label_title-403_page-group": "Бетке қолжетімділік жоқ",
+    "label_title-404": "Мұндай бет жоқ",
+    "label_title-500": "Сервер парақшаны жүктей алмады",
+    "label_description-1": "Біз онымен жұмыс істеп жатырмыз",
+    "label_description-link": "Парақшаны қайта жүктеу",
+    "label_description-2": ".",
+    "label_link-main": "Басты бетке оралу",
+    "label_link-access": "Қолжетімділік сұрату"
+  },
+  "search": {
+    "search_placeholder": "Іздеу",
+    "search_action": "Іздеп табу",
+    "search_request-query": "Сұранымға сай нәтижелер",
+    "search_not-found-title": "Сіздің сұрағаныңыз бойынша ештеңе табылмады",
+    "search_not-found-text": "Дұрыс жазылғанын тексеріп шығыңыз немесе басқа кілттік сөздерді қолданып көріңіз.",
+    "search_mark_like": "дәл керегі",
+    "search_mark_dislike": "мүлде ол емес",
+    "search_mark-result-text": "Бағаңыз үшін рақмет!"
+  },
+  "paginator": {
+    "next": "Келесі бет",
+    "prev": "Алдыңғы бет"
+  }
+}

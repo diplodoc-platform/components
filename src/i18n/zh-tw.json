@@ -1,0 +1,117 @@
+{
+  "controls": {
+    "label_wide_format": "寬幅格式",
+    "description_wide_format_enabled": "已開啓",
+    "description_wide_format_disabled": "已關閉",
+    "label_show_mini_toc": "浏覽當前文章",
+    "description_show_mini_toc": "顯示浏覽界面",
+    "label_dark_theme": "深色主題",
+    "description_enabled_dark_theme": "已開啓",
+    "description_disabled_dark_theme": "已關閉",
+    "label_text_size": "文字大小",
+    "description_s_text_size": "減小",
+    "description_m_text_size": "默認值",
+    "description_l_text_size": "增大",
+    "full-screen-text-enabled": "退出閱覽模式（Esc）",
+    "full-screen-text-disabled": "閱覽模式",
+    "single-page-text-enabled": "退出單頁模式",
+    "single-page-text-disabled": "單頁模式",
+    "pdf-text": "PDF",
+    "edit-text-github": "在GitHub上進行編輯",
+    "edit-text-arcanum": "在Arcanum上進行編輯",
+    "edit-text": "編輯",
+    "settings-text": "設置",
+    "lang-text": "語言",
+    "like-text": "文章有所裨益",
+    "dislike-text": "文章了無用處",
+    "cancel-like-text": "變得更糟",
+    "cancel-dislike-text": "變得更好",
+    "feedback-success-title": "謝謝！",
+    "feedback-success-text": "您的回答將有助于完善文件",
+    "subscribe-text": "訂閱",
+    "subscribe-documentation-title": "訂閱整份文件",
+    "unsubscribe-documentation-title": "退訂文件",
+    "subscribe-documentation-placeholder": "輸入您的電子郵件地址",
+    "subscribe-page-title": "訂閱當前頁面",
+    "unsubscribe-page-title": "取消訂閱頁面",
+    "email-text-invalid": "電子郵件地址無效",
+    "email-request-fail": "出錯了。請您在幾分鍾後再試一次",
+    "verify-title": "請確認您的電子郵箱",
+    "verify-text": "電子郵件已發送到您的郵箱，其中包含一個鏈接，用于確認您的電子郵件地址是否正確。請您點擊電子郵件中的鏈接完成訂閱。",
+    "dislike-variants-title": "請您告訴我，這篇文章有什麽問題",
+    "send-action-text": "發送",
+    "skip-action-text": "跳轉",
+    "feedback-comment-placeholder": "補充信息將有所幫助",
+    "lang-control-text-ru": "俄語",
+    "lang-control-text-en": "英語"
+  },
+  "mini-toc": {
+    "title": "在這篇文章中",
+    "description": "當前文章的內容"
+  },
+  "toc-nav-panel": {
+    "hint_previous": "上一篇",
+    "hint_next": "下一篇"
+  },
+  "authors": {
+    "title": "文章已完成"
+  },
+  "contributors": {
+    "title": "已得到完善"
+  },
+  "feedback": {
+    "like-text": "文章有所裨益",
+    "dislike-text": "文章了無用處",
+    "cancel-like-text": "變得更糟",
+    "cancel-dislike-text": "變得更好",
+    "success-title": "謝謝！",
+    "success-text": "您的回答將有助于完善文件",
+    "dislike-variants-title": "請您告訴我，這篇文章有什麽問題",
+    "send-action-text": "發送",
+    "comment-placeholder": "補充信息將有所幫助",
+    "button-like-text": "是",
+    "button-dislike-text": "不是",
+    "main-question": "這篇文章是否有用？"
+  },
+  "feedback-variants": {
+    "irrelevant-answer": "沒有回答我的問題",
+    "useless-recs": "這些建議沒有作用",
+    "content-mismatch": "內容與標題不一致",
+    "other": "其它"
+  },
+  "search-bar": {
+    "search-query-label": "已按要求找到",
+    "close": "關閉",
+    "prev": "上一個",
+    "next": "下一個"
+  },
+  "error": {
+    "label_meta-title-403": "無訪問權限",
+    "label_meta-title-404": "找不到頁面",
+    "label_meta-title-500": "出錯了",
+    "label_title-code": "出錯了 {{code}}",
+    "label_title-403_project": "無法進入該項目",
+    "label_title-403_page-group": "無法進入該頁面",
+    "label_title-404": "該頁面不存在",
+    "label_title-500": "服務器無法加載該頁面",
+    "label_description-1": "我們已著手解決此類問題",
+    "label_description-link": "重新加載頁面",
+    "label_description-2": "。",
+    "label_link-main": "返回主頁",
+    "label_link-access": "請求訪問權限"
+  },
+  "search": {
+    "search_placeholder": "搜索",
+    "search_action": "找到",
+    "search_request-query": "根據請求提供的結果",
+    "search_not-found-title": "未找到與您的請求相關的信息",
+    "search_not-found-text": "請您檢查一下拼寫是否正確或嘗試其他關鍵詞。",
+    "search_mark_like": "所需信息",
+    "search_mark_dislike": "完全沒有此類信息",
+    "search_mark-result-text": "感謝評價！"
+  },
+  "paginator": {
+    "next": "下一頁",
+    "prev": "上一頁"
+  }
+}

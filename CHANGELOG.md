@@ -1,5 +1,12 @@
 # История изменений
 
+## [4.5.0](https://github.com/diplodoc-platform/components/compare/v4.4.0...v4.5.0) (2024-04-05)
+
+
+### Features
+
+* add tr-TR, kk-KZ, uz-UZ, bg-BG, zh-TW, zh-CN, pt-PT, et-EE, el-GR ([912f7ca](https://github.com/diplodoc-platform/components/commit/912f7ca312c14477c243ec686417cdbd1869305f))
+
 ## [4.4.0](https://github.com/diplodoc-platform/components/compare/v4.3.0...v4.4.0) (2024-04-03)
 
 

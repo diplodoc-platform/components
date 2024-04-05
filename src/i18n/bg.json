@@ -1,0 +1,117 @@
+{
+  "controls": {
+    "label_wide_format": "Широк формат",
+    "description_wide_format_enabled": "Включен",
+    "description_wide_format_disabled": "Изключен",
+    "label_show_mini_toc": "Навигация в текущата статия",
+    "description_show_mini_toc": "Показване на навигацията",
+    "label_dark_theme": "Тъмна тема",
+    "description_enabled_dark_theme": "Включена",
+    "description_disabled_dark_theme": "Изключена",
+    "label_text_size": "Размер на текста",
+    "description_s_text_size": "Намален размер на текста",
+    "description_m_text_size": "По подразбиране",
+    "description_l_text_size": "Увеличен размер на текста",
+    "full-screen-text-enabled": "Излизане от режима на четене (Esc)",
+    "full-screen-text-disabled": "Режим на четене",
+    "single-page-text-enabled": "Излизане от едностраничния режим",
+    "single-page-text-disabled": "Едностраничен режим",
+    "pdf-text": "PDF",
+    "edit-text-github": "Редактиране на GitHub",
+    "edit-text-arcanum": "Редактиране в Arcanum",
+    "edit-text": "Редактиране",
+    "settings-text": "Настройки",
+    "lang-text": "Език",
+    "like-text": "Статията е полезна",
+    "dislike-text": "Статията не е полезна",
+    "cancel-like-text": "Стана по-лошо",
+    "cancel-dislike-text": "Стана по-добре",
+    "feedback-success-title": "Благодаря!",
+    "feedback-success-text": "Вашият отговор ще помогне за подобряване на документацията",
+    "subscribe-text": "Абониране",
+    "subscribe-documentation-title": "Абониране за целия документ",
+    "unsubscribe-documentation-title": "Прекратяване на абонамента за документацията",
+    "subscribe-documentation-placeholder": "Въведете вашия имейл адрес",
+    "subscribe-page-title": "Абониране за текущата страница",
+    "unsubscribe-page-title": "Прекратяване на абонамента за страницата",
+    "email-text-invalid": "Адресът на електронната поща не е верен",
+    "email-request-fail": "Възникна грешка. Моля, опитайте отново след няколко минути",
+    "verify-title": "Потвърдете имейл адреса си",
+    "verify-text": "Във вашата пощенска кутия е изпратен имейл с линк за потвърждаване на верността на вашия имейл адрес. Моля, последвайте линка в имейла, за да завършите абонамента си.",
+    "dislike-variants-title": "Кажете какво не е наред със статията",
+    "send-action-text": "Изпращане",
+    "skip-action-text": "Пропускане",
+    "feedback-comment-placeholder": "Допълнителната информация ще бъде полезна",
+    "lang-control-text-ru": "Руски език",
+    "lang-control-text-en": "Английски език"
+  },
+  "mini-toc": {
+    "title": "В тази статия",
+    "description": "Съдържанието на текущата статия"
+  },
+  "toc-nav-panel": {
+    "hint_previous": "Предходна",
+    "hint_next": "Следваща"
+  },
+  "authors": {
+    "title": "Статията е създадена"
+  },
+  "contributors": {
+    "title": "подобрена"
+  },
+  "feedback": {
+    "like-text": "Статията е полезна",
+    "dislike-text": "Статията не е полезна",
+    "cancel-like-text": "Стана по-лошо",
+    "cancel-dislike-text": "Стана по-добре",
+    "success-title": "Благодаря!",
+    "success-text": "Вашият отговор ще помогне за подобряване на документацията",
+    "dislike-variants-title": "Кажете какво не е наред със статията",
+    "send-action-text": "Изпращане",
+    "comment-placeholder": "Допълнителната информация ще бъде полезна",
+    "button-like-text": "Да",
+    "button-dislike-text": "Не",
+    "main-question": "Беше ли полезна статията?"
+  },
+  "feedback-variants": {
+    "irrelevant-answer": "Няма отговор на моя въпрос",
+    "useless-recs": "Препоръките не помогнаха",
+    "content-mismatch": "Съдържанието на съответства на заглавието",
+    "other": "Друго"
+  },
+  "search-bar": {
+    "search-query-label": "Намерено при търсенето",
+    "close": "Затваряне",
+    "prev": "Предходен",
+    "next": "Следващ"
+  },
+  "error": {
+    "label_meta-title-403": "Няма достъп",
+    "label_meta-title-404": "Страницата не е открита",
+    "label_meta-title-500": "Възникна грешка",
+    "label_title-code": "Грешка {{code}}",
+    "label_title-403_project": "Няма достъп до проекта",
+    "label_title-403_page-group": "Няма достъп до страницата",
+    "label_title-404": "Няма такава страница",
+    "label_title-500": "Сървърът не успя да зареди страницата",
+    "label_description-1": "Вече работим по проблема",
+    "label_description-link": "Презаредете страницата",
+    "label_description-2": ".",
+    "label_link-main": "Върнете се към началната страница",
+    "label_link-access": "Поискайте достъп"
+  },
+  "search": {
+    "search_placeholder": "Търсене",
+    "search_action": "Намери",
+    "search_request-query": "Резултати от търсенето",
+    "search_not-found-title": "По вашата заявка не беше открито нищо",
+    "search_not-found-text": "Моля, проверете правилното изписване или опитайте с други ключови думи.",
+    "search_mark_like": "това, което е необходимо",
+    "search_mark_dislike": "изобщо не става въпрос за това",
+    "search_mark-result-text": "Благодарим за оценката!"
+  },
+  "paginator": {
+    "next": "Следваща страница",
+    "prev": "Предходна страница"
+  }
+}

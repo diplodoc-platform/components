@@ -1,0 +1,117 @@
+{
+  "controls": {
+    "label_wide_format": "Geniş format",
+    "description_wide_format_enabled": "Açık",
+    "description_wide_format_disabled": "Kapalı",
+    "label_show_mini_toc": "Yazı içi navigasyon",
+    "description_show_mini_toc": "Navigasyon öğelerini göster",
+    "label_dark_theme": "Koyu tema",
+    "description_enabled_dark_theme": "Açık",
+    "description_disabled_dark_theme": "Kapalı",
+    "label_text_size": "Yazı boyutu",
+    "description_s_text_size": "Küçük",
+    "description_m_text_size": "Varsayılan",
+    "description_l_text_size": "Büyük",
+    "full-screen-text-enabled": "Okuma modundan çık (Esc)",
+    "full-screen-text-disabled": "Okuma modu",
+    "single-page-text-enabled": "Tek sayfa modundan çık",
+    "single-page-text-disabled": "Tek sayfa modu",
+    "pdf-text": "PDF",
+    "edit-text-github": "GitHub'da düzenle",
+    "edit-text-arcanum": "Arcanum'da düzenle",
+    "edit-text": "Düzenle",
+    "settings-text": "Ayarlar",
+    "lang-text": "Dil",
+    "like-text": "Yazı yararlı oldu",
+    "dislike-text": "Yazı yararlı olmadı",
+    "cancel-like-text": "Daha kötü oldu",
+    "cancel-dislike-text": "Daha iyi oldu",
+    "feedback-success-title": "Teşekkür ederiz!",
+    "feedback-success-text": "Yanıtınız belge setini geliştirmeye katkı sağlıyor",
+    "subscribe-text": "Abone ol",
+    "subscribe-documentation-title": "Belgenin tamamına abone ol",
+    "unsubscribe-documentation-title": "Belge seti aboneliğini iptal et",
+    "subscribe-documentation-placeholder": "E-posta adresinizi girin",
+    "subscribe-page-title": "Bu sayfaya abone ol",
+    "unsubscribe-page-title": "Bu sayfaya aboneliği iptal et",
+    "email-text-invalid": "E-posta adresi hatalı",
+    "email-request-fail": "Hata oluştu. Lütfen, birkaç dakika bekleyip tekrar deneyin",
+    "verify-title": "E-posta adresinizi doğrulayın",
+    "verify-text": "E-posta adresinizi doğrulamak için özel bağlantı içeren bir ileti e-posta adresinize gönderildi. Abonelik işlemini tamamlamak için iletideki bağlantıya tıklayın.",
+    "dislike-variants-title": "Lütfen, yazının nesinin yanlış olduğunu açıklayın",
+    "send-action-text": "Gönder",
+    "skip-action-text": "Atla",
+    "feedback-comment-placeholder": "Ek bilgiler yararlı olacaktır",
+    "lang-control-text-ru": "Rusça",
+    "lang-control-text-en": "English"
+  },
+  "mini-toc": {
+    "title": "Bu yazıda",
+    "description": "Bu yazının içeriği"
+  },
+  "toc-nav-panel": {
+    "hint_previous": "Önceki",
+    "hint_next": "Sonraki"
+  },
+  "authors": {
+    "title": "Yazı oluşturuldu"
+  },
+  "contributors": {
+    "title": "iyileştirildi"
+  },
+  "feedback": {
+    "like-text": "Yazı yararlı oldu",
+    "dislike-text": "Yazı yararlı olmadı",
+    "cancel-like-text": "Daha kötü oldu",
+    "cancel-dislike-text": "Daha iyi oldu",
+    "success-title": "Teşekkür ederiz!",
+    "success-text": "Yanıtınız belge setini geliştirmeye katkı sağlıyor",
+    "dislike-variants-title": "Lütfen, yazının nesinin yanlış olduğunu açıklayın",
+    "send-action-text": "Gönder",
+    "comment-placeholder": "Ek bilgiler yararlı olacaktır",
+    "button-like-text": "Evet",
+    "button-dislike-text": "Hayır",
+    "main-question": "Yazı yararlı oldu mu?"
+  },
+  "feedback-variants": {
+    "irrelevant-answer": "Sorum yanıtlanmadı",
+    "useless-recs": "Öneriler işe yaramadı",
+    "content-mismatch": "İçerik başlıkla uyumlu değil",
+    "other": "Diğer"
+  },
+  "search-bar": {
+    "search-query-label": "Sorguya göre bulundu",
+    "close": "Kapat",
+    "prev": "Önceki",
+    "next": "Sonraki"
+  },
+  "error": {
+    "label_meta-title-403": "Erişim yok",
+    "label_meta-title-404": "Sayfa bulunamadı",
+    "label_meta-title-500": "Hata oluştu",
+    "label_title-code": "Hata {{code}}",
+    "label_title-403_project": "Projeye erişilemiyor",
+    "label_title-403_page-group": "Sayfaya erişilemiyor",
+    "label_title-404": "Böyle bir sayfa mevcut değil",
+    "label_title-500": "Sunucu sayfayı yükleyemedi",
+    "label_description-1": "Bunun üzerinde zaten çalışıyoruz",
+    "label_description-link": "Sayfayı yeniden yükle",
+    "label_description-2": ".",
+    "label_link-main": "Ana sayfaya geri dön",
+    "label_link-access": "Erişim iste"
+  },
+  "search": {
+    "search_placeholder": "Ara",
+    "search_action": "Bul",
+    "search_request-query": "Sorgu sonuçları",
+    "search_not-found-title": "Sorgunuza uygun bir şey bulunamadı",
+    "search_not-found-text": "Lütfen, sorgunuzda yazım hatası olmadığından emin olun veya farklı anahtar kelimeler kullanmayı deneyin.",
+    "search_mark_like": "tam aradığım şey",
+    "search_mark_dislike": "tamamen alakasız",
+    "search_mark-result-text": "Değerlendirmeniz için teşekkür ederiz!"
+  },
+  "paginator": {
+    "next": "Sonraki sayfa",
+    "prev": "Önceki sayfa"
+  }
+}

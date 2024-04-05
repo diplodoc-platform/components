@@ -1,0 +1,117 @@
+{
+  "controls": {
+    "label_wide_format": "Ευρεία μορφή",
+    "description_wide_format_enabled": "Ενεργοποιημένη",
+    "description_wide_format_disabled": "Απενεργοποιημένη",
+    "label_show_mini_toc": "Πλοήγηση τρέχοντος άρθρου",
+    "description_show_mini_toc": "Εμφάνιση πλοήγησης",
+    "label_dark_theme": "Σκούρο θέμα",
+    "description_enabled_dark_theme": "Ενεργοποιημένο",
+    "description_disabled_dark_theme": "Απενεργοποιημένο",
+    "label_text_size": "Μέγεθος κειμένου",
+    "description_s_text_size": "Μειωμένο",
+    "description_m_text_size": "Προεπιλογή",
+    "description_l_text_size": "Αυξημένο",
+    "full-screen-text-enabled": "Έξοδος από λειτουργία ανάγνωσης (Esc)",
+    "full-screen-text-disabled": "Λειτουργία ανάγνωσης",
+    "single-page-text-enabled": "Έξοδος από λειτουργία μίας σελίδας",
+    "single-page-text-disabled": "Λειτουργία μίας σελίδας",
+    "pdf-text": "PDF",
+    "edit-text-github": "Επεξεργασία στο GitHub",
+    "edit-text-arcanum": "Επεξεργασία στο Arcanum",
+    "edit-text": "Επεξεργασία",
+    "settings-text": "Ρυθμίσεις",
+    "lang-text": "Γλώσσα",
+    "like-text": "Το άρθρο είναι χρήσιμο",
+    "dislike-text": "Το άρθρο δεν είναι χρήσιμο",
+    "cancel-like-text": "Έγινε χειρότερα",
+    "cancel-dislike-text": "Έγινε καλύτερα",
+    "feedback-success-title": "Ευχαριστούμε!",
+    "feedback-success-text": "Η απάντησή σας θα μας βοηθήσει να βελτιώσουμε τα έγγραφα",
+    "subscribe-text": "Εγγραφή",
+    "subscribe-documentation-title": "Εγγραφή σε ολόκληρο το έγγραφο",
+    "unsubscribe-documentation-title": "Κατάργηση εγγραφής από τα έγγραφα",
+    "subscribe-documentation-placeholder": "Εισαγάγετε τη διεύθυνση email σας",
+    "subscribe-page-title": "Εγγραφή στην τρέχουσα σελίδα",
+    "unsubscribe-page-title": "Κατάργηση εγγραφής από τη σελίδα",
+    "email-text-invalid": "Η διεύθυνση email δεν είναι έγκυρη",
+    "email-request-fail": "Παρουσιάστηκε σφάλμα. Παρακαλούμε να δοκιμάσετε ξανά σε λίγα λεπτά",
+    "verify-title": "Επιβεβαιώστε το email σας",
+    "verify-text": "Στη διεύθυνση email σας έχει σταλεί το γράμμα που περιέχει έναν σύνδεσμο για να επιβεβαιώσετε ότι αυτή η διεύθυνση email είναι σωστή. Ακολουθήστε τον σύνδεσμο στο email για να ολοκληρώσετε την εγγραφή σας.",
+    "dislike-variants-title": "Πείτε μας τι δεν πάει καλά με το άρθρο",
+    "send-action-text": "Αποστολή",
+    "skip-action-text": "Παράλειψη",
+    "feedback-comment-placeholder": "Πρόσθετες πληροφορίες θα είναι χρήσιμες",
+    "lang-control-text-ru": "Ρωσικά",
+    "lang-control-text-en": "English (Αγγλικά)"
+  },
+  "mini-toc": {
+    "title": "Σε αυτό το άρθρο",
+    "description": "Περιεχόμενο τρέχοντος άρθρου"
+  },
+  "toc-nav-panel": {
+    "hint_previous": "Προηγούμενο",
+    "hint_next": "Επόμενο"
+  },
+  "authors": {
+    "title": "Το άρθρο δημιουργήθηκε"
+  },
+  "contributors": {
+    "title": "βελτιώθηκε"
+  },
+  "feedback": {
+    "like-text": "Το άρθρο είναι χρήσιμο",
+    "dislike-text": "Το άρθρο δεν είναι χρήσιμο",
+    "cancel-like-text": "Έγινε χειρότερα",
+    "cancel-dislike-text": "Έγινε καλύτερα",
+    "success-title": "Ευχαριστούμε!",
+    "success-text": "Η απάντησή σας θα μας βοηθήσει να βελτιώσουμε τα έγγραφα",
+    "dislike-variants-title": "Πείτε μας τι δεν πάει καλά με το άρθρο",
+    "send-action-text": "Αποστολή",
+    "comment-placeholder": "Πρόσθετες πληροφορίες θα είναι χρήσιμες",
+    "button-like-text": "Ναι",
+    "button-dislike-text": "Όχι",
+    "main-question": "Ήταν χρήσιμο το άρθρο;"
+  },
+  "feedback-variants": {
+    "irrelevant-answer": "Δεν υπάρχει απάντηση στην ερώτησή μου",
+    "useless-recs": "Οι προτάσεις δεν βοήθησαν",
+    "content-mismatch": "Το περιεχόμενο δεν ταιριάζει με τον τίτλο",
+    "other": "Άλλο"
+  },
+  "search-bar": {
+    "search-query-label": "Βρέθηκαν από αναζήτηση",
+    "close": "Κλείσιμο",
+    "prev": "Προηγούμενη",
+    "next": "Επόμενη"
+  },
+  "error": {
+    "label_meta-title-403": "Δεν παρέχεται πρόσβαση",
+    "label_meta-title-404": "Η σελίδα δεν βρέθηκε",
+    "label_meta-title-500": "Παρουσιάστηκε σφάλμα",
+    "label_title-code": "Σφάλμα {{code}}",
+    "label_title-403_project": "Δεν παρέχεται πρόσβαση στο έργο",
+    "label_title-403_page-group": "Δεν παρέχεται πρόσβαση στη σελίδα",
+    "label_title-404": "Δεν υπάρχει τέτοια σελίδα",
+    "label_title-500": "Αποτυχία φόρτωσης σελίδας από διακομιστή",
+    "label_description-1": "Δουλεύουμε ήδη πάνω στο θέμα",
+    "label_description-link": "Επαναφόρτωση σελίδας",
+    "label_description-2": ".",
+    "label_link-main": "Επιστροφή στην αρχική σελίδα",
+    "label_link-access": "Αίτημα πρόσβασης"
+  },
+  "search": {
+    "search_placeholder": "Αναζήτηση",
+    "search_action": "Εύρεση",
+    "search_request-query": "Αποτελέσματα αναζήτησης",
+    "search_not-found-title": "Δεν βρέθηκαν αποτελέσματα για την αναζήτησή σας",
+    "search_not-found-text": "Ελέγξτε την ορθογραφία ή δοκιμάστε άλλες λέξεις-κλειδιά.",
+    "search_mark_like": "είναι αυτό που θέλω",
+    "search_mark_dislike": "είναι τελείως έξω",
+    "search_mark-result-text": "Σας ευχαριστούμε για τη βαθμολογία σας!"
+  },
+  "paginator": {
+    "next": "Επόμενη σελίδα",
+    "prev": "Προηγούμενη σελίδα"
+  }
+}

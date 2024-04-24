@@ -47,6 +47,8 @@ const MiniToc = memo<MinitocProps>(({headings, router, headerHeight, onItemClick
         return null;
     }
 
+    const currentHref = window.location.href?.split('#')?.[0];
+
     return (
         <div className={b()}>
             <div className={b('title')}>{t<string>('title')}:</div>
@@ -61,7 +63,11 @@ const MiniToc = memo<MinitocProps>(({headings, router, headerHeight, onItemClick
             >
                 {flatHeadings.map(({href, title, isChild}) => (
                     <li key={href} data-hash={href} className={b('section', {child: isChild})}>
-                        <a href={href} className={b('section-link')} data-router-shallow>
+                        <a
+                            href={currentHref + href}
+                            className={b('section-link')}
+                            data-router-shallow
+                        >
                             {title}
                         </a>
                     </li>

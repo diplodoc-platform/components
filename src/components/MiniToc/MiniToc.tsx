@@ -61,17 +61,17 @@ const MiniToc = memo<MinitocProps>(({headings, router, headerHeight, onItemClick
                 onSectionClick={onItemClick}
                 aria-label={t('description')}
             >
-                {flatHeadings.map(({href, title, isChild}) => (
-                    <li key={href} data-hash={href} className={b('section', {child: isChild})}>
-                        <a
-                            href={currentHref + href}
-                            className={b('section-link')}
-                            data-router-shallow
-                        >
-                            {title}
-                        </a>
-                    </li>
-                ))}
+                {flatHeadings.map(({href, title, isChild}) => {
+                    const link = href[0] === '#' ? currentHref + href : href;
+
+                    return (
+                        <li key={href} data-hash={href} className={b('section', {child: isChild})}>
+                            <a href={link} className={b('section-link')} data-router-shallow>
+                                {title}
+                            </a>
+                        </li>
+                    );
+                })}
             </Scrollspy>
         </div>
     );

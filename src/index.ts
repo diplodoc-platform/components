@@ -1,4 +1,5 @@
 export * from './components/Breadcrumbs';
+export * from './components/ConsentPopup';
 export * from './components/DocLayout';
 export * from './components/DocLeadingPage';
 export * from './components/DocPage';

@@ -1,0 +1,32 @@
+import React from 'react';
+
+import {ConsentManager, ConsentMode, CookieConsent} from '@gravity-ui/components';
+
+import {AnalyticsParams, useAnalytics} from '../../hooks';
+
+const ConsentPopup: React.FC<AnalyticsParams> = (props) => {
+    const consentManager = React.useMemo(() => new ConsentManager(ConsentMode.Base), []);
+    const [useConsent, setUseConsent] = React.useState(
+        Boolean(consentManager?.getConsents().analytics),
+    );
+
+    const onConsentPopupClose = React.useCallback(() => {
+        setUseConsent(Boolean(consentManager?.getConsents().analytics));
+    }, [consentManager]);
+
+    useAnalytics({
+        gtmId: props.gtmId,
+        router: props.router,
+        useConsent,
+    });
+
+    if (!consentManager) {
+        return null;
+    }
+
+    return (
+        <CookieConsent consentManager={consentManager} onConsentPopupClose={onConsentPopupClose} />
+    );
+};
+
+export default ConsentPopup;

@@ -4,7 +4,6 @@
     &__text-size-control {
         display: flex;
         align-items: center;
-
     }
 
     &__text-size-button {
@@ -51,7 +50,6 @@
         display: flex;
         padding: 12px;
         width: 100%;
-
     }
 
     &__list-item-description {
@@ -79,8 +77,10 @@
 
         &__popup-tooltip {
             position: fixed;
+            /* stylelint-disable-next-line declaration-no-important */
             inset: var(--header-height) 0px auto 0px !important;
-            transform: translate3d(0,0,0) !important;
+            /* stylelint-disable-next-line declaration-no-important */
+            transform: translate3d(0, 0, 0) !important;
         }
 
         &__popup-tooltip-content {

@@ -1,3 +1,5 @@
+import {Lang as LangUIKit, configure as configureUIKit} from '@gravity-ui/uikit';
+
 import {Config, Lang} from '../models';
 
 import {configureI18N} from './i18n';
@@ -16,6 +18,12 @@ export const configure = (newConfig: Partial<Config> = {}) => {
     configureI18N({
         lang: config.lang,
         loc: config.loc,
+    });
+
+    configureUIKit({
+        lang: Object.values(LangUIKit).includes(config.lang as LangUIKit)
+            ? (config.lang as LangUIKit)
+            : LangUIKit.En,
     });
 
     subs.forEach((sub) => {

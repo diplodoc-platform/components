@@ -11,7 +11,6 @@ import {getPopupPosition} from '../../../../utils';
 import {Control} from '../../../Control';
 import {ControlsLayoutContext} from '../../ControlsLayout';
 
-import '../../Controls.scss';
 import './LangControl.scss';
 
 const DEFAULT_LANGS = ['en', 'ru', 'he'];
@@ -21,7 +20,7 @@ const LEGACY_LANG_ITEMS = [
     {value: Lang.He, text: 'Hebrew'},
 ];
 
-const b = block('dc-controls');
+const b = block('dc-lang-control');
 
 interface ControlProps {
     lang: Lang;
@@ -62,7 +61,7 @@ const LangControl = (props: ControlProps) => {
         return preparedLangs.length ? preparedLangs : LEGACY_LANG_ITEMS;
     }, [langs]);
     const renderItem = useCallback((item: ListItem) => {
-        return <button className={b('lang-item')}>{item.text}</button>;
+        return <button className={b('list-item')}>{item.text}</button>;
     }, []);
     const onItemClick = useCallback(
         (item: ListItem) => {
@@ -95,12 +94,13 @@ const LangControl = (props: ControlProps) => {
             onCloseClick={popupState.close}
             onOpenChange={onOpenChange}
             className={controlClassName}
+            contentClassName={b('popup')}
             tooltipContentClassName={b('popup-tooltip')}
             content={
                 <List
                     role={'list'}
                     filterable={false}
-                    className={b('list', {langs: true})}
+                    className={b('list')}
                     items={langItems}
                     onItemClick={onItemClick}
                     selectedItemIndex={selectedItemIndex}

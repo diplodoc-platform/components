@@ -1,3 +1,40 @@
-.dc-controls__lang-item {
-    padding: 0 18px;
+@import '../../../../styles/mixins';
+@import '../../../../styles/variables';
+
+.dc-lang-control {
+    display: flex;
+    align-items: center;
+    @include text-size(body-1);
+
+    &__popup {
+        width: 100px;
+        @include text-size(body-1);
+    }
+
+    &__popup-tooltip {
+        padding: 0;
+    }
+
+    &__list {
+        padding: 4px 0;
+    }
+
+    &__list-item {
+        --g-focus-border-radius: 4px;
+
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        border-radius: var(--g-focus-border-radius);
+        border: 0;
+        padding: 0 12px;
+        color: inherit;
+        cursor: inherit;
+        background-color: inherit;
+        font-family: inherit;
+
+        @include focusable(-2px);
+    }
 }

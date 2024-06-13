@@ -1,5 +1,17 @@
 # История изменений
 
+## [4.6.0](https://github.com/diplodoc-platform/components/compare/v4.5.0...v4.6.0) (2024-06-13)
+
+
+### Features
+
+* add google tag manager component ([#238](https://github.com/diplodoc-platform/components/issues/238)) ([c3b68b7](https://github.com/diplodoc-platform/components/commit/c3b68b77fd6a49af286b41bf81e97b532a6e1d76))
+
+
+### Bug Fixes
+
+* correct style load for lang control at static mode ([#237](https://github.com/diplodoc-platform/components/issues/237)) ([158bc6b](https://github.com/diplodoc-platform/components/commit/158bc6bc60c0e0cb8925a95bb5171c74fa08d28f))
+
 ## [4.5.0](https://github.com/diplodoc-platform/components/compare/v4.4.0...v4.5.0) (2024-04-05)
 
 

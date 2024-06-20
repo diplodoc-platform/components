@@ -1,6 +1,7 @@
 import React, {ReactPortal} from 'react';
 
-import {Link} from '@gravity-ui/icons';
+import {Button, Icon} from '@gravity-ui/uikit';
+import {Link, Xmark} from '@gravity-ui/icons';
 import block from 'bem-cn-lite';
 import {createPortal} from 'react-dom';
 
@@ -72,12 +73,15 @@ export interface DocPageProps extends DocPageData, DocSettings {
     onSubscribe?: (data: SubscribeData) => void;
     pdfLink?: string;
     onMiniTocItemClick?: (event: MouseEvent) => void;
+    notification?: any;
+    notificationCb?: () => void;
 }
 
 type DocPageInnerProps = InnerProps<DocPageProps, DocSettings>;
 type DocPageState = {
     loading: boolean;
     keyDOM: number;
+    showNotification: boolean;
 };
 
 class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
@@ -93,6 +97,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
         this.state = {
             loading: props.singlePage,
             keyDOM: getRandomKey(),
+            showNotification: true,
         };
     }
     componentDidMount(): void {
@@ -171,6 +176,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                     {this.renderControls()}
                     <div className={b('main')}>
                         <main className={b('content')}>
+                            {this.renderNotification()}
                             {this.renderTitle()}
                             {this.renderPageContributors()}
                             {hideMiniToc ? null : this.renderContentMiniToc()}
@@ -355,6 +361,32 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
         return (
             <div className={b('breadcrumbs')}>
                 <Breadcrumbs items={breadcrumbs} />
+            </div>
+        );
+    }
+
+    private renderNotification() {
+        let {notificationCb} = this.props;
+        const {showNotification} = this.state
+
+        if (!notification || !showNotification) {
+            return null;
+        }
+        const {title, body, type} = notification;
+        const isNoteTypeCorrect = ['info', 'tip', 'warning', 'alert'].includes(type.toLowerCase())
+
+        return (
+            <div className={[`dc-note`, isNoteTypeCorrect ? `dc-accent-${type}` : 'dc-note-template'].filter(Boolean).join(' ')}>
+                    {title && <p className={'yfm-note-title'}>{title}</p>}
+                    <Button view={"flat"} className={'dc-note-xmark'} onClick={() => {
+                        if(notificationCb){
+                            notificationCb()
+                        }
+                        this.setState({showNotification: false});
+                    }}>
+                        <Icon data={Xmark} />
+                    </Button>
+                {body && <HTML className={'dc-note-content'}>{body}</HTML>}
             </div>
         );
     }

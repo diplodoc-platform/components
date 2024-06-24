@@ -378,7 +378,10 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
         return (
             <div>
                 <div
-                    className={[`dc-note`, isNoteTypeCorrect ? `dc-accent-${type}` : 'dc-note-template']
+                    className={[
+                        `dc-note`,
+                        isNoteTypeCorrect ? `dc-accent-${type}` : 'dc-note-template',
+                    ]
                         .filter(Boolean)
                         .join(' ')}
                 >
@@ -398,7 +401,6 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                     {body && <HTML className={'dc-note-content'}>{body}</HTML>}
                 </div>
             </div>
-
         );
     }
 

@@ -1,7 +1,7 @@
 import React, {ReactPortal} from 'react';
 
-import {Button, Icon} from '@gravity-ui/uikit';
 import {Link, Xmark} from '@gravity-ui/icons';
+import {Button, Icon} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 import {createPortal} from 'react-dom';
 
@@ -172,11 +172,11 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             >
                 <DocLayout.Center>
                     {this.renderSearchBar()}
+                    {this.renderNotification()}
                     {this.renderBreadcrumbs()}
                     {this.renderControls()}
                     <div className={b('main')}>
                         <main className={b('content')}>
-                            {this.renderNotification()}
                             {this.renderTitle()}
                             {this.renderPageContributors()}
                             {hideMiniToc ? null : this.renderContentMiniToc()}
@@ -366,28 +366,39 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
     }
 
     private renderNotification() {
-        let {notificationCb} = this.props;
-        const {showNotification} = this.state
+        const {notification, notificationCb} = this.props;
+        const {showNotification} = this.state;
 
         if (!notification || !showNotification) {
             return null;
         }
         const {title, body, type} = notification;
-        const isNoteTypeCorrect = ['info', 'tip', 'warning', 'alert'].includes(type.toLowerCase())
+        const isNoteTypeCorrect = ['info', 'tip', 'warning', 'alert'].includes(type.toLowerCase());
 
         return (
-            <div className={[`dc-note`, isNoteTypeCorrect ? `dc-accent-${type}` : 'dc-note-template'].filter(Boolean).join(' ')}>
-                    {title && <p className={'yfm-note-title'}>{title}</p>}
-                    <Button view={"flat"} className={'dc-note-xmark'} onClick={() => {
-                        if(notificationCb){
-                            notificationCb()
-                        }
-                        this.setState({showNotification: false});
-                    }}>
+            <div>
+                <div
+                    className={[`dc-note`, isNoteTypeCorrect ? `dc-accent-${type}` : 'dc-note-template']
+                        .filter(Boolean)
+                        .join(' ')}
+                >
+                    {title && <p className={'dc-note-title'}>{title}</p>}
+                    <Button
+                        view={'flat'}
+                        className={'dc-note-xmark'}
+                        onClick={() => {
+                            if (notificationCb) {
+                                notificationCb();
+                            }
+                            this.setState({showNotification: false});
+                        }}
+                    >
                         <Icon data={Xmark} />
                     </Button>
-                {body && <HTML className={'dc-note-content'}>{body}</HTML>}
+                    {body && <HTML className={'dc-note-content'}>{body}</HTML>}
+                </div>
             </div>
+
         );
     }
 

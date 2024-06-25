@@ -1,5 +1,12 @@
 # История изменений
 
+## [4.7.0](https://github.com/diplodoc-platform/components/compare/v4.6.0...v4.7.0) (2024-06-25)
+
+
+### Features
+
+* add notification on DocPage ([#241](https://github.com/diplodoc-platform/components/issues/241)) ([be82cee](https://github.com/diplodoc-platform/components/commit/be82cee41735eec34b2c16156464e391647779cc))
+
 ## [4.6.0](https://github.com/diplodoc-platform/components/compare/v4.5.0...v4.6.0) (2024-06-13)
 
 

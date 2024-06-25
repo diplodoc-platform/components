@@ -1,6 +1,7 @@
 import React, {ReactPortal} from 'react';
 
-import {Link} from '@gravity-ui/icons';
+import {Link, Xmark} from '@gravity-ui/icons';
+import {Button, Icon} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 import {createPortal} from 'react-dom';
 
@@ -33,6 +34,7 @@ import UpdatedAtDate from '../UpdatedAtDate/UpdatedAtDate';
 import './DocPage.scss';
 
 const b = block('dc-doc-page');
+const bNote = block('dc-note');
 
 export interface DocPageProps extends DocPageData, DocSettings {
     lang: Lang;
@@ -72,12 +74,19 @@ export interface DocPageProps extends DocPageData, DocSettings {
     onSubscribe?: (data: SubscribeData) => void;
     pdfLink?: string;
     onMiniTocItemClick?: (event: MouseEvent) => void;
+    notification?: {
+        title?: string;
+        content?: string;
+        type?: string;
+    };
+    notificationCb?: () => void;
 }
 
 type DocPageInnerProps = InnerProps<DocPageProps, DocSettings>;
 type DocPageState = {
     loading: boolean;
     keyDOM: number;
+    showNotification: boolean;
 };
 
 class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
@@ -93,6 +102,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
         this.state = {
             loading: props.singlePage,
             keyDOM: getRandomKey(),
+            showNotification: true,
         };
     }
     componentDidMount(): void {
@@ -167,6 +177,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             >
                 <DocLayout.Center>
                     {this.renderSearchBar()}
+                    {this.renderNotification()}
                     {this.renderBreadcrumbs()}
                     {this.renderControls()}
                     <div className={b('main')}>
@@ -355,6 +366,43 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
         return (
             <div className={b('breadcrumbs')}>
                 <Breadcrumbs items={breadcrumbs} />
+            </div>
+        );
+    }
+
+    private renderNotification() {
+        const {notification, notificationCb} = this.props;
+        const {showNotification} = this.state;
+
+        if (!notification || !showNotification) {
+            return null;
+        }
+        const {title = '', content = '', type = ''} = notification;
+        const isNoteTypeCorrect = ['info', 'tip', 'warning', 'alert'].includes(type.toLowerCase());
+
+        return (
+            <div className={bNote('wrapper')}>
+                <div
+                    className={bNote(
+                        {},
+                        isNoteTypeCorrect ? `dc-accent-${type}` : bNote('template'),
+                    )}
+                >
+                    {title && <p className={bNote('title')}>{title}</p>}
+                    <Button
+                        view={'flat'}
+                        className={bNote('xmark')}
+                        onClick={() => {
+                            if (notificationCb) {
+                                notificationCb();
+                            }
+                            this.setState({showNotification: false});
+                        }}
+                    >
+                        <Icon data={Xmark} />
+                    </Button>
+                    {content && <HTML className={bNote('content')}>{content}</HTML>}
+                </div>
             </div>
         );
     }

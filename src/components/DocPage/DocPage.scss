@@ -1,6 +1,16 @@
 @import '../../styles/variables';
 @import '../../styles/mixins';
 
+$infoColor: #027bf3;
+$tipColor: #56bd67;
+$warningColor: #f19518;
+$importantColor: #ff4645;
+
+$infoBackgroundColor: rgba(2, 123, 243, 0.08);
+$tipBackgroundColor: rgba(63, 201, 46, 0.1);
+$warningBackgroundColor: rgba(255, 136, 0, 0.15);
+$importantBackgroundColor: rgba(235, 50, 38, 0.08);
+
 .dc-doc-page {
     position: relative;
     @include text-size(body-2);
@@ -289,4 +299,81 @@
         }
     }
     /* stylelint-enable declaration-no-important */
+}
+
+.dc-note {
+    position: relative;
+    max-width: 1296px;
+    padding: 20px 20px 20px 64px;
+    border-radius: 10px;
+
+    &__wrapper {
+        padding: 20px 36px;
+    }
+
+    &__xmark {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+
+    &__template {
+        padding: 20px;
+        border: 1px solid var(--g-color-line-generic);
+    }
+
+    &__title {
+        font-weight: 700;
+    }
+
+    & > p {
+        margin: 0 0 10px 0;
+
+        &:first-child {
+            &::before {
+                box-sizing: content-box;
+                display: block;
+                width: 24px;
+                height: 24px;
+                margin-top: -2px;
+                margin-left: -44px;
+                padding-right: 20px;
+                float: left;
+            }
+        }
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    $colors: (
+            dc-accent-info: $infoColor,
+            dc-accent-tip: $tipColor,
+            dc-accent-alert: $importantColor,
+            dc-accent-warning: $warningColor
+    );
+
+    @each $type, $color in $colors {
+        &.#{$type} > p:first-child::before {
+            $r: red($color);
+            $g: green($color);
+            $b: blue($color);
+            $rgbColor: 'rgb(' + $r + ',' + $g + ',' + $b + ')';
+            content: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 16 16"%3E%3Ccircle cx="8" cy="8" r="8" fill="' + $rgbColor + '"/%3E%3Crect width="1" height="5" x="7.5" y="6.5" stroke="%23fff" rx=".5"/%3E%3Ccircle cx="8" cy="4" r="1" fill="%23fff"/%3E%3C/svg%3E');
+        }
+    }
+
+    $backgroundColors: (
+            dc-accent-info: $infoBackgroundColor,
+            dc-accent-tip: $tipBackgroundColor,
+            dc-accent-alert: $importantBackgroundColor,
+            dc-accent-warning: $warningBackgroundColor
+    );
+
+    @each $type, $color in $backgroundColors {
+        &.#{$type} {
+            background: $color;
+        }
+    }
 }

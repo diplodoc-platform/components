@@ -34,6 +34,7 @@ import UpdatedAtDate from '../UpdatedAtDate/UpdatedAtDate';
 import './DocPage.scss';
 
 const b = block('dc-doc-page');
+const bNote = block('dc-note');
 
 export interface DocPageProps extends DocPageData, DocSettings {
     lang: Lang;
@@ -73,7 +74,11 @@ export interface DocPageProps extends DocPageData, DocSettings {
     onSubscribe?: (data: SubscribeData) => void;
     pdfLink?: string;
     onMiniTocItemClick?: (event: MouseEvent) => void;
-    notification?: any;
+    notification?: {
+        title?: string;
+        content?: string;
+        type?: string;
+    };
     notificationCb?: () => void;
 }
 
@@ -372,23 +377,21 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
         if (!notification || !showNotification) {
             return null;
         }
-        const {title, body, type} = notification;
+        const {title = '', content = '', type = ''} = notification;
         const isNoteTypeCorrect = ['info', 'tip', 'warning', 'alert'].includes(type.toLowerCase());
 
         return (
-            <div>
+            <div className={bNote('wrapper')}>
                 <div
-                    className={[
-                        `dc-note`,
-                        isNoteTypeCorrect ? `dc-accent-${type}` : 'dc-note-template',
-                    ]
-                        .filter(Boolean)
-                        .join(' ')}
+                    className={bNote(
+                        {},
+                        isNoteTypeCorrect ? `dc-accent-${type}` : bNote('template'),
+                    )}
                 >
-                    {title && <p className={'dc-note-title'}>{title}</p>}
+                    {title && <p className={bNote('title')}>{title}</p>}
                     <Button
                         view={'flat'}
-                        className={'dc-note-xmark'}
+                        className={bNote('xmark')}
                         onClick={() => {
                             if (notificationCb) {
                                 notificationCb();
@@ -398,7 +401,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                     >
                         <Icon data={Xmark} />
                     </Button>
-                    {body && <HTML className={'dc-note-content'}>{body}</HTML>}
+                    {content && <HTML className={bNote('content')}>{content}</HTML>}
                 </div>
             </div>
         );

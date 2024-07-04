@@ -47,6 +47,30 @@ const MiniToc = memo<MinitocProps>(({headings, router, headerHeight, onItemClick
         return null;
     }
 
+    const miniTocContent = flatHeadings.map(({href, title, isChild}, index) => {
+        if (index === 0) {
+            return (
+                <li
+                    key={href}
+                    data-hash={href}
+                    className={b('section', {child: isChild})}
+                    aria-current="location"
+                >
+                    <a href={href} className={b('section-link')} data-router-shallow>
+                        {title}
+                    </a>
+                </li>
+            );
+        }
+        return (
+            <li key={href} data-hash={href} className={b('section', {child: isChild})}>
+                <a href={href} className={b('section-link')} data-router-shallow>
+                    {title}
+                </a>
+            </li>
+        );
+    });
+
     return (
         <div className={b()} aria-label="Article navigation">
             <div className={b('title')}>{t<string>('title')}:</div>
@@ -59,29 +83,7 @@ const MiniToc = memo<MinitocProps>(({headings, router, headerHeight, onItemClick
                 onSectionClick={onItemClick}
                 aria-label={t('description')}
             >
-                {flatHeadings.map(({href, title, isChild}, index) => {
-                    if (index === 0) {
-                        return (
-                            <li
-                                key={href}
-                                data-hash={href}
-                                className={b('section', {child: isChild})}
-                                aria-current="location"
-                            >
-                                <a href={href} className={b('section-link')} data-router-shallow>
-                                    {title}
-                                </a>
-                            </li>
-                        );
-                    }
-                    return (
-                        <li key={href} data-hash={href} className={b('section', {child: isChild})}>
-                            <a href={href} className={b('section-link')} data-router-shallow>
-                                {title}
-                            </a>
-                        </li>
-                    );
-                })}
+                {miniTocContent}
             </Scrollspy>
         </div>
     );

@@ -25,7 +25,7 @@ class TocItem extends React.Component<TocItemProps> {
     contentRef = React.createRef<HTMLButtonElement>();
 
     render() {
-        const {name, href, active, expandable, expanded} = this.props;
+        const {name, href, active, expandable, expanded, isLabel} = this.props;
         const text = <span>{name}</span>;
         const icon = expandable ? (
             <ToggleArrow className={b('icon')} open={expanded} thin={true} />
@@ -35,7 +35,7 @@ class TocItem extends React.Component<TocItemProps> {
             href ? 'div' : 'button',
             {
                 ref: href ? null : this.contentRef,
-                className: b('text', {active}),
+                className: b('text', {clicable: Boolean(expandable || href), active, label: isLabel}),
                 onClick: expandable && !href ? this.handleClick : undefined,
                 'aria-expanded': expandable ? expanded : undefined,
                 tabIndex: expandable ? 0 : -1,

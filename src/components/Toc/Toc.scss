@@ -34,6 +34,7 @@ $leftOffset: 57px;
         display: flex;
         align-items: flex-start;
         padding: 10px 10px 8px 0;
+        margin-bottom: 12px;
 
         &_scrolled {
             border-bottom: 1px solid var(--g-color-line-generic);
@@ -107,6 +108,10 @@ $leftOffset: 57px;
             cursor: pointer;
             user-select: none;
 
+            &_with-label {
+                margin-top: 16px;
+            }
+
             &_main > *:first-child {
                 color: var(--g-color-text-primary);
             }
@@ -116,7 +121,7 @@ $leftOffset: 57px;
             }
 
             // recurcive padding
-            > #{$class}__list {
+            &:not(&_with-label) > #{$class}__list {
                 padding-left: 20px;
 
                 [dir='rtl'] & {

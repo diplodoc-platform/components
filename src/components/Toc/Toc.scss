@@ -108,7 +108,7 @@ $leftOffset: 57px;
             cursor: pointer;
             user-select: none;
 
-            &_with-label {
+            &_labeled {
                 margin-top: 16px;
             }
 
@@ -121,7 +121,7 @@ $leftOffset: 57px;
             }
 
             // recurcive padding
-            &:not(&_with-label) > #{$class}__list {
+            &:not(&_labeled) > #{$class}__list {
                 padding-left: 20px;
 
                 [dir='rtl'] & {

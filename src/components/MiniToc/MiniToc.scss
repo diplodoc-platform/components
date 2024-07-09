@@ -19,6 +19,14 @@
         );
         overflow-y: auto;
         overflow-x: hidden;
+
+        // TODO: проверить
+        @media (max-width: map-get($screenBreakpoints, 'md')) {
+            height: fit-content;
+            max-height: calc(
+                80vh - var(--dc-header-height, #{$headerHeight}) - #{$miniTocOffset} - var(--dc-subheader-height)
+            );
+        }
     }
 
     &__section {

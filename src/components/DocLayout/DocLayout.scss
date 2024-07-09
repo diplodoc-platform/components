@@ -82,7 +82,16 @@
         flex-direction: column-reverse;
 
         &__right {
-            display: none;
+            // display: none;
+            position: sticky;
+            top: 63px; // TODO: calc with header height
+            left: 0;
+
+            height: fit-content;
+            width: fit-content;
+            padding: 0;
+
+            background: #FFF; // TODO: var bg
         }
 
         &__left {

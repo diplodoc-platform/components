@@ -28,6 +28,7 @@ import {Feedback, FeedbackView} from '../Feedback';
 import {HTML} from '../HTML';
 import {MiniToc} from '../MiniToc';
 import {SearchBar, withHighlightedSearchWords} from '../SearchBar';
+import { SubNavigation } from '../SubNavigation';
 import {TocNavPanel} from '../TocNavPanel';
 import UpdatedAtDate from '../UpdatedAtDate/UpdatedAtDate';
 
@@ -195,6 +196,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                 </DocLayout.Center>
                 <DocLayout.Right>
                     {/* This key allows recalculating the offset for the mini-toc for Safari */}
+                    <SubNavigation title='Mock Title' /> {/* DELETE MOKC ITEM */}
                     <div
                         className={b('aside')}
                         key={getStateKey(this.showMiniToc, wideFormat, singlePage)}

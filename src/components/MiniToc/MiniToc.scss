@@ -9,6 +9,10 @@
         font-weight: 500;
         color: var(--g-color-text-primary);
         margin-bottom: 12px;
+
+        @media (max-width: map-get($screenBreakpoints, 'md')) {
+            margin-bottom: 8px;
+        }
     }
 
     &__sections {

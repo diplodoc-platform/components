@@ -1,65 +1,65 @@
-import React from 'react';
+import React, { useCallback, useMemo } from 'react';
 
 import {ArrowShapeTurnUpRight, SquareListUl} from '@gravity-ui/icons';
 import {Button} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
-// import { DocHeadingItem, Router } from 'src/models';
-
-// import { MiniToc } from '../MiniToc';
 
 import './SubNavigation.scss';
 
 const b = block('dc-subnavigation');
 
-export interface SubNavigationProps {
-    title: string;
+export type ShareData = {
+    title: string | undefined;
+    url?: string;
 }
+export interface SubNavigationProps {
+    title: string | undefined;
+    // shareData: ShareData;
+}
+export const SubNavigation = ({
+    title,
+    // shareData
+}: SubNavigationProps) => {
+    const shareData = useMemo(() => {
+        return {
+            title,
+            // url: window.location.href // ?
+        };
+    }, [title]);
 
-export const SubNavigation = (props: SubNavigationProps) => {
+    const shareHandler = useCallback(() => {
+        if (navigator && navigator.share) {
+            navigator.share(shareData)
+                     .then(() => {})
+                     .catch((error) => console.error("Error sharing", error));
+        } else {
+            console.log("Share not supported", shareData); // ?
+        }
+    }, [shareData]);
+
+    const openMiniTocHandler = useCallback(() => {
+
+    }, [])
+
     return (
         <div className={b()}>
-            <div className={b('left')}>
-                <a href={''} className={b('link')}>
+            {/* <div className={b('left')}> */}
+                <button onClick={openMiniTocHandler} type='button' className={b('left')}>
                     <div className={b('icon')}>
                         <SquareListUl width={20} height={20} />
                     </div>
-                    <span className={b('title')}>{props.title}</span>
-                </a>
-            </div>
-            <div className={b('right')}>
-                <Button size="xs" view='flat' className={b('button')}>
+                    <span className={b('title')}>{title ? title : ""}</span>
+                </button>
+            {/* </div> */}
+            {/* <div className={b('right')}> */}
+                <Button onClick={shareHandler} size="xs" view='flat' className={b('button')}>
                     <Button.Icon>
                         <ArrowShapeTurnUpRight width={20} height={20} />
                     </Button.Icon>
                 </Button>
-            </div>
+            {/* </div> */}
         </div>
     );
 };
-
-// export const MiniTocMobile = () => {
-//     const headings: DocHeadingItem[] = [
-//         {title: 'Title 0', href: '', level: 0},
-//         {title: 'Title 1', href: '', level: 1},
-//         {title: 'Title 1', href: '', level: 1},
-//         {title: 'Title 2', href: '', level: 2},
-//         {title: 'Title 2', href: '', level: 2},
-//         {title: 'Title 2', href: '', level: 2},
-//         {title: 'Title 2', href: '', level: 2},
-//         {title: 'Title 2', href: '', level: 2},
-//         {title: 'Title 2', href: '', level: 2},
-//         {title: 'Title 2', href: '', level: 2},
-//         {title: 'Title 2', href: '', level: 2},
-//         {title: 'Title 2', href: '', level: 2},
-//         {title: 'Title 2', href: '', level: 2},
-//     ];
-//     const router: Router = {pathname: ''};
-
-//     return (
-//         <div className="mini-toc-wrapper">
-//             <MiniToc headings={headings} router={router} />
-//         </div>
-//     )
-// }
 
 export default SubNavigation;

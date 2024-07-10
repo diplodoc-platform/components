@@ -165,7 +165,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                 headerHeight={headerHeight}
                 className={b(modes)}
                 fullScreen={fullScreen}
-                hideRight={hideMiniToc}
+                hideRight={false} //hideMiniToc}
                 tocTitleIcon={tocTitleIcon}
                 wideFormat={wideFormat}
                 hideTocHeader={hideTocHeader}
@@ -196,9 +196,9 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                 </DocLayout.Center>
                 <DocLayout.Right>
                     {/* This key allows recalculating the offset for the mini-toc for Safari */}
-                    <SubNavigation title='Mock Title' /> {/* DELETE MOKC ITEM */}
+                    <SubNavigation title={this.props.title} />
                     <div
-                        className={b('aside')}
+                        className={b('aside', modes)}
                         key={getStateKey(this.showMiniToc, wideFormat, singlePage)}
                     >
                         {hideMiniToc ? null : this.renderAsideMiniToc()}

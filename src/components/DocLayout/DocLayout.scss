@@ -82,16 +82,14 @@
         flex-direction: column-reverse;
 
         &__right {
-            // display: none;
             position: sticky;
-            top: 63px; // TODO: calc with header height
+            top: calc(var(--dc-header-height) - 1px);
             left: 0;
+            z-index: 119;
 
             height: fit-content;
-            width: fit-content;
+            width: 100%;
             padding: 0;
-
-            background: #FFF; // TODO: var bg
         }
 
         &__left {
@@ -102,6 +100,7 @@
             position: static;
             width: auto;
             height: auto;
+            padding: 0 20px;
 
             .dc-toc {
                 /* stylelint-disable-next-line declaration-no-important */

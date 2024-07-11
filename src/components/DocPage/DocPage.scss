@@ -28,8 +28,8 @@ $importantBackgroundColor: rgba(235, 50, 38, 0.08);
         @include text-size(body-1);
 
         @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
-            position: relative;
-            top: 0;
+            position: absolute;
+            top: var(--dc-subheader-height);
             z-index: 118;
 
             display: flex;
@@ -249,6 +249,7 @@ $importantBackgroundColor: rgba(235, 50, 38, 0.08);
 
     @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
         &__main {
+            margin-top: var(--dc-subheader-height);
             padding: 0 20px;
         }
 

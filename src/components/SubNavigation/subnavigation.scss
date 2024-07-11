@@ -1,9 +1,8 @@
 @import "../../styles/variables";
 @import "../../styles/mixins";
-@import "../../themes/common/index.scss";
 
 .dc-subnavigation {
-    position: relative;
+    position: absolute;
     z-index: 119;
 
     display: flex;
@@ -16,6 +15,10 @@
 
     background: var(--g-color-base-background, #FFF);
     border-bottom: 1px solid var(--g-color-line-generic, #0000001A);
+
+    @media (min-width: map-get($screenBreakpoints, 'md')) {
+        display: none;
+    }
 
     &__left {
         display: flex;
@@ -35,8 +38,18 @@
         border: none;
         outline: none;
 
+        transition: transform .1s ease-out, color .15s linear;
+        transform: scale(1);
+
+        touch-action: manipulation;
+
         &:hover {
             background: var(--g-color-base-simple-hover, rgba(0, 0, 0, 0.05));
+        }
+
+        &:active {
+            transition: none;
+            transform: scale(0.98);
         }
 
         &:focus-visible {
@@ -65,4 +78,19 @@
         padding: 12px;
         box-sizing: content-box;
     }
+
+    transition: margin-top 1s 0.2s;
+    transition-duration: 1s;
+    transition-delay: 0.1s;
+
+    &_hidden {
+        margin-top: calc(0px - var(--dc-header-height));
+    }
+
+    &_visible {
+        margin-top: 0;
+        transition-duration: 0.75s;
+        transition-delay: 0s;
+    }
 }
+

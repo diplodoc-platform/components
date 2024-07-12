@@ -49,9 +49,7 @@ const MiniToc = memo<MinitocProps>(({headings, router, headerHeight, onItemClick
 
     return (
         <nav className={b()} aria-label={t('article-navigation')}>
-            <div>
-                <h2 className={b('title')}>{t<string>('title')}:</h2>
-            </div>
+            <h2 className={b('title')}>{t<string>('title')}:</h2>
             <Scrollspy
                 className={b('sections')}
                 currentClassName={b('section', {active: true})}

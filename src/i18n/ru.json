@@ -47,6 +47,7 @@
   },
   "mini-toc": {
     "title": "В этой статье",
+    "article-navigation": "Навигация по статье",
     "description": "Содержание текущей статьи"
   },
   "toc-nav-panel": {

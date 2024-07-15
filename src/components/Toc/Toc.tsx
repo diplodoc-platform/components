@@ -176,7 +176,10 @@ class Toc extends React.Component<TocProps, TocState> {
                     const hasItems = Boolean(item.items && item.items.length > 0);
                     const expandable = hasItems && !item.labeled;
                     const expanded =
-                        (expandable && !closed && (item.expanded || activeScope[item.id] || opened)) || (hasItems && Boolean(item.labeled));
+                        (expandable &&
+                            !closed &&
+                            (item.expanded || activeScope[item.id] || opened)) ||
+                        (hasItems && Boolean(item.labeled));
 
                     const ref = active ? {ref: this.activeRef} : {};
 
@@ -184,7 +187,12 @@ class Toc extends React.Component<TocProps, TocState> {
                         <li
                             key={item.id}
                             id={item.id}
-                            className={b('list-item', {main, active, opened: expanded, labeled: item.labeled})}
+                            className={b('list-item', {
+                                main,
+                                active,
+                                opened: expanded,
+                                labeled: item.labeled,
+                            })}
                         >
                             <Item
                                 {...{

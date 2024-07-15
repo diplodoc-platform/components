@@ -37,14 +37,28 @@ $importantBackgroundColor: rgba(235, 50, 38, 0.08);
             align-items: flex-start;
 
             box-sizing: border-box;
+            max-height: 0px;
             width: 100%;
-            padding: 12px 16px 16px 16px;
+            padding: 0 16px 0 16px;
 
             background: var(--g-color-base-background, #FFF);
             box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.15);
 
+            transition: max-height 300ms 0s;;
+
+            overflow-y: hidden;
+
+            &_open-mini-toc {
+                max-height: 80vh;
+            }
+
             &_hidden-mini-toc {
                 padding: 0;
+            }
+
+            &-mini-toc {
+                width: 100%;
+                padding: 16px 0 16px 0;
             }
         }
 

@@ -85,6 +85,7 @@ export interface DocPageProps extends DocPageData, DocSettings {
 
 type DocPageInnerProps = InnerProps<DocPageProps, DocSettings>;
 type DocPageState = {
+    mobileMiniTocOpen: boolean;
     loading: boolean;
     keyDOM: number;
     showNotification: boolean;
@@ -101,6 +102,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
         super(props);
 
         this.state = {
+            mobileMiniTocOpen: false,
             loading: props.singlePage,
             keyDOM: getRandomKey(),
             showNotification: true,
@@ -156,6 +158,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             'full-screen': fullScreen,
             'hidden-mini-toc': hideMiniToc,
             'single-page': singlePage,
+            'open-mini-toc': this.state.mobileMiniTocOpen
         };
 
         return (
@@ -195,8 +198,13 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                     {this.renderSinglePageControls()}
                 </DocLayout.Center>
                 <DocLayout.Right>
+                    <SubNavigation
+                        title={this.props.title}
+                        hideMiniToc={hideMiniToc}
+                        miniTocOpened={this.state.mobileMiniTocOpen}
+                        openMiniTocHandler={this.openMiniTocHandler}
+                    />
                     {/* This key allows recalculating the offset for the mini-toc for Safari */}
-                    <SubNavigation title={this.props.title} />
                     <div
                         className={b('aside', modes)}
                         key={getStateKey(this.showMiniToc, wideFormat, singlePage)}
@@ -206,6 +214,36 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                 </DocLayout.Right>
             </DocLayout>
         );
+    }
+
+    // TODO: изменить логику добавления и удаления слушателя событий
+    // нужно вешать слушатель только раз и удалять его только демонтаже компонента
+    // можно использовать useEffect и передачу коллбека с удалением слушателя
+    private openMiniTocHandler = () => {
+        this.setState({ mobileMiniTocOpen: !this.state.mobileMiniTocOpen });
+
+        if (!this.state.mobileMiniTocOpen) {
+            document.addEventListener('click', this.clickOutsideMiniToc, true);
+        }
+    }
+
+    private clickOutsideMiniToc = (event: MouseEvent) => {
+        if (
+            !event.composedPath().some(
+                (item, index, array) => {
+                    const el = (item as HTMLElement)
+                    const classes = (
+                        index !== array.length - 1 &&
+                        el.tagName !== "HTML"
+                    ) ? el.classList : null
+
+                    return classes?.contains("dc-doc-layout__right")
+                }
+            )
+        ) {
+            this.setState({ mobileMiniTocOpen: false });
+            document.removeEventListener('click', this.clickOutsideMiniToc, true);
+        }
     }
 
     private handleBodyMutation = (mutationsList: MutationRecord[]) => {

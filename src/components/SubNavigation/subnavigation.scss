@@ -57,6 +57,10 @@
             outline-width: 2px;
             outline-style: solid;
         }
+
+        &_hidden {
+            visibility: hidden;
+        }
     }
 
     &__icon {
@@ -68,20 +72,17 @@
     }
 
     &__title {
-        font-family: inherit; // TODO: ask about font-family
-        // font-family: "YS Text"; // ?
+        font-family: inherit;
         @include text-size(subheader-2);
         font-weight: 400;
     }
 
-    &__button {
-        padding: 12px;
-        box-sizing: content-box;
-    }
+    // &__button {
+    //     padding: 12px;
+    //     box-sizing: content-box;
+    // }
 
-    transition: margin-top 1s 0.2s;
-    transition-duration: 1s;
-    transition-delay: 0.1s;
+    transition: margin-top 300ms 0s;
 
     &_hidden {
         margin-top: calc(0px - var(--dc-header-height));
@@ -89,8 +90,15 @@
 
     &_visible {
         margin-top: 0;
-        transition-duration: 0.75s;
-        transition-delay: 0s;
     }
+
+    &_invisible {
+        border: none;
+        background: none;
+    }
+
+    &_invisible &__button {
+        margin-top: 8px;
+   }
 }
 

@@ -12,55 +12,25 @@ export type ShareData = {
     title: string | undefined;
     url?: string;
 }
+
 export interface SubNavigationProps {
     title: string | undefined;
+    hideMiniToc: boolean;
+    miniTocOpened: boolean;
+    openMiniTocHandler: () => void ;
     // shareData: ShareData;
 }
 
 export const SubNavigation = ({
     title,
+    hideMiniToc,
+    miniTocOpened,
     // shareData
+    openMiniTocHandler
 }: SubNavigationProps) => {
     const [visibility, setVisibility] = useState(true);
-    const [hiddingInterval, setHiddingInterval] = useState<NodeJS.Timeout | undefined>(undefined);
+    const [hiddingTimeout, setHiddingTimeout] = useState<NodeJS.Timeout | undefined>(undefined);
     const [lastScrollY, setLastScrollY] = useState(window.screenY);
-
-    const controlVisibility = useCallback(() => {
-        if (lastScrollY === 0) {
-            setLastScrollY(window.scrollY);
-            setVisibility(true);
-            return;
-        }
-
-        if (window.scrollY > lastScrollY) {
-            if (hiddingInterval) {
-                return;
-            }
-
-            setVisibility(false);
-
-            setHiddingInterval(setTimeout(() => {
-                clearTimeout(hiddingInterval);
-                setHiddingInterval(undefined);
-            }, 1000))
-        } else if (window.scrollY < lastScrollY) {
-            setVisibility(true);
-        } else {
-            return;
-        }
-
-        setLastScrollY(window.scrollY);
-    }, [lastScrollY, hiddingInterval, setLastScrollY, setVisibility, setHiddingInterval]);
-
-
-    useEffect(() => {
-        window.addEventListener('scroll', controlVisibility);
-
-        return () => {
-            window.removeEventListener('scroll', controlVisibility);
-        };
-    }, [controlVisibility]);
-
 
     const shareData = useMemo(() => {
         return {
@@ -68,6 +38,34 @@ export const SubNavigation = ({
             // url: window.location.href // ?
         };
     }, [title]);
+
+    const controlVisibility = useCallback(() => {
+        if (miniTocOpened) {
+            setVisibility(true);
+            return;
+        }
+
+        if (lastScrollY === 0) {
+            setVisibility(true);
+        }
+
+        if (window.scrollY > lastScrollY) {
+            if (hiddingTimeout) {
+                return;
+            }
+
+            setVisibility(false);
+
+            setHiddingTimeout(setTimeout(() => {
+                clearTimeout(hiddingTimeout);
+                setHiddingTimeout(undefined);
+            }, 300))
+        } else if (window.scrollY < lastScrollY) {
+            setVisibility(true);
+        }
+
+        setLastScrollY(window.scrollY);
+    }, [miniTocOpened, lastScrollY, hiddingTimeout, setLastScrollY, setVisibility, setHiddingTimeout]);
 
     const shareHandler = useCallback(() => {
         if (navigator && navigator.share) {
@@ -79,19 +77,53 @@ export const SubNavigation = ({
         }
     }, [shareData]);
 
-    const openMiniTocHandler = useCallback(() => {
+    useEffect(() => {
+        if (window.scrollY === 0) {
+            return
+        }
 
+        setHiddingTimeout(setTimeout(() => {
+            setHiddingTimeout(undefined);
+        }, 100))
     }, [])
 
+    useEffect(() => {
+        window.addEventListener('scroll', controlVisibility);
+
+        return () => {
+            window.removeEventListener('scroll', controlVisibility);
+        };
+    }, [controlVisibility]);
+
     return (
-        <div className={b({ "hidden": !visibility, "visible": visibility })} >
-            <button onClick={openMiniTocHandler} type='button' className={b('left')}>
+        <div
+            className={b({
+                "hidden": !visibility,
+                "visible": visibility,
+                "invisible": hideMiniToc })}
+        >
+            <button
+                className={b('left', {"hidden": hideMiniToc})}
+                type='button'
+                onClick={openMiniTocHandler}
+            >
                 <div className={b('icon')}>
                     <SquareListUl width={20} height={20} />
                 </div>
-                <span className={b('title')}>{title ? title : ""}</span>
+                <span className={b('title')}>
+                    {
+                    title && title.length > 30
+                    ? title.substring(0, 30).trimEnd().concat("...")
+                    : title ?? ""
+                    }
+                </span>
             </button>
-            <Button onClick={shareHandler} size="xs" view='flat' className={b('button')}>
+            <Button
+                className={b('button')}
+                size="xl"
+                view={hideMiniToc ? 'raised' : 'flat'}
+                onClick={shareHandler}
+            >
                 <Button.Icon>
                     <ArrowShapeTurnUpRight width={20} height={20} />
                 </Button.Icon>

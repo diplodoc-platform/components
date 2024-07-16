@@ -13,31 +13,10 @@ export type ShareData = {
     url?: string;
 };
 
-export interface SubNavigationProps {
-    title: string | undefined;
-    hideMiniToc: boolean;
-    miniTocOpened: boolean;
-    toggleMiniTocOpen: () => void;
-    closeMiniToc: () => void;
-}
-
-export const SubNavigation = ({
-    title,
-    hideMiniToc,
-    miniTocOpened,
-    toggleMiniTocOpen,
-    closeMiniToc,
-}: SubNavigationProps) => {
+const useVisibility = (miniTocOpened: boolean, closeMiniToc: () => void) => {
     const [visibility, setVisibility] = useState(true);
     const [hiddingTimeout, setHiddingTimeout] = useState<number | undefined>(undefined);
     const [lastScrollY, setLastScrollY] = useState(window.screenY);
-
-    const shareData = useMemo(() => {
-        return {
-            title,
-            url: window.location.href,
-        };
-    }, [title]);
 
     const clickOutsideMiniToc = useCallback(
         (event: MouseEvent) => {
@@ -102,17 +81,6 @@ export const SubNavigation = ({
         setHiddingTimeout,
     ]);
 
-    const shareHandler = useCallback(() => {
-        if (navigator && navigator.share) {
-            navigator
-                .share(shareData)
-                .then(() => {})
-                .catch((error) => console.error('Error sharing', error));
-        } else {
-            console.log('Share not supported', shareData);
-        }
-    }, [shareData]);
-
     useEffect(() => {
         if (window.scrollY === 0) {
             return;
@@ -120,6 +88,7 @@ export const SubNavigation = ({
 
         setHiddingTimeout(
             window.setTimeout(() => {
+                setLastScrollY(window.scrollY);
                 setHiddingTimeout(undefined);
             }, 100),
         );
@@ -140,6 +109,49 @@ export const SubNavigation = ({
             document.removeEventListener('click', clickOutsideMiniToc, true);
         };
     }, [clickOutsideMiniToc]);
+
+    return visibility;
+};
+
+const useShareHandler = (title: string | undefined) => {
+    const shareData = useMemo(() => {
+        return {
+            title,
+            url: window.location.href,
+        };
+    }, [title]);
+
+    const shareHandler = useCallback(() => {
+        if (navigator && navigator.share) {
+            navigator
+                .share(shareData)
+                .then(() => {})
+                .catch((error) => console.error('Error sharing', error));
+        } else {
+            console.log('Share not supported', shareData);
+        }
+    }, [shareData]);
+
+    return shareHandler;
+};
+
+export interface SubNavigationProps {
+    title: string | undefined;
+    hideMiniToc: boolean;
+    miniTocOpened: boolean;
+    toggleMiniTocOpen: () => void;
+    closeMiniToc: () => void;
+}
+
+export const SubNavigation = ({
+    title,
+    hideMiniToc,
+    miniTocOpened,
+    toggleMiniTocOpen,
+    closeMiniToc,
+}: SubNavigationProps) => {
+    const visibility = useVisibility(miniTocOpened, closeMiniToc);
+    const shareHandler = useShareHandler(title);
 
     return (
         <div

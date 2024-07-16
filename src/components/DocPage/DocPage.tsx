@@ -168,7 +168,6 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                 headerHeight={headerHeight}
                 className={b(modes)}
                 fullScreen={fullScreen}
-                hideRight={false} //hideMiniToc}
                 tocTitleIcon={tocTitleIcon}
                 wideFormat={wideFormat}
                 hideTocHeader={hideTocHeader}

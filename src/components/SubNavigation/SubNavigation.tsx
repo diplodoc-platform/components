@@ -31,7 +31,7 @@ export const SubNavigation = ({
     closeMiniToc,
 }: SubNavigationProps) => {
     const [visibility, setVisibility] = useState(true);
-    const [hiddingTimeout, setHiddingTimeout] = useState<NodeJS.Timeout | undefined>(undefined);
+    const [hiddingTimeout, setHiddingTimeout] = useState<number | undefined>(undefined);
     const [lastScrollY, setLastScrollY] = useState(window.screenY);
 
     const shareData = useMemo(() => {
@@ -82,7 +82,7 @@ export const SubNavigation = ({
             setVisibility(false);
 
             setHiddingTimeout(
-                setTimeout(() => {
+                window.setTimeout(() => {
                     clearTimeout(hiddingTimeout);
                     setHiddingTimeout(undefined);
                 }, 300),
@@ -118,7 +118,7 @@ export const SubNavigation = ({
         }
 
         setHiddingTimeout(
-            setTimeout(() => {
+            window.setTimeout(() => {
                 setHiddingTimeout(undefined);
             }, 100),
         );

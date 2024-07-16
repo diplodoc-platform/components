@@ -89,7 +89,6 @@ export class DocLayout extends React.Component<DocLayoutProps> {
                     {center}
                     <div className={b('desktop-only')}>{footer}</div>
                 </div>
-                {/* {fullScreen || hideRight ? null : <div className={b('right', modes)}>{right}</div>} */}
             </div>
         );
     }

@@ -35,7 +35,7 @@ export const SubNavigation = ({
     const shareData = useMemo(() => {
         return {
             title,
-            url: window.location.href
+            url: window.location.href,
         };
     }, [title]);
 

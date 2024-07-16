@@ -28,7 +28,7 @@ import {Feedback, FeedbackView} from '../Feedback';
 import {HTML} from '../HTML';
 import {MiniToc} from '../MiniToc';
 import {SearchBar, withHighlightedSearchWords} from '../SearchBar';
-import { SubNavigation } from '../SubNavigation';
+import {SubNavigation} from '../SubNavigation';
 import {TocNavPanel} from '../TocNavPanel';
 import UpdatedAtDate from '../UpdatedAtDate/UpdatedAtDate';
 
@@ -158,7 +158,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             'full-screen': fullScreen,
             'hidden-mini-toc': hideMiniToc,
             'single-page': singlePage,
-            'open-mini-toc': this.state.mobileMiniTocOpen
+            'open-mini-toc': this.state.mobileMiniTocOpen,
         };
 
         return (
@@ -202,7 +202,10 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                         title={this.props.title}
                         hideMiniToc={hideMiniToc}
                         miniTocOpened={this.state.mobileMiniTocOpen}
-                        openMiniTocHandler={this.openMiniTocHandler}
+                        toggleMiniTocOpen={() =>
+                            this.setState({mobileMiniTocOpen: !this.state.mobileMiniTocOpen})
+                        }
+                        closeMiniToc={() => this.setState({mobileMiniTocOpen: false})}
                     />
                     {/* This key allows recalculating the offset for the mini-toc for Safari */}
                     <div
@@ -214,36 +217,6 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                 </DocLayout.Right>
             </DocLayout>
         );
-    }
-
-    // TODO: изменить логику добавления и удаления слушателя событий
-    // нужно вешать слушатель только раз и удалять его только демонтаже компонента
-    // можно использовать useEffect и передачу коллбека с удалением слушателя
-    private openMiniTocHandler = () => {
-        this.setState({ mobileMiniTocOpen: !this.state.mobileMiniTocOpen });
-
-        if (!this.state.mobileMiniTocOpen) {
-            document.addEventListener('click', this.clickOutsideMiniToc, true);
-        }
-    }
-
-    private clickOutsideMiniToc = (event: MouseEvent) => {
-        if (
-            !event.composedPath().some(
-                (item, index, array) => {
-                    const el = (item as HTMLElement)
-                    const classes = (
-                        index !== array.length - 1 &&
-                        el.tagName !== "HTML"
-                    ) ? el.classList : null
-
-                    return classes?.contains("dc-doc-layout__right")
-                }
-            )
-        ) {
-            this.setState({ mobileMiniTocOpen: false });
-            document.removeEventListener('click', this.clickOutsideMiniToc, true);
-        }
     }
 
     private handleBodyMutation = (mutationsList: MutationRecord[]) => {

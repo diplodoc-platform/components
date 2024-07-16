@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, {useCallback, useEffect, useMemo, useState} from 'react';
 
 import {ArrowShapeTurnUpRight, SquareListUl} from '@gravity-ui/icons';
 import {Button} from '@gravity-ui/uikit';
@@ -11,13 +11,14 @@ const b = block('dc-subnavigation');
 export type ShareData = {
     title: string | undefined;
     url?: string;
-}
+};
 
 export interface SubNavigationProps {
     title: string | undefined;
     hideMiniToc: boolean;
     miniTocOpened: boolean;
-    openMiniTocHandler: () => void ;
+    toggleMiniTocOpen: () => void;
+    closeMiniToc: () => void;
     // shareData: ShareData;
 }
 
@@ -26,7 +27,8 @@ export const SubNavigation = ({
     hideMiniToc,
     miniTocOpened,
     // shareData
-    openMiniTocHandler
+    toggleMiniTocOpen,
+    closeMiniToc,
 }: SubNavigationProps) => {
     const [visibility, setVisibility] = useState(true);
     const [hiddingTimeout, setHiddingTimeout] = useState<NodeJS.Timeout | undefined>(undefined);
@@ -38,6 +40,29 @@ export const SubNavigation = ({
             // url: window.location.href // ?
         };
     }, [title]);
+
+    const clickOutsideMiniToc = useCallback(
+        (event: MouseEvent) => {
+            /*
+             * func "composedPath" returns an array in which the last two elements are "HTML" and "#document",
+             * which do not have the classList property, so they are subtracted before checking by slice()
+             */
+            const isOutside = !event
+                .composedPath()
+                .slice(0, -2)
+                .some((item) => {
+                    const el = item as HTMLElement;
+                    const classes = el.classList ?? [];
+
+                    return classes?.contains('dc-doc-layout__right');
+                });
+
+            if (isOutside) {
+                closeMiniToc();
+            }
+        },
+        [closeMiniToc],
+    );
 
     const controlVisibility = useCallback(() => {
         if (miniTocOpened) {
@@ -56,36 +81,48 @@ export const SubNavigation = ({
 
             setVisibility(false);
 
-            setHiddingTimeout(setTimeout(() => {
-                clearTimeout(hiddingTimeout);
-                setHiddingTimeout(undefined);
-            }, 300))
+            setHiddingTimeout(
+                setTimeout(() => {
+                    clearTimeout(hiddingTimeout);
+                    setHiddingTimeout(undefined);
+                }, 300),
+            );
         } else if (window.scrollY < lastScrollY) {
             setVisibility(true);
         }
 
         setLastScrollY(window.scrollY);
-    }, [miniTocOpened, lastScrollY, hiddingTimeout, setLastScrollY, setVisibility, setHiddingTimeout]);
+    }, [
+        miniTocOpened,
+        lastScrollY,
+        hiddingTimeout,
+        setLastScrollY,
+        setVisibility,
+        setHiddingTimeout,
+    ]);
 
     const shareHandler = useCallback(() => {
         if (navigator && navigator.share) {
-            navigator.share(shareData)
-                     .then(() => {})
-                     .catch((error) => console.error("Error sharing", error));
+            navigator
+                .share(shareData)
+                .then(() => {})
+                .catch((error) => console.error('Error sharing', error));
         } else {
-            console.log("Share not supported", shareData); // ?
+            console.log('Share not supported', shareData); // ?
         }
     }, [shareData]);
 
     useEffect(() => {
         if (window.scrollY === 0) {
-            return
+            return;
         }
 
-        setHiddingTimeout(setTimeout(() => {
-            setHiddingTimeout(undefined);
-        }, 100))
-    }, [])
+        setHiddingTimeout(
+            setTimeout(() => {
+                setHiddingTimeout(undefined);
+            }, 100),
+        );
+    }, []);
 
     useEffect(() => {
         window.addEventListener('scroll', controlVisibility);
@@ -95,27 +132,34 @@ export const SubNavigation = ({
         };
     }, [controlVisibility]);
 
+    useEffect(() => {
+        document.addEventListener('click', clickOutsideMiniToc, true);
+
+        return () => {
+            document.removeEventListener('click', clickOutsideMiniToc, true);
+        };
+    }, [clickOutsideMiniToc]);
+
     return (
         <div
             className={b({
-                "hidden": !visibility,
-                "visible": visibility,
-                "invisible": hideMiniToc })}
+                hidden: !visibility,
+                visible: visibility,
+                invisible: hideMiniToc,
+            })}
         >
             <button
-                className={b('left', {"hidden": hideMiniToc})}
-                type='button'
-                onClick={openMiniTocHandler}
+                className={b('left', {hidden: hideMiniToc})}
+                type="button"
+                onClick={toggleMiniTocOpen}
             >
                 <div className={b('icon')}>
                     <SquareListUl width={20} height={20} />
                 </div>
                 <span className={b('title')}>
-                    {
-                    title && title.length > 30
-                    ? title.substring(0, 30).trimEnd().concat("...")
-                    : title ?? ""
-                    }
+                    {title && title.length > 30
+                        ? title.substring(0, 30).trimEnd().concat('...')
+                        : title ?? ''}
                 </span>
             </button>
             <Button

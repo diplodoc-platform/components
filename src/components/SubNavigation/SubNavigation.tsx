@@ -19,14 +19,12 @@ export interface SubNavigationProps {
     miniTocOpened: boolean;
     toggleMiniTocOpen: () => void;
     closeMiniToc: () => void;
-    // shareData: ShareData;
 }
 
 export const SubNavigation = ({
     title,
     hideMiniToc,
     miniTocOpened,
-    // shareData
     toggleMiniTocOpen,
     closeMiniToc,
 }: SubNavigationProps) => {
@@ -37,7 +35,7 @@ export const SubNavigation = ({
     const shareData = useMemo(() => {
         return {
             title,
-            // url: window.location.href // ?
+            url: window.location.href
         };
     }, [title]);
 
@@ -108,7 +106,7 @@ export const SubNavigation = ({
                 .then(() => {})
                 .catch((error) => console.error('Error sharing', error));
         } else {
-            console.log('Share not supported', shareData); // ?
+            console.log('Share not supported', shareData);
         }
     }, [shareData]);
 

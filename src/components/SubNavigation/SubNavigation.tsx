@@ -84,7 +84,7 @@ export const SubNavigation = ({
 
             setHiddingTimeout(
                 window.setTimeout(() => {
-                    clearTimeout(hiddingTimeout);
+                    window.clearTimeout(hiddingTimeout);
                     setHiddingTimeout(undefined);
                 }, 300),
             );

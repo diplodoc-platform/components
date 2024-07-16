@@ -82,7 +82,7 @@
         flex-direction: column-reverse;
 
         &__center + &__right:has(> .dc-subnavigation_invisible) {
-            margin-top: calc(0px - var(--dc-subheader-height));
+            margin-top: calc(0px - var(--dc-subheader-height, 52px));
         }
 
         &__right {

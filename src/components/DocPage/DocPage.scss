@@ -30,7 +30,7 @@ $importantBackgroundColor: rgba(235, 50, 38, 0.08);
         @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
             position: absolute;
             top: var(--dc-subheader-height);
-            z-index: 118;
+            z-index: 117;
 
             display: flex;
             flex-direction: column;

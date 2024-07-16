@@ -77,15 +77,11 @@
         font-weight: 400;
     }
 
-    // &__button {
-    //     padding: 12px;
-    //     box-sizing: content-box;
-    // }
-
     transition: margin-top 300ms 0s;
 
     &_hidden {
-        margin-top: calc(0px - var(--dc-header-height));
+        --dc-header-height: 64px;
+        margin-top: calc(0px - var(--dc-header-height, 64px));
     }
 
     &_visible {

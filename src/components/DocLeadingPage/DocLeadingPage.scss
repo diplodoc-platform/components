@@ -20,6 +20,10 @@
         margin: 40px 0 $normalOffset;
 
         @include text-size(display-2);
+
+        @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
+            margin-top: 20px;
+        }
     }
 
     &__description {
@@ -43,6 +47,10 @@
             flex-direction: row;
             margin-top: 70px;
             margin-bottom: -$blockMarginBottomLarge;
+
+            @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
+                margin-top: 20px;
+            }
         }
     }
 

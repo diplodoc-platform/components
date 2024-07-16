@@ -28,6 +28,7 @@ import {Feedback, FeedbackView} from '../Feedback';
 import {HTML} from '../HTML';
 import {MiniToc} from '../MiniToc';
 import {SearchBar, withHighlightedSearchWords} from '../SearchBar';
+import {SubNavigation} from '../SubNavigation';
 import {TocNavPanel} from '../TocNavPanel';
 import UpdatedAtDate from '../UpdatedAtDate/UpdatedAtDate';
 
@@ -84,6 +85,7 @@ export interface DocPageProps extends DocPageData, DocSettings {
 
 type DocPageInnerProps = InnerProps<DocPageProps, DocSettings>;
 type DocPageState = {
+    mobileMiniTocOpen: boolean;
     loading: boolean;
     keyDOM: number;
     showNotification: boolean;
@@ -100,6 +102,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
         super(props);
 
         this.state = {
+            mobileMiniTocOpen: false,
             loading: props.singlePage,
             keyDOM: getRandomKey(),
             showNotification: true,
@@ -155,6 +158,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             'full-screen': fullScreen,
             'hidden-mini-toc': hideMiniToc,
             'single-page': singlePage,
+            'open-mini-toc': this.state.mobileMiniTocOpen,
         };
 
         return (
@@ -164,7 +168,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                 headerHeight={headerHeight}
                 className={b(modes)}
                 fullScreen={fullScreen}
-                hideRight={hideMiniToc}
+                hideRight={false} //hideMiniToc}
                 tocTitleIcon={tocTitleIcon}
                 wideFormat={wideFormat}
                 hideTocHeader={hideTocHeader}
@@ -194,9 +198,18 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                     {this.renderSinglePageControls()}
                 </DocLayout.Center>
                 <DocLayout.Right>
+                    <SubNavigation
+                        title={this.props.title}
+                        hideMiniToc={hideMiniToc}
+                        miniTocOpened={this.state.mobileMiniTocOpen}
+                        toggleMiniTocOpen={() =>
+                            this.setState({mobileMiniTocOpen: !this.state.mobileMiniTocOpen})
+                        }
+                        closeMiniToc={() => this.setState({mobileMiniTocOpen: false})}
+                    />
                     {/* This key allows recalculating the offset for the mini-toc for Safari */}
                     <div
-                        className={b('aside')}
+                        className={b('aside', modes)}
                         key={getStateKey(this.showMiniToc, wideFormat, singlePage)}
                     >
                         {hideMiniToc ? null : this.renderAsideMiniToc()}

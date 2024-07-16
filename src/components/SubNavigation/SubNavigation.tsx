@@ -126,10 +126,6 @@ export const SubNavigation = ({
     }, []);
 
     useEffect(() => {
-        if (!window) {
-            return () => {};
-        }
-
         window.addEventListener('scroll', controlVisibility);
 
         return () => {
@@ -138,10 +134,6 @@ export const SubNavigation = ({
     }, [controlVisibility]);
 
     useEffect(() => {
-        if (!document) {
-            return () => {};
-        }
-
         document.addEventListener('click', clickOutsideMiniToc, true);
 
         return () => {

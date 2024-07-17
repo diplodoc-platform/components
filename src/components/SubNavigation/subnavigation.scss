@@ -28,6 +28,7 @@
 
         width: 100%;
         padding: 0;
+        padding-left: 4px;
         gap: 4px;
 
         text-decoration: none;
@@ -64,6 +65,10 @@
         }
     }
 
+    &__menu-button_invisible ~ &__left {
+        border-left: none;
+    }
+
     &__icon {
         display: flex;
         justify-content: center;
@@ -77,6 +82,10 @@
     }
 
     &__menu-button {
+        &_invisible {
+            display: none;
+        }
+
         &_hidden {
             visibility: hidden;
         }

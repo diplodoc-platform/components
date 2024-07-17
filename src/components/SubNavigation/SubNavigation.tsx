@@ -14,7 +14,7 @@ export type ShareData = {
 };
 
 const useVisibility = (miniTocOpened: boolean, closeMiniToc: () => void) => {
-    const [visibility, setVisibility] = useState(true);
+    const [visible, setVisibility] = useState(true);
     const [hiddingTimeout, setHiddingTimeout] = useState<number | undefined>(undefined);
     const [lastScrollY, setLastScrollY] = useState(window.screenY);
 
@@ -107,8 +107,50 @@ const useVisibility = (miniTocOpened: boolean, closeMiniToc: () => void) => {
         };
     }, [clickOutsideMiniToc]);
 
-    return visibility;
+    return visible;
 };
+
+const useTitleView = (title: string | undefined, hideBurger: boolean) => {
+    const [titleView, setTitleView] = useState<string | undefined>("");
+    const [availableTitleLength, setAvailableTitleLength] = useState<number | null>(null);
+
+    const updateAvailableLength = useCallback(() => {
+        const screenWidth = window.innerWidth;
+
+        const availableWidth = hideBurger ? screenWidth - 120 : screenWidth - 172;
+        const avaiableLength = Math.floor(
+            hideBurger
+            ? availableWidth / 7
+            : availableWidth / 9
+        ) - 1
+
+        setAvailableTitleLength(avaiableLength);
+    }, [hideBurger]);
+
+    useEffect(() => {
+        if (!title || !availableTitleLength) {
+            return;
+        }
+
+        const newTitle = title.length > availableTitleLength
+            ? title.substring(0, availableTitleLength - 1).trimEnd().concat('...')
+            : title;
+
+        setTitleView(newTitle);
+    }, [title, availableTitleLength]);
+
+    useEffect(() => {
+        updateAvailableLength();
+
+        window.addEventListener("resize", updateAvailableLength);
+
+        return () => {
+            window.removeEventListener("resize", updateAvailableLength);
+        }
+    }, [updateAvailableLength]);
+
+    return titleView;
+}
 
 const useShareHandler = (title: string | undefined) => {
     const shareData = useMemo(() => {
@@ -134,6 +176,7 @@ const useShareHandler = (title: string | undefined) => {
 
 export interface SubNavigationProps {
     title: string | undefined;
+    hideBurger: boolean;
     hideMiniToc: boolean;
     miniTocOpened: boolean;
     toggleMiniTocOpen: () => void;
@@ -142,24 +185,26 @@ export interface SubNavigationProps {
 
 export const SubNavigation = ({
     title,
+    hideBurger,
     hideMiniToc,
     miniTocOpened,
     toggleMiniTocOpen,
     closeMiniToc,
 }: SubNavigationProps) => {
-    const visibility = useVisibility(miniTocOpened, closeMiniToc);
+    const visible = useVisibility(miniTocOpened, closeMiniToc);
+    const titleView = useTitleView("Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus fuga ut ducimus unde, totam consectetur est doloribus magnam perspiciatis eum reiciendis, officia inventore nesciunt sequi? Dolores mollitia, officiis sit quam rerum obcaecati sequi veritatis esse eos sint pariatur illo dolore cupiditate architecto labore. Explicabo totam, dolorum officia soluta veritatis iusto perspiciatis at doloribus repellat labore atque assumenda aspernatur praesentium. Labore eos officia, aperiam commodi quod veritatis quam omnis perferendis deserunt beatae ut quas, tempore velit ad sit cum veniam rem minus id quia eum consequatur illum. Ipsum blanditiis hic maiores veritatis facere tenetur repudiandae quibusdam, voluptatum, inventore ducimus amet? Inventore.", hideBurger);
     const shareHandler = useShareHandler(title);
 
     return (
         <div
             className={b({
-                hidden: !visibility,
-                visible: visibility,
+                hidden: !visible,
+                visible: visible,
                 invisible: hideMiniToc,
             })}
         >
             <Button
-                className={b('menu-button', {hidden: hideMiniToc})}
+                className={b('menu-button', {invisible: hideBurger, hidden: hideMiniToc})}
                 size="xl"
                 view={'flat'}
                 onClick={() => {}}
@@ -176,11 +221,7 @@ export const SubNavigation = ({
                 <div className={b('icon')}>
                     <SquareListUl width={20} height={20} />
                 </div>
-                <span className={b('title')}>
-                    {title && title.length > 26
-                        ? title.substring(0, 26).trimEnd().concat('...')
-                        : title ?? ''}
-                </span>
+                <span className={b('title')}>{titleView}</span>
             </button>
             <Button
                 className={b('button')}

@@ -199,6 +199,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                 <DocLayout.Right>
                     <SubNavigation
                         title={this.props.title}
+                        hideBurger={typeof headerHeight !== "undefined" && headerHeight !== 0}
                         hideMiniToc={hideMiniToc}
                         miniTocOpened={this.state.mobileMiniTocOpen}
                         toggleMiniTocOpen={() =>

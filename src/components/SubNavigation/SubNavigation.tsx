@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useMemo, useState} from 'react';
 
-import {ArrowShapeTurnUpRight, SquareListUl} from '@gravity-ui/icons';
+import {ArrowShapeTurnUpRight, SquareListUl, Bars} from '@gravity-ui/icons';
 import {Button} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 
@@ -20,9 +20,6 @@ const useVisibility = (miniTocOpened: boolean, closeMiniToc: () => void) => {
 
     const clickOutsideMiniToc = useCallback(
         (event: MouseEvent) => {
-            event.preventDefault();
-            event.stopPropagation();
-
             /*
              * func "composedPath" returns an array in which the last two elements are "HTML" and "#document",
              * which do not have the classList property, so they are subtracted before checking by slice()
@@ -161,6 +158,16 @@ export const SubNavigation = ({
                 invisible: hideMiniToc,
             })}
         >
+            <Button
+                className={b('menu-button', {hidden: hideMiniToc})}
+                size="xl"
+                view={'flat'}
+                onClick={() => {}}
+            >
+                <Button.Icon>
+                    <Bars width={20} height={20} />
+                </Button.Icon>
+            </Button>
             <button
                 className={b('left', {hidden: hideMiniToc})}
                 type="button"
@@ -170,8 +177,8 @@ export const SubNavigation = ({
                     <SquareListUl width={20} height={20} />
                 </div>
                 <span className={b('title')}>
-                    {title && title.length > 30
-                        ? title.substring(0, 30).trimEnd().concat('...')
+                    {title && title.length > 26
+                        ? title.substring(0, 26).trimEnd().concat('...')
                         : title ?? ''}
                 </span>
             </button>

@@ -36,6 +36,7 @@
         background: none;
         border-radius: var(--g-border-radius-xs, 3px);
         border: none;
+        border-left: 1px solid var(--g-color-line-generic, rgba(0, 0, 0, 0.1019607843));
         outline: none;
 
         transition: transform 0.1s ease-out, color 0.15s linear;
@@ -67,13 +68,18 @@
         display: flex;
         justify-content: center;
         align-items: center;
-
         padding: 12px;
     }
 
     &__title {
         @include text-size(subheader-2);
         font-weight: 400;
+    }
+
+    &__menu-button {
+        &_hidden {
+            visibility: hidden;
+        }
     }
 
     transition: margin-top 300ms 0s;

@@ -10,6 +10,10 @@
         color: var(--g-color-text-primary);
         margin-bottom: 12px;
         margin-top: 0;
+
+        @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
+            margin-bottom: 8px;
+        }
     }
 
     &__sections {
@@ -18,8 +22,14 @@
         height: calc(
             100vh - var(--dc-header-height, #{$headerHeight}) - #{$miniTocOffset} - var(--dc-subheader-height)
         );
-        overflow-y: auto;
-        overflow-x: hidden;
+        overflow: hidden auto;
+
+        @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
+            height: fit-content;
+            max-height: calc(
+                80vh - var(--dc-header-height, #{$headerHeight}) - #{$miniTocOffset} - var(--dc-subheader-height)
+            );
+        }
     }
 
     &__section {

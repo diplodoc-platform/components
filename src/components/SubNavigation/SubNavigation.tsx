@@ -1,6 +1,6 @@
-import React, {useCallback, useEffect, useMemo, useState} from 'react';
+import React, {memo, useCallback, useEffect, useMemo, useState} from 'react';
 
-import {ArrowShapeTurnUpRight, SquareListUl, Bars} from '@gravity-ui/icons';
+import {Bars, ArrowShapeTurnUpRight, SquareListUl} from '@gravity-ui/icons';
 import {Button} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 
@@ -185,14 +185,14 @@ export interface SubNavigationProps {
     closeMiniToc: () => void;
 }
 
-export const SubNavigation = ({
+const SubNavigation = memo(function SubNavigation({
     title,
     hideBurger,
     hideMiniToc,
     miniTocOpened,
     toggleMiniTocOpen,
     closeMiniToc,
-}: SubNavigationProps) => {
+}: SubNavigationProps) {
     const visible = useVisibility(miniTocOpened, closeMiniToc);
     const titleView = useTitleView(title, hideBurger);
     const shareHandler = useShareHandler(title);
@@ -237,6 +237,6 @@ export const SubNavigation = ({
             </Button>
         </div>
     );
-};
+});
 
 export default SubNavigation;

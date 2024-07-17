@@ -20,9 +20,6 @@ const useVisibility = (miniTocOpened: boolean, closeMiniToc: () => void) => {
 
     const clickOutsideMiniToc = useCallback(
         (event: MouseEvent) => {
-            event.preventDefault();
-            event.stopPropagation();
-
             /*
              * func "composedPath" returns an array in which the last two elements are "HTML" and "#document",
              * which do not have the classList property, so they are subtracted before checking by slice()

@@ -111,18 +111,14 @@ const useVisibility = (miniTocOpened: boolean, closeMiniToc: () => void) => {
 };
 
 const useTitleView = (title: string | undefined, hideBurger: boolean) => {
-    const [titleView, setTitleView] = useState<string | undefined>("");
+    const [titleView, setTitleView] = useState<string | undefined>('');
     const [availableTitleLength, setAvailableTitleLength] = useState<number | null>(null);
 
     const updateAvailableLength = useCallback(() => {
         const screenWidth = window.innerWidth;
 
         const availableWidth = hideBurger ? screenWidth - 120 : screenWidth - 172;
-        const avaiableLength = Math.floor(
-            hideBurger
-            ? availableWidth / 7
-            : availableWidth / 9
-        ) - 1
+        const avaiableLength = Math.floor(hideBurger ? availableWidth / 7 : availableWidth / 9) - 1;
 
         setAvailableTitleLength(avaiableLength);
     }, [hideBurger]);
@@ -132,9 +128,13 @@ const useTitleView = (title: string | undefined, hideBurger: boolean) => {
             return;
         }
 
-        const newTitle = title.length > availableTitleLength
-            ? title.substring(0, availableTitleLength - 1).trimEnd().concat('...')
-            : title;
+        const newTitle =
+            title.length > availableTitleLength
+                ? title
+                      .substring(0, availableTitleLength - 1)
+                      .trimEnd()
+                      .concat('...')
+                : title;
 
         setTitleView(newTitle);
     }, [title, availableTitleLength]);
@@ -142,15 +142,15 @@ const useTitleView = (title: string | undefined, hideBurger: boolean) => {
     useEffect(() => {
         updateAvailableLength();
 
-        window.addEventListener("resize", updateAvailableLength);
+        window.addEventListener('resize', updateAvailableLength);
 
         return () => {
-            window.removeEventListener("resize", updateAvailableLength);
-        }
+            window.removeEventListener('resize', updateAvailableLength);
+        };
     }, [updateAvailableLength]);
 
     return titleView;
-}
+};
 
 const useShareHandler = (title: string | undefined) => {
     const shareData = useMemo(() => {
@@ -192,7 +192,10 @@ export const SubNavigation = ({
     closeMiniToc,
 }: SubNavigationProps) => {
     const visible = useVisibility(miniTocOpened, closeMiniToc);
-    const titleView = useTitleView("Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus fuga ut ducimus unde, totam consectetur est doloribus magnam perspiciatis eum reiciendis, officia inventore nesciunt sequi? Dolores mollitia, officiis sit quam rerum obcaecati sequi veritatis esse eos sint pariatur illo dolore cupiditate architecto labore. Explicabo totam, dolorum officia soluta veritatis iusto perspiciatis at doloribus repellat labore atque assumenda aspernatur praesentium. Labore eos officia, aperiam commodi quod veritatis quam omnis perferendis deserunt beatae ut quas, tempore velit ad sit cum veniam rem minus id quia eum consequatur illum. Ipsum blanditiis hic maiores veritatis facere tenetur repudiandae quibusdam, voluptatum, inventore ducimus amet? Inventore.", hideBurger);
+    const titleView = useTitleView(
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus fuga ut ducimus unde, totam consectetur est doloribus magnam perspiciatis eum reiciendis, officia inventore nesciunt sequi? Dolores mollitia, officiis sit quam rerum obcaecati sequi veritatis esse eos sint pariatur illo dolore cupiditate architecto labore. Explicabo totam, dolorum officia soluta veritatis iusto perspiciatis at doloribus repellat labore atque assumenda aspernatur praesentium. Labore eos officia, aperiam commodi quod veritatis quam omnis perferendis deserunt beatae ut quas, tempore velit ad sit cum veniam rem minus id quia eum consequatur illum. Ipsum blanditiis hic maiores veritatis facere tenetur repudiandae quibusdam, voluptatum, inventore ducimus amet? Inventore.',
+        hideBurger,
+    );
     const shareHandler = useShareHandler(title);
 
     return (

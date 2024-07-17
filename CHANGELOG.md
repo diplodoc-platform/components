@@ -1,5 +1,13 @@
 # История изменений
 
+## [4.8.0](https://github.com/diplodoc-platform/components/compare/v4.7.0...v4.8.0) (2024-07-17)
+
+
+### Features
+
+* add aria attributes, nav & h2 tag for MiniToc ([#244](https://github.com/diplodoc-platform/components/issues/244)) ([16ce81c](https://github.com/diplodoc-platform/components/commit/16ce81cff492f9333057de2dd66bbe3005cdf503))
+* new SubNavigation component and new MiniToc for mobile ([#249](https://github.com/diplodoc-platform/components/issues/249)) ([6a1e69d](https://github.com/diplodoc-platform/components/commit/6a1e69d0c4cb1ad6c56d31cf7bde724261a8551f))
+
 ## [4.7.0](https://github.com/diplodoc-platform/components/compare/v4.6.0...v4.7.0) (2024-06-25)
 
 

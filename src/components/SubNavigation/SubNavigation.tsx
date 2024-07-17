@@ -115,10 +115,12 @@ const useTitleView = (title: string | undefined, hideBurger: boolean) => {
     const [availableTitleLength, setAvailableTitleLength] = useState<number | null>(null);
 
     const updateAvailableLength = useCallback(() => {
-        const screenWidth = window.innerWidth;
+        const ANOTHER_CONTENT_WIDTH = hideBurger ? 120 : 172;
+        const SYMBOL_SIZE_QUOTIENT = hideBurger ? 1 / 8.5 : 1 / 7.5;
 
-        const availableWidth = hideBurger ? screenWidth - 120 : screenWidth - 172;
-        const avaiableLength = Math.floor(hideBurger ? availableWidth / 7 : availableWidth / 9) - 1;
+        const screenWidth = window.innerWidth;
+        const avaiableWidth = screenWidth - ANOTHER_CONTENT_WIDTH;
+        const avaiableLength = Math.floor(SYMBOL_SIZE_QUOTIENT * avaiableWidth) - 1;
 
         setAvailableTitleLength(avaiableLength);
     }, [hideBurger]);
@@ -192,10 +194,7 @@ export const SubNavigation = ({
     closeMiniToc,
 }: SubNavigationProps) => {
     const visible = useVisibility(miniTocOpened, closeMiniToc);
-    const titleView = useTitleView(
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus fuga ut ducimus unde, totam consectetur est doloribus magnam perspiciatis eum reiciendis, officia inventore nesciunt sequi? Dolores mollitia, officiis sit quam rerum obcaecati sequi veritatis esse eos sint pariatur illo dolore cupiditate architecto labore. Explicabo totam, dolorum officia soluta veritatis iusto perspiciatis at doloribus repellat labore atque assumenda aspernatur praesentium. Labore eos officia, aperiam commodi quod veritatis quam omnis perferendis deserunt beatae ut quas, tempore velit ad sit cum veniam rem minus id quia eum consequatur illum. Ipsum blanditiis hic maiores veritatis facere tenetur repudiandae quibusdam, voluptatum, inventore ducimus amet? Inventore.',
-        hideBurger,
-    );
+    const titleView = useTitleView(title, hideBurger);
     const shareHandler = useShareHandler(title);
 
     return (

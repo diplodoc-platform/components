@@ -202,9 +202,11 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                         hideBurger={typeof headerHeight !== 'undefined' && headerHeight !== 0}
                         hideMiniToc={hideMiniToc}
                         miniTocOpened={this.state.mobileMiniTocOpen}
-                        toggleMiniTocOpen={() =>
-                            this.setState({mobileMiniTocOpen: !this.state.mobileMiniTocOpen})
-                        }
+                        toggleMiniTocOpen={() => {
+                            console.log(this.props.lang);
+
+                            this.setState({mobileMiniTocOpen: !this.state.mobileMiniTocOpen});
+                        }}
                         closeMiniToc={() => this.setState({mobileMiniTocOpen: false})}
                     />
                     {/* This key allows recalculating the offset for the mini-toc for Safari */}

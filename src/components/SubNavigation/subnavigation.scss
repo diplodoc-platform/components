@@ -107,6 +107,10 @@
         background: none;
     }
 
+    &__button_invisible {
+        display: none;
+    }
+
     &_invisible &__button {
         margin-top: 8px;
     }

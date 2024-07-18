@@ -86,6 +86,7 @@ export interface DocPageProps extends DocPageData, DocSettings {
 type DocPageInnerProps = InnerProps<DocPageProps, DocSettings>;
 type DocPageState = {
     mobileMiniTocOpen: boolean;
+    mobileMenuOpen: boolean;
     loading: boolean;
     keyDOM: number;
     showNotification: boolean;
@@ -103,6 +104,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
 
         this.state = {
             mobileMiniTocOpen: false,
+            mobileMenuOpen: false,
             loading: props.singlePage,
             keyDOM: getRandomKey(),
             showNotification: true,
@@ -202,11 +204,14 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                         hideBurger={typeof headerHeight !== 'undefined' && headerHeight !== 0}
                         hideMiniToc={hideMiniToc}
                         miniTocOpened={this.state.mobileMiniTocOpen}
-                        toggleMiniTocOpen={() => {
-                            console.log(this.props.lang);
-
-                            this.setState({mobileMiniTocOpen: !this.state.mobileMiniTocOpen});
-                        }}
+                        menuOpened={this.state.mobileMenuOpen}
+                        toggleMenuOpen={() =>
+                            this.setState({mobileMenuOpen: !this.state.mobileMenuOpen})
+                        }
+                        closeMenu={() => this.setState({mobileMenuOpen: false})}
+                        toggleMiniTocOpen={() =>
+                            this.setState({mobileMiniTocOpen: !this.state.mobileMiniTocOpen})
+                        }
                         closeMiniToc={() => this.setState({mobileMiniTocOpen: false})}
                     />
                     {/* This key allows recalculating the offset for the mini-toc for Safari */}

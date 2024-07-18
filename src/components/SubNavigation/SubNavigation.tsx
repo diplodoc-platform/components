@@ -1,8 +1,10 @@
 import React, {memo, useCallback, useEffect, useMemo, useState} from 'react';
 
-import {Bars, ArrowShapeTurnUpRight, SquareListUl} from '@gravity-ui/icons';
+import {ArrowLeft, ArrowShapeTurnUpRight, Bars, SquareListUl, Xmark} from '@gravity-ui/icons';
 import {Button} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
+
+import {useTranslation} from '../../hooks';
 
 import './SubNavigation.scss';
 
@@ -181,8 +183,11 @@ export interface SubNavigationProps {
     hideBurger: boolean;
     hideMiniToc: boolean;
     miniTocOpened: boolean;
+    menuOpened: boolean;
     toggleMiniTocOpen: () => void;
     closeMiniToc: () => void;
+    toggleMenuOpen: () => void;
+    closeMenu: () => void;
 }
 
 const SubNavigation = memo(function SubNavigation({
@@ -190,12 +195,17 @@ const SubNavigation = memo(function SubNavigation({
     hideBurger,
     hideMiniToc,
     miniTocOpened,
+    menuOpened,
     toggleMiniTocOpen,
     closeMiniToc,
-}: SubNavigationProps) {
+    toggleMenuOpen,
+}: // closeMenu,
+SubNavigationProps) {
     const visible = useVisibility(miniTocOpened, closeMiniToc);
     const titleView = useTitleView(title, hideBurger);
     const shareHandler = useShareHandler(title);
+
+    const {t} = useTranslation('subnavigation');
 
     return (
         <div
@@ -209,24 +219,37 @@ const SubNavigation = memo(function SubNavigation({
                 className={b('menu-button', {invisible: hideBurger, hidden: hideMiniToc})}
                 size="xl"
                 view={'flat'}
-                onClick={() => {}}
+                onClick={() => {
+                    closeMiniToc();
+                    toggleMenuOpen();
+                }}
             >
                 <Button.Icon>
-                    <Bars width={20} height={20} />
+                    {menuOpened ? (
+                        <Xmark width={20} height={20} />
+                    ) : (
+                        <Bars width={20} height={20} />
+                    )}
                 </Button.Icon>
             </Button>
             <button
                 className={b('left', {hidden: hideMiniToc})}
                 type="button"
-                onClick={toggleMiniTocOpen}
+                onClick={menuOpened ? () => {} : toggleMiniTocOpen}
             >
                 <div className={b('icon')}>
-                    <SquareListUl width={20} height={20} />
+                    {menuOpened ? (
+                        <ArrowLeft width={20} height={20} />
+                    ) : (
+                        <SquareListUl width={20} height={20} />
+                    )}
                 </div>
-                <span className={b('title')}>{titleView}</span>
+                <span className={b('title')}>
+                    {menuOpened ? t<string>('back_title') : titleView}
+                </span>
             </button>
             <Button
-                className={b('button')}
+                className={b('button', {invisible: menuOpened})}
                 size="xl"
                 view={hideMiniToc ? 'raised' : 'flat'}
                 onClick={shareHandler}

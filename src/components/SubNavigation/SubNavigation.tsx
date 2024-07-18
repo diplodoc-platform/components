@@ -134,7 +134,7 @@ const useTitleView = (title: string | undefined, hideBurger: boolean) => {
             title.length > availableTitleLength
                 ? title
                       .substring(0, availableTitleLength - 1)
-                      .trimEnd()
+                      .trim()
                       .concat('...')
                 : title;
 

@@ -15,7 +15,7 @@ export type ShareData = {
     url?: string;
 };
 
-const useVisibility = (miniTocOpened: boolean, closeMiniToc: () => void) => {
+const useVisibility = (miniTocOpened: boolean, menuOpened: boolean, closeMiniToc: () => void) => {
     const [visible, setVisibility] = useState(true);
     const [hiddingTimeout, setHiddingTimeout] = useState<number | undefined>(undefined);
     const [lastScrollY, setLastScrollY] = useState(window.screenY);
@@ -44,7 +44,7 @@ const useVisibility = (miniTocOpened: boolean, closeMiniToc: () => void) => {
     );
 
     const controlVisibility = useCallback(() => {
-        if (miniTocOpened) {
+        if (miniTocOpened || menuOpened) {
             setVisibility(true);
             return;
         }
@@ -73,6 +73,7 @@ const useVisibility = (miniTocOpened: boolean, closeMiniToc: () => void) => {
         setLastScrollY(window.scrollY);
     }, [
         miniTocOpened,
+        menuOpened,
         lastScrollY,
         hiddingTimeout,
         setLastScrollY,
@@ -201,7 +202,7 @@ const SubNavigation = memo(function SubNavigation({
     toggleMenuOpen,
 }: // closeMenu,
 SubNavigationProps) {
-    const visible = useVisibility(miniTocOpened, closeMiniToc);
+    const visible = useVisibility(miniTocOpened, menuOpened, closeMiniToc);
     const titleView = useTitleView(title, hideBurger);
     const shareHandler = useShareHandler(title);
 

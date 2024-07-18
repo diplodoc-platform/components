@@ -200,8 +200,7 @@ const SubNavigation = memo(function SubNavigation({
     toggleMiniTocOpen,
     closeMiniToc,
     toggleMenuOpen,
-}: // closeMenu,
-SubNavigationProps) {
+}: SubNavigationProps) {
     const visible = useVisibility(miniTocOpened, menuOpened, closeMiniToc);
     const titleView = useTitleView(title, hideBurger);
     const shareHandler = useShareHandler(title);
@@ -239,18 +238,18 @@ SubNavigationProps) {
                 onClick={menuOpened ? () => {} : toggleMiniTocOpen}
             >
                 <div className={b('icon')}>
-                    {menuOpened ? (
+                    {menuOpened && hideBurger ? (
                         <ArrowLeft width={20} height={20} />
                     ) : (
                         <SquareListUl width={20} height={20} />
                     )}
                 </div>
                 <span className={b('title')}>
-                    {menuOpened ? t<string>('back_title') : titleView}
+                    {menuOpened && hideBurger ? t<string>('back_title') : titleView}
                 </span>
             </button>
             <Button
-                className={b('button', {invisible: menuOpened})}
+                className={b('button', {invisible: menuOpened && hideBurger})}
                 size="xl"
                 view={hideMiniToc ? 'raised' : 'flat'}
                 onClick={shareHandler}

@@ -45,6 +45,9 @@
     "lang-control-text-ru": "Vene",
     "lang-control-text-en": "Inglise"
   },
+  "subnavigation": {
+    "back_title": "Tagasi peamenüüsse"
+  },
   "mini-toc": {
     "title": "Selles artiklis",
     "description": "Praeguse artikli sisu"

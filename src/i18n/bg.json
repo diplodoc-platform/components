@@ -45,6 +45,9 @@
     "lang-control-text-ru": "Руски език",
     "lang-control-text-en": "Английски език"
   },
+  "subnavigation": {
+    "back_title": "В главното меню"
+  },
   "mini-toc": {
     "title": "В тази статия",
     "description": "Съдържанието на текущата статия"

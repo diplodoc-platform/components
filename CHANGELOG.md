@@ -1,5 +1,18 @@
 # История изменений
 
+## [4.9.0](https://github.com/diplodoc-platform/components/compare/v4.8.1...v4.9.0) (2024-07-19)
+
+
+### Features
+
+* add label ([68a0a16](https://github.com/diplodoc-platform/components/commit/68a0a164664dd46ecb86d81df091292c17b03023))
+
+
+### Bug Fixes
+
+* linter fix ([7707c0e](https://github.com/diplodoc-platform/components/commit/7707c0e8847d077f90f3774820cc07dedac40a6b))
+* rename parametr ([4fc2e41](https://github.com/diplodoc-platform/components/commit/4fc2e4158104000a15aef23907a053112e42aaa7))
+
 ## [4.8.1](https://github.com/diplodoc-platform/components/compare/v4.8.0...v4.8.1) (2024-07-19)
 
 

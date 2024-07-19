@@ -20,7 +20,7 @@ $importantBackgroundColor: rgba(235, 50, 38, 0.08);
 
     &__aside {
         position: fixed;
-        top: calc(var(--dc-header-height, #{$headerHeight}) + var(--dc-subheader-height));
+        top: calc(var(--dc-header-height, #{$headerHeight}) + var(--dc-subheader-height, 52px));
 
         padding-top: 24px;
         width: 176px;
@@ -29,7 +29,7 @@ $importantBackgroundColor: rgba(235, 50, 38, 0.08);
 
         @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
             position: absolute;
-            top: var(--dc-subheader-height);
+            top: var(--dc-subheader-height, 52px);
             z-index: 117;
 
             display: flex;

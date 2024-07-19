@@ -15,33 +15,10 @@ export type ShareData = {
     url?: string;
 };
 
-const useVisibility = (miniTocOpened: boolean, menuOpened: boolean, closeMiniToc: () => void) => {
+const useVisibility = (miniTocOpened: boolean, menuOpened: boolean) => {
     const [visible, setVisibility] = useState(true);
     const [hiddingTimeout, setHiddingTimeout] = useState<number | undefined>(undefined);
     const [lastScrollY, setLastScrollY] = useState(window.screenY);
-
-    const clickOutsideMiniToc = useCallback(
-        (event: MouseEvent) => {
-            /*
-             * func "composedPath" returns an array in which the last two elements are "HTML" and "#document",
-             * which do not have the classList property, so they are subtracted before checking by slice()
-             */
-            const isOutside = !event
-                .composedPath()
-                .slice(0, -2)
-                .some((item) => {
-                    const el = item as HTMLElement;
-                    const classes = el.classList ?? [];
-
-                    return classes?.contains('dc-doc-layout__right');
-                });
-
-            if (isOutside) {
-                closeMiniToc();
-            }
-        },
-        [closeMiniToc],
-    );
 
     const controlVisibility = useCallback(() => {
         if (miniTocOpened || menuOpened) {
@@ -101,14 +78,6 @@ const useVisibility = (miniTocOpened: boolean, menuOpened: boolean, closeMiniToc
             window.removeEventListener('scroll', controlVisibility);
         };
     }, [controlVisibility]);
-
-    useEffect(() => {
-        document.addEventListener('click', clickOutsideMiniToc, true);
-
-        return () => {
-            document.removeEventListener('click', clickOutsideMiniToc, true);
-        };
-    }, [clickOutsideMiniToc]);
 
     return visible;
 };
@@ -201,7 +170,7 @@ const SubNavigation = memo(function SubNavigation({
     closeMiniToc,
     toggleMenuOpen,
 }: SubNavigationProps) {
-    const visible = useVisibility(miniTocOpened, menuOpened, closeMiniToc);
+    const visible = useVisibility(miniTocOpened, menuOpened);
     const titleView = useTitleView(title, hideBurger);
     const shareHandler = useShareHandler(title);
 
@@ -235,7 +204,14 @@ const SubNavigation = memo(function SubNavigation({
             <button
                 className={b('left', {hidden: hideMiniToc})}
                 type="button"
-                onClick={menuOpened ? () => {} : toggleMiniTocOpen}
+                onClick={
+                    menuOpened
+                        ? () => {
+                              toggleMiniTocOpen();
+                              toggleMenuOpen();
+                          }
+                        : toggleMiniTocOpen
+                }
             >
                 <div className={b('icon')}>
                     {menuOpened && hideBurger ? (

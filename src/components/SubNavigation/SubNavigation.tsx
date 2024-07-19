@@ -16,7 +16,9 @@ export type ShareData = {
 const useVisibility = (miniTocOpened: boolean, closeMiniToc: () => void) => {
     const [visibility, setVisibility] = useState(true);
     const [hiddingTimeout, setHiddingTimeout] = useState<number | undefined>(undefined);
-    const [lastScrollY, setLastScrollY] = useState(typeof window === "undefined" ? null : window.screenY);
+    const [lastScrollY, setLastScrollY] = useState(
+        typeof window === 'undefined' ? null : window.screenY,
+    );
 
     const clickOutsideMiniToc = useCallback(
         (event: MouseEvent) => {
@@ -42,7 +44,7 @@ const useVisibility = (miniTocOpened: boolean, closeMiniToc: () => void) => {
     );
 
     const controlVisibility = useCallback(() => {
-        if (typeof window === "undefined") {
+        if (typeof window === 'undefined') {
             return;
         }
 
@@ -83,7 +85,7 @@ const useVisibility = (miniTocOpened: boolean, closeMiniToc: () => void) => {
     ]);
 
     useEffect(() => {
-        if (typeof window === "undefined") {
+        if (typeof window === 'undefined') {
             return;
         }
 
@@ -100,7 +102,7 @@ const useVisibility = (miniTocOpened: boolean, closeMiniToc: () => void) => {
     }, []);
 
     useEffect(() => {
-        if (typeof window === "undefined") {
+        if (typeof window === 'undefined') {
             return () => {};
         }
 
@@ -126,7 +128,7 @@ const useShareHandler = (title: string | undefined) => {
     const shareData = useMemo(() => {
         return {
             title,
-            url: typeof window === "undefined" ? undefined : window.location.href,
+            url: typeof window === 'undefined' ? undefined : window.location.href,
         };
     }, [title]);
 

@@ -82,7 +82,7 @@
 
     &_hidden {
         --dc-header-height: 64px;
-        margin-top: calc(0px - var(--dc-header-height, 64px));
+        margin-top: calc(0px - var(--dc-header-height, #{$headerHeight}));
     }
 
     &_visible {

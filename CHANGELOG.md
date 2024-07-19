@@ -1,5 +1,12 @@
 # История изменений
 
+## [4.9.1](https://github.com/diplodoc-platform/components/compare/v4.9.0...v4.9.1) (2024-07-19)
+
+
+### Bug Fixes
+
+* add SubNavigatino export in index.ts ([#254](https://github.com/diplodoc-platform/components/issues/254)) ([b526356](https://github.com/diplodoc-platform/components/commit/b526356b7f1f5cccaa12a233a9111bf80fac9f40))
+
 ## [4.9.0](https://github.com/diplodoc-platform/components/compare/v4.8.1...v4.9.0) (2024-07-19)
 
 

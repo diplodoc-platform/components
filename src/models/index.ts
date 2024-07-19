@@ -128,6 +128,7 @@ export interface TocItem {
     href?: string;
     items?: TocItem[];
     expanded?: boolean;
+    labeled?: boolean;
 }
 
 export interface BreadcrumbItem {

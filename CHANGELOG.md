@@ -1,5 +1,13 @@
 # История изменений
 
+## [4.8.1](https://github.com/diplodoc-platform/components/compare/v4.8.0...v4.8.1) (2024-07-19)
+
+
+### Bug Fixes
+
+* rename subnavigation.scss to SubNavigation.scss ([#250](https://github.com/diplodoc-platform/components/issues/250)) ([e3732a6](https://github.com/diplodoc-platform/components/commit/e3732a6b88c1326ab7c5eb8136f6e71799c3cb64))
+* replace trimEnd to trim ([#251](https://github.com/diplodoc-platform/components/issues/251)) ([b6ef27c](https://github.com/diplodoc-platform/components/commit/b6ef27c802e05d5e4ad6cd5cde6ad37076510402))
+
 ## [4.8.0](https://github.com/diplodoc-platform/components/compare/v4.7.0...v4.8.0) (2024-07-17)
 
 

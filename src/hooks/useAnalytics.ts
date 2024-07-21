@@ -26,6 +26,7 @@ export type AnalyticsParams = {
     gtmId: string;
     router: Router;
     useConsent?: boolean;
+    consentMode?: 'base' | 'notification';
 };
 
 export const useAnalytics = ({gtmId, router, useConsent}: AnalyticsParams) => {

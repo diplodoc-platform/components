@@ -5,7 +5,13 @@ import {ConsentManager, ConsentMode, CookieConsent} from '@gravity-ui/components
 import {AnalyticsParams, useAnalytics} from '../../hooks';
 
 const ConsentPopup: React.FC<AnalyticsParams> = (props) => {
-    const consentManager = React.useMemo(() => new ConsentManager(ConsentMode.Base), []);
+    const consentManager = React.useMemo(
+        () =>
+            new ConsentManager(
+                props.consentMode === 'notification' ? ConsentMode.Notification : ConsentMode.Base,
+            ),
+        [props.consentMode],
+    );
     const [useConsent, setUseConsent] = React.useState(
         Boolean(consentManager?.getConsents().analytics),
     );

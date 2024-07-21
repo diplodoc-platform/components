@@ -96,6 +96,10 @@ $leftOffset: 57px;
 
         &_offset_top {
             padding-top: 24px;
+
+            @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
+                padding-top: 12px;
+            }
         }
     }
 
@@ -134,5 +138,9 @@ $leftOffset: 57px;
     &__content > &__list {
         padding-right: 21px;
         padding-bottom: 30px;
+
+        @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
+            padding-right: 0;
+        }
     }
 }

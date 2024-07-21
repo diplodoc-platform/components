@@ -45,6 +45,9 @@
     "lang-control-text-ru": "Русский",
     "lang-control-text-en": "English"
   },
+  "subnavigation": {
+    "back_title": "Retour au menu principal"
+  },
   "mini-toc": {
     "title": "Dans cet article",
     "description": "Contenu de l’article actuel"

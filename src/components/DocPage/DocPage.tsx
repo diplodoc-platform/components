@@ -27,6 +27,7 @@ import {DocPageTitle} from '../DocPageTitle';
 import {Feedback, FeedbackView} from '../Feedback';
 import {HTML} from '../HTML';
 import {MiniToc} from '../MiniToc';
+import {OutsideClick} from '../OutsideClick';
 import {SearchBar, withHighlightedSearchWords} from '../SearchBar';
 import {SubNavigation} from '../SubNavigation';
 import {TocNavPanel} from '../TocNavPanel';
@@ -86,9 +87,11 @@ export interface DocPageProps extends DocPageData, DocSettings {
 type DocPageInnerProps = InnerProps<DocPageProps, DocSettings>;
 type DocPageState = {
     mobileMiniTocOpen: boolean;
+    mobileMenuOpen: boolean;
     loading: boolean;
     keyDOM: number;
     showNotification: boolean;
+    subNavElement: HTMLElement | null;
 };
 
 class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
@@ -103,9 +106,11 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
 
         this.state = {
             mobileMiniTocOpen: false,
+            mobileMenuOpen: false,
             loading: props.singlePage,
             keyDOM: getRandomKey(),
             showNotification: true,
+            subNavElement: null,
         };
     }
     componentDidMount(): void {
@@ -118,6 +123,12 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
         this.setState({loading: false});
 
         this.addBodyObserver();
+
+        const subNavArray = document.getElementsByClassName('dc-subnavigation');
+
+        if (subNavArray.length > 0) {
+            this.setState({subNavElement: subNavArray[0] as HTMLElement});
+        }
     }
 
     componentDidUpdate(prevProps: DocPageInnerProps): void {
@@ -170,8 +181,9 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                 fullScreen={fullScreen}
                 tocTitleIcon={tocTitleIcon}
                 wideFormat={wideFormat}
-                hideTocHeader={hideTocHeader}
+                hideTocHeader={true ?? hideTocHeader}
                 hideToc={hideToc}
+                menuOpen={this.state.mobileMenuOpen}
                 loading={this.state.loading}
                 footer={footer}
                 singlePage={singlePage}
@@ -199,8 +211,14 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                 <DocLayout.Right>
                     <SubNavigation
                         title={this.props.title}
+                        hideBurger={typeof headerHeight !== 'undefined' && headerHeight !== 0}
                         hideMiniToc={hideMiniToc}
                         miniTocOpened={this.state.mobileMiniTocOpen}
+                        menuOpened={this.state.mobileMenuOpen}
+                        toggleMenuOpen={() =>
+                            this.setState({mobileMenuOpen: !this.state.mobileMenuOpen})
+                        }
+                        closeMenu={() => this.setState({mobileMenuOpen: false})}
                         toggleMiniTocOpen={() =>
                             this.setState({mobileMiniTocOpen: !this.state.mobileMiniTocOpen})
                         }
@@ -558,8 +576,27 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
     }
 
     private renderAsideMiniToc() {
-        const {headings, router, headerHeight, onMiniTocItemClick} = this.props;
-        const {keyDOM} = this.state;
+        const {showMiniToc, headings, router, headerHeight, onMiniTocItemClick} = this.props;
+        const {keyDOM, subNavElement} = this.state;
+
+        if (showMiniToc) {
+            return (
+                <OutsideClick
+                    anchor={subNavElement}
+                    onOutsideClick={() => this.setState({mobileMiniTocOpen: false})}
+                >
+                    <div className={b('aside-mini-toc')}>
+                        <MiniToc
+                            headings={headings}
+                            router={router}
+                            headerHeight={headerHeight}
+                            key={keyDOM}
+                            onItemClick={onMiniTocItemClick}
+                        />
+                    </div>
+                </OutsideClick>
+            );
+        }
 
         return (
             <div className={b('aside-mini-toc')}>

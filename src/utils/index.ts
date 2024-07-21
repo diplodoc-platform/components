@@ -46,11 +46,10 @@ export function isActiveItem(router: Router, href: string, singlePage?: boolean)
 }
 
 export function getLangPath(router: Router, lang: string) {
-    const path = router.hash ? normalizeHash(router.hash) : normalizePath(router.pathname);
+    const path = router.hash ? normalizeHash(router.hash) : router.pathname;
     const route = path?.split('../') || [];
     const routeLast = route[route.length - 1];
-    const routeHtml = routeLast ? routeLast + '.html' : routeLast;
-    return `../${lang}/${routeHtml || ''}`;
+    return `../${lang}/${routeLast || ''}`;
 }
 
 export function isExternalHref(href: string) {

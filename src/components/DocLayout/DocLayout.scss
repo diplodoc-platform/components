@@ -102,7 +102,7 @@
                 var(--dc-header-height, #{$headerHeight}) +
                     var(--dc-subnavigation-height, #{$subNavigationHeight}) + 1px
             );
-            left: calc(0px - 100vw);
+            left: calc(0px - 100vw - 6px);
             z-index: 119;
 
             box-sizing: border-box;

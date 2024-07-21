@@ -98,12 +98,18 @@
 
         &__left {
             position: fixed;
-            top: calc(var(--dc-header-height, #{$headerHeight}) + var(--dc-subheader-height, #{$subheaderHeight}) - 1px);;
+            top: calc(
+                var(--dc-header-height, #{$headerHeight}) +
+                    var(--dc-subnavigation-height, #{$subNavigationHeight}) - 1px
+            );
             left: calc(0px - 100vw);
             z-index: 119;
 
             box-sizing: border-box;
-            max-height: calc(100vh - var(--dc-header-height, #{$headerHeight}) - var(--dc-subheader-height, #{$subheaderHeight}) + 1px);
+            max-height: calc(
+                100vh - var(--dc-header-height, #{$headerHeight}) -
+                    var(--dc-subnavigation-height, #{$subNavigationHeight}) + 1px
+            );
             height: 100%;
             width: 100vw;
 

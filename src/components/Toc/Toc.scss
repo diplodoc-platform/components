@@ -19,10 +19,10 @@ $leftOffset: 57px;
     overflow-y: hidden;
     border-right: 1px solid var(--g-color-line-generic);
 
-    // .mobile & {
-    //     border-top: 1px solid var(--g-color-line-generic);
-    //     border-right: none;
-    // }
+    .mobile & {
+        // border-top: 1px solid var(--g-color-line-generic);
+        border-right: none;
+    }
 
     &__empty {
         padding: 5px 15px 5px 24px;

@@ -31,6 +31,7 @@
 
         width: 100%;
         padding: 0;
+        padding-left: 4px;
         gap: 4px;
 
         text-decoration: none;
@@ -39,6 +40,7 @@
         background: none;
         border-radius: var(--g-border-radius-xs, 3px);
         border: none;
+        border-left: 1px solid var(--g-color-line-generic, rgba(0, 0, 0, 0.1019607843));
         outline: none;
 
         transition: transform 0.1s ease-out, color 0.15s linear;
@@ -66,6 +68,10 @@
         }
     }
 
+    &__menu-button_invisible ~ &__left {
+        border-left: none;
+    }
+
     &__icon {
         display: flex;
         justify-content: center;
@@ -77,6 +83,16 @@
     &__title {
         @include text-size(subheader-2);
         font-weight: 400;
+    }
+
+    &__menu-button {
+        &_invisible {
+            display: none;
+        }
+
+        &_hidden {
+            visibility: hidden;
+        }
     }
 
     transition: margin-top 300ms 0s;
@@ -93,6 +109,10 @@
     &_invisible {
         border: none;
         background: none;
+    }
+
+    &__button_invisible {
+        display: none;
     }
 
     &_invisible &__button {

@@ -100,7 +100,7 @@
             position: fixed;
             top: calc(
                 var(--dc-header-height, #{$headerHeight}) +
-                    var(--dc-subnavigation-height, #{$subNavigationHeight}) - 1px
+                    var(--dc-subnavigation-height, #{$subNavigationHeight}) + 1px
             );
             left: calc(0px - 100vw);
             z-index: 119;
@@ -115,6 +115,9 @@
 
             padding-left: 16px;
             padding-right: 16px;
+
+            box-shadow: 0px 3px 10px var(--g-color-sfx-shadow, #8f8f8f70);
+            background-color: var(--g-color-base-background, #fff);
 
             transition: left 300ms 0ms;
 

@@ -2,16 +2,19 @@
 @import '../../styles/mixins';
 
 .dc-subnavigation {
+    $horizontal_Padding: 12px;
+    $verticalPadding: 4px;
+
     position: absolute;
     z-index: 119;
 
     display: flex;
 
-    width: calc(100% - 12px - 12px);
-    height: 44px;
-    padding: 4px 12px;
+    width: calc(100% - 2 * #{$horizontal_Padding});
+    height: #{$subNavigationHeight} - #{$verticalPadding};
+    padding: #{$verticalPadding} #{$horizontal_Padding};
 
-    gap: 4px;
+    gap: #{$verticalPadding};
 
     background: var(--g-color-base-background, #fff);
     border-bottom: 1px solid var(--g-color-line-generic, #0000001a);
@@ -95,7 +98,7 @@
 
     &_hidden {
         --dc-header-height: 64px;
-        margin-top: calc(0px - var(--dc-header-height, 64px));
+        margin-top: calc(0px - var(--dc-header-height, #{$headerHeight}));
     }
 
     &_visible {

@@ -1,5 +1,40 @@
 # История изменений
 
+## [4.9.2](https://github.com/diplodoc-platform/components/compare/v4.9.1...v4.9.2) (2024-07-19)
+
+
+### Bug Fixes
+
+* window causes errors in SSR ([#256](https://github.com/diplodoc-platform/components/issues/256)) ([d8339cd](https://github.com/diplodoc-platform/components/commit/d8339cd5f8f4270aaea8ce340d175453ff320691))
+
+## [4.9.1](https://github.com/diplodoc-platform/components/compare/v4.9.0...v4.9.1) (2024-07-19)
+
+
+### Bug Fixes
+
+* add SubNavigatino export in index.ts ([#254](https://github.com/diplodoc-platform/components/issues/254)) ([b526356](https://github.com/diplodoc-platform/components/commit/b526356b7f1f5cccaa12a233a9111bf80fac9f40))
+
+## [4.9.0](https://github.com/diplodoc-platform/components/compare/v4.8.1...v4.9.0) (2024-07-19)
+
+
+### Features
+
+* add label ([68a0a16](https://github.com/diplodoc-platform/components/commit/68a0a164664dd46ecb86d81df091292c17b03023))
+
+
+### Bug Fixes
+
+* linter fix ([7707c0e](https://github.com/diplodoc-platform/components/commit/7707c0e8847d077f90f3774820cc07dedac40a6b))
+* rename parametr ([4fc2e41](https://github.com/diplodoc-platform/components/commit/4fc2e4158104000a15aef23907a053112e42aaa7))
+
+## [4.8.1](https://github.com/diplodoc-platform/components/compare/v4.8.0...v4.8.1) (2024-07-19)
+
+
+### Bug Fixes
+
+* rename subnavigation.scss to SubNavigation.scss ([#250](https://github.com/diplodoc-platform/components/issues/250)) ([e3732a6](https://github.com/diplodoc-platform/components/commit/e3732a6b88c1326ab7c5eb8136f6e71799c3cb64))
+* replace trimEnd to trim ([#251](https://github.com/diplodoc-platform/components/issues/251)) ([b6ef27c](https://github.com/diplodoc-platform/components/commit/b6ef27c802e05d5e4ad6cd5cde6ad37076510402))
+
 ## [4.8.0](https://github.com/diplodoc-platform/components/compare/v4.7.0...v4.8.0) (2024-07-17)
 
 

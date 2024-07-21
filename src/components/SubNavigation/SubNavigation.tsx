@@ -18,19 +18,25 @@ export type ShareData = {
 const useVisibility = (miniTocOpened: boolean, menuOpened: boolean) => {
     const [visible, setVisibility] = useState(true);
     const [hiddingTimeout, setHiddingTimeout] = useState<number | undefined>(undefined);
-    const [lastScrollY, setLastScrollY] = useState(window.screenY);
+    const [lastScrollY, setLastScrollY] = useState(
+        typeof window === 'undefined' ? null : window.screenY,
+    );
 
     const controlVisibility = useCallback(() => {
+        if (typeof window === 'undefined') {
+            return;
+        }
+
         if (miniTocOpened || menuOpened) {
             setVisibility(true);
             return;
         }
 
-        if (lastScrollY === 0) {
+        if (lastScrollY && lastScrollY === 0) {
             setVisibility(true);
         }
 
-        if (window.scrollY > lastScrollY) {
+        if (lastScrollY && window.scrollY > lastScrollY) {
             if (hiddingTimeout) {
                 return;
             }
@@ -43,7 +49,7 @@ const useVisibility = (miniTocOpened: boolean, menuOpened: boolean) => {
                     setHiddingTimeout(undefined);
                 }, 300),
             );
-        } else if (window.scrollY < lastScrollY) {
+        } else if (lastScrollY && window.scrollY < lastScrollY) {
             setVisibility(true);
         }
 
@@ -59,6 +65,10 @@ const useVisibility = (miniTocOpened: boolean, menuOpened: boolean) => {
     ]);
 
     useEffect(() => {
+        if (typeof window === 'undefined') {
+            return;
+        }
+
         if (window.scrollY === 0) {
             return;
         }
@@ -72,6 +82,10 @@ const useVisibility = (miniTocOpened: boolean, menuOpened: boolean) => {
     }, []);
 
     useEffect(() => {
+        if (typeof window === 'undefined') {
+            return () => {};
+        }
+
         window.addEventListener('scroll', controlVisibility);
 
         return () => {
@@ -106,7 +120,7 @@ const useTitleView = (title: string | undefined, hideBurger: boolean) => {
             title.length > availableTitleLength
                 ? title
                       .substring(0, availableTitleLength - 1)
-                      .trim()
+                      .trimEnd()
                       .concat('...')
                 : title;
 
@@ -130,7 +144,7 @@ const useShareHandler = (title: string | undefined) => {
     const shareData = useMemo(() => {
         return {
             title,
-            url: window.location.href,
+            url: typeof window === 'undefined' ? undefined : window.location.href,
         };
     }, [title]);
 

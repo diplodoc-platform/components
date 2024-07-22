@@ -58,7 +58,7 @@
     "_lint:prettier:fix": "prettier --write 'src/**/*.{js,jsx,ts,tsx}'",
     "_lint:styles": "stylelint src/**/*.scss",
     "_lint:styles:fix": "npm run _lint:styles -- --fix",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsc -p . --noEmit",
     "test": "exit 0",
     "dev": "run-s build _dev:watch",
     "_dev:watch": "run-p _build:watch _storybook:watch",

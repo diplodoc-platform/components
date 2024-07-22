@@ -1,5 +1,12 @@
 # История изменений
 
+## [4.9.3](https://github.com/diplodoc-platform/components/compare/v4.9.2...v4.9.3) (2024-07-22)
+
+
+### Bug Fixes
+
+* trigger release ([947a8e9](https://github.com/diplodoc-platform/components/commit/947a8e91ba48bfd52edf6cc90b849047ad6a503b))
+
 ## [4.9.2](https://github.com/diplodoc-platform/components/compare/v4.9.1...v4.9.2) (2024-07-19)
 
 

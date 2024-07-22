@@ -1,12 +1,5 @@
 # История изменений
 
-## [4.9.2](https://github.com/diplodoc-platform/components/compare/v4.9.1...v4.9.2) (2024-07-19)
-
-
-### Bug Fixes
-
-* window causes errors in SSR ([#256](https://github.com/diplodoc-platform/components/issues/256)) ([d8339cd](https://github.com/diplodoc-platform/components/commit/d8339cd5f8f4270aaea8ce340d175453ff320691))
-
 ## [4.9.1](https://github.com/diplodoc-platform/components/compare/v4.9.0...v4.9.1) (2024-07-19)
 
 

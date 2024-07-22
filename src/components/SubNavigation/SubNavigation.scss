@@ -124,9 +124,7 @@
     }
 
     &_invisible &__menu-button {
-        position: absolute;
-        right: 68px;
-
+        // TODO: придумать расположение кнопки меню в случае отсутствия минитоки
         margin-top: 8px;
     }
 }

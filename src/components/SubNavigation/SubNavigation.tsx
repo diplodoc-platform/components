@@ -168,7 +168,7 @@ export const SubNavigation = ({
                 </div>
                 <span className={b('title')}>
                     {title && title.length > 30
-                        ? title.substring(0, 30).trim().concat('...')
+                        ? title.substring(0, 30).trimEnd().concat('...')
                         : title ?? ''}
                 </span>
             </button>

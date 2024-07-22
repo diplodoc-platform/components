@@ -81,19 +81,8 @@
     @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
         flex-direction: column-reverse;
 
-        &__center + &__right:has(> .dc-subnavigation_invisible) {
-            margin-top: calc(0px - var(--dc-subheader-height, 52px));
-        }
-
         &__right {
-            position: sticky;
-            top: calc(var(--dc-header-height) - 1px);
-            left: 0;
-            z-index: 119;
-
-            height: fit-content;
-            width: 100%;
-            padding: 0;
+            display: none;
         }
 
         &__left {
@@ -104,7 +93,6 @@
             position: static;
             width: auto;
             height: auto;
-            padding: 0 20px;
 
             .dc-toc {
                 /* stylelint-disable-next-line declaration-no-important */

@@ -199,9 +199,9 @@ const SubNavigation = memo(function SubNavigation({
             })}
         >
             <Button
-                className={b('menu-button', {invisible: hideBurger, hidden: hideMiniToc})}
+                className={b('menu-button', {invisible: hideBurger})}
                 size="xl"
-                view={'flat'}
+                view={hideMiniToc ? 'raised' : 'flat'}
                 onClick={() => {
                     closeMiniToc();
                     toggleMenuOpen();

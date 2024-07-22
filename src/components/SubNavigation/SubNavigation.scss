@@ -117,5 +117,14 @@
 
     &_invisible &__button {
         margin-top: 8px;
+
+        &:hover {
+            opacity: 0.5;
+        }
+    }
+
+    &_invisible &__menu-button {
+        // TODO: придумать расположение кнопки меню в случае отсутствия минитоки
+        margin-top: 8px;
     }
 }

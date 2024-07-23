@@ -190,6 +190,22 @@ const SubNavigation = memo(function SubNavigation({
 
     const {t} = useTranslation('subnavigation');
 
+    const leftBlockClickHandler = useCallback(() => {
+        if (!menuOpened) {
+            return toggleMiniTocOpen;
+        }
+
+        return hideBurger
+            ? () => {
+                  console.log('back to main menu'); //TODO
+                  toggleMenuOpen();
+              }
+            : () => {
+                  toggleMiniTocOpen();
+                  toggleMenuOpen();
+              };
+    }, [menuOpened, hideBurger, toggleMenuOpen, toggleMiniTocOpen]);
+
     return (
         <div
             className={b({
@@ -218,14 +234,7 @@ const SubNavigation = memo(function SubNavigation({
             <button
                 className={b('left', {hidden: hideMiniToc})}
                 type="button"
-                onClick={
-                    menuOpened
-                        ? () => {
-                              toggleMiniTocOpen();
-                              toggleMenuOpen();
-                          }
-                        : toggleMiniTocOpen
-                }
+                onClick={leftBlockClickHandler}
             >
                 <div className={b('icon')}>
                     {menuOpened && hideBurger ? (

@@ -221,6 +221,58 @@ const SubNavigation = memo(function SubNavigation({
         toggleMiniTocOpen,
     );
 
+    const menuButton = (
+        <Button
+            className={b('menu-button', {invisible: hideBurger})}
+            size="xl"
+            view={hideMiniToc ? 'raised' : 'flat'}
+            onClick={() => {
+                closeMiniToc();
+                toggleMenuOpen();
+            }}
+        >
+            <Button.Icon>
+                {menuOpened ? (
+                    <Xmark width={20} height={20} />
+                ) : (
+                    <Bars width={20} height={20} />
+                )}
+            </Button.Icon>
+        </Button>
+    )
+
+    const miniTocButton = (
+        <button
+            className={b('mini-toc-button', {hidden: hideMiniToc, disabled: menuOpened})}
+            type="button"
+            onClick={openMiniTocHandler}
+        >
+            <div className={b('icon')}>
+                {menuOpened && hideBurger ? (
+                    <ArrowLeft width={20} height={20} />
+                ) : (
+                    <SquareListUl width={20} height={20} />
+                )}
+            </div>
+            <span className={b('title')}>
+                {menuOpened && hideBurger ? t<string>('back_title') : titleView}
+            </span>
+        </button>
+    )
+
+    const shareButton = (
+        <Button
+            className={b('share-button', {invisible: menuOpened && hideBurger})}
+            size="xl"
+            view={hideMiniToc ? 'raised' : 'flat'}
+            onClick={shareHandler}
+        >
+            <Button.Icon>
+                <ArrowShapeTurnUpRight width={20} height={20} />
+            </Button.Icon>
+        </Button>
+    )
+
     return (
         <div
             className={b({
@@ -229,49 +281,9 @@ const SubNavigation = memo(function SubNavigation({
                 invisible: hideMiniToc,
             })}
         >
-            <Button
-                className={b('menu-button', {invisible: hideBurger})}
-                size="xl"
-                view={hideMiniToc ? 'raised' : 'flat'}
-                onClick={() => {
-                    closeMiniToc();
-                    toggleMenuOpen();
-                }}
-            >
-                <Button.Icon>
-                    {menuOpened ? (
-                        <Xmark width={20} height={20} />
-                    ) : (
-                        <Bars width={20} height={20} />
-                    )}
-                </Button.Icon>
-            </Button>
-            <button
-                className={b('left', {hidden: hideMiniToc, disabled: menuOpened})}
-                type="button"
-                onClick={openMiniTocHandler}
-            >
-                <div className={b('icon')}>
-                    {menuOpened && hideBurger ? (
-                        <ArrowLeft width={20} height={20} />
-                    ) : (
-                        <SquareListUl width={20} height={20} />
-                    )}
-                </div>
-                <span className={b('title')}>
-                    {menuOpened && hideBurger ? t<string>('back_title') : titleView}
-                </span>
-            </button>
-            <Button
-                className={b('button', {invisible: menuOpened && hideBurger})}
-                size="xl"
-                view={hideMiniToc ? 'raised' : 'flat'}
-                onClick={shareHandler}
-            >
-                <Button.Icon>
-                    <ArrowShapeTurnUpRight width={20} height={20} />
-                </Button.Icon>
-            </Button>
+            {menuButton}
+            {miniTocButton}
+            {shareButton}
         </div>
     );
 });

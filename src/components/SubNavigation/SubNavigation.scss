@@ -48,19 +48,25 @@
 
         touch-action: manipulation;
 
-        &:hover {
-            background: var(--g-color-base-simple-hover, rgba(0, 0, 0, 0.05));
+        &:not(&_disabled) {
+            &:hover {
+                background: var(--g-color-base-simple-hover, rgba(0, 0, 0, 0.05));
+            }
+
+            &:active {
+                transition: none;
+                transform: scale(0.98);
+            }
+
+            &:focus-visible {
+                outline: var(--g-color-line-focus, rgb(78, 121, 235));
+                outline-width: 2px;
+                outline-style: solid;
+            }
         }
 
-        &:active {
-            transition: none;
-            transform: scale(0.98);
-        }
-
-        &:focus-visible {
-            outline: var(--g-color-line-focus, rgb(78, 121, 235));
-            outline-width: 2px;
-            outline-style: solid;
+        &_disabled {
+            user-select: text;
         }
 
         &_hidden {

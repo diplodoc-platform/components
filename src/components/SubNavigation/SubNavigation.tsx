@@ -192,7 +192,7 @@ const SubNavigation = memo(function SubNavigation({
 
     const leftBlockClickHandler = useCallback(() => {
         if (!menuOpened) {
-            return toggleMiniTocOpen;
+            return toggleMiniTocOpen();
         }
 
         return hideBurger
@@ -232,7 +232,7 @@ const SubNavigation = memo(function SubNavigation({
                 </Button.Icon>
             </Button>
             <button
-                className={b('left', {hidden: hideMiniToc})}
+                className={b('left', {hidden: hideMiniToc, disabled: menuOpened})}
                 type="button"
                 onClick={leftBlockClickHandler}
             >

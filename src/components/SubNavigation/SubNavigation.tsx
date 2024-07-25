@@ -232,14 +232,10 @@ const SubNavigation = memo(function SubNavigation({
             }}
         >
             <Button.Icon>
-                {menuOpened ? (
-                    <Xmark width={20} height={20} />
-                ) : (
-                    <Bars width={20} height={20} />
-                )}
+                {menuOpened ? <Xmark width={20} height={20} /> : <Bars width={20} height={20} />}
             </Button.Icon>
         </Button>
-    )
+    );
 
     const miniTocButton = (
         <button
@@ -258,7 +254,7 @@ const SubNavigation = memo(function SubNavigation({
                 {menuOpened && hideBurger ? t<string>('back_title') : titleView}
             </span>
         </button>
-    )
+    );
 
     const shareButton = (
         <Button
@@ -271,7 +267,7 @@ const SubNavigation = memo(function SubNavigation({
                 <ArrowShapeTurnUpRight width={20} height={20} />
             </Button.Icon>
         </Button>
-    )
+    );
 
     return (
         <div

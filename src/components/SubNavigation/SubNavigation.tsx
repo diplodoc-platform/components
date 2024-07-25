@@ -162,6 +162,31 @@ const useShareHandler = (title: string | undefined) => {
     return shareHandler;
 };
 
+const useOpenMiniTocHandler = (
+    menuOpened: boolean,
+    hideBurger: boolean,
+    toggleMenuOpen: () => void,
+    toggleMiniTocOpen: () => void,
+) => {
+    const handle = useCallback(() => {
+        if (!menuOpened) {
+            return toggleMiniTocOpen();
+        }
+
+        return hideBurger
+            ? () => {
+                  console.log('back to main menu');
+                  toggleMenuOpen();
+              }
+            : () => {
+                  toggleMiniTocOpen();
+                  toggleMenuOpen();
+              };
+    }, [menuOpened, hideBurger, toggleMenuOpen, toggleMiniTocOpen]);
+
+    return handle;
+};
+
 export interface SubNavigationProps {
     title: string | undefined;
     hideBurger: boolean;
@@ -184,27 +209,17 @@ const SubNavigation = memo(function SubNavigation({
     closeMiniToc,
     toggleMenuOpen,
 }: SubNavigationProps) {
+    const {t} = useTranslation('subnavigation');
+
     const visible = useVisibility(miniTocOpened, menuOpened);
     const titleView = useTitleView(title, hideBurger);
     const shareHandler = useShareHandler(title);
-
-    const {t} = useTranslation('subnavigation');
-
-    const leftBlockClickHandler = useCallback(() => {
-        if (!menuOpened) {
-            return toggleMiniTocOpen();
-        }
-
-        return hideBurger
-            ? () => {
-                  console.log('back to main menu'); //TODO
-                  toggleMenuOpen();
-              }
-            : () => {
-                  toggleMiniTocOpen();
-                  toggleMenuOpen();
-              };
-    }, [menuOpened, hideBurger, toggleMenuOpen, toggleMiniTocOpen]);
+    const openMiniTocHandler = useOpenMiniTocHandler(
+        menuOpened,
+        hideBurger,
+        toggleMenuOpen,
+        toggleMiniTocOpen,
+    );
 
     return (
         <div
@@ -234,7 +249,7 @@ const SubNavigation = memo(function SubNavigation({
             <button
                 className={b('left', {hidden: hideMiniToc, disabled: menuOpened})}
                 type="button"
-                onClick={leftBlockClickHandler}
+                onClick={openMiniTocHandler}
             >
                 <div className={b('icon')}>
                     {menuOpened && hideBurger ? (

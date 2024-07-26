@@ -118,13 +118,13 @@ class Toc extends React.Component<TocProps, TocState> {
         const content = items ? this.renderList(items) : this.renderEmpty('');
 
         return (
-            <div className={b()} ref={this.rootRef}>
+            <nav className={b()} ref={this.rootRef}>
                 {this.renderTop()}
                 <div className={b('content', {offset_top: hideTocHeader})} ref={this.contentRef}>
                     {content}
                 </div>
                 {this.renderBottom()}
-            </div>
+            </nav>
         );
     }
 

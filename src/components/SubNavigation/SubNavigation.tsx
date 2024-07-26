@@ -27,16 +27,27 @@ const useVisibility = (miniTocOpened: boolean, menuOpened: boolean) => {
             return;
         }
 
+        const scrollY = window.scrollY;
+
+        if (lastScrollY === null) {
+            setLastScrollY(scrollY);
+            return;
+        }
+
         if (miniTocOpened || menuOpened) {
             setVisibility(true);
             return;
         }
 
-        if (lastScrollY && lastScrollY === 0) {
+        if (scrollY - lastScrollY > -25 && scrollY - lastScrollY < 25) {
+            return;
+        }
+
+        if (lastScrollY === 0) {
             setVisibility(true);
         }
 
-        if (lastScrollY && window.scrollY > lastScrollY) {
+        if (scrollY > lastScrollY) {
             if (hiddingTimeout) {
                 return;
             }
@@ -49,11 +60,11 @@ const useVisibility = (miniTocOpened: boolean, menuOpened: boolean) => {
                     setHiddingTimeout(undefined);
                 }, 300),
             );
-        } else if (lastScrollY && window.scrollY < lastScrollY) {
+        } else if (scrollY < lastScrollY) {
             setVisibility(true);
         }
 
-        setLastScrollY(window.scrollY);
+        setLastScrollY(scrollY);
     }, [
         miniTocOpened,
         menuOpened,

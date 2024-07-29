@@ -114,6 +114,8 @@ const Feedback: React.FC<FeedbackProps> = (props) => {
         [onSendFeedback, setInnerState, dislikeSuccessPopup, hideFeedbackPopups],
     );
 
+    const isDislikePopupVisible = dislikeSuccessPopup.visible || dislikeVariantsPopup.visible;
+
     return (
         <React.Fragment>
             <ControlsLayout view={view}>
@@ -122,12 +124,14 @@ const Feedback: React.FC<FeedbackProps> = (props) => {
                     view={view}
                     onClick={onChangeLike}
                     isLiked={innerState === FeedbackType.like}
+                    isPopupVisible={likeSuccessPopup.visible}
                 />
                 <DislikeControl
                     ref={dislikeControlRef}
                     view={view}
                     onClick={onChangeDislike}
                     isDisliked={innerState === FeedbackType.dislike}
+                    isPopupVisible={isDislikePopupVisible}
                 />
             </ControlsLayout>
             {likeControlRef.current && (

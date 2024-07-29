@@ -118,6 +118,9 @@ const LangControl = (props: ControlProps) => {
                 tooltipText={t('lang-text')}
                 icon={Globe}
                 popupPosition={popupPosition}
+                buttonExtraProps={{
+                    'aria-expanded': popupState.visible,
+                }}
                 isTooltipHidden={popupState.visible}
             />
         </Popover>

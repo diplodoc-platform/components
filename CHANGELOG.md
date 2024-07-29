@@ -1,5 +1,14 @@
 # История изменений
 
+## [4.10.0](https://github.com/diplodoc-platform/components/compare/v4.9.3...v4.10.0) (2024-07-29)
+
+
+### Features
+
+* add consent popup notification type ([#258](https://github.com/diplodoc-platform/components/issues/258)) ([b538eaa](https://github.com/diplodoc-platform/components/commit/b538eaabf66082608cbc8f3bf8899f84b17ef65e))
+* add nav for Toc component ([#269](https://github.com/diplodoc-platform/components/issues/269)) ([6f51f9c](https://github.com/diplodoc-platform/components/commit/6f51f9c612af74dc6168e07d1f35d5ebb80dd905))
+* change MiniToc position in DOM & a11y improvements ([#248](https://github.com/diplodoc-platform/components/issues/248)) ([3580bcb](https://github.com/diplodoc-platform/components/commit/3580bcbd3a92a917c152892a3e3575b9fbb69c4e))
+
 ## [4.9.3](https://github.com/diplodoc-platform/components/compare/v4.9.2...v4.9.3) (2024-07-22)
 
 

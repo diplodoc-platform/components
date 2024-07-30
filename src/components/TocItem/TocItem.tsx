@@ -61,6 +61,7 @@ class TocItem extends React.Component<TocItemProps> {
                 className={b('link')}
                 onClick={expandable && href ? this.handleClick : undefined}
                 data-router-shallow
+                aria-current={active ? 'true' : undefined}
             >
                 {content}
             </a>

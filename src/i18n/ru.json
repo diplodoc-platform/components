@@ -52,7 +52,8 @@
   },
   "toc-nav-panel": {
     "hint_previous": "Предыдущая",
-    "hint_next": "Следующая"
+    "hint_next": "Следующая",
+    "drop-down-list": "Выпадающий список"
   },
   "authors": {
     "title": "Статья создана"

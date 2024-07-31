@@ -51,7 +51,8 @@
   },
   "toc-nav-panel": {
     "hint_previous": "Previous",
-    "hint_next": "Next"
+    "hint_next": "Next",
+    "drop-down-list": "Drop-down list"
   },
   "authors": {
     "title": "Written by"

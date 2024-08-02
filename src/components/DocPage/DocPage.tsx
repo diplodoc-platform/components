@@ -164,6 +164,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
         } = this.props;
 
         const hideMiniToc = !this.showMiniToc;
+        const hideBurger = typeof headerHeight !== 'undefined' && headerHeight !== 0;
         const modes = {
             'regular-page-width': !wideFormat,
             'full-screen': fullScreen,
@@ -171,6 +172,11 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             'single-page': singlePage,
             'open-mini-toc': this.state.mobileMiniTocOpen,
         };
+        const toggleMenuOpen = () => this.setState({mobileMenuOpen: !this.state.mobileMenuOpen});
+        const closeMenu = () => this.setState({mobileMenuOpen: false});
+        const toggleMiniTocOpen = () =>
+            this.setState({mobileMiniTocOpen: !this.state.mobileMiniTocOpen});
+        const closeMiniToc = () => this.setState({mobileMiniTocOpen: false});
 
         return (
             <DocLayout
@@ -211,18 +217,14 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                 <DocLayout.Right>
                     <SubNavigation
                         title={this.props.title}
-                        hideBurger={typeof headerHeight !== 'undefined' && headerHeight !== 0}
+                        hideBurger={hideBurger}
                         hideMiniToc={hideMiniToc}
                         miniTocOpened={this.state.mobileMiniTocOpen}
                         menuOpened={this.state.mobileMenuOpen}
-                        toggleMenuOpen={() =>
-                            this.setState({mobileMenuOpen: !this.state.mobileMenuOpen})
-                        }
-                        closeMenu={() => this.setState({mobileMenuOpen: false})}
-                        toggleMiniTocOpen={() =>
-                            this.setState({mobileMiniTocOpen: !this.state.mobileMiniTocOpen})
-                        }
-                        closeMiniToc={() => this.setState({mobileMiniTocOpen: false})}
+                        toggleMenuOpen={toggleMenuOpen}
+                        closeMenu={closeMenu}
+                        toggleMiniTocOpen={toggleMiniTocOpen}
+                        closeMiniToc={closeMiniToc}
                     />
                     {/* This key allows recalculating the offset for the mini-toc for Safari */}
                     <div

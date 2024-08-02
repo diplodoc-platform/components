@@ -20,7 +20,10 @@ $importantBackgroundColor: rgba(235, 50, 38, 0.08);
 
     &__aside {
         position: fixed;
-        top: calc(var(--dc-header-height, #{$headerHeight}) + var(--dc-subnavigation-height, #{$subNavigationHeight}));
+        top: calc(
+            var(--dc-header-height, #{$headerHeight}) +
+                var(--dc-subnavigation-height, #{$subNavigationHeight})
+        );
 
         padding-top: 24px;
         width: 176px;
@@ -39,17 +42,21 @@ $importantBackgroundColor: rgba(235, 50, 38, 0.08);
             box-sizing: border-box;
             max-height: 0px;
             width: 100%;
-            padding: 0 16px 0 16px;
+            padding: 0 16px;
 
-            background: var(--g-color-base-background, #FFF);
+            background: var(--g-color-base-background, #fff);
             box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.15);
 
-            transition: max-height 300ms 0s;;
+            transition: max-height 300ms 0s;
 
             overflow-y: hidden;
 
             &_open-mini-toc {
                 max-height: 80vh;
+
+                body:has(&) {
+                    overflow-y: hidden;
+                }
             }
 
             &_hidden-mini-toc {
@@ -58,7 +65,16 @@ $importantBackgroundColor: rgba(235, 50, 38, 0.08);
 
             &-mini-toc {
                 width: 100%;
-                padding: 16px 0 16px 0;
+                padding: 16px 0;
+            }
+
+            .dc-root_wide-format & {
+                padding: 0 24px;
+            }
+
+            // style for OutsideClick component
+            & > div {
+                width: 100%;
             }
         }
 
@@ -263,6 +279,10 @@ $importantBackgroundColor: rgba(235, 50, 38, 0.08);
     }
 
     @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
+        &:has(.dc-subnavigation_hidden) &__main {
+            margin-top: 0;
+        }
+
         &__main {
             margin-top: var(--dc-subnavigation-height, $subNavigationHeight);
             padding: 0 20px;

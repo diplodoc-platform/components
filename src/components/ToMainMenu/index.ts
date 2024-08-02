@@ -1,2 +1,2 @@
 export * from './ToMainMenu';
-export {default as SubNavigation} from './ToMainMenu';
+export {default as ToMainMenu} from './ToMainMenu';

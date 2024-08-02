@@ -10,6 +10,12 @@ $headerMarginTopMedium: 32px;
 $popupPadding: 16px;
 $centerBlockMaxWidth: 736px;
 
+// burger menu
+$toMainMenuVerticalPadding: 4px;
+$toMainMenuHorizontalPadding: 12px;
+$toMainMenuHeight: calc(var(--dc-subnavigation-height, $subNavigationHeight) - #{$toMainMenuVerticalPadding} - #{$toMainMenuVerticalPadding});
+
+
 $screenBreakpoints: (
     'xs': 375px,
     'sm': 577px,

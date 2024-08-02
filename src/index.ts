@@ -26,6 +26,7 @@ export * from './components/SearchItem';
 export * from './components/SearchPage';
 export * from './components/DocContentPage';
 export * from './components/SubNavigation';
+export * from './components/ToMainMenu';
 
 export * from './config';
 export * from './models';

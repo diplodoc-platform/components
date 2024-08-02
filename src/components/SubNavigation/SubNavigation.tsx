@@ -1,10 +1,10 @@
 import React, {memo, useCallback, useEffect, useMemo, useState} from 'react';
 
-import {ArrowLeft, ArrowShapeTurnUpRight, Bars, SquareListUl, Xmark} from '@gravity-ui/icons';
+import {/*ArrowLeft, */ ArrowShapeTurnUpRight, Bars, SquareListUl, Xmark} from '@gravity-ui/icons';
 import {Button} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 
-import {useTranslation} from '../../hooks';
+// import {useTranslation} from '../../hooks';
 
 import './SubNavigation.scss';
 
@@ -47,8 +47,15 @@ const useVisibility = (miniTocOpened: boolean, menuOpened: boolean) => {
             setVisibility(true);
         }
 
+        console.log('block start');
+        console.log('scrollY', scrollY);
+        console.log('lastScrollY', lastScrollY);
+        console.log('hiddingTimeout', hiddingTimeout);
+
         if (scrollY > lastScrollY) {
             if (hiddingTimeout) {
+                console.log('return');
+
                 return;
             }
 
@@ -65,15 +72,7 @@ const useVisibility = (miniTocOpened: boolean, menuOpened: boolean) => {
         }
 
         setLastScrollY(scrollY);
-    }, [
-        miniTocOpened,
-        menuOpened,
-        lastScrollY,
-        hiddingTimeout,
-        setLastScrollY,
-        setVisibility,
-        setHiddingTimeout,
-    ]);
+    }, [miniTocOpened, menuOpened, lastScrollY, hiddingTimeout]);
 
     useEffect(() => {
         if (typeof window === 'undefined') {
@@ -179,21 +178,26 @@ const useOpenMiniTocHandler = (
     toggleMenuOpen: () => void,
     toggleMiniTocOpen: () => void,
 ) => {
-    const handle = useCallback(() => {
-        if (!menuOpened) {
-            return toggleMiniTocOpen();
-        }
+    const handle = useCallback(
+        (event: React.MouseEvent) => {
+            event.stopPropagation();
 
-        return hideBurger
-            ? () => {
-                  console.log('back to main menu');
-                  toggleMenuOpen();
-              }
-            : () => {
-                  toggleMiniTocOpen();
-                  toggleMenuOpen();
-              };
-    }, [menuOpened, hideBurger, toggleMenuOpen, toggleMiniTocOpen]);
+            if (!menuOpened) {
+                return toggleMiniTocOpen();
+            }
+
+            return hideBurger
+                ? () => {
+                      console.log('back to main menu');
+                      toggleMenuOpen();
+                  }
+                : () => {
+                      toggleMiniTocOpen();
+                      toggleMenuOpen();
+                  };
+        },
+        [menuOpened, hideBurger, toggleMenuOpen, toggleMiniTocOpen],
+    );
 
     return handle;
 };
@@ -220,8 +224,6 @@ const SubNavigation = memo(function SubNavigation({
     closeMiniToc,
     toggleMenuOpen,
 }: SubNavigationProps) {
-    const {t} = useTranslation('subnavigation');
-
     const visible = useVisibility(miniTocOpened, menuOpened);
     const titleView = useTitleView(title, hideBurger);
     const shareHandler = useShareHandler(title);
@@ -236,7 +238,7 @@ const SubNavigation = memo(function SubNavigation({
         <Button
             className={b('menu-button', {invisible: hideBurger})}
             size="xl"
-            view={hideMiniToc ? 'raised' : 'flat'}
+            view={'flat'}
             onClick={() => {
                 closeMiniToc();
                 toggleMenuOpen();
@@ -250,20 +252,21 @@ const SubNavigation = memo(function SubNavigation({
 
     const miniTocButton = (
         <button
-            className={b('mini-toc-button', {hidden: hideMiniToc, disabled: menuOpened})}
+            className={b('mini-toc-button', {
+                hidden: hideMiniToc && hideBurger,
+                disabled: menuOpened || hideMiniToc,
+                label: hideMiniToc,
+            })}
             type="button"
-            onClick={openMiniTocHandler}
+            disabled={menuOpened || hideMiniToc}
+            onClick={hideMiniToc ? () => {} : openMiniTocHandler}
         >
-            <div className={b('icon')}>
-                {menuOpened && hideBurger ? (
-                    <ArrowLeft width={20} height={20} />
-                ) : (
+            {!hideMiniToc && (
+                <div className={b('icon')}>
                     <SquareListUl width={20} height={20} />
-                )}
-            </div>
-            <span className={b('title')}>
-                {menuOpened && hideBurger ? t<string>('back_title') : titleView}
-            </span>
+                </div>
+            )}
+            <span className={b('title')}>{titleView}</span>
         </button>
     );
 
@@ -271,7 +274,7 @@ const SubNavigation = memo(function SubNavigation({
         <Button
             className={b('share-button', {invisible: menuOpened && hideBurger})}
             size="xl"
-            view={hideMiniToc ? 'raised' : 'flat'}
+            view={hideMiniToc && hideBurger ? 'raised' : 'flat'}
             onClick={shareHandler}
         >
             <Button.Icon>
@@ -283,9 +286,12 @@ const SubNavigation = memo(function SubNavigation({
     return (
         <div
             className={b({
-                hidden: !visible,
+                // hidden: !visible && (!hideMiniToc || !hideBurger),
+                // visible: visible,
+                // invisible: hideMiniToc && hideBurger,
+                invisible: !visible && (!hideMiniToc || !hideBurger),
                 visible: visible,
-                invisible: hideMiniToc,
+                hidden: hideMiniToc && hideBurger,
             })}
         >
             {menuButton}

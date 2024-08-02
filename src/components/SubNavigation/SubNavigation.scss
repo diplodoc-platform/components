@@ -2,7 +2,7 @@
 @import '../../styles/mixins';
 
 .dc-subnavigation {
-    $horizontal_Padding: 12px;
+    $horizontalPadding: 12px;
     $verticalPadding: 4px;
 
     position: absolute;
@@ -10,9 +10,9 @@
 
     display: flex;
 
-    width: calc(100% - 2 * #{$horizontal_Padding});
+    width: calc(100% - 2 * #{$horizontalPadding});
     height: #{$subNavigationHeight} - #{$verticalPadding} - #{$verticalPadding};
-    padding: #{$verticalPadding} #{$horizontal_Padding};
+    padding: #{$verticalPadding} #{$horizontalPadding};
 
     gap: #{$verticalPadding};
 
@@ -21,9 +21,8 @@
 
     transition: margin-top 300ms 0s;
 
-    &_hidden {
-        --dc-header-height: 64px;
-        margin-top: calc(0px - var(--dc-header-height, #{$headerHeight}));
+    @media (min-width: map-get($screenBreakpoints, 'md')) {
+        display: none;
     }
 
     &_visible {
@@ -31,12 +30,13 @@
     }
 
     &_invisible {
-        border: none;
-        background: none;
+        --dc-header-height: 64px;
+        margin-top: calc(0px - var(--dc-header-height, #{$headerHeight}));
     }
 
-    @media (min-width: map-get($screenBreakpoints, 'md')) {
-        display: none;
+    &_hidden {
+        border: none;
+        background: none;
     }
 
     &__icon {
@@ -77,6 +77,18 @@
 
         touch-action: manipulation;
 
+        &_hidden {
+            visibility: hidden;
+        }
+
+        &_disabled {
+            user-select: text;
+        }
+
+        &_label {
+            padding-left: 18px;
+        }
+
         &:not(&_disabled) {
             &:hover {
                 background: var(--g-color-base-simple-hover, rgba(0, 0, 0, 0.05));
@@ -93,21 +105,13 @@
                 outline-style: solid;
             }
         }
-
-        &_disabled {
-            user-select: text;
-        }
-
-        &_hidden {
-            visibility: hidden;
-        }
     }
 
     &__share-button_invisible {
         display: none;
     }
 
-    &_invisible &__share-button {
+    &_hidden &__share-button {
         margin-top: 8px;
 
         &:hover {
@@ -129,8 +133,12 @@
         border-left: none;
     }
 
-    &_invisible &__menu-button {
-        // TODO: придумать расположение кнопки меню в случае отсутствия минитоки
-        margin-top: 8px;
-    }
+    // // &_hidden &__menu-button {
+    // //     // TODO: придумать расположение кнопки меню в случае отсутствия минитоки
+    // //     margin-top: 8px;
+    // // }
+    // &_invisible &__menu-button {
+    //     // TODO: придумать расположение кнопки меню в случае отсутствия минитоки
+    //     margin-top: 8px;
+    // }
 }

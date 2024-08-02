@@ -1,10 +1,8 @@
 import React, {memo, useCallback, useEffect, useMemo, useState} from 'react';
 
-import {/*ArrowLeft, */ ArrowShapeTurnUpRight, Bars, SquareListUl, Xmark} from '@gravity-ui/icons';
+import {ArrowShapeTurnUpRight, Bars, SquareListUl, Xmark} from '@gravity-ui/icons';
 import {Button} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
-
-// import {useTranslation} from '../../hooks';
 
 import './SubNavigation.scss';
 
@@ -286,9 +284,6 @@ const SubNavigation = memo(function SubNavigation({
     return (
         <div
             className={b({
-                // hidden: !visible && (!hideMiniToc || !hideBurger),
-                // visible: visible,
-                // invisible: hideMiniToc && hideBurger,
                 invisible: !visible && (!hideMiniToc || !hideBurger),
                 visible: visible,
                 hidden: hideMiniToc && hideBurger,

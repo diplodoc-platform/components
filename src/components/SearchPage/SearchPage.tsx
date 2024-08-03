@@ -56,6 +56,9 @@ const FoundBlock: React.FC<RenderFoundProps> = ({
     return (
         <div className={b('search-result')}>
             <h3 className={b('subtitle')}>{t<string>('search_request-query')}</h3>
+            <div className={b('generative-answer')}>
+                <GenerativeSearchAnswer />
+            </div>
             <div className={b('search-list')}>
                 {items.map((item: ISearchItem) => (
                     <SearchItem
@@ -88,10 +91,15 @@ const WithoutContentBlock: React.FC<RenderNoContent> = ({loading}) => {
     return loading ? (
         <Loader />
     ) : (
-        <div className={b('search-empty')}>
-            <h3>{t<string>('search_not-found-title')}</h3>
-            <div>{t<string>('search_not-found-text')}</div>
-        </div>
+        <>
+            <div className={b('generative-answer')}>
+                <GenerativeSearchAnswer />
+            </div>
+            <div className={b('search-empty')}>
+                <h3>{t<string>('search_not-found-title')}</h3>
+                <div>{t<string>('search_not-found-text')}</div>
+            </div>
+        </>
     );
 };
 
@@ -162,9 +170,6 @@ const SearchPage = ({
                         inputRef,
                     }}
                 />
-            </div>
-            <div className={b('generative-answer')}>
-                <GenerativeSearchAnswer />
             </div>
             <div className={b('content')}>
                 {items?.length && query ? (

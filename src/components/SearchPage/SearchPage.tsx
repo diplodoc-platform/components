@@ -16,6 +16,22 @@ interface Loading {
     loading?: boolean;
 }
 
+interface Message {
+    content: string;
+    role: string;
+}
+
+interface ISearchData {
+    message: Message;
+    links: string[];
+    titles: string[];
+    final_search_query: string;
+    is_answer_rejected: boolean;
+    is_bullet_answer: boolean;
+    search_reqid: string;
+    reqid: string;
+}
+
 interface InputProps {
     query: string;
     onSubmit: (query: string) => void;
@@ -33,6 +49,7 @@ interface SearchPageProps extends Loading {
     page: number;
     isMobile?: boolean;
     loading?: boolean;
+    searchData: ISearchData;
 }
 
 type RenderFoundProps = SearchPageProps & SearchOnClickProps & PaginatorProps;
@@ -52,7 +69,6 @@ const FoundBlock: React.FC<RenderFoundProps> = ({
     isMobile,
 }) => {
     const {t} = useTranslation('search');
-
     return (
         <div className={b('search-result')}>
             <h3 className={b('subtitle')}>{t<string>('search_request-query')}</h3>
@@ -155,6 +171,7 @@ const SearchPage = ({
     irrelevantOnClick,
     relevantOnClick,
     loading,
+    searchData,
 }: SearchPageInnerProps) => {
     const inputRef = useRef(null);
     const [currentQuery, setCurrentQuery] = useState(query);
@@ -185,6 +202,7 @@ const SearchPage = ({
                             onPageChange,
                             irrelevantOnClick,
                             relevantOnClick,
+                            searchData,
                         }}
                     />
                 ) : (

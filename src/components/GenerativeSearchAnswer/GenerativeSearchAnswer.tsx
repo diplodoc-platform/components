@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Card} from '@gravity-ui/uikit';
+import {Card, Link, Text} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 
 import {useTranslation} from '../../hooks';
@@ -10,6 +10,27 @@ import {YandexGPTLogo} from './YandexGPTLogo';
 import './GenerativeSearchAnswer.scss';
 
 const b = block('generative-search-answer');
+
+const titles = [
+    'Быстрый старт | Diplodoc',
+    'Базовая разметка | Diplodoc',
+    'Сборка | Diplodoc',
+    'Yandex Flavored Markdown | Diplodoc',
+    'Main scenarios for Diplodoc usage | Diplodoc',
+];
+
+const links = [
+    '.../docs/ru/quickstart',
+    '.../docs/ru/syntax/base',
+    '.../docs/ru/tools/docs/build',
+    '.../docs/ru/index-yfm',
+    '.../docs/en/how-it-work',
+];
+
+const combinedData = titles.map((title, index) => ({
+    title,
+    url: links[index],
+}));
 
 const GenerativeSearchAnswer: React.FC = () => {
     const {t} = useTranslation('generative-search');
@@ -68,6 +89,20 @@ const GenerativeSearchAnswer: React.FC = () => {
                 </Card>
                 <div className={b('sources')}>
                     <h5>Источники</h5>
+                    <div className={b('carousel')}>
+                        {combinedData.map((item, index) => (
+                            <div key={index} className={b('card')}>
+                                <Text className={b('title')}>{item.title}</Text>
+
+                                <div className={b('card-wrapper')}>
+                                    <Link className={b('link')} view="normal" href={item.url}>
+                                        {item.url}
+                                    </Link>
+                                    <Text className={b('card-number')}>{index + 1}</Text>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </Card>
             <div className={b('disclaimer')}>{t<string>('generative-search_disclaimer')}</div>

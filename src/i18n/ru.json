@@ -111,6 +111,10 @@
     "search_mark_dislike": "вообще не про то",
     "search_mark-result-text": "Спасибо за оценку!"
   },
+  "generative-search": {
+    "generative-search_title": "Быстрый ответ",
+    "generative-search_disclaimer": "Ответ сформирован нейросетью YandexGPT на основе документации сервиса. В нём могут быть неточности, проверить информацию можно по ссылкам на источники."
+  },
   "paginator": {
     "next": "Следующая страница",
     "prev": "Предыдущая страница"

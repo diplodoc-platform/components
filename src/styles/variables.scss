@@ -15,7 +15,6 @@ $toMainMenuVerticalPadding: 4px;
 $toMainMenuHorizontalPadding: 12px;
 $toMainMenuHeight: calc(var(--dc-subnavigation-height, $subNavigationHeight) - #{$toMainMenuVerticalPadding} - #{$toMainMenuVerticalPadding});
 
-
 $screenBreakpoints: (
     'xs': 375px,
     'sm': 577px,

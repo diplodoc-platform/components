@@ -24,11 +24,15 @@ $popupWidth: 320px;
         }
     }
 
-    &__container-row {
+    &__container-col {
         display: flex;
         justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 20px;
+
         width: 100%;
-        padding: 28px;
+        padding: 26px;
 
         border: 1px solid var(--g-color-line-generic);
         border-radius: 8px;
@@ -40,6 +44,9 @@ $popupWidth: 320px;
     }
 
     &__success-popup {
+        // override
+        left: -20px;
+
         padding: $popupPadding 50px $popupPadding $popupPadding;
         width: $popupWidth;
 
@@ -51,6 +58,7 @@ $popupWidth: 320px;
     &__variants-popup {
         padding: $popupPadding;
         width: $popupWidth;
+        left: -20px;
 
         &_view_wide {
             @include tooltip-in-center();
@@ -99,16 +107,16 @@ $popupWidth: 320px;
 
     &__title {
         &_view_wide {
-            font-size: var(--g-text-body-2-font-size);
-            line-height: var(--g-text-body-2-line-height);
-            margin-right: 16px;
+            @include text-size(subheader-3);
+            // font-size: var(--g-text-body-2-font-size);
+            // line-height: var(--g-text-body-2-line-height);
             font-weight: 400;
         }
     }
 
     &__controls {
         display: flex;
-        gap: 10px;
+        gap: 20px;
 
         &_view_wide {
             display: flex;
@@ -116,15 +124,18 @@ $popupWidth: 320px;
     }
 
     &__control {
-        &:last-child {
-            font-size: 13px;
-            line-height: 18px;
+        &:last-child,
+        &:first-child {
             display: flex;
             align-items: center;
+
+            font-size: 17px;
+            line-height: 24px;
+            font-weight: 400;
         }
 
         &_view_wide {
-            margin-right: 12px;
+            margin-right: 24px;
 
             &:last-child {
                 margin-right: 0;

@@ -32,7 +32,7 @@ const LikeControl = memo(
         if (view === FeedbackView.Wide) {
             return (
                 <Button
-                    size="m"
+                    size="xl"
                     view="normal"
                     ref={ref}
                     onClick={onClick}

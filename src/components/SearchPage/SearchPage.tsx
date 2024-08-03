@@ -4,6 +4,7 @@ import {Button, Loader, TextInput} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 
 import {useTranslation} from '../../hooks';
+import {GenerativeSearchAnswer} from '../GenerativeSearchAnswer';
 import {Paginator, PaginatorProps} from '../Paginator';
 import {ISearchItem, SearchItem, SearchOnClickProps} from '../SearchItem';
 
@@ -161,6 +162,9 @@ const SearchPage = ({
                         inputRef,
                     }}
                 />
+            </div>
+            <div className={b('generative-answer')}>
+                <GenerativeSearchAnswer />
             </div>
             <div className={b('content')}>
                 {items?.length && query ? (

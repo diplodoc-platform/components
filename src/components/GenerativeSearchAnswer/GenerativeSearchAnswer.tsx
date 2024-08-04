@@ -3,8 +3,6 @@ import React from 'react';
 import {Card, Link, Text} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 
-import {useTranslation} from '../../hooks';
-
 import {YandexGPTLogo} from './YandexGPTLogo';
 
 import './GenerativeSearchAnswer.scss';
@@ -33,12 +31,11 @@ const combinedData = titles.map((title, index) => ({
 }));
 
 const GenerativeSearchAnswer: React.FC = () => {
-    const {t} = useTranslation('generative-search');
     return (
         <>
             <Card className={b('container')} view="filled">
                 <div className={b('header')}>
-                    <h4>{t<string>('generative-search_title')}</h4>
+                    <h4>Быстрый поиск</h4>
                     <p className={b('yandexgpt-mention')}>
                         Создан с помощью нейросети
                         <span className={b('yandexgpt-logo')}>
@@ -105,7 +102,10 @@ const GenerativeSearchAnswer: React.FC = () => {
                     </div>
                 </div>
             </Card>
-            <div className={b('disclaimer')}>{t<string>('generative-search_disclaimer')}</div>
+            <div className={b('disclaimer')}>
+                Ответ сформирован нейросетью YandexGPT на основе документации сервиса. В нём могут
+                быть неточности, проверить информацию можно поссылкам на источники.
+            </div>
         </>
     );
 };

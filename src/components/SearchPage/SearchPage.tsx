@@ -4,7 +4,7 @@ import {Button, Loader, TextInput} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 
 import {useTranslation} from '../../hooks';
-import {GenerativeSearchAnswer} from '../GenerativeSearchAnswer';
+import {GenerativeSearchAnswer, IGenerativeSearch} from '../GenerativeSearchAnswer';
 import {Paginator, PaginatorProps} from '../Paginator';
 import {ISearchItem, SearchItem, SearchOnClickProps} from '../SearchItem';
 
@@ -14,22 +14,6 @@ const b = block('dc-search-page');
 
 interface Loading {
     loading?: boolean;
-}
-
-interface Message {
-    content: string;
-    role: string;
-}
-
-interface ISearchData {
-    message: Message;
-    links: string[];
-    titles: string[];
-    final_search_query: string;
-    is_answer_rejected: boolean;
-    is_bullet_answer: boolean;
-    search_reqid: string;
-    reqid: string;
 }
 
 interface InputProps {
@@ -49,12 +33,19 @@ interface SearchPageProps extends Loading {
     page: number;
     isMobile?: boolean;
     loading?: boolean;
-    searchData: ISearchData;
+}
+
+interface GenerativeSearchProps {
+    generativeSearchData: IGenerativeSearch;
 }
 
 type RenderFoundProps = SearchPageProps & SearchOnClickProps & PaginatorProps;
 
-type SearchPageInnerProps = SearchPageProps & SearchOnClickProps & InputProps & PaginatorProps;
+type SearchPageInnerProps = SearchPageProps &
+    SearchOnClickProps &
+    InputProps &
+    PaginatorProps &
+    GenerativeSearchProps;
 
 const FoundBlock: React.FC<RenderFoundProps> = ({
     items,
@@ -69,12 +60,11 @@ const FoundBlock: React.FC<RenderFoundProps> = ({
     isMobile,
 }) => {
     const {t} = useTranslation('search');
+
     return (
         <div className={b('search-result')}>
             <h3 className={b('subtitle')}>{t<string>('search_request-query')}</h3>
-            <div className={b('generative-answer')}>
-                <GenerativeSearchAnswer />
-            </div>
+
             <div className={b('search-list')}>
                 {items.map((item: ISearchItem) => (
                     <SearchItem
@@ -108,9 +98,6 @@ const WithoutContentBlock: React.FC<RenderNoContent> = ({loading}) => {
         <Loader />
     ) : (
         <>
-            <div className={b('generative-answer')}>
-                <GenerativeSearchAnswer />
-            </div>
             <div className={b('search-empty')}>
                 <h3>{t<string>('search_not-found-title')}</h3>
                 <div>{t<string>('search_not-found-text')}</div>
@@ -171,7 +158,7 @@ const SearchPage = ({
     irrelevantOnClick,
     relevantOnClick,
     loading,
-    searchData,
+    generativeSearchData,
 }: SearchPageInnerProps) => {
     const inputRef = useRef(null);
     const [currentQuery, setCurrentQuery] = useState(query);
@@ -188,6 +175,9 @@ const SearchPage = ({
                     }}
                 />
             </div>
+            <div className={b('generative-answer')}>
+                <GenerativeSearchAnswer {...generativeSearchData} />
+            </div>
             <div className={b('content')}>
                 {items?.length && query ? (
                     <FoundBlock
@@ -202,7 +192,6 @@ const SearchPage = ({
                             onPageChange,
                             irrelevantOnClick,
                             relevantOnClick,
-                            searchData,
                         }}
                     />
                 ) : (

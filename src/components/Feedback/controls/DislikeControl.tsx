@@ -37,7 +37,7 @@ const DislikeControl = memo(
                     className={b('control', {view})}
                 >
                     <Button.Icon>
-                        <Icon width={14} height={14} />
+                        <Icon width={20} height={20} />
                     </Button.Icon>
                     {t<string>('button-dislike-text')}
                 </Button>

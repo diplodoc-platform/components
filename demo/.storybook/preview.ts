@@ -2,7 +2,6 @@
 import type {Preview} from '@storybook/react';
 
 import {WithTheme} from './decorators/withTheme';
-
 import './global.css';
 
 const preview: Preview = {

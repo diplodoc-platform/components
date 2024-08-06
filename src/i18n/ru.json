@@ -111,6 +111,14 @@
     "search_mark_dislike": "вообще не про то",
     "search_mark-result-text": "Спасибо за оценку!"
   },
+  "search-suggest": {
+    "search-suggest_all-results": "Все результаты",
+    "search-suggest_not-found": "По запросу «{{query}}» ничего не найдено.",
+    "search-suggest_error-text": "Что-то пошло не так. Попробуйте ещё раз.",
+    "search-item_type-all": "Всё",
+    "search-item_type-doc": "Документация",
+    "search-item_type-main": "Главная"
+  },
   "paginator": {
     "next": "Следующая страница",
     "prev": "Предыдущая страница"

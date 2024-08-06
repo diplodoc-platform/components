@@ -1,0 +1,55 @@
+import React, {FC, PropsWithChildren} from 'react';
+
+import {ChevronRight} from '@gravity-ui/icons';
+import {Link} from '@gravity-ui/uikit';
+import block from 'bem-cn-lite';
+
+import {HTML} from '../HTML';
+
+import type {SearchSuggestItem} from './types';
+import {SuggestItemType} from './types';
+
+const b = block('dc-search-suggest');
+
+const BasicSuggestItem: FC<PropsWithChildren<{item: SearchSuggestItem}>> = ({item, children}) => {
+    return <div className={b('item', {type: item.type})}>{children}</div>;
+};
+
+export const SuggestItem: React.FC<SearchSuggestItem> = (item) => {
+    switch (item.type) {
+        case SuggestItemType.Delimiter:
+            return <BasicSuggestItem item={item}>{null}</BasicSuggestItem>;
+        case SuggestItemType.Link:
+            return (
+                <Link className={b('item', {type: item.type})} view={'primary'} href={item.link}>
+                    <span>{item.title}</span>
+                    <ChevronRight width={13} height={13} viewBox={'0 0 13 13'} />
+                </Link>
+            );
+        case SuggestItemType.Page:
+            return (
+                <Link className={b('item', {type: item.type})} view={'primary'} href={item.link}>
+                    <span className={b('item-title')}>
+                        <HTML>{item.title}</HTML>
+                    </span>
+                    <span className={b('item-description')}>
+                        <HTML>{item.description}</HTML>
+                    </span>
+                </Link>
+            );
+        case SuggestItemType.Group:
+            return (
+                <BasicSuggestItem item={item}>
+                    <h5>
+                        <HTML>{item.title}</HTML>
+                    </h5>
+                </BasicSuggestItem>
+            );
+        default:
+            return (
+                <BasicSuggestItem item={item}>
+                    <HTML>{item.title}</HTML>
+                </BasicSuggestItem>
+            );
+    }
+};

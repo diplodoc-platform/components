@@ -112,6 +112,14 @@
     "search_mark_dislike": "dislike",
     "search_mark-result-text": "Thank you for your rating!"
   },
+  "search-suggest": {
+    "search-suggest_all-results": "All results",
+    "search-suggest_not-found": "No results found for «{{query}}» request",
+    "search-suggest_error-text": "Something went wrong. Try again.",
+    "search-item_type-all": "All",
+    "search-item_type-doc": "Documentation",
+    "search-item_type-main": "Main"
+  },
   "paginator": {
     "next": "Next page",
     "prev": "Previous page"

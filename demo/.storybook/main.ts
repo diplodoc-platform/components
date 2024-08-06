@@ -1,4 +1,4 @@
-import {join, dirname} from 'path';
+import {dirname} from 'path';
 
 /** @type { import('@storybook/react-webpack5').StorybookConfig } */
 const config = {
@@ -10,13 +10,12 @@ const config = {
             name: '@storybook/addon-styling',
             options: {
                 sass: {
-                    implementation: require("sass"),
+                    implementation: require('sass'),
                 },
-            }
+            },
         },
         '@storybook/addon-onboarding',
         '@storybook/addon-interactions',
-
     ],
     framework: {
         name: '@storybook/react-webpack5',
@@ -25,11 +24,11 @@ const config = {
     docs: {
         autodocs: 'tag',
     },
-    async webpackFinal(config, { configType }) {
+    async webpackFinal(config) {
         config.resolve = config.resolve || {};
         config.resolve.alias = {
             ...(config.resolve.alias || {}),
-            'react': dirname(require.resolve('react')),
+            react: dirname(require.resolve('react')),
             'react-dom': dirname(require.resolve('react-dom')),
         };
         config.module.rules.push({
@@ -39,7 +38,7 @@ const config = {
         });
 
         return config;
-    }
+    },
 };
 
 export default config;

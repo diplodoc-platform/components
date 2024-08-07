@@ -4,6 +4,7 @@ import {Button, Loader, TextInput} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 
 import {useTranslation} from '../../hooks';
+import {GenerativeSearchAnswer, IGenerativeSearch} from '../GenerativeSearchAnswer';
 import {Paginator, PaginatorProps} from '../Paginator';
 import {ISearchItem, SearchItem, SearchOnClickProps} from '../SearchItem';
 
@@ -34,9 +35,17 @@ interface SearchPageProps extends Loading {
     loading?: boolean;
 }
 
+interface GenerativeSearchProps {
+    generativeSearchData: IGenerativeSearch;
+}
+
 type RenderFoundProps = SearchPageProps & SearchOnClickProps & PaginatorProps;
 
-type SearchPageInnerProps = SearchPageProps & SearchOnClickProps & InputProps & PaginatorProps;
+type SearchPageInnerProps = SearchPageProps &
+    SearchOnClickProps &
+    InputProps &
+    PaginatorProps &
+    GenerativeSearchProps;
 
 const FoundBlock: React.FC<RenderFoundProps> = ({
     items,
@@ -55,6 +64,7 @@ const FoundBlock: React.FC<RenderFoundProps> = ({
     return (
         <div className={b('search-result')}>
             <h3 className={b('subtitle')}>{t<string>('search_request-query')}</h3>
+
             <div className={b('search-list')}>
                 {items.map((item: ISearchItem) => (
                     <SearchItem
@@ -87,10 +97,12 @@ const WithoutContentBlock: React.FC<RenderNoContent> = ({loading}) => {
     return loading ? (
         <Loader />
     ) : (
-        <div className={b('search-empty')}>
-            <h3>{t<string>('search_not-found-title')}</h3>
-            <div>{t<string>('search_not-found-text')}</div>
-        </div>
+        <>
+            <div className={b('search-empty')}>
+                <h3>{t<string>('search_not-found-title')}</h3>
+                <div>{t<string>('search_not-found-text')}</div>
+            </div>
+        </>
     );
 };
 
@@ -146,6 +158,7 @@ const SearchPage = ({
     irrelevantOnClick,
     relevantOnClick,
     loading,
+    generativeSearchData,
 }: SearchPageInnerProps) => {
     const inputRef = useRef(null);
     const [currentQuery, setCurrentQuery] = useState(query);
@@ -161,6 +174,9 @@ const SearchPage = ({
                         inputRef,
                     }}
                 />
+            </div>
+            <div className={b('generative-answer')}>
+                <GenerativeSearchAnswer {...generativeSearchData} />
             </div>
             <div className={b('content')}>
                 {items?.length && query ? (

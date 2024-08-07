@@ -5,7 +5,7 @@ import React, {useState} from 'react';
 import {ISearchItem, SearchPage} from '@diplodoc/components';
 
 import mockData from './data';
-import searchData from './searchData';
+import generativeSearchData from './searchData';
 
 const SearchPageDemo = (args) => {
     const isMobile = args['Mobile'];
@@ -32,7 +32,7 @@ const SearchPageDemo = (args) => {
                 relevantOnClick={(item) => console.log('Click on like  button', item)}
                 itemsPerPage={2}
                 totalItems={mockData.length}
-                searchData={searchData}
+                generativeSearchData={generativeSearchData}
             />
         </div>
     );

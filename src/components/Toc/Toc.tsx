@@ -43,7 +43,7 @@ interface TocState {
 class Toc extends React.Component<TocProps, TocState> {
     contentRef = React.createRef<HTMLDivElement>();
     rootRef = React.createRef<HTMLDivElement>();
-    activeRef = React.createRef<Item>();
+    activeRef = React.createRef<HTMLButtonElement>();
 
     containerEl: HTMLElement | null = null;
     footerEl: HTMLElement | null = null;
@@ -307,12 +307,38 @@ class Toc extends React.Component<TocProps, TocState> {
         this.setTocHeight();
     };
 
+    private scrollToItem = () => {
+        if (!this.activeRef.current) {
+            return;
+        }
+
+        const itemElement = this.activeRef.current;
+        const itemHeight = itemElement.offsetHeight ?? 0;
+        const itemOffset = itemElement.offsetTop;
+        const scrollableParent = itemElement.offsetParent as HTMLDivElement | null;
+
+        if (!scrollableParent) {
+            return;
+        }
+
+        const scrollableHeight = scrollableParent.offsetHeight;
+        const scrollableOffset = scrollableParent.scrollTop;
+
+        const itemVisible =
+            itemOffset >= scrollableOffset &&
+            itemOffset <= scrollableOffset + scrollableHeight - itemHeight;
+
+        if (!itemVisible) {
+            scrollableParent.scrollTop = itemOffset - Math.floor(scrollableHeight / 2) + itemHeight;
+        }
+    };
+
     private scrollToActiveItem = () => {
         if (!this.activeRef.current) {
             return;
         }
 
-        this.activeRef.current.scrollToItem();
+        this.scrollToItem();
     };
 
     private handleContentScroll = () => {

@@ -2,7 +2,6 @@
 .idea
 .vscode
 .history
-.storybook
 
 # Libs
 node_modules
@@ -13,4 +12,4 @@ build
 #storybook
 demo/storybook-static
 demo/node_modules
-demo/.storybook
+!demo/.storybook

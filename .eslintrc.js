@@ -6,6 +6,7 @@ module.exports = {
     root: true,
     rules: {
         'no-param-reassign': 'off',
+        '@typescript-eslint/no-shadow': 'off',
         'import/order': [
             'error',
             {
@@ -13,7 +14,7 @@ module.exports = {
                     order: 'asc',
                 },
                 'newlines-between': 'always',
-                groups: [['builtin', 'external'], 'internal', 'parent', 'sibling', 'index'],
+                groups: ['type', ['builtin', 'external'], 'internal', 'parent', 'sibling', 'index'],
                 warnOnUnassignedImports: true,
                 pathGroups: [
                     {

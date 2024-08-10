@@ -1,15 +1,1 @@
-# System
-.idea
-.vscode
-.history
-
-# Libs
-node_modules
-
-# Build
-build
-
-#storybook
-demo/storybook-static
-demo/node_modules
 !demo/.storybook

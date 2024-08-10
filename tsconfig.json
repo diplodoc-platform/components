@@ -1,5 +1,5 @@
 {
-  "extends": "@gravity-ui/tsconfig/tsconfig",
+  "extends": "@diplodoc/tsconfig/tsconfig",
   "compilerOptions": {
     "module": "ESNext",
     "allowJs": false,
@@ -10,5 +10,12 @@
     "target": "ESNext",
     "baseUrl": "."
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "demo/**/*.ts",
+    "demo/**/*.tsx",
+    "demo/.storybook/**/*.ts",
+    "demo/.storybook/**/*.tsx"
+  ]
 }

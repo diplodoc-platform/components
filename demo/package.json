@@ -30,7 +30,9 @@
   },
   "dependencies": {
     "@diplodoc/components": "^3.10.0-beta.0",
-    "@doc-tools/transform": "^3.10.3",
+    "@diplodoc/transform": "^4.26.0",
+    "@gravity-ui/uikit": "^6.23.0",
+    "bem-cn-lite": "^4.1.0",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"

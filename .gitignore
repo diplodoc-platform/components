@@ -1,13 +1,10 @@
-# Settings
 .idea
 .vscode
-.DS_Store
+.history
 .env
+.DS_Store
 
-# Libs
 node_modules
 
-# Generated content
 /build
-/storybook-static
-/demo/storybook-static
+

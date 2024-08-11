@@ -1,5 +1,4 @@
 import React, {PropsWithChildren} from 'react';
-
 import isEqual from 'lodash/isEqual';
 
 import {ErrorPage} from '../ErrorPage';

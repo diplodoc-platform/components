@@ -1,5 +1,4 @@
 import React, {memo, useContext} from 'react';
-
 import block from 'bem-cn-lite';
 
 import {FeedbackSendData, Lang, SubscribeData, TextSizes, Theme} from '../../models';
@@ -18,6 +17,7 @@ import {
     SinglePageControl,
 } from './';
 
+// eslint-disable-next-line import/order
 import './Controls.scss';
 
 const b = block('dc-controls');

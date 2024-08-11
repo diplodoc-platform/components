@@ -1,15 +1,14 @@
 import type {ReactNode} from 'react';
-import React, {forwardRef, memo, useEffect} from 'react';
+import type {SearchProvider, SearchSuggestItem} from './types';
 
+import React, {forwardRef, memo, useEffect} from 'react';
 import {List, ListItemData, Loader} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 import pick from 'lodash/pick';
 
 import {useTranslation} from '../../hooks';
 
-import type {SearchProvider, SearchSuggestItem} from './types';
 import {useProvider} from './useProvider';
-
 import './index.scss';
 
 const b = block('dc-search-suggest');

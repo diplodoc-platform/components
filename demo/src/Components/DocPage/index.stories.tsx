@@ -1,7 +1,5 @@
 import {join} from 'path';
-
 import React, {useCallback, useEffect, useState} from 'react';
-
 import {
     DEFAULT_SETTINGS,
     DocPage,
@@ -17,7 +15,6 @@ import cn from 'bem-cn-lite';
 import {updateBodyClassName} from '../utils';
 
 import {getContent} from './data';
-
 import './index.scss';
 
 const layoutBlock = cn('Layout');

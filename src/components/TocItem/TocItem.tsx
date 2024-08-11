@@ -1,5 +1,4 @@
 import React from 'react';
-
 import block from 'bem-cn-lite';
 
 import {useTranslation} from '../../hooks';
@@ -84,5 +83,7 @@ export const TocItem: React.FC<TocItemProps> = React.forwardRef(
         );
     },
 );
+
+TocItem.displayName = 'TocItem';
 
 export default TocItem;

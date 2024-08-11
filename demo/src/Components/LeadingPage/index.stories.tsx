@@ -1,5 +1,4 @@
 import React, {useEffect} from 'react';
-
 import {DocLeadingPage, DocLeadingPageData, Theme} from '@diplodoc/components';
 import cn from 'bem-cn-lite';
 

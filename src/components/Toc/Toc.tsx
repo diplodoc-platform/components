@@ -1,5 +1,4 @@
 import React from 'react';
-
 import {getUniqId} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 import omit from 'lodash/omit';
@@ -13,7 +12,6 @@ import {TocItem as Item} from '../TocItem';
 import TocLabel from '../TocLable/TocLabel';
 
 import {TocItemRegistry} from './TocItemRegistry';
-
 import './Toc.scss';
 
 const b = block('dc-toc');

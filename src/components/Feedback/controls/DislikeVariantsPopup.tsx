@@ -10,7 +10,6 @@ import React, {
     useRef,
     useState,
 } from 'react';
-
 import {Button, Checkbox, Popup, TextArea, useDirection} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 

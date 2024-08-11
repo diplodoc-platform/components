@@ -1,5 +1,4 @@
 import React from 'react';
-
 import {ERROR_CODES, ErrorPage} from '@diplodoc/components';
 
 const ErrorPageDemo = (args) => {

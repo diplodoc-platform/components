@@ -1,5 +1,4 @@
 import React, {SyntheticEvent, memo, useCallback, useContext, useState} from 'react';
-
 import {Button, List, Popup, TextInput, useDirection} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 

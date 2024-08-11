@@ -1,5 +1,4 @@
 import React, {ReactPortal} from 'react';
-
 import {Link, Xmark} from '@gravity-ui/icons';
 import {Button, Icon} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';

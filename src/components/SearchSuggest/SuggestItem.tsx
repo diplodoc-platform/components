@@ -1,12 +1,12 @@
-import React, {FC, PropsWithChildren} from 'react';
+import type {SearchSuggestItem} from './types';
 
+import React, {FC, PropsWithChildren} from 'react';
 import {ChevronRight} from '@gravity-ui/icons';
 import {Link} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 
 import {HTML} from '../HTML';
 
-import type {SearchSuggestItem} from './types';
 import {SuggestItemType} from './types';
 
 const b = block('dc-search-suggest');

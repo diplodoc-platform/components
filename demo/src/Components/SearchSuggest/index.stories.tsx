@@ -1,11 +1,10 @@
-import React, {useState} from 'react';
-
 import type {SearchProvider, SearchResult} from '@diplodoc/components';
+
+import React, {useState} from 'react';
 import {SearchSuggest as Component} from '@diplodoc/components';
 import block from 'bem-cn-lite';
 
 import data from './page.json';
-
 import './index.scss';
 
 const b = block('header');

@@ -9,6 +9,10 @@ import generativeSearchData from './searchData';
 
 const SearchPageDemo = (args) => {
     const isMobile = args['Mobile'];
+    const generativeSearchLoading = args['GenerativeSearchLoading'];
+    const generativeSearchError = args['GenerativeSearchError'];
+    const generativeSearchNoData = args['GenerativeSearchNoData'];
+
     const [page, setPage] = useState(1);
     const [items, setItems] = useState(getItems(page, mockData));
 
@@ -33,6 +37,9 @@ const SearchPageDemo = (args) => {
                 itemsPerPage={2}
                 totalItems={mockData.length}
                 generativeSearchData={generativeSearchData}
+                generativeSearchLoading={generativeSearchLoading}
+                generativeSearchError={generativeSearchError}
+                generativeSearchNoData={generativeSearchNoData}
             />
         </div>
     );
@@ -43,6 +50,15 @@ export default {
     component: SearchPageDemo,
     argTypes: {
         Mobile: {
+            control: 'boolean',
+        },
+        GenerativeSearchLoading: {
+            control: 'boolean',
+        },
+        GenerativeSearchError: {
+            control: 'boolean',
+        },
+        generativeSearchNoData: {
             control: 'boolean',
         },
     },

@@ -4,6 +4,7 @@ import {Button, Loader, TextInput} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 
 import {useTranslation} from '../../hooks';
+import {ChatBot} from '../ChatBot';
 import {GenerativeSearchAnswer, IGenerativeSearch} from '../GenerativeSearchAnswer';
 import {Paginator, PaginatorProps} from '../Paginator';
 import {ISearchItem, SearchItem, SearchOnClickProps} from '../SearchItem';
@@ -37,6 +38,9 @@ interface SearchPageProps extends Loading {
 
 interface GenerativeSearchProps {
     generativeSearchData: IGenerativeSearch;
+    generativeSearchLoading: boolean;
+    generativeSearchError: boolean;
+    generativeSearchNoData: boolean;
 }
 
 type RenderFoundProps = SearchPageProps & SearchOnClickProps & PaginatorProps;
@@ -159,6 +163,8 @@ const SearchPage = ({
     relevantOnClick,
     loading,
     generativeSearchData,
+    generativeSearchLoading,
+    generativeSearchError,
 }: SearchPageInnerProps) => {
     const inputRef = useRef(null);
     const [currentQuery, setCurrentQuery] = useState(query);
@@ -176,7 +182,13 @@ const SearchPage = ({
                 />
             </div>
             <div className={b('generative-answer')}>
-                <GenerativeSearchAnswer {...generativeSearchData} />
+                <GenerativeSearchAnswer
+                    {...{
+                        generativeSearchData,
+                        generativeSearchLoading,
+                        generativeSearchError,
+                    }}
+                />
             </div>
             <div className={b('content')}>
                 {items?.length && query ? (
@@ -198,6 +210,7 @@ const SearchPage = ({
                     <WithoutContentBlock loading={loading} />
                 )}
             </div>
+            <ChatBot />
         </div>
     );
 };

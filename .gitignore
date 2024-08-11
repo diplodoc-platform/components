@@ -8,3 +8,8 @@ node_modules
 
 /build
 
+
+/lib
+/dist
+/cache
+/coverage

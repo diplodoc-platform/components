@@ -61,7 +61,11 @@
     "build": "run-s build:clean build:compile _build:declarations:*",
     "_build:watch": "./esbuild/build.js --watch",
     "_storybook:watch": "cd demo && npm run storybook",
-    "prepublishOnly": "npm run lint && npm run test && npm run build"
+    "prepublishOnly": "npm run lint && npm run test && npm run build",
+    "lint": "lint update && lint",
+    "lint:fix": "lint update && lint fix",
+    "pre-commit": "lint update && lint-staged",
+    "prepare": "husky || true"
   },
   "dependencies": {
     "@gravity-ui/components": "^3.6.0",
@@ -85,6 +89,7 @@
     "react-dom": ">=16.8.0 || >=17.0.0 || >=18.0.0"
   },
   "devDependencies": {
+    "@diplodoc/lint": "^1.0.3",
     "@diplodoc/tsconfig": "^1.0.2",
     "@types/langs": "^2.0.1",
     "@types/lodash": "4.14.179",

@@ -4,7 +4,6 @@ import {Button, Loader, TextInput} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 
 import {useTranslation} from '../../hooks';
-import {ChatBot} from '../ChatBot';
 import {GenerativeSearchAnswer, IGenerativeSearch} from '../GenerativeSearchAnswer';
 import {Paginator, PaginatorProps} from '../Paginator';
 import {ISearchItem, SearchItem, SearchOnClickProps} from '../SearchItem';
@@ -210,7 +209,6 @@ const SearchPage = ({
                     <WithoutContentBlock loading={loading} />
                 )}
             </div>
-            <ChatBot />
         </div>
     );
 };

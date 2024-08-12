@@ -89,7 +89,7 @@
     "react-dom": ">=16.8.0 || >=17.0.0 || >=18.0.0"
   },
   "devDependencies": {
-    "@diplodoc/lint": "^1.0.3",
+    "@diplodoc/lint": "^1.1.1",
     "@diplodoc/tsconfig": "^1.0.2",
     "@types/langs": "^2.0.1",
     "@types/lodash": "4.14.179",

@@ -64,7 +64,6 @@
     "prepublishOnly": "npm run lint && npm run test && npm run build",
     "lint": "lint update && lint",
     "lint:fix": "lint update && lint fix",
-    "postinstall": "cd demo; npm ci",
     "pre-commit": "lint update && lint-staged",
     "prepare": "husky || true"
   },

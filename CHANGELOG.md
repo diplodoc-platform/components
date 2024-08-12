@@ -1,5 +1,20 @@
 # История изменений
 
+## [4.11.0](https://github.com/diplodoc-platform/components/compare/v4.10.0...v4.11.0) (2024-08-12)
+
+
+### Features
+
+* add aria-current for active link in TocItem ([#273](https://github.com/diplodoc-platform/components/issues/273)) ([b837c6a](https://github.com/diplodoc-platform/components/commit/b837c6aef3d916e7e8d5c1801a07d7b3cca3ad3d))
+* add aria-expanded for controls in header ([#271](https://github.com/diplodoc-platform/components/issues/271)) ([4d9c8be](https://github.com/diplodoc-platform/components/commit/4d9c8be6c21551d4e72f5bea543a2d71b1dab4b2))
+* add aria-label in TocItem ([#275](https://github.com/diplodoc-platform/components/issues/275)) ([249c70d](https://github.com/diplodoc-platform/components/commit/249c70d9f2de2b9a24dc3acaf666d7a340190cb3))
+* Add suggest component ([452a8b9](https://github.com/diplodoc-platform/components/commit/452a8b99d08b2bf74a18d925328e318b9298955a))
+
+
+### Bug Fixes
+
+* Fix storybook lint ([3066eb9](https://github.com/diplodoc-platform/components/commit/3066eb956253cbe302c387014db5a96c47ca132f))
+
 ## [4.10.0](https://github.com/diplodoc-platform/components/compare/v4.9.3...v4.10.0) (2024-07-29)
 
 

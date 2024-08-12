@@ -1,6 +1,7 @@
 {
   "extends": "@diplodoc/tsconfig/tsconfig",
   "compilerOptions": {
+    "lib": ["DOM", "ES2017"],
     "module": "ESNext",
     "allowJs": false,
     "importHelpers": true,

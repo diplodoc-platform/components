@@ -1,3 +1,4 @@
+import type {FC, PropsWithChildren} from 'react';
 import type {SearchProvider, SearchResult} from '@diplodoc/components';
 
 import React, {useState} from 'react';
@@ -13,11 +14,15 @@ const wait = (delay: number) => new Promise((resolve) => setTimeout(resolve, del
 
 const filter = (items: SearchResult[], query: string) => {
     return items.filter((item) => {
-        return item.title?.indexOf(query) > -1 || item.description?.indexOf(query) > -1;
+        return item.title?.indexOf(query) > -1 || (item.description || '').indexOf(query) > -1;
     });
 };
 
-const FakeHeader = ({children, className}) => {
+type Props = {
+    className: string;
+};
+
+const FakeHeader: FC<PropsWithChildren<Props>> = ({children, className}) => {
     return (
         <div className={b(null, className)}>
             <div className="header-left">
@@ -35,7 +40,7 @@ const SearchSuggestDemo = () => {
         async suggest(query: string) {
             await wait(3000);
 
-            return filter(data, query).slice(0, 10);
+            return filter(data as SearchResult[], query).slice(0, 10);
         },
 
         link(query: string) {
@@ -44,9 +49,10 @@ const SearchSuggestDemo = () => {
     };
 
     const [search, setSearch] = useState(false);
+    const className = [search && 'with-search'].filter(Boolean) as string[];
 
     return (
-        <FakeHeader className={b(null, [search && 'with-search'].filter(Boolean))}>
+        <FakeHeader className={b(null, className)}>
             <Component
                 provider={provider}
                 onFocus={() => setSearch(true)}

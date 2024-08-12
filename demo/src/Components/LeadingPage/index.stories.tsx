@@ -8,7 +8,12 @@ import pageContent from './page.json';
 
 const layoutBlock = cn('Layout');
 
-const DocLeadingPageDemo = (args) => {
+type Args = {
+    Mobile: string;
+    Theme: Theme;
+};
+
+const DocLeadingPageDemo = (args: Args) => {
     const isMobile = args['Mobile'];
     const theme = args['Theme'];
     const router = {pathname: '/docs/compute'};

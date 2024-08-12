@@ -29,7 +29,7 @@
     "storybook": "^7.6.17"
   },
   "dependencies": {
-    "@diplodoc/components": "^3.10.0-beta.0",
+    "@diplodoc/components": "*",
     "@diplodoc/transform": "^4.26.0",
     "@gravity-ui/uikit": "^6.23.0",
     "bem-cn-lite": "^4.1.0",

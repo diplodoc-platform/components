@@ -6,7 +6,11 @@ import mockData from './data';
 // eslint-disable-next-line no-console, @typescript-eslint/no-explicit-any
 const log = (...message: any[]) => console.log(...message);
 
-const SearchPageDemo = (args) => {
+type Args = {
+    Mobile: string;
+};
+
+const SearchPageDemo = (args: Args) => {
     const isMobile = args['Mobile'];
     const [page, setPage] = useState(1);
     const [items, setItems] = useState(getItems(page, mockData));

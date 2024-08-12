@@ -78,8 +78,8 @@ function useHighlightedDOMElements(
         return [];
     }
 
-    const elements = document.querySelectorAll(`.${CLASSNAME}`);
-    cachedHighlightedDOMElements.current = [...elements];
+    const elements = Array.from(document.querySelectorAll(`.${CLASSNAME}`));
+    cachedHighlightedDOMElements.current = elements;
 
     return cachedHighlightedDOMElements.current;
 }

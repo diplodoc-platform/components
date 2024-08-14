@@ -45,8 +45,8 @@
     "lang-control-text-ru": "Русский",
     "lang-control-text-en": "English"
   },
-  "subnavigation": {
-    "back_title": "חזור לתפריט הראשי"
+  "mobile-menu": {
+    "label_to-main-menu": "חזור לתפריט הראשי"
   },
   "mini-toc": {
     "title": "במאמר הזה",

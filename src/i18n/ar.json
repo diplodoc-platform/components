@@ -45,8 +45,8 @@
     "lang-control-text-ru": "الروسية",
     "lang-control-text-en": "الإنجليزية"
   },
-  "subnavigation": {
-    "back_title": "العودة إلى القائمة الرئيسية"
+  "mobile-menu": {
+    "label_to-main-menu": "العودة إلى القائمة الرئيسية"
   },
   "mini-toc": {
     "title": "في هذا المقال",

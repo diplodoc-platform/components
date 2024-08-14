@@ -45,8 +45,8 @@
     "lang-control-text-ru": "Русский",
     "lang-control-text-en": "English"
   },
-  "subnavigation": {
-    "back_title": "Zpět na hlavní menu"
+  "mobile-menu": {
+    "label_to-main-menu": "Zpět na hlavní menu"
   },
   "mini-toc": {
     "title": "V tomto článku",

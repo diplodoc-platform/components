@@ -45,8 +45,8 @@
     "lang-control-text-ru": "Russo",
     "lang-control-text-en": "Inglês"
   },
-  "subnavigation": {
-    "back_title": "Voltar ao menu principal"
+  "mobile-menu": {
+    "label_to-main-menu": "Voltar ao menu principal"
   },
   "mini-toc": {
     "title": "Neste artigo",

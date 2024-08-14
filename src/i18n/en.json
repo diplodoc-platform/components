@@ -5,7 +5,10 @@
     "description_wide_format_disabled": "Disabled",
     "label_show_mini_toc": "Navigation for the article",
     "description_show_mini_toc": "Show navigation",
-    "label_dark_theme": "Dark theme",
+    "label_theme": "Theme",
+    "label_theme_prefix": "theme",
+    "label_light_theme": "Light",
+    "label_dark_theme": "Dark",
     "description_enabled_dark_theme": "Enabled",
     "description_disabled_dark_theme": "Disabled",
     "label_text_size": "Font size",
@@ -45,8 +48,8 @@
     "lang-control-text-ru": "Русский",
     "lang-control-text-en": "English"
   },
-  "subnavigation": {
-    "back_title": "Back to main menu"
+  "mobile-menu": {
+    "label_to-main-menu": "Back to main menu"
   },
   "mini-toc": {
     "title": "In this article",

@@ -45,8 +45,8 @@
     "lang-control-text-ru": "Ρωσικά",
     "lang-control-text-en": "English (Αγγλικά)"
   },
-  "subnavigation": {
-    "back_title": "Στο κύριο μενού"
+  "mobile-menu": {
+    "label_to-main-menu": "Στο κύριο μενού"
   },
   "mini-toc": {
     "title": "Σε αυτό το άρθρο",

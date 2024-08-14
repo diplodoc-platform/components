@@ -45,8 +45,8 @@
     "lang-control-text-ru": "Орысша",
     "lang-control-text-en": "English"
   },
-  "subnavigation": {
-    "back_title": "Негізгі мәзірге оралу"
+  "mobile-menu": {
+    "label_to-main-menu": "Негізгі мәзірге оралу"
   },
   "mini-toc": {
     "title": "Бұл мақалада",

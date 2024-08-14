@@ -45,8 +45,8 @@
     "lang-control-text-ru": "俄语",
     "lang-control-text-en": "英语"
   },
-  "subnavigation": {
-    "back_title": "返回主菜单"
+  "mobile-menu": {
+    "label_to-main-menu": "返回主菜单"
   },
   "mini-toc": {
     "title": "在这篇文章中",

@@ -45,8 +45,8 @@
     "lang-control-text-ru": "Rus",
     "lang-control-text-en": "Ingliz"
   },
-  "subnavigation": {
-    "back_title": "Asosiy menyuga qaytish"
+  "mobile-menu": {
+    "label_to-main-menu": "Asosiy menyuga qaytish"
   },
   "mini-toc": {
     "title": "Bu maqolada",

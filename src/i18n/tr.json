@@ -45,8 +45,8 @@
     "lang-control-text-ru": "Rusça",
     "lang-control-text-en": "English"
   },
-  "subnavigation": {
-    "back_title": "Ana menüye çıkış"
+  "mobile-menu": {
+    "label_to-main-menu": "Ana menüye çıkış"
   },
   "mini-toc": {
     "title": "Bu yazıda",

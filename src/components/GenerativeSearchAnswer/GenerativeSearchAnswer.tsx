@@ -205,7 +205,7 @@ const GenerativeSearchAnswer: React.FC<IGenerativeSearchI> = ({
     };
 
     if (generativeSearchLoading) {
-        <GenerativeSearchLoadingBlock />;
+        return <GenerativeSearchLoadingBlock />;
     }
 
     if (generativeSearchError) {

@@ -1,15 +1,17 @@
 import React, {ReactNode, useState} from 'react';
 
-import {ChevronDown, ThumbsDown, ThumbsUp} from '@gravity-ui/icons';
-import {Button, Icon, Link, Text} from '@gravity-ui/uikit';
+import {ChevronDown, ChevronLeft, ChevronRight, ThumbsDown, ThumbsUp} from '@gravity-ui/icons';
+import {Button, Icon} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
-import MarkdownIt from 'markdown-it';
+
+import {useTranslation} from '../../hooks';
+import {simplifyUrl} from '../../utils';
+import {HTML} from '../HTML';
 
 import {YandexGPTLogo} from './YandexGPTLogo';
+import {useCarousel} from './useCarousel';
 
 import './GenerativeSearchAnswer.scss';
-
-const md = new MarkdownIt();
 
 const b = block('generative-search-answer');
 
@@ -34,54 +36,84 @@ interface IGenerativeSearchSource {
     titles: string[];
 }
 
-const replaceReferencesWithLinks = (parsedHtml: string, links: string[]) => {
-    return parsedHtml.replace(/\[(\d+)\]/g, (match, index) => {
-        const link = links[index - 1];
-        return link ? `<a href="${link}">${index}</a>` : match;
-    });
-};
-
 const GenerativeSearchDisclaimer: React.FC = () => {
+    const {t} = useTranslation('generative-search');
+
     return (
         <div className={b('disclaimer')}>
-            <Text>
-                Ответ сформирован нейросетью YandexGPT на основе документации сервиса. В нём могут
-                быть неточности, проверить информацию можно поссылкам на источники.
-            </Text>
+            <p>{t<string>('generative-search_disclaimer')}</p>
         </div>
     );
 };
 
 const GenerativeSearchSource: React.FC<IGenerativeSearchSource> = ({links, titles}) => {
-    const combinedSearchInfo = links.map((link, index) => ({url: link, title: titles[index]}));
+    const {
+        containerRef,
+        showPrevButton,
+        showNextButton,
+        nextSlide,
+        prevSlide,
+        updateButtonsVisibility,
+    } = useCarousel();
+
+    const {t} = useTranslation('generative-search');
 
     return (
         <div className={b('sources')}>
-            <Text>Источники</Text>
-            <div className={b('carousel')}>
-                {combinedSearchInfo.map((item, index) => (
-                    <div key={index} className={b('card')}>
-                        <Text className={b('title')}>{item.title}</Text>
+            <h3>{t<string>('generative-search_sources_title')}</h3>
 
-                        <div className={b('card-wrapper')}>
-                            <Link className={b('link')} view="normal" href={item.url}>
-                                {item.url}
-                            </Link>
-                            <Text className={b('card-number')}>{index + 1}</Text>
+            <div className={b('carousel-wrapper')}>
+                <div
+                    className={b('carousel')}
+                    ref={containerRef}
+                    onScroll={updateButtonsVisibility}
+                >
+                    {links.map((link, index) => (
+                        <div key={index} className={b('card')}>
+                            <p className={b('title')}>{titles[index]}</p>
+                            <a className={b('link')} href={link}>
+                                {simplifyUrl(link)}
+                            </a>
+                            <span className={b('card-number')}>{index + 1}</span>
                         </div>
-                    </div>
-                ))}
+                    ))}
+                </div>
+
+                <div className={b('controls')}>
+                    {showPrevButton && (
+                        <ChevronLeft
+                            width={20}
+                            height={20}
+                            className={b('chevron-left')}
+                            onClick={prevSlide}
+                        >
+                            left
+                        </ChevronLeft>
+                    )}
+                    {showNextButton && (
+                        <ChevronRight
+                            width={20}
+                            height={20}
+                            className={b('chevron-right')}
+                            onClick={nextSlide}
+                        >
+                            right
+                        </ChevronRight>
+                    )}
+                </div>
             </div>
         </div>
     );
 };
 
 const GenerativSearchHeader = () => {
+    const {t} = useTranslation('generative-search');
+
     return (
         <div className={b('header')}>
-            <h4>Быстрый ответ</h4>
+            <h4>{t<string>('generative-search_header_title')}</h4>
             <p className={b('yandexgpt-mention')}>
-                Создан с помощью нейросети
+                {t<string>('generative-search_header_text')}
                 <span className={b('yandexgpt-logo')}>
                     <YandexGPTLogo />
                     YandexGPT
@@ -112,23 +144,39 @@ const GenerativeSearchWrapperBlock: React.FC<IGenerativeSearchWrapper> = ({
 };
 
 const GenerativeSearchWithoutContentBlock = () => {
+    const {t} = useTranslation('generative-search');
+
     return (
         <GenerativeSearchWrapperBlock>
             <div className={b('content')}>
-                <h4>Не удалось найти информацию</h4>
-                <p>Сформулируйте запрос иначе или спросите что-нибудь ещё.</p>
+                <h4>{t<string>('generative-search_not_found_title')}</h4>
+                <p>{t<string>('generative-search_not_found_text')}</p>
             </div>
         </GenerativeSearchWrapperBlock>
     );
 };
 
 const GenerativeSearchErrorBlock = () => {
+    const {t} = useTranslation('generative-search');
+
     return (
         <GenerativeSearchWrapperBlock>
             <div className={b('content')}>
-                <h4>Что-то пошло не так. Попробуйте ещё раз или обновите страницу.</h4>
+                <h4>{t<string>('generative-search_something_went_wrong')}</h4>
             </div>
         </GenerativeSearchWrapperBlock>
+    );
+};
+
+const GenerativeSearchLoadingBlock = () => {
+    const {t} = useTranslation('generative-search');
+
+    return (
+        <div className={b('loader')}>
+            <div className={b('gradient-background')}></div>
+            <YandexGPTLogo width={20} height={20} />
+            <h2>{t<string>('generative-search_loading_title')}</h2>
+        </div>
     );
 };
 
@@ -144,7 +192,9 @@ const GenerativeSearchAnswer: React.FC<IGenerativeSearchI> = ({
     generativeSearchError,
 }) => {
     const [isSubmitted, setIsSubmitted] = useState(false);
-    const [isExpanded, setIsExpanded] = useState(false);
+    const [isExpanded, setIsExpanded] = useState(true);
+
+    const {t} = useTranslation('generative-search');
 
     const handleRatingClick = () => {
         setIsSubmitted(!isSubmitted);
@@ -155,7 +205,7 @@ const GenerativeSearchAnswer: React.FC<IGenerativeSearchI> = ({
     };
 
     if (generativeSearchLoading) {
-        return <GenerativeSearchWithoutContentBlock />;
+        <GenerativeSearchLoadingBlock />;
     }
 
     if (generativeSearchError) {
@@ -165,20 +215,21 @@ const GenerativeSearchAnswer: React.FC<IGenerativeSearchI> = ({
     const {message, links, titles} = generativeSearchData;
 
     const {content} = message;
-    const parserdContent = md.render(content);
-    const updatedHtmlContent = replaceReferencesWithLinks(parserdContent, links);
+
+    if (content.startsWith('Не удалось найти информацию')) {
+        return <GenerativeSearchWithoutContentBlock />;
+    }
 
     return (
         <div>
             <GenerativeSearchWrapperBlock isExpanded={isExpanded}>
-                <div
-                    className={b('content')}
-                    dangerouslySetInnerHTML={{__html: updatedHtmlContent}}
-                ></div>
+                <div className={b('content')}>
+                    <HTML>{content}</HTML>
+                </div>
                 <GenerativeSearchSource {...{links, titles}} />
                 <div className={b('rating-container')}>
                     {isSubmitted ? (
-                        <Text variant="body-1">Спасибо, что помогаете делать технологию лучше</Text>
+                        <p>{t<string>('generative-search_feedback_answer')}</p>
                     ) : (
                         <>
                             <Button
@@ -188,7 +239,7 @@ const GenerativeSearchAnswer: React.FC<IGenerativeSearchI> = ({
                                 onClick={handleRatingClick}
                             >
                                 <Icon data={ThumbsUp} size={15} />
-                                Хороший ответ
+                                {t<string>('generative-search_good_response')}
                             </Button>
                             <Button
                                 view="outlined"
@@ -197,7 +248,7 @@ const GenerativeSearchAnswer: React.FC<IGenerativeSearchI> = ({
                                 onClick={handleRatingClick}
                             >
                                 <Icon data={ThumbsDown} size={15} />
-                                Плохой ответ
+                                {t<string>('generative-search_bad_response')}
                             </Button>
                         </>
                     )}
@@ -210,7 +261,7 @@ const GenerativeSearchAnswer: React.FC<IGenerativeSearchI> = ({
                             className={b('toggle-button')}
                             onClick={toggleExpand}
                         >
-                            Развернуть
+                            {t<string>('generative-search_expand')}
                             <Icon data={ChevronDown} size={15} />
                         </Button>
                     </div>

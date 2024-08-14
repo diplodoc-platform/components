@@ -138,3 +138,8 @@ export function getPageType({
 
     return DocumentType.Base;
 }
+
+export const simplifyUrl = (url: string) => {
+    const match = url.match(/^https?:\/\/[^/]+(\/.*)$/);
+    return match ? `...${match[1]}` : url;
+};

@@ -6,6 +6,7 @@ import block from 'bem-cn-lite';
 import pick from 'lodash/pick';
 
 import {useTranslation} from '../../hooks';
+import {YandexGPTLogo} from '../GenerativeSearchAnswer/YandexGPTLogo';
 
 import type {SearchProvider, SearchSuggestItem} from './types';
 import {useProvider} from './useProvider';
@@ -13,6 +14,20 @@ import {useProvider} from './useProvider';
 import './index.scss';
 
 const b = block('dc-search-suggest');
+
+const SuggestGenerative = () => {
+    const {t} = useTranslation('search-suggest');
+
+    return (
+        <div className={b('generative-search')}>
+            <YandexGPTLogo />
+            <div className={b('generative-search-text')}>
+                <h1>{t<string>('search-suggest-generative_title')}</h1>
+                <p>{t<string>('search-suggest-generative_subtitle')}</p>
+            </div>
+        </div>
+    );
+};
 
 const SuggestLoader = memo(() => {
     return (
@@ -53,18 +68,21 @@ const SuggestList = memo(
         const {id, items, renderItem, onItemClick, onChangeActive} = props;
 
         return (
-            <List
-                ref={ref}
-                id={id}
-                className={b('list')}
-                role={'listbox'}
-                filterable={false}
-                virtualized={false}
-                items={items}
-                renderItem={renderItem}
-                onItemClick={onItemClick}
-                onChangeActive={onChangeActive}
-            />
+            <>
+                <SuggestGenerative />
+                <List
+                    ref={ref}
+                    id={id}
+                    className={b('list')}
+                    role={'listbox'}
+                    filterable={false}
+                    virtualized={false}
+                    items={items}
+                    renderItem={renderItem}
+                    onItemClick={onItemClick}
+                    onChangeActive={onChangeActive}
+                />
+            </>
         );
     }),
 );
@@ -93,7 +111,13 @@ export const Suggest = memo(
         }
 
         if (Array.isArray(items) && !items.length) {
-            return <SuggestEmpty query={query} />;
+            // <><SuggestGenerative /><SuggestEmpty query={query} /></>
+            return (
+                <>
+                    <SuggestGenerative />
+                    <SuggestEmpty query={query} />
+                </>
+            );
         }
 
         return (

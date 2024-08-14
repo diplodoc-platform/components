@@ -5,11 +5,11 @@ import {Button, Icon} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 
 import {useTranslation} from '../../hooks';
+import {useCarousel} from '../../hooks/useCarousel';
 import {simplifyUrl} from '../../utils';
 import {HTML} from '../HTML';
 
 import {YandexGPTLogo} from './YandexGPTLogo';
-import {useCarousel} from './useCarousel';
 
 import './GenerativeSearchAnswer.scss';
 

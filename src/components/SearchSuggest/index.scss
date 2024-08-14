@@ -149,4 +149,42 @@
             }
         }
     }
+
+    &__generative-search {
+        background-color: #f1f4f9;
+        padding: 20px;
+        border: 1px solid transparent;
+
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+
+        &:hover {
+            border: 1px solid rgba(88, 86, 214, 1);
+            cursor: pointer;
+        }
+
+        &:active {
+            border: 1px solid rgba(88, 86, 214, 1);
+            background-color: rgba(243, 238, 249, 1);
+        }
+    }
+
+    &__generative-search-text {
+        display: inline-block;
+        vertical-align: top;
+
+        > h1 {
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 22px;
+            margin: 0;
+        }
+        > p {
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 16px;
+            margin: 0;
+        }
+    }
 }

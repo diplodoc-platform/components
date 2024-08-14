@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, {useState} from 'react';
 
 import type {SearchProvider, SearchResult} from '@diplodoc/components';
@@ -52,6 +53,9 @@ const SearchSuggestDemo = () => {
                 provider={provider}
                 onFocus={() => setSearch(true)}
                 onBlur={() => setSearch(false)}
+                generativeSuggestOnClick={(link) =>
+                    console.log(`Clicked on generative search banner going to ${link}`)
+                }
             />
         </FakeHeader>
     );

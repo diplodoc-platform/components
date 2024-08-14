@@ -11,7 +11,6 @@ const SearchPageDemo = (args) => {
     const isMobile = args['Mobile'];
     const generativeSearchLoading = args['GenerativeSearchLoading'];
     const generativeSearchError = args['GenerativeSearchError'];
-    const generativeSearchNoData = args['GenerativeSearchNoData'];
 
     const [page, setPage] = useState(1);
     const [items, setItems] = useState(getItems(page, mockData));
@@ -39,7 +38,18 @@ const SearchPageDemo = (args) => {
                 generativeSearchData={generativeSearchData}
                 generativeSearchLoading={generativeSearchLoading}
                 generativeSearchError={generativeSearchError}
-                generativeSearchNoData={generativeSearchNoData}
+                generativeExpandOnClick={(answer) =>
+                    console.log('Click on generative answer expand', answer)
+                }
+                generativeSourceOnClick={(link) =>
+                    console.log('Click on generative answer source', link)
+                }
+                generativeIrrelevantOnClick={(answer) =>
+                    console.log('Click on generative answer dislike button', answer)
+                }
+                generativeRelevantOnClick={(answer) =>
+                    console.log('Click on generative answer like button', answer)
+                }
             />
         </div>
     );
@@ -56,9 +66,6 @@ export default {
             control: 'boolean',
         },
         GenerativeSearchError: {
-            control: 'boolean',
-        },
-        generativeSearchNoData: {
             control: 'boolean',
         },
     },

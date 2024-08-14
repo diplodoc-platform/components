@@ -191,3 +191,12 @@ export enum DocumentType {
     Leading = 'LEADING',
     PageConstructor = 'PAGE_CONSTRUCTOR',
 }
+
+export interface ListItem {
+    value: string;
+    text: string;
+}
+
+export interface ClassNameProps {
+    className?: string;
+}

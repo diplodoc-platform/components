@@ -51,7 +51,7 @@ const LangControl = (props: ControlProps) => {
 
                 return langData
                     ? {
-                          text: langData.name,
+                          text: langData.local,
                           value: langData['1'],
                       }
                     : undefined;

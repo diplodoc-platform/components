@@ -11,6 +11,8 @@ import './TocNavPanel.scss';
 
 const b = block('dc-nav-toc-panel');
 
+const ARROW_SIZE = 24;
+
 export interface TocNavPanelProps extends TocData {
     router: Router;
     fixed?: boolean;
@@ -67,9 +69,9 @@ const TocNavControl = memo<{isNext?: boolean; item: FlatTocItem | null}>(({item,
                     <div className={b('control-hint')}>{t<string>(keyHint)}</div>
                     <div className={b('control-text')}>
                         <a {...linkAttributes} className={b('link')} data-router-shallow>
-                            {!isNext && <ArrowLeft width={16} height={16} />}
-                            {item.name}
-                            {isNext && <ArrowRight width={16} height={16} />}
+                            {!isNext && <ArrowLeft width={ARROW_SIZE} height={ARROW_SIZE} />}
+                            <div className={b('control-name')}>{item.name}</div>
+                            {isNext && <ArrowRight width={ARROW_SIZE} height={ARROW_SIZE} />}
                         </a>
                     </div>
                 </React.Fragment>

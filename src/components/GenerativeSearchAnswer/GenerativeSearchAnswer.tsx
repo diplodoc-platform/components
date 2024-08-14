@@ -20,6 +20,13 @@ interface Message {
     role: string;
 }
 
+export interface GenerativeSearchOnClickProps {
+    generativeExpandOnClick?: (answer: IGenerativeSearch) => void;
+    generativeSourceOnClick?: (link: string) => void;
+    generativeIrrelevantOnClick?: (answer: IGenerativeSearch) => void;
+    generativeRelevantOnClick?: (answer: IGenerativeSearch) => void;
+}
+
 export interface IGenerativeSearch {
     message: Message;
     links: string[];
@@ -46,7 +53,17 @@ const GenerativeSearchDisclaimer: React.FC = () => {
     );
 };
 
-const GenerativeSearchSource: React.FC<IGenerativeSearchSource> = ({links, titles}) => {
+interface GenerativeSearchSourceAnalytics {
+    generativeSourceOnClick?: (link: string) => void;
+}
+
+type GenerativeSearchSourceProps = IGenerativeSearchSource & GenerativeSearchSourceAnalytics;
+
+const GenerativeSearchSource: React.FC<GenerativeSearchSourceProps> = ({
+    links,
+    titles,
+    generativeSourceOnClick,
+}) => {
     const {
         containerRef,
         showPrevButton,
@@ -71,7 +88,15 @@ const GenerativeSearchSource: React.FC<IGenerativeSearchSource> = ({links, title
                     {links.map((link, index) => (
                         <div key={index} className={b('card')}>
                             <p className={b('title')}>{titles[index]}</p>
-                            <a className={b('link')} href={link}>
+                            <a
+                                className={b('link')}
+                                onClick={() =>
+                                    generativeSourceOnClick
+                                        ? generativeSourceOnClick(link)
+                                        : undefined
+                                }
+                                href={link}
+                            >
                                 {simplifyUrl(link)}
                             </a>
                             <span className={b('card-number')}>{index + 1}</span>
@@ -185,11 +210,16 @@ interface IGenerativeSearchI {
     generativeSearchLoading: boolean;
     generativeSearchError: boolean;
 }
+export type GenerativeSearchProps = IGenerativeSearchI & GenerativeSearchOnClickProps;
 
-const GenerativeSearchAnswer: React.FC<IGenerativeSearchI> = ({
+const GenerativeSearchAnswer: React.FC<GenerativeSearchProps> = ({
     generativeSearchData,
     generativeSearchLoading,
     generativeSearchError,
+    generativeExpandOnClick,
+    generativeSourceOnClick,
+    generativeIrrelevantOnClick,
+    generativeRelevantOnClick,
 }) => {
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [isExpanded, setIsExpanded] = useState(true);
@@ -202,6 +232,13 @@ const GenerativeSearchAnswer: React.FC<IGenerativeSearchI> = ({
 
     const toggleExpand = () => {
         setIsExpanded(!isExpanded);
+    };
+
+    const handleSourceInTextClick: React.MouseEventHandler = (e) => {
+        const target = e.target as HTMLElement;
+        if (target.tagName === 'A' && generativeSourceOnClick) {
+            generativeSourceOnClick((target as HTMLAnchorElement).href);
+        }
     };
 
     if (generativeSearchLoading) {
@@ -223,10 +260,10 @@ const GenerativeSearchAnswer: React.FC<IGenerativeSearchI> = ({
     return (
         <div>
             <GenerativeSearchWrapperBlock isExpanded={isExpanded}>
-                <div className={b('content')}>
+                <div className={b('content')} onClick={handleSourceInTextClick}>
                     <HTML>{content}</HTML>
                 </div>
-                <GenerativeSearchSource {...{links, titles}} />
+                <GenerativeSearchSource {...{links, titles, generativeSourceOnClick}} />
                 <div className={b('rating-container')}>
                     {isSubmitted ? (
                         <p>{t<string>('generative-search_feedback_answer')}</p>
@@ -236,7 +273,12 @@ const GenerativeSearchAnswer: React.FC<IGenerativeSearchI> = ({
                                 view="outlined"
                                 size="l"
                                 className={b('rating-button')}
-                                onClick={handleRatingClick}
+                                onClick={() => {
+                                    if (generativeRelevantOnClick) {
+                                        generativeRelevantOnClick(generativeSearchData);
+                                    }
+                                    handleRatingClick();
+                                }}
                             >
                                 <Icon data={ThumbsUp} size={15} />
                                 {t<string>('generative-search_good_response')}
@@ -245,7 +287,12 @@ const GenerativeSearchAnswer: React.FC<IGenerativeSearchI> = ({
                                 view="outlined"
                                 size="l"
                                 className={b('rating-button')}
-                                onClick={handleRatingClick}
+                                onClick={() => {
+                                    if (generativeIrrelevantOnClick) {
+                                        generativeIrrelevantOnClick(generativeSearchData);
+                                    }
+                                    handleRatingClick();
+                                }}
                             >
                                 <Icon data={ThumbsDown} size={15} />
                                 {t<string>('generative-search_bad_response')}
@@ -259,7 +306,12 @@ const GenerativeSearchAnswer: React.FC<IGenerativeSearchI> = ({
                             view="normal-contrast"
                             size="l"
                             className={b('toggle-button')}
-                            onClick={toggleExpand}
+                            onClick={() => {
+                                if (generativeExpandOnClick) {
+                                    generativeExpandOnClick(generativeSearchData);
+                                }
+                                toggleExpand();
+                            }}
                         >
                             {t<string>('generative-search_expand')}
                             <Icon data={ChevronDown} size={15} />

@@ -4,7 +4,7 @@ import {Button, Loader, TextInput} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 
 import {useTranslation} from '../../hooks';
-import {GenerativeSearchAnswer, IGenerativeSearch} from '../GenerativeSearchAnswer';
+import {GenerativeSearchAnswer, GenerativeSearchProps} from '../GenerativeSearchAnswer';
 import {Paginator, PaginatorProps} from '../Paginator';
 import {ISearchItem, SearchItem, SearchOnClickProps} from '../SearchItem';
 
@@ -33,13 +33,6 @@ interface SearchPageProps extends Loading {
     page: number;
     isMobile?: boolean;
     loading?: boolean;
-}
-
-interface GenerativeSearchProps {
-    generativeSearchData: IGenerativeSearch;
-    generativeSearchLoading: boolean;
-    generativeSearchError: boolean;
-    generativeSearchNoData: boolean;
 }
 
 type RenderFoundProps = SearchPageProps & SearchOnClickProps & PaginatorProps;
@@ -164,6 +157,10 @@ const SearchPage = ({
     generativeSearchData,
     generativeSearchLoading,
     generativeSearchError,
+    generativeExpandOnClick,
+    generativeSourceOnClick,
+    generativeIrrelevantOnClick,
+    generativeRelevantOnClick,
 }: SearchPageInnerProps) => {
     const inputRef = useRef(null);
     const [currentQuery, setCurrentQuery] = useState(query);
@@ -186,6 +183,10 @@ const SearchPage = ({
                         generativeSearchData,
                         generativeSearchLoading,
                         generativeSearchError,
+                        generativeExpandOnClick,
+                        generativeSourceOnClick,
+                        generativeIrrelevantOnClick,
+                        generativeRelevantOnClick,
                     }}
                 />
             </div>

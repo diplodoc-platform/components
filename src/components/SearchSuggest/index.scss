@@ -151,9 +151,12 @@
     }
 
     &__generative-search {
-        background-color: #f1f4f9;
+        @include link();
+        text-decoration: none;
+
         padding: 20px;
         border: 1px solid transparent;
+        border-bottom: 1px solid var(--g-color-line-generic);
 
         display: flex;
         align-items: flex-start;
@@ -166,7 +169,6 @@
 
         &:active {
             border: 1px solid rgba(88, 86, 214, 1);
-            background-color: rgba(243, 238, 249, 1);
         }
     }
 
@@ -175,12 +177,15 @@
         vertical-align: top;
 
         > h1 {
+            color: var(--g-color-text-link);
             font-size: 18px;
             font-weight: 700;
             line-height: 22px;
             margin: 0;
         }
         > p {
+            color: var(--g-color-text-secondary);
+
             font-size: 12px;
             font-weight: 400;
             line-height: 16px;

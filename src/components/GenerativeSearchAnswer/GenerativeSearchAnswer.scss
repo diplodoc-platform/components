@@ -72,7 +72,7 @@
             color: var(--g-color-text-primary);
             font-size: 18px;
             font-weight: 700;
-            line-height: 22px;
+            line-height: 16px;
             margin: 0;
         }
         > p {
@@ -92,6 +92,7 @@
         display: inline-flex;
         column-gap: 2px;
         align-items: center;
+        vertical-align: middle;
     }
 
     &__content {
@@ -106,13 +107,15 @@
         a {
             text-decoration: none;
             background-color: rgba(239, 242, 249, 1);
+            color: rgba(167, 169, 174, 1);
+
             border-radius: 4px;
             width: 18px;
             height: 18px;
+
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            color: rgba(167, 169, 174, 1);
         }
 
         a + a {
@@ -126,9 +129,9 @@
         }
 
         p {
-            font-size: 12px;
+            font-size: 14px;
             font-weight: 500;
-            line-height: 16px;
+            line-height: 22px;
         }
     }
 
@@ -255,11 +258,6 @@
 
     &__rating-button {
         border: 1px solid rgba(181, 181, 181, 1);
-        background-color: transparent;
-
-        &:hover {
-            background-color: var(--g-color-base-background);
-        }
 
         &:active {
             border-color: rgba(95, 94, 94, 1);
@@ -274,7 +272,7 @@
         left: 0;
         width: 100%;
         height: 93px;
-        z-index: 10;
+        z-index: 1;
         background: linear-gradient(
             0deg,
             var(--g-color-base-background) -0.93%,
@@ -287,6 +285,7 @@
         position: absolute;
         bottom: 19px;
         border: 1px solid transparent;
+        z-index: 1;
 
         &:hover {
             border-color: rgba(174, 174, 178, 1);

@@ -1,7 +1,7 @@
 import type {ReactNode} from 'react';
 import React, {forwardRef, memo, useEffect} from 'react';
 
-import {List, ListItemData, Loader} from '@gravity-ui/uikit';
+import {Link, List, ListItemData, Loader} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 import pick from 'lodash/pick';
 
@@ -24,18 +24,18 @@ const SuggestGenerative: React.FC<SuggestGenerativeProps> = ({link, generativeSu
     const {t} = useTranslation('search-suggest');
 
     return (
-        <a
+        <Link
             href={link}
             onClick={() => (generativeSuggestOnClick ? generativeSuggestOnClick(link) : undefined)}
         >
             <div className={b('generative-search')}>
-                <YandexGPTLogo />
+                <YandexGPTLogo width={16} height={16} fill={'var(--g-color-text-secondary)'} />
                 <div className={b('generative-search-text')}>
                     <h1>{t<string>('search-suggest-generative_title')}</h1>
                     <p>{t<string>('search-suggest-generative_subtitle')}</p>
                 </div>
             </div>
-        </a>
+        </Link>
     );
 };
 
@@ -133,7 +133,6 @@ export const Suggest = memo(
         const queryLink = provider.link(`/search?query=${query}`);
 
         if (Array.isArray(items) && !items.length) {
-            // <><SuggestGenerative /><SuggestEmpty query={query} /></>
             return (
                 <>
                     <SuggestGenerative link={queryLink} {...generativeSuggestOnClick} />

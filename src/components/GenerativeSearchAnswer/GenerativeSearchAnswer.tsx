@@ -1,4 +1,4 @@
-import React, {ReactNode, useState} from 'react';
+import React, {ReactNode, useEffect, useState} from 'react';
 
 import {ChevronDown, ChevronLeft, ChevronRight, ThumbsDown, ThumbsUp} from '@gravity-ui/icons';
 import {Button, Icon, useTheme} from '@gravity-ui/uikit';
@@ -140,7 +140,7 @@ const GenerativSearchHeader = () => {
             <p className={b('yandexgpt-mention')}>
                 {t<string>('generative-search_header_text')}
                 <span className={b('yandexgpt-logo')}>
-                    <YandexGPTLogo fill={'var(--g-color-base-fill-color'} />
+                    <YandexGPTLogo fill={'var(--g-color-base-fill-color)'} />
                     YandexGPT
                 </span>
             </p>
@@ -228,6 +228,11 @@ const GenerativeSearchAnswer: React.FC<GenerativeSearchProps> = ({
     const [isExpanded, setIsExpanded] = useState(false);
     const theme = useTheme();
 
+    useEffect(() => {
+        setIsSubmitted(false);
+        setIsExpanded(false);
+    }, [generativeSearchData]);
+
     const {t} = useTranslation('generative-search');
 
     const handleRatingClick = () => {
@@ -267,7 +272,11 @@ const GenerativeSearchAnswer: React.FC<GenerativeSearchProps> = ({
                 <div className={b('content', {theme: theme})} onClick={handleSourceInTextClick}>
                     <HTML>{content}</HTML>
                 </div>
-                <GenerativeSearchSource {...{links, titles, generativeSourceOnClick}} />
+
+                {Boolean(links.length) && (
+                    <GenerativeSearchSource {...{links, titles, generativeSourceOnClick}} />
+                )}
+
                 <div className={b('rating-container')}>
                     {isSubmitted ? (
                         <p>{t<string>('generative-search_feedback_answer')}</p>

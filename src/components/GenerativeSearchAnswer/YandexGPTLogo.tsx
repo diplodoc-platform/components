@@ -10,7 +10,7 @@ interface IYandexGPTLogo {
 export const YandexGPTLogo: React.FC<IYandexGPTLogo> = ({
     className,
     width = '10',
-    height = '11',
+    height = '10',
     fill = 'black',
 }) => {
     return (

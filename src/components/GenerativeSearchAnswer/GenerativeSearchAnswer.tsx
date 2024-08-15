@@ -96,6 +96,8 @@ const GenerativeSearchSource: React.FC<GenerativeSearchSourceProps> = ({
                                         : undefined
                                 }
                                 href={link}
+                                target="_blank"
+                                rel="noopener noreferrer"
                             >
                                 {simplifyUrl(link)}
                             </a>

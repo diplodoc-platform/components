@@ -1,7 +1,7 @@
 import React, {ReactNode, useState} from 'react';
 
 import {ChevronDown, ChevronLeft, ChevronRight, ThumbsDown, ThumbsUp} from '@gravity-ui/icons';
-import {Button, Icon} from '@gravity-ui/uikit';
+import {Button, Icon, useTheme} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 
 import {useTranslation} from '../../hooks';
@@ -140,7 +140,7 @@ const GenerativSearchHeader = () => {
             <p className={b('yandexgpt-mention')}>
                 {t<string>('generative-search_header_text')}
                 <span className={b('yandexgpt-logo')}>
-                    <YandexGPTLogo />
+                    <YandexGPTLogo fill={'var(--g-color-base-fill-color'} />
                     YandexGPT
                 </span>
             </p>
@@ -157,12 +157,15 @@ const GenerativeSearchWrapperBlock: React.FC<IGenerativeSearchWrapper> = ({
     children,
     isExpanded,
 }) => {
+    const theme = useTheme();
+
     return (
         <>
             <div className={b('container', {expanded: !isExpanded})}>
                 <div className={b('gradient-background')}></div>
                 <GenerativSearchHeader />
                 {children}
+                {theme === 'dark' && <div className={b('gradient-background-second')}></div>}
             </div>
         </>
     );
@@ -222,7 +225,8 @@ const GenerativeSearchAnswer: React.FC<GenerativeSearchProps> = ({
     generativeRelevantOnClick,
 }) => {
     const [isSubmitted, setIsSubmitted] = useState(false);
-    const [isExpanded, setIsExpanded] = useState(true);
+    const [isExpanded, setIsExpanded] = useState(false);
+    const theme = useTheme();
 
     const {t} = useTranslation('generative-search');
 
@@ -260,7 +264,7 @@ const GenerativeSearchAnswer: React.FC<GenerativeSearchProps> = ({
     return (
         <div>
             <GenerativeSearchWrapperBlock isExpanded={isExpanded}>
-                <div className={b('content')} onClick={handleSourceInTextClick}>
+                <div className={b('content', {theme: theme})} onClick={handleSourceInTextClick}>
                     <HTML>{content}</HTML>
                 </div>
                 <GenerativeSearchSource {...{links, titles, generativeSourceOnClick}} />

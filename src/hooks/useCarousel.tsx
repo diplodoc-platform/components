@@ -3,7 +3,7 @@ import {useEffect, useRef, useState} from 'react';
 export const useCarousel = () => {
     const containerRef = useRef<HTMLDivElement>(null);
     const [showPrevButton, setShowPrevButton] = useState<boolean>(false);
-    const [showNextButton, setShowNextButton] = useState<boolean>(true);
+    const [showNextButton, setShowNextButton] = useState<boolean>(false);
 
     const updateButtonsVisibility = () => {
         if (containerRef.current) {

@@ -120,8 +120,6 @@
     "generative-search_loading_title": "Быстрый ответ...",
     "generative-search_feedback_answer": "Спасибо, что помогаете делать технологию лучше",
     "generative-search_something_went_wrong": "Что-то пошло не так. Попробуйте ещё раз или обновите страницу.",
-    "generative-search_not_found_title": "Не удалось найти информацию",
-    "generative-search_not_found_text": "Сформулируйте запрос иначе или спросите что-нибудь ещё.",
     "generative-search_header_title": "Быстрый ответ",
     "generative-search_header_text": "Создан с помощью нейросети",
     "generative-search_disclaimer": "Ответ сформирован нейросетью YandexGPT на основе документации сервиса. В нём могут быть неточности, проверить информацию можно поссылкам на источники."

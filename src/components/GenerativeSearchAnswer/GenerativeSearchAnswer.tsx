@@ -173,19 +173,6 @@ const GenerativeSearchWrapperBlock: React.FC<IGenerativeSearchWrapper> = ({
     );
 };
 
-const GenerativeSearchWithoutContentBlock = () => {
-    const {t} = useTranslation('generative-search');
-
-    return (
-        <GenerativeSearchWrapperBlock>
-            <div className={b('content')}>
-                <h4>{t<string>('generative-search_not_found_title')}</h4>
-                <p>{t<string>('generative-search_not_found_text')}</p>
-            </div>
-        </GenerativeSearchWrapperBlock>
-    );
-};
-
 const GenerativeSearchErrorBlock = () => {
     const {t} = useTranslation('generative-search');
 
@@ -264,10 +251,6 @@ const GenerativeSearchAnswer: React.FC<GenerativeSearchProps> = ({
 
     const {content} = message;
 
-    if (content.startsWith('Не удалось найти информацию')) {
-        return <GenerativeSearchWithoutContentBlock />;
-    }
-
     return (
         <div>
             <GenerativeSearchWrapperBlock isExpanded={isExpanded}>
@@ -315,7 +298,7 @@ const GenerativeSearchAnswer: React.FC<GenerativeSearchProps> = ({
                         </>
                     )}
                 </div>
-                {!isExpanded && (
+                {!isExpanded && Boolean(links.length) && (
                     <div className={b('expanded-bottom')}>
                         <Button
                             view="normal-contrast"

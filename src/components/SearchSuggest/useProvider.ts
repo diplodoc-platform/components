@@ -1,11 +1,11 @@
-import {useCallback, useMemo, useRef, useState} from 'react';
-
-import debounce from 'lodash/debounce';
 import type {TFunction} from 'react-i18next';
+import type {SearchGroup, SearchProvider, SearchResult, SearchSuggestItem} from './types';
+
+import {useCallback, useMemo, useRef, useState} from 'react';
+import debounce from 'lodash/debounce';
 
 import {useTranslation} from '../../hooks';
 
-import type {SearchGroup, SearchProvider, SearchResult, SearchSuggestItem} from './types';
 import {SuggestItemType} from './types';
 
 type Link = (query: string) => string;
@@ -76,17 +76,20 @@ export function useProvider(provider: SearchProvider): [Items, Request] {
 
 function format(query: string, items: SearchResult[], link: Link, t: TFunction) {
     const groups = Object.values(
-        items.reduce((result, item) => {
-            result[item.type] = result[item.type] || {type: item.type, items: []};
-            result[item.type].items.push({
-                type: SuggestItemType.Page,
-                title: item.title,
-                link: link(item.link),
-                description: item.description,
-                breadcrumbs: item.breadcrumbs,
-            });
-            return result;
-        }, {} as Record<string, SearchGroup>),
+        items.reduce(
+            (result, item) => {
+                result[item.type] = result[item.type] || {type: item.type, items: []};
+                result[item.type].items.push({
+                    type: SuggestItemType.Page,
+                    title: item.title,
+                    link: link(item.link),
+                    description: item.description,
+                    breadcrumbs: item.breadcrumbs,
+                });
+                return result;
+            },
+            {} as Record<string, SearchGroup>,
+        ),
     );
 
     const result =

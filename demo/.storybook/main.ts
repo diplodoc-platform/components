@@ -1,7 +1,9 @@
-import {dirname} from 'path';
+import type {StorybookConfig} from '@storybook/react-webpack5';
 
-/** @type { import('@storybook/react-webpack5').StorybookConfig } */
-const config = {
+import {dirname} from 'node:path';
+import sass from 'sass';
+
+const config: StorybookConfig = {
     stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
     addons: [
         '@storybook/addon-links',
@@ -10,7 +12,7 @@ const config = {
             name: '@storybook/addon-styling',
             options: {
                 sass: {
-                    implementation: require('sass'),
+                    implementation: sass,
                 },
             },
         },
@@ -31,6 +33,8 @@ const config = {
             react: dirname(require.resolve('react')),
             'react-dom': dirname(require.resolve('react-dom')),
         };
+        config.module = config.module || {};
+        config.module.rules = config.module.rules || [];
         config.module.rules.push({
             test: /\.svg$/,
             type: 'javascript/auto',

@@ -1,4 +1,6 @@
 import type {ReactNode} from 'react';
+import type {SearchProvider, SearchSuggestItem} from './types';
+
 import React, {forwardRef, memo, useEffect} from 'react';
 
 import {Link, List, ListItemData, Loader} from '@gravity-ui/uikit';
@@ -8,9 +10,7 @@ import pick from 'lodash/pick';
 import {useTranslation} from '../../hooks';
 import {YandexGPTLogo} from '../GenerativeSearchAnswer/YandexGPTLogo';
 
-import type {SearchProvider, SearchSuggestItem} from './types';
 import {useProvider} from './useProvider';
-
 import './index.scss';
 
 const b = block('dc-search-suggest');

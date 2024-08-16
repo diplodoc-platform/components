@@ -1,10 +1,10 @@
-import React, {forwardRef, memo, useContext} from 'react';
+import type {PopperPosition} from '../../../hooks';
 
+import React, {forwardRef, memo, useContext} from 'react';
 import {ThumbsUp, ThumbsUpFill} from '@gravity-ui/icons';
 import {Button} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 
-import type {PopperPosition} from '../../../hooks';
 import {useTranslation} from '../../../hooks';
 import {Control} from '../../Control';
 import {ControlsLayoutContext} from '../../Controls/ControlsLayout';

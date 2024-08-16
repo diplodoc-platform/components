@@ -1,5 +1,4 @@
 import {parse} from 'url';
-
 import {ThemeContextProps} from '@gravity-ui/uikit';
 
 import {DocContentPage} from '../components/DocContentPage';

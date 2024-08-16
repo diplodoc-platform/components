@@ -50,14 +50,6 @@
   "scripts": {
     "deps:install": "npm ci",
     "deps:truncate": "npm prune --production",
-    "lint": "run-p _lint:js _lint:styles _lint:prettier",
-    "lint:fix": "run-s _lint:js:fix _lint:styles:fix _lint:prettier:fix",
-    "_lint:js": "eslint '**/*.{js,jsx,ts,tsx}'",
-    "_lint:js:fix": "npm run _lint:js -- --fix",
-    "_lint:prettier": "prettier --check 'src/**/*.{js,jsx,ts,tsx}'",
-    "_lint:prettier:fix": "prettier --write 'src/**/*.{js,jsx,ts,tsx}'",
-    "_lint:styles": "stylelint src/**/*.scss",
-    "_lint:styles:fix": "npm run _lint:styles -- --fix",
     "typecheck": "tsc -p . --noEmit",
     "test": "exit 0",
     "dev": "run-s build _dev:watch",
@@ -70,8 +62,10 @@
     "_build:watch": "./esbuild/build.js --watch",
     "_storybook:watch": "cd demo && npm run storybook",
     "prepublishOnly": "npm run lint && npm run test && npm run build",
-    "prepare": "husky install",
-    "pre-commit": "lint-staged"
+    "lint": "lint update && lint",
+    "lint:fix": "lint update && lint fix",
+    "pre-commit": "lint update && lint-staged",
+    "prepare": "husky || true"
   },
   "dependencies": {
     "@gravity-ui/components": "^3.6.0",
@@ -96,10 +90,8 @@
     "react-dom": ">=16.8.0 || >=17.0.0 || >=18.0.0"
   },
   "devDependencies": {
-    "@gravity-ui/eslint-config": "^2.2.0",
-    "@gravity-ui/prettier-config": "^1.0.1",
-    "@gravity-ui/stylelint-config": "^3.0.0",
-    "@gravity-ui/tsconfig": "^1.0.0",
+    "@diplodoc/lint": "^1.1.1",
+    "@diplodoc/tsconfig": "^1.0.2",
     "@types/langs": "^2.0.1",
     "@types/lodash": "4.14.179",
     "@types/markdown-it": "^14.1.2",
@@ -109,51 +101,24 @@
     "autoprefixer": "^10.4.15",
     "esbuild": "^0.19.2",
     "esbuild-sass-plugin": "^2.13.0",
-    "eslint": "^8.48.0",
-    "husky": "^8.0.3",
-    "lint-staged": "^12.5.0",
     "npm-run-all": "^4.1.5",
     "postcss": "^8.4.28",
     "postcss-preset-env": "^9.1.2",
-    "prettier": "^2.8.8",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sass": "^1.66.1",
-    "stylelint": "^15.10.3",
-    "svgo": "2.8.0",
     "typescript": "^5.2.2"
-  },
-  "overrides": {
-    "react-sortable-hoc": {
-      "react": "^18.2.0",
-      "react-dom": "^18.2.0"
-    }
-  },
-  "lint-staged": {
-    "**/*.{js,jsx,ts,tsx}": [
-      "prettier --write",
-      "eslint --max-warnings=0 --fix"
-    ],
-    "**/*.{css,scss}": [
-      "prettier --write",
-      "stylelint --fix"
-    ],
-    "**/*.{json,yaml,yml,md}": [
-      "prettier --write"
-    ],
-    "*.svg": [
-      "npm run svgo"
-    ]
   },
   "keywords": [
     "markdown",
-    "yandex",
     "docs",
     "yfm",
+    "md",
     "documentation",
     "tool",
     "tools",
-    "components"
+    "components",
+    "diplodoc"
   ]
 }

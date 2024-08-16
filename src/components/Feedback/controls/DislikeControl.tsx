@@ -1,5 +1,4 @@
 import React, {forwardRef, memo, useContext} from 'react';
-
 import {ThumbsDown, ThumbsDownFill} from '@gravity-ui/icons';
 import {Button} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';

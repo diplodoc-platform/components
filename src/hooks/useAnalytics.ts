@@ -1,10 +1,7 @@
-'use client';
+import type {Router} from '../models';
 
 import React from 'react';
-
 import TagManager from 'react-gtm-module';
-
-import type {Router} from '../models';
 
 type GtagEventFunction = (
     data: {

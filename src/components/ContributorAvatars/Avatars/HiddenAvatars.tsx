@@ -1,5 +1,4 @@
 import React, {BaseSyntheticEvent, Fragment, useRef, useState} from 'react';
-
 import block from 'bem-cn-lite';
 
 import {Contributor} from '../../../models';
@@ -7,6 +6,7 @@ import {AvatarSizes, PopupData} from '../models';
 
 import Details from './Details';
 
+// eslint-disable-next-line import/order
 import '../ContributorAvatars.scss';
 
 const b = block('dc-contributor-avatars');

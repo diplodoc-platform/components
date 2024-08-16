@@ -1,4 +1,11 @@
 import type {KeyboardEvent} from 'react';
+import type {
+    SearchProvider,
+    SearchResult,
+    SearchSuggestItem,
+    SearchSuggestLinkableItem,
+} from './types';
+
 import React, {
     forwardRef,
     useCallback,
@@ -7,7 +14,6 @@ import React, {
     useRef,
     useState,
 } from 'react';
-
 import {List, Popup} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 import uniqueId from 'lodash/uniqueId';
@@ -17,14 +23,7 @@ import {useVirtualElementRef} from '../../hooks';
 import {SearchInput} from './SearchInput';
 import {Suggest} from './Suggest';
 import {SuggestItem} from './SuggestItem';
-import type {
-    SearchProvider,
-    SearchResult,
-    SearchSuggestItem,
-    SearchSuggestLinkableItem,
-} from './types';
 import {useFocus} from './useFocus';
-
 import './index.scss';
 
 const b = block('dc-search-suggest');

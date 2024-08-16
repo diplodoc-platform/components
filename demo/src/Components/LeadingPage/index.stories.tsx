@@ -1,5 +1,4 @@
 import React, {useEffect} from 'react';
-
 import {DocLeadingPage, DocLeadingPageData, Theme} from '@diplodoc/components';
 import cn from 'bem-cn-lite';
 
@@ -9,7 +8,12 @@ import pageContent from './page.json';
 
 const layoutBlock = cn('Layout');
 
-const DocLeadingPageDemo = (args) => {
+type Args = {
+    Mobile: string;
+    Theme: Theme;
+};
+
+const DocLeadingPageDemo = (args: Args) => {
     const isMobile = args['Mobile'];
     const theme = args['Theme'];
     const router = {pathname: '/docs/compute'};

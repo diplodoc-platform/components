@@ -1,5 +1,4 @@
 import React, {ReactPortal} from 'react';
-
 import {Link, Xmark} from '@gravity-ui/icons';
 import {Button, Icon} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
@@ -233,7 +232,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                 .filter(({type}) => type === 'childList')
                 .forEach((mutation) => {
                     const yfmRoot = mutation.target as HTMLElement;
-                    const yfmImages = [...yfmRoot.querySelectorAll('img')];
+                    const yfmImages = Array.from(yfmRoot.querySelectorAll('img'));
 
                     yfmImages.forEach((img) => {
                         img.addEventListener('load', onContentLoaded, false);
@@ -324,7 +323,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
 
         for (const header of headers) {
             /* Hide anchors */
-            const anchors = header.querySelectorAll('.yfm-anchor');
+            const anchors = Array.from(header.querySelectorAll('.yfm-anchor'));
             for (const anchor of anchors) {
                 if (!anchor.classList.contains('yfm-original-link')) {
                     anchor.classList.add('yfm-anchor_hidden');

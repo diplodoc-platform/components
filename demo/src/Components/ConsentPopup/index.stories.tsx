@@ -1,5 +1,4 @@
 import React from 'react';
-
 import {ConsentPopup as Component} from '@diplodoc/components';
 import {Button, TextInput} from '@gravity-ui/uikit';
 

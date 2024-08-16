@@ -1,6 +1,6 @@
 import type {KeyboardEvent} from 'react';
-import React, {forwardRef, memo} from 'react';
 
+import React, {forwardRef, memo} from 'react';
 import {TextInput, TextInputSize} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 

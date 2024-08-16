@@ -22,8 +22,12 @@ jobs:
           cache: 'npm'
       - name: Install Packages
         run: npm ci
+      - name: Install Demo Packages
+        run: cd demo && npm i
       - name: Lint Files
         run: npm run lint
+      - name: Build Files
+        run: npm run build
       - name: Tests
         run: npm run test
       - name: Typecheck

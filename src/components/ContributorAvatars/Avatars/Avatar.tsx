@@ -1,11 +1,9 @@
 import React, {BaseSyntheticEvent} from 'react';
-
 import block from 'bem-cn-lite';
 
 import {Contributor} from '../../../models';
 import {AvatarData, AvatarSizes, PopupData} from '../models';
 import {getUserIdentificator} from '../utils';
-
 import '../ContributorAvatars.scss';
 
 const b = block('dc-contributor-avatars');

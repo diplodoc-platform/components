@@ -1,5 +1,4 @@
 import React from 'react';
-
 import {ConsentManager, ConsentMode, CookieConsent} from '@gravity-ui/components';
 
 import {AnalyticsParams, useAnalytics} from '../../hooks';

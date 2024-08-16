@@ -11,6 +11,8 @@ const log = (...message: any[]) => console.log(...message);
 
 type Args = {
     Mobile: string;
+    GenerativeSearchLoading: boolean;
+    GenerativeSearchError: boolean;
 };
 
 const SearchPageDemo = (args: Args) => {

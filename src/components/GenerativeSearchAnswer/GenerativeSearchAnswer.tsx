@@ -1,5 +1,4 @@
 import React, {ReactNode, useEffect, useState} from 'react';
-
 import {ChevronDown, ChevronLeft, ChevronRight, ThumbsDown, ThumbsUp} from '@gravity-ui/icons';
 import {Button, Icon, useTheme} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
@@ -10,7 +9,6 @@ import {simplifyUrl} from '../../utils';
 import {HTML} from '../HTML';
 
 import {YandexGPTLogo} from './YandexGPTLogo';
-
 import './GenerativeSearchAnswer.scss';
 
 const b = block('generative-search-answer');

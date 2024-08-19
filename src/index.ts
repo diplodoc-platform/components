@@ -17,6 +17,7 @@ export * from './components/TocNavPanel';
 export * from './components/Feedback';
 export * from './components/Control';
 export * from './components/Controls';
+export * from './components/MobileControls';
 export * from './components/BookmarkButton';
 export * from './components/SearchBar';
 export * from './components/ErrorPage';

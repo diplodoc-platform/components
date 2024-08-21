@@ -30,6 +30,7 @@ import {MiniToc} from '../MiniToc';
 import {SearchBar, withHighlightedSearchWords} from '../SearchBar';
 import {TocNavPanel} from '../TocNavPanel';
 import UpdatedAtDate from '../UpdatedAtDate/UpdatedAtDate';
+import {ContentWrapper} from "../ContentWrapper";
 
 import './DocPage.scss';
 
@@ -80,6 +81,7 @@ export interface DocPageProps extends DocPageData, DocSettings {
         type?: string;
     };
     notificationCb?: () => void;
+    useMainTag?: boolean;
 }
 
 type DocPageInnerProps = InnerProps<DocPageProps, DocSettings>;
@@ -147,6 +149,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             footer,
             onChangeSinglePage,
             pdfLink,
+            useMainTag,
         } = this.props;
 
         const hideMiniToc = !this.showMiniToc;
@@ -181,13 +184,13 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                     {this.renderBreadcrumbs()}
                     {this.renderControls()}
                     <div className={b('main')}>
-                        <main className={b('content')}>
+                        <ContentWrapper className={b('content')} useMainTag={useMainTag}>
                             {this.renderTitle()}
                             {this.renderPageContributors()}
                             {hideMiniToc ? null : this.renderContentMiniToc()}
                             {this.renderBody()}
                             {this.renderFeedback()}
-                        </main>
+                        </ContentWrapper>
                         {this.renderTocNavPanel()}
                     </div>
                     {this.renderLoader()}

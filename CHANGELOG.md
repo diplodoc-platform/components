@@ -1,5 +1,13 @@
 # История изменений
 
+## [4.11.1](https://github.com/diplodoc-platform/components/compare/v4.11.0...v4.11.1) (2024-08-21)
+
+
+### Bug Fixes
+
+* toc links aria-expanded ([#280](https://github.com/diplodoc-platform/components/issues/280)) ([e1503d9](https://github.com/diplodoc-platform/components/commit/e1503d9a5e2604ad2af542d23ef182b84a34e1a9))
+* wrap component in ContentWrapper to avoid double main tag & show mini toc description ([#278](https://github.com/diplodoc-platform/components/issues/278)) ([ba90684](https://github.com/diplodoc-platform/components/commit/ba906849732658920e4c63937eda0f204ea07992))
+
 ## [4.11.0](https://github.com/diplodoc-platform/components/compare/v4.10.0...v4.11.0) (2024-08-12)
 
 

@@ -3,6 +3,7 @@ import block from 'bem-cn-lite';
 
 import {DEFAULT_SETTINGS} from '../../constants';
 import {DocLeadingLinks, DocLeadingPageData, Router} from '../../models';
+import {ContentWrapper} from '../ContentWrapper';
 import {DocLayout} from '../DocLayout';
 import {DocPageTitle} from '../DocPageTitle';
 import {HTML} from '../HTML';
@@ -21,6 +22,7 @@ export interface DocLeadingPageProps extends DocLeadingPageData {
     hideTocHeader?: boolean;
     hideToc?: boolean;
     tocTitleIcon?: React.ReactNode;
+    useMainTag?: boolean;
 }
 
 export interface DocLinkProps {
@@ -110,6 +112,7 @@ export const DocLeadingPage: React.FC<DocLeadingPageProps> = ({
     hideToc,
     tocTitleIcon,
     footer,
+    useMainTag,
 }) => {
     const modes = {
         'regular-page-width': !wideFormat,
@@ -128,7 +131,7 @@ export const DocLeadingPage: React.FC<DocLeadingPageProps> = ({
         >
             <span />
             <DocLayout.Center>
-                <main className={b('main')}>
+                <ContentWrapper className={b('main')} useMainTag={useMainTag}>
                     <DocPageTitle stage={toc.stage} className={b('title')}>
                         <HTML>{title}</HTML>
                     </DocPageTitle>
@@ -136,7 +139,7 @@ export const DocLeadingPage: React.FC<DocLeadingPageProps> = ({
                         <Text data={description} html block />
                     </div>
                     <Links links={links} isRoot />
-                </main>
+                </ContentWrapper>
             </DocLayout.Center>
         </DocLayout>
     );

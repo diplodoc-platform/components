@@ -99,7 +99,9 @@ const SettingsControl = (props: ControlProps) => {
             onChangeShowMiniToc
                 ? {
                       text: t('label_show_mini_toc'),
-                      description: t('description_show_mini_toc'),
+                      description: t(
+                        `description_show_mini_toc_${showMiniToc ? 'enabled' : 'disabled'}`, t(`description_show_mini_toc`),
+                      ),
                       control: (
                           <Switch
                               disabled={showMiniTocDisabled}

@@ -51,9 +51,8 @@ export const TocItem: React.FC<TocItemProps> = React.forwardRef(
                     labeled,
                 }),
                 onClick: expandable && !href ? handleClick : undefined,
-                'aria-expanded': expandable ? expanded : undefined,
+                'aria-expanded': expandable && !href ? expanded : undefined,
                 'aria-label': expandable ? t('drop-down-list') + ' ' + name : undefined,
-                tabIndex: expandable ? 0 : -1,
             },
             icon,
             text,
@@ -68,6 +67,7 @@ export const TocItem: React.FC<TocItemProps> = React.forwardRef(
             href,
             target: isExternal ? '_blank' : '_self',
             rel: isExternal ? 'noopener noreferrer' : undefined,
+            'aria-expanded': expandable ? expanded : undefined,
         };
 
         return (

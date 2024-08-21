@@ -20,6 +20,7 @@ import {
 import {InnerProps, callSafe, getRandomKey, getStateKey, isContributor} from '../../utils';
 import {BookmarkButton} from '../BookmarkButton';
 import {Breadcrumbs} from '../Breadcrumbs';
+import {ContentWrapper} from '../ContentWrapper';
 import Contributors from '../Contributors/Contributors';
 import {Controls, ControlsLayout, EditControl} from '../Controls';
 import {DocLayout} from '../DocLayout';
@@ -30,7 +31,6 @@ import {MiniToc} from '../MiniToc';
 import {SearchBar, withHighlightedSearchWords} from '../SearchBar';
 import {TocNavPanel} from '../TocNavPanel';
 import UpdatedAtDate from '../UpdatedAtDate/UpdatedAtDate';
-import {ContentWrapper} from "../ContentWrapper";
 
 import './DocPage.scss';
 

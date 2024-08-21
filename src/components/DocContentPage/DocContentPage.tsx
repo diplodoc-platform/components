@@ -2,10 +2,10 @@ import React from 'react';
 
 import block from 'bem-cn-lite';
 
-import {DocLayout} from '../DocLayout';
-import {ContentWrapper} from "../ContentWrapper";
 import {DEFAULT_SETTINGS} from '../../constants';
 import {DocContentPageData, Router} from '../../models';
+import {ContentWrapper} from '../ContentWrapper';
+import {DocLayout} from '../DocLayout';
 
 const b = block('dc-doc-page');
 
@@ -54,7 +54,9 @@ export const DocContentPage: React.FC<DocContentPageProps> = ({
         >
             <DocLayout.Center>
                 <div className={b('main')}>
-                    <ContentWrapper className={b('content')} useMainTag={useMainTag}>{children}</ContentWrapper>
+                    <ContentWrapper className={b('content')} useMainTag={useMainTag}>
+                        {children}
+                    </ContentWrapper>
                 </div>
             </DocLayout.Center>
         </DocLayout>

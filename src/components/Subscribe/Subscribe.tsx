@@ -27,12 +27,11 @@ export interface SubscribeProps {
 type SubscribeControlProps = {
     view: SubscribeView;
     onChangeSubscribe: () => void;
-    isPopupVisible: boolean;
 };
 
 const SubscribeControl = memo(
     forwardRef<HTMLButtonElement, SubscribeControlProps>(
-        ({view, onChangeSubscribe, isPopupVisible}, ref) => {
+        ({view, onChangeSubscribe}, ref) => {
             const {isVerticalView, popupPosition, controlClassName, controlSize} =
                 useContext(ControlsLayoutContext);
             const {t} = useTranslation('controls');
@@ -63,9 +62,6 @@ const SubscribeControl = memo(
                     tooltipText={t(`subscribe-text`)}
                     icon={Envelope}
                     popupPosition={popupPosition}
-                    buttonExtraProps={{
-                        'aria-expanded': isPopupVisible,
-                    }}
                 />
             );
         },
@@ -113,8 +109,6 @@ const Subscribe = memo<SubscribeProps>((props) => {
         successPopup.open();
     }, [successPopup, variantsPopup]);
 
-    const isPopupVisible = successPopup.visible || variantsPopup.visible;
-
     return (
         <React.Fragment>
             <SubscribeControlsLayout view={view}>
@@ -122,7 +116,6 @@ const Subscribe = memo<SubscribeProps>((props) => {
                     ref={subscribeControlRef}
                     view={view}
                     onChangeSubscribe={onChangeSubscribe}
-                    isPopupVisible={isPopupVisible}
                 />
             </SubscribeControlsLayout>
             {successPopup.visible && subscribeControlRef.current && (

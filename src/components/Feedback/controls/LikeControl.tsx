@@ -13,7 +13,6 @@ import {FeedbackView} from '../Feedback';
 type LikeControlProps = {
     isVerticalView?: boolean | undefined;
     isLiked: boolean | undefined;
-    isPopupVisible: boolean;
     className?: string | undefined;
     view: FeedbackView | undefined;
     onClick: () => void;
@@ -24,7 +23,7 @@ const b = block('dc-feedback');
 
 const LikeControl = memo(
     forwardRef<HTMLButtonElement, LikeControlProps>(
-        ({isLiked, isPopupVisible, view, onClick}, ref) => {
+        ({isLiked, view, onClick}, ref) => {
             const {t} = useTranslation('feedback');
             const {isVerticalView, popupPosition, controlClassName} =
                 useContext(ControlsLayoutContext);
@@ -58,9 +57,6 @@ const LikeControl = memo(
                     ref={ref}
                     icon={Icon}
                     popupPosition={popupPosition}
-                    buttonExtraProps={{
-                        'aria-expanded': isPopupVisible,
-                    }}
                 />
             );
         },

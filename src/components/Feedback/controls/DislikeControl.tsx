@@ -11,7 +11,6 @@ import {FeedbackView} from '../Feedback';
 type DislikeControlProps = {
     isVerticalView?: boolean | undefined;
     isDisliked: boolean | undefined;
-    isPopupVisible: boolean;
     className?: string | undefined;
     view: FeedbackView | undefined;
     onClick: () => void;
@@ -21,7 +20,7 @@ const b = block('dc-feedback');
 
 const DislikeControl = memo(
     forwardRef<HTMLButtonElement, DislikeControlProps>(
-        ({isDisliked, isPopupVisible, view, onClick}, ref) => {
+        ({isDisliked, view, onClick}, ref) => {
             const {t} = useTranslation('feedback');
             const {isVerticalView, controlClassName} = useContext(ControlsLayoutContext);
             const tooltipText = isDisliked ? t('cancel-dislike-text') : t('dislike-text');
@@ -52,9 +51,6 @@ const DislikeControl = memo(
                     tooltipText={tooltipText}
                     ref={ref}
                     icon={Icon}
-                    buttonExtraProps={{
-                        'aria-expanded': isPopupVisible,
-                    }}
                 />
             );
         },

@@ -92,18 +92,19 @@ const SettingsControl = (props: ControlProps) => {
                       description: t(
                           `description_wide_format_${wideFormat ? 'enabled' : 'disabled'}`,
                       ),
-                      control: <Switch checked={wideFormat} onChange={_onChangeWideFormat} />,
+                      control: <Switch title={t('label_wide_format')} checked={wideFormat} onChange={_onChangeWideFormat} />,
                   }
                 : null,
             onChangeShowMiniToc
                 ? {
-                      text: t('label_show_mini_toc'),
+                    text: t('label_show_mini_toc'),
                       description: t(
                           `description_show_mini_toc_${showMiniToc ? 'enabled' : 'disabled'}`,
                           t(`description_show_mini_toc`),
                       ),
                       control: (
                           <Switch
+                              title={t('label_show_mini_toc')}
                               disabled={showMiniTocDisabled}
                               checked={showMiniToc}
                               onChange={_onChangeShowMiniToc}
@@ -113,17 +114,17 @@ const SettingsControl = (props: ControlProps) => {
                 : null,
             onChangeTheme
                 ? {
-                      text: t('label_dark_theme'),
+                    text: t('label_dark_theme'),
                       description:
                           Theme.Light === theme
                               ? t('description_disabled_dark_theme')
                               : t('description_enabled_dark_theme'),
-                      control: <Switch checked={theme === Theme.Dark} onChange={_onChangeTheme} />,
+                      control: <Switch title={t('label_dark_theme')} checked={theme === Theme.Dark} onChange={_onChangeTheme} />,
                   }
                 : null,
             onChangeTextSize
                 ? {
-                      text: t('label_text_size'),
+                    text: t('label_text_size'),
                       description: t(`description_${textSize}_text_size`),
                       control: (
                           <div className={b('text-size-control')}>
@@ -135,13 +136,14 @@ const SettingsControl = (props: ControlProps) => {
                                       })}
                                       view="flat"
                                       onClick={_onChangeTextSize(textSizeKey)}
+                                      title={`${t('label_text_size')} ${t(`description_${textSizeKey}_text_size`)}`}
                                   >
                                       <Button.Icon
                                           className={b('text-size-button-icon', {
                                               active: textSize === textSizeKey,
                                           })}
                                       >
-                                          A
+                                          <span aria-hidden={true}>A</span>
                                       </Button.Icon>
                                   </Button>
                               ))}
@@ -218,9 +220,6 @@ const SettingsControl = (props: ControlProps) => {
                 tooltipText={t('settings-text')}
                 popupPosition={popupPosition}
                 icon={Gear}
-                buttonExtraProps={{
-                    'aria-expanded': isVisiblePopup,
-                }}
                 isTooltipHidden={isVisiblePopup}
             />
         </Popover>

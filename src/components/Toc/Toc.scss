@@ -19,9 +19,11 @@ $leftOffset: 57px;
     overflow-y: hidden;
     border-right: 1px solid var(--g-color-line-generic);
 
-    .mobile & {
-        // border-top: 1px solid var(--g-color-line-generic);
+    @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
+        padding: 12px 16px 0px 16px;
+
         border-right: none;
+        overflow-y: auto;
     }
 
     &__empty {
@@ -35,6 +37,11 @@ $leftOffset: 57px;
         align-items: flex-start;
         padding: 10px 10px 8px 0;
         margin-bottom: 12px;
+
+        @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
+            padding: 10px 12px 10px 28px;
+            margin-bottom: 0;
+        }
 
         &_scrolled {
             border-bottom: 1px solid var(--g-color-line-generic);
@@ -55,7 +62,7 @@ $leftOffset: 57px;
             $headerClass: &;
             position: relative;
 
-            @include text-size(body-2);
+            @include text-size(body-3);
             font-weight: 500;
 
             &_link {
@@ -83,6 +90,12 @@ $leftOffset: 57px;
 
         &_scrolled {
             border-top: 1px solid var(--g-color-line-generic);
+
+            .mobile & {
+                @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
+                    border-top: 0;
+                }
+            }
         }
     }
 
@@ -94,12 +107,13 @@ $leftOffset: 57px;
         overflow-y: auto;
         scrollbar-width: thin;
 
-        &_offset_top {
-            padding-top: 24px;
+        @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
+            overflow-y: unset;
+        }
 
-            @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
-                padding-top: 0;
-                margin-top: 12px;
+        &_offset_top {
+            @media (min-width: map-get($screenBreakpoints, 'md')) {
+                padding-top: 24px;
             }
         }
     }

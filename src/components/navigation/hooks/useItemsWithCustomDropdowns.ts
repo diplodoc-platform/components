@@ -10,41 +10,28 @@ const useItemsWithCustomDropdowns = (
     const rightItemsWithCustomDropdowns: CustomNavigationItemModel[] = [];
 
     leftItems.forEach((item) => {
-        // leftItemsWithCustomDropdowns.push(item);
+        leftItemsWithCustomDropdowns.push(item);
 
-        if (item.type !== 'dropdown') {
-            leftItemsWithCustomDropdowns.push(item);
-            return;
-        }
+        if (item.type !== 'dropdown') return;
 
-        // const newDesktopItem = {type: ''};
         const newMobileItem: any = {};
-
-        // Object.assign(newDesktopItem, item);
         Object.assign(newMobileItem, item);
-
-        // newDesktopItem.type = 'DesktopDropdown';
         newMobileItem.type = 'MobileDropdown';
 
-        // leftItemsWithCustomDropdowns.push(newDesktopItem);
         leftItemsWithCustomDropdowns.push(newMobileItem);
     });
 
     if (rightItems) {
         rightItems.forEach((item) => {
-            // leftItemsWithCustomDropdowns.push(item);
+            rightItemsWithCustomDropdowns.push(item);
 
-            if (item.type !== 'dropdown') {
-                leftItemsWithCustomDropdowns.push(item);
-
-                return;
-            }
+            if (item.type !== 'dropdown') return;
 
             const newMobileItem: any = {};
             Object.assign(newMobileItem, item);
             newMobileItem.type = 'MobileDropdown';
 
-            leftItemsWithCustomDropdowns.push(newMobileItem);
+            rightItemsWithCustomDropdowns.push(newMobileItem);
         });
     }
 

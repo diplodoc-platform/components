@@ -1,4 +1,4 @@
-import {LabelProps} from '@gravity-ui/uikit/build/esm/components/Label/Label';
+import {LabelProps} from '@gravity-ui/uikit';
 
 import type {Loc} from '../config/i18n';
 
@@ -137,6 +137,7 @@ export interface BreadcrumbItem {
 }
 
 export interface Router {
+    hostname?: string;
     pathname: string;
     hash?: string;
 }

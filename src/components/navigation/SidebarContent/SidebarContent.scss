@@ -1,0 +1,52 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/mixins.scss';
+
+.dc-sidebar-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 0;
+
+    height: 100%;
+
+    // border-right: 1px solid var(--g-color-line-generic);
+    box-shadow: 0px 3px 10px var(--g-color-sfx-shadow);
+
+    &__controls-wrapper {
+        position: relative;
+        bottom: 0;
+        left: 0;
+
+        width: 100%;
+    }
+
+    &__toc,
+    &__main-menu,
+    &__main-menu ul {
+        @include reset-list-style();
+    }
+
+    &__toc,
+    &__main-menu {
+        flex: 1 0 0;
+    }
+
+    &__toc {
+        @include text-size(body-2);
+    }
+
+    &__main-menu {
+        @include text-size(body-3);
+    }
+
+    &__toc {
+        height: 0;
+
+        overflow: auto;
+    }
+
+    &__main-menu {
+        padding: 12px 16px 0px 16px;
+
+        font-weight: var(--g-text-accent-font-weight);
+    }
+}

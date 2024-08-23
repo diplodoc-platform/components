@@ -3,7 +3,7 @@ import React, {memo, useCallback} from 'react';
 import {ArrowLeft} from '@gravity-ui/icons';
 import block from 'bem-cn-lite';
 
-import {useTranslation} from '../../hooks';
+import {useTranslation} from '../../../hooks';
 
 import './ToMainMenu.scss';
 
@@ -11,11 +11,11 @@ const b = block('dc-to-main-menu');
 
 export interface ToMainMenuProps {
     mainMenuIsOpen?: boolean;
-    openMainMenu: () => {};
+    openMainMenu: () => void;
 }
 
-const ToMainMenu = memo(function ToMainMenu({mainMenuIsOpen, openMainMenu}: ToMainMenuProps) {
-    const {t} = useTranslation('subnavigation');
+const ToMainMenu: React.FC<ToMainMenuProps> = memo(({mainMenuIsOpen, openMainMenu}) => {
+    const {t} = useTranslation('mobile-menu');
 
     const openMainMenuHandler = useCallback(
         (event: React.MouseEvent) => {
@@ -31,9 +31,11 @@ const ToMainMenu = memo(function ToMainMenu({mainMenuIsOpen, openMainMenu}: ToMa
             <div className={b('icon')}>
                 <ArrowLeft width={20} height={20} />
             </div>
-            <span className={b('title')}>{t<string>('back_title')}</span>
+            <span className={b('title')}>{t<string>('label_to-main-menu')}</span>
         </button>
     );
 });
+
+ToMainMenu.displayName = 'ToMainMenu';
 
 export default ToMainMenu;

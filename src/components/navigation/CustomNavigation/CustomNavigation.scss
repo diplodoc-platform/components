@@ -1,0 +1,16 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/mixins.scss';
+
+.pc-navigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: var(--header-height);
+
+    background-color: var(--g-color-base-background);
+
+    &_with-border {
+        box-shadow: inset 0 -1px 0 var(--g-color-line-generic);
+    }
+}

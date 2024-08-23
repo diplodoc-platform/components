@@ -1,0 +1,95 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/mixins.scss';
+
+.dc-sidebar {
+    $transitionTime: 0.4s;
+
+    @include mobile-tablet-only();
+
+    position: fixed;
+    top: var(--dc-header-height, #{$headerHeight});
+    // TODO: delete
+    // top: calc(var(--dc-header-height, 64px) + var(--dc-subnavigation-height, 52px));
+    z-index: 119;
+
+    height: calc(100% - var(--dc-header-height, #{$headerHeight}) + 1px);
+    width: $sidebarWidth;
+
+    background-color: var(--g-color-base-background, #FFF);
+
+    // ! delete
+    // body:has(&) .dc-subnavigation_hidden,
+    // body:has(&) .dc-subnavigation_invisible {
+    //     top: var(--dc-header-height, #{$headerHeight});
+    // }
+
+    // ! delete
+    // .body:has(&) .dc-subnavigation__mini-toc-button {
+    //     &:hover {
+    //         background: none;
+    //     }
+
+    //     &:active {
+    //         transform: scale(1);
+    //     }
+
+    //     &:focus-visible {
+    //         outline: none;
+    //         outline-width: 0;
+    //     }
+    // }
+
+    // body:has(&) .dc-subnavigation__mini-toc-button {
+    //     &:hover {
+    //         background: none !important;
+    //     }
+
+    //     &:active {
+    //         transform: scale(1) !important;
+    //     }
+
+    //     &:focus-visible {
+    //         outline: none;
+    //         outline-width: 0;
+    //     }
+    // }
+
+    &__bar {
+        position: absolute;
+        top: 0;
+
+        display: flex;
+        flex-direction: column;
+
+        width: 100%;
+        height: 100%;
+    }
+
+    &__transition-enter {
+        transform: translateX(-100%);
+    }
+
+    &__transition-enter-active {
+        transform: translateX(0);
+        transition: transform $transitionTime;
+    }
+
+    &__transition-enter-done &-navigation__navigation {
+        border-right: none;
+    }
+
+    &__transition-exit {
+        transform: translateX(0);
+    }
+
+    &__transition-exit-active {
+        transition: transform $transitionTime;
+        transform: translateX(-100%);
+    }
+
+    @media (max-width: map-get($screenBreakpoints, 'md')) {
+        &__no-scroll {
+            overflow-y: hidden;
+        }
+    }
+}

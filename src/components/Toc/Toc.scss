@@ -91,10 +91,8 @@ $leftOffset: 57px;
         &_scrolled {
             border-top: 1px solid var(--g-color-line-generic);
 
-            .mobile & {
-                @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
-                    border-top: 0;
-                }
+            @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
+                border-top: 0;
             }
         }
     }

@@ -188,7 +188,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                 fullScreen={fullScreen}
                 tocTitleIcon={tocTitleIcon}
                 wideFormat={wideFormat}
-                hideTocHeader={hideTocHeader} // TODO: check  ?? hideTocHeader
+                hideTocHeader={hideTocHeader}
                 hideToc={hideToc}
                 menuOpen={this.state.mobileMenuOpen}
                 loading={this.state.loading}

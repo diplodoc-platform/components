@@ -165,6 +165,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
 
         const hideMiniToc = !this.showMiniToc;
         const hideBurger = typeof headerHeight !== 'undefined' && headerHeight !== 0;
+
         const modes = {
             'regular-page-width': !wideFormat,
             'full-screen': fullScreen,
@@ -187,7 +188,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                 fullScreen={fullScreen}
                 tocTitleIcon={tocTitleIcon}
                 wideFormat={wideFormat}
-                hideTocHeader={true ?? hideTocHeader}
+                hideTocHeader={hideTocHeader} // TODO: check  ?? hideTocHeader
                 hideToc={hideToc}
                 menuOpen={this.state.mobileMenuOpen}
                 loading={this.state.loading}
@@ -217,6 +218,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                 <DocLayout.Right>
                     <SubNavigation
                         title={this.props.title}
+                        router={this.props.router}
                         hideBurger={hideBurger}
                         hideMiniToc={hideMiniToc}
                         miniTocOpened={this.state.mobileMiniTocOpen}

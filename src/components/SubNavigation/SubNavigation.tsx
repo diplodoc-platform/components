@@ -5,7 +5,7 @@ import {Button} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 import {Router} from 'src/models';
 
-import {useShareHandler, useDisplayedTitle, useVisibility} from './hooks';
+import {useShareHandler, useShortenedTitle, useVisibility} from './hooks';
 
 import './SubNavigation.scss';
 
@@ -31,7 +31,7 @@ export interface SubNavigationProps {
 
 const SubNavigation = memo(
     ({
-        title,
+        title = '',
         router,
         hideBurger,
         hideMiniToc,
@@ -42,7 +42,7 @@ const SubNavigation = memo(
         toggleMenuOpen,
     }: SubNavigationProps) => {
         const visible = useVisibility(miniTocOpened, menuOpened);
-        const displayedTitle = useDisplayedTitle(title, hideBurger);
+        const displayedTitle = useShortenedTitle(title, hideBurger);
         const shareHandler = useShareHandler(title, router);
 
         const miniTocHandler = useMemo(() => {

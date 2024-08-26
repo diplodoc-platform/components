@@ -35,6 +35,7 @@ export interface ControlProps {
 const ICONS_SIZES = {
     [ControlSizes.M]: 16,
     [ControlSizes.L]: 20,
+    [ControlSizes.XL]: 20,
 };
 
 const Control = forwardRef((props: ControlProps, ref) => {

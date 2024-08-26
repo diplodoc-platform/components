@@ -1,5 +1,4 @@
 import React, {memo, useCallback, useEffect, useState} from 'react';
-
 import {
     Col,
     DesktopNavigation,
@@ -15,9 +14,9 @@ import block from 'bem-cn-lite';
 import {MobileControlsProps} from '../../MobileControls/MobileControls';
 import Sidebar from '../Sidebar/Sidebar';
 import SidebarContent, {NavigationTocProps} from '../SidebarContent/SidebarContent';
+import {useItemsWithCustomDropdowns} from '../hooks';
 
 import './CustomNavigation.scss';
-import {useItemsWithCustomDropdowns} from '../hooks';
 
 const CLASS_NAME = 'pc-navigation';
 const PC_PARANT_CLASS_NAME = 'pc-layout__navigation';
@@ -82,31 +81,6 @@ export const CustomNavigation: React.FC<CustomNavigationProps> = memo(
             isMainMenuOpened,
             openMainMenu,
         };
-
-        // type CustomNavigationItemModel = NavigationItemModel & { type: string };
-
-        // // * added MobileDropdown items in navigation
-        // const leftItemsWithCustomDropdowns: CustomNavigationItemModel[] = [];
-        // leftItemsWithIconSize.forEach((item) => {
-        //     // leftItemsWithCustomDropdowns.push(item);
-
-        //     if (item.type !== 'dropdown') {
-        //         leftItemsWithCustomDropdowns.push(item);
-        //         return;
-        //     }
-
-        //     // const newDesktopItem = {type: ''};
-        //     const newMobileItem: any = {};
-
-        //     // Object.assign(newDesktopItem, item);
-        //     Object.assign(newMobileItem, item);
-
-        //     // newDesktopItem.type = 'DesktopDropdown';
-        //     newMobileItem.type = 'MobileDropdown';
-
-        //     // leftItemsWithCustomDropdowns.push(newDesktopItem);
-        //     leftItemsWithCustomDropdowns.push(newMobileItem);
-        // });
 
         const pcNavigationData = {
             leftItemsWithIconSize: leftItemsWithCustomDropdowns,

@@ -1,5 +1,4 @@
 import React, {memo, useState} from 'react';
-
 import {ChevronDown} from '@gravity-ui/icons';
 import {
     Foldable,

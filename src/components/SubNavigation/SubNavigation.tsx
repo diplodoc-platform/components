@@ -1,12 +1,11 @@
 import React, {memo, useMemo} from 'react';
-
 import {ArrowShapeTurnUpRight, Bars, SquareListUl, Xmark} from '@gravity-ui/icons';
 import {Button} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
+
 import {Router} from 'src/models';
 
 import {useShareHandler, useShortenedTitle, useVisibility} from './hooks';
-
 import './SubNavigation.scss';
 
 const b = block('dc-subnavigation');

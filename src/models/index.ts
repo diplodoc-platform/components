@@ -1,6 +1,6 @@
-import {LabelProps} from '@gravity-ui/uikit';
-
 import type {Loc} from '../config/i18n';
+
+import {LabelProps} from '@gravity-ui/uikit';
 
 export enum Theme {
     Light = 'light',

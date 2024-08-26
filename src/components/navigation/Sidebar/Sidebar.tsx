@@ -1,5 +1,4 @@
 import React, {PropsWithChildren, useEffect, useRef, useState} from 'react';
-
 import block from 'bem-cn-lite';
 import ReactDOM from 'react-dom';
 import {CSSTransition} from 'react-transition-group';

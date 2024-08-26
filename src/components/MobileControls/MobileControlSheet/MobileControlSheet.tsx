@@ -1,5 +1,4 @@
 import React, {memo, useCallback} from 'react';
-
 import {List, Sheet} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 

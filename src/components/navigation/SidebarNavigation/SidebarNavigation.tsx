@@ -1,6 +1,5 @@
 import React, {MouseEvent, PropsWithChildren, useCallback} from 'react';
-
-import {Xmark, Bars} from '@gravity-ui/icons';
+import {Bars, Xmark} from '@gravity-ui/icons';
 import {Button} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 

@@ -1,5 +1,4 @@
 import React, {memo, useCallback} from 'react';
-
 import {ArrowLeft} from '@gravity-ui/icons';
 import block from 'bem-cn-lite';
 

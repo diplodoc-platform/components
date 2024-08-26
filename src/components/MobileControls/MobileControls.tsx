@@ -1,16 +1,15 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable react-hooks/rules-of-hooks */
 import React, {memo, useMemo} from 'react';
-
 import {Globe, Sun} from '@gravity-ui/icons';
 import block from 'bem-cn-lite';
 import allLangs from 'langs';
 
-import {ControlSizes, ControlsLayout, ControlsProps, DocSettings, Lang} from '../..';
-import {Theme} from '../..';
+import {ControlSizes, ControlsLayout, ControlsProps, DocSettings, Lang, Theme} from '../..';
 import {useTranslation} from '../../hooks';
 import {ListItem} from '../../models';
 
 import MobileControl from './MobileControl/MobileControl';
-
 import './MobileControls.scss';
 
 const b = block('dc-mobile-controls');
@@ -28,6 +27,7 @@ const LEGACY_LANG_ITEMS = [
 ];
 
 const useLangControl = (
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     t: any,
     lang: Lang,
     langs?: Lang[],
@@ -64,12 +64,12 @@ const useLangControl = (
         />
     );
 };
+const themes = [Theme.Light, Theme.Dark];
 
 const useThemeControl = (t: any, theme?: Theme, onChangeTheme?: (theme: Theme) => void) => {
     const controlName = 'theme';
     const icon = Sun;
 
-    const themes = [Theme.Light, Theme.Dark];
     const themesItems = useMemo(
         () =>
             themes.map((value) => {
@@ -80,7 +80,7 @@ const useThemeControl = (t: any, theme?: Theme, onChangeTheme?: (theme: Theme) =
                     value,
                 };
             }),
-        [],
+        [t],
     );
 
     return (

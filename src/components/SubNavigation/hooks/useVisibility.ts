@@ -7,40 +7,36 @@ const useVisibility = (miniTocOpened: boolean, menuOpened: boolean) => {
         typeof window === 'undefined' ? null : window.scrollY,
     );
 
-    const controlVisibility = useCallback(
-        (event: Event) => {
-            event.stopPropagation();
-            const scrollY = window.scrollY;
+    const controlVisibility = useCallback(() => {
+        const scrollY = window.scrollY;
 
-            if (lastScrollY === null) {
-                return setLastScrollY(scrollY);
-            }
+        if (lastScrollY === null) {
+            return setLastScrollY(scrollY);
+        }
 
-            if (miniTocOpened || menuOpened || (scrollY === 0 && !visible)) {
-                return setVisibility(true);
-            }
+        if (miniTocOpened || menuOpened || (scrollY === 0 && !visible)) {
+            return setVisibility(true);
+        }
 
-            if (scrollY > lastScrollY && visible) {
-                setVisibility(false);
-            } else if (scrollY < lastScrollY && !visible) {
-                setVisibility(true);
-            }
+        if (scrollY > lastScrollY && visible) {
+            setVisibility(false);
+        } else if (scrollY < lastScrollY && !visible) {
+            setVisibility(true);
+        }
 
-            if (hiddingTimeout || (scrollY - lastScrollY > -55 && scrollY - lastScrollY < 55)) {
-                return;
-            }
+        if (hiddingTimeout || (scrollY - lastScrollY > -55 && scrollY - lastScrollY < 55)) {
+            return;
+        }
 
-            setLastScrollY(scrollY);
+        setLastScrollY(scrollY);
 
-            setHiddingTimeout(
-                window.setTimeout(() => {
-                    window.clearTimeout(hiddingTimeout);
-                    setHiddingTimeout(undefined);
-                }, 300),
-            );
-        },
-        [miniTocOpened, menuOpened, visible, lastScrollY, hiddingTimeout],
-    );
+        setHiddingTimeout(
+            window.setTimeout(() => {
+                window.clearTimeout(hiddingTimeout);
+                setHiddingTimeout(undefined);
+            }, 300),
+        );
+    }, [miniTocOpened, menuOpened, visible, lastScrollY, hiddingTimeout]);
 
     useEffect(() => {
         if (window.scrollY === 0) {

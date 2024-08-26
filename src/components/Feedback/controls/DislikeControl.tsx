@@ -3,8 +3,7 @@ import {ThumbsDown, ThumbsDownFill} from '@gravity-ui/icons';
 import {Button} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 
-import {ControlSizes} from 'src/models';
-
+import {ControlSizes} from '../../../models';
 import {useTranslation} from '../../../hooks';
 import {Control} from '../../Control';
 import {ControlsLayoutContext} from '../../Controls/ControlsLayout';

@@ -106,12 +106,12 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
         super(props);
 
         this.state = {
-            mobileMiniTocOpen: false,
-            mobileMenuOpen: false,
             loading: props.singlePage,
             keyDOM: getRandomKey(),
             showNotification: true,
             subNavElement: null,
+            mobileMiniTocOpen: false,
+            mobileMenuOpen: false,
         };
     }
     componentDidMount(): void {
@@ -173,6 +173,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             'full-screen': fullScreen,
             'hidden-mini-toc': hideMiniToc,
             'single-page': singlePage,
+            'open-mini-toc': this.state.mobileMiniTocOpen,
         };
         const toggleMenuOpen = () => this.setState({mobileMenuOpen: !this.state.mobileMenuOpen});
         const closeMenu = () => this.setState({mobileMenuOpen: false});
@@ -187,7 +188,6 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                 headerHeight={headerHeight}
                 className={b(modes)}
                 fullScreen={fullScreen}
-                hideRight={hideMiniToc}
                 tocTitleIcon={tocTitleIcon}
                 wideFormat={wideFormat}
                 hideTocHeader={hideTocHeader}
@@ -232,7 +232,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                     />
                     {/* This key allows recalculating the offset for the mini-toc for Safari */}
                     <div
-                        className={b('aside')}
+                        className={b('aside', modes)}
                         key={getStateKey(this.showMiniToc, wideFormat, singlePage)}
                     >
                         {hideMiniToc ? null : this.renderAsideMiniToc()}

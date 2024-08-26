@@ -14,7 +14,7 @@
 
     &__left,
     &__right {
-        order: 3;
+        // ! order: 3;
         flex: 0 0 auto;
         box-sizing: content-box;
     }
@@ -29,7 +29,7 @@
     }
 
     &__left {
-        order: 1;
+        // ! order: 1;
         width: 276px;
 
         &_full-screen {
@@ -38,7 +38,7 @@
     }
 
     &__center {
-        order: 2;
+        // ! order: 2;
         flex: 1 1 auto;
         position: relative;
         min-width: 0;
@@ -110,8 +110,10 @@
 
             box-sizing: border-box;
             max-height: calc(
-                100vh - var(--dc-header-height, #{$headerHeight}) -
-                    var(--dc-subnavigation-height, #{$subNavigationHeight}) + 1px
+                100vh - var(--dc-header-height, #{$headerHeight}) - var(
+                        --dc-subnavigation-height,
+                        #{$subNavigationHeight}
+                    ) + 1px
             );
             height: 100%;
             width: 100vw;

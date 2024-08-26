@@ -1,4 +1,4 @@
-import {Lang} from '../../../../src';
+import type {DocPageProps, DocSettings, Lang} from '@diplodoc/components';
 
 import pageContentEn from './page-en.json';
 import pageContentHe from './page-he.json';
@@ -6,18 +6,21 @@ import pageContentRu from './page-ru.json';
 import singlePageContentEn from './single-page-en.json';
 import singlePageContentRu from './single-page-ru.json';
 
-export const getContent = (lang: Lang, singlePage: boolean) => {
+type Props = Omit<DocPageProps, keyof DocSettings> &
+    Required<Pick<DocPageProps, keyof DocSettings>>;
+
+export const getContent = (lang: Lang, singlePage: boolean): Props => {
     if (singlePage && lang === 'ru') {
-        return singlePageContentRu;
+        return singlePageContentRu as unknown as Props;
     } else if (singlePage) {
-        return singlePageContentEn;
+        return singlePageContentEn as unknown as Props;
     }
 
     if (lang === 'ru') {
-        return pageContentRu;
+        return pageContentRu as unknown as Props;
     } else if (lang === 'he') {
-        return pageContentHe;
+        return pageContentHe as unknown as Props;
     }
 
-    return pageContentEn;
+    return pageContentEn as unknown as Props;
 };

@@ -1,0 +1,26 @@
+[
+  {
+    "type": "page",
+    "title": "Add a chart",
+    "description": "Follow these instruction to add a chart to your dashboard.",
+    "link": "/en/data-visualization/step-by-step/charts/add-chart"
+  },
+  {
+    "type": "page",
+    "title": "Example page 1",
+    "description": "Some basic example page 1 with short description.",
+    "link": "/en/data-visualization/step-by-step/charts/example-1"
+  },
+  {
+    "type": "page",
+    "title": "Example page 2",
+    "description": "Some basic example page 2 with short description.",
+    "link": "/en/data-visualization/step-by-step/charts/example-2"
+  },
+  {
+    "type": "page",
+    "title": "Example page 3",
+    "description": "Some basic example page 3 with short description.",
+    "link": "/en/data-visualization/step-by-step/charts/example-3"
+  }
+]

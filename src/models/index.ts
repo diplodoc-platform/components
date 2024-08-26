@@ -16,6 +16,7 @@ export enum TextSizes {
 export enum ControlSizes {
     M = 'm',
     L = 'l',
+    XL = 'xl',
 }
 
 export interface Config {

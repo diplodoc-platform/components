@@ -5,6 +5,8 @@
     "description_wide_format_disabled": "Выключен",
     "label_show_mini_toc": "Навигация по текущей статье",
     "description_show_mini_toc": "Показывать навигацию",
+    "description_show_mini_toc_enabled": "Включена",
+    "description_show_mini_toc_disabled": "Выключена",
     "label_theme": "Тема",
     "label_theme_prefix": "тема",
     "label_light_theme": "Светлая",
@@ -58,7 +60,8 @@
   },
   "toc-nav-panel": {
     "hint_previous": "Предыдущая",
-    "hint_next": "Следующая"
+    "hint_next": "Следующая",
+    "drop-down-list": "Выпадающий список"
   },
   "authors": {
     "title": "Статья создана"
@@ -116,6 +119,14 @@
     "search_mark_like": "то, что нужно",
     "search_mark_dislike": "вообще не про то",
     "search_mark-result-text": "Спасибо за оценку!"
+  },
+  "search-suggest": {
+    "search-suggest_all-results": "Все результаты",
+    "search-suggest_not-found": "По запросу «{{query}}» ничего не найдено.",
+    "search-suggest_error-text": "Что-то пошло не так. Попробуйте ещё раз.",
+    "search-item_type-all": "Всё",
+    "search-item_type-doc": "Документация",
+    "search-item_type-main": "Главная"
   },
   "paginator": {
     "next": "Следующая страница",

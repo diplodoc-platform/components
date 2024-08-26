@@ -1,7 +1,7 @@
 import React from 'react';
-
 import block from 'bem-cn-lite';
 
+import {useTranslation} from '../../hooks';
 import {TocItem as ITocItem} from '../../models';
 import {isExternalHref} from '../../utils';
 import {ToggleArrow} from '../ToggleArrow';
@@ -21,11 +21,21 @@ export interface TocItemProps extends ITocItem {
     toggleItem: (id: string, opened: boolean) => void;
 }
 
-class TocItem extends React.Component<TocItemProps> {
-    contentRef = React.createRef<HTMLButtonElement>();
+export const TocItem: React.FC<TocItemProps> = React.forwardRef(
+    (
+        {id, name, href, active, expandable, expanded, toggleItem, labeled},
+        ref: React.ForwardedRef<HTMLButtonElement>,
+    ) => {
+        const handleClick = () => {
+            if (!active && href) {
+                return;
+            }
 
-    render() {
-        const {name, href, active, expandable, expanded, labeled} = this.props;
+            toggleItem(id, expanded);
+        };
+
+        const {t} = useTranslation('toc-nav-panel');
+
         const text = <span>{name}</span>;
         const icon = expandable ? (
             <ToggleArrow className={b('icon')} open={expanded} thin={true} />
@@ -34,11 +44,15 @@ class TocItem extends React.Component<TocItemProps> {
         const content = React.createElement(
             href ? 'div' : 'button',
             {
-                ref: href ? null : this.contentRef,
-                className: b('text', {clicable: Boolean(expandable || href), active, labeled}),
-                onClick: expandable && !href ? this.handleClick : undefined,
-                'aria-expanded': expandable ? expanded : undefined,
-                tabIndex: expandable ? 0 : -1,
+                ref: href ? null : ref,
+                className: b('text', {
+                    clicable: Boolean(expandable || href),
+                    active,
+                    labeled,
+                }),
+                onClick: expandable && !href ? handleClick : undefined,
+                'aria-expanded': expandable && !href ? expanded : undefined,
+                'aria-label': expandable ? t('drop-down-list') + ' ' + name : undefined,
             },
             icon,
             text,
@@ -53,55 +67,23 @@ class TocItem extends React.Component<TocItemProps> {
             href,
             target: isExternal ? '_blank' : '_self',
             rel: isExternal ? 'noopener noreferrer' : undefined,
+            'aria-expanded': expandable ? expanded : undefined,
         };
 
         return (
             <a
                 {...linkAttributes}
                 className={b('link')}
-                onClick={expandable && href ? this.handleClick : undefined}
+                onClick={expandable && href ? handleClick : undefined}
                 data-router-shallow
+                aria-current={active ? 'true' : undefined}
             >
                 {content}
             </a>
         );
-    }
+    },
+);
 
-    scrollToItem = () => {
-        if (!this.contentRef.current) {
-            return;
-        }
-
-        const itemElement = this.contentRef.current;
-        const itemHeight = itemElement.offsetHeight ?? 0;
-        const itemOffset = itemElement.offsetTop;
-        const scrollableParent = itemElement.offsetParent as HTMLDivElement | null;
-
-        if (!scrollableParent) {
-            return;
-        }
-
-        const scrollableHeight = scrollableParent.offsetHeight;
-        const scrollableOffset = scrollableParent.scrollTop;
-
-        const itemVisible =
-            itemOffset >= scrollableOffset &&
-            itemOffset <= scrollableOffset + scrollableHeight - itemHeight;
-
-        if (!itemVisible) {
-            scrollableParent.scrollTop = itemOffset - Math.floor(scrollableHeight / 2) + itemHeight;
-        }
-    };
-
-    private handleClick = () => {
-        const {id, href, active, expanded, toggleItem} = this.props;
-
-        if (!active && href) {
-            return;
-        }
-
-        toggleItem(id, expanded);
-    };
-}
+TocItem.displayName = 'TocItem';
 
 export default TocItem;

@@ -1,5 +1,4 @@
 import React from 'react';
-
 import {Button, Link} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 

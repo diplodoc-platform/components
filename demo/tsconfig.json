@@ -1,6 +1,7 @@
 {
-  "extends": "@yandex-cloud/tsconfig/tsconfig",
+  "extends": "@diplodoc/tsconfig",
   "compilerOptions": {
+    "lib": ["DOM", "ES2017"],
     "module": "esNext",
     "moduleResolution": "nodenext",
     "allowJs": false,
@@ -8,7 +9,6 @@
     "importHelpers": true,
     "resolveJsonModule": true,
     "declaration": true,
-    "jsx": "react",
     "outDir": "build",
     "baseUrl": "."
   },

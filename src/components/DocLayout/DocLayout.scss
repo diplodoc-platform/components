@@ -14,6 +14,7 @@
 
     &__left,
     &__right {
+        order: 3;
         flex: 0 0 auto;
         box-sizing: content-box;
     }
@@ -28,6 +29,7 @@
     }
 
     &__left {
+        order: 1;
         width: 276px;
 
         &_full-screen {
@@ -36,6 +38,7 @@
     }
 
     &__center {
+        order: 2;
         flex: 1 1 auto;
         position: relative;
         min-width: 0;

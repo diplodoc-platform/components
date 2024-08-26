@@ -1,5 +1,4 @@
 import React, {FC} from 'react';
-
 import {Label, Popover, useDirection} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 

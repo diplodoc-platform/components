@@ -1,7 +1,9 @@
-import {join, dirname} from 'path';
+import type {StorybookConfig} from '@storybook/react-webpack5';
 
-/** @type { import('@storybook/react-webpack5').StorybookConfig } */
-const config = {
+import {dirname} from 'node:path';
+import sass from 'sass';
+
+const config: StorybookConfig = {
     stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
     addons: [
         '@storybook/addon-links',
@@ -10,13 +12,12 @@ const config = {
             name: '@storybook/addon-styling',
             options: {
                 sass: {
-                    implementation: require("sass"),
+                    implementation: sass,
                 },
-            }
+            },
         },
         '@storybook/addon-onboarding',
         '@storybook/addon-interactions',
-
     ],
     framework: {
         name: '@storybook/react-webpack5',
@@ -25,13 +26,15 @@ const config = {
     docs: {
         autodocs: 'tag',
     },
-    async webpackFinal(config, { configType }) {
+    async webpackFinal(config) {
         config.resolve = config.resolve || {};
         config.resolve.alias = {
             ...(config.resolve.alias || {}),
-            'react': dirname(require.resolve('react')),
+            react: dirname(require.resolve('react')),
             'react-dom': dirname(require.resolve('react-dom')),
         };
+        config.module = config.module || {};
+        config.module.rules = config.module.rules || [];
         config.module.rules.push({
             test: /\.svg$/,
             type: 'javascript/auto',
@@ -39,7 +42,7 @@ const config = {
         });
 
         return config;
-    }
+    },
 };
 
 export default config;

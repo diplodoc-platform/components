@@ -1,8 +1,12 @@
 import React from 'react';
-
 import {ERROR_CODES, ErrorPage} from '@diplodoc/components';
 
-const ErrorPageDemo = (args) => {
+type Args = {
+    Mobile: string;
+    ErrorCode: string;
+};
+
+const ErrorPageDemo = (args: Args) => {
     const isMobile = args['Mobile'];
     const errorCode = args['ErrorCode'];
 

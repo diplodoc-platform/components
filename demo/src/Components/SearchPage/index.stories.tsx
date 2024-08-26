@@ -1,10 +1,16 @@
 import React, {useState} from 'react';
-
 import {ISearchItem, SearchPage} from '@diplodoc/components';
 
 import mockData from './data';
 
-const SearchPageDemo = (args) => {
+// eslint-disable-next-line no-console, @typescript-eslint/no-explicit-any
+const log = (...message: any[]) => console.log(...message);
+
+type Args = {
+    Mobile: string;
+};
+
+const SearchPageDemo = (args: Args) => {
     const isMobile = args['Mobile'];
     const [page, setPage] = useState(1);
     const [items, setItems] = useState(getItems(page, mockData));
@@ -24,9 +30,9 @@ const SearchPageDemo = (args) => {
                     setItems(getItems(newPage, mockData));
                 }}
                 onSubmit={() => setItems(getItems(page, mockData))}
-                itemOnClick={(item) => console.log('Click on search result', item)}
-                irrelevantOnClick={(item) => console.log('Click on dislike button', item)}
-                relevantOnClick={(item) => console.log('Click on like  button', item)}
+                itemOnClick={(item) => log('Click on search result', item)}
+                irrelevantOnClick={(item) => log('Click on dislike button', item)}
+                relevantOnClick={(item) => log('Click on like  button', item)}
                 itemsPerPage={2}
                 totalItems={mockData.length}
             />

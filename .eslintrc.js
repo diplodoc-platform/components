@@ -1,35 +1,8 @@
 module.exports = {
-    extends: [
-        '@gravity-ui/eslint-config',
-        process.env.npm_command && '@gravity-ui/eslint-config/prettier',
-    ].filter(Boolean),
     root: true,
-    rules: {
-        'no-param-reassign': 'off',
-        'import/order': [
-            'error',
-            {
-                alphabetize: {
-                    order: 'asc',
-                },
-                'newlines-between': 'always',
-                groups: [['builtin', 'external'], 'internal', 'parent', 'sibling', 'index'],
-                warnOnUnassignedImports: true,
-                pathGroups: [
-                    {
-                        pattern: '*.s?css$',
-                        group: 'index',
-                    },
-                ],
-            },
-        ],
+    extends: require.resolve('@diplodoc/lint/eslint-config'),
+    parserOptions: {
+        tsconfigRootDir: __dirname,
+        project: ['./tsconfig.json'],
     },
-    overrides: [
-        {
-            files: ['!src/**/*', '!demo/**/*'],
-            env: {
-                node: true,
-            },
-        },
-    ],
 };

@@ -1,10 +1,7 @@
-'use client';
+import type {Router} from '../models';
 
 import React from 'react';
-
 import TagManager from 'react-gtm-module';
-
-import type {Router} from '../models';
 
 type GtagEventFunction = (
     data: {
@@ -26,6 +23,7 @@ export type AnalyticsParams = {
     gtmId: string;
     router: Router;
     useConsent?: boolean;
+    consentMode?: 'base' | 'notification';
 };
 
 export const useAnalytics = ({gtmId, router, useConsent}: AnalyticsParams) => {

@@ -1,5 +1,4 @@
 import React, {Fragment, ReactElement} from 'react';
-
 import {Link} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 
@@ -10,7 +9,6 @@ import AvatarWithDescription from './Avatars/AvatarWithDescription';
 import HiddenAvatars from './Avatars/HiddenAvatars';
 import {AvatarData, AvatarSizes} from './models';
 import {getName} from './utils';
-
 import './ContributorAvatars.scss';
 
 const b = block('dc-contributor-avatars');

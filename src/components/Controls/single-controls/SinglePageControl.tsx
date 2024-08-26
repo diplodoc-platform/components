@@ -1,5 +1,4 @@
 import React, {memo, useCallback, useContext} from 'react';
-
 import {ChevronsCollapseToLine, ChevronsExpandToLines} from '@gravity-ui/icons';
 import block from 'bem-cn-lite';
 

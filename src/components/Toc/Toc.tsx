@@ -1,5 +1,4 @@
 import React from 'react';
-
 import {getUniqId} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 import omit from 'lodash/omit';
@@ -13,7 +12,6 @@ import {TocItem as Item} from '../TocItem';
 import TocLabel from '../TocLable/TocLabel';
 
 import {TocItemRegistry} from './TocItemRegistry';
-
 import './Toc.scss';
 
 const b = block('dc-toc');
@@ -43,7 +41,7 @@ interface TocState {
 class Toc extends React.Component<TocProps, TocState> {
     contentRef = React.createRef<HTMLDivElement>();
     rootRef = React.createRef<HTMLDivElement>();
-    activeRef = React.createRef<Item>();
+    activeRef = React.createRef<HTMLButtonElement>();
 
     containerEl: HTMLElement | null = null;
     footerEl: HTMLElement | null = null;
@@ -118,13 +116,13 @@ class Toc extends React.Component<TocProps, TocState> {
         const content = items ? this.renderList(items) : this.renderEmpty('');
 
         return (
-            <div className={b()} ref={this.rootRef}>
+            <nav className={b()} ref={this.rootRef}>
                 {this.renderTop()}
                 <div className={b('content', {offset_top: hideTocHeader})} ref={this.contentRef}>
                     {content}
                 </div>
                 {this.renderBottom()}
-            </div>
+            </nav>
         );
     }
 
@@ -307,12 +305,38 @@ class Toc extends React.Component<TocProps, TocState> {
         this.setTocHeight();
     };
 
+    private scrollToItem = () => {
+        if (!this.activeRef.current) {
+            return;
+        }
+
+        const itemElement = this.activeRef.current;
+        const itemHeight = itemElement.offsetHeight ?? 0;
+        const itemOffset = itemElement.offsetTop;
+        const scrollableParent = itemElement.offsetParent as HTMLDivElement | null;
+
+        if (!scrollableParent) {
+            return;
+        }
+
+        const scrollableHeight = scrollableParent.offsetHeight;
+        const scrollableOffset = scrollableParent.scrollTop;
+
+        const itemVisible =
+            itemOffset >= scrollableOffset &&
+            itemOffset <= scrollableOffset + scrollableHeight - itemHeight;
+
+        if (!itemVisible) {
+            scrollableParent.scrollTop = itemOffset - Math.floor(scrollableHeight / 2) + itemHeight;
+        }
+    };
+
     private scrollToActiveItem = () => {
         if (!this.activeRef.current) {
             return;
         }
 
-        this.activeRef.current.scrollToItem();
+        this.scrollToItem();
     };
 
     private handleContentScroll = () => {

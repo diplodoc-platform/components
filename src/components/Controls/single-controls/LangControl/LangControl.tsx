@@ -1,5 +1,4 @@
 import React, {useCallback, useContext, useMemo, useRef} from 'react';
-
 import {Globe} from '@gravity-ui/icons';
 import {List, Popover} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
@@ -118,6 +117,9 @@ const LangControl = (props: ControlProps) => {
                 tooltipText={t('lang-text')}
                 icon={Globe}
                 popupPosition={popupPosition}
+                buttonExtraProps={{
+                    'aria-expanded': popupState.visible,
+                }}
                 isTooltipHidden={popupState.visible}
             />
         </Popover>

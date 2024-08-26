@@ -5,6 +5,8 @@
     "description_wide_format_disabled": "Disabled",
     "label_show_mini_toc": "Navigation for the article",
     "description_show_mini_toc": "Show navigation",
+    "description_show_mini_toc_enabled": "Enabled",
+    "description_show_mini_toc_disabled": "Disabled",
     "label_theme": "Theme",
     "label_theme_prefix": "theme",
     "label_light_theme": "Light",
@@ -58,7 +60,8 @@
   },
   "toc-nav-panel": {
     "hint_previous": "Previous",
-    "hint_next": "Next"
+    "hint_next": "Next",
+    "drop-down-list": "Drop-down list"
   },
   "authors": {
     "title": "Written by"
@@ -116,6 +119,14 @@
     "search_mark_like": "like",
     "search_mark_dislike": "dislike",
     "search_mark-result-text": "Thank you for your rating!"
+  },
+  "search-suggest": {
+    "search-suggest_all-results": "All results",
+    "search-suggest_not-found": "No results found for «{{query}}» request",
+    "search-suggest_error-text": "Something went wrong. Try again.",
+    "search-item_type-all": "All",
+    "search-item_type-doc": "Documentation",
+    "search-item_type-main": "Main"
   },
   "paginator": {
     "next": "Next page",

@@ -1,5 +1,4 @@
 import React, {PropsWithChildren, ReactElement} from 'react';
-
 import block from 'bem-cn-lite';
 
 import {Router, TocData} from '../../models';
@@ -87,11 +86,11 @@ export class DocLayout extends React.Component<DocLayoutProps> {
                         {left}
                     </div>
                 )}
+                {fullScreen || hideRight ? null : <div className={b('right', modes)}>{right}</div>}
                 <div className={b('center', modes)}>
                     {center}
                     <div className={b('desktop-only')}>{footer}</div>
                 </div>
-                {fullScreen || hideRight ? null : <div className={b('right', modes)}>{right}</div>}
             </div>
         );
     }

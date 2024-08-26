@@ -1,5 +1,4 @@
 import React, {memo} from 'react';
-
 import {ChevronLeft, Xmark} from '@gravity-ui/icons';
 import block from 'bem-cn-lite';
 import {useHotkeys} from 'react-hotkeys-hook';

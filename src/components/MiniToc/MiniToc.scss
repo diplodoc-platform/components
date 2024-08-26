@@ -10,10 +10,6 @@
         color: var(--g-color-text-primary);
         margin-bottom: 12px;
         margin-top: 0;
-
-        @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
-            margin-bottom: 8px;
-        }
     }
 
     &__sections {

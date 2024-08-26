@@ -1,9 +1,9 @@
 import React from 'react';
-
 import block from 'bem-cn-lite';
 
 import {DEFAULT_SETTINGS} from '../../constants';
 import {DocContentPageData, Router} from '../../models';
+import {ContentWrapper} from '../ContentWrapper';
 import {DocLayout} from '../DocLayout';
 
 const b = block('dc-doc-page');
@@ -17,6 +17,7 @@ export interface DocContentPageProps extends DocContentPageData {
     hideTocHeader?: boolean;
     hideToc?: boolean;
     tocTitleIcon?: React.ReactNode;
+    useMainTag?: boolean;
 }
 
 export const DocContentPage: React.FC<DocContentPageProps> = ({
@@ -30,6 +31,7 @@ export const DocContentPage: React.FC<DocContentPageProps> = ({
     tocTitleIcon,
     footer,
     children,
+    useMainTag,
 }) => {
     const modes = {
         'regular-page-width': !wideFormat,
@@ -51,7 +53,9 @@ export const DocContentPage: React.FC<DocContentPageProps> = ({
         >
             <DocLayout.Center>
                 <div className={b('main')}>
-                    <main className={b('content')}>{children}</main>
+                    <ContentWrapper className={b('content')} useMainTag={useMainTag}>
+                        {children}
+                    </ContentWrapper>
                 </div>
             </DocLayout.Center>
         </DocLayout>

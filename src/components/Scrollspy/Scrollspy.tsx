@@ -1,5 +1,4 @@
 import React, {HTMLProps, ReactElement} from 'react';
-
 import debounce from 'lodash/debounce';
 import isEqual from 'lodash/isEqual';
 import scrollIntoView from 'scroll-into-view-if-needed';

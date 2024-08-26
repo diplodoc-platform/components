@@ -1,5 +1,4 @@
 import React, {memo, useContext} from 'react';
-
 import {Popup, useDirection} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 

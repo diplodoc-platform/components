@@ -1,5 +1,4 @@
 import {SyntheticEvent, useCallback, useEffect, useRef, useState} from 'react';
-
 import throttle from 'lodash/throttle';
 
 import {CLASSNAME, CLASSNAME_SELECTED, HIGHLIGHT_OPTIONS} from './constants';
@@ -79,8 +78,8 @@ function useHighlightedDOMElements(
         return [];
     }
 
-    const elements = document.querySelectorAll(`.${CLASSNAME}`);
-    cachedHighlightedDOMElements.current = [...elements];
+    const elements = Array.from(document.querySelectorAll(`.${CLASSNAME}`));
+    cachedHighlightedDOMElements.current = elements;
 
     return cachedHighlightedDOMElements.current;
 }

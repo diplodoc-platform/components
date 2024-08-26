@@ -1,12 +1,11 @@
 import {join} from 'path';
-
 import React, {useCallback, useEffect, useState} from 'react';
-
 import {
     DEFAULT_SETTINGS,
     DocPage,
     FeedbackSendData,
     FeedbackType,
+    Lang,
     Theme,
     VcsType,
     configure as configureDocs,
@@ -17,7 +16,6 @@ import cn from 'bem-cn-lite';
 import {updateBodyClassName} from '../utils';
 
 import {getContent} from './data';
-
 import './index.scss';
 
 const layoutBlock = cn('Layout');
@@ -60,7 +58,7 @@ const useSettings = () => {
     };
 };
 
-const useDirection = (lang) => {
+const useDirection = (lang: string) => {
     const [dir, onChangeDir] = useState('ltr');
 
     useEffect(() => {
@@ -82,9 +80,9 @@ const useLangs = () => {
     return {
         lang,
         langs,
-        onChangeLang(value) {
+        onChangeLang(value: Lang) {
             onChangeLang(value);
-            configureUikit({lang: value});
+            configureUikit({lang: value as 'en'});
             configureDocs({lang: value});
         },
     };
@@ -143,14 +141,14 @@ const useSubscribe = () => {
     };
 };
 
-const usePdf = (link) => {
+const usePdf = (link: string) => {
     return {
         pdfLink: link,
     };
 };
 
-const useSearchResults = (searchQuery) => {
-    const [showSearchBar, setShowSearchBar] = useState(searchQuery.length);
+const useSearchResults = (searchQuery: string) => {
+    const [showSearchBar, setShowSearchBar] = useState(Boolean(searchQuery.length));
     const [searchWords, setSearchWords] = useState<string[]>([]);
 
     useEffect(() => {
@@ -200,7 +198,9 @@ const useBookmarks = () => {
     };
 };
 
-const DocPageDemo = (args) => {
+const DocPageDemo = (
+    args: Record<string, boolean> & {Pdf: string; Search: string; VCS: VcsType},
+) => {
     const vcsType = args['VCS'];
     const router = {pathname: '/docs/overview/concepts/quotas-limits'};
 

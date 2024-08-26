@@ -106,11 +106,11 @@ $importantBackgroundColor: rgba(235, 50, 38, 0.08);
     }
 
     &__controls {
-        display: none;
+        display: flex;
         top: 0;
         align-items: center;
         height: 40px;
-        z-index: 121;
+        z-index: 102;
         position: absolute;
         right: 7px;
 
@@ -129,8 +129,6 @@ $importantBackgroundColor: rgba(235, 50, 38, 0.08);
         }
 
         @media (min-width: map-get($screenBreakpoints, 'md')) {
-            display: flex;
-
             &_vertical {
                 top: calc(6px + var(--dc-header-height, #{$headerHeight}));
                 justify-content: center;
@@ -197,7 +195,7 @@ $importantBackgroundColor: rgba(235, 50, 38, 0.08);
     }
 
     &__title {
-        margin-top: 20px;
+        margin-bottom: 12px;
 
         @include text-size(display-2);
 
@@ -288,9 +286,9 @@ $importantBackgroundColor: rgba(235, 50, 38, 0.08);
 
             padding: 0 20px;
         }
-        /* CHECK display: block; temporarily hidden */
+
         &__content-mini-toc {
-            display: none;
+            display: block;
         }
 
         &__toc-nav-panel {
@@ -387,7 +385,7 @@ $importantBackgroundColor: rgba(235, 50, 38, 0.08);
     }
 
     & > p {
-        margin: 0 0 10px;
+        margin: 0 0 10px 0;
 
         &:first-child {
             &::before {
@@ -408,10 +406,10 @@ $importantBackgroundColor: rgba(235, 50, 38, 0.08);
     }
 
     $colors: (
-        dc-accent-info: $infoColor,
-        dc-accent-tip: $tipColor,
-        dc-accent-alert: $importantColor,
-        dc-accent-warning: $warningColor,
+            dc-accent-info: $infoColor,
+            dc-accent-tip: $tipColor,
+            dc-accent-alert: $importantColor,
+            dc-accent-warning: $warningColor
     );
 
     @each $type, $color in $colors {
@@ -425,10 +423,10 @@ $importantBackgroundColor: rgba(235, 50, 38, 0.08);
     }
 
     $backgroundColors: (
-        dc-accent-info: $infoBackgroundColor,
-        dc-accent-tip: $tipBackgroundColor,
-        dc-accent-alert: $importantBackgroundColor,
-        dc-accent-warning: $warningBackgroundColor,
+            dc-accent-info: $infoBackgroundColor,
+            dc-accent-tip: $tipBackgroundColor,
+            dc-accent-alert: $importantBackgroundColor,
+            dc-accent-warning: $warningBackgroundColor
     );
 
     @each $type, $color in $backgroundColors {

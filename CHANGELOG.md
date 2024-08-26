@@ -1,5 +1,44 @@
 # История изменений
 
+## [4.11.1](https://github.com/diplodoc-platform/components/compare/v4.11.0...v4.11.1) (2024-08-21)
+
+
+### Bug Fixes
+
+* toc links aria-expanded ([#280](https://github.com/diplodoc-platform/components/issues/280)) ([e1503d9](https://github.com/diplodoc-platform/components/commit/e1503d9a5e2604ad2af542d23ef182b84a34e1a9))
+* wrap component in ContentWrapper to avoid double main tag & show mini toc description ([#278](https://github.com/diplodoc-platform/components/issues/278)) ([ba90684](https://github.com/diplodoc-platform/components/commit/ba906849732658920e4c63937eda0f204ea07992))
+
+## [4.11.0](https://github.com/diplodoc-platform/components/compare/v4.10.0...v4.11.0) (2024-08-12)
+
+
+### Features
+
+* add aria-current for active link in TocItem ([#273](https://github.com/diplodoc-platform/components/issues/273)) ([b837c6a](https://github.com/diplodoc-platform/components/commit/b837c6aef3d916e7e8d5c1801a07d7b3cca3ad3d))
+* add aria-expanded for controls in header ([#271](https://github.com/diplodoc-platform/components/issues/271)) ([4d9c8be](https://github.com/diplodoc-platform/components/commit/4d9c8be6c21551d4e72f5bea543a2d71b1dab4b2))
+* add aria-label in TocItem ([#275](https://github.com/diplodoc-platform/components/issues/275)) ([249c70d](https://github.com/diplodoc-platform/components/commit/249c70d9f2de2b9a24dc3acaf666d7a340190cb3))
+* Add suggest component ([452a8b9](https://github.com/diplodoc-platform/components/commit/452a8b99d08b2bf74a18d925328e318b9298955a))
+
+
+### Bug Fixes
+
+* Fix storybook lint ([3066eb9](https://github.com/diplodoc-platform/components/commit/3066eb956253cbe302c387014db5a96c47ca132f))
+
+## [4.10.0](https://github.com/diplodoc-platform/components/compare/v4.9.3...v4.10.0) (2024-07-29)
+
+
+### Features
+
+* add consent popup notification type ([#258](https://github.com/diplodoc-platform/components/issues/258)) ([b538eaa](https://github.com/diplodoc-platform/components/commit/b538eaabf66082608cbc8f3bf8899f84b17ef65e))
+* add nav for Toc component ([#269](https://github.com/diplodoc-platform/components/issues/269)) ([6f51f9c](https://github.com/diplodoc-platform/components/commit/6f51f9c612af74dc6168e07d1f35d5ebb80dd905))
+* change MiniToc position in DOM & a11y improvements ([#248](https://github.com/diplodoc-platform/components/issues/248)) ([3580bcb](https://github.com/diplodoc-platform/components/commit/3580bcbd3a92a917c152892a3e3575b9fbb69c4e))
+
+## [4.9.3](https://github.com/diplodoc-platform/components/compare/v4.9.2...v4.9.3) (2024-07-22)
+
+
+### Bug Fixes
+
+* trigger release ([947a8e9](https://github.com/diplodoc-platform/components/commit/947a8e91ba48bfd52edf6cc90b849047ad6a503b))
+
 ## [4.9.2](https://github.com/diplodoc-platform/components/compare/v4.9.1...v4.9.2) (2024-07-19)
 
 

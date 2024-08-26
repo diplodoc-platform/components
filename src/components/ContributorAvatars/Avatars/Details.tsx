@@ -1,5 +1,4 @@
 import React from 'react';
-
 import {Link, Popup} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 
@@ -10,6 +9,7 @@ import {getName} from '../utils';
 
 import Avatar from './Avatar';
 
+// eslint-disable-next-line import/order
 import '../ContributorAvatars.scss';
 
 const b = block('dc-contributor-avatars');

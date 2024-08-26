@@ -25,8 +25,8 @@ export * from './components/ErrorBoundary';
 export * from './components/Paginator';
 export * from './components/SearchItem';
 export * from './components/SearchPage';
+export * from './components/SearchSuggest';
 export * from './components/DocContentPage';
-export * from './components/SubNavigation';
 
 export * from './components/navigation';
 

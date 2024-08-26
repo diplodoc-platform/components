@@ -1,5 +1,4 @@
 import React, {ReactPortal} from 'react';
-
 import {Link, Xmark} from '@gravity-ui/icons';
 import {Button, Icon} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
@@ -20,6 +19,7 @@ import {
 import {InnerProps, callSafe, getRandomKey, getStateKey, isContributor} from '../../utils';
 import {BookmarkButton} from '../BookmarkButton';
 import {Breadcrumbs} from '../Breadcrumbs';
+import {ContentWrapper} from '../ContentWrapper';
 import Contributors from '../Contributors/Contributors';
 import {Controls, ControlsLayout, EditControl} from '../Controls';
 import {DocLayout} from '../DocLayout';
@@ -29,9 +29,9 @@ import {HTML} from '../HTML';
 import {MiniToc} from '../MiniToc';
 import {OutsideClick} from '../OutsideClick';
 import {SearchBar, withHighlightedSearchWords} from '../SearchBar';
-import {SubNavigation} from '../SubNavigation';
 import {TocNavPanel} from '../TocNavPanel';
 import UpdatedAtDate from '../UpdatedAtDate/UpdatedAtDate';
+import SubNavigation from '../SubNavigation/SubNavigation';
 
 import './DocPage.scss';
 
@@ -82,6 +82,7 @@ export interface DocPageProps extends DocPageData, DocSettings {
         type?: string;
     };
     notificationCb?: () => void;
+    useMainTag?: boolean;
 }
 
 type DocPageInnerProps = InnerProps<DocPageProps, DocSettings>;
@@ -161,6 +162,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             footer,
             onChangeSinglePage,
             pdfLink,
+            useMainTag,
         } = this.props;
 
         const hideMiniToc = !this.showMiniToc;
@@ -171,7 +173,6 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             'full-screen': fullScreen,
             'hidden-mini-toc': hideMiniToc,
             'single-page': singlePage,
-            'open-mini-toc': this.state.mobileMiniTocOpen,
         };
         const toggleMenuOpen = () => this.setState({mobileMenuOpen: !this.state.mobileMenuOpen});
         const closeMenu = () => this.setState({mobileMenuOpen: false});
@@ -186,6 +187,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                 headerHeight={headerHeight}
                 className={b(modes)}
                 fullScreen={fullScreen}
+                hideRight={hideMiniToc}
                 tocTitleIcon={tocTitleIcon}
                 wideFormat={wideFormat}
                 hideTocHeader={hideTocHeader}
@@ -203,13 +205,13 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                     {this.renderBreadcrumbs()}
                     {this.renderControls()}
                     <div className={b('main')}>
-                        <main className={b('content')}>
+                        <ContentWrapper className={b('content')} useMainTag={useMainTag}>
                             {this.renderTitle()}
                             {this.renderPageContributors()}
                             {hideMiniToc ? null : this.renderContentMiniToc()}
                             {this.renderBody()}
                             {this.renderFeedback()}
-                        </main>
+                        </ContentWrapper>
                         {this.renderTocNavPanel()}
                     </div>
                     {this.renderLoader()}
@@ -230,7 +232,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                     />
                     {/* This key allows recalculating the offset for the mini-toc for Safari */}
                     <div
-                        className={b('aside', modes)}
+                        className={b('aside')}
                         key={getStateKey(this.showMiniToc, wideFormat, singlePage)}
                     >
                         {hideMiniToc ? null : this.renderAsideMiniToc()}
@@ -267,7 +269,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                 .filter(({type}) => type === 'childList')
                 .forEach((mutation) => {
                     const yfmRoot = mutation.target as HTMLElement;
-                    const yfmImages = [...yfmRoot.querySelectorAll('img')];
+                    const yfmImages = Array.from(yfmRoot.querySelectorAll('img'));
 
                     yfmImages.forEach((img) => {
                         img.addEventListener('load', onContentLoaded, false);
@@ -358,7 +360,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
 
         for (const header of headers) {
             /* Hide anchors */
-            const anchors = header.querySelectorAll('.yfm-anchor');
+            const anchors = Array.from(header.querySelectorAll('.yfm-anchor'));
             for (const anchor of anchors) {
                 if (!anchor.classList.contains('yfm-original-link')) {
                     anchor.classList.add('yfm-anchor_hidden');

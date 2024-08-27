@@ -87,12 +87,12 @@
   },
   "peerDependencies": {
     "react": ">=16.8.0 || >=17.0.0 || >=18.0.0",
-    "react-dom": ">=16.8.0 || >=17.0.0 || >=18.0.0",
-    "@gravity-ui/page-constructor": "^5.20.1"
+    "react-dom": ">=16.8.0 || >=17.0.0 || >=18.0.0"
   },
   "devDependencies": {
     "@diplodoc/lint": "^1.1.1",
     "@diplodoc/tsconfig": "^1.0.2",
+    "@gravity-ui/page-constructor": "^5.20.1",
     "@types/langs": "^2.0.1",
     "@types/lodash": "4.14.179",
     "@types/react": "^18.2.21",

@@ -65,11 +65,13 @@
     "lint": "lint update && lint",
     "lint:fix": "lint update && lint fix",
     "pre-commit": "lint update && lint-staged",
-    "prepare": "husky || true"
+    "prepare": "husky || true",
+    "postinstall": "echo 'Skipping postinstall'"
   },
   "dependencies": {
     "@gravity-ui/components": "^3.6.0",
     "@gravity-ui/icons": "^2.5.0",
+    "@gravity-ui/page-constructor": "^5.20.1",
     "@gravity-ui/uikit": "^6.2.0",
     "@popperjs/core": "^2.11.2",
     "bem-cn-lite": "4.1.0",
@@ -92,7 +94,6 @@
   "devDependencies": {
     "@diplodoc/lint": "^1.1.1",
     "@diplodoc/tsconfig": "^1.0.2",
-    "@gravity-ui/page-constructor": "^5.20.1",
     "@types/langs": "^2.0.1",
     "@types/lodash": "4.14.179",
     "@types/react": "^18.2.21",

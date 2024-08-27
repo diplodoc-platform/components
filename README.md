@@ -4,6 +4,8 @@
 
 Компоненты для Yandex Flavored Markdown Documentation.
 
+TEST
+
 ## Installation
 
 `npm i @diplodoc/components`

@@ -3,9 +3,7 @@ import {useCallback, useEffect, useState} from 'react';
 const useVisibility = (miniTocOpened: boolean, menuOpened: boolean) => {
     const [visible, setVisibility] = useState(true);
     const [hiddingTimeout, setHiddingTimeout] = useState<number | undefined>(undefined);
-    const [lastScrollY, setLastScrollY] = useState(
-        typeof window === 'undefined' ? null : window.scrollY,
-    );
+    const [lastScrollY, setLastScrollY] = useState<number | null>(null);
 
     const controlVisibility = useCallback(() => {
         const scrollY = window.scrollY;
@@ -22,6 +20,8 @@ const useVisibility = (miniTocOpened: boolean, menuOpened: boolean) => {
             setVisibility(false);
         } else if (scrollY < lastScrollY && !visible) {
             setVisibility(true);
+        } else {
+            return;
         }
 
         if (hiddingTimeout || (scrollY - lastScrollY > -55 && scrollY - lastScrollY < 55)) {
@@ -44,12 +44,13 @@ const useVisibility = (miniTocOpened: boolean, menuOpened: boolean) => {
         }
 
         setLastScrollY(window.scrollY);
+        setVisibility(true);
 
         setHiddingTimeout(
             window.setTimeout(() => {
                 setLastScrollY(window.scrollY);
                 setHiddingTimeout(undefined);
-            }, 100),
+            }, 300),
         );
     }, []);
 

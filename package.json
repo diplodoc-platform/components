@@ -70,7 +70,6 @@
   "dependencies": {
     "@gravity-ui/components": "^3.6.0",
     "@gravity-ui/icons": "^2.5.0",
-    "@gravity-ui/page-constructor": "^5.20.1",
     "@gravity-ui/uikit": "^6.2.0",
     "@popperjs/core": "^2.11.2",
     "bem-cn-lite": "4.1.0",
@@ -88,7 +87,8 @@
   },
   "peerDependencies": {
     "react": ">=16.8.0 || >=17.0.0 || >=18.0.0",
-    "react-dom": ">=16.8.0 || >=17.0.0 || >=18.0.0"
+    "react-dom": ">=16.8.0 || >=17.0.0 || >=18.0.0",
+    "@gravity-ui/page-constructor": "^5.20.1"
   },
   "devDependencies": {
     "@diplodoc/lint": "^1.1.1",

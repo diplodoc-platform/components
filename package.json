@@ -70,6 +70,7 @@
   "dependencies": {
     "@gravity-ui/components": "^3.6.0",
     "@gravity-ui/icons": "^2.5.0",
+    "@gravity-ui/page-constructor": "^5.20.1",
     "@gravity-ui/uikit": "^6.2.0",
     "@popperjs/core": "^2.11.2",
     "bem-cn-lite": "4.1.0",
@@ -97,6 +98,7 @@
     "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
     "@types/react-gtm-module": "^2.0.3",
+    "@types/react-transition-group": "^4.4.10",
     "autoprefixer": "^10.4.15",
     "esbuild": "^0.19.2",
     "esbuild-sass-plugin": "^2.13.0",

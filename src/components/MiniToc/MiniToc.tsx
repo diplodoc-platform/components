@@ -1,5 +1,4 @@
 import React, {memo, useMemo} from 'react';
-import {Navigation} from '@gravity-ui/page-constructor';
 import block from 'bem-cn-lite';
 
 import {useTranslation} from '../../hooks';
@@ -50,7 +49,6 @@ const MiniToc = memo<MinitocProps>(({headings, router, headerHeight, onItemClick
     return (
         <nav className={b()} aria-label={t('article-navigation')}>
             <h2 className={b('title')}>{t<string>('title')}:</h2>
-            <Navigation logo={{icon: ''}} data={{leftItems: []}} />
             <Scrollspy
                 className={b('sections')}
                 currentClassName={b('section', {active: true})}

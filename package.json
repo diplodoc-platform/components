@@ -65,8 +65,7 @@
     "lint": "lint update && lint",
     "lint:fix": "lint update && lint fix",
     "pre-commit": "lint update && lint-staged",
-    "prepare": "husky || true",
-    "postinstall": "echo 'Skipping postinstall'"
+    "prepare": "husky || true"
   },
   "dependencies": {
     "@gravity-ui/components": "^3.6.0",

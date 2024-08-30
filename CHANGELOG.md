@@ -1,5 +1,12 @@
 # История изменений
 
+## [4.11.2](https://github.com/diplodoc-platform/components/compare/v4.11.1...v4.11.2) (2024-08-30)
+
+
+### Bug Fixes
+
+* settings a11y - delete unnecessary aria-expanded ([#281](https://github.com/diplodoc-platform/components/issues/281)) ([d74fbd4](https://github.com/diplodoc-platform/components/commit/d74fbd4f899251afcae000b9fca31aec105a1470))
+
 ## [4.11.1](https://github.com/diplodoc-platform/components/compare/v4.11.0...v4.11.1) (2024-08-21)
 
 

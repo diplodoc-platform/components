@@ -14,7 +14,6 @@ import {FeedbackView} from '../Feedback';
 type LikeControlProps = {
     isVerticalView?: boolean | undefined;
     isLiked: boolean | undefined;
-    isPopupVisible: boolean;
     className?: string | undefined;
     view: FeedbackView | undefined;
     onClick: () => void;
@@ -24,49 +23,47 @@ type LikeControlProps = {
 const b = block('dc-feedback');
 
 const LikeControl = memo(
-    forwardRef<HTMLButtonElement, LikeControlProps>(
-        ({isLiked, isPopupVisible, view, onClick}, ref) => {
-            const {t} = useTranslation('feedback');
-            const {isVerticalView, popupPosition, controlClassName} =
-                useContext(ControlsLayoutContext);
-            const tooltipText = isLiked ? t('cancel-like-text') : t('like-text');
+    forwardRef<HTMLButtonElement, LikeControlProps>(({isLiked, view, onClick}, ref) => {
+        const {t} = useTranslation('feedback');
+        const {isVerticalView, popupPosition, controlClassName} = useContext(ControlsLayoutContext);
+        const tooltipText = isLiked ? t('cancel-like-text') : t('like-text');
 
-            const Icon = isLiked ? ThumbsUpFill : ThumbsUp;
 
-            if (view === FeedbackView.Wide) {
-                return (
-                    <Button
-                        size="xl"
-                        view="normal"
-                        ref={ref}
-                        onClick={onClick}
-                        className={b('control', {view})}
-                    >
-                        <Button.Icon>
-                            <Icon width={20} height={20} />
-                        </Button.Icon>
-                        {t<string>('button-like-text')}
-                    </Button>
-                );
-            }
+        const Icon = isLiked ? ThumbsUpFill : ThumbsUp;
 
+        if (view === FeedbackView.Wide) {
             return (
-                <Control
-                    size={ControlSizes.XL}
-                    onClick={onClick}
-                    className={b('control', {view}, controlClassName)}
-                    isVerticalView={isVerticalView}
-                    tooltipText={tooltipText}
+                <Button
+                    size="xl"
+                    view="normal"
                     ref={ref}
-                    icon={Icon}
-                    popupPosition={popupPosition}
-                    buttonExtraProps={{
-                        'aria-expanded': isPopupVisible,
-                    }}
-                />
+                    onClick={onClick}
+                    className={b('control', {view})}
+                >
+                    <Button.Icon>
+                        <Icon width={20} height={20} />
+                    </Button.Icon>
+                    {t<string>('button-like-text')}
+                </Button>
             );
-        },
-    ),
+        }
+
+        return (
+            <Control
+                size={ControlSizes.XL}
+                onClick={onClick}
+                className={b('control', {view}, controlClassName)}
+                isVerticalView={isVerticalView}
+                tooltipText={tooltipText}
+                ref={ref}
+                icon={Icon}
+                popupPosition={popupPosition}
+                buttonExtraProps={{
+                    'aria-expanded': isPopupVisible,
+                }}
+            />
+        );
+    }),
 );
 
 LikeControl.displayName = 'LikeControl';

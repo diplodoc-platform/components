@@ -30,42 +30,40 @@ type SubscribeControlProps = {
 };
 
 const SubscribeControl = memo(
-    forwardRef<HTMLButtonElement, SubscribeControlProps>(
-        ({view, onChangeSubscribe}, ref) => {
-            const {isVerticalView, popupPosition, controlClassName, controlSize} =
-                useContext(ControlsLayoutContext);
-            const {t} = useTranslation('controls');
+    forwardRef<HTMLButtonElement, SubscribeControlProps>(({view, onChangeSubscribe}, ref) => {
+        const {isVerticalView, popupPosition, controlClassName, controlSize} =
+            useContext(ControlsLayoutContext);
+        const {t} = useTranslation('controls');
 
-            if (view === SubscribeView.Wide) {
-                return (
-                    <Button
-                        view="flat-secondary"
-                        ref={ref}
-                        onClick={onChangeSubscribe}
-                        className={b('control', {view})}
-                    >
-                        <Button.Icon>
-                            <Envelope width={16} height={16} />
-                        </Button.Icon>
-                        {t<string>('button-Subscribe-text')}
-                    </Button>
-                );
-            }
-
+        if (view === SubscribeView.Wide) {
             return (
-                <Control
+                <Button
+                    view="flat-secondary"
                     ref={ref}
                     onClick={onChangeSubscribe}
-                    size={controlSize}
-                    className={b('control', {view}, controlClassName)}
-                    isVerticalView={isVerticalView}
-                    tooltipText={t(`subscribe-text`)}
-                    icon={Envelope}
-                    popupPosition={popupPosition}
-                />
+                    className={b('control', {view})}
+                >
+                    <Button.Icon>
+                        <Envelope width={16} height={16} />
+                    </Button.Icon>
+                    {t<string>('button-Subscribe-text')}
+                </Button>
             );
-        },
-    ),
+        }
+
+        return (
+            <Control
+                ref={ref}
+                onClick={onChangeSubscribe}
+                size={controlSize}
+                className={b('control', {view}, controlClassName)}
+                isVerticalView={isVerticalView}
+                tooltipText={t(`subscribe-text`)}
+                icon={Envelope}
+                popupPosition={popupPosition}
+            />
+        );
+    }),
 );
 
 SubscribeControl.displayName = 'SubscribeControl';

@@ -7,6 +7,7 @@ export * from './components/DocPageTitle';
 export * from './components/HTML';
 export * from './components/Mark';
 export * from './components/MiniToc';
+export * from './components/SubNavigation';
 export * from './components/Scrollspy';
 export * from './components/StageLabel';
 export * from './components/Text';

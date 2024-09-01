@@ -27,11 +27,11 @@ import {DocPageTitle} from '../DocPageTitle';
 import {Feedback, FeedbackView} from '../Feedback';
 import {HTML} from '../HTML';
 import {MiniToc} from '../MiniToc';
+import {SubNavigation} from '../SubNavigation';
 import {OutsideClick} from '../OutsideClick';
 import {SearchBar, withHighlightedSearchWords} from '../SearchBar';
 import {TocNavPanel} from '../TocNavPanel';
 import UpdatedAtDate from '../UpdatedAtDate/UpdatedAtDate';
-import SubNavigation from '../SubNavigation/SubNavigation';
 
 import './DocPage.scss';
 

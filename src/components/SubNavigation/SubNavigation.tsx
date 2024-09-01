@@ -3,7 +3,7 @@ import {ArrowShapeTurnUpRight, Bars, SquareListUl, Xmark} from '@gravity-ui/icon
 import {Button} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 
-import {Router} from 'src/models';
+import {Router} from '../../models';
 
 import {useShareHandler, useShortenedTitle, useVisibility} from './hooks';
 import './SubNavigation.scss';

@@ -41,11 +41,12 @@ const SubNavigation = memo(
         toggleMenuOpen,
     }: SubNavigationProps) => {
         const visible = useVisibility(miniTocOpened, menuOpened);
-        // const displayedTitle = useShortenedTitle(title, hideBurger);
         const shareHandler = useShareHandler(title, router);
 
         const miniTocHandler = useMemo(() => {
-            if (hideMiniToc || menuOpened) return () => {};
+            if (hideMiniToc || menuOpened) {
+                return () => {};
+            }
 
             return toggleMiniTocOpen;
         }, [hideMiniToc, menuOpened, toggleMiniTocOpen]);

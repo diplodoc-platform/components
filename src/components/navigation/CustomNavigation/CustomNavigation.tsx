@@ -1,10 +1,9 @@
-import React, {memo, useCallback, useEffect, useState} from 'react';
+import React, {memo} from 'react';
 import {
     Col,
     DesktopNavigation,
     Grid,
     NavigationComponentProps,
-    // NavigationItemModel,
     Row,
     useActiveNavItem,
     useShowBorder,
@@ -17,6 +16,7 @@ import SidebarContent, {NavigationTocProps} from '../SidebarContent/SidebarConte
 import {useItemsWithCustomDropdowns} from '../hooks';
 
 import './CustomNavigation.scss';
+import {useMainMenuOpenness, useSidebarOpenness} from './hooks';
 
 const CLASS_NAME = 'pc-navigation';
 const PC_PARANT_CLASS_NAME = 'pc-layout__navigation';
@@ -39,11 +39,12 @@ export const CustomNavigation: React.FC<CustomNavigationProps> = memo(
             withBorderOnScroll = true,
         } = data;
 
-        const [pathName, setPathName] = useState(navigationTocData.router.pathname);
-        const [hash, setHash] = useState(navigationTocData.router.hash);
-
-        const [isMainMenuOpened, setIsMainMenuOpened] = useState(false);
-        const [isSidebarOpened, setIsSidebarOpened] = useState(false);
+        const [isMainMenuOpened, closeMainMenu, mainMenuOpenessData] = useMainMenuOpenness();
+        const [isSidebarOpened, onSidebarOpenedChange] = useSidebarOpenness(
+            isMainMenuOpened,
+            closeMainMenu,
+            navigationTocData,
+        );
 
         const [showBorder] = useShowBorder(withBorder, withBorderOnScroll);
 
@@ -51,36 +52,6 @@ export const CustomNavigation: React.FC<CustomNavigationProps> = memo(
             useActiveNavItem(iconSize, leftItems, rightItems);
         const [leftItemsWithCustomDropdowns, rightItemsWithCustomDropdowns] =
             useItemsWithCustomDropdowns(leftItemsWithIconSize, rightItemsWithIconSize);
-
-        const openMainMenu = () => setIsMainMenuOpened(true);
-        const closeMainMenu = useCallback(() => setIsMainMenuOpened(false), [setIsMainMenuOpened]);
-
-        // TODO: refactor
-        useEffect(() => {
-            const router = navigationTocData.router;
-
-            if (pathName !== router.pathname || hash !== router.hash) {
-                setIsSidebarOpened(false);
-                setHash(router.hash);
-                setPathName(router.pathname);
-            }
-        }, [navigationTocData, hash, pathName]);
-
-        const onSidebarOpenedChange = useCallback(
-            (isOpened: boolean) => {
-                if (isOpened && isMainMenuOpened) {
-                    closeMainMenu();
-                }
-
-                setIsSidebarOpened(isOpened);
-            },
-            [isMainMenuOpened, setIsSidebarOpened, closeMainMenu],
-        );
-
-        const mainMenuOpenessData = {
-            isMainMenuOpened,
-            openMainMenu,
-        };
 
         const pcNavigationData = {
             leftItemsWithIconSize: leftItemsWithCustomDropdowns,

@@ -53,15 +53,19 @@
     }
 
     &__mini-toc-button {
+        $gap: 4px;
+        $iconSize: 44px;
+
         display: flex;
         align-items: center;
         justify-content: flex-start;
         flex: 1 0 0;
 
         width: 100%;
+        max-width: calc(100% - #{$iconSize} - 2 * #{$gap} - #{$horizontalPadding});
         padding: 0;
         padding-left: 4px;
-        gap: 4px;
+        gap: $gap;
 
         border-radius: var(--g-border-radius-xs, 3px);
         border: none;
@@ -76,7 +80,9 @@
         @include text-size(subheader-2);
         font-weight: 500;
 
-        transition: transform 0.1s ease-out, color 0.15s linear;
+        transition:
+            transform 0.1s ease-out,
+            color 0.15s linear;
         transform: scale(1);
 
         touch-action: manipulation;
@@ -95,7 +101,10 @@
 
             @include text-size(subheader-3);
             font-weight: 600;
-            // padding-left: 18px;
+        }
+
+        &_center {
+            max-width: unset;
         }
 
         // without burgerButton
@@ -124,6 +133,12 @@
                 outline-style: solid;
             }
         }
+    }
+
+    &__title {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     & &__share-button {

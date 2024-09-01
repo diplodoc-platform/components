@@ -5,7 +5,7 @@ import block from 'bem-cn-lite';
 
 import {Router} from '../../models';
 
-import {useShareHandler, useShortenedTitle, useVisibility} from './hooks';
+import {useShareHandler, useVisibility} from './hooks';
 import './SubNavigation.scss';
 
 const b = block('dc-subnavigation');
@@ -41,7 +41,7 @@ const SubNavigation = memo(
         toggleMenuOpen,
     }: SubNavigationProps) => {
         const visible = useVisibility(miniTocOpened, menuOpened);
-        const displayedTitle = useShortenedTitle(title, hideBurger);
+        // const displayedTitle = useShortenedTitle(title, hideBurger);
         const shareHandler = useShareHandler(title, router);
 
         const miniTocHandler = useMemo(() => {
@@ -70,6 +70,7 @@ const SubNavigation = memo(
             <button
                 className={b('mini-toc-button', {
                     disabled: menuOpened || hideMiniToc,
+                    center: hideMiniToc && hideBurger,
                     label: hideMiniToc,
                 })}
                 type={'button'}
@@ -86,7 +87,7 @@ const SubNavigation = memo(
                         label: hideMiniToc,
                     })}
                 >
-                    {displayedTitle}
+                    {title}
                 </span>
             </button>
         );

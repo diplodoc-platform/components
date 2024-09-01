@@ -34,12 +34,6 @@ const MobileControl = memo(
         const onSheetClose = () => setSheetIsVisible(false);
         const onItemClick = (value: any) => (onChangeValue ? onChangeValue(value) : null);
 
-        const label = (
-            <>
-                {labelText} {labelPostfix}
-            </>
-        );
-
         return (
             <div key={name} className={b()}>
                 <MobileControlSheet
@@ -52,7 +46,9 @@ const MobileControl = memo(
                 <Button view={'flat'} size={'s'} className={b('wrapper')} onClick={onSheetOpen}>
                     <div className={b('label')}>
                         <Icon width={16} height={16} />
-                        {label}
+                        <React.Fragment>
+                            {labelText} {labelPostfix}
+                        </React.Fragment>
                     </div>
                     <Button.Icon className={b('arrow')} side={'right'}>
                         <ChevronDown width={16} height={16} />

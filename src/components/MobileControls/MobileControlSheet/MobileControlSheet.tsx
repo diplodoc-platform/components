@@ -6,6 +6,8 @@ import {ListItem} from '../../../models';
 
 import './MobileControlSheet.scss';
 
+const LIST_ITEM_HEIGHT = 44;
+
 const b = block('dc-mobile-control-sheet');
 
 export interface MobileControlSheetProps {
@@ -15,8 +17,6 @@ export interface MobileControlSheetProps {
     isVisible: boolean;
     onClose: () => void;
 }
-
-const LIST_ITEM_HEIGHT = 44;
 
 const MobileControlSheet = memo(
     ({title, items, onItemClick, isVisible, onClose}: MobileControlSheetProps) => {

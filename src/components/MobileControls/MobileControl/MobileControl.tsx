@@ -46,9 +46,7 @@ const MobileControl = memo(
                 <Button view={'flat'} size={'s'} className={b('wrapper')} onClick={onSheetOpen}>
                     <div className={b('label')}>
                         <Icon width={16} height={16} />
-                        <React.Fragment>
-                            {labelText} {labelPostfix}
-                        </React.Fragment>
+                        {labelText} {labelPostfix}
                     </div>
                     <Button.Icon className={b('arrow')} side={'right'}>
                         <ChevronDown width={16} height={16} />

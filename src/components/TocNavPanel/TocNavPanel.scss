@@ -42,7 +42,7 @@
         width: 48%;
 
         &_left,
-        &_left &-text  {
+        &_left &-text {
             align-items: flex-start;
         }
 
@@ -59,10 +59,10 @@
         }
 
         &_left &-hint {
-            padding-left: $hintPadding;
+            padding-inline-start: $hintPadding;
         }
         &_right &-hint {
-            padding-right: $hintPadding;
+            padding-inline-end: $hintPadding;
         }
 
         & svg {

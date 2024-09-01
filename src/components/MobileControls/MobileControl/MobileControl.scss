@@ -7,7 +7,6 @@
     box-sizing: border-box;
     height: 100%;
 
-    // padding: var(--g-border-radius-xs, 3px) 0 var(--g-border-radius-xs, 3px) 0;
     padding: var(--g-border-radius-xs, 3px) 8px var(--g-border-radius-xs, 3px) 12px;
 
     & button {
@@ -22,7 +21,7 @@
         align-items: center;
         gap: 8px;
 
-        padding-right: 10px;
+        padding-inline-end: 10px;
 
         @include heading6();
     }
@@ -35,7 +34,13 @@
     &__arrow {
         height: 100%;
 
-        right: 0;
         padding: 2px;
+
+        [dir='ltr'] & {
+            right: 0;
+        }
+        [dir='rtl'] & {
+            left: 0;
+        }
     }
 }

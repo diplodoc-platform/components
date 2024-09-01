@@ -8,51 +8,12 @@
 
     position: fixed;
     top: var(--dc-header-height, #{$headerHeight});
-    // TODO: delete
-    // top: calc(var(--dc-header-height, 64px) + var(--dc-subnavigation-height, 52px));
     z-index: 119;
 
     height: calc(100% - var(--dc-header-height, #{$headerHeight}) + 1px);
     width: $sidebarWidth;
 
-    background-color: var(--g-color-base-background, #FFF);
-
-    // ! delete
-    // body:has(&) .dc-subnavigation_hidden,
-    // body:has(&) .dc-subnavigation_invisible {
-    //     top: var(--dc-header-height, #{$headerHeight});
-    // }
-
-    // ! delete
-    // .body:has(&) .dc-subnavigation__mini-toc-button {
-    //     &:hover {
-    //         background: none;
-    //     }
-
-    //     &:active {
-    //         transform: scale(1);
-    //     }
-
-    //     &:focus-visible {
-    //         outline: none;
-    //         outline-width: 0;
-    //     }
-    // }
-
-    // body:has(&) .dc-subnavigation__mini-toc-button {
-    //     &:hover {
-    //         background: none !important;
-    //     }
-
-    //     &:active {
-    //         transform: scale(1) !important;
-    //     }
-
-    //     &:focus-visible {
-    //         outline: none;
-    //         outline-width: 0;
-    //     }
-    // }
+    background-color: var(--g-color-base-background, #fff);
 
     &__bar {
         position: absolute;
@@ -72,6 +33,11 @@
     &__transition-enter-active {
         transform: translateX(0);
         transition: transform $transitionTime;
+    }
+
+    // fixes bug with incorrect position of sidebar on mobile with dir='rtl'
+    [dir='rtl'] &__transition-enter-done {
+        right: -11px;
     }
 
     &__transition-enter-done &-navigation__navigation {

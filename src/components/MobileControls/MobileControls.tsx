@@ -1,9 +1,9 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, {memo, useMemo} from 'react';
 import {Globe, Sun} from '@gravity-ui/icons';
 import block from 'bem-cn-lite';
 import allLangs from 'langs';
+import {KeyPrefix, Namespace, TFunction} from 'react-i18next';
 
 import {ControlSizes, ControlsLayout, ControlsProps, DocSettings, Lang, Theme} from '../..';
 import {useTranslation} from '../../hooks';
@@ -13,6 +13,8 @@ import MobileControl from './MobileControl/MobileControl';
 import './MobileControls.scss';
 
 const b = block('dc-mobile-controls');
+
+type UseTranslationReturnType = TFunction<Namespace<string>, KeyPrefix<Namespace<string>>>;
 
 export interface MobileControlsProps {
     controlSize: ControlSizes.L;
@@ -27,8 +29,7 @@ const LEGACY_LANG_ITEMS = [
 ];
 
 const useLangControl = (
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    t: any,
+    t: UseTranslationReturnType,
     lang: Lang,
     langs?: Lang[],
     onChangeLang?: (lang: Lang) => void,
@@ -66,7 +67,11 @@ const useLangControl = (
 };
 const themes = [Theme.Light, Theme.Dark];
 
-const useThemeControl = (t: any, theme?: Theme, onChangeTheme?: (theme: Theme) => void) => {
+const useThemeControl = (
+    t: UseTranslationReturnType,
+    theme?: Theme,
+    onChangeTheme?: (theme: Theme) => void,
+) => {
     const controlName = 'theme';
     const icon = Sun;
 

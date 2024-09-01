@@ -19,13 +19,7 @@ export interface MobileDropdownProps {
 }
 
 const MobileDropdown: React.FC<MobileDropdownProps> = memo(({item}) => {
-    const {
-        // type,
-        text,
-        isActive,
-        // isTopLevel,
-        items,
-    } = item;
+    const {text, isActive, items} = item;
 
     const [isOpened, setIsOpen] = useState(isActive);
     const {onActiveItemChange} = useActiveNavItem(20, items);

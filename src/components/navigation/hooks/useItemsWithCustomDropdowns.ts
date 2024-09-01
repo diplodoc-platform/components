@@ -12,8 +12,11 @@ const useItemsWithCustomDropdowns = (
     leftItems.forEach((item) => {
         leftItemsWithCustomDropdowns.push(item);
 
-        if (item.type !== 'dropdown') return;
+        if (item.type !== 'dropdown') {
+            return;
+        }
 
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const newMobileItem: any = {};
         Object.assign(newMobileItem, item);
         newMobileItem.type = 'MobileDropdown';
@@ -25,8 +28,11 @@ const useItemsWithCustomDropdowns = (
         rightItems.forEach((item) => {
             rightItemsWithCustomDropdowns.push(item);
 
-            if (item.type !== 'dropdown') return;
+            if (item.type !== 'dropdown') {
+                return;
+            }
 
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             const newMobileItem: any = {};
             Object.assign(newMobileItem, item);
             newMobileItem.type = 'MobileDropdown';

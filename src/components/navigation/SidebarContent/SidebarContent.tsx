@@ -49,8 +49,6 @@ export const SidebarContent: React.FC<SidebarContentProps & PropsWithChildren> =
 }) => {
     const {controlSize, lang, userSettings} = mobileControlsData;
 
-    // TODO: refactor. too many && && &&
-
     const toc = navigationTocData &&
         navigationTocData.toc &&
         mainMenuOpenessData &&

@@ -166,7 +166,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
         } = this.props;
 
         const hideMiniToc = !this.showMiniToc;
-        const hideBurger = headerHeight && headerHeight > 0;
+        const hideBurger = typeof headerHeight !== 'undefined' && headerHeight > 0;
 
         const modes = {
             'regular-page-width': !wideFormat,

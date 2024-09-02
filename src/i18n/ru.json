@@ -8,9 +8,11 @@
     "description_show_mini_toc_enabled": "Включена",
     "description_show_mini_toc_disabled": "Выключена",
     "label_theme": "Тема",
-    "label_theme_prefix": "тема",
     "label_light_theme": "Светлая",
+    "full_label_light_theme": "Светлая тема",
     "label_dark_theme": "Темная",
+    "full_label_dark_theme": "Темная тема",
+    "label_to-main-menu": "В главное меню",
     "description_enabled_dark_theme": "Включена",
     "description_disabled_dark_theme": "Выключена",
     "label_text_size": "Размер текста",
@@ -49,9 +51,6 @@
     "feedback-comment-placeholder": "Дополнительная информация будет полезна",
     "lang-control-text-ru": "Русский",
     "lang-control-text-en": "English"
-  },
-  "mobile-menu": {
-    "label_to-main-menu": "В главное меню"
   },
   "mini-toc": {
     "title": "В этой статье",

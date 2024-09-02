@@ -13,7 +13,7 @@ const b = block('dc-mobile-control');
 export interface MobileControlProps {
     name: string;
     title: string;
-    labelPostfix?: string;
+    buttonLabel?: string;
     Icon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
     item: ReactNode;
     displayItems: ListItem[];
@@ -21,7 +21,7 @@ export interface MobileControlProps {
 }
 
 const MobileControl = memo(
-    ({name, title, labelPostfix, Icon, item, displayItems, onChangeValue}: MobileControlProps) => {
+    ({name, title, buttonLabel, Icon, item, displayItems, onChangeValue}: MobileControlProps) => {
         const labelText = useMemo(
             () => displayItems.find((displayItem) => item === displayItem.value)?.text ?? item,
             [item, displayItems],
@@ -45,7 +45,7 @@ const MobileControl = memo(
                 <Button view={'flat'} size={'s'} className={b('wrapper')} onClick={onSheetOpen}>
                     <div className={b('label')}>
                         <Icon width={16} height={16} />
-                        {labelText} {labelPostfix}
+                        {buttonLabel ?? labelText}
                     </div>
                     <Button.Icon className={b('arrow')} side={'right'}>
                         <ChevronDown width={16} height={16} />

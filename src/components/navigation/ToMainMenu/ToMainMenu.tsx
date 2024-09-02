@@ -14,7 +14,7 @@ export interface ToMainMenuProps {
 }
 
 const ToMainMenu: React.FC<ToMainMenuProps> = memo(({mainMenuIsOpen, openMainMenu}) => {
-    const {t} = useTranslation('mobile-menu');
+    const {t} = useTranslation('controls');
 
     const openMainMenuHandler = useCallback(
         (event: React.MouseEvent) => {

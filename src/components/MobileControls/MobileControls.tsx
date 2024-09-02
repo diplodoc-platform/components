@@ -88,13 +88,23 @@ const useThemeControl = (
         [t],
     );
 
+    const buttonLabel = useMemo(() => {
+        const items = themesItems.filter((item) => theme === item.value);
+
+        if (items.length > 0) {
+            return t(`full_label_${items[0].value}_theme`);
+        }
+
+        return '';
+    }, [t, theme, themesItems]);
+
     return (
         <MobileControl
             name={controlName}
             title={t('label_theme')}
+            buttonLabel={buttonLabel}
             Icon={icon}
             item={theme}
-            labelPostfix={t('label_theme_prefix')}
             displayItems={themesItems}
             onChangeValue={onChangeTheme as OnChangeValue}
         />

@@ -10,7 +10,10 @@
     "label_theme": "Theme",
     "label_theme_prefix": "theme",
     "label_light_theme": "Light",
+    "full_label_light_theme": "Light theme",
     "label_dark_theme": "Dark",
+    "full_label_dark_theme": "Dark theme",
+    "label_to-main-menu": "Back to main menu",
     "description_enabled_dark_theme": "Enabled",
     "description_disabled_dark_theme": "Disabled",
     "label_text_size": "Font size",
@@ -49,9 +52,6 @@
     "feedback-comment-placeholder": "Additional information will be useful",
     "lang-control-text-ru": "Русский",
     "lang-control-text-en": "English"
-  },
-  "mobile-menu": {
-    "label_to-main-menu": "Back to main menu"
   },
   "mini-toc": {
     "title": "In this article",

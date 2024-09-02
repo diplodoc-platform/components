@@ -4,7 +4,7 @@ import {ChevronDown} from '@gravity-ui/icons';
 import {Button} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 
-import {ControlsValuesTypes, ListItem} from '../../../models';
+import {ListItem} from '../../../models';
 import MobileControlSheet from '../MobileControlSheet/MobileControlSheet';
 
 import './MobileControl.scss';
@@ -18,7 +18,7 @@ export interface MobileControlProps {
     Icon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
     item: ReactNode;
     displayItems: ListItem[];
-    onChangeValue?: (value: ControlsValuesTypes) => void;
+    onChangeValue?: (value: any) => void;
 }
 
 const MobileControl = memo(
@@ -32,8 +32,7 @@ const MobileControl = memo(
 
         const onSheetOpen = () => setSheetIsVisible(true);
         const onSheetClose = () => setSheetIsVisible(false);
-        const onItemClick = (value: ControlsValuesTypes) =>
-            onChangeValue ? onChangeValue(value) : null;
+        const onItemClick = (value: string) => (onChangeValue ? onChangeValue(value) : null);
 
         return (
             <div key={name} className={b()}>

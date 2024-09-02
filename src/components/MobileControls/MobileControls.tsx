@@ -7,7 +7,7 @@ import {KeyPrefix, Namespace, TFunction} from 'react-i18next';
 
 import {ControlSizes, ControlsLayout, ControlsProps, DocSettings, Lang, Theme} from '../..';
 import {useTranslation} from '../../hooks';
-import {ListItem} from '../../models';
+import {ListItem, OnChangeValue} from '../../models';
 
 import MobileControl from './MobileControl/MobileControl';
 import './MobileControls.scss';
@@ -61,7 +61,7 @@ const useLangControl = (
             Icon={icon}
             item={lang}
             displayItems={langItems}
-            onChangeValue={onChangeLang}
+            onChangeValue={onChangeLang as OnChangeValue}
         />
     );
 };
@@ -96,7 +96,7 @@ const useThemeControl = (
             item={theme}
             labelPostfix={t('label_theme_prefix')}
             displayItems={themesItems}
-            onChangeValue={onChangeTheme}
+            onChangeValue={onChangeTheme as OnChangeValue}
         />
     );
 };

@@ -5,7 +5,7 @@
     "module": "ESNext",
     "allowJs": false,
     "importHelpers": true,
-    "resolveJsonModule": true,
+    // "resolveJsonModule": true,
     "declaration": true,
     "jsx": "react",
     "target": "ESNext",

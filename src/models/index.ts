@@ -2,6 +2,16 @@ import type {Loc} from '../config/i18n';
 
 import {LabelProps} from '@gravity-ui/uikit';
 
+export type ControlsValuesTypes =
+    | Lang
+    | Theme
+    | TextSizes
+    | FeedbackSendData
+    | SubscribeData
+    | boolean
+    | string
+    | number;
+
 export enum Theme {
     Light = 'light',
     Dark = 'dark',

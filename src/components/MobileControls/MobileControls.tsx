@@ -17,7 +17,7 @@ const b = block('dc-mobile-controls');
 type UseTranslationReturnType = TFunction<Namespace<string>, KeyPrefix<Namespace<string>>>;
 
 export interface MobileControlsProps {
-    controlSize: ControlSizes.L;
+    controlSize: ControlSizes;
     lang: Lang;
     userSettings: DocSettings & ControlsProps;
 }

@@ -11,7 +11,7 @@
     z-index: 119;
 
     height: calc(100% - var(--dc-header-height, #{$headerHeight}) + 1px);
-    width: $sidebarWidth;
+    width: 100vw;
 
     background-color: var(--g-color-base-background, #fff);
 

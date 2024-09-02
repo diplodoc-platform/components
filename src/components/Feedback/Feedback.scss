@@ -44,7 +44,6 @@ $popupWidth: 320px;
     }
 
     &__success-popup {
-        // override
         left: -20px;
 
         padding: $popupPadding 50px $popupPadding $popupPadding;
@@ -108,8 +107,6 @@ $popupWidth: 320px;
     &__title {
         &_view_wide {
             @include text-size(subheader-3);
-            // font-size: var(--g-text-body-2-font-size);
-            // line-height: var(--g-text-body-2-line-height);
             font-weight: 400;
         }
     }

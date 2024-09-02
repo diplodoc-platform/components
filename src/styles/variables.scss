@@ -13,8 +13,9 @@ $centerBlockMaxWidth: 736px;
 // Navigation
 $toMainMenuVerticalPadding: 4px;
 $toMainMenuHorizontalPadding: 12px;
-$toMainMenuHeight: calc(var(--dc-subnavigation-height, $subNavigationHeight) - #{$toMainMenuVerticalPadding} - #{$toMainMenuVerticalPadding});
-$sidebarWidth: 100vw;
+$toMainMenuHeight: calc(
+    var(--dc-subnavigation-height, $subNavigationHeight) - #{$toMainMenuVerticalPadding} - #{$toMainMenuVerticalPadding}
+);
 
 $screenBreakpoints: (
     'xs': 375px,

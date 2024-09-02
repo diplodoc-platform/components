@@ -96,8 +96,8 @@ const SubNavigation = memo(
         const shareButton = (
             <Button
                 className={b('share-button', {
-                    invisible: menuOpened && hideBurger, // now not used
-                    absolute: hideMiniToc && hideBurger, // without miniToc and without burger
+                    invisible: menuOpened && hideBurger,
+                    absolute: hideMiniToc && hideBurger,
                 })}
                 size={'xl'}
                 view={'flat'}

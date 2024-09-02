@@ -13,13 +13,13 @@
 
         width: 100%;
 
-        &__foldable &__list  {
+        &__foldable &__list {
             display: flex;
             padding: 4px 12px;
             flex-direction: column;
 
             border-radius: 11px;
-            background: var(--g-color-base-generic, rgba(0, 0, 0, 0.05));
+            background: var(--g-color-base-generic);
         }
 
         &__list-item {

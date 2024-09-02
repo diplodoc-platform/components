@@ -15,11 +15,11 @@
 
     text-decoration: none;
 
-    color: var(--g-color-text-primary, rgba(0, 0, 0, 0.85));
+    color: var(--g-color-text-primary);
     background: none;
     border-radius: var(--g-border-radius-xs, 3px);
     border: none;
-    border-bottom: 1px solid var(--Line---g-color-line-generic, rgba(0, 0, 0, 0.1));
+    border-bottom: 1px solid var(--Line---g-color-line-generic);
     outline: none;
 
     transition:
@@ -31,7 +31,7 @@
 
     &:not(&_disabled) {
         &:hover {
-            background: var(--g-color-base-simple-hover, rgba(0, 0, 0, 0.05));
+            background: var(--g-color-base-simple-hover);
         }
 
         &:active {
@@ -57,7 +57,7 @@
 
     &__title {
         @include text-size(subheader-2);
-        color: var(--g-color-text-primary, rgba(0, 0, 0, 0.85));
+        color: var(--g-color-text-primary);
     }
 
     &_hidden {

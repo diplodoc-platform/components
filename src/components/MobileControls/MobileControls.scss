@@ -22,7 +22,7 @@
     background-color: var(--g-color-base-background);
     // box-shadow: inset 0px -1px 0px var(--g-color-line-generic);
 
-    border-top: 1px solid var(--g-color-line-generic, rgba(0, 0, 0, 0.1));
+    border-top: 1px solid var(--g-color-line-generic);
 
     @media (min-width: map-get($screenBreakpoints, 'md')) {
         display: none;

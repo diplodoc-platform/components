@@ -1,8 +1,10 @@
-import React, {PropsWithChildren, createRef} from 'react';
+import React, {PropsWithChildren, RefObject, createRef} from 'react';
 
-export interface OutsideClickProps {
+import {ClassNameProps} from 'src/models';
+
+export interface OutsideClickProps extends ClassNameProps {
     onOutsideClick: () => void;
-    anchor?: HTMLElement | null;
+    anchor?: HTMLElement | RefObject<HTMLElement> | null;
 }
 
 export default class OutsideClick extends React.Component<PropsWithChildren<OutsideClickProps>> {
@@ -17,8 +19,13 @@ export default class OutsideClick extends React.Component<PropsWithChildren<Outs
     }
 
     render() {
-        const {children} = this.props;
-        return <div ref={this.ref}>{children}</div>;
+        const {children, className} = this.props;
+
+        return (
+            <div className={className} ref={this.ref}>
+                {children}
+            </div>
+        );
     }
 
     handleOutsideClick = (e: MouseEvent) => {
@@ -26,7 +33,11 @@ export default class OutsideClick extends React.Component<PropsWithChildren<Outs
 
         if (
             e.target &&
-            !(this.ref?.current?.contains(e.target as Node) || anchor?.contains(e.target as Node))
+            !(
+                this.ref?.current?.contains(e.target as Node) ||
+                (anchor && 'contains' in anchor && anchor.contains(e.target as Node)) ||
+                (anchor && 'current' in anchor && anchor.current?.contains(e.target as Node))
+            )
         ) {
             onOutsideClick();
         }

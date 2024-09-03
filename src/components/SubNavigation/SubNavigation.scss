@@ -5,16 +5,16 @@
     $horizontalPadding: 12px;
     $verticalPadding: 4px;
 
-    position: absolute;
     z-index: 119;
 
     display: flex;
 
+    box-sizing: content-box;
     width: calc(100% - 2 * #{$horizontalPadding});
-    height: #{$subNavigationHeight} - #{$verticalPadding} - #{$verticalPadding};
-    padding: #{$verticalPadding} #{$horizontalPadding};
+    height: $subNavigationHeight - $verticalPadding - $verticalPadding;
+    padding: $verticalPadding $horizontalPadding;
 
-    gap: #{$verticalPadding};
+    gap: $verticalPadding;
 
     background: var(--g-color-base-background, #fff);
     border-bottom: 1px solid var(--g-color-line-generic, #0000001a);
@@ -26,8 +26,8 @@
     }
 
     .dc-root_wide-format & {
-        padding-right: 8px;
-        width: calc(100% - #{$horizontalPadding} - 8px);
+        padding-inline: 0 8px;
+        width: calc(100% - 8px);
     }
 
     &_visible {
@@ -87,6 +87,10 @@
 
         touch-action: manipulation;
 
+        .dc-root_wide-format & {
+            max-width: calc(100% - #{$iconSize} - 2 * #{$gap});
+        }
+
         &_hidden {
             visibility: hidden;
         }
@@ -103,7 +107,8 @@
             font-weight: 600;
         }
 
-        &_center {
+        &_center,
+        .dc-root_wide-format &_center {
             max-width: unset;
         }
 

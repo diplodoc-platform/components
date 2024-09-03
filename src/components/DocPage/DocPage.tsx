@@ -1,4 +1,4 @@
-import React, {ReactPortal} from 'react';
+import React, {ReactPortal, createRef} from 'react';
 import {Link, Xmark} from '@gravity-ui/icons';
 import {Button, Icon} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
@@ -102,6 +102,8 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
     bodyRef: HTMLDivElement | null = null;
     bodyObserver: MutationObserver | null = null;
 
+    subNavRef = createRef<HTMLDivElement>();
+
     constructor(props: DocPageInnerProps) {
         super(props);
 
@@ -114,6 +116,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             mobileMenuOpen: false,
         };
     }
+
     componentDidMount(): void {
         const {singlePage} = this.props;
 
@@ -173,10 +176,8 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             'full-screen': fullScreen,
             'hidden-mini-toc': hideMiniToc,
             'single-page': singlePage,
-            'open-mini-toc': this.state.mobileMiniTocOpen,
         };
         const toggleMenuOpen = () => this.setState({mobileMenuOpen: !this.state.mobileMenuOpen});
-        const closeMenu = () => this.setState({mobileMenuOpen: false});
         const toggleMiniTocOpen = () =>
             this.setState({mobileMiniTocOpen: !this.state.mobileMiniTocOpen});
         const closeMiniToc = () => this.setState({mobileMiniTocOpen: false});
@@ -218,23 +219,23 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                     {this.renderSinglePageControls()}
                 </DocLayout.Center>
                 <DocLayout.Right>
-                    <SubNavigation
-                        title={this.props.title}
-                        router={this.props.router}
-                        hideBurger={hideBurger}
-                        hideMiniToc={hideMiniToc}
-                        miniTocOpened={this.state.mobileMiniTocOpen}
-                        menuOpened={this.state.mobileMenuOpen}
-                        toggleMenuOpen={toggleMenuOpen}
-                        closeMenu={closeMenu}
-                        toggleMiniTocOpen={toggleMiniTocOpen}
-                        closeMiniToc={closeMiniToc}
-                    />
                     {/* This key allows recalculating the offset for the mini-toc for Safari */}
                     <div
+                        ref={this.subNavRef}
                         className={b('aside', modes)}
                         key={getStateKey(this.showMiniToc, wideFormat, singlePage)}
                     >
+                        <SubNavigation
+                            title={this.props.title}
+                            router={this.props.router}
+                            hideBurger={hideBurger}
+                            hideMiniToc={hideMiniToc}
+                            miniTocOpened={this.state.mobileMiniTocOpen}
+                            menuOpened={this.state.mobileMenuOpen}
+                            toggleMenuOpen={toggleMenuOpen}
+                            toggleMiniTocOpen={toggleMiniTocOpen}
+                            closeMiniToc={closeMiniToc}
+                        />
                         {hideMiniToc ? null : this.renderAsideMiniToc()}
                     </div>
                 </DocLayout.Right>
@@ -583,12 +584,13 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
 
     private renderAsideMiniToc() {
         const {showMiniToc, headings, router, headerHeight, onMiniTocItemClick} = this.props;
-        const {keyDOM, subNavElement} = this.state;
+        const {keyDOM, mobileMiniTocOpen} = this.state;
 
         if (showMiniToc) {
             return (
                 <OutsideClick
-                    anchor={subNavElement}
+                    className={b('aside-mini-toc-wrapper', {open: mobileMiniTocOpen})}
+                    anchor={this.subNavRef}
                     onOutsideClick={() => this.setState({mobileMiniTocOpen: false})}
                 >
                     <div className={b('aside-mini-toc')}>

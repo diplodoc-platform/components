@@ -25,12 +25,11 @@ export interface SubNavigationProps {
     toggleMiniTocOpen: () => void;
     closeMiniToc: () => void;
     toggleMenuOpen: () => void;
-    closeMenu: () => void;
 }
 
 const SubNavigation = memo(
     ({
-        title = '',
+        title,
         router,
         hideBurger,
         hideMiniToc,
@@ -41,7 +40,7 @@ const SubNavigation = memo(
         toggleMenuOpen,
     }: SubNavigationProps) => {
         const visible = useVisibility(miniTocOpened, menuOpened);
-        const shareHandler = useShareHandler(title, router);
+        const shareHandler = useShareHandler(title ?? '', router);
 
         const miniTocHandler = useMemo(() => {
             if (hideMiniToc || menuOpened) {

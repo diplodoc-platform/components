@@ -38,6 +38,7 @@ export interface SearchSuggestProps {
     onFocus?: () => void;
     onBlur?: () => void;
     endContent?: React.ReactNode;
+    generativeSuggestOnClick?: (link: string) => void;
 }
 
 export interface SearchSuggestApi {
@@ -47,7 +48,8 @@ export interface SearchSuggestApi {
 }
 
 export const SearchSuggest = forwardRef<SearchSuggestApi, SearchSuggestProps>((props, api) => {
-    const {provider, className, placeholder, endContent, containerClass} = props;
+    const {provider, className, placeholder, endContent, containerClass, generativeSuggestOnClick} =
+        props;
     const href = useRef<HTMLAnchorElement>(null);
     const input = useRef<HTMLElement>(null);
     const suggest = useRef<List<SearchSuggestItem>>(null);
@@ -137,6 +139,7 @@ export const SearchSuggest = forwardRef<SearchSuggestApi, SearchSuggestProps>((p
                         renderItem={SuggestItem}
                         onItemClick={onSubmit}
                         onChangeActive={setActive}
+                        {...generativeSuggestOnClick}
                     />
                 </Popup>
             )}

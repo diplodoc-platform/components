@@ -149,4 +149,47 @@
             }
         }
     }
+
+    &__generative-search {
+        @include link();
+        text-decoration: none;
+
+        padding: 20px;
+        border: 1px solid transparent;
+        border-bottom: 1px solid var(--g-color-line-generic);
+
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+
+        &:hover {
+            border: 1px solid rgba(88, 86, 214, 1);
+            cursor: pointer;
+        }
+
+        &:active {
+            border: 1px solid rgba(88, 86, 214, 1);
+        }
+    }
+
+    &__generative-search-text {
+        display: inline-block;
+        vertical-align: top;
+
+        > h1 {
+            color: var(--g-color-text-link);
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 22px;
+            margin: 0;
+        }
+        > p {
+            color: var(--g-color-text-secondary);
+
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 16px;
+            margin: 0;
+        }
+    }
 }

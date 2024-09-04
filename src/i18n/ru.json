@@ -113,10 +113,24 @@
     "search_mark_dislike": "вообще не про то",
     "search_mark-result-text": "Спасибо за оценку!"
   },
+  "generative-search": {
+    "generative-search_expand": "Развернуть",
+    "generative-search_sources_title": "Источники",
+    "generative-search_bad_response": "Плохой ответ",
+    "generative-search_good_response": "Хороший ответ",
+    "generative-search_loading_title": "Быстрый ответ...",
+    "generative-search_feedback_answer": "Спасибо, что помогаете делать технологию лучше",
+    "generative-search_something_went_wrong": "Что-то пошло не так. Попробуйте ещё раз или обновите страницу.",
+    "generative-search_header_title": "Быстрый ответ",
+    "generative-search_header_text": "Создан с помощью нейросети",
+    "generative-search_disclaimer": "Ответ сформирован нейросетью YandexGPT на основе документации сервиса. В нём могут быть неточности, проверить информацию можно поссылкам на источники."
+  },
   "search-suggest": {
     "search-suggest_all-results": "Все результаты",
     "search-suggest_not-found": "По запросу «{{query}}» ничего не найдено.",
     "search-suggest_error-text": "Что-то пошло не так. Попробуйте ещё раз.",
+    "search-suggest-generative_title": "Нажмите, чтобы получить быстрый ответ",
+    "search-suggest-generative_subtitle": "С помощью нейросети YandexGPT",
     "search-item_type-all": "Всё",
     "search-item_type-doc": "Документация",
     "search-item_type-main": "Главная"

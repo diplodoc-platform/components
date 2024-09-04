@@ -25,7 +25,11 @@
     &_theme_light {
         @include g-colors-private-light;
 
+        --g-color-neutral-background: rgb(255, 255, 255);
+        --g-color-base-fill-color: var(--g-color-text-primary);
         --g-color-base-background: rgb(255, 255, 255);
+        --g-color-second-background: rgba(241, 244, 249, 1);
+        --g-color-second-background-300: rgba(241, 244, 249, 0.3);
         --g-color-base-brand: var(--g-color-private-blue-550-solid);
         --g-color-base-brand-hover: var(--g-color-private-blue-600-solid);
         --g-color-base-selection: var(--g-color-private-blue-100);
@@ -59,7 +63,11 @@
 
         --dc-text-highlight-selected: var(--g-color-text-inverted-primary);
 
+        --g-color-neutral-background: rgba(41, 42, 45);
+        --g-color-base-fill-color: var(--g-color-text-primary);
         --g-color-base-background: rgb(45, 44, 51);
+        --g-color-second-background: rgba(32, 33, 36);
+        --g-color-second-background-300: rgba(32, 33, 36, 0.3);
         --g-color-base-brand: var(--g-color-private-blue-550-solid);
         --g-color-base-brand-hover: var(--g-color-private-blue-600-solid);
         --g-color-base-selection: var(--g-color-private-blue-150);

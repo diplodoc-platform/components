@@ -22,7 +22,6 @@ export interface DocLayoutProps {
     wideFormat?: boolean;
     headerHeight?: number;
     tocTitleIcon?: React.ReactNode;
-    menuOpen?: boolean;
     hideTocHeader?: boolean;
     hideToc?: boolean;
     className?: string;
@@ -42,7 +41,6 @@ export class DocLayout extends React.Component<DocLayoutProps> {
         const {
             children,
             className,
-            menuOpen,
             fullScreen = false,
             wideFormat = false,
             hideRight = false,
@@ -55,7 +53,6 @@ export class DocLayout extends React.Component<DocLayoutProps> {
             'full-screen': fullScreen,
             'hidden-right': hideRight,
             loading: loading,
-            visible: menuOpen,
         };
 
         React.Children.forEach(children, (child) => {

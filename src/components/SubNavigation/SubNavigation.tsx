@@ -1,9 +1,12 @@
 import React, {memo, useMemo} from 'react';
-import {ArrowShapeTurnUpRight, Bars, SquareListUl, Xmark} from '@gravity-ui/icons';
+import {ArrowShapeTurnUpRight, /*Bars,*/ SquareListUl /*Xmark*/} from '@gravity-ui/icons';
 import {Button} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 
-import {Router} from '../../models';
+import {Router, TocData} from '../../models';
+import {Toc} from '../Toc';
+import {SidebarNavigation} from '../navigation';
+import {MobileControlsProps} from '../MobileControls';
 
 import {useShareHandler, useVisibility} from './hooks';
 import './SubNavigation.scss';
@@ -18,8 +21,12 @@ const ICON_SIZE = {
 export interface SubNavigationProps {
     title: string | undefined;
     router: Router;
+    toc: TocData;
+    headerHeight?: number;
+    mobileControlsData: MobileControlsProps;
     hideBurger: boolean;
     hideMiniToc: boolean;
+    hideTocHeader?: boolean;
     miniTocOpened: boolean;
     menuOpened: boolean;
     toggleMiniTocOpen: () => void;
@@ -31,8 +38,12 @@ const SubNavigation = memo(
     ({
         title,
         router,
+        toc,
+        mobileControlsData,
+        headerHeight,
         hideBurger,
         hideMiniToc,
+        hideTocHeader,
         miniTocOpened,
         menuOpened,
         toggleMiniTocOpen,
@@ -50,20 +61,24 @@ const SubNavigation = memo(
             return toggleMiniTocOpen;
         }, [hideMiniToc, menuOpened, toggleMiniTocOpen]);
 
-        const menuButton = (
-            <Button
-                className={b('menu-button')}
-                size={'xl'}
-                view={'flat'}
-                onClick={() => {
+        const menuButton = !hideBurger && (
+            <SidebarNavigation
+                isSidebarOpened={menuOpened}
+                onSidebarOpenedChange={() => {
                     closeMiniToc();
                     toggleMenuOpen();
                 }}
+                mobileControlsData={mobileControlsData}
             >
-                <Button.Icon>
-                    {menuOpened ? <Xmark {...ICON_SIZE} /> : <Bars {...ICON_SIZE} />}
-                </Button.Icon>
-            </Button>
+                <div className={b('toc')}>
+                    <Toc
+                        {...toc}
+                        router={router}
+                        headerHeight={headerHeight}
+                        hideTocHeader={hideTocHeader}
+                    />
+                </div>
+            </SidebarNavigation>
         );
 
         const miniTocButton = (
@@ -115,7 +130,7 @@ const SubNavigation = memo(
                     visible: visible,
                 })}
             >
-                {!hideBurger && menuButton}
+                {menuButton}
                 {miniTocButton}
                 {shareButton}
             </div>

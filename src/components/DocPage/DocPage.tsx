@@ -6,6 +6,7 @@ import {createPortal} from 'react-dom';
 
 import {DEFAULT_SETTINGS} from '../../constants';
 import {
+    ControlSizes,
     DocPageData,
     DocSettings,
     FeedbackSendData,
@@ -92,7 +93,6 @@ type DocPageState = {
     loading: boolean;
     keyDOM: number;
     showNotification: boolean;
-    subNavElement: HTMLElement | null;
 };
 
 class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
@@ -111,7 +111,6 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             loading: props.singlePage,
             keyDOM: getRandomKey(),
             showNotification: true,
-            subNavElement: null,
             mobileMiniTocOpen: false,
             mobileMenuOpen: false,
         };
@@ -127,12 +126,6 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
         this.setState({loading: false});
 
         this.addBodyObserver();
-
-        const subNavArray = document.getElementsByClassName('dc-subnavigation');
-
-        if (subNavArray.length > 0) {
-            this.setState({subNavElement: subNavArray[0] as HTMLElement});
-        }
     }
 
     componentDidUpdate(prevProps: DocPageInnerProps): void {
@@ -153,8 +146,11 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
 
     render() {
         const {
+            title,
             toc,
             router,
+            lang,
+            theme,
             headerHeight,
             wideFormat,
             fullScreen,
@@ -166,6 +162,8 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             onChangeSinglePage,
             pdfLink,
             useMainTag,
+            onChangeLang,
+            onChangeTheme,
         } = this.props;
 
         const hideMiniToc = !this.showMiniToc;
@@ -177,6 +175,18 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             'hidden-mini-toc': hideMiniToc,
             'single-page': singlePage,
         };
+
+        const mobileControlsData = {
+            controlSize: ControlSizes.L,
+            lang,
+            userSettings: {
+                lang,
+                onChangeLang,
+                theme,
+                onChangeTheme,
+            },
+        };
+
         const toggleMenuOpen = () => this.setState({mobileMenuOpen: !this.state.mobileMenuOpen});
         const toggleMiniTocOpen = () =>
             this.setState({mobileMiniTocOpen: !this.state.mobileMiniTocOpen});
@@ -193,7 +203,6 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                 wideFormat={wideFormat}
                 hideTocHeader={hideTocHeader}
                 hideToc={hideToc}
-                menuOpen={this.state.mobileMenuOpen}
                 loading={this.state.loading}
                 footer={footer}
                 singlePage={singlePage}
@@ -226,10 +235,14 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                         key={getStateKey(this.showMiniToc, wideFormat, singlePage)}
                     >
                         <SubNavigation
-                            title={this.props.title}
-                            router={this.props.router}
+                            title={title}
+                            router={router}
+                            toc={toc}
+                            mobileControlsData={mobileControlsData}
+                            headerHeight={headerHeight}
                             hideBurger={hideBurger}
                             hideMiniToc={hideMiniToc}
+                            hideTocHeader={hideTocHeader}
                             miniTocOpened={this.state.mobileMiniTocOpen}
                             menuOpened={this.state.mobileMenuOpen}
                             toggleMenuOpen={toggleMenuOpen}

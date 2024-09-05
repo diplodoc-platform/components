@@ -150,6 +150,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             toc,
             router,
             lang,
+            langs,
             theme,
             headerHeight,
             wideFormat,
@@ -180,7 +181,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             controlSize: ControlSizes.L,
             lang,
             userSettings: {
-                lang,
+                langs,
                 onChangeLang,
                 theme,
                 onChangeTheme,

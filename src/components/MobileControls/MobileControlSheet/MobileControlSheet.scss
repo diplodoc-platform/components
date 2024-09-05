@@ -14,6 +14,7 @@
 
         display: flex;
         align-items: center;
+        justify-content: start;
         gap: 8px;
 
         width: 100%;
@@ -36,9 +37,6 @@
         // fixes a bug where the button text remains at the beginning (left)
         // of the button on both dir='ltr' and dir='rtl'
         // * justify-content: flex-start - doesn't work
-        [dir='ltr'] & {
-            justify-content: start;
-        }
         [dir='rtl'] & {
             justify-content: end;
         }

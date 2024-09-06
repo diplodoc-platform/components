@@ -55,6 +55,27 @@
         & .pc-navigation-item {
             padding: 10px 12px 10px 4px;
             margin: 0;
+
+            &:has(.pc-navigation-dropdown) {
+                display: none;
+            }
+
+            &_menu-layout_mobile {
+                margin: 0;
+
+                &:has(.dc-mobile-dropdown) {
+                    display: unset;
+                    padding: 0;
+                }
+            }
+        }
+
+        & .dc-mobile-dropdown__list .pc-navigation-item {
+            padding: 10px 12px 10px 28px;
+        }
+
+        .pc-navigation-dropdown {
+            padding: 0;
         }
     }
 }

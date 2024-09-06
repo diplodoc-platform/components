@@ -6,11 +6,14 @@ const useItemsWithCustomDropdowns = (
     leftItems: NavigationItemModel[],
     rightItems?: NavigationItemModel[],
 ) => {
-    const leftItemsWithCustomDropdowns: CustomNavigationItemModel[] = [];
-    const rightItemsWithCustomDropdowns: CustomNavigationItemModel[] = [];
+    return [addMobileDropdownsTo(leftItems), rightItems ? addMobileDropdownsTo(rightItems) : []];
+};
 
-    leftItems.forEach((item) => {
-        leftItemsWithCustomDropdowns.push(item);
+function addMobileDropdownsTo(items: CustomNavigationItemModel[]) {
+    const itemsWithCustomDropdowns: CustomNavigationItemModel[] = [];
+
+    items.forEach((item) => {
+        itemsWithCustomDropdowns.push(item);
 
         if (item.type !== 'dropdown') {
             return;
@@ -21,27 +24,10 @@ const useItemsWithCustomDropdowns = (
         Object.assign(newMobileItem, item);
         newMobileItem.type = 'MobileDropdown';
 
-        leftItemsWithCustomDropdowns.push(newMobileItem);
+        itemsWithCustomDropdowns.push(newMobileItem);
     });
 
-    if (rightItems) {
-        rightItems.forEach((item) => {
-            rightItemsWithCustomDropdowns.push(item);
-
-            if (item.type !== 'dropdown') {
-                return;
-            }
-
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            const newMobileItem: any = {};
-            Object.assign(newMobileItem, item);
-            newMobileItem.type = 'MobileDropdown';
-
-            rightItemsWithCustomDropdowns.push(newMobileItem);
-        });
-    }
-
-    return [leftItemsWithCustomDropdowns, rightItemsWithCustomDropdowns];
-};
+    return itemsWithCustomDropdowns;
+}
 
 export default useItemsWithCustomDropdowns;

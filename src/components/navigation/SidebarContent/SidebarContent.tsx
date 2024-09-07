@@ -77,6 +77,7 @@ export const SidebarContent: React.FC<SidebarContentProps & PropsWithChildren> =
                 {pcNavigationData.leftItemsWithIconSize && (
                     <NavigationList
                         items={pcNavigationData.leftItemsWithIconSize}
+                        itemClassName={b('main-menu-item')}
                         column={ItemColumnName.Top}
                         onActiveItemChange={pcNavigationData.onActiveItemChange}
                         menuLayout={NavigationLayout.Mobile}
@@ -85,6 +86,7 @@ export const SidebarContent: React.FC<SidebarContentProps & PropsWithChildren> =
                 {pcNavigationData.rightItemsWithIconSize && (
                     <NavigationList
                         items={pcNavigationData.rightItemsWithIconSize}
+                        itemClassName={b('main-menu-item')}
                         column={ItemColumnName.Bottom}
                         onActiveItemChange={pcNavigationData.onActiveItemChange}
                         menuLayout={NavigationLayout.Mobile}

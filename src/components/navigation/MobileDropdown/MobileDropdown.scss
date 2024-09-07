@@ -2,42 +2,47 @@
 @import '../../../styles/mixins.scss';
 
 .dc-mobile-dropdown {
-    display: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-    @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
+    padding: 10px 12px 10px 4px;
+
+    width: 100%;
+
+    &__foldable &__list {
         display: flex;
-        justify-content: space-between;
-        align-items: center;
+        padding: 4px 12px;
+        flex-direction: column;
 
-        padding: 10px 12px 10px 4px;
+        border-radius: 11px;
+        background: var(--g-color-base-generic);
+    }
+
+    &__list-item {
+        display: flex;
+        padding: 10px 12px 10px 28px;
+        gap: 4px;
 
         width: 100%;
+        margin: 0;
 
-        &__foldable &__list {
-            display: flex;
-            padding: 4px 12px;
-            flex-direction: column;
+        font-weight: 400;
+    }
 
-            border-radius: 11px;
-            background: var(--g-color-base-generic);
+    &__icon {
+        transition: transform 150ms;
+
+        &_up {
+            transform: rotate(180deg);
         }
+    }
 
-        &__list-item {
-            display: flex;
-            padding: 10px 12px 10px 28px;
-            gap: 4px;
+    @media (min-width: map-get($screenBreakpoints, 'md')) {
+        display: none;
 
-            width: 100%;
-
-            font-weight: 400;
-        }
-
-        &__icon {
-            transition: transform 150ms;
-
-            &_up {
-                transform: rotate(180deg);
-            }
+        .pc-navigation-item:has(&) {
+            width: 0;
         }
     }
 }

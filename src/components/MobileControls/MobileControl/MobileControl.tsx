@@ -15,16 +15,28 @@ export interface MobileControlProps {
     title: string;
     buttonLabel?: string;
     Icon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
-    item: ReactNode;
+    selectedItem: ReactNode;
+    selectedItemIndex: number;
     displayItems: ListItem[];
     onChangeValue?: OnChangeValue;
 }
 
 const MobileControl = memo(
-    ({name, title, buttonLabel, Icon, item, displayItems, onChangeValue}: MobileControlProps) => {
+    ({
+        name,
+        title,
+        buttonLabel,
+        Icon,
+        selectedItem,
+        selectedItemIndex,
+        displayItems,
+        onChangeValue,
+    }: MobileControlProps) => {
         const labelText = useMemo(
-            () => displayItems.find((displayItem) => item === displayItem.value)?.text ?? item,
-            [item, displayItems],
+            () =>
+                displayItems.find((displayItem) => selectedItem === displayItem.value)?.text ??
+                selectedItem,
+            [selectedItem, displayItems],
         );
 
         const [sheetIsVisible, setSheetIsVisible] = useState(false);
@@ -41,6 +53,7 @@ const MobileControl = memo(
                     onItemClick={onItemClick}
                     isVisible={sheetIsVisible}
                     onClose={onSheetClose}
+                    selectedItemIndex={selectedItemIndex}
                 />
                 <Button view={'flat'} size={'s'} className={b('wrapper')} onClick={onSheetOpen}>
                     <div className={b('label')}>

@@ -16,10 +16,18 @@ export interface MobileControlSheetProps {
     onItemClick: (value: string) => void;
     isVisible: boolean;
     onClose: () => void;
+    selectedItemIndex: number;
 }
 
 const MobileControlSheet = memo(
-    ({title, items, onItemClick, isVisible, onClose}: MobileControlSheetProps) => {
+    ({
+        title,
+        items,
+        onItemClick,
+        isVisible,
+        onClose,
+        selectedItemIndex,
+    }: MobileControlSheetProps) => {
         const itemsHeight = LIST_ITEM_HEIGHT * items.length;
 
         const renderItem = useCallback(
@@ -38,6 +46,7 @@ const MobileControlSheet = memo(
                     itemHeight={LIST_ITEM_HEIGHT}
                     itemsHeight={itemsHeight}
                     renderItem={renderItem}
+                    selectedItemIndex={selectedItemIndex}
                 />
             </Sheet>
         );

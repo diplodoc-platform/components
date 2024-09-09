@@ -54,12 +54,15 @@ const useLangControl = (
         return preparedLangs.length ? preparedLangs : LEGACY_LANG_ITEMS;
     }, [langs]);
 
+    const selectedItemIndex = useMemo(() => (langs ? langs.indexOf(lang) : -1), [lang, langs]);
+
     return (
         <MobileControl
             name={controlName}
             title={t('lang-text')}
             Icon={icon}
-            item={lang}
+            selectedItem={lang}
+            selectedItemIndex={selectedItemIndex}
             displayItems={langItems}
             onChangeValue={onChangeLang as OnChangeValue}
         />
@@ -89,14 +92,18 @@ const useThemeControl = (
     );
 
     const buttonLabel = useMemo(() => {
-        const items = themesItems.filter((item) => theme === item.value);
+        for (const item of themesItems) {
+            if (theme !== item.value) {
+                continue;
+            }
 
-        if (items.length > 0) {
-            return t(`full_label_${items[0].value}_theme`);
+            return t(`full_label_${item.value}_theme`);
         }
 
         return '';
     }, [t, theme, themesItems]);
+
+    const selectedItemIndex = useMemo(() => (theme ? themes.indexOf(theme) : -1), [theme]);
 
     return (
         <MobileControl
@@ -104,7 +111,8 @@ const useThemeControl = (
             title={t('label_theme')}
             buttonLabel={buttonLabel}
             Icon={icon}
-            item={theme}
+            selectedItem={theme}
+            selectedItemIndex={selectedItemIndex}
             displayItems={themesItems}
             onChangeValue={onChangeTheme as OnChangeValue}
         />

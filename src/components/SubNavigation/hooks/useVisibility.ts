@@ -14,13 +14,13 @@ const useVisibility = (miniTocOpened: boolean, menuOpened: boolean) => {
             return setLastScrollY(scrollY);
         }
 
-        if (miniTocOpened || menuOpened || (scrollY === 0 && !visible)) {
+        if (miniTocOpened || menuOpened || scrollY < 55) {
             return setVisibility(true);
         }
 
-        if (scrollY > lastScrollY && visible) {
+        if (visible && scrollY > lastScrollY) {
             setVisibility(false);
-        } else if (scrollY < lastScrollY && !visible) {
+        } else if (!visible && scrollY < lastScrollY) {
             setVisibility(true);
         }
 
@@ -39,7 +39,7 @@ const useVisibility = (miniTocOpened: boolean, menuOpened: boolean) => {
     }, [miniTocOpened, menuOpened, visible, lastScrollY, hiddingTimeout]);
 
     useEffect(() => {
-        if (window.scrollY === 0) {
+        if (window.scrollY < 50) {
             return;
         }
 

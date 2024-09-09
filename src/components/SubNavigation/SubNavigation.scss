@@ -63,6 +63,10 @@
 
         width: 100%;
         max-width: calc(100% - #{$iconSize} - 2 * #{$gap} - #{$horizontalPadding});
+        .dc-root_wide-format & {
+            max-width: calc(100% - #{$iconSize} - 2 * #{$gap});
+        }
+
         padding: 0;
         padding-left: 4px;
         gap: $gap;
@@ -87,8 +91,9 @@
 
         touch-action: manipulation;
 
-        .dc-root_wide-format & {
-            max-width: calc(100% - #{$iconSize} - 2 * #{$gap});
+        // if has burger
+        &:nth-child(2) {
+            max-width: calc(100% - 2 * #{$iconSize} - 2 * #{$gap});
         }
 
         &_hidden {

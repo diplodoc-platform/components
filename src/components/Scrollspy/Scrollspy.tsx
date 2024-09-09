@@ -16,9 +16,11 @@ export interface ScrollspyProps
     extends Partial<ScrollspyDefaultProps>,
         Partial<HTMLProps<HTMLUListElement>> {
     items: string[];
+    titles: string[];
     children: ReactElement[];
     router: Router;
     onSectionClick?: (event: MouseEvent) => void;
+    onActiveItemChange?: (title: string) => void;
     className?: string;
     scrollToListItem?: boolean;
 }
@@ -235,7 +237,14 @@ export class Scrollspy extends React.Component<ScrollspyInnerProps, ScrollspySta
     };
 
     private saveActiveItems(hash?: string) {
+        const {titles, onActiveItemChange} = this.props;
+
         const visibleItems = this.getViewState(hash);
+        const activeItemTitle = this.getActiveItemTitle(titles, visibleItems);
+
+        if (activeItemTitle && onActiveItemChange) {
+            onActiveItemChange(activeItemTitle);
+        }
 
         this.setState({inViewState: visibleItems});
     }
@@ -284,6 +293,18 @@ export class Scrollspy extends React.Component<ScrollspyInnerProps, ScrollspySta
         }
 
         return isOneActive ? visibleItemOffset : inViewState;
+    }
+
+    private getActiveItemTitle(titles: string[], inViewState: boolean[]) {
+        for (const [index, isActive] of inViewState.entries()) {
+            if (!isActive) {
+                continue;
+            }
+
+            return titles[index];
+        }
+
+        return null;
     }
 
     private handleScroll = () => {

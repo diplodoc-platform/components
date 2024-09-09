@@ -24,7 +24,9 @@ const useVisibility = (miniTocOpened: boolean, menuOpened: boolean) => {
             setVisibility(true);
         }
 
-        if (hiddingTimeout || (scrollY - lastScrollY > -55 && scrollY - lastScrollY < 55)) {
+        const scrollDiff = Math.abs(scrollY - lastScrollY);
+
+        if (hiddingTimeout || scrollDiff < 55) {
             return;
         }
 

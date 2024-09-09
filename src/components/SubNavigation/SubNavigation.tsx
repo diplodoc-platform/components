@@ -1,5 +1,5 @@
 import React, {memo, useMemo} from 'react';
-import {ArrowShapeTurnUpRight, /*Bars,*/ SquareListUl /*Xmark*/} from '@gravity-ui/icons';
+import {ArrowShapeTurnUpRight, SquareListUl} from '@gravity-ui/icons';
 import {Button} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 

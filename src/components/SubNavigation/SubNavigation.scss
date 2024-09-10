@@ -44,6 +44,34 @@
         background: none;
     }
 
+    &__wrapper {
+        width: 100%;
+    }
+
+    &__mini-toc {
+        @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
+            width: 100%;
+
+            box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.15);
+            max-height: 0px;
+
+            transition: max-height 300ms 0s;
+            overflow-y: hidden;
+
+            &_open {
+                max-height: 80vh;
+
+                body:has(&) {
+                    overflow-y: hidden;
+                }
+            }
+
+            & .dc-mini-toc {
+                padding: 16px 8px 16px 20px;
+            }
+        }
+    }
+
     &__icon {
         display: flex;
         justify-content: center;

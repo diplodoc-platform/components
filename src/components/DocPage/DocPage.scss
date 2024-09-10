@@ -41,36 +41,6 @@ $importantBackgroundColor: rgba(235, 50, 38, 0.08);
             padding: 0;
 
             background: var(--g-color-base-background, #fff);
-
-            &_hidden-mini-toc {
-                padding: 0;
-            }
-
-            &-mini-toc {
-                padding: 16px 8px 16px 20px;
-
-                &-wrapper {
-                    width: 100%;
-                    max-height: 0px;
-
-                    box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.15);
-
-                    transition: max-height 300ms 0s;
-                    overflow-y: hidden;
-
-                    &_open {
-                        max-height: 80vh;
-
-                        body:has(&) {
-                            overflow-y: hidden;
-                        }
-                    }
-                }
-            }
-
-            .dc-root_wide-format & {
-                padding: 0;
-            }
         }
 
         @media screen and (min-width: 1280px) {

@@ -1,14 +1,16 @@
-import React, {memo, useMemo} from 'react';
+import React, {memo, useCallback, useRef, useState} from 'react';
 import {ArrowShapeTurnUpRight, SquareListUl} from '@gravity-ui/icons';
 import {Button} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 
-import {Router, TocData} from '../../models';
+import {DocHeadingItem, Router, TocData} from '../../models';
 import {Toc} from '../Toc';
 import {SidebarNavigation} from '../navigation';
 import {MobileControlsProps} from '../MobileControls';
+import {MiniToc} from '../MiniToc';
+import {OutsideClick} from '../OutsideClick';
 
-import {useShareHandler, useVisibility} from './hooks';
+import {useMiniTocData, useShareHandler, useVisibility} from './hooks';
 import './SubNavigation.scss';
 
 const b = block('dc-subnavigation');
@@ -19,55 +21,56 @@ const ICON_SIZE = {
 };
 
 export interface SubNavigationProps {
-    title: string | undefined;
     router: Router;
     toc: TocData;
+    keyDOM: number;
+    pageTitle: string | undefined;
+    headings: DocHeadingItem[];
     headerHeight?: number;
     mobileControlsData: MobileControlsProps;
-    hideBurger: boolean;
     hideMiniToc: boolean;
+    hideBurger: boolean;
     hideTocHeader?: boolean;
-    miniTocOpened: boolean;
-    menuOpened: boolean;
-    toggleMiniTocOpen: () => void;
-    closeMiniToc: () => void;
-    toggleMenuOpen: () => void;
+    onMiniTocItemClick?: (event: MouseEvent) => void;
 }
 
 const SubNavigation = memo(
     ({
-        title,
+        pageTitle = '',
         router,
         toc,
+        keyDOM,
+        headings,
         mobileControlsData,
         headerHeight,
-        hideBurger,
         hideMiniToc,
+        hideBurger,
         hideTocHeader,
-        miniTocOpened,
-        menuOpened,
-        toggleMiniTocOpen,
-        closeMiniToc,
-        toggleMenuOpen,
+        onMiniTocItemClick,
     }: SubNavigationProps) => {
-        const visible = useVisibility(miniTocOpened, menuOpened);
-        const shareHandler = useShareHandler(title ?? '', router);
+        const ref = useRef<HTMLDivElement>(null);
 
-        const miniTocHandler = useMemo(() => {
-            if (hideMiniToc || menuOpened) {
-                return () => {};
-            }
+        const [menuOpen, setMenuOpen] = useState(false);
+        const {
+            miniTocOpen,
+            activeMiniTocTitle,
+            closeMiniToc,
+            miniTocHandler,
+            onItemClick,
+            onActiveItemTitleChange,
+        } = useMiniTocData(pageTitle, hideMiniToc, menuOpen, onMiniTocItemClick);
+        const visible = useVisibility(miniTocOpen, menuOpen);
+        const shareHandler = useShareHandler(pageTitle, router);
 
-            return toggleMiniTocOpen;
-        }, [hideMiniToc, menuOpened, toggleMiniTocOpen]);
+        const onSidebarOpenedChange = useCallback(() => {
+            closeMiniToc();
+            setMenuOpen(!menuOpen);
+        }, [menuOpen, closeMiniToc]);
 
         const menuButton = !hideBurger && (
             <SidebarNavigation
-                isSidebarOpened={menuOpened}
-                onSidebarOpenedChange={() => {
-                    closeMiniToc();
-                    toggleMenuOpen();
-                }}
+                isSidebarOpened={menuOpen}
+                onSidebarOpenedChange={onSidebarOpenedChange}
                 mobileControlsData={mobileControlsData}
             >
                 <div className={b('toc')}>
@@ -84,12 +87,12 @@ const SubNavigation = memo(
         const miniTocButton = (
             <button
                 className={b('mini-toc-button', {
-                    disabled: menuOpened || hideMiniToc,
+                    disabled: menuOpen || hideMiniToc,
                     center: hideMiniToc && hideBurger,
                     label: hideMiniToc,
                 })}
                 type={'button'}
-                disabled={menuOpened || hideMiniToc}
+                disabled={menuOpen || hideMiniToc}
                 onClick={miniTocHandler}
             >
                 {!hideMiniToc && (
@@ -102,7 +105,7 @@ const SubNavigation = memo(
                         label: hideMiniToc,
                     })}
                 >
-                    {title}
+                    {activeMiniTocTitle}
                 </span>
             </button>
         );
@@ -110,7 +113,7 @@ const SubNavigation = memo(
         const shareButton = (
             <Button
                 className={b('share-button', {
-                    invisible: menuOpened && hideBurger,
+                    invisible: menuOpen && hideBurger,
                     absolute: hideMiniToc && hideBurger,
                 })}
                 size={'xl'}
@@ -123,17 +126,34 @@ const SubNavigation = memo(
             </Button>
         );
 
-        return (
-            <div
-                className={b({
-                    invisible: !visible,
-                    visible: visible,
-                })}
-            >
-                {menuButton}
-                {miniTocButton}
-                {shareButton}
+        const miniToc = !hideMiniToc && (
+            <div ref={ref} className={b('mini-toc', {open: miniTocOpen})}>
+                <MiniToc
+                    headings={headings}
+                    router={router}
+                    headerHeight={headerHeight}
+                    key={keyDOM}
+                    onItemClick={onItemClick}
+                    onActiveItemTitleChange={onActiveItemTitleChange}
+                />
             </div>
+        );
+
+        return (
+            <OutsideClick className={b('wrapper')} anchor={ref} onOutsideClick={closeMiniToc}>
+                <div
+                    ref={ref}
+                    className={b({
+                        invisible: !visible,
+                        visible: visible,
+                    })}
+                >
+                    {menuButton}
+                    {miniTocButton}
+                    {shareButton}
+                </div>
+                {!hideMiniToc && miniToc}
+            </OutsideClick>
         );
     },
 );

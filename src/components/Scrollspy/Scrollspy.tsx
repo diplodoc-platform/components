@@ -20,7 +20,7 @@ export interface ScrollspyProps
     children: ReactElement[];
     router: Router;
     onSectionClick?: (event: MouseEvent) => void;
-    onActiveItemChange?: (title: string) => void;
+    onActiveItemTitleChange?: (title: string) => void;
     className?: string;
     scrollToListItem?: boolean;
 }
@@ -237,13 +237,13 @@ export class Scrollspy extends React.Component<ScrollspyInnerProps, ScrollspySta
     };
 
     private saveActiveItems(hash?: string) {
-        const {titles, onActiveItemChange} = this.props;
+        const {titles, onActiveItemTitleChange} = this.props;
 
         const visibleItems = this.getViewState(hash);
         const activeItemTitle = this.getActiveItemTitle(titles, visibleItems);
 
-        if (activeItemTitle && onActiveItemChange) {
-            onActiveItemChange(activeItemTitle);
+        if (activeItemTitle && onActiveItemTitleChange) {
+            onActiveItemTitleChange(activeItemTitle);
         }
 
         this.setState({inViewState: visibleItems});

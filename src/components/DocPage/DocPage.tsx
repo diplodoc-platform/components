@@ -1,9 +1,8 @@
-import React, {ReactPortal, createRef} from 'react';
+import React, {ReactPortal} from 'react';
 import {Link, Xmark} from '@gravity-ui/icons';
 import {Button, Icon} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 import {createPortal} from 'react-dom';
-import {debounce} from 'lodash';
 
 import {DEFAULT_SETTINGS} from '../../constants';
 import {
@@ -28,9 +27,7 @@ import {DocLayout} from '../DocLayout';
 import {DocPageTitle} from '../DocPageTitle';
 import {Feedback, FeedbackView} from '../Feedback';
 import {HTML} from '../HTML';
-import {MiniToc} from '../MiniToc';
 import {SubNavigation} from '../SubNavigation';
-import {OutsideClick} from '../OutsideClick';
 import {SearchBar, withHighlightedSearchWords} from '../SearchBar';
 import {TocNavPanel} from '../TocNavPanel';
 import UpdatedAtDate from '../UpdatedAtDate/UpdatedAtDate';
@@ -92,9 +89,6 @@ type DocPageState = {
     loading: boolean;
     keyDOM: number;
     showNotification: boolean;
-    mobileMiniTocOpen: boolean;
-    mobileMenuOpen: boolean;
-    activeMiniTocTitle: string;
 };
 
 class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
@@ -104,8 +98,6 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
     bodyRef: HTMLDivElement | null = null;
     bodyObserver: MutationObserver | null = null;
 
-    subNavRef = createRef<HTMLDivElement>();
-
     constructor(props: DocPageInnerProps) {
         super(props);
 
@@ -113,9 +105,6 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             loading: props.singlePage,
             keyDOM: getRandomKey(),
             showNotification: true,
-            mobileMiniTocOpen: false,
-            mobileMenuOpen: false,
-            activeMiniTocTitle: props.title ?? '', // ? OR this.props.title
         };
     }
 
@@ -151,9 +140,11 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
         const {
             toc,
             router,
+            headings,
             lang,
             langs,
             theme,
+            title,
             headerHeight,
             wideFormat,
             fullScreen,
@@ -167,15 +158,15 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             useMainTag,
             onChangeLang,
             onChangeTheme,
+            onMiniTocItemClick,
         } = this.props;
 
-        const hideMiniToc = !this.showMiniToc;
         const hideBurger = typeof headerHeight !== 'undefined' && headerHeight > 0;
 
         const modes = {
             'regular-page-width': !wideFormat,
             'full-screen': fullScreen,
-            'hidden-mini-toc': hideMiniToc,
+            'hidden-mini-toc': !this.showMiniToc,
             'single-page': singlePage,
         };
 
@@ -189,10 +180,6 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                 onChangeTheme,
             },
         };
-
-        const toggleMenuOpen = () => this.setState({mobileMenuOpen: !this.state.mobileMenuOpen});
-        const toggleMiniTocOpen = () =>
-            this.setState({mobileMiniTocOpen: !this.state.mobileMiniTocOpen});
 
         return (
             <DocLayout
@@ -220,7 +207,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                         <ContentWrapper className={b('content')} useMainTag={useMainTag}>
                             {this.renderTitle()}
                             {this.renderPageContributors()}
-                            {hideMiniToc ? null : this.renderContentMiniToc()}
+                            {this.showMiniToc && this.renderContentMiniToc()}
                             {this.renderBody()}
                             {this.renderFeedback()}
                         </ContentWrapper>
@@ -232,33 +219,27 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                 <DocLayout.Right>
                     {/* This key allows recalculating the offset for the mini-toc for Safari */}
                     <div
-                        ref={this.subNavRef}
                         className={b('aside', modes)}
                         key={getStateKey(this.showMiniToc, wideFormat, singlePage)}
                     >
                         <SubNavigation
-                            title={this.state.activeMiniTocTitle}
                             router={router}
                             toc={toc}
+                            keyDOM={this.state.keyDOM}
+                            pageTitle={title}
+                            headings={headings}
                             mobileControlsData={mobileControlsData}
                             headerHeight={headerHeight}
+                            hideMiniToc={!this.showMiniToc}
                             hideBurger={hideBurger}
-                            hideMiniToc={hideMiniToc}
                             hideTocHeader={hideTocHeader}
-                            miniTocOpened={this.state.mobileMiniTocOpen}
-                            menuOpened={this.state.mobileMenuOpen}
-                            toggleMenuOpen={toggleMenuOpen}
-                            toggleMiniTocOpen={toggleMiniTocOpen}
-                            closeMiniToc={this.closeMiniToc}
+                            onMiniTocItemClick={onMiniTocItemClick}
                         />
-                        {hideMiniToc ? null : this.renderAsideMiniToc()}
                     </div>
                 </DocLayout.Right>
             </DocLayout>
         );
     }
-
-    private closeMiniToc = () => this.setState({mobileMiniTocOpen: false});
 
     private handleBodyMutation = (mutationsList: MutationRecord[]) => {
         const {onContentMutation, onContentLoaded} = this.props;
@@ -596,62 +577,6 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                 className={b('body', {'text-size': textSize}, 'yfm')}
                 dangerouslySetInnerHTML={{__html: html}}
             />
-        );
-    }
-
-    private renderAsideMiniToc() {
-        const {showMiniToc, headings, router, headerHeight, onMiniTocItemClick} = this.props;
-        const {keyDOM, mobileMiniTocOpen} = this.state;
-        const {closeMiniToc} = this;
-
-        const onItemClick = (event: MouseEvent) => {
-            if (onMiniTocItemClick) {
-                onMiniTocItemClick(event);
-            }
-
-            // artificial delay of closing the Mini-Toc
-            // fix error when SubNav goes up after after moving to the anchor
-            // TODO: try setTimeout
-            debounce(() => closeMiniToc(), 1, {trailing: true})();
-        };
-
-        const onActiveItemChange = (title: string) => {
-            this.setState((prevState) => {
-                return {...prevState, activeMiniTocTitle: title};
-            });
-        };
-
-        if (showMiniToc) {
-            return (
-                <OutsideClick
-                    className={b('aside-mini-toc-wrapper', {open: mobileMiniTocOpen})}
-                    anchor={this.subNavRef}
-                    onOutsideClick={closeMiniToc}
-                >
-                    <div className={b('aside-mini-toc')}>
-                        <MiniToc
-                            headings={headings}
-                            router={router}
-                            headerHeight={headerHeight}
-                            key={keyDOM}
-                            onItemClick={onItemClick}
-                            onActiveItemChange={onActiveItemChange}
-                        />
-                    </div>
-                </OutsideClick>
-            );
-        }
-
-        return (
-            <div className={b('aside-mini-toc')}>
-                <MiniToc
-                    headings={headings}
-                    router={router}
-                    headerHeight={headerHeight}
-                    key={keyDOM}
-                    onItemClick={onMiniTocItemClick}
-                />
-            </div>
         );
     }
 

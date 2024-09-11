@@ -51,15 +51,26 @@ const SubNavigation = memo(
         const ref = useRef<HTMLDivElement>(null);
 
         const [menuOpen, setMenuOpen] = useState(false);
-        const [visible, setVisibility] = useVisibility(menuOpen);
         const {
             miniTocOpen,
             activeMiniTocTitle,
             closeMiniToc,
             miniTocHandler,
-            onItemClick,
+            // onItemClick,
             onActiveItemTitleChange,
-        } = useMiniTocData(pageTitle, hideMiniToc, menuOpen, setVisibility, onMiniTocItemClick);
+        } = useMiniTocData(pageTitle, hideMiniToc, menuOpen); //, setVisibility, onMiniTocItemClick);
+        const [visible, setVisibility] = useVisibility(menuOpen, miniTocOpen);
+
+        const onItemClick = (event: MouseEvent) => {
+            if (onMiniTocItemClick) {
+                onMiniTocItemClick(event);
+            }
+
+            setTimeout(() => {
+                setVisibility(false);
+                closeMiniToc();
+            }, 0);
+        };
 
         const onSidebarOpenedChange = useCallback(() => {
             closeMiniToc();

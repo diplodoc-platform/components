@@ -4,6 +4,7 @@ const useMiniTocData = (
     pageTitle: string,
     hideMiniToc: boolean,
     menuOpen: boolean,
+    setVisibility: (event: boolean) => void,
     onMiniTocItemClick?: (event: MouseEvent) => void,
 ) => {
     const [miniTocOpen, setMiniTocOpen] = useState(false);
@@ -16,16 +17,23 @@ const useMiniTocData = (
             onMiniTocItemClick(event);
         }
 
-        // artificial delay of closing the Mini-Toc
-        // fix error when SubNav goes up after moving screen to the anchor
-        setTimeout(() => closeMiniToc(), 0);
+        setTimeout(() => {
+            setVisibility(false);
+            closeMiniToc();
+        }, 0);
     };
 
     const onActiveItemTitleChange = (title: string) => setMiniTocTitle(title);
 
     const toggleMiniTocOpen = useCallback(() => {
-        setMiniTocOpen(!miniTocOpen);
-    }, [miniTocOpen]);
+        const newState = !miniTocOpen;
+
+        if (newState) {
+            setVisibility(true);
+        }
+
+        setMiniTocOpen(newState);
+    }, [miniTocOpen, setVisibility]);
 
     const miniTocHandler = useMemo(() => {
         if (hideMiniToc || menuOpen) {

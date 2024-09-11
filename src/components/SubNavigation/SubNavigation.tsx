@@ -51,6 +51,7 @@ const SubNavigation = memo(
         const ref = useRef<HTMLDivElement>(null);
 
         const [menuOpen, setMenuOpen] = useState(false);
+        const [visible, setVisibility] = useVisibility(menuOpen);
         const {
             miniTocOpen,
             activeMiniTocTitle,
@@ -58,8 +59,7 @@ const SubNavigation = memo(
             miniTocHandler,
             onItemClick,
             onActiveItemTitleChange,
-        } = useMiniTocData(pageTitle, hideMiniToc, menuOpen, onMiniTocItemClick);
-        const visible = useVisibility(miniTocOpen, menuOpen);
+        } = useMiniTocData(pageTitle, hideMiniToc, menuOpen, setVisibility, onMiniTocItemClick);
         const shareHandler = useShareHandler(pageTitle, router);
 
         const onSidebarOpenedChange = useCallback(() => {

@@ -1,7 +1,7 @@
 import {useCallback, useEffect, useState} from 'react';
 
-const useVisibility = (miniTocOpened: boolean, menuOpened: boolean) => {
-    const [visible, setVisibility] = useState(true);
+const useVisibility = (menuOpened: boolean): [boolean, (value: boolean) => void] => {
+    const [visible, setVisibilityLocal] = useState(true);
     const [hiddingTimeout, setHiddingTimeout] = useState<number | undefined>(undefined);
     const [lastScrollY, setLastScrollY] = useState(
         typeof window === 'undefined' ? null : window.scrollY,
@@ -14,14 +14,14 @@ const useVisibility = (miniTocOpened: boolean, menuOpened: boolean) => {
             return setLastScrollY(scrollY);
         }
 
-        if (miniTocOpened || menuOpened || scrollY < 55) {
-            return setVisibility(true);
+        if (menuOpened || scrollY < 55) {
+            return setVisibilityLocal(true);
         }
 
         if (visible && scrollY > lastScrollY) {
-            setVisibility(false);
+            setVisibilityLocal(false);
         } else if (!visible && scrollY < lastScrollY) {
-            setVisibility(true);
+            setVisibilityLocal(true);
         }
 
         const scrollDiff = Math.abs(scrollY - lastScrollY);
@@ -38,7 +38,9 @@ const useVisibility = (miniTocOpened: boolean, menuOpened: boolean) => {
                 setHiddingTimeout(undefined);
             }, 300),
         );
-    }, [miniTocOpened, menuOpened, visible, lastScrollY, hiddingTimeout]);
+    }, [menuOpened, visible, lastScrollY, hiddingTimeout]);
+
+    const setVisibility = useCallback((value: boolean) => setVisibilityLocal(value), []);
 
     useEffect(() => {
         if (window.scrollY < 50) {
@@ -63,7 +65,7 @@ const useVisibility = (miniTocOpened: boolean, menuOpened: boolean) => {
         };
     }, [controlVisibility]);
 
-    return visible;
+    return [visible, setVisibility];
 };
 
 export default useVisibility;

@@ -68,6 +68,14 @@
         }
     }
 
+    &__icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        padding: 12px;
+    }
+
     &__mini-toc-button {
         $gap: 4px;
         $iconSize: 44px;

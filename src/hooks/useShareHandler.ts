@@ -1,13 +1,14 @@
+/* eslint-disable no-console */
 import {useCallback, useMemo} from 'react';
 
-import {Router} from 'src/models';
+import {Router} from '../models';
 
-type ShareData = {
+export type ShareData = {
     title: string;
     url: string;
 };
 
-const useShareHandler = (title: string, router: Router) => {
+export const useShareHandler = (title: string, router: Router) => {
     const {hostname, pathname} = router;
 
     const url: string = useMemo(() => {
@@ -38,5 +39,3 @@ const useShareHandler = (title: string, router: Router) => {
 
     return shareHandler;
 };
-
-export default useShareHandler;

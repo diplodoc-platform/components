@@ -27,6 +27,7 @@ import {DocLayout} from '../DocLayout';
 import {DocPageTitle} from '../DocPageTitle';
 import {Feedback, FeedbackView} from '../Feedback';
 import {HTML} from '../HTML';
+import {ShareButton} from '../ShareButton';
 import {SubNavigation} from '../SubNavigation';
 import {SearchBar, withHighlightedSearchWords} from '../SearchBar';
 import {TocNavPanel} from '../TocNavPanel';
@@ -442,8 +443,10 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
     }
 
     private renderTitle() {
-        const {title, meta, bookmarkedPage, onChangeBookmarkPage} = this.props;
+        const {title, router, headerHeight, meta, bookmarkedPage, onChangeBookmarkPage} =
+            this.props;
         const withBookmarks = onChangeBookmarkPage;
+        const withShare = Number(headerHeight) > 0 && !this.showMiniToc;
 
         if (!title) {
             return null;
@@ -457,6 +460,9 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                         isBookmarked={Boolean(bookmarkedPage)}
                         onBookmark={onChangeBookmarkPage}
                     />
+                )}
+                {withShare && (
+                    <ShareButton className={b('share-button')} title={title} router={router} />
                 )}
             </DocPageTitle>
         );

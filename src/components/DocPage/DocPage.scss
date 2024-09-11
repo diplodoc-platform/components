@@ -168,11 +168,30 @@ $importantBackgroundColor: rgba(235, 50, 38, 0.08);
     &__title {
         margin-top: 20px;
 
+        text-wrap: balance;
+
         @include text-size(display-2);
 
         @media (min-width: map-get($screenBreakpoints, 'md')) {
             margin-top: 0px;
             margin-bottom: 12px;
+
+            text-wrap: unset;
+        }
+    }
+
+    &__share-button {
+        vertical-align: middle;
+        margin-inline: 12px 4px;
+        margin-bottom: 4px;
+
+        &:hover::before {
+            background-color: transparent;
+        }
+
+        // ShareButton in title is currently only available on mobile devices.
+        @media (min-width: map-get($screenBreakpoints, 'md')) {
+            display: none;
         }
     }
 
@@ -250,6 +269,11 @@ $importantBackgroundColor: rgba(235, 50, 38, 0.08);
         &__main {
             margin-top: var(--dc-subnavigation-height, $subNavigationHeight);
             padding: 0 20px;
+
+            body:has(.dc-subnavigation_hidden) & {
+                margin-top: 0;
+                min-height: calc(100vh - var(--dc-header-height, 0px));
+            }
         }
 
         &__breadcrumbs {

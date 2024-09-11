@@ -1,6 +1,5 @@
 import React, {memo, useCallback, useRef, useState} from 'react';
-import {ArrowShapeTurnUpRight, SquareListUl} from '@gravity-ui/icons';
-import {Button} from '@gravity-ui/uikit';
+import {SquareListUl} from '@gravity-ui/icons';
 import block from 'bem-cn-lite';
 
 import {DocHeadingItem, Router, TocData} from '../../models';
@@ -9,8 +8,9 @@ import {SidebarNavigation} from '../navigation';
 import {MobileControlsProps} from '../MobileControls';
 import {MiniToc} from '../MiniToc';
 import {OutsideClick} from '../OutsideClick';
+import {ShareButton} from '../ShareButton';
 
-import {useMiniTocData, useShareHandler, useVisibility} from './hooks';
+import {useMiniTocData, useVisibility} from './hooks';
 import './SubNavigation.scss';
 
 const b = block('dc-subnavigation');
@@ -60,7 +60,6 @@ const SubNavigation = memo(
             onItemClick,
             onActiveItemTitleChange,
         } = useMiniTocData(pageTitle, hideMiniToc, menuOpen, setVisibility, onMiniTocItemClick);
-        const shareHandler = useShareHandler(pageTitle, router);
 
         const onSidebarOpenedChange = useCallback(() => {
             closeMiniToc();
@@ -88,7 +87,7 @@ const SubNavigation = memo(
             <button
                 className={b('mini-toc-button', {
                     disabled: menuOpen || hideMiniToc,
-                    center: hideMiniToc && hideBurger,
+                    // center: hideMiniToc && hideBurger,
                     label: hideMiniToc,
                 })}
                 type={'button'}
@@ -111,19 +110,16 @@ const SubNavigation = memo(
         );
 
         const shareButton = (
-            <Button
-                className={b('share-button', {
-                    invisible: menuOpen && hideBurger,
-                    absolute: hideMiniToc && hideBurger,
-                })}
+            <ShareButton
                 size={'xl'}
                 view={'flat'}
-                onClick={shareHandler}
-            >
-                <Button.Icon>
-                    <ArrowShapeTurnUpRight {...ICON_SIZE} />
-                </Button.Icon>
-            </Button>
+                iconSize={ICON_SIZE}
+                className={b('share-button', {
+                    invisible: menuOpen && hideBurger,
+                })}
+                title={pageTitle}
+                router={router}
+            />
         );
 
         const miniToc = !hideMiniToc && (
@@ -146,6 +142,7 @@ const SubNavigation = memo(
                     className={b({
                         invisible: !visible,
                         visible: visible,
+                        hidden: hideMiniToc && hideBurger,
                     })}
                 >
                     {menuButton}

@@ -5,6 +5,7 @@
     $horizontalPadding: 12px;
     $verticalPadding: 4px;
 
+    position: relative;
     z-index: 119;
 
     display: flex;
@@ -16,8 +17,8 @@
 
     gap: $verticalPadding;
 
-    background: var(--g-color-base-background, #fff);
-    border-bottom: 1px solid var(--g-color-line-generic, #0000001a);
+    background: var(--g-color-base-background);
+    border-bottom: 1px solid var(--g-color-line-generic);
 
     transition: margin-top 300ms 0s;
 
@@ -58,16 +59,12 @@
             transition: max-height 300ms 0s;
             overflow-y: hidden;
 
-            &_open {
-                max-height: 80vh;
-
-                body:has(&) {
-                    overflow-y: hidden;
-                }
+            body:has(&_open .dc-mini-toc_overflowed) {
+                overflow-y: hidden;
             }
 
-            & .dc-mini-toc {
-                padding: 16px 8px 16px 20px;
+            &_open {
+                max-height: 100vh;
             }
         }
     }

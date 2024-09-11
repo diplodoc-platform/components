@@ -166,7 +166,6 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
         const modes = {
             'regular-page-width': !wideFormat,
             'full-screen': fullScreen,
-            'hidden-mini-toc': !this.showMiniToc,
             'single-page': singlePage,
         };
 
@@ -219,7 +218,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                 <DocLayout.Right>
                     {/* This key allows recalculating the offset for the mini-toc for Safari */}
                     <div
-                        className={b('aside', modes)}
+                        className={b('aside')}
                         key={getStateKey(this.showMiniToc, wideFormat, singlePage)}
                     >
                         <SubNavigation

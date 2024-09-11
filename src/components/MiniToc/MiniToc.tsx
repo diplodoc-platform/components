@@ -9,6 +9,8 @@ import './MiniToc.scss';
 
 const b = block('dc-mini-toc');
 
+const overflowedClassName = 'dc-mini-toc_overflowed';
+
 export interface MinitocProps {
     headings: DocHeadingItem[];
     router: Router;
@@ -58,6 +60,7 @@ const MiniToc = memo<MinitocProps>(
                 <Scrollspy
                     className={b('sections')}
                     currentClassName={b('section', {active: true})}
+                    overflowedClassName={overflowedClassName}
                     items={sectionHrefs}
                     titles={sectionTitles}
                     router={router}
@@ -74,6 +77,7 @@ const MiniToc = memo<MinitocProps>(
                         </li>
                     ))}
                 </Scrollspy>
+                <div className={b('bottom')}></div>
             </nav>
         );
     },

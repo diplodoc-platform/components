@@ -15,17 +15,13 @@
     &__sections {
         @include reset-list-style();
 
-        height: calc(
-            100vh - var(--dc-header-height, #{$headerHeight}) - #{$miniTocOffset} - var(--dc-subnavigation-height)
+        max-height: calc(
+            100vh - var(--dc-header-height, #{$headerHeight}) - var(
+                    --dc-subnavigation-height,
+                    #{$subNavigationHeight}
+                ) - #{$miniTocOffset}
         );
         overflow: hidden auto;
-
-        @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
-            height: fit-content;
-            max-height: calc(
-                80vh - var(--dc-header-height, #{$headerHeight}) - #{$miniTocOffset} - var(--dc-subnavigation-height)
-            );
-        }
     }
 
     &__section {
@@ -61,6 +57,47 @@
         &_active > #{$class}__section-link {
             color: var(--g-color-text-primary);
             border-left-color: var(--g-color-text-primary);
+        }
+    }
+
+    &__bottom {
+        display: none;
+    }
+
+    // fix bug with scrolling mini-toc and body on desktop
+    body:has(&_overflowed:hover) {
+        overflow-y: hidden;
+    }
+
+    @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
+        $verticalPadding: 16px;
+        $titleHeight: 20px; // line-height body-2
+        $titleMargin: 12px;
+        $bottomHeight: 0;
+
+        padding: $verticalPadding 8px $verticalPadding 20px;
+
+        &__title {
+            margin-bottom: $titleMargin;
+        }
+
+        &:has(&_overflowed) &__bottom {
+            $bottomHeight: 20px;
+
+            display: block;
+            height: $bottomHeight;
+        }
+
+        &__sections {
+            $mobileMiniTocOffset: 2 * $verticalPadding + $titleHeight + $titleMargin;
+
+            height: fit-content; // ?
+            max-height: calc(
+                100vh - var(--dc-header-height, #{$headerHeight}) - var(
+                        --dc-subnavigation-height,
+                        #{$subNavigationHeight}
+                    ) - #{$mobileMiniTocOffset} - #{$bottomHeight}
+            );
         }
     }
 }

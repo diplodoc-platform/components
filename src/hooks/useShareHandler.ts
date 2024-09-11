@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import {useCallback, useMemo} from 'react';
 
 import {Router} from '../models';
@@ -31,8 +30,10 @@ export const useShareHandler = (title: string, router: Router) => {
             navigator
                 .share(shareData)
                 .then(() => {})
+                // eslint-disable-next-line no-console
                 .catch((error) => console.error('Error sharing', error));
         } else {
+            // eslint-disable-next-line no-console
             console.log('Share not supported', shareData);
         }
     }, [shareData]);

@@ -5,8 +5,6 @@ import {Button, ButtonSize, ButtonView} from '@gravity-ui/uikit';
 import {useShareHandler} from '../../hooks';
 import {ClassNameProps, Router} from '../../models';
 
-import './ShareButton.scss';
-
 const ICON_SIZE = {
     width: 24,
     height: 24,

@@ -56,9 +56,8 @@ const SubNavigation = memo(
             activeMiniTocTitle,
             closeMiniToc,
             miniTocHandler,
-            // onItemClick,
             onActiveItemTitleChange,
-        } = useMiniTocData(pageTitle, hideMiniToc, menuOpen); //, setVisibility, onMiniTocItemClick);
+        } = useMiniTocData(pageTitle, hideMiniToc, menuOpen);
         const [visible, setVisibility] = useVisibility(menuOpen, miniTocOpen);
 
         const onItemClick = (event: MouseEvent) => {
@@ -98,7 +97,6 @@ const SubNavigation = memo(
             <button
                 className={b('mini-toc-button', {
                     disabled: menuOpen || hideMiniToc,
-                    // center: hideMiniToc && hideBurger,
                     label: hideMiniToc,
                 })}
                 type={'button'}

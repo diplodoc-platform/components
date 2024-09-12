@@ -17,7 +17,11 @@ const useVisibility = (
             return setLastScrollY(scrollY);
         }
 
-        if (!visible && (miniTocOpen || menuOpened || scrollY < 55)) {
+        if (miniTocOpen || menuOpened || scrollY < 55) {
+            if (visible) {
+                return;
+            }
+
             return setVisibilityLocal(true);
         }
 

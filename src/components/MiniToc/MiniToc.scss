@@ -88,6 +88,23 @@
             height: $bottomHeight;
         }
 
+        &__section {
+            &-link {
+                padding: 8px 12px 8px 28px;
+            }
+
+            &_child {
+                #{$class}__section-link {
+                    padding-left: 44px;
+                }
+            }
+
+            &_active > #{$class}__section-link {
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+        }
+
         &__sections {
             $mobileMiniTocOffset: 2 * $verticalPadding + $titleHeight + $titleMargin;
 

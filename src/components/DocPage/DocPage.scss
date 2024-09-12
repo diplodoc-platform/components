@@ -39,8 +39,6 @@ $importantBackgroundColor: rgba(235, 50, 38, 0.08);
             box-sizing: border-box;
             width: 100%;
             padding: 0;
-
-            background: var(--g-color-base-background, #fff);
         }
 
         @media screen and (min-width: 1280px) {

@@ -20,7 +20,9 @@
     background: var(--g-color-base-background);
     border-bottom: 1px solid var(--g-color-line-generic);
 
-    transition: margin-top 300ms 0s;
+    transition: transform 300ms 0s;
+
+    will-change: transform;
 
     @media (min-width: map-get($screenBreakpoints, 'md')) {
         display: none;
@@ -37,7 +39,7 @@
 
     &_invisible {
         --dc-header-height: 64px;
-        margin-top: calc(0px - var(--dc-header-height, #{$headerHeight}));
+        transform: translateY(calc(0px - var(--dc-header-height, #{$headerHeight})));
     }
 
     &_hidden {
@@ -51,12 +53,15 @@
     &__mini-toc {
         @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
             width: 100%;
+            max-height: 0px;
 
             box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.15);
-            max-height: 0px;
+            background: var(--g-color-base-background);
 
             transition: max-height 300ms 0s;
             overflow-y: hidden;
+
+            will-change: max-height;
 
             body:has(&_open .dc-mini-toc_overflowed) {
                 overflow-y: hidden;

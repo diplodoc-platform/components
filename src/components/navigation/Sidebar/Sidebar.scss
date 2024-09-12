@@ -27,7 +27,7 @@
     }
 
     &__transition-enter {
-        transform: translateX(-100%);
+        transform: translateX(100%);
     }
 
     &__transition-enter-active {
@@ -50,7 +50,7 @@
 
     &__transition-exit-active {
         transition: transform $transitionTime;
-        transform: translateX(-100%);
+        transform: translateX(100%);
     }
 
     @media (max-width: map-get($screenBreakpoints, 'md')) {

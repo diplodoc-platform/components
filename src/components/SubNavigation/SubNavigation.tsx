@@ -60,16 +60,19 @@ const SubNavigation = memo(
         } = useMiniTocData(pageTitle, hideMiniToc, menuOpen);
         const [visible, setVisibility] = useVisibility(menuOpen, miniTocOpen);
 
-        const onItemClick = (event: MouseEvent) => {
-            if (onMiniTocItemClick) {
-                onMiniTocItemClick(event);
-            }
+        const onItemClick = useCallback(
+            (event: MouseEvent) => {
+                if (onMiniTocItemClick) {
+                    onMiniTocItemClick(event);
+                }
 
-            setTimeout(() => {
-                setVisibility(false);
-                closeMiniToc();
-            }, 0);
-        };
+                setTimeout(() => {
+                    setVisibility(false);
+                    closeMiniToc();
+                }, 0);
+            },
+            [setVisibility, closeMiniToc, onMiniTocItemClick],
+        );
 
         const onSidebarOpenedChange = useCallback(() => {
             closeMiniToc();
@@ -91,6 +94,19 @@ const SubNavigation = memo(
                     />
                 </div>
             </SidebarNavigation>
+        );
+
+        const shareButton = (
+            <ShareButton
+                size={'xl'}
+                view={'flat'}
+                iconSize={ICON_SIZE}
+                className={b('share-button', {
+                    invisible: menuOpen && hideBurger,
+                })}
+                title={pageTitle}
+                router={router}
+            />
         );
 
         const miniTocButton = (
@@ -116,19 +132,6 @@ const SubNavigation = memo(
                     {activeMiniTocTitle}
                 </span>
             </button>
-        );
-
-        const shareButton = (
-            <ShareButton
-                size={'xl'}
-                view={'flat'}
-                iconSize={ICON_SIZE}
-                className={b('share-button', {
-                    invisible: menuOpen && hideBurger,
-                })}
-                title={pageTitle}
-                router={router}
-            />
         );
 
         const miniToc = !hideMiniToc && (

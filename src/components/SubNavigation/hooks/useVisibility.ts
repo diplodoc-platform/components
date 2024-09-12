@@ -1,5 +1,8 @@
 import {useCallback, useEffect, useState} from 'react';
 
+// value in px equal to the distance after which the scroll will update the states
+const SIGNIFICANT_SCROLL_OFFSET = 55;
+
 const useVisibility = (
     menuOpened: boolean,
     miniTocOpen: boolean,
@@ -17,7 +20,7 @@ const useVisibility = (
             return setLastScrollY(scrollY);
         }
 
-        if (miniTocOpen || menuOpened || scrollY < 55) {
+        if (miniTocOpen || menuOpened || scrollY < SIGNIFICANT_SCROLL_OFFSET) {
             if (visible) {
                 return;
             }
@@ -33,7 +36,7 @@ const useVisibility = (
 
         const scrollDiff = Math.abs(scrollY - lastScrollY);
 
-        if (hiddingTimeout || scrollDiff < 55) {
+        if (hiddingTimeout || scrollDiff < SIGNIFICANT_SCROLL_OFFSET) {
             return;
         }
 
@@ -50,7 +53,7 @@ const useVisibility = (
     const setVisibility = useCallback((value: boolean) => setVisibilityLocal(value), []);
 
     useEffect(() => {
-        if (window.scrollY < 50) {
+        if (window.scrollY < SIGNIFICANT_SCROLL_OFFSET) {
             return;
         }
 

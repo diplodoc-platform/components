@@ -98,11 +98,6 @@
                     padding-left: 44px;
                 }
             }
-
-            &_active > #{$class}__section-link {
-                padding-top: 10px;
-                padding-bottom: 10px;
-            }
         }
 
         &__sections {

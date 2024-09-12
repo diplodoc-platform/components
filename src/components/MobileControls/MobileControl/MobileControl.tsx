@@ -39,11 +39,13 @@ const MobileControl = memo(
             [selectedItem, displayItems],
         );
 
+        const disabled = !onChangeValue;
+
         const [sheetIsVisible, setSheetIsVisible] = useState(false);
 
         const onSheetOpen = () => setSheetIsVisible(true);
         const onSheetClose = () => setSheetIsVisible(false);
-        const onItemClick = (value: string) => (onChangeValue ? onChangeValue(value) : null);
+        const onItemClick = onChangeValue ? (value: string) => onChangeValue(value) : () => {};
 
         return (
             <div key={name} className={b()}>
@@ -56,7 +58,7 @@ const MobileControl = memo(
                     selectedItemIndex={selectedItemIndex}
                 />
                 <Button
-                    disabled={!onItemClick}
+                    disabled={disabled}
                     view={'flat'}
                     size={'s'}
                     className={b('wrapper')}
@@ -66,9 +68,11 @@ const MobileControl = memo(
                         <Icon width={16} height={16} />
                         {buttonLabel ?? labelText}
                     </div>
-                    <Button.Icon className={b('arrow')} side={'right'}>
-                        <ChevronDown width={16} height={16} />
-                    </Button.Icon>
+                    {!disabled && (
+                        <Button.Icon className={b('arrow')} side={'right'}>
+                            <ChevronDown width={16} height={16} />
+                        </Button.Icon>
+                    )}
                 </Button>
             </div>
         );

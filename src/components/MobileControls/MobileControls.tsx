@@ -71,7 +71,7 @@ const themes = [Theme.Light, Theme.Dark];
 
 const useThemeControl = (
     t: UseTranslationReturnType,
-    theme?: Theme,
+    theme: Theme,
     onChangeTheme?: (theme: Theme) => void,
 ) => {
     const themesItems = useMemo(
@@ -117,18 +117,14 @@ const useThemeControl = (
 
 const MobileControls = memo(({controlSize, lang, userSettings}: MobileControlsProps) => {
     const {t} = useTranslation('controls');
-
     const {onChangeLang, langs, onChangeTheme, theme} = userSettings;
+
+    const langControl = useLangControl(t, lang, langs, onChangeLang);
+    const themeControl = useThemeControl(t, theme ?? Theme.Light, onChangeTheme);
 
     if (!onChangeTheme && !onChangeLang) {
         return null;
     }
-
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const langControl = useLangControl(t, lang, langs, onChangeLang);
-
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const themeControl = useThemeControl(t, theme, onChangeTheme);
 
     return (
         <div className={b()}>

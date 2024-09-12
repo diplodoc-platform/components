@@ -14,6 +14,11 @@
         align-items: center;
 
         height: 100%;
+
+        &[disabled] {
+            // overlaps text-color: --g-color-text-hint for disabled MobileControl
+            color: var(--g-color-text-primary);
+        }
     }
 
     &__label {

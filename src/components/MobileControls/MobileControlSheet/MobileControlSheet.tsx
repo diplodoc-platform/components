@@ -28,8 +28,6 @@ const MobileControlSheet = memo(
         onClose,
         selectedItemIndex,
     }: MobileControlSheetProps) => {
-        const itemsHeight = LIST_ITEM_HEIGHT * items.length;
-
         const renderItem = useCallback(
             (item: ListItem) => <button className={b('list-item')}>{item.text}</button>,
             [],
@@ -44,7 +42,7 @@ const MobileControlSheet = memo(
                     items={items}
                     onItemClick={(item: ListItem) => onItemClick(item.value)}
                     itemHeight={LIST_ITEM_HEIGHT}
-                    itemsHeight={itemsHeight}
+                    itemsHeight={LIST_ITEM_HEIGHT * items.length}
                     renderItem={renderItem}
                     selectedItemIndex={selectedItemIndex}
                 />

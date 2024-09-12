@@ -1,11 +1,19 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import React, {memo, useMemo} from 'react';
 import {Globe, Sun} from '@gravity-ui/icons';
 import block from 'bem-cn-lite';
 import allLangs from 'langs';
 import {KeyPrefix, Namespace, TFunction} from 'react-i18next';
 
-import {ControlSizes, ControlsLayout, ControlsProps, DocSettings, Lang, Theme} from '../..';
+import {
+    ControlSizes,
+    ControlsLayout,
+    ControlsProps,
+    DEFAULT_LANGS,
+    DocSettings,
+    LEGACY_LANG_ITEMS,
+    Lang,
+    Theme,
+} from '../..';
 import {useTranslation} from '../../hooks';
 import {ListItem, OnChangeValue} from '../../models';
 
@@ -22,23 +30,14 @@ export interface MobileControlsProps {
     userSettings: DocSettings & ControlsProps;
 }
 
-const LEGACY_LANG_ITEMS = [
-    {value: Lang.En, text: 'English'},
-    {value: Lang.Ru, text: 'Русский'},
-    {value: Lang.He, text: 'Hebrew'},
-];
-
 const useLangControl = (
     t: UseTranslationReturnType,
     lang: Lang,
     langs?: Lang[],
     onChangeLang?: (lang: Lang) => void,
 ) => {
-    const controlName = 'lang';
-    const icon = Globe;
-
     const langItems = useMemo(() => {
-        const preparedLangs = (langs ?? [])
+        const preparedLangs = (langs ?? DEFAULT_LANGS)
             .map((code) => {
                 const langData = allLangs.where('1', code);
 
@@ -58,9 +57,9 @@ const useLangControl = (
 
     return (
         <MobileControl
-            name={controlName}
+            name={'lang'}
             title={t('lang-text')}
-            Icon={icon}
+            Icon={Globe}
             selectedItem={lang}
             selectedItemIndex={selectedItemIndex}
             displayItems={langItems}
@@ -75,9 +74,6 @@ const useThemeControl = (
     theme?: Theme,
     onChangeTheme?: (theme: Theme) => void,
 ) => {
-    const controlName = 'theme';
-    const icon = Sun;
-
     const themesItems = useMemo(
         () =>
             themes.map((value) => {
@@ -107,10 +103,10 @@ const useThemeControl = (
 
     return (
         <MobileControl
-            name={controlName}
+            name={'theme'}
             title={t('label_theme')}
             buttonLabel={buttonLabel}
-            Icon={icon}
+            Icon={Sun}
             selectedItem={theme}
             selectedItemIndex={selectedItemIndex}
             displayItems={themesItems}
@@ -128,8 +124,10 @@ const MobileControls = memo(({controlSize, lang, userSettings}: MobileControlsPr
         return null;
     }
 
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const langControl = useLangControl(t, lang, langs, onChangeLang);
 
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const themeControl = useThemeControl(t, theme, onChangeTheme);
 
     return (

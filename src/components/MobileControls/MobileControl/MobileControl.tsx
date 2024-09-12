@@ -55,7 +55,13 @@ const MobileControl = memo(
                     onClose={onSheetClose}
                     selectedItemIndex={selectedItemIndex}
                 />
-                <Button view={'flat'} size={'s'} className={b('wrapper')} onClick={onSheetOpen}>
+                <Button
+                    disabled={!onItemClick}
+                    view={'flat'}
+                    size={'s'}
+                    className={b('wrapper')}
+                    onClick={onSheetOpen}
+                >
                     <div className={b('label')}>
                         <Icon width={16} height={16} />
                         {buttonLabel ?? labelText}

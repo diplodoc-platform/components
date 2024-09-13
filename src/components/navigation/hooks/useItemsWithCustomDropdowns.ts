@@ -1,6 +1,4 @@
-import {NavigationItemModel} from '@gravity-ui/page-constructor';
-
-type CustomNavigationItemModel = NavigationItemModel & {type: string};
+import {NavigationDropdownItem, NavigationItemModel} from '@gravity-ui/page-constructor';
 
 const useItemsWithCustomDropdowns = (
     leftItems: NavigationItemModel[],
@@ -9,8 +7,8 @@ const useItemsWithCustomDropdowns = (
     return [addMobileDropdownsTo(leftItems), rightItems ? addMobileDropdownsTo(rightItems) : []];
 };
 
-function addMobileDropdownsTo(items: CustomNavigationItemModel[]) {
-    const itemsWithCustomDropdowns: CustomNavigationItemModel[] = [];
+function addMobileDropdownsTo(items: NavigationItemModel[]) {
+    const itemsWithCustomDropdowns: NavigationItemModel[] = [];
 
     items.forEach((item) => {
         itemsWithCustomDropdowns.push(item);
@@ -19,15 +17,10 @@ function addMobileDropdownsTo(items: CustomNavigationItemModel[]) {
             return;
         }
 
-        // 'any' type is needed because here we add an object of a type
-        // that is not in the CustomNavigationItemModel,
-        // but otherwise it is impossible to create your own custom MobileDropdown component
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const newMobileItem: any = {};
-        Object.assign(newMobileItem, item);
-        newMobileItem.type = 'MobileDropdown';
-
-        itemsWithCustomDropdowns.push(newMobileItem);
+        itemsWithCustomDropdowns.push({
+            ...item,
+            type: 'MobileDropdown',
+        } as unknown as NavigationDropdownItem);
     });
 
     return itemsWithCustomDropdowns;

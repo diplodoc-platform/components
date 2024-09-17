@@ -1,5 +1,12 @@
 # История изменений
 
+## [4.12.0](https://github.com/diplodoc-platform/components/compare/v4.11.2...v4.12.0) (2024-09-17)
+
+
+### Features
+
+* update mobile-ui ([#282](https://github.com/diplodoc-platform/components/issues/282)) ([2e3f0d0](https://github.com/diplodoc-platform/components/commit/2e3f0d0a4982b5413c12e763ae8b012f00a6b81e))
+
 ## [4.11.2](https://github.com/diplodoc-platform/components/compare/v4.11.1...v4.11.2) (2024-08-30)
 
 

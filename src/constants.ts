@@ -19,3 +19,10 @@ export const ERROR_CODES = {
     NOT_FOUND: 404,
     SERVER_ERROR: 500,
 };
+
+export const DEFAULT_LANGS = ['en', 'ru', 'he'];
+export const LEGACY_LANG_ITEMS = [
+    {value: Lang.Ru, text: 'Русский'},
+    {value: Lang.En, text: 'English'},
+    {value: Lang.He, text: 'Hebrew'},
+];

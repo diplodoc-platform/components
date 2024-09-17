@@ -1,0 +1,29 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.dc-mobile-controls {
+    $root: &;
+
+    $padding-inline: 16px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    height: 44px;
+
+    width: calc(100% - 2 * #{$padding-inline});
+
+    box-sizing: content-box;
+    padding-top: 4px;
+    padding-bottom: 34px;
+    padding-inline: $padding-inline;
+
+    background-color: var(--g-color-base-background);
+
+    border-top: 1px solid var(--g-color-line-generic);
+
+    @media (min-width: map-get($screenBreakpoints, 'md')) {
+        display: none;
+    }
+}

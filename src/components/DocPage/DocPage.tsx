@@ -6,6 +6,7 @@ import {createPortal} from 'react-dom';
 
 import {DEFAULT_SETTINGS} from '../../constants';
 import {
+    ControlSizes,
     DocPageData,
     DocSettings,
     FeedbackSendData,
@@ -26,7 +27,8 @@ import {DocLayout} from '../DocLayout';
 import {DocPageTitle} from '../DocPageTitle';
 import {Feedback, FeedbackView} from '../Feedback';
 import {HTML} from '../HTML';
-import {MiniToc} from '../MiniToc';
+import {ShareButton} from '../ShareButton';
+import {SubNavigation} from '../SubNavigation';
 import {SearchBar, withHighlightedSearchWords} from '../SearchBar';
 import {TocNavPanel} from '../TocNavPanel';
 import UpdatedAtDate from '../UpdatedAtDate/UpdatedAtDate';
@@ -106,6 +108,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             showNotification: true,
         };
     }
+
     componentDidMount(): void {
         const {singlePage} = this.props;
 
@@ -138,6 +141,11 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
         const {
             toc,
             router,
+            headings,
+            lang,
+            langs,
+            theme,
+            title,
             headerHeight,
             wideFormat,
             fullScreen,
@@ -149,14 +157,28 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             onChangeSinglePage,
             pdfLink,
             useMainTag,
+            onChangeLang,
+            onChangeTheme,
+            onMiniTocItemClick,
         } = this.props;
 
-        const hideMiniToc = !this.showMiniToc;
+        const hideBurger = typeof headerHeight !== 'undefined' && headerHeight > 0;
+
         const modes = {
             'regular-page-width': !wideFormat,
             'full-screen': fullScreen,
-            'hidden-mini-toc': hideMiniToc,
             'single-page': singlePage,
+        };
+
+        const mobileControlsData = {
+            controlSize: ControlSizes.L,
+            lang,
+            userSettings: {
+                langs,
+                onChangeLang,
+                theme,
+                onChangeTheme,
+            },
         };
 
         return (
@@ -166,7 +188,6 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                 headerHeight={headerHeight}
                 className={b(modes)}
                 fullScreen={fullScreen}
-                hideRight={hideMiniToc}
                 tocTitleIcon={tocTitleIcon}
                 wideFormat={wideFormat}
                 hideTocHeader={hideTocHeader}
@@ -186,7 +207,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                         <ContentWrapper className={b('content')} useMainTag={useMainTag}>
                             {this.renderTitle()}
                             {this.renderPageContributors()}
-                            {hideMiniToc ? null : this.renderContentMiniToc()}
+                            {this.showMiniToc && this.renderContentMiniToc()}
                             {this.renderBody()}
                             {this.renderFeedback()}
                         </ContentWrapper>
@@ -201,7 +222,19 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                         className={b('aside')}
                         key={getStateKey(this.showMiniToc, wideFormat, singlePage)}
                     >
-                        {hideMiniToc ? null : this.renderAsideMiniToc()}
+                        <SubNavigation
+                            router={router}
+                            toc={toc}
+                            keyDOM={this.state.keyDOM}
+                            pageTitle={title}
+                            headings={headings}
+                            mobileControlsData={mobileControlsData}
+                            headerHeight={headerHeight}
+                            hideMiniToc={!this.showMiniToc}
+                            hideBurger={hideBurger}
+                            hideTocHeader={hideTocHeader}
+                            onMiniTocItemClick={onMiniTocItemClick}
+                        />
                     </div>
                 </DocLayout.Right>
             </DocLayout>
@@ -410,8 +443,10 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
     }
 
     private renderTitle() {
-        const {title, meta, bookmarkedPage, onChangeBookmarkPage} = this.props;
+        const {title, router, headerHeight, meta, bookmarkedPage, onChangeBookmarkPage} =
+            this.props;
         const withBookmarks = onChangeBookmarkPage;
+        const withShare = Number(headerHeight) > 0 && !this.showMiniToc;
 
         if (!title) {
             return null;
@@ -425,6 +460,9 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                         isBookmarked={Boolean(bookmarkedPage)}
                         onBookmark={onChangeBookmarkPage}
                     />
+                )}
+                {withShare && (
+                    <ShareButton className={b('share-button')} title={title} router={router} />
                 )}
             </DocPageTitle>
         );
@@ -544,23 +582,6 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                 className={b('body', {'text-size': textSize}, 'yfm')}
                 dangerouslySetInnerHTML={{__html: html}}
             />
-        );
-    }
-
-    private renderAsideMiniToc() {
-        const {headings, router, headerHeight, onMiniTocItemClick} = this.props;
-        const {keyDOM} = this.state;
-
-        return (
-            <div className={b('aside-mini-toc')}>
-                <MiniToc
-                    headings={headings}
-                    router={router}
-                    headerHeight={headerHeight}
-                    key={keyDOM}
-                    onItemClick={onMiniTocItemClick}
-                />
-            </div>
         );
     }
 

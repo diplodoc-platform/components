@@ -5,6 +5,7 @@ import {ThumbsUp, ThumbsUpFill} from '@gravity-ui/icons';
 import {Button} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 
+import {ControlSizes} from '../../../models';
 import {useTranslation} from '../../../hooks';
 import {Control} from '../../Control';
 import {ControlsLayoutContext} from '../../Controls/ControlsLayout';
@@ -13,6 +14,7 @@ import {FeedbackView} from '../Feedback';
 type LikeControlProps = {
     isVerticalView?: boolean | undefined;
     isLiked: boolean | undefined;
+    isPopupVisible: boolean;
     className?: string | undefined;
     view: FeedbackView | undefined;
     onClick: () => void;
@@ -32,14 +34,14 @@ const LikeControl = memo(
         if (view === FeedbackView.Wide) {
             return (
                 <Button
-                    size="m"
+                    size="xl"
                     view="normal"
                     ref={ref}
                     onClick={onClick}
                     className={b('control', {view})}
                 >
                     <Button.Icon>
-                        <Icon width={14} height={14} />
+                        <Icon width={20} height={20} />
                     </Button.Icon>
                     {t<string>('button-like-text')}
                 </Button>
@@ -48,6 +50,7 @@ const LikeControl = memo(
 
         return (
             <Control
+                size={ControlSizes.XL}
                 onClick={onClick}
                 className={b('control', {view}, controlClassName)}
                 isVerticalView={isVerticalView}

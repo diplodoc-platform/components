@@ -1,0 +1,197 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.dc-subnavigation {
+    $horizontalPadding: 12px;
+    $verticalPadding: 4px;
+
+    position: relative;
+    z-index: 119;
+
+    display: flex;
+
+    box-sizing: content-box;
+    width: calc(100% - 2 * #{$horizontalPadding});
+    height: $subNavigationHeight - $verticalPadding - $verticalPadding;
+    padding: $verticalPadding $horizontalPadding;
+
+    gap: $verticalPadding;
+
+    background: var(--g-color-base-background);
+    border-bottom: 1px solid var(--g-color-line-generic);
+
+    transition: transform 300ms 0s;
+
+    will-change: transform;
+
+    @media (min-width: map-get($screenBreakpoints, 'md')) {
+        display: none;
+    }
+
+    .dc-root_wide-format & {
+        padding-inline: 0 8px;
+        width: calc(100% - 8px);
+    }
+
+    &_visible {
+        margin-top: 0;
+    }
+
+    &_invisible {
+        --dc-header-height: 64px;
+        transform: translateY(calc(0px - var(--dc-header-height, #{$headerHeight})));
+    }
+
+    &_hidden {
+        display: none;
+    }
+
+    &__wrapper {
+        width: 100%;
+    }
+
+    &__mini-toc {
+        @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
+            width: 100%;
+            max-height: 0px;
+
+            box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.15);
+            background: var(--g-color-base-background);
+
+            transition: max-height 300ms 0s;
+            overflow-y: hidden;
+
+            will-change: max-height;
+
+            body:has(&_open .dc-mini-toc_overflowed) {
+                overflow-y: hidden;
+            }
+
+            &_open {
+                max-height: 100vh;
+            }
+        }
+    }
+
+    &__icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        padding: 12px;
+    }
+
+    &__mini-toc-button {
+        $gap: 4px;
+        $iconSize: 44px;
+
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex: 1 0 0;
+
+        width: 100%;
+        max-width: calc(100% - #{$iconSize} - 2 * #{$gap} - #{$horizontalPadding});
+        .dc-root_wide-format & {
+            max-width: calc(100% - #{$iconSize} - 2 * #{$gap});
+        }
+
+        padding: 0;
+        padding-left: 4px;
+        gap: $gap;
+
+        border-radius: var(--g-border-radius-xs, 3px);
+        border: none;
+        border-left: 1px solid var(--g-color-line-generic);
+        outline: none;
+
+        color: var(--g-color-text-primary);
+        background: none;
+
+        text-decoration: none;
+
+        @include text-size(subheader-2);
+        font-weight: 500;
+
+        transition:
+            transform 0.1s ease-out,
+            color 0.15s linear;
+        transform: scale(1);
+
+        touch-action: manipulation;
+
+        // if has burger
+        &:nth-child(2) {
+            max-width: calc(100% - 2 * #{$iconSize} - 2 * #{$gap});
+        }
+
+        &_hidden {
+            visibility: hidden;
+        }
+
+        &_disabled {
+            user-select: text;
+        }
+
+        &_label {
+            border-left: none;
+            justify-content: center;
+
+            @include text-size(subheader-3);
+            font-weight: 600;
+        }
+
+        &_center,
+        .dc-root_wide-format &_center {
+            max-width: unset;
+        }
+
+        // without burgerButton
+        &:nth-child(1) {
+            border-left: none;
+        }
+
+        // with burgerButton
+        &:nth-child(2) {
+            padding-left: 0;
+        }
+
+        &:not(&_disabled) {
+            &:hover {
+                background: var(--g-color-base-simple-hover);
+            }
+
+            &:active {
+                transition: none;
+                transform: scale(0.98);
+            }
+
+            &:focus-visible {
+                outline: var(--g-color-line-focus, rgb(78, 121, 235));
+                outline-width: 2px;
+                outline-style: solid;
+            }
+        }
+    }
+
+    &__title {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    & &__share-button {
+        &_absolute {
+            position: absolute;
+            right: 0;
+
+            .dc-root_wide-format & {
+                right: 8px;
+            }
+        }
+
+        &_invisible {
+            display: none;
+        }
+    }
+}

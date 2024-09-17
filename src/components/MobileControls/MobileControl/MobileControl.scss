@@ -1,0 +1,51 @@
+@import '../../../styles/mixins.scss';
+
+.dc-mobile-control {
+    display: flex;
+    align-items: center;
+
+    box-sizing: border-box;
+    height: 100%;
+
+    padding: var(--g-border-radius-xs, 3px) 8px var(--g-border-radius-xs, 3px) 12px;
+
+    & button {
+        display: flex;
+        align-items: center;
+
+        height: 100%;
+
+        &[disabled] {
+            // overlaps text-color: --g-color-text-hint for disabled MobileControl
+            color: var(--g-color-text-primary);
+        }
+    }
+
+    &__label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        padding-inline-end: 10px;
+
+        @include heading6();
+    }
+
+    &__select-sheet ul,
+    &__select-sheet li {
+        @include reset-list-style();
+    }
+
+    &__arrow {
+        height: 100%;
+
+        padding: 2px;
+
+        [dir='ltr'] & {
+            right: 0;
+        }
+        [dir='rtl'] & {
+            left: 0;
+        }
+    }
+}

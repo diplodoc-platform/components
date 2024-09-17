@@ -44,7 +44,7 @@ const ControlsLayout: React.FC<PropsWithChildren<{view: FeedbackView}>> = ({view
 
     return (
         <div className={b('container', {view})}>
-            <div className={b('container-row', {view})}>
+            <div className={b('container-col', {view})}>
                 <h3 className={b('title', {view})}>{t<string>('main-question')}</h3>
                 <div className={b('controls', {view})}>{children}</div>
             </div>
@@ -112,6 +112,8 @@ const Feedback: React.FC<FeedbackProps> = (props) => {
         [onSendFeedback, setInnerState, dislikeSuccessPopup, hideFeedbackPopups],
     );
 
+    const isDislikePopupVisible = dislikeSuccessPopup.visible || dislikeVariantsPopup.visible;
+
     return (
         <React.Fragment>
             <ControlsLayout view={view}>
@@ -120,12 +122,14 @@ const Feedback: React.FC<FeedbackProps> = (props) => {
                     view={view}
                     onClick={onChangeLike}
                     isLiked={innerState === FeedbackType.like}
+                    isPopupVisible={likeSuccessPopup.visible}
                 />
                 <DislikeControl
                     ref={dislikeControlRef}
                     view={view}
                     onClick={onChangeDislike}
                     isDisliked={innerState === FeedbackType.dislike}
+                    isPopupVisible={isDislikePopupVisible}
                 />
             </ControlsLayout>
             {likeControlRef.current && (

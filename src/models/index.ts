@@ -1,6 +1,16 @@
 import type {Loc} from '../config/i18n';
 
-import {LabelProps} from '@gravity-ui/uikit/build/esm/components/Label/Label';
+import {LabelProps} from '@gravity-ui/uikit';
+
+export type OnChangeValue = (value: ControlTypes) => void;
+export type ControlTypes =
+    | string
+    | boolean
+    | Theme
+    | Lang
+    | TextSizes
+    | FeedbackSendData
+    | SubscribeData;
 
 export enum Theme {
     Light = 'light',
@@ -16,6 +26,7 @@ export enum TextSizes {
 export enum ControlSizes {
     M = 'm',
     L = 'l',
+    XL = 'xl',
 }
 
 export interface Config {
@@ -137,6 +148,7 @@ export interface BreadcrumbItem {
 }
 
 export interface Router {
+    hostname?: string;
     pathname: string;
     hash?: string;
 }
@@ -190,4 +202,13 @@ export enum DocumentType {
     Base = 'BASE',
     Leading = 'LEADING',
     PageConstructor = 'PAGE_CONSTRUCTOR',
+}
+
+export interface ListItem {
+    value: string;
+    text: string;
+}
+
+export interface ClassNameProps {
+    className?: string;
 }

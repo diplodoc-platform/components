@@ -1,0 +1,44 @@
+@import '../../../styles/mixins';
+@import '../../../styles/variables';
+
+.dc-mobile-control-sheet {
+    --g-sheet-content-padding: 0;
+
+    &__list {
+        padding: 4px 0;
+        padding-bottom: 34px;
+    }
+
+    &__list-item {
+        --g-focus-border-radius: 4px;
+
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        gap: 8px;
+
+        width: 100%;
+        height: 100%;
+        padding: 12px 20px;
+
+        border-radius: var(--g-focus-border-radius);
+        border: 0;
+
+        color: inherit;
+        cursor: inherit;
+        background-color: inherit;
+
+        font-family: inherit;
+
+        @include text-size(body-2);
+
+        @include focusable(-2px);
+
+        // fixes a bug where the button text remains at the beginning (left)
+        // of the button on both dir='ltr' and dir='rtl'
+        // * justify-content: flex-start - doesn't work
+        [dir='rtl'] & {
+            justify-content: end;
+        }
+    }
+}

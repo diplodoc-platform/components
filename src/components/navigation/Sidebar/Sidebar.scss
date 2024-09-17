@@ -1,0 +1,61 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/mixins.scss';
+
+.dc-sidebar {
+    $transitionTime: 0.4s;
+
+    @include mobile-tablet-only();
+
+    position: fixed;
+    top: var(--dc-header-height, #{$headerHeight});
+    z-index: 119;
+
+    height: calc(100% - var(--dc-header-height, #{$headerHeight}) + 1px);
+    width: 100vw;
+
+    background-color: var(--g-color-base-background, #fff);
+
+    &__bar {
+        position: absolute;
+        top: 0;
+
+        display: flex;
+        flex-direction: column;
+
+        width: 100%;
+        height: 100%;
+    }
+
+    &__transition-enter {
+        transform: translateX(100%);
+    }
+
+    &__transition-enter-active {
+        transform: translateX(0);
+        transition: transform $transitionTime;
+    }
+
+    // fixes bug with incorrect position of sidebar on mobile with dir='rtl'
+    [dir='rtl'] &__transition-enter-done {
+        right: -11px;
+    }
+
+    &__transition-enter-done &-navigation__navigation {
+        border-right: none;
+    }
+
+    &__transition-exit {
+        transform: translateX(0);
+    }
+
+    &__transition-exit-active {
+        transition: transform $transitionTime;
+        transform: translateX(100%);
+    }
+
+    @media (max-width: map-get($screenBreakpoints, 'md')) {
+        &__no-scroll {
+            overflow-y: hidden;
+        }
+    }
+}

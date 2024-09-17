@@ -3,6 +3,7 @@ import {ThumbsDown, ThumbsDownFill} from '@gravity-ui/icons';
 import {Button} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 
+import {ControlSizes} from '../../../models';
 import {useTranslation} from '../../../hooks';
 import {Control} from '../../Control';
 import {ControlsLayoutContext} from '../../Controls/ControlsLayout';
@@ -11,6 +12,7 @@ import {FeedbackView} from '../Feedback';
 type DislikeControlProps = {
     isVerticalView?: boolean | undefined;
     isDisliked: boolean | undefined;
+    isPopupVisible: boolean;
     className?: string | undefined;
     view: FeedbackView | undefined;
     onClick: () => void;
@@ -28,9 +30,15 @@ const DislikeControl = memo(
 
         if (view === FeedbackView.Wide) {
             return (
-                <Button view="normal" ref={ref} onClick={onClick} className={b('control', {view})}>
+                <Button
+                    size="xl"
+                    view="normal"
+                    ref={ref}
+                    onClick={onClick}
+                    className={b('control', {view})}
+                >
                     <Button.Icon>
-                        <Icon width={14} height={14} />
+                        <Icon width={20} height={20} />
                     </Button.Icon>
                     {t<string>('button-dislike-text')}
                 </Button>
@@ -39,6 +47,7 @@ const DislikeControl = memo(
 
         return (
             <Control
+                size={ControlSizes.XL}
                 onClick={onClick}
                 className={b('control', {view}, controlClassName)}
                 isVerticalView={isVerticalView}

@@ -8,6 +8,7 @@ import {InnerProps} from '../../utils';
 
 interface ScrollspyDefaultProps {
     currentClassName: string;
+    overflowedClassName: string;
     sectionOffset: number;
     headerHeight: number;
 }
@@ -16,10 +17,13 @@ export interface ScrollspyProps
     extends Partial<ScrollspyDefaultProps>,
         Partial<HTMLProps<HTMLUListElement>> {
     items: string[];
+    titles: string[];
     children: ReactElement[];
     router: Router;
     onSectionClick?: (event: MouseEvent) => void;
+    onActiveItemTitleChange?: (title: string) => void;
     className?: string;
+    overflowedClassName?: string;
     scrollToListItem?: boolean;
 }
 
@@ -33,6 +37,7 @@ type ScrollspyInnerProps = InnerProps<ScrollspyProps, ScrollspyDefaultProps>;
 export class Scrollspy extends React.Component<ScrollspyInnerProps, ScrollspyState> {
     static defaultProps: ScrollspyDefaultProps = {
         currentClassName: 'Scrollspy',
+        overflowedClassName: 'Overflowed',
         sectionOffset: 20,
         headerHeight: 0,
     };
@@ -65,6 +70,8 @@ export class Scrollspy extends React.Component<ScrollspyInnerProps, ScrollspySta
         if (containerEl) {
             containerEl.addEventListener('scroll', this.updateScrollValues);
         }
+
+        this.checkListOverflow();
     }
 
     componentDidUpdate(prevProps: Readonly<ScrollspyProps>, prevState: Readonly<ScrollspyState>) {
@@ -235,7 +242,14 @@ export class Scrollspy extends React.Component<ScrollspyInnerProps, ScrollspySta
     };
 
     private saveActiveItems(hash?: string) {
+        const {titles, onActiveItemTitleChange} = this.props;
+
         const visibleItems = this.getViewState(hash);
+        const activeItemTitle = this.getActiveItemTitle(titles, visibleItems);
+
+        if (activeItemTitle && onActiveItemTitleChange) {
+            onActiveItemTitleChange(activeItemTitle);
+        }
 
         this.setState({inViewState: visibleItems});
     }
@@ -286,6 +300,18 @@ export class Scrollspy extends React.Component<ScrollspyInnerProps, ScrollspySta
         return isOneActive ? visibleItemOffset : inViewState;
     }
 
+    private getActiveItemTitle(titles: string[], inViewState: boolean[]) {
+        for (const [index, isActive] of inViewState.entries()) {
+            if (!isActive) {
+                continue;
+            }
+
+            return titles[index];
+        }
+
+        return null;
+    }
+
     private handleScroll = () => {
         if (this.scrollByClick) {
             // the end of smooth auto-scroll
@@ -318,6 +344,21 @@ export class Scrollspy extends React.Component<ScrollspyInnerProps, ScrollspySta
             if (onSectionClick) {
                 onSectionClick(event);
             }
+        }
+    };
+
+    private checkListOverflow = () => {
+        const {containerRef, itemRefs} = this;
+        const {overflowedClassName} = this.props;
+
+        const containerHeight = containerRef.current?.offsetHeight ?? 0;
+        const itemsHeight = itemRefs.reduce(
+            (heightSum, item) => heightSum + (item.current?.offsetHeight ?? 0),
+            0,
+        );
+
+        if (containerHeight < itemsHeight) {
+            containerRef.current?.classList.add(overflowedClassName);
         }
     };
 }

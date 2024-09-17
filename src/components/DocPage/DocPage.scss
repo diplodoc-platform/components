@@ -27,6 +27,20 @@ $importantBackgroundColor: rgba(235, 50, 38, 0.08);
 
         @include text-size(body-1);
 
+        @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
+            position: absolute;
+            top: 0;
+            z-index: 117;
+
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+
+            box-sizing: border-box;
+            width: 100%;
+            padding: 0;
+        }
+
         @media screen and (min-width: 1280px) {
             & {
                 width: 200px;
@@ -40,7 +54,7 @@ $importantBackgroundColor: rgba(235, 50, 38, 0.08);
         display: flex;
         flex-direction: column;
         min-height: calc(
-            100vh - var(--dc-header-height, #{$headerHeight}) - var(--dc-subheader-height)
+            100vh - var(--dc-header-height, #{$headerHeight}) - var(--dc-subnavigation-height)
         );
     }
 
@@ -77,6 +91,10 @@ $importantBackgroundColor: rgba(235, 50, 38, 0.08);
             @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
                 position: static;
             }
+        }
+
+        @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
+            display: none;
         }
 
         @media (min-width: map-get($screenBreakpoints, 'md')) {
@@ -129,14 +147,15 @@ $importantBackgroundColor: rgba(235, 50, 38, 0.08);
     }
 
     &__breadcrumbs {
-        height: 40px;
         display: flex;
         align-items: center;
+
+        height: 40px;
         padding: 0 36px;
     }
 
     &__feedback {
-        margin-top: 84px;
+        margin-top: 20px;
     }
 
     &__edit-button {
@@ -145,14 +164,38 @@ $importantBackgroundColor: rgba(235, 50, 38, 0.08);
     }
 
     &__title {
-        margin-bottom: 12px;
+        margin-top: 20px;
+
+        text-wrap: balance;
 
         @include text-size(display-2);
+
+        @media (min-width: map-get($screenBreakpoints, 'md')) {
+            margin-top: 0px;
+            margin-bottom: 12px;
+
+            text-wrap: unset;
+        }
+    }
+
+    &__share-button {
+        vertical-align: middle;
+        margin-inline: 12px 4px;
+        margin-bottom: 4px;
+
+        &:hover::before {
+            background-color: transparent;
+        }
+
+        // ShareButton in title is currently only available on mobile devices.
+        @media (min-width: map-get($screenBreakpoints, 'md')) {
+            display: none;
+        }
     }
 
     &__content {
         flex: 1;
-        margin-bottom: 50px;
+        margin-bottom: 20px;
     }
 
     &__content-mini-toc {
@@ -222,15 +265,23 @@ $importantBackgroundColor: rgba(235, 50, 38, 0.08);
 
     @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
         &__main {
+            margin-top: var(--dc-subnavigation-height, $subNavigationHeight);
             padding: 0 20px;
+
+            body:has(.dc-subnavigation_hidden) & {
+                margin-top: 0;
+                min-height: calc(100vh - var(--dc-header-height, 0px));
+            }
         }
 
         &__breadcrumbs {
+            display: none;
+
             padding: 0 20px;
         }
 
         &__content-mini-toc {
-            display: block;
+            display: none;
         }
 
         &__toc-nav-panel {
@@ -327,7 +378,7 @@ $importantBackgroundColor: rgba(235, 50, 38, 0.08);
     }
 
     & > p {
-        margin: 0 0 10px 0;
+        margin: 0 0 10px;
 
         &:first-child {
             &::before {
@@ -348,10 +399,10 @@ $importantBackgroundColor: rgba(235, 50, 38, 0.08);
     }
 
     $colors: (
-            dc-accent-info: $infoColor,
-            dc-accent-tip: $tipColor,
-            dc-accent-alert: $importantColor,
-            dc-accent-warning: $warningColor
+        dc-accent-info: $infoColor,
+        dc-accent-tip: $tipColor,
+        dc-accent-alert: $importantColor,
+        dc-accent-warning: $warningColor,
     );
 
     @each $type, $color in $colors {
@@ -365,10 +416,10 @@ $importantBackgroundColor: rgba(235, 50, 38, 0.08);
     }
 
     $backgroundColors: (
-            dc-accent-info: $infoBackgroundColor,
-            dc-accent-tip: $tipBackgroundColor,
-            dc-accent-alert: $importantBackgroundColor,
-            dc-accent-warning: $warningBackgroundColor
+        dc-accent-info: $infoBackgroundColor,
+        dc-accent-tip: $tipBackgroundColor,
+        dc-accent-alert: $importantBackgroundColor,
+        dc-accent-warning: $warningBackgroundColor,
     );
 
     @each $type, $color in $backgroundColors {

@@ -4,6 +4,7 @@ import {List, Popover} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 import allLangs from 'langs';
 
+import {DEFAULT_LANGS, LEGACY_LANG_ITEMS} from '../../../../constants';
 import {usePopupState, useTranslation} from '../../../../hooks';
 import {Lang} from '../../../../models';
 import {getPopupPosition} from '../../../../utils';
@@ -11,13 +12,6 @@ import {Control} from '../../../Control';
 import {ControlsLayoutContext} from '../../ControlsLayout';
 
 import './LangControl.scss';
-
-const DEFAULT_LANGS = ['en', 'ru', 'he'];
-const LEGACY_LANG_ITEMS = [
-    {value: Lang.En, text: 'English'},
-    {value: Lang.Ru, text: 'Русский'},
-    {value: Lang.He, text: 'Hebrew'},
-];
 
 const b = block('dc-lang-control');
 
@@ -50,7 +44,7 @@ const LangControl = (props: ControlProps) => {
 
                 return langData
                     ? {
-                          text: langData.name,
+                          text: langData.local,
                           value: langData['1'],
                       }
                     : undefined;

@@ -35,6 +35,11 @@
 
         color: var(--g-color-text-primary);
 
+        @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
+            @include text-size(body-2);
+            padding: 10px 12px 10px 28px;
+        }
+
         [dir='rtl'] & {
             padding: 7px 20px 7px 12px;
         }

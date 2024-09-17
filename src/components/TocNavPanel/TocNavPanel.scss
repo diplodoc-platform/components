@@ -1,12 +1,16 @@
 @import '../../styles/mixins';
 
 .dc-nav-toc-panel {
+    $iconSize: 24px;
+    $horizontalGap: 16px;
+    $hintPadding: $iconSize + $horizontalGap;
+
     display: flex;
     justify-content: center;
     width: 100%;
     background: var(--g-color-base-background);
 
-    @include text-size(body-1);
+    @include text-size(body-2);
 
     &_fixed {
         position: fixed;
@@ -34,55 +38,71 @@
     &__control {
         display: flex;
         flex-direction: column;
+        gap: 4px;
         width: 48%;
 
-        &_left {
+        &_left,
+        &_left &-text {
             align-items: flex-start;
         }
 
-        &_right {
+        &_right,
+        &_right &-text {
             align-items: flex-end;
         }
 
+        &_left &-name {
+            text-align: start;
+        }
+        &_right &-name {
+            text-align: end;
+        }
+
+        &_left &-hint {
+            padding-inline-start: $hintPadding;
+        }
+        &_right &-hint {
+            padding-inline-end: $hintPadding;
+        }
+
         & svg {
-            margin-top: -1px;
-            min-width: 16px;
+            min-width: $iconSize;
         }
 
-        &_left svg {
-            margin-right: 6px;
-
-            [dir='rtl'] & {
-                margin-left: 6px;
-                transform: rotate(180deg);
-            }
-        }
-
+        &_left svg,
         &_right svg {
-            margin-left: 6px;
-
             [dir='rtl'] & {
-                margin-right: 6px;
                 transform: rotate(180deg);
             }
         }
+
+        &-hint {
+            color: var(--g-color-text-hint);
+        }
+
+        &-text {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        &-name {
+            word-break: break-word;
+        }
     }
 
-    &__control-hint {
-        color: var(--g-color-text-hint);
-    }
-
-    &__control-text {
-        display: flex;
+    &__control &__link {
         align-items: center;
     }
 
     &__link {
         display: flex;
         align-items: center;
-        min-height: 32px;
+        gap: $horizontalGap;
+
         color: var(--g-color-text-primary);
         font-weight: 500;
+
         border-radius: var(--g-focus-border-radius);
 
         @include focusable();

@@ -69,6 +69,7 @@
   },
   "dependencies": {
     "@gravity-ui/components": "^3.6.0",
+    "@gravity-ui/page-constructor": "^5.22.0",
     "@gravity-ui/icons": "^2.5.0",
     "@gravity-ui/uikit": "^6.2.0",
     "@popperjs/core": "^2.11.2",
@@ -81,6 +82,7 @@
     "react-hotkeys-hook": "^3.3.1",
     "react-i18next": "11.15.6",
     "react-popper": "^2.2.5",
+    "react-transition-group": "^4.4.5",
     "scroll-into-view-if-needed": "2.2.29",
     "url": "^0.11.1"
   },
@@ -96,6 +98,7 @@
     "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
     "@types/react-gtm-module": "^2.0.3",
+    "@types/react-transition-group": "^4.4.10",
     "autoprefixer": "^10.4.15",
     "esbuild": "^0.19.2",
     "esbuild-sass-plugin": "^2.13.0",

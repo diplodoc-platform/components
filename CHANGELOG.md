@@ -1,5 +1,12 @@
 # История изменений
 
+## [4.12.1](https://github.com/diplodoc-platform/components/compare/v4.12.0...v4.12.1) (2024-09-18)
+
+
+### Bug Fixes
+
+* subnavigation items position and mobile menu for rtl ([#287](https://github.com/diplodoc-platform/components/issues/287)) ([20e6535](https://github.com/diplodoc-platform/components/commit/20e65359b862d65ef9de01c556f038ff2db185f2))
+
 ## [4.12.0](https://github.com/diplodoc-platform/components/compare/v4.11.2...v4.12.0) (2024-09-17)
 
 

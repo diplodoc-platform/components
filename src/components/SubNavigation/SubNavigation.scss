@@ -9,6 +9,7 @@
     z-index: 119;
 
     display: flex;
+    justify-content: space-between;
 
     box-sizing: content-box;
     width: calc(100% - 2 * #{$horizontalPadding});

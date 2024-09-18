@@ -35,11 +35,6 @@
         transition: transform $transitionTime;
     }
 
-    // fixes bug with incorrect position of sidebar on mobile with dir='rtl'
-    [dir='rtl'] &__transition-enter-done {
-        right: -11px;
-    }
-
     &__transition-enter-done &-navigation__navigation {
         border-right: none;
     }

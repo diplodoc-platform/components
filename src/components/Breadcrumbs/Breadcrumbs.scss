@@ -2,8 +2,9 @@
 @import '../../styles/mixins';
 
 .dc-breadcrumbs {
-    @include text-size(body-1);
     width: 100%;
+
+    @include text-size(body-1);
 
     &__items {
         @include reset-list-style();

@@ -4,8 +4,6 @@
 .dc-sidebar {
     $transitionTime: 0.4s;
 
-    @include mobile-tablet-only();
-
     position: fixed;
     top: var(--dc-header-height, #{$headerHeight});
     z-index: 119;
@@ -47,6 +45,8 @@
         transition: transform $transitionTime;
         transform: translateX(100%);
     }
+
+    @include mobile-tablet-only();
 
     @media (max-width: map-get($screenBreakpoints, 'md')) {
         &__no-scroll {

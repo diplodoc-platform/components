@@ -5,11 +5,12 @@
     $class: &;
 
     &__title {
-        @include text-size(body-2);
         font-weight: 500;
         color: var(--g-color-text-primary);
         margin-bottom: 12px;
         margin-top: 0;
+
+        @include text-size(body-2);
     }
 
     &__sections {

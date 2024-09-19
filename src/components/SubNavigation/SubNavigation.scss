@@ -93,9 +93,6 @@
 
         width: 100%;
         max-width: calc(100% - #{$iconSize} - 2 * #{$gap} - #{$horizontalPadding});
-        .dc-root_wide-format & {
-            max-width: calc(100% - #{$iconSize} - 2 * #{$gap});
-        }
 
         padding: 0;
         padding-left: 4px;
@@ -121,6 +118,10 @@
 
         touch-action: manipulation;
 
+        .dc-root_wide-format & {
+            max-width: calc(100% - #{$iconSize} - 2 * #{$gap});
+        }
+
         // if has burger
         &:nth-child(2) {
             max-width: calc(100% - 2 * #{$iconSize} - 2 * #{$gap});
@@ -138,8 +139,8 @@
             border-left: none;
             justify-content: center;
 
-            @include text-size(subheader-3);
             font-weight: 600;
+            @include text-size(subheader-3);
         }
 
         &_center,

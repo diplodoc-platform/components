@@ -13,8 +13,9 @@ $importantBackgroundColor: rgba(235, 50, 38, 0.08);
 
 .dc-doc-page {
     position: relative;
-    @include text-size(body-2);
     width: 1440px;
+
+    @include text-size(body-2);
 
     $block: &;
 
@@ -112,36 +113,36 @@ $importantBackgroundColor: rgba(235, 50, 38, 0.08);
     &__body {
         &_text-size {
             &_s.yfm {
-                @include text-size(body-1);
-
                 --dc-code-font-size: 12px;
                 --dc-code-line-height: 18px;
 
                 --dc-code-short-font-size: 12px;
                 --dc-code-short-line-height: 14px;
                 --dc-code-short-padding: 1px 2px;
+
+                @include text-size(body-1);
             }
 
             &_m.yfm {
-                @include text-size(body-2);
-
                 --dc-code-font-size: 14px;
                 --dc-code-line-height: 20px;
 
                 --dc-code-short-font-size: 14px;
                 --dc-code-short-line-height: 16px;
                 --dc-code-short-padding: 1px 4px;
+
+                @include text-size(body-2);
             }
 
             &_l.yfm {
-                @include text-size(body-3);
-
                 --dc-code-font-size: 16px;
                 --dc-code-line-height: 24px;
 
                 --dc-code-short-font-size: 16px;
                 --dc-code-short-line-height: 20px;
                 --dc-code-short-padding: 1px 6px;
+
+                @include text-size(body-3);
             }
         }
     }

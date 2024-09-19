@@ -1,4 +1,5 @@
 import type {Loc} from '../config/i18n';
+import type {SuggestItemType} from '../components/SearchSuggest/types';
 
 import {LabelProps} from '@gravity-ui/uikit';
 
@@ -48,8 +49,8 @@ export interface DocSettings {
     dislikeVariants?: string[];
 }
 
-export interface DocBasePageData {
-    toc: TocData;
+export interface DocBasePageData<T extends {} = {}> {
+    toc: T & TocData;
     leading?: boolean;
     footer?: React.ReactNode;
 }
@@ -59,9 +60,9 @@ export interface DocLeadingPageData extends DocBasePageData {
     data: DocLeadingData;
 }
 
-export interface DocContentPageData extends DocBasePageData {
+export interface DocContentPageData<T extends {} = {}> extends DocBasePageData {
     leading: true;
-    data: {
+    data: T & {
         fullScreen?: boolean;
     };
     children?: React.ReactNode;
@@ -211,4 +212,19 @@ export interface ListItem {
 
 export interface ClassNameProps {
     className?: string;
+}
+
+export interface ISearchProvider {
+    init(): void | (() => void);
+    suggest(query: string): Promise<ISearchResult[]>;
+    search(query: string): Promise<ISearchResult[]>;
+    link(query: string): string | null;
+}
+
+export interface ISearchResult {
+    type: SuggestItemType;
+    title: string;
+    link: string;
+    description?: string;
+    breadcrumbs?: BreadcrumbItem[];
 }

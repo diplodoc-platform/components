@@ -29,12 +29,8 @@ export const SuggestItem: React.FC<SearchSuggestItem> = (item) => {
         case SuggestItemType.Page:
             return (
                 <Link className={b('item', {type: item.type})} view={'primary'} href={item.link}>
-                    <span className={b('item-title')}>
-                        <HTML>{item.title}</HTML>
-                    </span>
-                    <span className={b('item-description')}>
-                        <HTML>{item.description}</HTML>
-                    </span>
+                    <HTML className={b('item-title')}>{item.title}</HTML>
+                    <HTML className={b('item-description')}>{item.description}</HTML>
                 </Link>
             );
         case SuggestItemType.Group:

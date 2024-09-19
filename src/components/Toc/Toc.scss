@@ -62,7 +62,7 @@ $leftOffset: 57px;
             $headerClass: &;
             position: relative;
             font-weight: 500;
-            
+
             @include text-size(body-3);
 
             &_link {

@@ -1,14 +1,11 @@
 import type {KeyboardEvent} from 'react';
-import type {
-    SearchProvider,
-    SearchResult,
-    SearchSuggestItem,
-    SearchSuggestLinkableItem,
-} from './types';
+import type {ISearchProvider} from '../../models';
+import type {SearchSuggestItem, SearchSuggestLinkableItem, SearchSuggestPageItem} from './types';
 
 import React, {
     forwardRef,
     useCallback,
+    useEffect,
     useImperativeHandle,
     useMemo,
     useRef,
@@ -18,7 +15,7 @@ import {List, Popup} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 import uniqueId from 'lodash/uniqueId';
 
-import {useVirtualElementRef} from '../../hooks';
+import {useTranslation, useVirtualElementRef} from '../../hooks';
 
 import {SearchInput} from './SearchInput';
 import {Suggest} from './Suggest';
@@ -28,12 +25,12 @@ import './index.scss';
 
 const b = block('dc-search-suggest');
 
-export type {SearchProvider, SearchResult};
+export type {SearchSuggestItem, SearchSuggestLinkableItem, SearchSuggestPageItem};
 
 export interface SearchSuggestProps {
-    provider: SearchProvider;
+    provider: ISearchProvider;
     placeholder?: string;
-    containerClass?: string;
+    classNameContainer?: string;
     className?: string;
     onFocus?: () => void;
     onBlur?: () => void;
@@ -47,7 +44,15 @@ export interface SearchSuggestApi {
 }
 
 export const SearchSuggest = forwardRef<SearchSuggestApi, SearchSuggestProps>((props, api) => {
-    const {provider, className, placeholder, endContent, containerClass} = props;
+    const {t} = useTranslation('search');
+
+    const {
+        provider,
+        className,
+        placeholder = t('search_placeholder'),
+        endContent,
+        classNameContainer,
+    } = props;
     const href = useRef<HTMLAnchorElement>(null);
     const input = useRef<HTMLElement>(null);
     const suggest = useRef<List<SearchSuggestItem>>(null);
@@ -67,15 +72,16 @@ export const SearchSuggest = forwardRef<SearchSuggestApi, SearchSuggestProps>((p
         [href],
     );
 
+    const page = provider.link(query);
     const onKeyDown = useCallback(
         (event: KeyboardEvent<HTMLElement>) => {
-            if (event.key === 'Enter' && active === undefined) {
-                submitItem(`/search?query=${query}`);
+            if (event.key === 'Enter' && active === undefined && page) {
+                submitItem(page);
             } else if (suggest.current) {
                 suggest.current.onKeyDown(event);
             }
         },
-        [suggest, query, active, submitItem],
+        [suggest, active, submitItem, page],
     );
 
     const open = useCallback(() => {
@@ -98,10 +104,12 @@ export const SearchSuggest = forwardRef<SearchSuggestApi, SearchSuggestProps>((p
         [submitItem],
     );
 
+    useEffect(() => provider.init(), [provider]);
+
     useImperativeHandle(api, () => ({open, close}), [open, close]);
 
     return (
-        <div className={b('wrapper', containerClass)} {...handlers}>
+        <div className={b('wrapper', classNameContainer)} {...handlers}>
             <a ref={href} href="#" hidden aria-hidden />
             <SearchInput
                 ref={input}

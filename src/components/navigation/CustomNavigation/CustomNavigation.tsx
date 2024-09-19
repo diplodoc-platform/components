@@ -24,7 +24,7 @@ const PC_PARANT_CLASS_NAME = 'pc-layout__navigation';
 const b = block(CLASS_NAME);
 
 export interface CustomNavigationProps extends NavigationComponentProps {
-    mobileControlsData: MobileControlsProps;
+    mobileControlsData?: MobileControlsProps;
     navigationTocData: NavigationTocProps;
 }
 

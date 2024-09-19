@@ -15,7 +15,7 @@ const b = block('dc-sidebar-navigation');
 export interface SidebarNavigationProps extends ClassNameProps {
     isSidebarOpened: boolean;
     onSidebarOpenedChange: (isOpened: boolean) => void;
-    mobileControlsData: MobileControlsProps;
+    mobileControlsData?: MobileControlsProps;
 }
 
 const SidebarNavigation: React.FC<SidebarNavigationProps & PropsWithChildren> = ({

@@ -1,22 +1,14 @@
 import {useCallback, useMemo} from 'react';
 
-import {Router} from '../models';
-
 export type ShareData = {
     title: string;
     url: string;
 };
 
-export const useShareHandler = (title: string, router: Router) => {
+export const useShareHandler = (title: string) => {
     const {hostname, pathname} = router;
 
-    const url: string = useMemo(() => {
-        if (hostname) {
-            return `${hostname}/${pathname}`;
-        }
-
-        return window.location.href;
-    }, [hostname, pathname]);
+    const url: string = typeof window === 'undefined' ? '' : window.location.href;
 
     const shareData: ShareData = useMemo(() => {
         return {

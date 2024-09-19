@@ -105,7 +105,6 @@ const SubNavigation = memo(
                     invisible: menuOpen && hideBurger,
                 })}
                 title={pageTitle}
-                router={router}
             />
         );
 

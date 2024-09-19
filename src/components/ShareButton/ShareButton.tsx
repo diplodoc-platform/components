@@ -3,7 +3,7 @@ import {ArrowShapeTurnUpRight} from '@gravity-ui/icons';
 import {Button, ButtonSize, ButtonView} from '@gravity-ui/uikit';
 
 import {useShareHandler} from '../../hooks';
-import {ClassNameProps, Router} from '../../models';
+import {ClassNameProps} from '../../models';
 
 const ICON_SIZE = {
     width: 24,
@@ -17,7 +17,6 @@ type IconSize = {
 
 export interface ShareButtonProps extends ClassNameProps {
     title: string;
-    router: Router;
     iconSize?: IconSize;
     size?: ButtonSize;
     view?: ButtonView;
@@ -25,13 +24,12 @@ export interface ShareButtonProps extends ClassNameProps {
 
 export const ShareButton: React.FC<ShareButtonProps> = ({
     title,
-    router,
     iconSize = ICON_SIZE,
     size = 'm',
     view = 'flat-secondary',
     className,
 }) => {
-    const shareHandler = useShareHandler(title, router);
+    const shareHandler = useShareHandler(title);
 
     return (
         <Button className={className} size={size} view={view} onClick={shareHandler}>

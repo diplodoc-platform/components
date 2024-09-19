@@ -1,5 +1,12 @@
 # История изменений
 
+## [4.12.2](https://github.com/diplodoc-platform/components/compare/v4.12.1...v4.12.2) (2024-09-19)
+
+
+### Bug Fixes
+
+* make mobileControlsData optional  ([#289](https://github.com/diplodoc-platform/components/issues/289)) ([b95d2ab](https://github.com/diplodoc-platform/components/commit/b95d2ab1fcf9f6768bf4a4f1bf1f5734fe33c856))
+
 ## [4.12.1](https://github.com/diplodoc-platform/components/compare/v4.12.0...v4.12.1) (2024-09-18)
 
 

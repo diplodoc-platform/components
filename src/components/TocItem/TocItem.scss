@@ -50,9 +50,10 @@
         }
 
         &_labeled {
-            @include text-size(body-1);
             font-weight: 500;
             text-transform: uppercase;
+
+            @include text-size(body-1);
         }
 
         &_clicable {

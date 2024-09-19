@@ -64,9 +64,10 @@
 
         &-title,
         &-title &-search-token {
-            @include link();
             color: var(--g-color-text-primary);
+
             @include text-size(subheader-3);
+            @include link();
         }
 
         &-title:hover &-search-token {

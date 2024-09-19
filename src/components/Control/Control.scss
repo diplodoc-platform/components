@@ -13,8 +13,9 @@
     }
 
     &__tooltip-text {
-        @include text-size(body-1);
         display: block;
         white-space: nowrap;
+
+        @include text-size(body-1);
     }
 }

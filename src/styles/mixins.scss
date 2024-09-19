@@ -52,13 +52,14 @@
 }
 
 @mixin link() {
-    @include islands-focus();
-    @include focusable(0, 'box-shadow');
-
     color: var(--g-color-text-link);
     text-decoration: none;
     cursor: pointer;
     border-radius: var(--g-focus-border-radius);
+
+    @include islands-focus();
+
+    @include focusable(0, 'box-shadow');
 
     &:hover,
     &:active {
@@ -67,8 +68,9 @@
 }
 
 @mixin heading1() {
-    @include text-size(display-3);
     font-weight: 500;
+
+    @include text-size(display-3);
 
     @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
         @include text-size(display-2);
@@ -76,28 +78,33 @@
 }
 
 @mixin heading2() {
-    @include text-size(display-1);
     font-weight: 500;
+
+    @include text-size(display-1);
 }
 
 @mixin heading3() {
-    @include text-size(header-2);
     font-weight: 500;
+
+    @include text-size(header-2);
 }
 
 @mixin heading4() {
-    @include text-size(header-1);
     font-weight: 500;
+
+    @include text-size(header-1);
 }
 
 @mixin heading5() {
-    @include text-size(body-3);
     font-weight: 500;
+
+    @include text-size(body-3);
 }
 
 @mixin heading6() {
-    @include text-size(body-3);
     font-weight: 400;
+
+    @include text-size(body-3);
 }
 
 @mixin contributors-text() {

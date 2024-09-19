@@ -6,6 +6,7 @@
 
     &__wrapper {
         position: relative;
+        width: 100%;
     }
 
     &__loader {
@@ -28,8 +29,6 @@
     }
 
     &__item {
-        @include text-size(body-1);
-
         width: 100%;
         display: block;
         overflow: hidden;
@@ -39,6 +38,8 @@
         cursor: pointer;
         white-space: nowrap;
         text-overflow: ellipsis;
+
+        @include text-size(body-1);
 
         &-title,
         &-description,
@@ -57,9 +58,9 @@
 
         &_type {
             &_page {
-                @include link();
-
                 padding-bottom: 9px;
+
+                @include link();
 
                 #{$block}__item {
                     &-breadcrumbs {

@@ -61,21 +61,23 @@ $leftOffset: 57px;
             flex-grow: 0;
             $headerClass: &;
             position: relative;
-
-            @include text-size(body-3);
             font-weight: 500;
+            
+            @include text-size(body-3);
 
             &_link {
                 @include reset-link-style();
+
                 display: flex;
                 align-items: center;
                 border-radius: var(--g-focus-border-radius);
 
-                &:hover {
-                    @include link();
+                @include link();
 
+                &:hover {
                     color: var(--g-color-text-primary);
                 }
+
                 @include focusable();
             }
         }

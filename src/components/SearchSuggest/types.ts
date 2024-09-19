@@ -18,7 +18,7 @@ interface SearchSuggestTextItem extends SearchSuggestBaseItem {
     title: string;
 }
 
-interface SearchSuggestPageItem extends SearchSuggestBaseItem {
+export interface SearchSuggestPageItem extends SearchSuggestBaseItem {
     type: SuggestItemType.Page;
     title: string;
     link: string;
@@ -49,20 +49,7 @@ export type SearchSuggestItem =
     | SearchSuggestGroupItem
     | SearchSuggestDelimiterItem;
 
-export type SearchResult = {
-    type: SuggestItemType;
-    title: string;
-    link: string;
-    description?: string;
-    breadcrumbs?: BreadcrumbItem[];
-};
-
 export type SearchGroup = {
     type: SuggestItemType;
     items: SearchSuggestItem[];
-};
-
-export type SearchProvider = {
-    suggest(query: string): Promise<SearchResult[]>;
-    link(query: string): string;
 };

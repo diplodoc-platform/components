@@ -1,5 +1,6 @@
 import type {ReactNode} from 'react';
-import type {SearchProvider, SearchSuggestItem} from './types';
+import type {ISearchProvider} from '../../models';
+import type {SearchSuggestItem} from './types';
 
 import React, {forwardRef, memo, useEffect} from 'react';
 import {List, ListItemData, Loader} from '@gravity-ui/uikit';
@@ -73,7 +74,7 @@ SuggestList.displayName = 'SuggestList';
 type SuggestProps = {
     id: string;
     query: string;
-    provider: SearchProvider;
+    provider: ISearchProvider;
 } & Omit<SuggestListProps, 'items'>;
 
 export const Suggest = memo(

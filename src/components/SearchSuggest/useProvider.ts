@@ -1,5 +1,6 @@
 import type {TFunction} from 'react-i18next';
-import type {SearchGroup, SearchProvider, SearchResult, SearchSuggestItem} from './types';
+import type {ISearchProvider, ISearchResult} from '../../models';
+import type {SearchGroup, SearchSuggestItem} from './types';
 
 import {useCallback, useMemo, useRef, useState} from 'react';
 import debounce from 'lodash/debounce';
@@ -8,14 +9,14 @@ import {useTranslation} from '../../hooks';
 
 import {SuggestItemType} from './types';
 
-type Link = (query: string) => string;
+type Link = (query: string) => string | null;
 type Zalgo<T> = Promise<T> | T;
 type Items = Zalgo<SearchSuggestItem[] | null>;
 type Request = (query: string) => () => void;
 
 const cache = new Map<string, SearchSuggestItem[]>();
 
-export function useProvider(provider: SearchProvider): [Items, Request] {
+export function useProvider(provider: ISearchProvider): [Items, Request] {
     const wait = useRef<Zalgo<SearchSuggestItem[] | null>>(null);
     const [items, setItems] = useState<Zalgo<SearchSuggestItem[] | null>>(null);
     const {t} = useTranslation('search-suggest');
@@ -74,7 +75,8 @@ export function useProvider(provider: SearchProvider): [Items, Request] {
     return [items, request];
 }
 
-function format(query: string, items: SearchResult[], link: Link, t: TFunction) {
+function format(query: string, items: ISearchResult[], link: Link, t: TFunction) {
+    const page = link(query);
     const groups = Object.values(
         items.reduce(
             (result, item) => {
@@ -82,7 +84,7 @@ function format(query: string, items: SearchResult[], link: Link, t: TFunction) 
                 result[item.type].items.push({
                     type: SuggestItemType.Page,
                     title: item.title,
-                    link: link(item.link),
+                    link: item.link,
                     description: item.description,
                     breadcrumbs: item.breadcrumbs,
                 });
@@ -115,11 +117,11 @@ function format(query: string, items: SearchResult[], link: Link, t: TFunction) 
                   return result.concat(group.items as SearchSuggestItem[]);
               }, [] as SearchSuggestItem[]);
 
-    if (result.length > 0) {
+    if (result.length > 0 && page) {
         result.push({
             type: SuggestItemType.Link,
             title: t('search-suggest_all-results'),
-            link: link(`/search?query=${query}`),
+            link: page,
         });
     }
 

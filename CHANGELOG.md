@@ -1,5 +1,12 @@
 # История изменений
 
+## [4.12.3](https://github.com/diplodoc-platform/components/compare/v4.12.2...v4.12.3) (2024-09-19)
+
+
+### Bug Fixes
+
+* url in shareButton for mobile ([#291](https://github.com/diplodoc-platform/components/issues/291)) ([f21647d](https://github.com/diplodoc-platform/components/commit/f21647d0d5ff7f286c548d4da34ffd09b3fc16c9))
+
 ## [4.12.2](https://github.com/diplodoc-platform/components/compare/v4.12.1...v4.12.2) (2024-09-19)
 
 

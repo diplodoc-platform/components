@@ -443,7 +443,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
     }
 
     private renderTitle() {
-        const {title, headerHeight, meta, bookmarkedPage, onChangeBookmarkPage} = this.props;        
+        const {title, headerHeight, meta, bookmarkedPage, onChangeBookmarkPage} = this.props;
         const withBookmarks = onChangeBookmarkPage;
         const withShare = Number(headerHeight) > 0 && !this.showMiniToc;
 

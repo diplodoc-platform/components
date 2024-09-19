@@ -18,7 +18,7 @@ export interface SidebarContentProps extends ClassNameProps {
     mainMenuOpenessData?: MainMenuOpenessProps;
     pcNavigationData?: PCNavigationProps;
     navigationTocData?: NavigationTocProps;
-    mobileControlsData: MobileControlsProps;
+    mobileControlsData?: MobileControlsProps;
 }
 
 export interface MainMenuOpenessProps {
@@ -47,8 +47,6 @@ export const SidebarContent: React.FC<SidebarContentProps & PropsWithChildren> =
     mobileControlsData,
     children,
 }) => {
-    const {controlSize, lang, userSettings} = mobileControlsData;
-
     const toc = navigationTocData &&
         navigationTocData.toc &&
         mainMenuOpenessData &&
@@ -95,9 +93,14 @@ export const SidebarContent: React.FC<SidebarContentProps & PropsWithChildren> =
             </div>
         );
 
-    const mobileControls = (
+    const data = mobileControlsData;
+    const mobileControls = data && (
         <div className={b('controls-wrapper')}>
-            <MobileControls controlSize={controlSize} lang={lang} userSettings={userSettings} />
+            <MobileControls
+                controlSize={data.controlSize}
+                lang={data.lang}
+                userSettings={data.userSettings}
+            />
         </div>
     );
 

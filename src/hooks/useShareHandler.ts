@@ -6,8 +6,6 @@ export type ShareData = {
 };
 
 export const useShareHandler = (title: string) => {
-    const {hostname, pathname} = router;
-
     const url: string = typeof window === 'undefined' ? '' : window.location.href;
 
     const shareData: ShareData = useMemo(() => {

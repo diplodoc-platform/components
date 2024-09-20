@@ -1,4 +1,4 @@
-import React, {memo, useState} from 'react';
+import React, {MouseEvent, memo, useCallback, useState} from 'react';
 import {ChevronDown} from '@gravity-ui/icons';
 import {
     Foldable,
@@ -10,7 +10,11 @@ import {
 } from '@gravity-ui/page-constructor';
 import block from 'bem-cn-lite';
 
+import {OutsideClick} from '../../OutsideClick';
+
 import './MobileDropdown.scss';
+
+const ICON_SIZE = 20;
 
 const b = block('dc-mobile-dropdown');
 
@@ -22,21 +26,26 @@ const MobileDropdown: React.FC<MobileDropdownProps> = memo(({item}) => {
     const {text, isActive, items} = item;
 
     const [isOpened, setIsOpen] = useState(isActive);
-    const {onActiveItemChange} = useActiveNavItem(20, items);
+    const {onActiveItemChange} = useActiveNavItem(ICON_SIZE, items);
+
+    const toggleOpennes = useCallback(
+        (event: MouseEvent) => {
+            event.stopPropagation();
+
+            setIsOpen(!isOpened);
+        },
+        [isOpened],
+    );
 
     return (
-        <React.Fragment>
-            <span
-                // ? type={type}
-                className={b()}
-                onClick={(event) => {
-                    event.stopPropagation();
-
-                    setIsOpen(!isOpened);
-                }}
-            >
+        <OutsideClick onOutsideClick={() => setIsOpen(false)}>
+            <span className={b()} onClick={toggleOpennes}>
                 <span className={'pc-content-wrapper__text'}>{text}</span>
-                <ChevronDown className={b('icon', {up: isOpened})} width={20} height={20} />
+                <ChevronDown
+                    className={b('icon', {up: isOpened})}
+                    width={ICON_SIZE}
+                    height={ICON_SIZE}
+                />
             </span>
             <Foldable className={b('foldable')} isOpened={isOpened}>
                 <NavigationList
@@ -48,7 +57,7 @@ const MobileDropdown: React.FC<MobileDropdownProps> = memo(({item}) => {
                     onActiveItemChange={onActiveItemChange}
                 />
             </Foldable>
-        </React.Fragment>
+        </OutsideClick>
     );
 });
 

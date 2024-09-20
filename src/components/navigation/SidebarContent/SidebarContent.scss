@@ -33,14 +33,10 @@
         @include text-size(body-2);
     }
 
-    &__main-menu {
-        @include text-size(body-3);
-    }
-
     &__toc {
         height: 0;
 
-        overflow: auto;
+        overflow-y: auto;
 
         & .dc-toc__content > .dc-toc__list {
             padding: 0;
@@ -50,7 +46,11 @@
     &__main-menu {
         padding: 12px 16px 0px;
 
+        @include text-size(body-3);
+
         font-weight: var(--g-text-accent-font-weight);
+
+        overflow-y: auto;
 
         & &-item {
             padding: 10px 12px 10px 4px;

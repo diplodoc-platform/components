@@ -1,5 +1,12 @@
 # История изменений
 
+## [4.12.5](https://github.com/diplodoc-platform/components/compare/v4.12.4...v4.12.5) (2024-09-20)
+
+
+### Bug Fixes
+
+* bug with mobile mini-toc closing  ([#296](https://github.com/diplodoc-platform/components/issues/296)) ([f9e141c](https://github.com/diplodoc-platform/components/commit/f9e141c25bab698aa732995a04a99ef89aac4147))
+
 ## [4.12.4](https://github.com/diplodoc-platform/components/compare/v4.12.3...v4.12.4) (2024-09-20)
 
 

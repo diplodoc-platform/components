@@ -26,7 +26,6 @@ type UseTranslationReturnType = TFunction<Namespace<string>, KeyPrefix<Namespace
 
 export interface MobileControlsProps {
     controlSize: ControlSizes;
-    lang: Lang;
     userSettings: DocSettings & ControlsProps;
 }
 
@@ -115,11 +114,11 @@ const useThemeControl = (
     );
 };
 
-const MobileControls = memo(({controlSize, lang, userSettings}: MobileControlsProps) => {
+const MobileControls = memo(({controlSize, userSettings}: MobileControlsProps) => {
     const {t} = useTranslation('controls');
-    const {onChangeLang, langs, onChangeTheme, theme} = userSettings;
+    const {onChangeLang, lang, langs, onChangeTheme, theme} = userSettings;
 
-    const langControl = useLangControl(t, lang, langs, onChangeLang);
+    const langControl = useLangControl(t, lang ?? Lang.En, langs, onChangeLang);
     const themeControl = useThemeControl(t, theme ?? Theme.Light, onChangeTheme);
 
     if (!onChangeTheme && !onChangeLang) {

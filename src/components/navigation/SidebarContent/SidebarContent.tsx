@@ -96,11 +96,7 @@ export const SidebarContent: React.FC<SidebarContentProps & PropsWithChildren> =
     const data = mobileControlsData;
     const mobileControls = data && (
         <div className={b('controls-wrapper')}>
-            <MobileControls
-                controlSize={data.controlSize}
-                lang={data.lang}
-                userSettings={data.userSettings}
-            />
+            <MobileControls controlSize={data.controlSize} userSettings={data.userSettings} />
         </div>
     );
 

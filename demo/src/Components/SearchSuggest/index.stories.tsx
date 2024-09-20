@@ -1,5 +1,5 @@
 import type {FC, PropsWithChildren} from 'react';
-import type {SearchProvider, SearchResult} from '@diplodoc/components';
+import type {ISearchProvider, ISearchResult} from '@diplodoc/components';
 
 import React, {useState} from 'react';
 import {SearchSuggest as Component} from '@diplodoc/components';
@@ -12,7 +12,7 @@ const b = block('header');
 
 const wait = (delay: number) => new Promise((resolve) => setTimeout(resolve, delay));
 
-const filter = (items: SearchResult[], query: string) => {
+const filter = (items: ISearchResult[], query: string) => {
     return items.filter((item) => {
         return item.title?.indexOf(query) > -1 || (item.description || '').indexOf(query) > -1;
     });
@@ -36,11 +36,17 @@ const FakeHeader: FC<PropsWithChildren<Props>> = ({children, className}) => {
 };
 
 const SearchSuggestDemo = () => {
-    const provider: SearchProvider = {
+    const provider: ISearchProvider = {
+        init() {},
+
         async suggest(query: string) {
             await wait(3000);
 
-            return filter(data as SearchResult[], query).slice(0, 10);
+            return filter(data as ISearchResult[], query).slice(0, 10);
+        },
+
+        async search() {
+            return [];
         },
 
         link(query: string) {

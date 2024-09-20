@@ -1,5 +1,12 @@
 # История изменений
 
+## [4.12.4](https://github.com/diplodoc-platform/components/compare/v4.12.3...v4.12.4) (2024-09-20)
+
+
+### Bug Fixes
+
+* mobile dropdowns behaviour ([#293](https://github.com/diplodoc-platform/components/issues/293)) ([6e592c7](https://github.com/diplodoc-platform/components/commit/6e592c70c78edf00f86097a805fc6fa90c2e2806))
+
 ## [4.12.3](https://github.com/diplodoc-platform/components/compare/v4.12.2...v4.12.3) (2024-09-19)
 
 

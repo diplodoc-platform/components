@@ -42,7 +42,7 @@
         display: none;
 
         .pc-navigation-item:has(&) {
-            width: 0;
+            display: none;
         }
     }
 }

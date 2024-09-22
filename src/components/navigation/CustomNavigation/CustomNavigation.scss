@@ -13,4 +13,20 @@
     &_with-border {
         box-shadow: inset 0 -1px 0 var(--g-color-line-generic);
     }
+
+    @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
+        // disable page-constructor OverflowScroller in pc-navigation on mobile
+        // as unnecessary feat of pc
+        .pc-overflow-scroller {
+            &__arrow_type_left,
+            &__arrow_type_right {
+                display: none;
+            }
+
+            &__container_padding-left,
+            &__container_padding-right {
+                padding-right: 0;
+            }
+        }
+    }
 }

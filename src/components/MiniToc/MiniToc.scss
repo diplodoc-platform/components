@@ -102,7 +102,7 @@
         }
 
         &__sections {
-            $mobileMiniTocOffset: 2 * $verticalPadding + $titleHeight + $titleMargin;
+            $mobileMiniTocOffset: 2 * $verticalPadding + $titleHeight + $titleMargin; // 64px
 
             @include text-size(body-2);
 

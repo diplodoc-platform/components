@@ -79,11 +79,22 @@
             margin-bottom: $miniTocTitleMargin;
         }
 
-        &:has(&_overflowed) &__bottom {
-            $bottomHeight: 20px;
+        &:has(&_overflowed) {
+            #{$class}__bottom {
+                $bottomHeight: 36px;
 
-            display: block;
-            height: $bottomHeight;
+                display: block;
+                height: $bottomHeight;
+            }
+
+            #{$class}__sections {
+                max-height: calc(
+                    100vh - var(--dc-header-height, #{$headerHeight}) - var(
+                            --dc-subnavigation-height,
+                            #{$subNavigationHeight}
+                        ) - #{$mobileMiniTocOffset} - #{$bottomHeight}
+                );
+            }
         }
 
         &__section {
@@ -105,7 +116,7 @@
                 100vh - var(--dc-header-height, #{$headerHeight}) - var(
                         --dc-subnavigation-height,
                         #{$subNavigationHeight}
-                    ) - #{$mobileMiniTocOffset} - #{$bottomHeight}
+                    ) - #{$mobileMiniTocOffset}
             );
         }
     }

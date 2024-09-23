@@ -48,6 +48,7 @@ export class Scrollspy extends React.Component<ScrollspyInnerProps, ScrollspySta
     scrollByClick: boolean;
     firstItemIndexInView: number;
     lastItemIndexInView: number;
+    overflowChecked: boolean;
 
     constructor(props: ScrollspyInnerProps) {
         super(props);
@@ -57,6 +58,7 @@ export class Scrollspy extends React.Component<ScrollspyInnerProps, ScrollspySta
             inViewState: [],
         };
 
+        this.overflowChecked = false;
         this.scrollByClick = false;
         this.firstItemIndexInView = -1;
         this.lastItemIndexInView = -1;
@@ -84,6 +86,12 @@ export class Scrollspy extends React.Component<ScrollspyInnerProps, ScrollspySta
 
         if (!isEqual(items, prevProps.items) || prevProps.router.pathname !== router.pathname) {
             this.initItems();
+        }
+
+        if (!this.overflowChecked) {
+            this.overflowChecked = true;
+
+            this.checkListOverflow();
         }
 
         if (router.hash !== prevProps.router.hash) {

@@ -1,5 +1,20 @@
 # История изменений
 
+## [4.13.0](https://github.com/diplodoc-platform/components/compare/v4.12.5...v4.13.0) (2024-09-23)
+
+
+### Features
+
+* Change new navigation props for public client ([4230653](https://github.com/diplodoc-platform/components/commit/423065333a551b29e62d048189eb5bfb28811daf))
+
+
+### Bug Fixes
+
+* Fix corner case behaviour of MiniToc and Toc  ([#300](https://github.com/diplodoc-platform/components/issues/300)) ([765b38e](https://github.com/diplodoc-platform/components/commit/765b38e2b8fdf6a0e0977b63389bc8fcabd20013))
+* Fix scss warnings ([b2f085d](https://github.com/diplodoc-platform/components/commit/b2f085de975ecfeda51d3e507e9d8a7908d3c9fa))
+* Fix SearchSuggest for integration ([4a405b5](https://github.com/diplodoc-platform/components/commit/4a405b562799f64807d7745d4c1dbfefcf000772))
+* overflowed-MiniToc height and OverflowScroller elements with open search ([#299](https://github.com/diplodoc-platform/components/issues/299)) ([2598974](https://github.com/diplodoc-platform/components/commit/2598974cb6f47b0c0dbc717a9826838b3ebf0696))
+
 ## [4.12.5](https://github.com/diplodoc-platform/components/compare/v4.12.4...v4.12.5) (2024-09-20)
 
 

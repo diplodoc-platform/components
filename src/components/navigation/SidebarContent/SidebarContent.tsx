@@ -47,14 +47,17 @@ export const SidebarContent: React.FC<SidebarContentProps & PropsWithChildren> =
     mobileControlsData,
     children,
 }) => {
+    const mainMenuIsOpened = mainMenuOpenessData && mainMenuOpenessData.isMainMenuOpened;
+    const mainMenuIsClosed = mainMenuOpenessData && !mainMenuOpenessData.isMainMenuOpened;
+
     const toc = navigationTocData &&
         navigationTocData.toc &&
-        mainMenuOpenessData &&
-        !mainMenuOpenessData.isMainMenuOpened && (
+        navigationTocData.toc.items.length > 0 &&
+        mainMenuIsClosed && (
             <React.Fragment>
                 <div className={b('to-main-menu')}>
                     <ToMainMenu
-                        mainMenuIsOpen={mainMenuOpenessData.isMainMenuOpened}
+                        mainMenuIsOpen={mainMenuIsOpened}
                         openMainMenu={mainMenuOpenessData.openMainMenu}
                     />
                 </div>
@@ -69,29 +72,34 @@ export const SidebarContent: React.FC<SidebarContentProps & PropsWithChildren> =
             </React.Fragment>
         );
 
-    const mainMenu = pcNavigationData &&
-        ((mainMenuOpenessData && mainMenuOpenessData.isMainMenuOpened) || !navigationTocData) && (
-            <div className={b('main-menu')}>
-                {pcNavigationData.leftItemsWithIconSize && (
-                    <NavigationList
-                        items={pcNavigationData.leftItemsWithIconSize}
-                        itemClassName={b('main-menu-item')}
-                        column={ItemColumnName.Top}
-                        onActiveItemChange={pcNavigationData.onActiveItemChange}
-                        menuLayout={NavigationLayout.Mobile}
-                    />
-                )}
-                {pcNavigationData.rightItemsWithIconSize && (
-                    <NavigationList
-                        items={pcNavigationData.rightItemsWithIconSize}
-                        itemClassName={b('main-menu-item')}
-                        column={ItemColumnName.Bottom}
-                        onActiveItemChange={pcNavigationData.onActiveItemChange}
-                        menuLayout={NavigationLayout.Mobile}
-                    />
-                )}
-            </div>
-        );
+    const withoutToc =
+        !navigationTocData ||
+        !navigationTocData.toc ||
+        (typeof navigationTocData.toc.items.length === 'number' &&
+            navigationTocData.toc.items.length === 0);
+
+    const mainMenu = pcNavigationData && (mainMenuIsOpened || withoutToc) && (
+        <div className={b('main-menu')}>
+            {pcNavigationData.leftItemsWithIconSize && (
+                <NavigationList
+                    items={pcNavigationData.leftItemsWithIconSize}
+                    itemClassName={b('main-menu-item')}
+                    column={ItemColumnName.Top}
+                    onActiveItemChange={pcNavigationData.onActiveItemChange}
+                    menuLayout={NavigationLayout.Mobile}
+                />
+            )}
+            {pcNavigationData.rightItemsWithIconSize && (
+                <NavigationList
+                    items={pcNavigationData.rightItemsWithIconSize}
+                    itemClassName={b('main-menu-item')}
+                    column={ItemColumnName.Bottom}
+                    onActiveItemChange={pcNavigationData.onActiveItemChange}
+                    menuLayout={NavigationLayout.Mobile}
+                />
+            )}
+        </div>
+    );
 
     const data = mobileControlsData;
     const mobileControls = data && (

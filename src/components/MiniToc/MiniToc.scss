@@ -71,15 +71,12 @@
     }
 
     @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
-        $verticalPadding: 16px;
-        $titleHeight: 20px; // line-height body-2
-        $titleMargin: 12px;
         $bottomHeight: 0;
 
-        padding: $verticalPadding 8px $verticalPadding 20px;
+        padding: $miniTocVerticalPadding 8px $miniTocVerticalPadding 20px;
 
         &__title {
-            margin-bottom: $titleMargin;
+            margin-bottom: $miniTocTitleMargin;
         }
 
         &:has(&_overflowed) &__bottom {
@@ -102,8 +99,6 @@
         }
 
         &__sections {
-            $mobileMiniTocOffset: 2 * $verticalPadding + $titleHeight + $titleMargin;
-
             @include text-size(body-2);
 
             max-height: calc(

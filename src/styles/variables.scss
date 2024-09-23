@@ -17,6 +17,12 @@ $toMainMenuHeight: calc(
     var(--dc-subnavigation-height, $subNavigationHeight) - #{$toMainMenuVerticalPadding} - #{$toMainMenuVerticalPadding}
 );
 
+// MiniToc
+$miniTocVerticalPadding: 16px;
+$miniTocTitleHeight: 20px; // line-height body-2
+$miniTocTitleMargin: 12px;
+$mobileMiniTocOffset: 2 * $miniTocVerticalPadding + $miniTocTitleHeight + $miniTocTitleMargin;
+
 $screenBreakpoints: (
     'xs': 375px,
     'sm': 577px,

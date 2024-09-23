@@ -72,7 +72,7 @@
                     100vh - var(--dc-header-height, $headerHeight) - var(
                             --dc-subnavigation-height,
                             $subNavigationHeight
-                        )
+                        ) - #{$mobileMiniTocOffset}
                 );
                 transition: max-height 300ms 0s;
             }

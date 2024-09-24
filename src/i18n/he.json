@@ -4,8 +4,13 @@
     "description_wide_format_enabled": "התאפשר",
     "description_wide_format_disabled": "הושבת",
     "label_show_mini_toc": "ניווט לכתבה",
-    "description_show_mini_toc": "הצג את הניווט",
-    "label_dark_theme": "ערכת נושא כהה",
+    "description_show_mini_toc_enabled": "מופעלת",
+    "description_show_mini_toc_disabled": "מושבתת",
+    "label_theme": "נושא",
+    "label_light_theme": "בהיר",
+    "full_label_light_theme": "ערכת נושא בהיר",
+    "label_dark_theme": "כהה",
+    "full_label_dark_theme": "ערכת נושא כהה",
     "description_enabled_dark_theme": "התאפשר",
     "description_disabled_dark_theme": "הושבת",
     "label_text_size": "גודל פונט",
@@ -43,15 +48,18 @@
     "skip-action-text": "לדלג",
     "feedback-comment-placeholder": "מידע נוסף יהיה שימושי",
     "lang-control-text-ru": "Русский",
-    "lang-control-text-en": "English"
+    "lang-control-text-en": "English",
+    "label_to-main-menu": "לתפריט הראשי"
   },
   "mini-toc": {
     "title": "במאמר הזה",
+    "article-navigation": "ניווט במאמר",
     "description": "תוכן נוכחי במאמר"
   },
   "toc-nav-panel": {
     "hint_previous": "הקודם",
-    "hint_next": "הבא"
+    "hint_next": "הבא",
+    "drop-down-list": "רשימה נפתחת"
   },
   "authors": {
     "title": "נכתב על ידי"
@@ -109,6 +117,14 @@
     "search_mark_like": "אהבתי",
     "search_mark_dislike": "לא אהבתי",
     "search_mark-result-text": "תודה על הדירוג! "
+  },
+  "search-suggest": {
+    "search-suggest_all-results": "כל התוצאות",
+    "search-suggest_not-found": "לא נמצאו תוצאות ל-«{{query}}»",
+    "search-suggest_error-text": "משהו השתבש. נסה שוב.",
+    "search-item_type-all": "הכל",
+    "search-item_type-doc": "תיעוד",
+    "search-item_type-main": "ראשי"
   },
   "paginator": {
     "next": "העמוד הבא",

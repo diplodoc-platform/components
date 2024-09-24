@@ -4,8 +4,13 @@
     "description_wide_format_enabled": "Қосулы",
     "description_wide_format_disabled": "Сөндірулі",
     "label_show_mini_toc": "Ағымдағы мақала бойынша навигация",
-    "description_show_mini_toc": "Навигацияны көрсету",
-    "label_dark_theme": "Күңгірт тақырып",
+    "description_show_mini_toc_enabled": "Қосулы",
+    "description_show_mini_toc_disabled": "Өшірулі",
+    "label_theme": "Тақырып",
+    "label_light_theme": "Ақшыл",
+    "full_label_light_theme": "Ақшыл тақырып",
+    "label_dark_theme": "Қара",
+    "full_label_dark_theme": "Қара тақырып",
     "description_enabled_dark_theme": "Қосулы",
     "description_disabled_dark_theme": "Сөндірулі",
     "label_text_size": "Мәтін өлшемі",
@@ -43,15 +48,18 @@
     "skip-action-text": "Өткізіп жіберу",
     "feedback-comment-placeholder": "Қосымша ақпарат пайдалы болады",
     "lang-control-text-ru": "Орысша",
-    "lang-control-text-en": "English"
+    "lang-control-text-en": "English",
+    "label_to-main-menu": "Басты мәзірге"
   },
   "mini-toc": {
     "title": "Бұл мақалада",
+    "article-navigation": "Мақалаға шолу",
     "description": "Осы мақаланы мазмұны"
   },
   "toc-nav-panel": {
     "hint_previous": "Алдыңғы",
-    "hint_next": "Келесі"
+    "hint_next": "Келесі",
+    "drop-down-list": "Төмен түсетін тізім"
   },
   "authors": {
     "title": "Мақала жасалды"
@@ -109,6 +117,14 @@
     "search_mark_like": "дәл керегі",
     "search_mark_dislike": "мүлде ол емес",
     "search_mark-result-text": "Бағаңыз үшін рақмет!"
+  },
+  "search-suggest": {
+    "search-suggest_all-results": "Барлық нәтижелер",
+    "search-suggest_not-found": "«{{query}}» сұранысы бойынша ештеңе табылған жоқ.",
+    "search-suggest_error-text": "Бір нәрсе дұрыс емес. Қайта көрініз.",
+    "search-item_type-all": "Барлығы",
+    "search-item_type-doc": "Құжаттама",
+    "search-item_type-main": "Басты"
   },
   "paginator": {
     "next": "Келесі бет",

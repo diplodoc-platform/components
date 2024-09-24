@@ -4,8 +4,13 @@
     "description_wide_format_enabled": "已開啓",
     "description_wide_format_disabled": "已關閉",
     "label_show_mini_toc": "浏覽當前文章",
-    "description_show_mini_toc": "顯示浏覽界面",
-    "label_dark_theme": "深色主題",
+    "description_show_mini_toc_enabled": "已啟用",
+    "description_show_mini_toc_disabled": "已停用",
+    "label_theme": "主題",
+    "label_light_theme": "亮色",
+    "full_label_light_theme": "亮色主題",
+    "label_dark_theme": "深色",
+    "full_label_dark_theme": "深色主題",
     "description_enabled_dark_theme": "已開啓",
     "description_disabled_dark_theme": "已關閉",
     "label_text_size": "文字大小",
@@ -43,15 +48,18 @@
     "skip-action-text": "跳轉",
     "feedback-comment-placeholder": "補充信息將有所幫助",
     "lang-control-text-ru": "俄語",
-    "lang-control-text-en": "英語"
+    "lang-control-text-en": "英語",
+    "label_to-main-menu": "回到主菜單"
   },
   "mini-toc": {
     "title": "在這篇文章中",
+    "article-navigation": "文章導航",
     "description": "當前文章的內容"
   },
   "toc-nav-panel": {
     "hint_previous": "上一篇",
-    "hint_next": "下一篇"
+    "hint_next": "下一篇",
+    "drop-down-list": "下拉列表"
   },
   "authors": {
     "title": "文章已完成"
@@ -109,6 +117,14 @@
     "search_mark_like": "所需信息",
     "search_mark_dislike": "完全沒有此類信息",
     "search_mark-result-text": "感謝評價！"
+  },
+  "search-suggest": {
+    "search-suggest_all-results": "所有結果",
+    "search-suggest_not-found": "未找到相關結果「{{query}}」。",
+    "search-suggest_error-text": "出了些問題。請再試一次。",
+    "search-item_type-all": "全部",
+    "search-item_type-doc": "文件",
+    "search-item_type-main": "主頁"
   },
   "paginator": {
     "next": "下一頁",

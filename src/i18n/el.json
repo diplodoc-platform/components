@@ -4,8 +4,13 @@
     "description_wide_format_enabled": "Ενεργοποιημένη",
     "description_wide_format_disabled": "Απενεργοποιημένη",
     "label_show_mini_toc": "Πλοήγηση τρέχοντος άρθρου",
-    "description_show_mini_toc": "Εμφάνιση πλοήγησης",
-    "label_dark_theme": "Σκούρο θέμα",
+    "description_show_mini_toc_enabled": "Ενεργοποιημένη",
+    "description_show_mini_toc_disabled": "Απενεργοποιημένη",
+    "label_theme": "Θέμα",
+    "label_light_theme": "Φωτεινό",
+    "full_label_light_theme": "Φωτεινό Θέμα",
+    "label_dark_theme": "Σκούρο",
+    "full_label_dark_theme": "Σκούρο θέμα",
     "description_enabled_dark_theme": "Ενεργοποιημένο",
     "description_disabled_dark_theme": "Απενεργοποιημένο",
     "label_text_size": "Μέγεθος κειμένου",
@@ -43,15 +48,18 @@
     "skip-action-text": "Παράλειψη",
     "feedback-comment-placeholder": "Πρόσθετες πληροφορίες θα είναι χρήσιμες",
     "lang-control-text-ru": "Ρωσικά",
-    "lang-control-text-en": "English (Αγγλικά)"
+    "lang-control-text-en": "English (Αγγλικά)",
+    "label_to-main-menu": "Στο κύριο μενού"
   },
   "mini-toc": {
     "title": "Σε αυτό το άρθρο",
+    "article-navigation": "Πλοήγηση σε άρθρο",
     "description": "Περιεχόμενο τρέχοντος άρθρου"
   },
   "toc-nav-panel": {
     "hint_previous": "Προηγούμενο",
-    "hint_next": "Επόμενο"
+    "hint_next": "Επόμενο",
+    "drop-down-list": "Αναπτυσσόμενη λίστα"
   },
   "authors": {
     "title": "Το άρθρο δημιουργήθηκε"
@@ -109,6 +117,14 @@
     "search_mark_like": "είναι αυτό που θέλω",
     "search_mark_dislike": "είναι τελείως έξω",
     "search_mark-result-text": "Σας ευχαριστούμε για τη βαθμολογία σας!"
+  },
+  "search-suggest": {
+    "search-suggest_all-results": "Όλα τα αποτελέσματα",
+    "search-suggest_not-found": "Δεν βρέθηκαν αποτελέσματα για «{{query}}».",
+    "search-suggest_error-text": "Κάτι πήγε στραβά. Δοκιμάστε ξανά.",
+    "search-item_type-all": "Όλα",
+    "search-item_type-doc": "Τεκμηρίωση",
+    "search-item_type-main": "Κύρια"
   },
   "paginator": {
     "next": "Επόμενη σελίδα",

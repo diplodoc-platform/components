@@ -1,5 +1,12 @@
 # История изменений
 
+## [4.13.1](https://github.com/diplodoc-platform/components/compare/v4.13.0...v4.13.1) (2024-09-24)
+
+
+### Bug Fixes
+
+* Add translation for 14 langs for new mobile ui ([#301](https://github.com/diplodoc-platform/components/issues/301)) ([abfd9ca](https://github.com/diplodoc-platform/components/commit/abfd9ca40dd882345f753a7aae1c9705dfefd999))
+
 ## [4.13.0](https://github.com/diplodoc-platform/components/compare/v4.12.5...v4.13.0) (2024-09-23)
 
 

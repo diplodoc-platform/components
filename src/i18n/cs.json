@@ -4,8 +4,13 @@
     "description_wide_format_enabled": "Povoleno",
     "description_wide_format_disabled": "Zakázáno",
     "label_show_mini_toc": "Navigace k článku",
-    "description_show_mini_toc": "Zobrazit navigaci",
-    "label_dark_theme": "Tmavé téma",
+    "description_show_mini_toc_enabled": "Zapnuto",
+    "description_show_mini_toc_disabled": "Vypnuto",
+    "label_theme": "Téma",
+    "label_light_theme": "Světlé",
+    "full_label_light_theme": "Světlé téma",
+    "label_dark_theme": "Tmavé",
+    "full_label_dark_theme": "Tmavé téma",
     "description_enabled_dark_theme": "Povoleno",
     "description_disabled_dark_theme": "Zakázáno",
     "label_text_size": "Velikost písma",
@@ -43,15 +48,18 @@
     "skip-action-text": "Přeskočit",
     "feedback-comment-placeholder": "Budou užitečné další informace",
     "lang-control-text-ru": "Русский",
-    "lang-control-text-en": "English"
+    "lang-control-text-en": "English",
+    "label_to-main-menu": "Do hlavního menu"
   },
   "mini-toc": {
     "title": "V tomto článku",
+    "article-navigation": "Navigace článkem",
     "description": "Obsah aktuálního článku"
   },
   "toc-nav-panel": {
     "hint_previous": "Předchozí",
-    "hint_next": "Další"
+    "hint_next": "Další",
+    "drop-down-list": "Rozbalovací seznam"
   },
   "authors": {
     "title": "Napsal(a)"
@@ -109,6 +117,14 @@
     "search_mark_like": "líbí",
     "search_mark_dislike": "nelíbí",
     "search_mark-result-text": "Děkujeme za vaše hodnocení!"
+  },
+  "search-suggest": {
+    "search-suggest_all-results": "Všechny výsledky",
+    "search-suggest_not-found": "Pro dotaz «{{query}}» nebylo nic nalezeno.",
+    "search-suggest_error-text": "Něco se pokazilo. Zkuste to znovu.",
+    "search-item_type-all": "Vše",
+    "search-item_type-doc": "Dokumentace",
+    "search-item_type-main": "Hlavní"
   },
   "paginator": {
     "next": "Další stránka",

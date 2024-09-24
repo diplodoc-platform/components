@@ -4,8 +4,13 @@
     "description_wide_format_enabled": "Sisselülitatud",
     "description_wide_format_disabled": "Väljalülitatud",
     "label_show_mini_toc": "Praeguses artiklis navigeerimine",
-    "description_show_mini_toc": "Näita navigeerimist",
-    "label_dark_theme": "Tume teema",
+    "description_show_mini_toc_enabled": "Sisselülitatud",
+    "description_show_mini_toc_disabled": "Väljalülitatud",
+    "label_theme": "Teema",
+    "label_light_theme": "Hele",
+    "full_label_light_theme": "Hele teema",
+    "label_dark_theme": "Tume",
+    "full_label_dark_theme": "Tume teema",
     "description_enabled_dark_theme": "Sisselülitatud",
     "description_disabled_dark_theme": "Väljalülitatud",
     "label_text_size": "Teksti suurus",
@@ -43,15 +48,18 @@
     "skip-action-text": "Jäta vahele",
     "feedback-comment-placeholder": "Lisateave on kasulik",
     "lang-control-text-ru": "Vene",
-    "lang-control-text-en": "Inglise"
+    "lang-control-text-en": "Inglise",
+    "label_to-main-menu": "Peamenüüsse"
   },
   "mini-toc": {
     "title": "Selles artiklis",
+    "article-navigation": "Artikli navigeerimine",
     "description": "Praeguse artikli sisu"
   },
   "toc-nav-panel": {
     "hint_previous": "Eelnev",
-    "hint_next": "Järgnev"
+    "hint_next": "Järgnev",
+    "drop-down-list": "Rippmenüü"
   },
   "authors": {
     "title": "Selle artikli on koostanud"
@@ -109,6 +117,14 @@
     "search_mark_like": "see, mis vaja",
     "search_mark_dislike": "asi ei ole üldse selles",
     "search_mark-result-text": "Täname hinnangu eest!"
+  },
+  "search-suggest": {
+    "search-suggest_all-results": "Kõik tulemused",
+    "search-suggest_not-found": "Päringule «{{query}}» ei leitud tulemusi.",
+    "search-suggest_error-text": "Midagi läks valesti. Proovi uuesti.",
+    "search-item_type-all": "Kõik",
+    "search-item_type-doc": "Dokumentatsioon",
+    "search-item_type-main": "Pealeht"
   },
   "paginator": {
     "next": "Järgmine lehekülg",

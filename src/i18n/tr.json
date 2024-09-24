@@ -4,8 +4,13 @@
     "description_wide_format_enabled": "Açık",
     "description_wide_format_disabled": "Kapalı",
     "label_show_mini_toc": "Yazı içi navigasyon",
-    "description_show_mini_toc": "Navigasyon öğelerini göster",
-    "label_dark_theme": "Koyu tema",
+    "description_show_mini_toc_enabled": "Etkin",
+    "description_show_mini_toc_disabled": "Devre dışı",
+    "label_theme": "Tema",
+    "label_light_theme": "Aydınlık",
+    "full_label_light_theme": "Aydınlık tema",
+    "label_dark_theme": "Koyu",
+    "full_label_dark_theme": "Koyu tema",
     "description_enabled_dark_theme": "Açık",
     "description_disabled_dark_theme": "Kapalı",
     "label_text_size": "Yazı boyutu",
@@ -43,15 +48,18 @@
     "skip-action-text": "Atla",
     "feedback-comment-placeholder": "Ek bilgiler yararlı olacaktır",
     "lang-control-text-ru": "Rusça",
-    "lang-control-text-en": "English"
+    "lang-control-text-en": "English",
+    "label_to-main-menu": "Ana menüye"
   },
   "mini-toc": {
     "title": "Bu yazıda",
+    "article-navigation": "Makale navigasyonu",
     "description": "Bu yazının içeriği"
   },
   "toc-nav-panel": {
     "hint_previous": "Önceki",
-    "hint_next": "Sonraki"
+    "hint_next": "Sonraki",
+    "drop-down-list": "Açılır liste"
   },
   "authors": {
     "title": "Yazı oluşturuldu"
@@ -109,6 +117,14 @@
     "search_mark_like": "tam aradığım şey",
     "search_mark_dislike": "tamamen alakasız",
     "search_mark-result-text": "Değerlendirmeniz için teşekkür ederiz!"
+  },
+  "search-suggest": {
+    "search-suggest_all-results": "Tüm sonuçlar",
+    "search-suggest_not-found": "«{{query}}» için hiçbir sonuç bulunamadı.",
+    "search-suggest_error-text": "Bir şeyler yanlış gitti. Tekrar deneyin.",
+    "search-item_type-all": "Hepsi",
+    "search-item_type-doc": "Dokümantasyon",
+    "search-item_type-main": "Ana"
   },
   "paginator": {
     "next": "Sonraki sayfa",

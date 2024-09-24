@@ -4,8 +4,13 @@
     "description_wide_format_enabled": "已开启",
     "description_wide_format_disabled": "已关闭",
     "label_show_mini_toc": "浏览当前文章",
-    "description_show_mini_toc": "显示浏览界面",
-    "label_dark_theme": "深色主题",
+    "description_show_mini_toc_enabled": "已启用",
+    "description_show_mini_toc_disabled": "已禁用",
+    "label_theme": "主题",
+    "label_light_theme": "浅色",
+    "full_label_light_theme": "浅色主题",
+    "label_dark_theme": "深色",
+    "full_label_dark_theme": "深色主题",
     "description_enabled_dark_theme": "已开启",
     "description_disabled_dark_theme": "已关闭",
     "label_text_size": "文字大小",
@@ -43,15 +48,18 @@
     "skip-action-text": "跳转",
     "feedback-comment-placeholder": "补充信息将有所帮助",
     "lang-control-text-ru": "俄语",
-    "lang-control-text-en": "英语"
+    "lang-control-text-en": "英语",
+    "label_to-main-menu": "返回主菜单"
   },
   "mini-toc": {
     "title": "在这篇文章中",
+    "article-navigation": "文章导航",
     "description": "当前文章的内容"
   },
   "toc-nav-panel": {
     "hint_previous": "上一篇",
-    "hint_next": "下一篇"
+    "hint_next": "下一篇",
+    "drop-down-list": "下拉列表"
   },
   "authors": {
     "title": "文章已完成"
@@ -109,6 +117,14 @@
     "search_mark_like": "所需信息",
     "search_mark_dislike": "完全没有此类信息",
     "search_mark-result-text": "感谢评价！"
+  },
+  "search-suggest": {
+    "search-suggest_all-results": "所有结果",
+    "search-suggest_not-found": "没有找到“{{query}}”的结果。",
+    "search-suggest_error-text": "出现了一些问题。请再试一次。",
+    "search-item_type-all": "全部",
+    "search-item_type-doc": "文档",
+    "search-item_type-main": "首页"
   },
   "paginator": {
     "next": "下一页",

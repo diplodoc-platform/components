@@ -4,8 +4,13 @@
     "description_wide_format_enabled": "Yoqilgan",
     "description_wide_format_disabled": "Oʻchirilgan",
     "label_show_mini_toc": "Joriy maqola ichida navigatsiya",
-    "description_show_mini_toc": "Navigatsiyani koʻrsatish",
-    "label_dark_theme": "Tungi mavzu",
+    "description_show_mini_toc_enabled": "Yoqilgan",
+    "description_show_mini_toc_disabled": "O'chirilgan",
+    "label_theme": "Mavzu",
+    "label_light_theme": "Yorug'",
+    "full_label_light_theme": "Yorug' mavzu",
+    "label_dark_theme": "Tungi",
+    "full_label_dark_theme": "Tungi mavzu",
     "description_enabled_dark_theme": "Yoqilgan",
     "description_disabled_dark_theme": "Oʻchirilgan",
     "label_text_size": "Matn oʻlchami",
@@ -43,15 +48,18 @@
     "skip-action-text": "Oʻtkazib yuborish",
     "feedback-comment-placeholder": "Qoʻshimcha axborot foyda beradi",
     "lang-control-text-ru": "Rus",
-    "lang-control-text-en": "Ingliz"
+    "lang-control-text-en": "Ingliz",
+    "label_to-main-menu": "Asosiy menyuga"
   },
   "mini-toc": {
     "title": "Bu maqolada",
+    "article-navigation": "Maqolani ko'rish",
     "description": "Joriy maqola mazmuni"
   },
   "toc-nav-panel": {
     "hint_previous": "Avvalgisi",
-    "hint_next": "Keyingisi"
+    "hint_next": "Keyingisi",
+    "drop-down-list": "Ochiladigan ro'yxat"
   },
   "authors": {
     "title": "Maqola yaratilgan sana"
@@ -109,6 +117,14 @@
     "search_mark_like": "narsani qidirish",
     "search_mark_dislike": "mutlaqo bu emas",
     "search_mark-result-text": "Baho uchun rahmat!"
+  },
+  "search-suggest": {
+    "search-suggest_all-results": "Barcha natijalar",
+    "search-suggest_not-found": "«{{query}}» bo'yicha hech nima topilmadi.",
+    "search-suggest_error-text": "Nimadir noto'g'ri. Qayta urinib ko'ring.",
+    "search-item_type-all": "Hammasi",
+    "search-item_type-doc": "Hujjatlar",
+    "search-item_type-main": "Asosiy"
   },
   "paginator": {
     "next": "Keyingi sahifa",

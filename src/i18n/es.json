@@ -4,8 +4,13 @@
     "description_wide_format_enabled": "Habilitado",
     "description_wide_format_disabled": "Deshabilitado",
     "label_show_mini_toc": "Navegación por el artículo",
-    "description_show_mini_toc": "Mostrar navegación",
-    "label_dark_theme": "Tema oscuro",
+    "description_show_mini_toc_enabled": "Activada",
+    "description_show_mini_toc_disabled": "Desactivada",
+    "label_theme": "Tema",
+    "label_light_theme": "Claro",
+    "full_label_light_theme": "Tema claro",
+    "label_dark_theme": "Oscuro",
+    "full_label_dark_theme": "Tema oscuro",
     "description_enabled_dark_theme": "Habilitado",
     "description_disabled_dark_theme": "Deshabilitado",
     "label_text_size": "Tamaño de letra",
@@ -43,15 +48,18 @@
     "skip-action-text": "Saltar",
     "feedback-comment-placeholder": "Será útil disponer de información adicional",
     "lang-control-text-ru": "Русский",
-    "lang-control-text-en": "English"
+    "lang-control-text-en": "English",
+    "label_to-main-menu": "Al menú principal"
   },
   "mini-toc": {
     "title": "En este artículo",
+    "article-navigation": "Navegación por el artículo",
     "description": "Contenidos del artículo actual"
   },
   "toc-nav-panel": {
     "hint_previous": "Anterior",
-    "hint_next": "Siguiente"
+    "hint_next": "Siguiente",
+    "drop-down-list": "Lista desplegable"
   },
   "authors": {
     "title": "Escrito por"
@@ -109,6 +117,14 @@
     "search_mark_like": "me gusta",
     "search_mark_dislike": "no me gusta",
     "search_mark-result-text": "Gracias por tu valoración"
+  },
+  "search-suggest": {
+    "search-suggest_all-results": "Todos los resultados",
+    "search-suggest_not-found": "No se encontraron resultados para «{{query}}».",
+    "search-suggest_error-text": "Algo salió mal. Inténtalo de nuevo.",
+    "search-item_type-all": "Todo",
+    "search-item_type-doc": "Documentación",
+    "search-item_type-main": "Principal"
   },
   "paginator": {
     "next": "Página siguiente",

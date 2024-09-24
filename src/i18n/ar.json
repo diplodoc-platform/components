@@ -4,8 +4,13 @@
     "description_wide_format_enabled": "مفعل",
     "description_wide_format_disabled": "معطل",
     "label_show_mini_toc": "قوالب التصفح في المقال",
-    "description_show_mini_toc": "عرض قوالب التصفح",
-    "label_dark_theme": "الوضع الداكن",
+    "description_show_mini_toc_enabled": "مُفعلة",
+    "description_show_mini_toc_disabled": "مُعطلة",
+    "label_theme": "نمط",
+    "label_light_theme": "فاتح",
+    "full_label_light_theme": "نمط فاتح",
+    "label_dark_theme": "داكن",
+    "full_label_dark_theme": "الوضع الداكن",
     "description_enabled_dark_theme": "مفعل",
     "description_disabled_dark_theme": "معطل",
     "label_text_size": "حجم الخط",
@@ -43,15 +48,18 @@
     "skip-action-text": "تخطٍّ",
     "feedback-comment-placeholder": "المعلومات الإضافية ستكون مفيدة",
     "lang-control-text-ru": "الروسية",
-    "lang-control-text-en": "الإنجليزية"
+    "lang-control-text-en": "الإنجليزية",
+    "label_to-main-menu": "إلى القائمة الرئيسية"
   },
   "mini-toc": {
     "title": "في هذا المقال",
+    "article-navigation": "التنقل في المقال",
     "description": "مضمون المقال الحالي"
   },
   "toc-nav-panel": {
     "hint_previous": "السابق",
-    "hint_next": "التالي"
+    "hint_next": "التالي",
+    "drop-down-list": "قائمة منسدلة"
   },
   "authors": {
     "title": "من تأليف"
@@ -109,6 +117,14 @@
     "search_mark_like": "إعجاب",
     "search_mark_dislike": "عدم إعجاب",
     "search_mark-result-text": "نشكرك على تقييمك!"
+  },
+  "search-suggest": {
+    "search-suggest_all-results": "جميع النتائج",
+    "search-suggest_not-found": "لم يُعثر على نتائج لـ «{{query}}»",
+    "search-suggest_error-text": "حدث خطأ ما. حاول مرة أخرى.",
+    "search-item_type-all": "الكل",
+    "search-item_type-doc": "الوثائق",
+    "search-item_type-main": "الرئيسية"
   },
   "paginator": {
     "next": "الصفحة التالية",

@@ -1,5 +1,12 @@
 # История изменений
 
+## [4.14.0](https://github.com/diplodoc-platform/components/compare/v4.13.1...v4.14.0) (2024-09-25)
+
+
+### Features
+
+* add left padding to toc items ([#303](https://github.com/diplodoc-platform/components/issues/303)) ([b74c4f3](https://github.com/diplodoc-platform/components/commit/b74c4f34dc7f7d324679f3f76a3943f799d606e3))
+
 ## [4.13.1](https://github.com/diplodoc-platform/components/compare/v4.13.0...v4.13.1) (2024-09-24)
 
 

@@ -71,6 +71,11 @@
     }
 
     @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
+        // fix bug with scrolling mini-toc and body on desktop
+        body:has(&_overflowed:hover) {
+            overflow-y: hidden;
+        }
+
         $bottomHeight: 0;
 
         padding: $miniTocVerticalPadding 8px $miniTocVerticalPadding 20px;

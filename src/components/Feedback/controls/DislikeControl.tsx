@@ -30,13 +30,7 @@ const DislikeControl = memo(
 
         if (view === FeedbackView.Wide) {
             return (
-                <Button
-                    size="xl"
-                    view="normal"
-                    ref={ref}
-                    onClick={onClick}
-                    className={b('control', {view})}
-                >
+                <Button view="normal" ref={ref} onClick={onClick} className={b('control', {view})}>
                     <Button.Icon>
                         <Icon width={20} height={20} />
                     </Button.Icon>

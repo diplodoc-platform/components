@@ -1,5 +1,12 @@
 # История изменений
 
+## [4.14.1](https://github.com/diplodoc-platform/components/compare/v4.14.0...v4.14.1) (2024-09-30)
+
+
+### Bug Fixes
+
+* hide scroll on body when toc opened only for mobile ([#305](https://github.com/diplodoc-platform/components/issues/305)) ([c3d12ae](https://github.com/diplodoc-platform/components/commit/c3d12ae5b12b51f845d10bb70fbe0e597c325a09))
+
 ## [4.14.0](https://github.com/diplodoc-platform/components/compare/v4.13.1...v4.14.0) (2024-09-25)
 
 

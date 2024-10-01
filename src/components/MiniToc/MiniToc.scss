@@ -65,11 +65,6 @@
         display: none;
     }
 
-    // fix bug with scrolling mini-toc and body on desktop
-    body:has(&_overflowed:hover) {
-        overflow-y: hidden;
-    }
-
     @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
         // fix bug with scrolling mini-toc and body on desktop
         body:has(&_overflowed:hover) {

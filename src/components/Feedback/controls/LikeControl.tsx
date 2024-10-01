@@ -5,7 +5,6 @@ import {ThumbsUp, ThumbsUpFill} from '@gravity-ui/icons';
 import {Button} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 
-import {ControlSizes} from '../../../models';
 import {useTranslation} from '../../../hooks';
 import {Control} from '../../Control';
 import {ControlsLayoutContext} from '../../Controls/ControlsLayout';
@@ -44,7 +43,6 @@ const LikeControl = memo(
 
         return (
             <Control
-                size={ControlSizes.XL}
                 onClick={onClick}
                 className={b('control', {view}, controlClassName)}
                 isVerticalView={isVerticalView}

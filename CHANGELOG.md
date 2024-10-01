@@ -1,5 +1,13 @@
 # История изменений
 
+## [4.14.2](https://github.com/diplodoc-platform/components/compare/v4.14.1...v4.14.2) (2024-10-01)
+
+
+### Bug Fixes
+
+* default size for feedback controls ([a2bcfac](https://github.com/diplodoc-platform/components/commit/a2bcfac5034479f6b6f6dfa853fce3211d8692cf))
+* remove overflow: hidden for toc on desktop ([c8fd07c](https://github.com/diplodoc-platform/components/commit/c8fd07c188639b8cf0749bb63b55d962b6e713c4))
+
 ## [4.14.1](https://github.com/diplodoc-platform/components/compare/v4.14.0...v4.14.1) (2024-09-30)
 
 

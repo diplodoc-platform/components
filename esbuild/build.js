@@ -31,6 +31,9 @@ async function build({path, format}) {
                 loader: {
                     '.json': 'text',
                 },
+                logOverride: {
+                    'package.json': 'silent',
+                },
                 plugins: [
                     sparsed.plugin,
                     sassPlugin({

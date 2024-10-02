@@ -62,6 +62,7 @@
     "_build:watch": "./esbuild/build.js --watch",
     "_storybook:watch": "cd demo && npm run storybook",
     "prepublishOnly": "npm run lint && npm run test && npm run build",
+    "postinstall": "cd demo && npm i || true",
     "lint": "lint update && lint",
     "lint:fix": "lint update && lint fix",
     "pre-commit": "lint update && lint-staged",

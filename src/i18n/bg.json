@@ -110,6 +110,7 @@
   "search": {
     "search_placeholder": "Търсене",
     "search_action": "Намери",
+    "search_close": "Затваряне",
     "search_request-query": "Резултати от търсенето",
     "search_not-found-title": "По вашата заявка не беше открито нищо",
     "search_not-found-text": "Моля, проверете правилното изписване или опитайте с други ключови думи.",

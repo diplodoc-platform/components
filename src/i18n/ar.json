@@ -111,6 +111,7 @@
   "search": {
     "search_placeholder": "بحث",
     "search_action": "بحث",
+    "search_close": "إغلاق",
     "search_request-query": "نتائج البحث",
     "search_not-found-title": "تعذّر العثور على نتائج لطلبك",
     "search_not-found-text": "يرجى مراجعة الكتابة الإملائية للكلمات أو تجربة كلمات مفتاحية أخرى.",

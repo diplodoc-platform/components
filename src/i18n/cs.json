@@ -111,6 +111,7 @@
   "search": {
     "search_placeholder": "Hledat",
     "search_action": "Hledat",
+    "search_close": "Zavřít",
     "search_request-query": "Výsledky hledání",
     "search_not-found-title": "Pro váš požadavek nebyly nalezeny žádné výsledky",
     "search_not-found-text": "Zkontrolujte překlepy nebo zkuste použít jiná klíčová slova.",

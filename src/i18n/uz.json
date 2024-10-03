@@ -111,6 +111,7 @@
   "search": {
     "search_placeholder": "Qidiruv",
     "search_action": "Kerakli",
+    "search_close": "Yopish",
     "search_request-query": "Qidiruv soʻrovi natijalari",
     "search_not-found-title": "Qidiruv soʻrovingiz boʻyicha hech narsa topilmadi",
     "search_not-found-text": "Toʻgʻri yozilganini tekshiring yoki boshqa kalit soʻzlar bilan urining.",

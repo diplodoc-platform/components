@@ -111,6 +111,7 @@
   "search": {
     "search_placeholder": "Іздеу",
     "search_action": "Іздеп табу",
+    "search_close": "Жабу",
     "search_request-query": "Сұранымға сай нәтижелер",
     "search_not-found-title": "Сіздің сұрағаныңыз бойынша ештеңе табылмады",
     "search_not-found-text": "Дұрыс жазылғанын тексеріп шығыңыз немесе басқа кілттік сөздерді қолданып көріңіз.",

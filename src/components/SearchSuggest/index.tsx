@@ -1,4 +1,4 @@
-import type {KeyboardEvent} from 'react';
+import type {KeyboardEvent, MouseEventHandler, SyntheticEvent} from 'react';
 import type {ISearchProvider} from '../../models';
 import type {SearchSuggestItem, SearchSuggestLinkableItem, SearchSuggestPageItem} from './types';
 
@@ -11,7 +11,8 @@ import React, {
     useRef,
     useState,
 } from 'react';
-import {List, Popup} from '@gravity-ui/uikit';
+import {Icon, List, Popup} from '@gravity-ui/uikit';
+import {Xmark} from '@gravity-ui/icons';
 import block from 'bem-cn-lite';
 import uniqueId from 'lodash/uniqueId';
 
@@ -32,9 +33,10 @@ export interface SearchSuggestProps {
     placeholder?: string;
     classNameContainer?: string;
     className?: string;
-    onFocus?: () => void;
-    onBlur?: () => void;
+    onFocus?: (event: SyntheticEvent) => void;
+    onBlur?: (event: SyntheticEvent) => void;
     endContent?: React.ReactNode;
+    closeButton?: boolean;
 }
 
 export interface SearchSuggestApi {
@@ -43,15 +45,34 @@ export interface SearchSuggestApi {
     close(): void;
 }
 
+const MIMIC_PC_CONTROL = 'pc-control pc-control_size_l pc-control_theme_primary';
+
+function CloseButton({onClick}: {onClick: MouseEventHandler}) {
+    const {t} = useTranslation('search');
+
+    return (
+        <button
+            type="button"
+            aria-label={t('search_close')}
+            className={b('close', MIMIC_PC_CONTROL)}
+            onClick={onClick}
+        >
+            <Icon data={Xmark} size={24} />
+        </button>
+    );
+}
+
 export const SearchSuggest = forwardRef<SearchSuggestApi, SearchSuggestProps>((props, api) => {
     const {t} = useTranslation('search');
 
     const {
         provider,
         className,
+        classNameContainer,
         placeholder = t('search_placeholder'),
         endContent,
-        classNameContainer,
+        closeButton,
+        onBlur,
     } = props;
     const href = useRef<HTMLAnchorElement>(null);
     const input = useRef<HTMLElement>(null);
@@ -60,7 +81,7 @@ export const SearchSuggest = forwardRef<SearchSuggestApi, SearchSuggestProps>((p
     const [query, setQuery] = useState('');
     const [active, setActive] = useState<undefined | number>(undefined);
     const [focused, setFocused, handlers] = useFocus(props);
-    const box = useVirtualElementRef(input.current);
+    const [box, watch] = useVirtualElementRef(input.current);
 
     const submitItem = useCallback(
         (link: string) => {
@@ -104,14 +125,30 @@ export const SearchSuggest = forwardRef<SearchSuggestApi, SearchSuggestProps>((p
         [submitItem],
     );
 
+    const onClose = useCallback(
+        (event: SyntheticEvent) => {
+            close();
+            onBlur?.(event);
+        },
+        [close, onBlur],
+    );
+
     useEffect(() => provider.init(), [provider]);
+    useEffect(() => {
+        if (focused) {
+            return watch();
+        }
+
+        return () => {};
+    }, [focused, watch]);
 
     useImperativeHandle(api, () => ({open, close}), [open, close]);
 
     return (
-        <div className={b('wrapper', classNameContainer)} {...handlers}>
+        <div className={b('wrapper', classNameContainer)}>
             <a ref={href} href="#" hidden aria-hidden />
             <SearchInput
+                {...handlers}
                 ref={input}
                 id={`dc-${id}-input`}
                 size="l"
@@ -121,7 +158,7 @@ export const SearchSuggest = forwardRef<SearchSuggestApi, SearchSuggestProps>((p
                 onKeyDown={onKeyDown}
                 autoFocus={focused}
                 placeholder={placeholder}
-                endContent={endContent}
+                endContent={!focused && endContent}
                 controlProps={{
                     'aria-controls': `dc-popup-${id}`,
                     'aria-expanded': Boolean(input.current && focused),
@@ -129,6 +166,7 @@ export const SearchSuggest = forwardRef<SearchSuggestApi, SearchSuggestProps>((p
                         active === undefined ? undefined : `dc-${id}-list-item-${active}`,
                 }}
             />
+            {closeButton && focused && <CloseButton onClick={onClose} />}
             {input.current && (
                 <Popup
                     open={Boolean(query && focused)}

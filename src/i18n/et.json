@@ -111,6 +111,7 @@
   "search": {
     "search_placeholder": "Otsing",
     "search_action": "Leia",
+    "search_close": "Sulge",
     "search_request-query": "Päringu tulemused",
     "search_not-found-title": "Teie pärngu põhjal ei leitud midagi",
     "search_not-found-text": "Palun kontrollige õiget õigekirja või proovige teisi märksõnu.",

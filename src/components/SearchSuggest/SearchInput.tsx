@@ -1,4 +1,4 @@
-import type {KeyboardEvent} from 'react';
+import type {KeyboardEvent, SyntheticEvent} from 'react';
 
 import React, {forwardRef, memo} from 'react';
 import {TextInput, TextInputSize} from '@gravity-ui/uikit';
@@ -13,8 +13,8 @@ type SuggestInputProps = {
     endContent?: React.ReactNode;
     onUpdate?: (item: string) => void;
     onKeyDown?: (event: KeyboardEvent<HTMLElement>) => void;
-    onFocus?: () => void;
-    onBlur?: () => void;
+    onFocus?: (event: SyntheticEvent) => void;
+    onBlur?: (event: SyntheticEvent) => void;
     className?: string;
     controlProps?: React.InputHTMLAttributes<HTMLInputElement>;
 };

@@ -111,6 +111,7 @@
   "search": {
     "search_placeholder": "Buscar",
     "search_action": "Buscar",
+    "search_close": "Cerrar",
     "search_request-query": "Resultados de la búsqueda",
     "search_not-found-title": "No se han encontrado resultados para tu solicitud",
     "search_not-found-text": "Por favor, revisa la ortografía o prueba con otras palabras clave.",

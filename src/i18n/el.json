@@ -111,6 +111,7 @@
   "search": {
     "search_placeholder": "Αναζήτηση",
     "search_action": "Εύρεση",
+    "search_close": "Κλείσιμο",
     "search_request-query": "Αποτελέσματα αναζήτησης",
     "search_not-found-title": "Δεν βρέθηκαν αποτελέσματα για την αναζήτησή σας",
     "search_not-found-text": "Ελέγξτε την ορθογραφία ή δοκιμάστε άλλες λέξεις-κλειδιά.",

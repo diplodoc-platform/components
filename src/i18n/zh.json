@@ -111,6 +111,7 @@
   "search": {
     "search_placeholder": "搜索",
     "search_action": "找到",
+    "search_close": "关闭",
     "search_request-query": "根据请求提供的结果",
     "search_not-found-title": "未找到与您的请求相关的信息",
     "search_not-found-text": "请您检查一下拼写是否正确或尝试其他关键词。",

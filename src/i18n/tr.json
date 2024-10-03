@@ -111,6 +111,7 @@
   "search": {
     "search_placeholder": "Ara",
     "search_action": "Bul",
+    "search_close": "Kapat",
     "search_request-query": "Sorgu sonuçları",
     "search_not-found-title": "Sorgunuza uygun bir şey bulunamadı",
     "search_not-found-text": "Lütfen, sorgunuzda yazım hatası olmadığından emin olun veya farklı anahtar kelimeler kullanmayı deneyin.",

@@ -111,6 +111,7 @@
   "search": {
     "search_placeholder": "חיפוש",
     "search_action": "חיפוש",
+    "search_close": "סגירה",
     "search_request-query": "תוצאות חיפוש",
     "search_not-found-title": "אין תוצאות לבקשה שלך",
     "search_not-found-text": "נא לבדוק את האיות או לנסות מילות מפתח אחרות",

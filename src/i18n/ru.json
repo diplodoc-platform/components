@@ -111,6 +111,7 @@
   "search": {
     "search_placeholder": "Поиск",
     "search_action": "Найти",
+    "search_close": "Закрыть",
     "search_request-query": "Результаты по запросу",
     "search_not-found-title": "По вашему запросу ничего не найдено",
     "search_not-found-text": "Пожалуйста, проверьте правильность написания или попробуйте другие ключевые слова.",

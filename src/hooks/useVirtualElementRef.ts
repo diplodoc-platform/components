@@ -1,8 +1,10 @@
-import {useEffect, useMemo, useRef, useState} from 'react';
+import {useCallback, useEffect, useMemo, useRef, useState} from 'react';
+
+type DOMRectLike = Omit<DOMRect, 'toJSON'>;
 
 export const useVirtualElementRef = (element: HTMLElement | null) => {
     const observer = useRef<ResizeObserver>();
-    const rect = useRef<DOMRect>();
+    const rect = useRef<DOMRectLike>();
 
     const x = 0;
     const y = 0;
@@ -30,6 +32,30 @@ export const useVirtualElementRef = (element: HTMLElement | null) => {
         };
     }, [top, left, right, bottom, height, width, x, y]);
 
+    const update = useCallback(
+        ({top, left, right, bottom, height, width}: DOMRectLike) => {
+            setTop(top);
+            setLeft(left);
+            setRight(right);
+            setBottom(bottom);
+            setHeight(height);
+            setWidth(width);
+        },
+        [setTop, setLeft, setRight, setBottom, setHeight, setWidth],
+    );
+
+    const watch = useCallback(() => {
+        if (element) {
+            rect.current = element.getBoundingClientRect();
+            observer.current?.observe(element);
+            update(rect.current);
+        }
+
+        return () => {
+            observer.current?.disconnect();
+        };
+    }, [element, observer, update]);
+
     useEffect(() => {
         const _observer = (observer.current = new ResizeObserver((entries) => {
             if (!rect.current) {
@@ -42,34 +68,30 @@ export const useVirtualElementRef = (element: HTMLElement | null) => {
                 const dw = width - entry.contentRect.width;
                 const dh = height - entry.contentRect.height;
 
-                setWidth(entry.contentRect.width);
-                setHeight(entry.contentRect.height);
-                setTop(dh + top + entry.contentRect.top);
-                setLeft(dw + left + entry.contentRect.left);
-                setRight(dw + left + entry.contentRect.right);
-                setBottom(dh + top + entry.contentRect.bottom);
+                update({
+                    width: entry.contentRect.width,
+                    height: entry.contentRect.height,
+                    top: dh + top + entry.contentRect.top,
+                    left: dw + left + entry.contentRect.left,
+                    right: dw + left + entry.contentRect.right,
+                    bottom: dh + top + entry.contentRect.bottom,
+                    x,
+                    y,
+                });
             }
         }));
 
         return () => {
             _observer.disconnect();
         };
-    }, [rect]);
+    }, [rect, observer, update]);
 
     useEffect(() => {
         if (element) {
             rect.current = element.getBoundingClientRect();
-            observer.current?.observe(element);
-
-            return () => {
-                observer.current?.unobserve(element);
-            };
-        } else {
-            observer.current?.disconnect();
-
-            return () => {};
+            update(rect.current);
         }
-    }, [element]);
+    }, [element, update]);
 
-    return box;
+    return [box, watch] as const;
 };

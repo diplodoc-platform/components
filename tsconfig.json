@@ -9,7 +9,10 @@
     "declaration": true,
     "jsx": "react",
     "target": "ESNext",
-    "baseUrl": "."
+    "baseUrl": ".",
+    "paths": {
+      "@diplodoc/components": ["./"]
+    }
   },
   "include": [
     "src/**/*.ts",

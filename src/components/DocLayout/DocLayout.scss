@@ -84,8 +84,8 @@
     @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
         flex-direction: column-reverse;
 
-        &__center + &__right:has(> .dc-subnavigation_hidden) {
-            margin-top: calc(0px - var(--dc-subnavigation-height, #{$subNavigationHeight}));
+        &__right:has(.dc-subnavigation_visible) + &__center {
+            margin-top: var(--dc-subnavigation-height, $subNavigationHeight);
         }
 
         &__right {

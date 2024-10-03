@@ -1,5 +1,21 @@
 # История изменений
 
+## [4.15.0](https://github.com/diplodoc-platform/components/compare/v4.14.2...v4.15.0) (2024-10-03)
+
+
+### Features
+
+* Add SearchSuggest close behavior ([bbfffb0](https://github.com/diplodoc-platform/components/commit/bbfffb0270e465078220eb1d8529e008b631155e))
+
+
+### Bug Fixes
+
+* add gravity to peerDeps ([cd6b5b2](https://github.com/diplodoc-platform/components/commit/cd6b5b23233820bcda1011cd2fea56e3bf6b7b01))
+* content margin when notification showed ([688ddbb](https://github.com/diplodoc-platform/components/commit/688ddbb32c65d33fefdeb754d989bf678c6c8baf))
+* Disable Suggest input clear button ([275cf83](https://github.com/diplodoc-platform/components/commit/275cf83dca883633b26e67d2fb8ac197fcf04006))
+* Fix linter on demo ([35b487a](https://github.com/diplodoc-platform/components/commit/35b487ac50d6e34693171560d3def41d3b7f2771))
+* Fix SearchSuggest autoscaling ([ab51dc4](https://github.com/diplodoc-platform/components/commit/ab51dc4816049b0249fe2c818dc4da80ebc990ac))
+
 ## [4.14.2](https://github.com/diplodoc-platform/components/compare/v4.14.1...v4.14.2) (2024-10-01)
 
 

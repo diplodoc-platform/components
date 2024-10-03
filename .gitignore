@@ -13,3 +13,4 @@ node_modules
 /dist
 /cache
 /coverage
+demo/storybook-static

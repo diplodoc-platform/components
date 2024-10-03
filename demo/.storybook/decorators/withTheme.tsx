@@ -1,5 +1,6 @@
 import type {Decorator} from '@storybook/react';
 
+// eslint-disable-next-line import/no-extraneous-dependencies
 import {ThemeProvider} from '@gravity-ui/uikit';
 import React from 'react';
 

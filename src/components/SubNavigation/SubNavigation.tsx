@@ -152,7 +152,7 @@ const SubNavigation = memo(
                     ref={ref}
                     className={b({
                         invisible: !visible,
-                        visible: visible,
+                        visible: !hideMiniToc && visible,
                         hidden: hideMiniToc && hideBurger,
                     })}
                 >

@@ -1,5 +1,12 @@
 # История изменений
 
+## [4.15.1](https://github.com/diplodoc-platform/components/compare/v4.15.0...v4.15.1) (2024-10-04)
+
+
+### Bug Fixes
+
+* do not add visible class when minitoc hidden ([#311](https://github.com/diplodoc-platform/components/issues/311)) ([8517bc6](https://github.com/diplodoc-platform/components/commit/8517bc6a2377687e670c92c46dc1ba1e0e765396))
+
 ## [4.15.0](https://github.com/diplodoc-platform/components/compare/v4.14.2...v4.15.0) (2024-10-03)
 
 

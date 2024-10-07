@@ -46,6 +46,8 @@ export class Scrollspy extends React.Component<ScrollspyInnerProps, ScrollspySta
     itemRefs = this.props.items.map(() => React.createRef<HTMLDivElement>());
 
     scrollByClick: boolean;
+    prevOffset: number;
+    hasActiveHash: boolean;
     firstItemIndexInView: number;
     lastItemIndexInView: number;
     overflowChecked: boolean;
@@ -60,6 +62,8 @@ export class Scrollspy extends React.Component<ScrollspyInnerProps, ScrollspySta
 
         this.overflowChecked = false;
         this.scrollByClick = false;
+        this.prevOffset = 0;
+        this.hasActiveHash = false;
         this.firstItemIndexInView = -1;
         this.lastItemIndexInView = -1;
     }
@@ -79,6 +83,10 @@ export class Scrollspy extends React.Component<ScrollspyInnerProps, ScrollspySta
     componentDidUpdate(prevProps: Readonly<ScrollspyProps>, prevState: Readonly<ScrollspyState>) {
         const {items, router} = this.props;
         const {inViewState} = this.state;
+
+        if (this.state.inViewState !== prevState.inViewState) {
+            console.log(inViewState.findIndex(Boolean));
+        }
 
         if (!isEqual(inViewState, prevState.inViewState)) {
             this.scrollToListItem();
@@ -266,46 +274,61 @@ export class Scrollspy extends React.Component<ScrollspyInnerProps, ScrollspySta
         const {targetItems, inViewState} = this.state;
         const {headerHeight} = this.props;
         const currentOffset = window.pageYOffset;
-        const visibleItemOffset: boolean[] = [];
-        let isOneActive = false;
 
-        const pureHash = hash && hash.startsWith('#') ? hash.substring(1) : hash;
+        const isScrollUp = currentOffset < this.prevOffset;
+        this.prevOffset = currentOffset;
 
-        targetItems.forEach((item, index) => {
-            if (!item) {
-                return;
-            }
+        const pureHash = hash?.startsWith('#') ? hash.substring(1) : hash;
 
-            const offsetTop = item.getBoundingClientRect().top;
-            const isVisibleItem = offsetTop < headerHeight + 1;
-
-            if (pureHash) {
-                if (pureHash === item.getAttribute('id')) {
-                    visibleItemOffset.push(true);
-                    isOneActive = true;
-                } else {
-                    visibleItemOffset.push(false);
-                }
-            } else if (isVisibleItem) {
-                if (visibleItemOffset[index - 1]) {
-                    visibleItemOffset[index - 1] = false;
+        let newActiveIndex: number;
+        if (pureHash) {
+            newActiveIndex = targetItems.findIndex(
+                (item) => item && item.getAttribute('id') === pureHash,
+            );
+        } else {
+            newActiveIndex = targetItems.reduce<number>((res, item, index) => {
+                if (!item) {
+                    return res;
                 }
 
-                visibleItemOffset.push(true);
-                isOneActive = true;
-            } else {
-                visibleItemOffset.push(false);
-            }
-        });
-
-        if (targetItems && targetItems.length && !isOneActive) {
-            if (currentOffset < targetItems[0].getBoundingClientRect().top) {
-                visibleItemOffset[0] = true;
-                isOneActive = true;
-            }
+                const isScrolledPast = item.getBoundingClientRect().top < headerHeight + 1;
+                return isScrolledPast ? index : res;
+            }, -1);
         }
 
-        return isOneActive ? visibleItemOffset : inViewState;
+        if (targetItems.length && newActiveIndex === -1) {
+            newActiveIndex = 0;
+        }
+
+        if (newActiveIndex === -1) {
+            return inViewState;
+        }
+
+        const prevActiveIndex = inViewState.findIndex(Boolean);
+        const getNewInViewState = () => {
+            if (newActiveIndex === prevActiveIndex) {
+                return inViewState;
+            }
+            const result = new Array<boolean>(targetItems.length).fill(false);
+            result[newActiveIndex] = true;
+            return result;
+        };
+
+        if (pureHash) {
+            this.hasActiveHash = true;
+            return getNewInViewState();
+        }
+
+        // not changing active item until scroll up or the next item becomes active
+        if (this.hasActiveHash) {
+            if (isScrollUp || newActiveIndex > prevActiveIndex) {
+                this.hasActiveHash = false;
+                return getNewInViewState();
+            }
+            return inViewState;
+        }
+
+        return getNewInViewState();
     }
 
     private getActiveItemTitle(titles: string[], inViewState: boolean[]) {

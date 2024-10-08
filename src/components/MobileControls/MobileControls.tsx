@@ -4,18 +4,10 @@ import block from 'bem-cn-lite';
 import allLangs from 'langs';
 import {KeyPrefix, Namespace, TFunction} from 'react-i18next';
 
-import {
-    ControlSizes,
-    ControlsLayout,
-    ControlsProps,
-    DEFAULT_LANGS,
-    DocSettings,
-    LEGACY_LANG_ITEMS,
-    Lang,
-    Theme,
-} from '../..';
+import {DEFAULT_LANGS, LEGACY_LANG_ITEMS} from '../../constants';
+import {ControlsLayout, ControlsProps} from '../Controls';
 import {useTranslation} from '../../hooks';
-import {ListItem, OnChangeValue} from '../../models';
+import {ControlSizes, DocSettings, Lang, ListItem, OnChangeValue, Theme} from '../../models';
 
 import MobileControl from './MobileControl/MobileControl';
 import './MobileControls.scss';

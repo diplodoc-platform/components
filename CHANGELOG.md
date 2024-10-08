@@ -1,5 +1,12 @@
 # История изменений
 
+## [4.15.2](https://github.com/diplodoc-platform/components/compare/v4.15.1...v4.15.2) (2024-10-08)
+
+
+### Bug Fixes
+
+* mini-toc active item ([#313](https://github.com/diplodoc-platform/components/issues/313)) ([a144445](https://github.com/diplodoc-platform/components/commit/a144445ed2bf2978411d9bf9639ddff75fdb52a1))
+
 ## [4.15.1](https://github.com/diplodoc-platform/components/compare/v4.15.0...v4.15.1) (2024-10-04)
 
 

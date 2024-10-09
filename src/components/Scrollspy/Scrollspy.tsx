@@ -17,14 +17,16 @@ export interface ScrollspyProps
     extends Partial<ScrollspyDefaultProps>,
         Partial<HTMLProps<HTMLUListElement>> {
     items: string[];
-    titles?: string[];
     children: ReactElement[];
     router: Router;
     onSectionClick?: (event: MouseEvent) => void;
-    onActiveItemTitleChange?: (title: string) => void;
     className?: string;
     overflowedClassName?: string;
     scrollToListItem?: boolean;
+    /** Is used to identify items for {@link onActiveItemTitleChange} */
+    titles?: string[];
+    /** Is called with active item's corresponding value in {@link titles}, if one exists */
+    onActiveItemTitleChange?: (title: string) => void;
 }
 
 interface ScrollspyState {
@@ -259,7 +261,7 @@ export class Scrollspy extends React.Component<ScrollspyInnerProps, ScrollspySta
         const visibleItems = this.getViewState(hash);
         const activeItemTitle = this.getActiveItemTitle(titles, visibleItems);
 
-        if (activeItemTitle) {
+        if (activeItemTitle !== null) {
             onActiveItemTitleChange?.(activeItemTitle);
         }
 

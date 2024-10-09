@@ -17,14 +17,16 @@ export interface ScrollspyProps
     extends Partial<ScrollspyDefaultProps>,
         Partial<HTMLProps<HTMLUListElement>> {
     items: string[];
-    titles: string[];
     children: ReactElement[];
     router: Router;
     onSectionClick?: (event: MouseEvent) => void;
-    onActiveItemTitleChange?: (title: string) => void;
     className?: string;
     overflowedClassName?: string;
     scrollToListItem?: boolean;
+    /** Is used to identify items for {@link onActiveItemTitleChange} */
+    titles?: string[];
+    /** Is called with active item's corresponding value in {@link titles}, if one exists */
+    onActiveItemTitleChange?: (title: string) => void;
 }
 
 interface ScrollspyState {
@@ -83,10 +85,6 @@ export class Scrollspy extends React.Component<ScrollspyInnerProps, ScrollspySta
     componentDidUpdate(prevProps: Readonly<ScrollspyProps>, prevState: Readonly<ScrollspyState>) {
         const {items, router} = this.props;
         const {inViewState} = this.state;
-
-        if (this.state.inViewState !== prevState.inViewState) {
-            console.log(inViewState.findIndex(Boolean));
-        }
 
         if (!isEqual(inViewState, prevState.inViewState)) {
             this.scrollToListItem();
@@ -331,16 +329,9 @@ export class Scrollspy extends React.Component<ScrollspyInnerProps, ScrollspySta
         return getNewInViewState();
     }
 
-    private getActiveItemTitle(titles: string[], inViewState: boolean[]) {
-        for (const [index, isActive] of inViewState.entries()) {
-            if (!isActive) {
-                continue;
-            }
-
-            return titles[index];
-        }
-
-        return null;
+    private getActiveItemTitle(titles: string[] | undefined, inViewState: boolean[]) {
+        const activeIndex = inViewState.findIndex(Boolean);
+        return titles?.[activeIndex] ?? null;
     }
 
     private handleScroll = () => {

@@ -261,8 +261,8 @@ export class Scrollspy extends React.Component<ScrollspyInnerProps, ScrollspySta
         const visibleItems = this.getViewState(hash);
         const activeItemTitle = this.getActiveItemTitle(titles, visibleItems);
 
-        if (activeItemTitle !== null) {
-            onActiveItemTitleChange?.(activeItemTitle);
+        if (activeItemTitle && onActiveItemTitleChange) {
+            onActiveItemTitleChange(activeItemTitle);
         }
 
         this.setState({inViewState: visibleItems});

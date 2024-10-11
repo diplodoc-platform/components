@@ -18,11 +18,7 @@ const ICON_SIZE = 20;
 
 const b = block('dc-mobile-dropdown');
 
-export interface MobileDropdownProps {
-    item: NavigationDropdownItem;
-}
-
-const MobileDropdown: React.FC<MobileDropdownProps> = memo(({item}) => {
+const MobileDropdown: React.FC<NavigationDropdownItem> = memo((item) => {
     const {text, isActive, items} = item;
 
     const [isOpened, setIsOpen] = useState(isActive);

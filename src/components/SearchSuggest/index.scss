@@ -4,6 +4,18 @@
 .dc-search-suggest {
     $block: &;
 
+    --g-text-input-placeholder-color: rgba(0, 0, 0, 0.5);
+    --g-text-input-placeholder-color-hover: rgba(0, 0, 0, 0.65);
+    --g-text-input-border-color: rgba(0, 0, 0, 0.5);
+    --g-text-input-border-color-hover: rgba(0, 0, 0, 0.65);
+
+    .g-root_theme_dark & {
+        --g-text-input-placeholder-color: rgba(255, 255, 255, 0.3);
+        --g-text-input-placeholder-color-hover: rgba(255, 255, 255, 0.5);
+        --g-text-input-border-color: rgba(255, 255, 255, 0.4);
+        --g-text-input-border-color-hover: rgba(255, 255, 255, 0.5);
+    }
+
     &__wrapper {
         position: relative;
         width: 100%;

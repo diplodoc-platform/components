@@ -32,6 +32,7 @@ export interface SearchSuggestProps {
     provider: ISearchProvider;
     placeholder?: string;
     classNameContainer?: string;
+    classNameClose?: string;
     className?: string;
     onFocus?: (event: SyntheticEvent) => void;
     onBlur?: (event: SyntheticEvent) => void;
@@ -47,14 +48,14 @@ export interface SearchSuggestApi {
 
 const MIMIC_PC_CONTROL = 'pc-control pc-control_size_l pc-control_theme_primary';
 
-function CloseButton({onClick}: {onClick: MouseEventHandler}) {
+function CloseButton({onClick, className}: {onClick: MouseEventHandler; className?: string}) {
     const {t} = useTranslation('search');
 
     return (
         <button
             type="button"
             aria-label={t('search_close')}
-            className={b('close', MIMIC_PC_CONTROL)}
+            className={b('close', [MIMIC_PC_CONTROL, className].join(' '))}
             onClick={onClick}
         >
             <Icon data={Xmark} size={24} />
@@ -69,6 +70,7 @@ export const SearchSuggest = forwardRef<SearchSuggestApi, SearchSuggestProps>((p
         provider,
         className,
         classNameContainer,
+        classNameClose,
         placeholder = t('search_placeholder'),
         endContent,
         closeButton,
@@ -166,7 +168,7 @@ export const SearchSuggest = forwardRef<SearchSuggestApi, SearchSuggestProps>((p
                         active === undefined ? undefined : `dc-${id}-list-item-${active}`,
                 }}
             />
-            {closeButton && focused && <CloseButton onClick={onClose} />}
+            {closeButton && focused && <CloseButton onClick={onClose} className={classNameClose} />}
             {input.current && (
                 <Popup
                     open={Boolean(query && focused)}

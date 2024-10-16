@@ -1,5 +1,14 @@
 # История изменений
 
+## [4.15.4](https://github.com/diplodoc-platform/components/compare/v4.15.3...v4.15.4) (2024-10-16)
+
+
+### Bug Fixes
+
+* **BREAKING!** Fix MobileDropdown props ([6adb369](https://github.com/diplodoc-platform/components/commit/6adb3693f5501669149ee295a31d5c3127c397c2))
+* Add classname to SeachSuggest close ([93fa25b](https://github.com/diplodoc-platform/components/commit/93fa25b7d9197dee712471771ca96915b8bcb5dd))
+* Add contrast to SearchSuggest ([2e44e11](https://github.com/diplodoc-platform/components/commit/2e44e11e726ad9195d730b8f33275f9ac617ec63))
+
 ## [4.15.3](https://github.com/diplodoc-platform/components/compare/v4.15.2...v4.15.3) (2024-10-09)
 
 

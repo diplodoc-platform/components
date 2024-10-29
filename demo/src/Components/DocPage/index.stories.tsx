@@ -202,7 +202,7 @@ const DocPageDemo = (
     args: Record<string, boolean> & {Pdf: string; Search: string; VCS: VcsType},
 ) => {
     const vcsType = args['VCS'];
-    const router = {pathname: '/docs/overview/concepts/quotas-limits'};
+    const router = {pathname: '/docs/overview/security-and-compliance/'};
 
     const settings = useSettings();
     const langs = useLangs();

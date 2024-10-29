@@ -1,5 +1,6 @@
 import React from 'react';
 import block from 'bem-cn-lite';
+import {Button} from '@gravity-ui/uikit';
 
 import {useTranslation} from '../../hooks';
 import {TocItem as ITocItem} from '../../models';
@@ -27,10 +28,6 @@ export const TocItem: React.FC<TocItemProps> = React.forwardRef(
         ref: React.ForwardedRef<HTMLButtonElement>,
     ) => {
         const handleClick = () => {
-            if (!active && href) {
-                return;
-            }
-
             toggleItem(id, expanded);
         };
 
@@ -41,18 +38,23 @@ export const TocItem: React.FC<TocItemProps> = React.forwardRef(
             <ToggleArrow className={b('icon')} open={expanded} thin={true} />
         ) : null;
 
+        const allyButtonProps = {
+            'aria-expanded': expandable && !href ? expanded : undefined,
+            'aria-label': expandable ? t('drop-down-list') + ' ' + name : undefined,
+        };
+        const textProps = {
+            clicable: Boolean(expandable || href),
+            active,
+            labeled,
+        };
+
         const content = React.createElement(
             href ? 'div' : 'button',
             {
                 ref: href ? null : ref,
-                className: b('text', {
-                    clicable: Boolean(expandable || href),
-                    active,
-                    labeled,
-                }),
-                onClick: expandable && !href ? handleClick : undefined,
-                'aria-expanded': expandable && !href ? expanded : undefined,
-                'aria-label': expandable ? t('drop-down-list') + ' ' + name : undefined,
+                className: b('text', textProps, b('text-block')),
+                onClick: expandable ? handleClick : undefined,
+                ...allyButtonProps,
             },
             icon,
             text,
@@ -68,19 +70,32 @@ export const TocItem: React.FC<TocItemProps> = React.forwardRef(
             target: isExternal ? '_blank' : '_self',
             rel: isExternal ? 'noopener noreferrer' : undefined,
             'aria-expanded': expandable ? expanded : undefined,
+            className: b('link'),
+            onClick: expandable && href ? handleClick : undefined,
+            'aria-current': active ? 'true' : undefined,
+            'data-router-shallow': true,
         };
 
-        return (
-            <a
-                {...linkAttributes}
-                className={b('link')}
-                onClick={expandable && href ? handleClick : undefined}
-                data-router-shallow
-                aria-current={active ? 'true' : undefined}
-            >
-                {content}
-            </a>
-        );
+        if (expandable && href) {
+            return (
+                <div className={b('wrapper', b('text', textProps))}>
+                    <Button
+                        size={'xs'}
+                        className={b('arrow')}
+                        view={'flat'}
+                        onClick={handleClick}
+                        extraProps={allyButtonProps}
+                    >
+                        <Button.Icon>{icon}</Button.Icon>
+                    </Button>
+                    <a {...linkAttributes}>
+                        <span className={b('text')}>{text}</span>
+                    </a>
+                </div>
+            );
+        }
+
+        return <a {...linkAttributes}>{content}</a>;
     },
 );
 

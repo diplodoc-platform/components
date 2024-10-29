@@ -51,7 +51,7 @@ export const TocItem: React.FC<TocItemProps> = React.forwardRef(
         const content = React.createElement(
             href ? 'div' : 'button',
             {
-                ref: href ? null : ref,
+                ref,
                 className: b('text', textProps, b('text-block')),
                 onClick: expandable ? handleClick : undefined,
                 ...allyButtonProps,
@@ -69,10 +69,10 @@ export const TocItem: React.FC<TocItemProps> = React.forwardRef(
             href,
             target: isExternal ? '_blank' : '_self',
             rel: isExternal ? 'noopener noreferrer' : undefined,
-            'aria-expanded': expandable ? expanded : undefined,
             className: b('link'),
             onClick: expandable && href ? handleClick : undefined,
-            'aria-current': active ? 'true' : undefined,
+            'aria-expanded': expandable ? expanded : undefined,
+            'aria-current': active ? ('true' as const) : undefined,
             'data-router-shallow': true,
         };
 
@@ -85,6 +85,7 @@ export const TocItem: React.FC<TocItemProps> = React.forwardRef(
                         view={'flat'}
                         onClick={handleClick}
                         extraProps={allyButtonProps}
+                        ref={ref}
                     >
                         <Button.Icon>{icon}</Button.Icon>
                     </Button>

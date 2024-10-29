@@ -220,6 +220,7 @@
       },
       {
         "name": "Security and compliance",
+        "href": "/docs/overview/security-and-compliance/",
         "items": [
           {
             "name": "Security bulletin",

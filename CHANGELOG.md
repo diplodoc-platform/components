@@ -1,5 +1,13 @@
 # История изменений
 
+## [4.15.5](https://github.com/diplodoc-platform/components/compare/v4.15.4...v4.15.5) (2024-10-31)
+
+
+### Bug Fixes
+
+* ref on tocitem to scroll into view ([e5774ec](https://github.com/diplodoc-platform/components/commit/e5774ecb3d36ae3334ed90e8567d59f329226e13))
+* toc collapse when section has href ([d452cd8](https://github.com/diplodoc-platform/components/commit/d452cd8ac9a8ad35398e7fed7e8c2e5117ef5dea))
+
 ## [4.15.4](https://github.com/diplodoc-platform/components/compare/v4.15.3...v4.15.4) (2024-10-16)
 
 

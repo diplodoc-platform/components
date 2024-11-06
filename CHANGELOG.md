@@ -1,5 +1,12 @@
 # История изменений
 
+## [4.16.0](https://github.com/diplodoc-platform/components/compare/v4.15.5...v4.16.0) (2024-11-06)
+
+
+### Features
+
+* **BREAKING!** enable mobile toc through legacyToc prop ([f40425d](https://github.com/diplodoc-platform/components/commit/f40425dd1d6eeaad5573013a05cb774ce74be182))
+
 ## [4.15.5](https://github.com/diplodoc-platform/components/compare/v4.15.4...v4.15.5) (2024-10-31)
 
 

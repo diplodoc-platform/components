@@ -28,6 +28,7 @@ export interface DocLayoutProps {
     loading?: boolean;
     footer?: React.ReactNode;
     singlePage?: boolean;
+    legacyToc?: boolean;
     onChangeSinglePage?: (value: boolean) => void;
     pdfLink?: string;
 }
@@ -46,6 +47,7 @@ export class DocLayout extends React.Component<DocLayoutProps> {
             hideRight = false,
             loading = false,
             footer = null,
+            legacyToc = false,
         } = this.props;
         let left, center, right;
         const modes = {
@@ -78,7 +80,7 @@ export class DocLayout extends React.Component<DocLayoutProps> {
                 {/* layout direction reverses on mobiles */}
                 <div className={b('mobile-only')}>{footer}</div>
                 {fullScreen ? null : (
-                    <div className={b('left', modes)}>
+                    <div className={b('left', modes, legacyToc ? b('legacy-toc') : undefined)}>
                         {this.renderToc()}
                         {left}
                     </div>

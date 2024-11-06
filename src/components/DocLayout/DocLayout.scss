@@ -134,6 +134,14 @@
             }
         }
 
+        &__legacy-toc {
+            position: static;
+            left: auto;
+            width: 100%;
+
+            border-right: none;
+        }
+
         &__toc {
             position: static;
             width: 100%;

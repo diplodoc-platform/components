@@ -1,5 +1,12 @@
 # История изменений
 
+## [4.17.0](https://github.com/diplodoc-platform/components/compare/v4.16.0...v4.17.0) (2024-11-06)
+
+
+### Features
+
+* support legacyToc prop in DocPages ([7aa9ebb](https://github.com/diplodoc-platform/components/commit/7aa9ebb20ca224d0d0acb34e772cce4d6401b2be))
+
 ## [4.16.0](https://github.com/diplodoc-platform/components/compare/v4.15.5...v4.16.0) (2024-11-06)
 
 

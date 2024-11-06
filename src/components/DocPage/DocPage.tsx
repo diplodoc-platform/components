@@ -45,6 +45,7 @@ export interface DocPageProps extends DocPageData, DocSettings {
     headerHeight?: number;
     tocTitleIcon?: React.ReactNode;
     hideToc?: boolean;
+    legacyToc?: boolean;
 
     showSearchBar?: boolean;
     searchQuery?: string;
@@ -160,6 +161,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             onChangeLang,
             onChangeTheme,
             onMiniTocItemClick,
+            legacyToc,
         } = this.props;
 
         const hideBurger = typeof headerHeight !== 'undefined' && headerHeight > 0;
@@ -197,6 +199,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                 singlePage={singlePage}
                 onChangeSinglePage={onChangeSinglePage}
                 pdfLink={pdfLink}
+                legacyToc={legacyToc}
             >
                 <DocLayout.Center>
                     {this.renderSearchBar()}

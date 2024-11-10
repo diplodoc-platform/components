@@ -1,9 +1,12 @@
 import {expect, test} from '@playwright/test';
 
-import {ROOT_ELEMENT_SELECTOR, URL_SEGMENT, VIEW_MODE} from '../utils';
+import {DOC_PAGE_URL, ROOT_ELEMENT_SELECTOR} from '../constants';
+
+test.beforeEach(async ({page}) => {
+    await page.goto(DOC_PAGE_URL);
+    await page.waitForSelector(ROOT_ELEMENT_SELECTOR);
+});
 
 test('Document page test', async ({page}) => {
-    await page.goto(URL_SEGMENT + 'pages-document--document' + VIEW_MODE);
-    await page.waitForSelector(ROOT_ELEMENT_SELECTOR);
     await expect(page).toHaveScreenshot('DocPage.png');
 });

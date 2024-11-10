@@ -74,6 +74,47 @@ To start the development server with storybook run the following:
 npm run dev
 ```
 
+## Testing
+
+We use [Playwright](https://playwright.dev/docs/intro) for testing.
+
+### Preparation
+
+You need to add `.env` file in repository's root directory with the data below:
+
+```bash
+# The URL where Storybook is running
+BASE_URL= # for example:'http://localhost:6006'
+```
+
+### Running tests
+
+All tests:
+
+```bash
+# run storybook (if it is not running) and run tests
+npm run test
+```
+
+Single test:
+
+```bash
+# run storybook (if it is not running) and run test
+npm run test test_name.spec.ts
+```
+
+### Test reports
+
+```bash
+npx playwright show-report
+```
+
+### Updating tests
+
+`**.spec.ts` files contain test code.
+
+`**.spec.ts-snapshots` folders contain screenshots which are used for comparison with test screenshots. If screenshot is incorrect you can delete it and after the tests playwright will replace it with test screenshot.
+
 ## License
 
 MIT

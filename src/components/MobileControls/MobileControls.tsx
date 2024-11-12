@@ -23,9 +23,9 @@ export interface MobileControlsProps {
 
 const useLangControl = (
     t: UseTranslationReturnType,
-    lang: Lang,
-    langs?: Lang[],
-    onChangeLang?: (lang: Lang) => void,
+    lang: `${Lang}` | Lang,
+    langs?: (`${Lang}` | Lang)[],
+    onChangeLang?: (lang: `${Lang}` | Lang) => void,
 ) => {
     const langItems = useMemo(() => {
         const preparedLangs = (langs ?? DEFAULT_LANGS)

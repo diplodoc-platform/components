@@ -39,8 +39,8 @@ const b = block('dc-doc-page');
 const bNote = block('dc-note');
 
 export interface DocPageProps extends DocPageData, DocSettings {
-    lang: Lang;
-    langs?: Lang[];
+    lang: `${Lang}` | Lang;
+    langs?: (`${Lang}` | Lang)[];
     router: Router;
     headerHeight?: number;
     tocTitleIcon?: React.ReactNode;
@@ -63,7 +63,7 @@ export interface DocPageProps extends DocPageData, DocSettings {
     renderLoader?: () => React.ReactNode;
     convertPathToOriginalArticle?: (path: string) => string;
     generatePathToVcs?: (path: string) => string;
-    onChangeLang?: (lang: Lang) => void;
+    onChangeLang?: (lang: `${Lang}` | Lang) => void;
     onChangeFullScreen?: (value: boolean) => void;
     onChangeSinglePage?: (value: boolean) => void;
     onChangeWideFormat?: (value: boolean) => void;

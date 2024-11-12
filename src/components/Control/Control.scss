@@ -1,4 +1,4 @@
-@import '../../styles/mixins';
+@use '../../styles/mixins';
 
 .dc-control {
     &::before {
@@ -16,6 +16,6 @@
         display: block;
         white-space: nowrap;
 
-        @include text-size(body-1);
+        @include mixins.text-size(body-1);
     }
 }

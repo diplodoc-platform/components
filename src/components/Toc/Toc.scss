@@ -1,12 +1,13 @@
-@import '../../styles/variables';
-@import '../../styles/mixins';
+@use 'sass:map';
+@use '../../styles/variables';
+@use '../../styles/mixins';
 
 $iconSize: 18px;
 $toggleSize: 10px;
 $leftOffset: 57px;
 
 @mixin toc-header {
-    @include text-size(body-2);
+    @include mixins.text-size(body-2);
     font-weight: 500;
 }
 
@@ -15,11 +16,11 @@ $leftOffset: 57px;
 
     display: flex;
     flex-direction: column;
-    height: calc(100vh - var(--dc-header-height, #{$headerHeight}));
+    height: calc(100vh - var(--dc-header-height, #{variables.$headerHeight}));
     overflow: hidden;
     border-right: 1px solid var(--g-color-line-generic);
 
-    @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
+    @media (max-width: map.get(variables.$screenBreakpoints, 'md') - 1) {
         padding: 12px 16px 0px;
 
         border-right: none;
@@ -38,7 +39,7 @@ $leftOffset: 57px;
         padding: 10px 10px 8px 0;
         margin-bottom: 12px;
 
-        @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
+        @media (max-width: map.get(variables.$screenBreakpoints, 'md') - 1) {
             padding: 10px 12px 10px 28px;
             margin-bottom: 0;
         }
@@ -63,22 +64,22 @@ $leftOffset: 57px;
             position: relative;
             font-weight: 500;
 
-            @include text-size(body-3);
+            @include mixins.text-size(body-3);
 
             &_link {
-                @include reset-link-style();
+                @include mixins.reset-link-style();
 
                 display: flex;
                 align-items: center;
                 border-radius: var(--g-focus-border-radius);
 
-                @include link();
+                @include mixins.link();
 
                 &:hover {
                     color: var(--g-color-text-primary);
                 }
 
-                @include focusable();
+                @include mixins.focusable();
             }
         }
     }
@@ -93,7 +94,7 @@ $leftOffset: 57px;
         &_scrolled {
             border-top: 1px solid var(--g-color-line-generic);
 
-            @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
+            @media (max-width: map.get(variables.$screenBreakpoints, 'md') - 1) {
                 border-top: 0;
             }
         }
@@ -107,19 +108,19 @@ $leftOffset: 57px;
         overflow-y: auto;
         scrollbar-width: thin;
 
-        @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
+        @media (max-width: map.get(variables.$screenBreakpoints, 'md') - 1) {
             overflow-y: unset;
         }
 
         &_offset_top {
-            @media (min-width: map-get($screenBreakpoints, 'md')) {
+            @media (min-width: map.get(variables.$screenBreakpoints, 'md')) {
                 padding-top: 24px;
             }
         }
     }
 
     &__list {
-        @include reset-list-style();
+        @include mixins.reset-list-style();
 
         display: block;
 
@@ -154,7 +155,7 @@ $leftOffset: 57px;
         padding-right: 21px;
         padding-bottom: 30px;
 
-        @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
+        @media (max-width: map.get(variables.$screenBreakpoints, 'md') - 1) {
             padding-right: 0;
         }
     }

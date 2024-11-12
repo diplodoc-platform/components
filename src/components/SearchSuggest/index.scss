@@ -1,5 +1,5 @@
-@import '../../styles/variables';
-@import '../../styles/mixins';
+@use '../../styles/variables';
+@use '../../styles/mixins';
 
 .dc-search-suggest {
     $block: &;
@@ -56,7 +56,7 @@
         white-space: nowrap;
         text-overflow: ellipsis;
 
-        @include text-size(body-1);
+        @include mixins.text-size(body-1);
 
         &-title,
         &-description,
@@ -77,7 +77,7 @@
             &_page {
                 padding-bottom: 9px;
 
-                @include link();
+                @include mixins.link();
 
                 #{$block}__item {
                     &-breadcrumbs {

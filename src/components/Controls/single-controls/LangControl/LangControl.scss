@@ -1,14 +1,14 @@
-@import '../../../../styles/mixins';
-@import '../../../../styles/variables';
+@use '../../../../styles/mixins';
+@use '../../../../styles/variables';
 
 .dc-lang-control {
     display: flex;
     align-items: center;
-    @include text-size(body-1);
+    @include mixins.text-size(body-1);
 
     &__popup {
         width: 100px;
-        @include text-size(body-1);
+        @include mixins.text-size(body-1);
     }
 
     &__popup-tooltip {
@@ -35,6 +35,6 @@
         background-color: inherit;
         font-family: inherit;
 
-        @include focusable(-2px);
+        @include mixins.focusable(-2px);
     }
 }

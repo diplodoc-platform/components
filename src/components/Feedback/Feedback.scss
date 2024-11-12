@@ -1,10 +1,11 @@
-@import '../../styles/mixins';
-@import '../../styles/variables';
+@use 'sass:map';
+@use '../../styles/mixins';
+@use '../../styles/variables';
 
 $popupWidth: 320px;
 
 @mixin tooltip-in-center {
-    @media screen and (max-width: map-get($screenBreakpoints, 'xs')) {
+    @media screen and (max-width: map.get(variables.$screenBreakpoints, 'xs')) {
         & {
             // stylelint-disable declaration-no-important
             right: 0 !important;
@@ -46,7 +47,7 @@ $popupWidth: 320px;
     &__success-popup {
         left: -20px;
 
-        padding: $popupPadding 50px $popupPadding $popupPadding;
+        padding: variables.$popupPadding 50px variables.$popupPadding variables.$popupPadding;
         width: $popupWidth;
 
         &_view_wide {
@@ -55,7 +56,7 @@ $popupWidth: 320px;
     }
 
     &__variants-popup {
-        padding: $popupPadding;
+        padding: variables.$popupPadding;
         width: $popupWidth;
         left: -20px;
 
@@ -106,7 +107,7 @@ $popupWidth: 320px;
 
     &__title {
         &_view_wide {
-            @include text-size(subheader-3);
+            @include mixins.text-size(subheader-3);
             font-weight: 400;
         }
     }

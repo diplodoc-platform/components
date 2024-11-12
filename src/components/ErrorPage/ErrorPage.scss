@@ -1,5 +1,5 @@
-@import '../../styles/variables';
-@import '../../styles/mixins';
+@use '../../styles/variables';
+@use '../../styles/mixins';
 
 .ErrorPage {
     display: flex;
@@ -39,7 +39,7 @@
     }
 
     &__title {
-        @include heading3();
+        @include mixins.heading3();
 
         max-width: 800px;
         margin-bottom: 20px;
@@ -59,7 +59,7 @@
     }
 
     a {
-        @include link();
+        @include mixins.link();
     }
 
     .mobile & {

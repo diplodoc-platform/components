@@ -1,5 +1,5 @@
-@import '../../../styles/variables.scss';
-@import '../../../styles/mixins.scss';
+@use '../../../styles/variables';
+@use '../../../styles/mixins';
 
 .dc-sidebar-content {
     display: flex;
@@ -21,7 +21,7 @@
     &__toc,
     &__main-menu,
     &__main-menu ul {
-        @include reset-list-style();
+        @include mixins.reset-list-style();
     }
 
     &__toc,
@@ -30,7 +30,7 @@
     }
 
     &__toc {
-        @include text-size(body-2);
+        @include mixins.text-size(body-2);
     }
 
     &__toc {
@@ -46,7 +46,7 @@
     &__main-menu {
         padding: 12px 16px 0px;
 
-        @include text-size(body-3);
+        @include mixins.text-size(body-3);
 
         font-weight: var(--g-text-accent-font-weight);
 

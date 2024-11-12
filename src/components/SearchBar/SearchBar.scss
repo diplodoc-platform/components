@@ -1,5 +1,6 @@
-@import '../../styles/variables';
-@import '../../styles/mixins';
+@use 'sass:map';
+@use '../../styles/variables';
+@use '../../styles/mixins';
 
 .dc-search-bar {
     width: 100%;
@@ -21,7 +22,7 @@
         text-overflow: ellipsis;
         overflow: hidden;
 
-        @media (max-width: map-get($screenBreakpoints, 'md') + 1) {
+        @media (max-width: map.get(variables.$screenBreakpoints, 'md') + 1) {
             display: none;
         }
     }
@@ -32,7 +33,7 @@
         text-overflow: ellipsis;
         overflow: hidden;
 
-        @media (max-width: map-get($screenBreakpoints, 'md') + 1) {
+        @media (max-width: map.get(variables.$screenBreakpoints, 'md') + 1) {
             display: none;
         }
     }

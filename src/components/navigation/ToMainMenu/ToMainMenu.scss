@@ -1,5 +1,6 @@
-@import '../../../styles/variables.scss';
-@import '../../../styles/mixins.scss';
+@use 'sass:map';
+@use '../../../styles/mixins';
+@use '../../../styles/variables';
 
 .dc-to-main-menu {
     display: flex;
@@ -8,9 +9,9 @@
     flex: 1 0 0;
 
     box-sizing: content-box;
-    height: #{$toMainMenuHeight};
-    width: calc(100% - 2 * #{$toMainMenuHorizontalPadding} - 1px);
-    padding: #{$toMainMenuVerticalPadding} #{$toMainMenuHorizontalPadding};
+    height: #{variables.$toMainMenuHeight};
+    width: calc(100% - 2 * #{variables.$toMainMenuHorizontalPadding} - 1px);
+    padding: #{variables.$toMainMenuVerticalPadding} #{variables.$toMainMenuHorizontalPadding};
     gap: 4px;
 
     text-decoration: none;
@@ -56,7 +57,7 @@
     }
 
     &__title {
-        @include text-size(subheader-2);
+        @include mixins.text-size(subheader-2);
         color: var(--g-color-text-primary);
     }
 
@@ -64,7 +65,7 @@
         display: none;
     }
 
-    @media (min-width: map-get($screenBreakpoints, 'md')) {
+    @media (min-width: map.get(variables.$screenBreakpoints, 'md')) {
         display: none;
     }
 }

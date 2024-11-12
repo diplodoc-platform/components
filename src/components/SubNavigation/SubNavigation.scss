@@ -1,5 +1,6 @@
-@import '../../styles/variables';
-@import '../../styles/mixins';
+@use 'sass:map';
+@use '../../styles/variables';
+@use '../../styles/mixins';
 
 .dc-subnavigation {
     $horizontalPadding: 12px;
@@ -13,7 +14,7 @@
 
     box-sizing: content-box;
     width: calc(100% - 2 * #{$horizontalPadding});
-    height: $subNavigationHeight - $verticalPadding - $verticalPadding;
+    height: variables.$subNavigationHeight - $verticalPadding - $verticalPadding;
     padding: $verticalPadding $horizontalPadding;
 
     gap: $verticalPadding;
@@ -25,7 +26,7 @@
 
     will-change: transform;
 
-    @media (min-width: map-get($screenBreakpoints, 'md')) {
+    @media (min-width: map.get(variables.$screenBreakpoints, 'md')) {
         display: none;
     }
 
@@ -40,7 +41,7 @@
 
     &_invisible {
         --dc-header-height: 64px;
-        transform: translateY(calc(0px - var(--dc-header-height, #{$headerHeight})));
+        transform: translateY(calc(0px - var(--dc-header-height, #{variables.$headerHeight})));
     }
 
     &_hidden {
@@ -52,7 +53,7 @@
     }
 
     &__mini-toc {
-        @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
+        @media (max-width: map.get(variables.$screenBreakpoints, 'md') - 1) {
             width: 100%;
             max-height: 0px;
 
@@ -69,9 +70,9 @@
 
             &_open {
                 max-height: calc(
-                    100vh - var(--dc-header-height, $headerHeight) - var(
+                    100vh - var(--dc-header-height, variables.$headerHeight) - var(
                             --dc-subnavigation-height,
-                            $subNavigationHeight
+                            variables.$subNavigationHeight
                         )
                 );
                 transition: max-height 300ms 0s;
@@ -113,7 +114,7 @@
 
         text-decoration: none;
 
-        @include text-size(subheader-2);
+        @include mixins.text-size(subheader-2);
         font-weight: 500;
 
         transition:
@@ -145,7 +146,7 @@
             justify-content: center;
 
             font-weight: 600;
-            @include text-size(subheader-3);
+            @include mixins.text-size(subheader-3);
         }
 
         &_center,

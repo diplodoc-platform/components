@@ -1,4 +1,6 @@
-@import '../../../../styles/mixins';
+@use 'sass:map';
+@use '../../../../styles/mixins';
+@use '../../../../styles/variables';
 
 .dc-settings-control {
     &__text-size-control {
@@ -8,13 +10,13 @@
 
     &__text-size-button {
         &_s {
-            @include text-size(body-1);
+            @include mixins.text-size(body-1);
         }
         &_m {
-            @include text-size(body-2);
+            @include mixins.text-size(body-2);
         }
         &_l {
-            @include text-size(body-3);
+            @include mixins.text-size(body-3);
         }
     }
 
@@ -26,7 +28,7 @@
 
     &__popup {
         width: 230px;
-        @include text-size(body-1);
+        @include mixins.text-size(body-1);
     }
 
     &__popup-tooltip-content {
@@ -70,7 +72,7 @@
         }
     }
 
-    @media (max-width: map-get($screenBreakpoints, 'md')) {
+    @media (max-width: map.get(variables.$screenBreakpoints, 'md')) {
         &__popup {
             width: 100vw;
         }

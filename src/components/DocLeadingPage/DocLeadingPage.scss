@@ -1,11 +1,12 @@
-@import '../../styles/variables';
-@import '../../styles/mixins';
+@use 'sass:map';
+@use '../../styles/variables';
+@use '../../styles/mixins';
 
 .dc-doc-leading-page {
     display: flex;
     max-width: 1440px;
 
-    @include text-size(body-2);
+    @include mixins.text-size(body-2);
 
     &_regular-page-width {
         max-width: 1280px;
@@ -17,18 +18,18 @@
     }
 
     &__title {
-        margin: 40px 0 $normalOffset;
+        margin: 40px 0 variables.$normalOffset;
 
-        @include text-size(display-2);
+        @include mixins.text-size(display-2);
 
-        @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
+        @media (max-width: map.get(variables.$screenBreakpoints, 'md') - 1) {
             margin-top: 20px;
         }
     }
 
     &__description {
         a {
-            @include link();
+            @include mixins.link();
 
             &:not([href]) {
                 color: inherit;
@@ -37,7 +38,7 @@
     }
 
     &__links {
-        @include reset-list-style();
+        @include mixins.reset-list-style();
 
         display: flex;
         justify-content: space-between;
@@ -46,7 +47,7 @@
         &_root {
             flex-direction: row;
             margin-top: 70px;
-            margin-bottom: -$blockMarginBottomLarge;
+            margin-bottom: -(variables.$blockMarginBottomLarge);
         }
     }
 
@@ -62,14 +63,14 @@
             width: calc(50% - 20px);
             padding-top: 15px;
             padding-bottom: 15px;
-            margin-bottom: $blockMarginBottomLarge;
+            margin-bottom: variables.$blockMarginBottomLarge;
             border-top: 1px solid var(--g-color-line-generic);
         }
     }
 
     &__links-title {
         &_root {
-            @include heading4();
+            @include mixins.heading4();
 
             margin-bottom: 10px;
             font-weight: 500;
@@ -77,10 +78,10 @@
     }
 
     &__links-link {
-        @include link();
+        @include mixins.link();
     }
 
-    @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
+    @media (max-width: map.get(variables.$screenBreakpoints, 'md') - 1) {
         &__main {
             margin-left: 0;
             margin-bottom: 40px;

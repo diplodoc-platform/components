@@ -1,10 +1,11 @@
-@import '../../styles/mixins';
-@import '../../styles/variables';
+@use 'sass:map';
+@use '../../styles/mixins';
+@use '../../styles/variables';
 
 .dc-controls {
     display: flex;
     align-items: center;
-    @include text-size(body-1);
+    @include mixins.text-size(body-1);
 
     &__control:not(:last-child),
     &__divider {
@@ -27,7 +28,7 @@
         padding: 0;
     }
 
-    @media (min-width: map-get($screenBreakpoints, 'md')) {
+    @media (min-width: map.get(variables.$screenBreakpoints, 'md')) {
         &_vertical {
             flex-direction: column;
         }

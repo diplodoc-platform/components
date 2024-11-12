@@ -1,5 +1,6 @@
-@import '../../styles/variables';
-@import '../../styles/mixins';
+@use 'sass:map';
+@use '../../styles/variables';
+@use '../../styles/mixins';
 
 .dc-mini-toc {
     $class: &;
@@ -10,17 +11,17 @@
         margin-bottom: 12px;
         margin-top: 0;
 
-        @include text-size(body-2);
+        @include mixins.text-size(body-2);
     }
 
     &__sections {
-        @include reset-list-style();
+        @include mixins.reset-list-style();
 
         max-height: calc(
-            100vh - var(--dc-header-height, #{$headerHeight}) - var(
+            100vh - var(--dc-header-height, #{variables.$headerHeight}) - var(
                     --dc-subnavigation-height,
-                    #{$subNavigationHeight}
-                ) - #{$miniTocOffset}
+                    #{variables.$subNavigationHeight}
+                ) - #{variables.$miniTocOffset}
         );
         overflow: hidden auto;
     }
@@ -31,7 +32,7 @@
         & > #{$class}__section-link {
             border-left-color: var(--g-color-line-generic);
 
-            @include focusable(-2px);
+            @include mixins.focusable(-2px);
         }
 
         &-link {
@@ -65,7 +66,7 @@
         display: none;
     }
 
-    @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
+    @media (max-width: map.get(variables.$screenBreakpoints, 'md') - 1) {
         // fix bug with scrolling mini-toc and body on desktop
         body:has(&_overflowed:hover) {
             overflow-y: hidden;
@@ -73,10 +74,10 @@
 
         $bottomHeight: 0;
 
-        padding: $miniTocVerticalPadding 8px $miniTocVerticalPadding 20px;
+        padding: variables.$miniTocVerticalPadding 8px variables.$miniTocVerticalPadding 20px;
 
         &__title {
-            margin-bottom: $miniTocTitleMargin;
+            margin-bottom: variables.$miniTocTitleMargin;
         }
 
         &:has(&_overflowed) {
@@ -89,10 +90,10 @@
 
             #{$class}__sections {
                 max-height: calc(
-                    100vh - var(--dc-header-height, #{$headerHeight}) - var(
+                    100vh - var(--dc-header-height, #{variables.$headerHeight}) - var(
                             --dc-subnavigation-height,
-                            #{$subNavigationHeight}
-                        ) - #{$mobileMiniTocOffset} - #{$bottomHeight}
+                            #{variables.$subNavigationHeight}
+                        ) - #{variables.$mobileMiniTocOffset} - #{$bottomHeight}
                 );
             }
         }
@@ -110,13 +111,13 @@
         }
 
         &__sections {
-            @include text-size(body-2);
+            @include mixins.text-size(body-2);
 
             max-height: calc(
-                100vh - var(--dc-header-height, #{$headerHeight}) - var(
+                100vh - var(--dc-header-height, #{variables.$headerHeight}) - var(
                         --dc-subnavigation-height,
-                        #{$subNavigationHeight}
-                    ) - #{$mobileMiniTocOffset}
+                        #{variables.$subNavigationHeight}
+                    ) - #{variables.$mobileMiniTocOffset}
             );
         }
     }

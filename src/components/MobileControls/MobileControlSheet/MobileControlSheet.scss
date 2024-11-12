@@ -1,5 +1,5 @@
-@import '../../../styles/mixins';
-@import '../../../styles/variables';
+@use '../../../styles/mixins';
+@use '../../../styles/variables';
 
 .dc-mobile-control-sheet {
     --g-sheet-content-padding: 0;
@@ -30,9 +30,9 @@
 
         font-family: inherit;
 
-        @include text-size(body-2);
+        @include mixins.text-size(body-2);
 
-        @include focusable(-2px);
+        @include mixins.focusable(-2px);
 
         // fixes a bug where the button text remains at the beginning (left)
         // of the button on both dir='ltr' and dir='rtl'

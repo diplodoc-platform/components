@@ -1,5 +1,6 @@
-@import '../../styles/variables';
-@import '../../styles/mixins';
+@use 'sass:map';
+@use '../../styles/variables';
+@use '../../styles/mixins';
 
 .dc-doc-layout {
     display: flex;
@@ -8,7 +9,7 @@
     height: 100%;
     background: var(--g-color-base-background);
 
-    @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
+    @media (max-width: map.get(variables.$screenBreakpoints, 'md') - 1) {
         align-items: normal;
     }
 
@@ -53,7 +54,7 @@
         }
 
         &_loading {
-            height: calc(100vh - var(--dc-header-height, #{$headerHeight}));
+            height: calc(100vh - var(--dc-header-height, #{variables.$headerHeight}));
             overflow: hidden;
         }
     }
@@ -61,12 +62,12 @@
     &__toc {
         position: fixed;
         z-index: 100;
-        top: var(--dc-header-height, #{$headerHeight});
+        top: var(--dc-header-height, #{variables.$headerHeight});
         padding-left: 24px;
         width: 252px;
         box-sizing: content-box;
         background-color: var(--g-color-base-background);
-        @include text-size(body-1);
+        @include mixins.text-size(body-1);
     }
 
     &__desktop-only {
@@ -81,16 +82,16 @@
         }
     }
 
-    @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
+    @media (max-width: map.get(variables.$screenBreakpoints, 'md') - 1) {
         flex-direction: column-reverse;
 
         &__right:has(.dc-subnavigation_visible) + &__center {
-            margin-top: var(--dc-subnavigation-height, $subNavigationHeight);
+            margin-top: var(--dc-subnavigation-height, variables.$subNavigationHeight);
         }
 
         &__right {
             position: sticky;
-            top: calc(var(--dc-header-height, #{$headerHeight}) - 1px);
+            top: calc(var(--dc-header-height, #{variables.$headerHeight}) - 1px);
             left: 0;
             z-index: 118;
 
@@ -102,17 +103,17 @@
         &__left {
             position: fixed;
             top: calc(
-                var(--dc-header-height, #{$headerHeight}) +
-                    var(--dc-subnavigation-height, #{$subNavigationHeight}) + 1px
+                var(--dc-header-height, #{variables.$headerHeight}) +
+                    var(--dc-subnavigation-height, #{variables.$subNavigationHeight}) + 1px
             );
             left: calc(0px - 105vw);
             z-index: 119;
 
             box-sizing: border-box;
             max-height: calc(
-                100vh - var(--dc-header-height, #{$headerHeight}) - var(
+                100vh - var(--dc-header-height, #{variables.$headerHeight}) - var(
                         --dc-subnavigation-height,
-                        #{$subNavigationHeight}
+                        #{variables.$subNavigationHeight}
                     ) + 1px
             );
             height: 100%;
@@ -148,7 +149,7 @@
             height: 100%;
             padding: 0;
 
-            @include text-size(body-2);
+            @include mixins.text-size(body-2);
 
             .dc-toc {
                 /* stylelint-disable-next-line declaration-no-important */

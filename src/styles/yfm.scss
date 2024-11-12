@@ -1,5 +1,5 @@
-@import './mixins';
-@import './variables';
+@use 'mixins';
+@use 'variables';
 
 .dc-doc-page .yfm {
     color: var(--g-color-text-primary);
@@ -30,7 +30,7 @@
             color: var(--g-color-text-link-hover);
         }
 
-        @include focusable(0, 'box-shadow');
+        @include mixins.focusable(0, 'box-shadow');
         &.yfm-anchor {
             &:focus::before {
                 visibility: visible;
@@ -110,7 +110,7 @@
         &:active {
             color: var(--g-color-text-link-hover);
         }
-        @include focusable();
+        @include mixins.focusable();
     }
 
     .yfm-tab.active {
@@ -119,7 +119,7 @@
 
     /* TODO: move yfm-cut styles to yfm-transform */
     .yfm-cut {
-        margin-bottom: $blockMarginBottomMedium;
+        margin-bottom: variables.$blockMarginBottomMedium;
     }
 
     .yfm-cut.open .yfm-cut-content {
@@ -134,15 +134,19 @@
     // The margin is summed up. So, we need to take 15px away from the header margin-top
     h1,
     h2 {
-        @include fixAnchorPosition(calc(#{$headerMarginTopLarge} - #{$blockMarginBottomMedium}));
-        margin-bottom: $blockMarginBottomLarge;
+        @include mixins.fixAnchorPosition(
+            calc(#{variables.$headerMarginTopLarge} - #{variables.$blockMarginBottomMedium})
+        );
+        margin-bottom: variables.$blockMarginBottomLarge;
     }
 
     h3,
     h4,
     h5,
     h6 {
-        @include fixAnchorPosition(calc(#{$headerMarginTopMedium} - #{$blockMarginBottomMedium}));
+        @include mixins.fixAnchorPosition(
+            calc(#{variables.$headerMarginTopMedium} - #{variables.$blockMarginBottomMedium})
+        );
     }
 
     h1 + h2,
@@ -150,7 +154,7 @@
     h3 + h4,
     h4 + h5,
     h5 + h6 {
-        @include fixAnchorPosition();
+        @include mixins.fixAnchorPosition();
     }
 
     // Use 0px for the top offset of the header if it is the first child element,
@@ -162,7 +166,7 @@
     h5,
     h6 {
         &:first-child {
-            @include fixAnchorPosition();
+            @include mixins.fixAnchorPosition();
         }
     }
 
@@ -179,7 +183,7 @@
         & + h4,
         & + h5,
         & + h6 {
-            @include fixAnchorPosition(#{$headerMarginTopLarge});
+            @include mixins.fixAnchorPosition(#{variables.$headerMarginTopLarge});
         }
     }
 

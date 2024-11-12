@@ -1,5 +1,6 @@
-@import '../../styles/variables.scss';
-@import '../../styles/mixins.scss';
+@use 'sass:map';
+@use '../../styles/variables.scss';
+@use '../../styles/mixins.scss';
 
 .dc-mobile-controls {
     $root: &;
@@ -23,7 +24,7 @@
 
     border-top: 1px solid var(--g-color-line-generic);
 
-    @media (min-width: map-get($screenBreakpoints, 'md')) {
+    @media (min-width: map.get(variables.$screenBreakpoints, 'md')) {
         display: none;
     }
 }

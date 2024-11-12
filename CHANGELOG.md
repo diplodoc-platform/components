@@ -1,5 +1,14 @@
 # История изменений
 
+## [4.17.1](https://github.com/diplodoc-platform/components/compare/v4.17.0...v4.17.1) (2024-11-12)
+
+
+### Bug Fixes
+
+* Extend Lang type by string representation ([47d7002](https://github.com/diplodoc-platform/components/commit/47d7002a878046447c12aacb3f13a8472d1b9853))
+* Fix sass deprecation warnings ([35ca677](https://github.com/diplodoc-platform/components/commit/35ca67774a577965cdba874fb2bfdba50d591b4c))
+* Update sass ([47f2164](https://github.com/diplodoc-platform/components/commit/47f2164b56bbb47bb5838abb48050f416da48e01))
+
 ## [4.17.0](https://github.com/diplodoc-platform/components/compare/v4.16.0...v4.17.0) (2024-11-06)
 
 

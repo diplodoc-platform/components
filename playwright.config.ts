@@ -1,9 +1,9 @@
 import {defineConfig, devices} from '@playwright/test';
 
-import {BASE_URL} from 'tests/constants';
+import {BASE_URL} from '__tests__/constants';
 
 export default defineConfig({
-    testDir: './tests',
+    testDir: './__tests__',
     fullyParallel: true,
     forbidOnly: true,
     retries: 2,

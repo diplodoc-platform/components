@@ -1,8 +1,6 @@
 import {defineConfig, devices} from '@playwright/test';
-import dotenv from 'dotenv';
-import path from 'path';
 
-dotenv.config({path: path.resolve(__dirname, '.env')});
+import {BASE_URL} from 'tests/constants';
 
 export default defineConfig({
     testDir: './tests',
@@ -14,7 +12,7 @@ export default defineConfig({
     webServer: {
         reuseExistingServer: true,
         command: 'npm run _storybook:watch',
-        url: process.env.BASE_URL,
+        url: BASE_URL,
         timeout: 120 * 1000,
     },
     use: {

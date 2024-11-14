@@ -1,10 +1,9 @@
 import {expect, test} from '@playwright/test';
 
-import {DOC_PAGE_URL, ROOT_ELEMENT_SELECTOR} from '../constants';
+import {loadDocumentPage} from '../utils';
 
 test.beforeEach(async ({page}) => {
-    await page.goto(DOC_PAGE_URL);
-    await page.waitForSelector(ROOT_ELEMENT_SELECTOR);
+    await loadDocumentPage(page);
 });
 
 test('Document page test', async ({page}) => {

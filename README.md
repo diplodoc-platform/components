@@ -80,7 +80,9 @@ We use [Playwright](https://playwright.dev/docs/intro) for testing.
 
 ### Preparation
 
-You need to add `.env` file in repository's root directory with the data below:
+By default playwright will use http://localhost:6006 as URL for storybook server.
+
+If you want to change it, you should add `.env` file in repository's root directory with the data below:
 
 ```bash
 # The URL where the storybook is running
@@ -101,6 +103,18 @@ Single test:
 npm run test test_name.spec.ts
 ```
 
+Several sets of test files from different folders:
+
+```bash
+npm run test __tests__/folder1 __tests__/folder2
+```
+
+Last failed tests:
+
+```bash
+npx playwright test --last-failed
+```
+
 These commands run storybook server before tests.
 
 If storybook server is already running, playwright will use it for tests and won't run another server.
@@ -115,7 +129,7 @@ npx playwright show-report
 
 ### Writing and updating tests
 
-All tests are in `./tests` folder.
+All tests are in `./__tests__` folder.
 
 `**.spec.ts` files contain test code.
 To write or change tests use [Playwright documentation](https://playwright.dev/docs/intro).
@@ -129,7 +143,13 @@ Open page without storybook panel in new tab by using 'Open canvas in new tab' b
 
 After running tests playwright will create folder for snapshots (if it didn't exist).
 
-`**.spec.ts-snapshots` folders contain screenshots which are used for comparison with test screenshots. If screenshot is incorrect you can delete it and after the tests playwright will replace it with new test screenshot.
+`**.spec.ts-snapshots` folders contain screenshots which are used for comparison with test screenshots.
+
+If reference screenshot is incorrect you can update it:
+
+```bash
+npm run test --update-snapshots
+```
 
 ## License
 

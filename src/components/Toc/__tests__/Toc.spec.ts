@@ -1,6 +1,6 @@
 import {expect, test} from '@playwright/test';
 
-import {loadDocumentPage} from '../utils';
+import {loadDocumentPage} from '../../utils';
 
 test.beforeEach(async ({page}) => {
     await loadDocumentPage(page);

@@ -1,9 +1,10 @@
 import {defineConfig, devices} from '@playwright/test';
 
-import {BASE_URL} from '__tests__/constants';
+import {BASE_URL} from './src/components/constants';
 
 export default defineConfig({
-    testDir: './__tests__',
+    snapshotPathTemplate:
+        '{testFilePath}/../../__screenshots__/{arg}-{projectName}-{platform}{ext}',
     fullyParallel: true,
     forbidOnly: true,
     retries: 2,

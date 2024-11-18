@@ -21,9 +21,6 @@
     "demo/**/*.tsx",
     "demo/.storybook/**/*.ts",
     "demo/.storybook/**/*.tsx",
-    "playwright.config.ts",
-    "__tests__/constants.ts",
-    "__tests__/utils.ts",
-    "__tests__/**/*.spec.ts"
+    "playwright.config.ts"
   ]
 }

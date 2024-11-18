@@ -143,7 +143,7 @@ Open page without storybook panel in new tab by using 'Open canvas in new tab' b
 
 After running tests playwright will create folder for snapshots (if it didn't exist).
 
-`**.spec.ts-snapshots` folders contain screenshots which are used for comparison with test screenshots.
+`**.__screenshots__` folders contain screenshots which are used for comparison with test screenshots.
 
 If reference screenshot is incorrect you can update it:
 

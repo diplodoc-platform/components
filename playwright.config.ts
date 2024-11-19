@@ -3,8 +3,8 @@ import {defineConfig, devices} from '@playwright/test';
 import {BASE_URL} from './src/components/constants';
 
 export default defineConfig({
-    snapshotPathTemplate:
-        '{testFilePath}/../../__screenshots__/{arg}-{projectName}-{platform}{ext}',
+    updateSnapshots: 'missing',
+    snapshotPathTemplate: '{testFilePath}/../../__screenshots__/{arg}-{projectName}{ext}',
     fullyParallel: true,
     forbidOnly: true,
     retries: 2,

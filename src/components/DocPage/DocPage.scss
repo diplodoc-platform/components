@@ -1,5 +1,7 @@
-@import '../../styles/variables';
-@import '../../styles/mixins';
+@use 'sass:color';
+@use 'sass:map';
+@use '../../styles/variables';
+@use '../../styles/mixins';
 
 $infoColor: #027bf3;
 $tipColor: #56bd67;
@@ -15,20 +17,23 @@ $importantBackgroundColor: rgba(235, 50, 38, 0.08);
     position: relative;
     width: 1440px;
 
-    @include text-size(body-2);
+    @include mixins.text-size(body-2);
 
     $block: &;
 
     &__aside {
         position: fixed;
-        top: calc(var(--dc-header-height, #{$headerHeight}) + var(--dc-subheader-height, #{$subHeaderHeight}));
+        top: calc(
+            var(--dc-header-height, #{variables.$headerHeight}) +
+                var(--dc-subheader-height, #{variables.$subHeaderHeight})
+        );
 
         padding-top: 24px;
         width: 176px;
 
-        @include text-size(body-1);
+        @include mixins.text-size(body-1);
 
-        @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
+        @media (max-width: map.get(variables.$screenBreakpoints, 'md') - 1) {
             position: absolute;
             top: 0;
             z-index: 117;
@@ -55,13 +60,15 @@ $importantBackgroundColor: rgba(235, 50, 38, 0.08);
         display: flex;
         flex-direction: column;
         min-height: calc(
-            100vh - var(--dc-header-height, #{$headerHeight}) - var(--dc-subnavigation-height)
+            100vh - var(--dc-header-height, #{variables.$headerHeight}) - var(
+                    --dc-subnavigation-height
+                )
         );
     }
 
     &__loader-wrapper {
         background: var(--g-color-base-background);
-        padding-top: calc((100vh - var(--dc-header-height, #{$headerHeight})) / 2);
+        padding-top: calc((100vh - var(--dc-header-height, #{variables.$headerHeight})) / 2);
         display: flex;
         justify-content: center;
         position: absolute;
@@ -87,20 +94,20 @@ $importantBackgroundColor: rgba(235, 50, 38, 0.08);
 
         & > .dc-controls {
             position: fixed;
-            top: calc(6px + var(--dc-header-height, #{$headerHeight}));
+            top: calc(6px + var(--dc-header-height, #{variables.$headerHeight}));
 
-            @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
+            @media (max-width: map.get(variables.$screenBreakpoints, 'md') - 1) {
                 position: static;
             }
         }
 
-        @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
+        @media (max-width: map.get(variables.$screenBreakpoints, 'md') - 1) {
             display: none;
         }
 
-        @media (min-width: map-get($screenBreakpoints, 'md')) {
+        @media (min-width: map.get(variables.$screenBreakpoints, 'md')) {
             &_vertical {
-                top: calc(6px + var(--dc-header-height, #{$headerHeight}));
+                top: calc(6px + var(--dc-header-height, #{variables.$headerHeight}));
                 justify-content: center;
                 height: auto;
                 width: 36px;
@@ -120,7 +127,7 @@ $importantBackgroundColor: rgba(235, 50, 38, 0.08);
                 --dc-code-short-line-height: 14px;
                 --dc-code-short-padding: 1px 2px;
 
-                @include text-size(body-1);
+                @include mixins.text-size(body-1);
             }
 
             &_m.yfm {
@@ -131,7 +138,7 @@ $importantBackgroundColor: rgba(235, 50, 38, 0.08);
                 --dc-code-short-line-height: 16px;
                 --dc-code-short-padding: 1px 4px;
 
-                @include text-size(body-2);
+                @include mixins.text-size(body-2);
             }
 
             &_l.yfm {
@@ -142,7 +149,7 @@ $importantBackgroundColor: rgba(235, 50, 38, 0.08);
                 --dc-code-short-line-height: 20px;
                 --dc-code-short-padding: 1px 6px;
 
-                @include text-size(body-3);
+                @include mixins.text-size(body-3);
             }
         }
     }
@@ -169,9 +176,9 @@ $importantBackgroundColor: rgba(235, 50, 38, 0.08);
 
         text-wrap: balance;
 
-        @include text-size(display-2);
+        @include mixins.text-size(display-2);
 
-        @media (min-width: map-get($screenBreakpoints, 'md')) {
+        @media (min-width: map.get(variables.$screenBreakpoints, 'md')) {
             margin-top: 0px;
             margin-bottom: 12px;
 
@@ -189,7 +196,7 @@ $importantBackgroundColor: rgba(235, 50, 38, 0.08);
         }
 
         // ShareButton in title is currently only available on mobile devices.
-        @media (min-width: map-get($screenBreakpoints, 'md')) {
+        @media (min-width: map.get(variables.$screenBreakpoints, 'md')) {
             display: none;
         }
     }
@@ -210,11 +217,11 @@ $importantBackgroundColor: rgba(235, 50, 38, 0.08);
         height: 40px;
         box-sizing: border-box;
         position: sticky;
-        top: calc(var(--dc-header-height, #{$headerHeight}) + 6px);
+        top: calc(var(--dc-header-height, #{variables.$headerHeight}) + 6px);
         z-index: 101;
         padding: 0 36px;
 
-        @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
+        @media (max-width: map.get(variables.$screenBreakpoints, 'md') - 1) {
             padding: 0 10px;
         }
     }
@@ -264,7 +271,7 @@ $importantBackgroundColor: rgba(235, 50, 38, 0.08);
         }
     }
 
-    @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
+    @media (max-width: map.get(variables.$screenBreakpoints, 'md') - 1) {
         &__main {
             padding: 0 20px;
 
@@ -407,9 +414,9 @@ $importantBackgroundColor: rgba(235, 50, 38, 0.08);
 
     @each $type, $color in $colors {
         &.#{$type} > p:first-child::before {
-            $r: red($color);
-            $g: green($color);
-            $b: blue($color);
+            $r: color.channel($color, 'red');
+            $g: color.channel($color, 'green');
+            $b: color.channel($color, 'blue');
             $rgbColor: 'rgb(' + $r + ',' + $g + ',' + $b + ')';
             content: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 16 16"%3E%3Ccircle cx="8" cy="8" r="8" fill="' + $rgbColor + '"/%3E%3Crect width="1" height="5" x="7.5" y="6.5" stroke="%23fff" rx=".5"/%3E%3Ccircle cx="8" cy="4" r="1" fill="%23fff"/%3E%3C/svg%3E');
         }

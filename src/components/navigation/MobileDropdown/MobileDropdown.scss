@@ -1,5 +1,6 @@
-@import '../../../styles/variables.scss';
-@import '../../../styles/mixins.scss';
+@use 'sass:map';
+@use '../../../styles/mixins';
+@use '../../../styles/variables';
 
 .dc-mobile-dropdown {
     display: flex;
@@ -38,7 +39,7 @@
         }
     }
 
-    @media (min-width: map-get($screenBreakpoints, 'md')) {
+    @media (min-width: map.get(variables.$screenBreakpoints, 'md')) {
         display: none;
 
         .pc-navigation-item:has(&) {

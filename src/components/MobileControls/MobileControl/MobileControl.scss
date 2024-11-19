@@ -1,4 +1,4 @@
-@import '../../../styles/mixins.scss';
+@use '../../../styles/mixins';
 
 .dc-mobile-control {
     display: flex;
@@ -28,12 +28,12 @@
 
         padding-inline-end: 10px;
 
-        @include heading6();
+        @include mixins.heading6();
     }
 
     &__select-sheet ul,
     &__select-sheet li {
-        @include reset-list-style();
+        @include mixins.reset-list-style();
     }
 
     &__arrow {

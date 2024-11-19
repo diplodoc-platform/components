@@ -1,5 +1,5 @@
-@import '../../styles/variables';
-@import '../../styles/mixins';
+@use '../../styles/variables';
+@use '../../styles/mixins';
 
 .SearchItem {
     &__link {
@@ -37,7 +37,7 @@
 
     &__item-wrapper {
         margin-bottom: 20px;
-        @include text-size(body-1);
+        @include mixins.text-size(body-1);
     }
 
     &__item {
@@ -48,7 +48,7 @@
         cursor: pointer;
         text-overflow: ellipsis;
         border-radius: var(--g-focus-border-radius);
-        @include focusable();
+        @include mixins.focusable();
 
         &-title,
         &-description {
@@ -66,8 +66,8 @@
         &-title &-search-token {
             color: var(--g-color-text-primary);
 
-            @include text-size(subheader-3);
-            @include link();
+            @include mixins.text-size(subheader-3);
+            @include mixins.link();
         }
 
         &-title:hover &-search-token {

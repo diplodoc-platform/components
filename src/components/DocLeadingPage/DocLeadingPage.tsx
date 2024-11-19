@@ -23,6 +23,7 @@ export interface DocLeadingPageProps extends DocLeadingPageData {
     hideToc?: boolean;
     tocTitleIcon?: React.ReactNode;
     useMainTag?: boolean;
+    legacyToc?: boolean;
 }
 
 export interface DocLinkProps {
@@ -113,6 +114,7 @@ export const DocLeadingPage: React.FC<DocLeadingPageProps> = ({
     tocTitleIcon,
     footer,
     useMainTag,
+    legacyToc,
 }) => {
     const modes = {
         'regular-page-width': !wideFormat,
@@ -128,6 +130,7 @@ export const DocLeadingPage: React.FC<DocLeadingPageProps> = ({
             hideToc={hideToc}
             tocTitleIcon={tocTitleIcon}
             footer={footer}
+            legacyToc={legacyToc}
         >
             <span />
             <DocLayout.Center>

@@ -23,8 +23,8 @@ import './Controls.scss';
 const b = block('dc-controls');
 
 export interface ControlsProps {
-    lang?: Lang;
-    langs?: Lang[];
+    lang?: `${Lang}` | Lang;
+    langs?: (`${Lang}` | Lang)[];
     fullScreen?: boolean;
     singlePage?: boolean;
     wideFormat?: boolean;
@@ -35,7 +35,7 @@ export interface ControlsProps {
     vcsType?: string;
     isLiked?: boolean;
     isDisliked?: boolean;
-    onChangeLang?: (lang: Lang) => void;
+    onChangeLang?: (lang: `${Lang}` | Lang) => void;
     onChangeFullScreen?: (value: boolean) => void;
     onChangeSinglePage?: (value: boolean) => void;
     onChangeWideFormat?: (value: boolean) => void;
@@ -54,7 +54,7 @@ type Defined = {
     [P in keyof ControlsProps]-?: ControlsProps[P];
 };
 
-function hasLangs(langs?: Lang[]) {
+function hasLangs(langs?: (`${Lang}` | Lang)[]) {
     return langs?.length && langs.length > 1;
 }
 

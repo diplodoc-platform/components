@@ -1,5 +1,5 @@
-@import '../../styles/variables';
-@import '../../styles/mixins';
+@use '../../styles/variables';
+@use '../../styles/mixins';
 
 $avatarsDistance: 2px;
 $avatarTextFontSize: 12px;
@@ -38,7 +38,7 @@ $avatarWrapperBigSize: 33px;
         }
 
         & > * {
-            @include contributors-text();
+            @include mixins.contributors-text();
         }
     }
 
@@ -74,7 +74,7 @@ $avatarWrapperBigSize: 33px;
             font-weight: $avatarTextFontWeight;
         }
 
-        @include focusable(1px);
+        @include mixins.focusable(1px);
     }
 
     &__displayed_avatars {

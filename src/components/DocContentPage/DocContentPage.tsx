@@ -18,6 +18,7 @@ export interface DocContentPageProps extends DocContentPageData {
     hideToc?: boolean;
     tocTitleIcon?: React.ReactNode;
     useMainTag?: boolean;
+    legacyToc?: boolean;
 }
 
 export const DocContentPage: React.FC<DocContentPageProps> = ({
@@ -32,6 +33,7 @@ export const DocContentPage: React.FC<DocContentPageProps> = ({
     footer,
     children,
     useMainTag,
+    legacyToc,
 }) => {
     const modes = {
         'regular-page-width': !wideFormat,
@@ -50,6 +52,7 @@ export const DocContentPage: React.FC<DocContentPageProps> = ({
             footer={footer}
             hideRight={true}
             wideFormat={wideFormat}
+            legacyToc={legacyToc}
         >
             <DocLayout.Center>
                 <div className={b('main')}>

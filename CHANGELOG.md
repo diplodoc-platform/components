@@ -1,5 +1,35 @@
 # История изменений
 
+## [4.18.0](https://github.com/diplodoc-platform/components/compare/v4.17.1...v4.18.0) (2024-11-19)
+
+
+### Features
+
+* add deprecated option in toc item ([#330](https://github.com/diplodoc-platform/components/issues/330)) ([fcfbf92](https://github.com/diplodoc-platform/components/commit/fcfbf929c0a35abecbacc62eb7a0f0d632489d02))
+
+## [4.17.1](https://github.com/diplodoc-platform/components/compare/v4.17.0...v4.17.1) (2024-11-12)
+
+
+### Bug Fixes
+
+* Extend Lang type by string representation ([47d7002](https://github.com/diplodoc-platform/components/commit/47d7002a878046447c12aacb3f13a8472d1b9853))
+* Fix sass deprecation warnings ([35ca677](https://github.com/diplodoc-platform/components/commit/35ca67774a577965cdba874fb2bfdba50d591b4c))
+* Update sass ([47f2164](https://github.com/diplodoc-platform/components/commit/47f2164b56bbb47bb5838abb48050f416da48e01))
+
+## [4.17.0](https://github.com/diplodoc-platform/components/compare/v4.16.0...v4.17.0) (2024-11-06)
+
+
+### Features
+
+* support legacyToc prop in DocPages ([7aa9ebb](https://github.com/diplodoc-platform/components/commit/7aa9ebb20ca224d0d0acb34e772cce4d6401b2be))
+
+## [4.16.0](https://github.com/diplodoc-platform/components/compare/v4.15.5...v4.16.0) (2024-11-06)
+
+
+### Features
+
+* **BREAKING!** enable mobile toc through legacyToc prop ([f40425d](https://github.com/diplodoc-platform/components/commit/f40425dd1d6eeaad5573013a05cb774ce74be182))
+
 ## [4.15.5](https://github.com/diplodoc-platform/components/compare/v4.15.4...v4.15.5) (2024-10-31)
 
 

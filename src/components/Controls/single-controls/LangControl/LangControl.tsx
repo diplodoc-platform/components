@@ -16,9 +16,9 @@ import './LangControl.scss';
 const b = block('dc-lang-control');
 
 interface ControlProps {
-    lang: Lang;
+    lang: `${Lang}` | Lang;
     langs?: string[];
-    onChangeLang: (lang: Lang) => void;
+    onChangeLang: (lang: `${Lang}` | Lang) => void;
 }
 
 interface ListItem {

@@ -1,9 +1,9 @@
-@import '../../styles/mixins';
+@use '../../styles/mixins';
 
 .dc-contributors {
     display: flex;
 
     &__title {
-        @include contributors-text();
+        @include mixins.contributors-text();
     }
 }

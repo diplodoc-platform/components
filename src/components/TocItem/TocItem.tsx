@@ -1,6 +1,7 @@
 import React from 'react';
 import block from 'bem-cn-lite';
 import {Button} from '@gravity-ui/uikit';
+import {Ban} from '@gravity-ui/icons';
 
 import {useTranslation} from '../../hooks';
 import {TocItem as ITocItem} from '../../models';
@@ -19,12 +20,13 @@ export interface TocItemProps extends ITocItem {
     active: boolean;
     expandable: boolean;
     expanded: boolean;
+    deprecated?: boolean;
     toggleItem: (id: string, opened: boolean) => void;
 }
 
 export const TocItem: React.FC<TocItemProps> = React.forwardRef(
     (
-        {id, name, href, active, expandable, expanded, toggleItem, labeled},
+        {id, name, href, active, expandable, expanded, toggleItem, labeled, deprecated},
         ref: React.ForwardedRef<HTMLButtonElement>,
     ) => {
         const handleClick = () => {
@@ -33,7 +35,12 @@ export const TocItem: React.FC<TocItemProps> = React.forwardRef(
 
         const {t} = useTranslation('toc-nav-panel');
 
-        const text = <span>{name}</span>;
+        const deprecatedIcon = deprecated ? <Ban /> : null;
+        const text = (
+            <span>
+                {name} {deprecatedIcon}
+            </span>
+        );
         const icon = expandable ? (
             <ToggleArrow className={b('icon')} open={expanded} thin={true} />
         ) : null;
@@ -46,6 +53,7 @@ export const TocItem: React.FC<TocItemProps> = React.forwardRef(
             clicable: Boolean(expandable || href),
             active,
             labeled,
+            deprecated,
         };
 
         const content = React.createElement(

@@ -52,6 +52,8 @@ $visibleStartPadding: 12px;
         font-size: inherit;
         font-weight: inherit;
 
+        position: relative;
+        padding: 7px 12px 7px 18px;
         box-sizing: border-box;
         word-break: break-word;
         background-color: transparent;
@@ -75,6 +77,21 @@ $visibleStartPadding: 12px;
             text-transform: uppercase;
 
             @include mixins.text-size(body-1);
+        }
+
+        &_deprecated {
+            span {
+                width: 90%;
+                display: block;
+            }
+
+            svg {
+                position: absolute;
+                top: 50%;
+                right: 6px;
+                transform: translateY(-50%);
+                opacity: 0.6;
+            }
         }
 
         &_clicable {

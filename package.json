@@ -51,7 +51,7 @@
     "deps:install": "npm ci",
     "deps:truncate": "npm prune --production",
     "typecheck": "tsc -p . --noEmit",
-    "test": "exit 0",
+    "test": "npx playwright test",
     "dev": "run-s build _dev:watch",
     "_dev:watch": "run-p _build:watch _storybook:watch",
     "build:clean": "rm -rf build",
@@ -94,6 +94,7 @@
   "devDependencies": {
     "@diplodoc/lint": "^1.1.1",
     "@diplodoc/tsconfig": "^1.0.2",
+    "@playwright/test": "^1.49.0",
     "@types/langs": "^2.0.1",
     "@types/lodash": "4.14.179",
     "@types/react": "^18.2.21",

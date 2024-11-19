@@ -20,6 +20,7 @@
     "demo/**/*.ts",
     "demo/**/*.tsx",
     "demo/.storybook/**/*.ts",
-    "demo/.storybook/**/*.tsx"
+    "demo/.storybook/**/*.tsx",
+    "playwright.config.ts"
   ]
 }

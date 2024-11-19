@@ -74,6 +74,83 @@ To start the development server with storybook run the following:
 npm run dev
 ```
 
+## Testing
+
+We use [Playwright](https://playwright.dev/docs/intro) for testing.
+
+### Preparation
+
+By default playwright will use http://localhost:6006 as URL for storybook server.
+
+If you want to change it, you should add `.env` file in repository's root directory with the data below:
+
+```bash
+# The URL where the storybook is running
+BASE_URL= # for example:'http://localhost:6006'
+```
+
+### Running tests
+
+All tests:
+
+```bash
+npm run test
+```
+
+Single test:
+
+```bash
+npm run test test_name.spec.ts
+```
+
+Several sets of test files from different folders:
+
+```bash
+npm run test __tests__/folder1 __tests__/folder2
+```
+
+Last failed tests:
+
+```bash
+npx playwright test --last-failed
+```
+
+These commands run storybook server before tests.
+
+If storybook server is already running, playwright will use it for tests and won't run another server.
+
+### Test reports
+
+To see test reports run:
+
+```bash
+npx playwright show-report
+```
+
+### Writing and updating tests
+
+All tests are in `./__tests__` folder.
+
+`**.spec.ts` files contain test code.
+To write or change tests use [Playwright documentation](https://playwright.dev/docs/intro).
+
+For screenshot testing you need write page URL in your test file. You need page **without storybook panel**.
+
+![Page with storybook panel](.github/assets/page-with-storybook-panel.png)
+Open page without storybook panel in new tab by using 'Open canvas in new tab' button and **use that URL in tests.**
+
+![Page without storybook panel](.github/assets/page-without-storybook-panel.png)
+
+After running tests playwright will create folder for snapshots (if it didn't exist).
+
+`**.__screenshots__` folders contain screenshots which are used for comparison with test screenshots.
+
+If reference screenshot is incorrect you can update it:
+
+```bash
+npm run test --update-snapshots
+```
+
 ## License
 
 MIT

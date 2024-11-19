@@ -1,5 +1,12 @@
 # История изменений
 
+## [4.18.0](https://github.com/diplodoc-platform/components/compare/v4.17.1...v4.18.0) (2024-11-19)
+
+
+### Features
+
+* add deprecated option in toc item ([#330](https://github.com/diplodoc-platform/components/issues/330)) ([fcfbf92](https://github.com/diplodoc-platform/components/commit/fcfbf929c0a35abecbacc62eb7a0f0d632489d02))
+
 ## [4.17.1](https://github.com/diplodoc-platform/components/compare/v4.17.0...v4.17.1) (2024-11-12)
 
 

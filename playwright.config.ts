@@ -5,7 +5,7 @@ import {BASE_URL} from './src/components/constants';
 export default defineConfig({
     updateSnapshots: 'missing',
     snapshotPathTemplate: '{testFilePath}/../../__screenshots__/{arg}-{projectName}{ext}',
-    fullyParallel: true,
+    fullyParallel: false,
     forbidOnly: true,
     retries: 2,
     workers: 1,

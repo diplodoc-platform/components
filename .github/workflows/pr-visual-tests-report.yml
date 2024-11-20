@@ -2,10 +2,9 @@ name: PR Visual Tests Report
 
 on:
   workflow_run:
-    workflows: [CI]
+    workflows: ['CI']
     types:
       - completed
-    branches: [master]
 
 jobs:
   comment:

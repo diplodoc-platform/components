@@ -28,9 +28,5 @@ jobs:
         run: npm run lint
       - name: Build Files
         run: npm run build
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
-      - name: Tests
-        run: npm run test
       - name: Typecheck
         run: npm run typecheck

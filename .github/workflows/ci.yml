@@ -28,7 +28,15 @@ jobs:
         run: npm run lint
       - name: Build Files
         run: npm run build
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
       - name: Tests
         run: npm run test
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 1
       - name: Typecheck
         run: npm run typecheck

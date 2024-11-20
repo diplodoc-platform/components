@@ -7,14 +7,16 @@ jobs:
   visual_tests:
     name: Visual Tests
     runs-on: ubuntu-latest
-    container:
-      image: mcr.microsoft.com/playwright:v1.47.1-jammy
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout
+        uses: actions/checkout@v2
         with:
-          node-version: 18.x
-          cache: npm
+          fetch-depth: 0
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18.x'
+          cache: 'npm'
       - name: Install Packages
         run: npm ci
       - name: Install Demo Packages
@@ -24,8 +26,8 @@ jobs:
       - name: Run Visual Tests
         run: npm run test
       - name: Upload Playwright Report
-        if: always()
         uses: actions/upload-artifact@v4
+        if: github.event.workflow_run.event == 'pull_request'
         with:
           name: playwright-report
           path: ./playwright-report
@@ -42,12 +44,6 @@ jobs:
         with:
           name: pr
           path: ./pr-id.txt
-  comment:
-    if: ${{ always() && github.event.workflow_run.event == 'pull_request'}}
-    needs: visual_tests
-    name: Create GitHub Comment
-    runs-on: ubuntu-latest
-    steps:
       - name: Download Artifacts
         uses: actions/download-artifact@v4
         with:

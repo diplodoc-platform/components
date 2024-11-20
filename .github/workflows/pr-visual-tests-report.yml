@@ -5,7 +5,7 @@ on:
     workflows: ['CI']
     types:
       - completed
-    branches: [test]
+    branches: [master]
 
 jobs:
   comment:

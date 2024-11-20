@@ -2,7 +2,7 @@ name: PR Visual Tests Report
 
 on:
   workflow_run:
-    workflows: [PR Visual Tests]
+    workflows: ['PR Visual Tests']
     types:
       - completed
 

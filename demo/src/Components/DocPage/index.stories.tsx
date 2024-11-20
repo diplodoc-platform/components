@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import {join} from 'path';
 import React, {useCallback, useEffect, useState} from 'react';
 import {
@@ -52,7 +53,6 @@ const useSettings = () => {
         textSize,
         onChangeTextSize,
         onMiniTocItemClick: (event: MouseEvent) => {
-            // eslint-disable-next-line no-console
             console.log((event.target as HTMLAnchorElement).hash);
         },
     };
@@ -124,7 +124,6 @@ const useFeedback = () => {
             setIsDisliked(false);
         }
 
-        // eslint-disable-next-line no-console
         console.log('Feedback:', data);
     }, []);
 
@@ -168,7 +167,6 @@ const useSearchResults = (searchQuery: string) => {
     }, [searchQuery]);
 
     const onNotFoundWords = useCallback(() => {
-        // eslint-disable-next-line no-console
         console.log(`Not found words for the query: ${searchQuery}`);
     }, [searchQuery]);
     const onCloseSearchBar = useCallback(() => {
@@ -188,13 +186,27 @@ const useBookmarks = () => {
     const [isPinned, setIsPinned] = useState(DEFAULT_SETTINGS.isPinned as boolean);
     const onChangeBookmarkPage = useCallback((data: boolean) => {
         setIsPinned(data);
-        // eslint-disable-next-line no-console
         console.log(`This page pinned: ${data}`);
     }, []);
 
     return {
         bookmarkedPage: isPinned,
         onChangeBookmarkPage,
+    };
+};
+
+const useNotification = () => {
+    const [showNotification, _setShowNotification] = useState(true);
+    const notificationCb = useCallback(() => {
+        console.log('Notification closed.');
+    }, []);
+
+    if (!showNotification) {
+        return false;
+    }
+    return {
+        notification: {title: 'Notification', content: 'Notification content'},
+        notificationCb,
     };
 };
 
@@ -211,6 +223,7 @@ const DocPageDemo = (
     const feedback = useFeedback();
     const subscribe = useSubscribe();
     const bookmarks = useBookmarks();
+    const notification = useNotification();
     const search = useSearchResults(args['Search'] || '');
     const pdf = usePdf(args['Pdf'] || '');
 
@@ -246,6 +259,7 @@ const DocPageDemo = (
             args['Feedback'] && feedback,
             args['Subscribe'] && subscribe,
             args['Bookmarks'] && bookmarks,
+            args['Notification'] && notification,
             args['Pdf'] && pdf,
         ].filter(Boolean),
     );
@@ -296,6 +310,9 @@ export default {
         Bookmarks: {
             control: 'boolean',
         },
+        Notification: {
+            control: 'boolean',
+        },
         VCS: {
             control: 'select',
             options: {
@@ -322,6 +339,7 @@ export const Document = {
         Feedback: true,
         Subscribe: true,
         Bookmarks: true,
+        Notification: true,
         VCS: null,
         Search: '',
         Pdf: 'https://doc.yandex-team.ru/help/diy/diy-guide.pdf',

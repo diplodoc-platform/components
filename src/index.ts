@@ -29,6 +29,7 @@ export * from './components/SearchItem';
 export * from './components/SearchPage';
 export * from './components/SearchSuggest';
 export * from './components/DocContentPage';
+export * from './components/Notification';
 
 export * from './components/navigation';
 

@@ -21,6 +21,8 @@ jobs:
         run: npm ci
       - name: Install Demo Packages
         run: cd demo && npm i
+      - name: Build Files
+        run: npm run build
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
       - name: Run Visual Tests

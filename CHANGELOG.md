@@ -1,5 +1,12 @@
 # История изменений
 
+## [4.18.1](https://github.com/diplodoc-platform/components/compare/v4.18.0...v4.18.1) (2024-11-20)
+
+
+### Bug Fixes
+
+* remove styles from TocItem ([0571a92](https://github.com/diplodoc-platform/components/commit/0571a92a701e952219726ed8ecd27db70d06f0b0))
+
 ## [4.18.0](https://github.com/diplodoc-platform/components/compare/v4.17.1...v4.18.0) (2024-11-19)
 
 

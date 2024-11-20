@@ -80,12 +80,19 @@ We use [Playwright](https://playwright.dev/docs/intro) for testing.
 
 ### Preparation
 
+Each version of Playwright needs specific versions of browser binaries to operate.
+
+```bash
+# loads binaries
+npx playwright install
+```
+
 By default playwright will use http://localhost:6006 as URL for storybook server.
 
 If you want to change it, you should add `.env` file in repository's root directory with the data below:
 
 ```bash
-# The URL where the storybook is running
+# the URL where the storybook is running
 BASE_URL= # for example:'http://localhost:6006'
 ```
 

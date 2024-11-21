@@ -35,4 +35,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.YC_UI_BOT_GITHUB_TOKEN }}
           number: ${{ steps.pr.outputs.id }}
           header: visual tests report
-          message: '[Visual Tests Report](https://storage.yandexcloud.net/diplodoc-playwright-reports/components/test-report/${{ steps.pr.outputs.id }}/index.html) is ready.'
+          message: '[Visual Tests Report](https://storage.yandexcloud.net/diplodoc-playwright-reports/components/${{ steps.pr.outputs.id }}/index.html) is ready.'

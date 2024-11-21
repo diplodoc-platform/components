@@ -10,6 +10,8 @@ jobs:
   verify_files:
     name: Verify Files
     runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.47.1-jammy
     steps:
       - name: Checkout
         uses: actions/checkout@v2

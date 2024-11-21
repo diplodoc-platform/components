@@ -15,12 +15,11 @@ $importantBackgroundColor: rgba(235, 50, 38, 0.08);
 
 .dc-note {
     position: relative;
-    max-width: 1296px;
     padding: 20px 20px 20px 64px;
     border-radius: 10px;
 
     &__wrapper {
-        padding: 20px 36px;
+        margin: 20px 36px;
     }
 
     &__xmark {
@@ -93,6 +92,6 @@ $importantBackgroundColor: rgba(235, 50, 38, 0.08);
 .pc-page-constructor__docs,
 .fullscreen-mode {
     .dc-note__wrapper {
-        padding: 20px 0px;
+        margin: 0px 0px 20px;
     }
 }

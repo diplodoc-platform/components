@@ -38,5 +38,11 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 1
+      - name: Save PR ID
+        if: always()
+        run: |
+          pr="${{ github.event.pull_request.number }}"
+          echo $pr > ./pr-id.txt
+        shell: bash
       - name: Typecheck
         run: npm run typecheck

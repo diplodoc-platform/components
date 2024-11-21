@@ -30,6 +30,12 @@ jobs:
         run: npm run build
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
+      - name: Save PR ID
+        if: always()
+        run: |
+          pr="${{ github.event.pull_request.number }}"
+          echo $pr > ./pr-id.txt
+        shell: bash
       - name: Tests
         run: npm run test
       - uses: actions/upload-artifact@v4
@@ -38,11 +44,5 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 1
-      - name: Save PR ID
-        if: always()
-        run: |
-          pr="${{ github.event.pull_request.number }}"
-          echo $pr > ./pr-id.txt
-        shell: bash
       - name: Typecheck
         run: npm run typecheck

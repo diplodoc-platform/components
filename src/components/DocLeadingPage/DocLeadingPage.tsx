@@ -8,6 +8,7 @@ import {DocLayout} from '../DocLayout';
 import {DocPageTitle} from '../DocPageTitle';
 import {HTML} from '../HTML';
 import {Text} from '../Text';
+import {Notification, NotificationProps} from '../Notification';
 
 import './DocLeadingPage.scss';
 
@@ -15,7 +16,7 @@ const b = block('dc-doc-leading-page');
 
 const {wideFormat: defaultWideFormat} = DEFAULT_SETTINGS;
 
-export interface DocLeadingPageProps extends DocLeadingPageData {
+export interface DocLeadingPageProps extends DocLeadingPageData, NotificationProps {
     router: Router;
     headerHeight?: number;
     wideFormat?: boolean;
@@ -115,6 +116,8 @@ export const DocLeadingPage: React.FC<DocLeadingPageProps> = ({
     footer,
     useMainTag,
     legacyToc,
+    notification,
+    notificationCb,
 }) => {
     const modes = {
         'regular-page-width': !wideFormat,
@@ -132,8 +135,8 @@ export const DocLeadingPage: React.FC<DocLeadingPageProps> = ({
             footer={footer}
             legacyToc={legacyToc}
         >
-            <span />
             <DocLayout.Center>
+                <Notification notification={notification} notificationCb={notificationCb} />
                 <ContentWrapper className={b('main')} useMainTag={useMainTag}>
                     <DocPageTitle stage={toc.stage} className={b('title')}>
                         <HTML>{title}</HTML>

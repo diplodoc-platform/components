@@ -12,6 +12,7 @@ export const DEFAULT_SETTINGS = {
     isLiked: false,
     isDisliked: false,
     isPinned: false,
+    notification: false,
 };
 
 export const ERROR_CODES = {

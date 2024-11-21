@@ -1,5 +1,13 @@
 # История изменений
 
+## [4.19.0](https://github.com/diplodoc-platform/components/compare/v4.18.1...v4.19.0) (2024-11-21)
+
+
+### Features
+
+* add Playwright package for screenshot testing ([#327](https://github.com/diplodoc-platform/components/issues/327)) ([61d9b97](https://github.com/diplodoc-platform/components/commit/61d9b97ca4b7643fecea24fd2fa62a226ee3032b))
+* export Notification component & support it in LeadingPage ([#335](https://github.com/diplodoc-platform/components/issues/335)) ([cfd7034](https://github.com/diplodoc-platform/components/commit/cfd70342062b86fb1163c7f88e575b253d0d337e))
+
 ## [4.18.1](https://github.com/diplodoc-platform/components/compare/v4.18.0...v4.18.1) (2024-11-20)
 
 

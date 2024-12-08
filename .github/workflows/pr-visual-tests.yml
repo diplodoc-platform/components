@@ -1,4 +1,4 @@
-name: CI
+name: PR Visual Tests
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
 jobs:
   verify_files:
     name: Verify Files
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -24,9 +24,15 @@ jobs:
         run: npm ci
       - name: Install Demo Packages
         run: cd demo && npm i
-      - name: Lint Files
-        run: npm run lint
       - name: Build Files
         run: npm run build
-      - name: Typecheck
-        run: npm run typecheck
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+      - name: Tests
+        run: npm run test
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 1

@@ -10,7 +10,9 @@ const FeedbackDemo = (args: Args) => {
     const isLiked = args['isLiked'];
     const isDisliked = args['isDisliked'];
 
-    return <Component isLiked={isLiked} isDisliked={isDisliked} />;
+    const onSendFeedback = () => {};
+
+    return <Component isLiked={isLiked} isDisliked={isDisliked} onSendFeedback={onSendFeedback} />;
 };
 
 export default {

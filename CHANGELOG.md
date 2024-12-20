@@ -1,5 +1,13 @@
 # История изменений
 
+## [4.20.0](https://github.com/diplodoc-platform/components/compare/v4.19.0...v4.20.0) (2024-12-20)
+
+
+### Features
+
+* add onEditClick in Controls ([d306c50](https://github.com/diplodoc-platform/components/commit/d306c501d9d62a3f6d7887d7501c79657f485d42))
+* add storybook implementation for feedback component ([d5e3578](https://github.com/diplodoc-platform/components/commit/d5e3578378f860964d2958f9566908a3868c3895)), closes [#345](https://github.com/diplodoc-platform/components/issues/345)
+
 ## [4.19.0](https://github.com/diplodoc-platform/components/compare/v4.18.1...v4.19.0) (2024-11-21)
 
 

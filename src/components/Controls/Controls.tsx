@@ -44,6 +44,7 @@ export interface ControlsProps {
     onChangeTextSize?: (textSize: TextSizes) => void;
     onSendFeedback?: (data: FeedbackSendData) => void;
     onSubscribe?: (data: SubscribeData) => void;
+    onEditClick?: () => void;
     pdfLink?: string;
     className?: string;
     hideEditControl?: boolean;
@@ -79,6 +80,7 @@ const Controls = memo<ControlsProps>((props) => {
         onChangeSinglePage,
         onSendFeedback,
         onSubscribe,
+        onEditClick,
         lang,
         langs,
         pdfLink,
@@ -142,6 +144,7 @@ const Controls = memo<ControlsProps>((props) => {
                 key="edit-control"
                 vcsUrl={vcsUrl as Defined['vcsUrl']}
                 vcsType={vcsType as Defined['vcsType']}
+                onClick={onEditClick}
             />
         ),
         '---',

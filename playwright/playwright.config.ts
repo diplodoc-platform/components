@@ -1,10 +1,18 @@
+import {resolve} from 'path';
 import {defineConfig, devices} from '@playwright/test';
 
-import {BASE_URL} from './src/components/constants';
+import {BASE_URL} from '../src/components/constants';
+
+function pathFromRoot(p: string) {
+    // replace for Windows users
+    return resolve(__dirname, '../', p).replace(/\\/g, '/');
+}
 
 export default defineConfig({
+    testDir: pathFromRoot('src/components'),
     updateSnapshots: 'missing',
-    snapshotPathTemplate: '{testFilePath}/../../__screenshots__/{arg}-{projectName}{ext}',
+    snapshotPathTemplate:
+        '{testDir}/{testFilePath}/../../__screenshots__/{arg}-{projectName}-{platform}{ext}',
     fullyParallel: false,
     forbidOnly: true,
     retries: 2,
@@ -12,7 +20,7 @@ export default defineConfig({
     reporter: 'html',
     webServer: {
         reuseExistingServer: true,
-        command: 'npm run _storybook:watch',
+        command: 'BROWSER=true npm run dev',
         url: BASE_URL,
         timeout: 120 * 1000,
     },

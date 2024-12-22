@@ -25,6 +25,8 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
       - name: Run Visual Tests
+        env:
+          HOME: /root
         run: npm run test
       - name: Upload Playwright Report
         if: always()

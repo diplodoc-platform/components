@@ -1,6 +1,6 @@
 import React from 'react';
 import {Helmet} from 'react-helmet';
-import {compose} from 'recompose';
+import {compose} from 'react-recompose';
 
 import {sanitizeHtml} from '../../utils/sanitize';
 import withRouter, {WithRouterProps} from '../../hoc/withRouter';

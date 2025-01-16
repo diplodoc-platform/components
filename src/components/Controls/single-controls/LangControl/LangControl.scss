@@ -11,7 +11,7 @@
         @include mixins.text-size(body-1);
     }
 
-    &__popup-tooltip {
+    div &__popup-tooltip {
         padding: 0;
     }
 

@@ -228,3 +228,5 @@ export interface ISearchResult {
     description?: string;
     breadcrumbs?: BreadcrumbItem[];
 }
+
+export type Query = Record<string, number | string | null>;

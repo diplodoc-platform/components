@@ -1,6 +1,5 @@
 import React from 'react';
 import hoistNonReactStatics from 'hoist-non-react-statics';
-
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function <P extends Record<string, any>>(
     prop: string,

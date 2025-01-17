@@ -1,5 +1,19 @@
 # История изменений
 
+## [4.21.0](https://github.com/diplodoc-platform/components/compare/v4.20.0...v4.21.0) (2025-01-17)
+
+
+### Features
+
+* add scripts for testing in docker container ([#352](https://github.com/diplodoc-platform/components/issues/352)) ([1a0671f](https://github.com/diplodoc-platform/components/commit/1a0671f1627e125a20035cbbb9c6bb9dbd56946c))
+
+
+### Bug Fixes
+
+* change command for playwright testing ([#357](https://github.com/diplodoc-platform/components/issues/357)) ([a40abb0](https://github.com/diplodoc-platform/components/commit/a40abb092212f001dc92cb5a65673e442aa2e8d0))
+* hide main menu and controls when empty ([#359](https://github.com/diplodoc-platform/components/issues/359)) ([ff1e302](https://github.com/diplodoc-platform/components/commit/ff1e302c54eb59ba3eda822a083a1ac92a42f756))
+* langControl padding ([#353](https://github.com/diplodoc-platform/components/issues/353)) ([b36723e](https://github.com/diplodoc-platform/components/commit/b36723ea38e8d3897641309bc7ad2638d0460480))
+
 ## [4.20.0](https://github.com/diplodoc-platform/components/compare/v4.19.0...v4.20.0) (2024-12-20)
 
 

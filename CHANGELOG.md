@@ -1,5 +1,12 @@
 # История изменений
 
+## [4.21.1](https://github.com/diplodoc-platform/components/compare/v4.21.0...v4.21.1) (2025-01-17)
+
+
+### Bug Fixes
+
+* style mobile control for single element ([020b219](https://github.com/diplodoc-platform/components/commit/020b219709930c0b6b5458797889dbe26200c672))
+
 ## [4.21.0](https://github.com/diplodoc-platform/components/compare/v4.20.0...v4.21.0) (2025-01-17)
 
 

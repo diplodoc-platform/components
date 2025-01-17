@@ -27,7 +27,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.S3_ACCESS_KEY }}
           AWS_DEFAULT_REGION: ru-central1
           AWS_EC2_METADATA_DISABLED: true
-        run: aws s3 cp playwright-report s3://diplodoc-playwright-reports/components/test-report/${{ steps.pr.outputs.id}}/ --endpoint-url=https://storage.yandexcloud.net  --recursive
+        run: aws s3 cp playwright-report s3://diplodoc-playwright-reports/components/${{ steps.pr.outputs.id}}/ --endpoint-url=https://storage.yandexcloud.net  --recursive
         shell: bash
       - name: Create Comment
         uses: marocchino/sticky-pull-request-comment@v2

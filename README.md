@@ -101,19 +101,19 @@ BASE_URL= # for example:'http://localhost:6006'
 All tests:
 
 ```bash
-npm run playwright:docker npm run test
+npm run playwright:docker npm run test:playwright
 ```
 
 Single test:
 
 ```bash
-npm run playwright:docker npm run test test_name.spec.ts
+npm run playwright:docker npm run test:playwright test_name.spec.ts
 ```
 
 Several sets of test files from different folders:
 
 ```bash
-npm run playwright:docker npm run test __tests__/folder1 __tests__/folder2
+npm run playwright:docker npm run test:playwright __tests__/folder1 __tests__/folder2
 ```
 
 These commands run storybook server before tests.
@@ -124,7 +124,7 @@ If storybook server is already running, playwright will use it for tests and won
 
 ```bash
 # add ':windows'
-npm run playwright:docker:windows npm run test
+npm run playwright:docker:windows npm run test:playwright
 ```
 
 ### Test reports
@@ -156,7 +156,7 @@ After running tests playwright will create folder for snapshots (if it didn't ex
 If reference screenshot is incorrect you can update it:
 
 ```bash
-npm run playwright:docker npm run test --update-snapshots
+npm run playwright:docker npm run test:playwright --update-snapshots
 ```
 
 ## License

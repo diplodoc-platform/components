@@ -55,12 +55,14 @@ export const SidebarContent: React.FC<SidebarContentProps & PropsWithChildren> =
         navigationTocData.toc.items.length > 0 &&
         mainMenuIsClosed && (
             <React.Fragment>
-                <div className={b('to-main-menu')}>
-                    <ToMainMenu
-                        mainMenuIsOpen={mainMenuIsOpened}
-                        openMainMenu={mainMenuOpenessData.openMainMenu}
-                    />
-                </div>
+                {pcNavigationData && Boolean(pcNavigationData?.leftItemsWithIconSize?.length) && (
+                    <div className={b('to-main-menu')}>
+                        <ToMainMenu
+                            mainMenuIsOpen={mainMenuIsOpened}
+                            openMainMenu={mainMenuOpenessData.openMainMenu}
+                        />
+                    </div>
+                )}
                 <div className={b('toc')}>
                     <Toc
                         {...navigationTocData.toc}

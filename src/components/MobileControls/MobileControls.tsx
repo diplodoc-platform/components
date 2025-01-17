@@ -120,8 +120,8 @@ const MobileControls = memo(({controlSize, userSettings}: MobileControlsProps) =
     return (
         <div className={b()}>
             <ControlsLayout controlClassName={b('control')} controlSize={controlSize}>
-                {themeControl}
-                {langControl}
+                {onChangeTheme && themeControl}
+                {onChangeLang && langControl}
             </ControlsLayout>
         </div>
     );

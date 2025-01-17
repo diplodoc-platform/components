@@ -5,7 +5,7 @@ COPY package*.json ./
 RUN npm ci
 COPY . .
 RUN cd demo && \
-    npm i && \
+    npm ci && \
     cd .. && \
     npx playwright install && \
     npm run build

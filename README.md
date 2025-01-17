@@ -96,35 +96,36 @@ If you want to change it, you should add `.env` file in repository's root direct
 BASE_URL= # for example:'http://localhost:6006'
 ```
 
-### Running tests
+### Running tests on MacOS and Linux
 
 All tests:
 
 ```bash
-npm run test
+npm run playwright:docker npm run test
 ```
 
 Single test:
 
 ```bash
-npm run test test_name.spec.ts
+npm run playwright:docker npm run test test_name.spec.ts
 ```
 
 Several sets of test files from different folders:
 
 ```bash
-npm run test __tests__/folder1 __tests__/folder2
-```
-
-Last failed tests:
-
-```bash
-npx playwright test --last-failed
+npm run playwright:docker npm run test __tests__/folder1 __tests__/folder2
 ```
 
 These commands run storybook server before tests.
 
 If storybook server is already running, playwright will use it for tests and won't run another server.
+
+### Running tests on Windows
+
+```bash
+# add ':windows'
+npm run playwright:docker:windows npm run test
+```
 
 ### Test reports
 
@@ -155,7 +156,7 @@ After running tests playwright will create folder for snapshots (if it didn't ex
 If reference screenshot is incorrect you can update it:
 
 ```bash
-npm run test --update-snapshots
+npm run playwright:docker npm run test --update-snapshots
 ```
 
 ## License

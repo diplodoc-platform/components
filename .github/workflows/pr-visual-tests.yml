@@ -27,7 +27,7 @@ jobs:
       - name: Run Visual Tests
         env:
           HOME: /root
-        run: npm run test
+        run: npm run test:playwright
       - name: Upload Playwright Report
         if: always()
         uses: actions/upload-artifact@v4

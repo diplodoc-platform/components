@@ -1,5 +1,12 @@
 # История изменений
 
+## [4.22.0](https://github.com/diplodoc-platform/components/compare/v4.21.1...v4.22.0) (2025-01-21)
+
+
+### Features
+
+* Add DocMeta component ([#361](https://github.com/diplodoc-platform/components/issues/361)) ([fc99858](https://github.com/diplodoc-platform/components/commit/fc998581f5c26381cb972e0b80974386d8fcf95d))
+
 ## [4.21.1](https://github.com/diplodoc-platform/components/compare/v4.21.0...v4.21.1) (2025-01-17)
 
 

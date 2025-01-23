@@ -17,79 +17,77 @@ export interface SocialSharingMetaProps {
     children?: React.ReactNode;
 }
 
-export class SocialSharingMeta extends React.Component<SocialSharingMetaProps> {
-    render() {
-        const {
-            url,
-            title,
-            description,
-            image,
-            imageWidth,
-            imageHeight,
-            type,
-            locale,
-            extra,
-            children,
-            withoutHelmet,
-        } = this.props;
-        let meta = [
-            this.renderSchemaOrgTag('name', title),
-            this.renderSchemaOrgTag('description', description),
-            this.renderSchemaOrgTag('image', image),
-
-            this.renderOpenGraphTag('type', type),
-            this.renderOpenGraphTag('url', url),
-            this.renderOpenGraphTag('title', title),
-            this.renderOpenGraphTag('description', description),
-            this.renderOpenGraphTag('image', image),
-            this.renderOpenGraphTag('image:width', imageWidth),
-            this.renderOpenGraphTag('image:height', imageHeight),
-            this.renderOpenGraphTag('locale', locale),
-
-            title && this.renderTwitterTag('card', 'summary_large_image'),
-            this.renderTwitterTag('title', title),
-            this.renderTwitterTag('description', description),
-            this.renderTwitterTag('image', image),
-        ].filter(Boolean);
-
-        if (extra) {
-            meta = meta.concat(extra.map(this.renderExtraMeta));
-        }
-
-        return withoutHelmet ? (
-            <Fragment>
-                {meta}
-                {children}
-            </Fragment>
-        ) : (
-            <Helmet>
-                {meta}
-                {children}
-            </Helmet>
-        );
-    }
-
-    private renderSchemaOrgTag(name: string, value?: string | number) {
+export const SocialSharingMeta: React.FC<SocialSharingMetaProps> = (props) => {
+    const renderSchemaOrgTag = (name: string, value?: string | number) => {
         return value && <meta key={`${name}-${value}`} itemProp={name} content={String(value)} />;
-    }
+    };
 
-    private renderOpenGraphTag(name: string, value?: string | number) {
+    const renderOpenGraphTag = (name: string, value?: string | number) => {
         return (
             value && (
                 <meta key={`${name}-${value}`} property={`og:${name}`} content={String(value)} />
             )
         );
-    }
+    };
 
-    private renderTwitterTag(name: string, value?: string | number) {
+    const renderTwitterTag = (name: string, value?: string | number) => {
         return (
             value && (
                 <meta key={`${name}-${value}`} name={`twitter:${name}`} content={String(value)} />
             )
         );
+    };
+
+    const renderExtraMeta = (props: MetaProps, index: number) => {
+        return React.createElement('meta', {...props, key: `extra-${index}`});
+    };
+
+    const {
+        url,
+        title,
+        description,
+        image,
+        imageWidth,
+        imageHeight,
+        type,
+        locale,
+        extra,
+        children,
+        withoutHelmet,
+    } = props;
+    let meta = [
+        renderSchemaOrgTag('name', title),
+        renderSchemaOrgTag('description', description),
+        renderSchemaOrgTag('image', image),
+
+        renderOpenGraphTag('type', type),
+        renderOpenGraphTag('url', url),
+        renderOpenGraphTag('title', title),
+        renderOpenGraphTag('description', description),
+        renderOpenGraphTag('image', image),
+        renderOpenGraphTag('image:width', imageWidth),
+        renderOpenGraphTag('image:height', imageHeight),
+        renderOpenGraphTag('locale', locale),
+
+        title && renderTwitterTag('card', 'summary_large_image'),
+        renderTwitterTag('title', title),
+        renderTwitterTag('description', description),
+        renderTwitterTag('image', image),
+    ].filter(Boolean);
+
+    if (extra) {
+        meta = meta.concat(extra.map(renderExtraMeta));
     }
 
-    private renderExtraMeta(props: MetaProps, index: number) {
-        return React.createElement('meta', {...props, key: `extra-${index}`});
-    }
-}
+    return withoutHelmet ? (
+        <Fragment>
+            {meta}
+            {children}
+        </Fragment>
+    ) : (
+        <Helmet>
+            {meta}
+            {children}
+        </Helmet>
+    );
+};

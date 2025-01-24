@@ -1,5 +1,12 @@
 # История изменений
 
+## [4.23.0](https://github.com/diplodoc-platform/components/compare/v4.22.0...v4.23.0) (2025-01-24)
+
+
+### Features
+
+* add SocialSharingMeta component ([#363](https://github.com/diplodoc-platform/components/issues/363)) ([6fca7bd](https://github.com/diplodoc-platform/components/commit/6fca7bd2e69b9918da77c32fc35eda246029f0fc))
+
 ## [4.22.0](https://github.com/diplodoc-platform/components/compare/v4.21.1...v4.22.0) (2025-01-21)
 
 

@@ -31,66 +31,9 @@ export interface MetaComponentProps extends DocMetaProps {
 
 type MetaComponentInnerProps = MetaComponentProps & WithRouterProps & WithLangProps;
 
-class Meta extends React.PureComponent<MetaComponentInnerProps> {
-    static defaultProps = {
-        type: 'website',
-    };
-
-    render() {
-        const {
-            extra,
-            router,
-            description,
-            sharing = {},
-            keywords,
-            noIndex,
-            canonical,
-            alternate,
-            ...documentMetaProps
-        } = this.props;
-
-        const {
-            type,
-            url,
-            locale,
-            image,
-            title,
-            description: ogDescription,
-        } = this.overrideOpenGraphgTags();
-
-        const sharingTitle = sanitizeHtml(title);
-        const sharingDescription = sanitizeHtml(ogDescription || sharing.description);
-        const metaDescription = sanitizeHtml(description);
-        const metaKeywords = Array.isArray(keywords) ? keywords.join(',') : keywords;
-        const fullUrl = typeof window === 'undefined' ? router.pathname : window.location.href;
-
-        return (
-            <React.Fragment>
-                <DocMeta {...documentMetaProps} />
-                <SocialSharingMeta
-                    type={type}
-                    url={url || fullUrl}
-                    locale={locale}
-                    title={sharingTitle}
-                    description={sharingDescription}
-                    image={image}
-                    extra={extra}
-                >
-                    {noIndex && <meta name="robots" content="noindex, nofollow" />}
-                    {canonical && <link rel="canonical" href={canonical} />}
-                    {alternate &&
-                        Object.keys(alternate).map((key) => (
-                            <link key={key} rel="alternate" hrefLang={key} href={alternate[key]} />
-                        ))}
-                    {description && <meta name="description" content={metaDescription} />}
-                    {keywords && <meta name="keywords" content={metaKeywords} />}
-                </SocialSharingMeta>
-            </React.Fragment>
-        );
-    }
-
-    overrideOpenGraphgTags() {
-        const {metadata = [], ...result} = this.props;
+const Meta: React.FC<MetaComponentInnerProps> = (props) => {
+    const overrideOpenGraphgTags = () => {
+        const {metadata = [], ...result} = props;
 
         for (const meta of metadata) {
             const {property, content} = meta;
@@ -101,7 +44,51 @@ class Meta extends React.PureComponent<MetaComponentInnerProps> {
         }
 
         return result;
-    }
-}
+    };
+
+    const {
+        extra,
+        router,
+        description,
+        sharing = {},
+        keywords,
+        noIndex,
+        canonical,
+        alternate,
+        ...documentMetaProps
+    } = props;
+
+    const {type, url, locale, image, title, description: ogDescription} = overrideOpenGraphgTags();
+
+    const sharingTitle = sanitizeHtml(title);
+    const sharingDescription = sanitizeHtml(ogDescription || sharing.description);
+    const metaDescription = sanitizeHtml(description);
+    const metaKeywords = Array.isArray(keywords) ? keywords.join(',') : keywords;
+    const fullUrl = typeof window === 'undefined' ? router.pathname : window.location.href;
+
+    return (
+        <React.Fragment>
+            <DocMeta {...documentMetaProps} />
+            <SocialSharingMeta
+                type={type}
+                url={url || fullUrl}
+                locale={locale}
+                title={sharingTitle}
+                description={sharingDescription}
+                image={image}
+                extra={extra}
+            >
+                {noIndex && <meta name="robots" content="noindex, nofollow" />}
+                {canonical && <link rel="canonical" href={canonical} />}
+                {alternate &&
+                    Object.keys(alternate).map((key) => (
+                        <link key={key} rel="alternate" hrefLang={key} href={alternate[key]} />
+                    ))}
+                {description && <meta name="description" content={metaDescription} />}
+                {keywords && <meta name="keywords" content={metaKeywords} />}
+            </SocialSharingMeta>
+        </React.Fragment>
+    );
+};
 
 export default compose<MetaComponentInnerProps, MetaComponentProps>(withRouter, withLang)(Meta);

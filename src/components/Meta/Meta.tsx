@@ -48,7 +48,6 @@ const Meta: React.FC<MetaComponentInnerProps> = (props) => {
         for (const meta of metadata) {
             const {property, content} = meta;
             if (property?.startsWith('og')) {
-                // @ts-ignore
                 result[property.slice(3, property.length)] = content;
             }
         }

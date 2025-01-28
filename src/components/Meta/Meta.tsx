@@ -31,9 +31,19 @@ export interface MetaComponentProps extends DocMetaProps {
 
 type MetaComponentInnerProps = MetaComponentProps & WithRouterProps & WithLangProps;
 
+type PickByType<T, K> = {
+    [P in keyof T as T[P] extends K | undefined ? P : never]: T[P];
+};
+
+interface OpenGraphTags {
+    [key: string]: string | undefined;
+}
+
 const Meta: React.FC<MetaComponentInnerProps> = (props) => {
-    const overrideOpenGraphgTags = () => {
-        const {metadata = [], ...result} = props;
+    const overrideOpenGraphgTags = (): OpenGraphTags => {
+        const {metadata = [], ...rest} = props;
+
+        const result: OpenGraphTags = rest as PickByType<typeof rest, string>;
 
         for (const meta of metadata) {
             const {property, content} = meta;
@@ -58,7 +68,14 @@ const Meta: React.FC<MetaComponentInnerProps> = (props) => {
         ...documentMetaProps
     } = props;
 
-    const {type, url, locale, image, title, description: ogDescription} = overrideOpenGraphgTags();
+    const {
+        type,
+        url,
+        locale,
+        image,
+        title,
+        description: ogDescription,
+    }: OpenGraphTags = overrideOpenGraphgTags();
 
     const sharingTitle = sanitizeHtml(title);
     const sharingDescription = sanitizeHtml(ogDescription || sharing.description);

@@ -16,6 +16,7 @@ export interface TocNavPanelProps extends TocData {
     router: Router;
     fixed?: boolean;
     className?: string;
+    onClick?(at: 'prev' | 'next'): void;
 }
 
 interface FlatTocItem {
@@ -51,7 +52,13 @@ function getBoundingItems(flatToc: FlatTocItem[], router: Router) {
     };
 }
 
-const TocNavControl = memo<{isNext?: boolean; item: FlatTocItem | null}>(({item, isNext}) => {
+type TocNavControlProps = {
+    isNext?: boolean;
+    item: FlatTocItem | null;
+    onClick?(): void;
+};
+
+const TocNavControl = memo<TocNavControlProps>(({item, isNext, onClick}) => {
     const {t} = useTranslation('toc-nav-panel');
     const keyHint = isNext ? 'hint_next' : 'hint_previous';
     const isExternal = item && isExternalHref(item.href);
@@ -66,7 +73,7 @@ const TocNavControl = memo<{isNext?: boolean; item: FlatTocItem | null}>(({item,
             {item && (
                 <React.Fragment>
                     <div className={b('control-hint')}>{t<string>(keyHint)}</div>
-                    <div className={b('control-text')}>
+                    <div className={b('control-text')} onClick={onClick}>
                         <a {...linkAttributes} className={b('link')} data-router-shallow>
                             {!isNext && <ArrowLeft width={ARROW_SIZE} height={ARROW_SIZE} />}
                             <div className={b('control-name')}>{item.name}</div>
@@ -81,12 +88,14 @@ const TocNavControl = memo<{isNext?: boolean; item: FlatTocItem | null}>(({item,
 
 TocNavControl.displayName = 'TocNavControl';
 
-const TocNavPanel = memo<TocNavPanelProps>(({items, router, fixed, className}) => {
+const TocNavPanel = memo<TocNavPanelProps>(({items, router, fixed, className, onClick}) => {
     const flatToc = useMemo(() => getFlatToc(items), [items]);
     const {prevItem, nextItem} = useMemo(
         () => getBoundingItems(flatToc, router),
         [flatToc, router],
     );
+
+    const handleClickFactory = (at: 'prev' | 'next') => () => onClick?.(at);
 
     if (!flatToc.length) {
         return null;
@@ -95,8 +104,14 @@ const TocNavPanel = memo<TocNavPanelProps>(({items, router, fixed, className}) =
     return (
         <div className={b({fixed}, className)}>
             <div className={b('content')}>
-                {<TocNavControl item={prevItem} />}
-                {<TocNavControl item={nextItem} isNext={true} />}
+                {<TocNavControl item={prevItem} onClick={handleClickFactory('prev')} />}
+                {
+                    <TocNavControl
+                        item={nextItem}
+                        isNext={true}
+                        onClick={handleClickFactory('next')}
+                    />
+                }
             </div>
         </div>
     );

@@ -51,6 +51,7 @@ export interface DocPageProps extends DocPageData, DocSettings, NotificationProp
     onClickPrevSearch?: () => void;
     onClickNextSearch?: () => void;
     onCloseSearchBar?: () => void;
+    onTocNavPanelClick?: (at: 'prev' | 'next') => void;
     searchCurrentIndex?: number;
     searchCountResults?: number;
 
@@ -561,7 +562,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
     }
 
     private renderTocNavPanel() {
-        const {toc, singlePage, router, fullScreen} = this.props;
+        const {toc, singlePage, router, fullScreen, onTocNavPanelClick} = this.props;
 
         if (!toc || singlePage) {
             return null;
@@ -570,6 +571,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
         return (
             <TocNavPanel
                 {...toc}
+                onClick={onTocNavPanelClick}
                 router={router}
                 fixed={fullScreen}
                 className={b('toc-nav-panel')}

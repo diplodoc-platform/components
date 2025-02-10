@@ -1,5 +1,19 @@
 # История изменений
 
+## [4.23.0](https://github.com/diplodoc-platform/components/compare/v4.22.0...v4.23.0) (2025-02-10)
+
+
+### Features
+
+* Add Meta component ([#365](https://github.com/diplodoc-platform/components/issues/365)) ([4e91ec1](https://github.com/diplodoc-platform/components/commit/4e91ec1760837e34f50c6193c3884e2ad396ce31))
+* add onClick in TocNavPanel component ([bc6c5db](https://github.com/diplodoc-platform/components/commit/bc6c5db9db4b00ca1b0aa24d53bceef476452b41))
+* add SocialSharingMeta component ([#363](https://github.com/diplodoc-platform/components/issues/363)) ([6fca7bd](https://github.com/diplodoc-platform/components/commit/6fca7bd2e69b9918da77c32fc35eda246029f0fc))
+
+
+### Bug Fixes
+
+* change bg-image for accordion in dark theme ([322bc75](https://github.com/diplodoc-platform/components/commit/322bc750339b86cd5ffdbc86ec143584f0dfc125))
+
 ## [4.22.0](https://github.com/diplodoc-platform/components/compare/v4.21.1...v4.22.0) (2025-01-21)
 
 

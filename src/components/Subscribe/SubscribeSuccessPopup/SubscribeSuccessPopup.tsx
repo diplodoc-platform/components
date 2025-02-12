@@ -26,8 +26,8 @@ const SubscribeSuccessPopup = memo<{
             contentClassName={b('success-popup', {view})}
             placement={getSubscribePopupPosition(isVerticalView, view, direction)}
         >
-            <h3 className={b('popup-title')}>{t<string>('verify-title')}</h3>
-            <p className={b('popup-text')}>{t<string>('verify-text')}</p>
+            <h3 className={b('popup-title')}>{t('verify-title')}</h3>
+            <p className={b('popup-text')}>{t('verify-text')}</p>
         </Popup>
     );
 });

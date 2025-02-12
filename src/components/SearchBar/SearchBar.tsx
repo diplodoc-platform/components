@@ -33,7 +33,7 @@ const SearchBar = memo<SearchBarProps>((props) => {
         onCloseSearchBar = noop,
     } = props;
 
-    const hotkeysOptions = {filterPreventDefault: true};
+    const hotkeysOptions = {enabled: true, preventDefault: true};
     const hotkeysPrev = '⇧+enter';
     const hotkeysNext = 'enter';
     useHotkeys(hotkeysPrev, onClickPrevSearch, hotkeysOptions, [onClickPrevSearch]);
@@ -57,9 +57,7 @@ const SearchBar = memo<SearchBarProps>((props) => {
                         icon={(args) => <ChevronLeft className={b('next-arrow')} {...args} />}
                     />
                 </div>
-                <span className={b('search-query-label')}>
-                    {t<string>('search-query-label')}:&nbsp;
-                </span>
+                <span className={b('search-query-label')}>{t('search-query-label')}:&nbsp;</span>
                 <span className={b('search-query')}>{searchQuery}</span>
             </div>
             <div className={b('right')}>

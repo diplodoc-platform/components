@@ -1,5 +1,4 @@
-import type {TFunction} from 'react-i18next';
-import type {ISearchProvider, ISearchResult} from '../../models';
+import type {ISearchProvider, ISearchResult, TFunction} from '../../models';
 import type {SearchGroup, SearchSuggestItem} from './types';
 
 import {useCallback, useMemo, useRef, useState} from 'react';
@@ -107,10 +106,7 @@ function format(query: string, items: ISearchResult[], link: Link, t: TFunction)
 
                   result.push({
                       type: SuggestItemType.Group,
-                      title: t<string>(
-                          `search-item_type-${group.type}`,
-                          t<string>('search-item_type-main'),
-                      ),
+                      title: t(`search-item_type-${group.type}`, t('search-item_type-main')),
                       disabled: true,
                   });
 

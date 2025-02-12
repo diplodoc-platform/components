@@ -98,7 +98,7 @@ const SubscribeVariantsPopup = memo<{
                 </div>
                 <div className={b('variants-actions')}>
                     <Button view="action" className={b('variants-action')} type={'submit'}>
-                        {t<string>('subscribe-text')}
+                        {t('subscribe-text')}
                     </Button>
                 </div>
             </form>

@@ -72,7 +72,7 @@ const TocNavControl = memo<TocNavControlProps>(({item, isNext, onClick}) => {
         <div className={b('control', {left: !isNext, right: isNext})}>
             {item && (
                 <React.Fragment>
-                    <div className={b('control-hint')}>{t<string>(keyHint)}</div>
+                    <div className={b('control-hint')}>{t(keyHint)}</div>
                     <div className={b('control-text')} onClick={onClick}>
                         <a {...linkAttributes} className={b('link')} data-router-shallow>
                             {!isNext && <ArrowLeft width={ARROW_SIZE} height={ARROW_SIZE} />}

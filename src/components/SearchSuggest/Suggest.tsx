@@ -27,11 +27,7 @@ SuggestLoader.displayName = 'SuggestLoader';
 const SuggestEmpty = memo<{query: string}>(({query}) => {
     const {t} = useTranslation('search-suggest');
 
-    return (
-        <div className={b('list', {empty: true})}>
-            {t<string>('search-suggest_not-found', {query})}
-        </div>
-    );
+    return <div className={b('list', {empty: true})}>{t('search-suggest_not-found', {query})}</div>;
 });
 
 SuggestEmpty.displayName = 'SuggestEmpty';

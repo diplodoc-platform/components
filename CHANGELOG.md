@@ -1,5 +1,12 @@
 # История изменений
 
+## [4.23.1](https://github.com/diplodoc-platform/components/compare/v4.23.0...v4.23.1) (2025-02-12)
+
+
+### Dependency update
+
+* Update react-like deps ([65cd948](https://github.com/diplodoc-platform/components/commit/65cd9486db93ebc1067f56b0a3bccc11e12ee128))
+
 ## [4.23.0](https://github.com/diplodoc-platform/components/compare/v4.22.0...v4.23.0) (2025-02-10)
 
 

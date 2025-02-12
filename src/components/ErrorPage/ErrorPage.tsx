@@ -28,7 +28,7 @@ const ErrorPage: React.FC<ErrorPageProps> = ({
     const href = homeUrl || '/';
     const homeLink = (
         <Link href={href}>
-            <Button className={b('description-link')}>{t<string>('label_link-main')}</Button>
+            <Button className={b('description-link')}>{t('label_link-main')}</Button>
         </Link>
     );
 
@@ -41,7 +41,7 @@ const ErrorPage: React.FC<ErrorPageProps> = ({
                     {receiveAccessUrl && (
                         <Link href={receiveAccessUrl} target="_blank" rel="noopener noreferrer">
                             <Button view="action" className={b('description-link')}>
-                                {t<string>('label_link-access')}
+                                {t('label_link-access')}
                             </Button>
                         </Link>
                     )}
@@ -56,12 +56,12 @@ const ErrorPage: React.FC<ErrorPageProps> = ({
             title = t('label_title-500');
             description = (
                 <React.Fragment>
-                    {t<string>('label_description-1')}
+                    {t('label_description-1')}
                     <Button
                         className={b('description-link')}
                         onClick={() => window.location.reload()}
                     >
-                        {t<string>('label_description-link')}
+                        {t('label_description-link')}
                     </Button>
                 </React.Fragment>
             );
@@ -73,7 +73,7 @@ const ErrorPage: React.FC<ErrorPageProps> = ({
                 title={`Error image for ${code} code`}
                 className={b('image', {code: code.toString()})}
             />
-            <h1 className={b('code')}>{t<string>('label_title-code', {code})}</h1>
+            <h1 className={b('code')}>{t('label_title-code', {code})}</h1>
             <h2 className={b('title')}>{title}</h2>
             <p className={b('description')}>{description}</p>
         </div>

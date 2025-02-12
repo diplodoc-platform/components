@@ -2,19 +2,24 @@ import React, {memo, useMemo} from 'react';
 import {Globe, Sun} from '@gravity-ui/icons';
 import block from 'bem-cn-lite';
 import allLangs from 'langs';
-import {KeyPrefix, Namespace, TFunction} from 'react-i18next';
 
 import {DEFAULT_LANGS, LEGACY_LANG_ITEMS} from '../../constants';
 import {ControlsLayout, ControlsProps} from '../Controls';
 import {useTranslation} from '../../hooks';
-import {ControlSizes, DocSettings, Lang, ListItem, OnChangeValue, Theme} from '../../models';
+import {
+    ControlSizes,
+    DocSettings,
+    Lang,
+    ListItem,
+    OnChangeValue,
+    TFunction,
+    Theme,
+} from '../../models';
 
 import MobileControl from './MobileControl/MobileControl';
 import './MobileControls.scss';
 
 const b = block('dc-mobile-controls');
-
-type UseTranslationReturnType = TFunction<Namespace<string>, KeyPrefix<Namespace<string>>>;
 
 export interface MobileControlsProps {
     controlSize: ControlSizes;
@@ -22,7 +27,7 @@ export interface MobileControlsProps {
 }
 
 const useLangControl = (
-    t: UseTranslationReturnType,
+    t: TFunction,
     lang: `${Lang}` | Lang,
     langs?: (`${Lang}` | Lang)[],
     onChangeLang?: (lang: `${Lang}` | Lang) => void,
@@ -60,11 +65,7 @@ const useLangControl = (
 };
 const themes = [Theme.Light, Theme.Dark];
 
-const useThemeControl = (
-    t: UseTranslationReturnType,
-    theme: Theme,
-    onChangeTheme?: (theme: Theme) => void,
-) => {
+const useThemeControl = (t: TFunction, theme: Theme, onChangeTheme?: (theme: Theme) => void) => {
     const themesItems = useMemo(
         () =>
             themes.map((value) => {

@@ -53,7 +53,7 @@ const FoundBlock: React.FC<RenderFoundProps> = ({
 
     return (
         <div className={b('search-result')}>
-            <h3 className={b('subtitle')}>{t<string>('search_request-query')}</h3>
+            <h3 className={b('subtitle')}>{t('search_request-query')}</h3>
             <div className={b('search-list')}>
                 {items.map((item: ISearchItem) => (
                     <SearchItem
@@ -87,8 +87,8 @@ const WithoutContentBlock: React.FC<RenderNoContent> = ({loading}) => {
         <Loader />
     ) : (
         <div className={b('search-empty')}>
-            <h3>{t<string>('search_not-found-title')}</h3>
-            <div>{t<string>('search_not-found-text')}</div>
+            <h3>{t('search_not-found-title')}</h3>
+            <div>{t('search_not-found-text')}</div>
         </div>
     );
 };
@@ -123,7 +123,7 @@ const InputBlock: React.FC<RenderInput> = ({query, onQueryUpdate, onSubmit, inpu
                             onSubmit(query);
                         }}
                     >
-                        {t<string>('search_action')}
+                        {t('search_action')}
                     </Button>
                 </div>
             </form>

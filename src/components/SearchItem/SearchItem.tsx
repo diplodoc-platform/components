@@ -51,7 +51,7 @@ const SearchItem = memo<SearchPageInnerProps>(
                             <div className={b('marks-wrapper')}>
                                 {markedItem ? (
                                     <span className={b('marks-text')}>
-                                        {t<string>('search_mark-result-text')}
+                                        {t('search_mark-result-text')}
                                     </span>
                                 ) : (
                                     <div>
@@ -65,7 +65,7 @@ const SearchItem = memo<SearchPageInnerProps>(
                                                 }
                                             }}
                                         >
-                                            {t<string>('search_mark_dislike')}
+                                            {t('search_mark_dislike')}
                                         </Button>
                                         <Button
                                             size="s"
@@ -77,7 +77,7 @@ const SearchItem = memo<SearchPageInnerProps>(
                                                 }
                                             }}
                                         >
-                                            {t<string>('search_mark_like')}
+                                            {t('search_mark_like')}
                                         </Button>
                                     </div>
                                 )}

@@ -62,7 +62,7 @@ const DislikeVariantsList = memo(
                                 [variant]: state,
                             });
                         }}
-                        content={t<string>(variant)}
+                        content={t(variant)}
                     />
                 ))}
             </div>
@@ -173,13 +173,13 @@ const DislikeVariantsPopup: React.FC<DislikeVariantsPopupProps> = memo(
                     },
                 ]}
             >
-                <h3 className={b('popup-title')}>{t<string>('dislike-variants-title')}</h3>
+                <h3 className={b('popup-title')}>{t('dislike-variants-title')}</h3>
                 <form onSubmit={onFormSubmit}>
                     <DislikeVariantsList ref={feedbackCheckboxes} />
                     <DislikeVariantsInput ref={feedbackComment} />
                     <div className={b('variants-actions')}>
                         <Button view="action" className={b('variants-action')} type={'submit'}>
-                            {t<string>('send-action-text')}
+                            {t('send-action-text')}
                         </Button>
                     </div>
                 </form>

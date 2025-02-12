@@ -30,7 +30,7 @@ const ToMainMenu: React.FC<ToMainMenuProps> = memo(({mainMenuIsOpen, openMainMen
             <div className={b('icon')}>
                 <ArrowLeft width={20} height={20} />
             </div>
-            <span className={b('title')}>{t<string>('label_to-main-menu')}</span>
+            <span className={b('title')}>{t('label_to-main-menu')}</span>
         </button>
     );
 });

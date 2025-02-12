@@ -46,7 +46,7 @@ const SubscribeControl = memo(
                     <Button.Icon>
                         <Envelope width={16} height={16} />
                     </Button.Icon>
-                    {t<string>('button-Subscribe-text')}
+                    {t('button-Subscribe-text')}
                 </Button>
             );
         }
@@ -79,7 +79,7 @@ const SubscribeControlsLayout = memo<PropsWithChildren<{view: SubscribeView}>>(
         return (
             <div className={b('container', {view})}>
                 <div className={b('container-row', {view})}>
-                    <h3 className={b('title', {view})}>{t<string>('main-question')}</h3>
+                    <h3 className={b('title', {view})}>{t('main-question')}</h3>
                     <div className={b('controls', {view})}>{children}</div>
                 </div>
             </div>

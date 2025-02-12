@@ -30,7 +30,7 @@ const EditControl = memo<EditControlProps>(
                         <Button.Icon>
                             <Pencil width={14} height={14} />
                         </Button.Icon>
-                        <span>{t<string>('edit-text')}</span>
+                        <span>{t('edit-text')}</span>
                     </Button>
                 </a>
             );

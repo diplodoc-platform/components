@@ -33,7 +33,7 @@ const DislikeControl = memo(
                     <Button.Icon>
                         <Icon width={20} height={20} />
                     </Button.Icon>
-                    {t<string>('button-dislike-text')}
+                    {t('button-dislike-text')}
                 </Button>
             );
         }

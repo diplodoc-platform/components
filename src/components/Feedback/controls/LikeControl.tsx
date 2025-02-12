@@ -36,7 +36,7 @@ const LikeControl = memo(
                     <Button.Icon>
                         <Icon width={20} height={20} />
                     </Button.Icon>
-                    {t<string>('button-like-text')}
+                    {t('button-like-text')}
                 </Button>
             );
         }

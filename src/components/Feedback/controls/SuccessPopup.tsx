@@ -40,8 +40,8 @@ const SuccessPopup = memo<SuccessPopupProps>(({visible, anchor, onOutsideClick, 
                 {name: 'preventOverflow', options: {padding: 1, altBoundary: true, altAxis: true}},
             ]}
         >
-            <h3 className={b('popup-title')}>{t<string>('success-title')}</h3>
-            <p className={b('popup-text')}>{t<string>('success-text')}</p>
+            <h3 className={b('popup-title')}>{t('success-title')}</h3>
+            <p className={b('popup-text')}>{t('success-text')}</p>
         </Popup>
     );
 });

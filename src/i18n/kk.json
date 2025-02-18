@@ -130,5 +130,8 @@
   "paginator": {
     "next": "Келесі бет",
     "prev": "Алдыңғы бет"
+  },
+  "header": {
+    "versions-select-placeholder": "Нұсқалар"
   }
 }

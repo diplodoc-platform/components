@@ -26,6 +26,7 @@ const ErrorPage: React.FC<ErrorPageProps> = ({
     let description;
     const {t} = useTranslation('error');
     const href = homeUrl || '/';
+
     const homeLink = (
         <Link href={href}>
             <Button className={b('description-link')}>{t('label_link-main')}</Button>

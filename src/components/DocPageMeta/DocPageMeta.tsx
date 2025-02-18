@@ -5,14 +5,14 @@ import {compose} from 'react-recompose';
 import {sanitizeHtml} from '../../utils/sanitize';
 import withRouter, {WithRouterProps} from '../../hoc/withRouter';
 
-export interface DocMetaProps {
+export interface DocPageMetaProps {
     title?: string;
     defaultTitle?: string;
     titleTemplate?: string;
     metadata?: Record<string, string>[];
 }
 
-type DocMetaInnerProps = DocMetaProps & WithRouterProps;
+type DocPageMetaInnerProps = DocPageMetaProps & WithRouterProps;
 
 const sanitizeObject = (target: Record<string, string>) => {
     const clear = Object.entries(target).map(
@@ -22,7 +22,7 @@ const sanitizeObject = (target: Record<string, string>) => {
     return Object.fromEntries(clear);
 };
 
-const DocMeta: React.FC<DocMetaInnerProps> = (props) => {
+const DocPageMeta: React.FC<DocPageMetaInnerProps> = (props) => {
     const title = sanitizeHtml(props.title);
     const titleTemplate = sanitizeHtml(props.titleTemplate);
     const defaultTitle = sanitizeHtml(props.defaultTitle);
@@ -39,4 +39,4 @@ const DocMeta: React.FC<DocMetaInnerProps> = (props) => {
     );
 };
 
-export default compose<DocMetaInnerProps, DocMetaProps>(withRouter)(DocMeta);
+export default compose<DocPageMetaInnerProps, DocPageMetaProps>(withRouter)(DocPageMeta);

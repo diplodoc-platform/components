@@ -2,7 +2,7 @@ import React, {useCallback, useState} from 'react';
 import {Select} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 
-import {useTranslation} from 'src/hooks';
+import {useTranslation} from '../../../../hooks';
 
 export interface VersionControlProps {
     version: string;

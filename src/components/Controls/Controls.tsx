@@ -101,7 +101,7 @@ const Controls = memo<ControlsProps>((props) => {
         isLiked,
         isDisliked,
     } = props;
-    const withVersionsControl = Boolean(version && hasVersions(versions) && onChangeVersion);
+    const withVersionControl = Boolean(version && hasVersions(versions) && onChangeVersion);
     const withFullscreenControl = Boolean(onChangeFullScreen);
     const withSettingsControl = Boolean(
         onChangeWideFormat || onChangeTheme || onChangeShowMiniToc || onChangeTextSize,
@@ -114,7 +114,7 @@ const Controls = memo<ControlsProps>((props) => {
     const withSubscribeControls = Boolean(!singlePage && onSubscribe);
 
     const controls = [
-        withVersionsControl && (
+        withVersionControl && (
             <VersionControl
                 version={version ?? ''}
                 versions={versions ?? []}

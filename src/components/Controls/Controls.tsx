@@ -67,7 +67,54 @@ function hasVersions(versions?: string[]) {
     return versions?.length && versions.length > 1;
 }
 
-// eslint-disable-next-line complexity
+function getControlFlags(props: ControlsProps) {
+    const {
+        singlePage,
+        hideEditControl,
+        hideFeedbackControls,
+        onChangeVersion,
+        onChangeFullScreen,
+        onChangeTheme,
+        onChangeShowMiniToc,
+        onChangeTextSize,
+        onChangeWideFormat,
+        onChangeLang,
+        onChangeSinglePage,
+        onSendFeedback,
+        onSubscribe,
+        version,
+        versions,
+        lang,
+        langs,
+        pdfLink,
+        vcsUrl,
+    } = props;
+
+    const withVersionControl = Boolean(version && hasVersions(versions) && onChangeVersion);
+    const withFullscreenControl = Boolean(onChangeFullScreen);
+    const withSettingsControl = Boolean(
+        onChangeWideFormat || onChangeTheme || onChangeShowMiniToc || onChangeTextSize,
+    );
+    const withLangControl = Boolean(lang && hasLangs(langs) && onChangeLang);
+    const withSinglePageControl = Boolean(onChangeSinglePage);
+    const withPdfControl = Boolean(pdfLink);
+    const withEditControl = Boolean(!singlePage && !hideEditControl && vcsUrl);
+    const withFeedbackControl = Boolean(!singlePage && !hideFeedbackControls && onSendFeedback);
+    const withSubscribeControls = Boolean(!singlePage && onSubscribe);
+
+    return {
+        withVersionControl,
+        withFullscreenControl,
+        withSettingsControl,
+        withLangControl,
+        withSinglePageControl,
+        withPdfControl,
+        withEditControl,
+        withFeedbackControl,
+        withSubscribeControls,
+    };
+}
+
 const Controls = memo<ControlsProps>((props) => {
     const {isVerticalView} = useContext(ControlsLayoutContext);
     const {
@@ -77,8 +124,6 @@ const Controls = memo<ControlsProps>((props) => {
         theme,
         wideFormat,
         showMiniToc,
-        hideEditControl,
-        hideFeedbackControls,
         textSize,
         onChangeVersion,
         onChangeFullScreen,
@@ -101,34 +146,25 @@ const Controls = memo<ControlsProps>((props) => {
         isLiked,
         isDisliked,
     } = props;
-    const withVersionControl = Boolean(version && hasVersions(versions) && onChangeVersion);
-    const withFullscreenControl = Boolean(onChangeFullScreen);
-    const withSettingsControl = Boolean(
-        onChangeWideFormat || onChangeTheme || onChangeShowMiniToc || onChangeTextSize,
-    );
-    const withLangControl = Boolean(lang && hasLangs(langs) && onChangeLang);
-    const withSinglePageControl = Boolean(onChangeSinglePage);
-    const withPdfControl = Boolean(pdfLink);
-    const withEditControl = Boolean(!singlePage && !hideEditControl && vcsUrl);
-    const withFeedbackControl = Boolean(!singlePage && !hideFeedbackControls && onSendFeedback);
-    const withSubscribeControls = Boolean(!singlePage && onSubscribe);
+
+    const controlFlags = getControlFlags(props);
 
     const controls = [
-        withVersionControl && (
+        controlFlags.withVersionControl && (
             <VersionControl
                 version={version ?? ''}
                 versions={versions ?? []}
                 onChange={onChangeVersion ?? ((_version: string) => {})}
             />
         ),
-        withFullscreenControl && (
+        controlFlags.withFullscreenControl && (
             <FullScreenControl
                 key="fullscreen-control"
                 value={fullScreen}
                 onChange={onChangeFullScreen}
             />
         ),
-        withSettingsControl && (
+        controlFlags.withSettingsControl && (
             <SettingsControl
                 key="settings-control"
                 theme={theme}
@@ -141,7 +177,7 @@ const Controls = memo<ControlsProps>((props) => {
                 onChangeWideFormat={onChangeWideFormat}
             />
         ),
-        withLangControl && (
+        controlFlags.withLangControl && (
             <LangControl
                 key="lang-control"
                 lang={lang as Lang}
@@ -149,16 +185,18 @@ const Controls = memo<ControlsProps>((props) => {
                 onChangeLang={onChangeLang as Defined['onChangeLang']}
             />
         ),
-        withSinglePageControl && (
+        controlFlags.withSinglePageControl && (
             <SinglePageControl
                 key="single-page-control"
                 value={singlePage}
                 onChange={onChangeSinglePage as Defined['onChangeSinglePage']}
             />
         ),
-        withPdfControl && <PdfControl key="pdf-control" pdfLink={pdfLink as Defined['pdfLink']} />,
+        controlFlags.withPdfControl && (
+            <PdfControl key="pdf-control" pdfLink={pdfLink as Defined['pdfLink']} />
+        ),
         '---',
-        withEditControl && (
+        controlFlags.withEditControl && (
             <EditControl
                 key="edit-control"
                 vcsUrl={vcsUrl as Defined['vcsUrl']}
@@ -167,7 +205,7 @@ const Controls = memo<ControlsProps>((props) => {
             />
         ),
         '---',
-        withFeedbackControl && (
+        controlFlags.withFeedbackControl && (
             <Feedback
                 key="feedback-control"
                 isLiked={isLiked}
@@ -177,7 +215,7 @@ const Controls = memo<ControlsProps>((props) => {
             />
         ),
         '---',
-        withSubscribeControls && (
+        controlFlags.withSubscribeControls && (
             <Subscribe
                 key="subscribe-control"
                 onSubscribe={onSubscribe as Defined['onSubscribe']}

@@ -1,7 +1,7 @@
 import React, {useCallback, useState} from 'react';
 import {Select} from '@gravity-ui/uikit';
 
-import {useTranslation} from 'src/hooks/useTranslation';
+import {useTranslation} from '../../../../hooks';
 
 export interface VersionControlProps {
     version: string;
@@ -26,7 +26,7 @@ const VersionControl: React.FC<VersionControlProps> = (props) => {
 
     return (
         <Select
-            placeholder={t<string>('versions-select-placeholder')}
+            placeholder={t('versions-select-placeholder')}
             value={[version]}
             options={versions.map((value) => ({value, content: value}))}
             onUpdate={onUpdate}

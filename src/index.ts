@@ -30,7 +30,6 @@ export * from './components/SearchPage';
 export * from './components/SearchSuggest';
 export * from './components/DocContentPage';
 export * from './components/Notification';
-export * from './components/VersionsSelect';
 
 export * from './components/navigation';
 

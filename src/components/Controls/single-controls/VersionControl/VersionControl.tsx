@@ -1,16 +1,16 @@
 import React, {useCallback, useState} from 'react';
 import {Select} from '@gravity-ui/uikit';
 
-import {useTranslation} from '../../hooks';
+import {useTranslation} from 'src/hooks/useTranslation';
 
-export interface VersionsSelectProps {
+export interface VersionControlProps {
     version: string;
     versions: string[];
     onChange: (version: string) => void;
     className?: string;
 }
 
-export const VersionsSelect: React.FC<VersionsSelectProps> = (props) => {
+const VersionControl: React.FC<VersionControlProps> = (props) => {
     const {version: defaultVersion, versions, className, onChange} = props;
     const [version, setVersion] = useState<string>(defaultVersion);
 
@@ -34,3 +34,5 @@ export const VersionsSelect: React.FC<VersionsSelectProps> = (props) => {
         />
     );
 };
+
+export default VersionControl;

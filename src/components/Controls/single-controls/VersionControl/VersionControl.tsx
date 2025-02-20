@@ -1,7 +1,8 @@
 import React, {useCallback, useState} from 'react';
 import {Select} from '@gravity-ui/uikit';
+import block from 'bem-cn-lite';
 
-import {useTranslation} from '../../../../hooks';
+import {useTranslation} from 'src/hooks';
 
 export interface VersionControlProps {
     version: string;
@@ -9,6 +10,8 @@ export interface VersionControlProps {
     onChange: (version: string) => void;
     className?: string;
 }
+
+const b = block('dc-controls');
 
 const VersionControl: React.FC<VersionControlProps> = (props) => {
     const {version: defaultVersion, versions, className, onChange} = props;
@@ -30,7 +33,7 @@ const VersionControl: React.FC<VersionControlProps> = (props) => {
             value={[version]}
             options={versions.map((value) => ({value, content: value}))}
             onUpdate={onUpdate}
-            className={className}
+            className={b('control', className)}
         />
     );
 };

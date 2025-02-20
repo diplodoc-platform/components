@@ -15,6 +15,7 @@ import {
     PdfControl,
     SettingsControl,
     SinglePageControl,
+    VersionControl,
 } from './';
 
 // eslint-disable-next-line import/order
@@ -35,6 +36,7 @@ export interface ControlsProps {
     vcsType?: string;
     isLiked?: boolean;
     isDisliked?: boolean;
+    onChangeVersion?: (version: string) => void;
     onChangeLang?: (lang: `${Lang}` | Lang) => void;
     onChangeFullScreen?: (value: boolean) => void;
     onChangeSinglePage?: (value: boolean) => void;
@@ -45,6 +47,8 @@ export interface ControlsProps {
     onSendFeedback?: (data: FeedbackSendData) => void;
     onSubscribe?: (data: SubscribeData) => void;
     onEditClick?: () => void;
+    versions?: string[];
+    version?: string;
     pdfLink?: string;
     className?: string;
     hideEditControl?: boolean;
@@ -59,6 +63,11 @@ function hasLangs(langs?: (`${Lang}` | Lang)[]) {
     return langs?.length && langs.length > 1;
 }
 
+function hasVersions(versions?: string[]) {
+    return versions?.length && versions.length > 1;
+}
+
+// eslint-disable-next-line complexity
 const Controls = memo<ControlsProps>((props) => {
     const {isVerticalView} = useContext(ControlsLayoutContext);
     const {
@@ -71,6 +80,7 @@ const Controls = memo<ControlsProps>((props) => {
         hideEditControl,
         hideFeedbackControls,
         textSize,
+        onChangeVersion,
         onChangeFullScreen,
         onChangeTheme,
         onChangeShowMiniToc,
@@ -81,6 +91,8 @@ const Controls = memo<ControlsProps>((props) => {
         onSendFeedback,
         onSubscribe,
         onEditClick,
+        version,
+        versions,
         lang,
         langs,
         pdfLink,
@@ -89,7 +101,7 @@ const Controls = memo<ControlsProps>((props) => {
         isLiked,
         isDisliked,
     } = props;
-
+    const withVersionsControl = Boolean(version && hasVersions(versions) && onChangeVersion);
     const withFullscreenControl = Boolean(onChangeFullScreen);
     const withSettingsControl = Boolean(
         onChangeWideFormat || onChangeTheme || onChangeShowMiniToc || onChangeTextSize,
@@ -102,6 +114,13 @@ const Controls = memo<ControlsProps>((props) => {
     const withSubscribeControls = Boolean(!singlePage && onSubscribe);
 
     const controls = [
+        withVersionsControl && (
+            <VersionControl
+                version={version ?? ''}
+                versions={versions ?? []}
+                onChange={onChangeVersion ?? ((_version: string) => {})}
+            />
+        ),
         withFullscreenControl && (
             <FullScreenControl
                 key="fullscreen-control"

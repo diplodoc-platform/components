@@ -26,7 +26,7 @@ export const VersionsSelect: React.FC<VersionsSelectProps> = (props) => {
 
     return (
         <Select
-            placeholder={t('versions-select-placeholder')}
+            placeholder={t<string>('versions-select-placeholder')}
             value={[version]}
             options={versions.map((value) => ({value, content: value}))}
             onUpdate={onUpdate}

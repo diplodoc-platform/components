@@ -7,10 +7,6 @@
     align-items: center;
     @include mixins.text-size(body-1);
 
-    &__control:first-child {
-        margin-left: 12px;
-    }
-
     &__control:not(:last-child),
     &__divider {
         margin-right: 4px;

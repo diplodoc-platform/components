@@ -157,7 +157,7 @@ const Controls = memo<ControlsProps>((props) => {
                 onChange={onChangeVersion ?? ((_version: string) => {})}
             />
         ),
-        '---',
+        controlFlags.withVersionControl && '---',
         controlFlags.withFullscreenControl && (
             <FullScreenControl
                 key="fullscreen-control"

@@ -83,6 +83,9 @@
         }
 
         & > .dc-controls {
+            width: 196px;
+            padding-bottom: 6px;
+            overflow-x: auto;
             position: fixed;
             top: calc(6px + var(--dc-header-height, #{variables.$headerHeight}));
 

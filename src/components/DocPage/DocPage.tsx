@@ -63,6 +63,7 @@ export interface DocPageProps extends DocPageData, DocSettings, NotificationProp
     renderLoader?: () => React.ReactNode;
     convertPathToOriginalArticle?: (path: string) => string;
     generatePathToVcs?: (path: string) => string;
+    onChangeVersion?: (version: string) => void;
     onChangeLang?: (lang: `${Lang}` | Lang) => void;
     onChangeFullScreen?: (value: boolean) => void;
     onChangeSinglePage?: (value: boolean) => void;
@@ -78,6 +79,8 @@ export interface DocPageProps extends DocPageData, DocSettings, NotificationProp
     pdfLink?: string;
     onMiniTocItemClick?: (event: MouseEvent) => void;
     useMainTag?: boolean;
+    versions?: string[];
+    version?: string;
 }
 
 type DocPageInnerProps = InnerProps<DocPageProps, DocSettings>;
@@ -627,6 +630,8 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
 
     private renderControls() {
         const {
+            version,
+            versions,
             lang,
             langs,
             textSize,
@@ -636,6 +641,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             singlePage,
             vcsUrl,
             vcsType,
+            onChangeVersion,
             onChangeLang,
             onChangeFullScreen,
             onChangeWideFormat,
@@ -661,6 +667,8 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             <div className={b('controls', {vertical: isVerticalView})}>
                 <ControlsLayout isVerticalView={isVerticalView}>
                     <Controls
+                        version={version}
+                        versions={versions}
                         lang={lang}
                         langs={langs}
                         textSize={textSize}
@@ -673,6 +681,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                         vcsType={vcsType as VcsType}
                         isLiked={isLiked}
                         isDisliked={isDisliked}
+                        onChangeVersion={onChangeVersion}
                         onChangeLang={onChangeLang}
                         onChangeFullScreen={onChangeFullScreen}
                         onChangeWideFormat={onChangeWideFormat}

@@ -72,6 +72,18 @@ const useDirection = (lang: string) => {
     }, [lang, dir]);
 };
 
+const useVersions = () => {
+    const versions = ['v4.23.1', 'v4.23.0', 'v4.22.0'];
+    const version = versions[0];
+    const onChangeVersion = () => {};
+
+    return {
+        version,
+        versions,
+        onChangeVersion,
+    };
+};
+
 const useLangs = () => {
     const langs = ['ru', 'en', 'cs', 'he'];
     const [lang, onChangeLang] = useState(DEFAULT_SETTINGS.lang);
@@ -216,6 +228,7 @@ const DocPageDemo = (
     const vcsType = args['VCS'];
     const router = {pathname: '/docs/overview/security-and-compliance/'};
 
+    const versions = useVersions();
     const settings = useSettings();
     const langs = useLangs();
     const fullscreen = useFullscreen();
@@ -251,6 +264,7 @@ const DocPageDemo = (
     Object.assign(
         props,
         ...[
+            args['Versions'] && versions,
             args['Search'] && search,
             args['Settings'] && settings,
             args['Langs'] && langs,
@@ -289,6 +303,9 @@ export default {
     title: 'Pages/Document',
     component: DocPageDemo,
     argTypes: {
+        Versions: {
+            control: 'boolean',
+        },
         Settings: {
             control: 'boolean',
         },
@@ -332,6 +349,7 @@ export default {
 
 export const Document = {
     args: {
+        Versions: true,
         Settings: true,
         Langs: true,
         Fullscreen: true,

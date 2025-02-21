@@ -15,6 +15,7 @@ import {
     PdfControl,
     SettingsControl,
     SinglePageControl,
+    VersionControl,
 } from './';
 
 // eslint-disable-next-line import/order
@@ -35,6 +36,7 @@ export interface ControlsProps {
     vcsType?: string;
     isLiked?: boolean;
     isDisliked?: boolean;
+    onChangeVersion?: (version: string) => void;
     onChangeLang?: (lang: `${Lang}` | Lang) => void;
     onChangeFullScreen?: (value: boolean) => void;
     onChangeSinglePage?: (value: boolean) => void;
@@ -45,6 +47,8 @@ export interface ControlsProps {
     onSendFeedback?: (data: FeedbackSendData) => void;
     onSubscribe?: (data: SubscribeData) => void;
     onEditClick?: () => void;
+    versions?: string[];
+    version?: string;
     pdfLink?: string;
     className?: string;
     hideEditControl?: boolean;
@@ -59,18 +63,16 @@ function hasLangs(langs?: (`${Lang}` | Lang)[]) {
     return langs?.length && langs.length > 1;
 }
 
-const Controls = memo<ControlsProps>((props) => {
-    const {isVerticalView} = useContext(ControlsLayoutContext);
+function hasVersions(versions?: string[]) {
+    return versions?.length && versions.length > 1;
+}
+
+function getControlFlags(props: ControlsProps) {
     const {
-        className,
-        fullScreen,
         singlePage,
-        theme,
-        wideFormat,
-        showMiniToc,
         hideEditControl,
         hideFeedbackControls,
-        textSize,
+        onChangeVersion,
         onChangeFullScreen,
         onChangeTheme,
         onChangeShowMiniToc,
@@ -80,16 +82,15 @@ const Controls = memo<ControlsProps>((props) => {
         onChangeSinglePage,
         onSendFeedback,
         onSubscribe,
-        onEditClick,
+        version,
+        versions,
         lang,
         langs,
         pdfLink,
         vcsUrl,
-        vcsType,
-        isLiked,
-        isDisliked,
     } = props;
 
+    const withVersionControl = Boolean(version && hasVersions(versions) && onChangeVersion);
     const withFullscreenControl = Boolean(onChangeFullScreen);
     const withSettingsControl = Boolean(
         onChangeWideFormat || onChangeTheme || onChangeShowMiniToc || onChangeTextSize,
@@ -101,15 +102,70 @@ const Controls = memo<ControlsProps>((props) => {
     const withFeedbackControl = Boolean(!singlePage && !hideFeedbackControls && onSendFeedback);
     const withSubscribeControls = Boolean(!singlePage && onSubscribe);
 
+    return {
+        withVersionControl,
+        withFullscreenControl,
+        withSettingsControl,
+        withLangControl,
+        withSinglePageControl,
+        withPdfControl,
+        withEditControl,
+        withFeedbackControl,
+        withSubscribeControls,
+    };
+}
+
+const Controls = memo<ControlsProps>((props) => {
+    const {isVerticalView} = useContext(ControlsLayoutContext);
+    const {
+        className,
+        fullScreen,
+        singlePage,
+        theme,
+        wideFormat,
+        showMiniToc,
+        textSize,
+        onChangeVersion,
+        onChangeFullScreen,
+        onChangeTheme,
+        onChangeShowMiniToc,
+        onChangeTextSize,
+        onChangeWideFormat,
+        onChangeLang,
+        onChangeSinglePage,
+        onSendFeedback,
+        onSubscribe,
+        onEditClick,
+        version,
+        versions,
+        lang,
+        langs,
+        pdfLink,
+        vcsUrl,
+        vcsType,
+        isLiked,
+        isDisliked,
+    } = props;
+
+    const controlFlags = getControlFlags(props);
+
     const controls = [
-        withFullscreenControl && (
+        controlFlags.withVersionControl && (
+            <VersionControl
+                version={version ?? ''}
+                versions={versions ?? []}
+                onChange={onChangeVersion ?? ((_version: string) => {})}
+            />
+        ),
+        controlFlags.withVersionControl && '---',
+        controlFlags.withFullscreenControl && (
             <FullScreenControl
                 key="fullscreen-control"
                 value={fullScreen}
                 onChange={onChangeFullScreen}
             />
         ),
-        withSettingsControl && (
+        controlFlags.withSettingsControl && (
             <SettingsControl
                 key="settings-control"
                 theme={theme}
@@ -122,7 +178,7 @@ const Controls = memo<ControlsProps>((props) => {
                 onChangeWideFormat={onChangeWideFormat}
             />
         ),
-        withLangControl && (
+        controlFlags.withLangControl && (
             <LangControl
                 key="lang-control"
                 lang={lang as Lang}
@@ -130,16 +186,18 @@ const Controls = memo<ControlsProps>((props) => {
                 onChangeLang={onChangeLang as Defined['onChangeLang']}
             />
         ),
-        withSinglePageControl && (
+        controlFlags.withSinglePageControl && (
             <SinglePageControl
                 key="single-page-control"
                 value={singlePage}
                 onChange={onChangeSinglePage as Defined['onChangeSinglePage']}
             />
         ),
-        withPdfControl && <PdfControl key="pdf-control" pdfLink={pdfLink as Defined['pdfLink']} />,
+        controlFlags.withPdfControl && (
+            <PdfControl key="pdf-control" pdfLink={pdfLink as Defined['pdfLink']} />
+        ),
         '---',
-        withEditControl && (
+        controlFlags.withEditControl && (
             <EditControl
                 key="edit-control"
                 vcsUrl={vcsUrl as Defined['vcsUrl']}
@@ -148,7 +206,7 @@ const Controls = memo<ControlsProps>((props) => {
             />
         ),
         '---',
-        withFeedbackControl && (
+        controlFlags.withFeedbackControl && (
             <Feedback
                 key="feedback-control"
                 isLiked={isLiked}
@@ -158,7 +216,7 @@ const Controls = memo<ControlsProps>((props) => {
             />
         ),
         '---',
-        withSubscribeControls && (
+        controlFlags.withSubscribeControls && (
             <Subscribe
                 key="subscribe-control"
                 onSubscribe={onSubscribe as Defined['onSubscribe']}

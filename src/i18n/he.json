@@ -130,5 +130,8 @@
   "paginator": {
     "next": "העמוד הבא",
     "prev": "העמוד הקודם"
+  },
+  "header": {
+    "versions-select-placeholder": "גרסאות"
   }
 }

@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {DocLeadingPage, DocLeadingPageData, Theme} from '@diplodoc/components';
 import cn from 'bem-cn-lite';
 
-import {updateBodyClassName} from '../utils';
+import {updateBodyClassName, useMobile} from '../utils';
 
 import pageContent from './page.json';
 
@@ -14,9 +14,9 @@ type Args = {
 };
 
 const DocLeadingPageDemo = (args: Args) => {
-    const isMobile = args['Mobile'];
     const theme = args['Theme'];
     const router = {pathname: '/docs/compute'};
+    const mobileView = useMobile();
 
     useEffect(() => {
         updateBodyClassName(theme);
@@ -27,6 +27,7 @@ const DocLeadingPageDemo = (args: Args) => {
             <div className={layoutBlock('content')}>
                 <DocLeadingPage
                     {...(pageContent as DocLeadingPageData)}
+                    isMobile={mobileView}
                     wideFormat={true}
                     router={router}
                 />

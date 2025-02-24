@@ -14,7 +14,7 @@ import {
 import {configure as configureUikit} from '@gravity-ui/uikit';
 import cn from 'bem-cn-lite';
 
-import {updateBodyClassName} from '../utils';
+import {updateBodyClassName, useMobile} from '../utils';
 
 import {getContent} from './data';
 import './index.scss';
@@ -224,6 +224,7 @@ const DocPageDemo = (
     const subscribe = useSubscribe();
     const bookmarks = useBookmarks();
     const notification = useNotification();
+    const mobileView = useMobile();
     const search = useSearchResults(args['Search'] || '');
     const pdf = usePdf(args['Pdf'] || '');
 
@@ -246,8 +247,8 @@ const DocPageDemo = (
         theme,
         textSize,
         singlePage,
+        isMobile: mobileView,
     };
-
     Object.assign(
         props,
         ...[

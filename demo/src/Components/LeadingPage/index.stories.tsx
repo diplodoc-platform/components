@@ -23,7 +23,7 @@ const DocLeadingPageDemo = (args: Args) => {
     }, [theme]);
 
     return (
-        <div className={isMobile === 'true' ? 'mobile' : 'desktop'}>
+        <div className={mobileView ? 'mobile' : 'desktop'}>
             <div className={layoutBlock('content')}>
                 <DocLeadingPage
                     {...(pageContent as DocLeadingPageData)}

@@ -1,4 +1,5 @@
 import {Lang, TextSizes, Theme} from './models';
+import langs from './i18n';
 
 export const DEFAULT_SETTINGS = {
     fullScreen: false,
@@ -27,3 +28,4 @@ export const LEGACY_LANG_ITEMS = [
     {value: Lang.En, text: 'English'},
     {value: Lang.He, text: 'Hebrew'},
 ];
+export const SUPPORTED_LANGS = Object.keys(langs);

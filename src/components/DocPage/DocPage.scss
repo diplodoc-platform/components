@@ -184,11 +184,6 @@
         &:hover::before {
             background-color: transparent;
         }
-
-        // ShareButton in title is currently only available on mobile devices.
-        @media (min-width: map.get(variables.$screenBreakpoints, 'md')) {
-            display: none;
-        }
     }
 
     &__content {

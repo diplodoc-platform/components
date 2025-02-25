@@ -1,5 +1,12 @@
 # История изменений
 
+## [4.23.2](https://github.com/diplodoc-platform/components/compare/v4.23.1...v4.23.2) (2025-02-25)
+
+
+### Bug Fixes
+
+* static lang selector ([#378](https://github.com/diplodoc-platform/components/issues/378)) ([58908f3](https://github.com/diplodoc-platform/components/commit/58908f355e166e935e3d92c747659e2ab63f3332))
+
 ## [4.23.1](https://github.com/diplodoc-platform/components/compare/v4.23.0...v4.23.1) (2025-02-12)
 
 

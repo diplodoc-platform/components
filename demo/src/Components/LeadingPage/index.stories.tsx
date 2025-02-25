@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {DocLeadingPage, DocLeadingPageData, Theme} from '@diplodoc/components';
 import cn from 'bem-cn-lite';
 
-import {updateBodyClassName, useMobile} from '../utils';
+import {updateBodyClassName} from '../utils';
 
 import pageContent from './page.json';
 
@@ -16,7 +16,7 @@ type Args = {
 const DocLeadingPageDemo = (args: Args) => {
     const theme = args['Theme'];
     const router = {pathname: '/docs/compute'};
-    const mobileView = useMobile();
+    const mobileView = Boolean(args['Mobile']);
 
     useEffect(() => {
         updateBodyClassName(theme);

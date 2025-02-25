@@ -14,7 +14,7 @@ import {
 import {configure as configureUikit} from '@gravity-ui/uikit';
 import cn from 'bem-cn-lite';
 
-import {updateBodyClassName, useMobile} from '../utils';
+import {updateBodyClassName} from '../utils';
 
 import {getContent} from './data';
 import './index.scss';
@@ -224,9 +224,9 @@ const DocPageDemo = (
     const subscribe = useSubscribe();
     const bookmarks = useBookmarks();
     const notification = useNotification();
-    const mobileView = useMobile();
     const search = useSearchResults(args['Search'] || '');
     const pdf = usePdf(args['Pdf'] || '');
+    const mobileView = Boolean(args['Mobile']);
 
     const {lang} = langs;
     const {wideFormat, showMiniToc, theme, textSize} = settings;
@@ -290,6 +290,9 @@ export default {
     title: 'Pages/Document',
     component: DocPageDemo,
     argTypes: {
+        Mobile: {
+            control: 'boolean',
+        },
         Settings: {
             control: 'boolean',
         },

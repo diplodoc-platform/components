@@ -44,12 +44,15 @@ export function isActiveItem(router: Router, href: string, singlePage?: boolean)
     return normalizePath(router.pathname) === normalizePath(parse(href).pathname);
 }
 
-export function getLangPath(router: Router, lang: string) {
-    const path = router.hash ? normalizeHash(router.hash) : normalizePath(router.pathname);
-    const route = path?.split('../') || [];
-    const routeLast = route[route.length - 1];
-    const routeHtml = routeLast ? routeLast + '.html' : routeLast;
-    return `../${lang}/${routeHtml || ''}`;
+export function getLangPath(router: Router, lang: string, href?: string) {
+    const {pathname, hash} = router;
+    const pathParts = pathname.split('/').filter(Boolean);
+    const newPath = pathParts.slice(1).join('/');
+    const hrefWithoutHash = href?.split('#')[0];
+
+    return [`${lang}/`, newPath, hrefWithoutHash?.endsWith('.html') && '.html', hash]
+        .filter(Boolean)
+        .join('');
 }
 
 export function isExternalHref(href: string) {

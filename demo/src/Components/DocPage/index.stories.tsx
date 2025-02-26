@@ -226,6 +226,7 @@ const DocPageDemo = (
     const notification = useNotification();
     const search = useSearchResults(args['Search'] || '');
     const pdf = usePdf(args['Pdf'] || '');
+    const mobileView = Boolean(args['Mobile']);
 
     const {lang} = langs;
     const {wideFormat, showMiniToc, theme, textSize} = settings;
@@ -246,8 +247,8 @@ const DocPageDemo = (
         theme,
         textSize,
         singlePage,
+        isMobile: mobileView,
     };
-
     Object.assign(
         props,
         ...[
@@ -289,6 +290,9 @@ export default {
     title: 'Pages/Document',
     component: DocPageDemo,
     argTypes: {
+        Mobile: {
+            control: 'boolean',
+        },
         Settings: {
             control: 'boolean',
         },

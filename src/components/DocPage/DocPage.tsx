@@ -78,6 +78,7 @@ export interface DocPageProps extends DocPageData, DocSettings, NotificationProp
     pdfLink?: string;
     onMiniTocItemClick?: (event: MouseEvent) => void;
     useMainTag?: boolean;
+    isMobile?: boolean;
 }
 
 type DocPageInnerProps = InnerProps<DocPageProps, DocSettings>;
@@ -403,9 +404,9 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
     }
 
     private renderTitle() {
-        const {title, headerHeight, meta, bookmarkedPage, onChangeBookmarkPage} = this.props;
+        const {title, meta, bookmarkedPage, onChangeBookmarkPage, isMobile} = this.props;
         const withBookmarks = onChangeBookmarkPage;
-        const withShare = Number(headerHeight) > 0 && !this.showMiniToc;
+        const withShare = isMobile;
 
         if (!title) {
             return null;

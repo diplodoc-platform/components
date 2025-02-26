@@ -14,19 +14,20 @@ type Args = {
 };
 
 const DocLeadingPageDemo = (args: Args) => {
-    const isMobile = args['Mobile'];
     const theme = args['Theme'];
     const router = {pathname: '/docs/compute'};
+    const mobileView = Boolean(args['Mobile']);
 
     useEffect(() => {
         updateBodyClassName(theme);
     }, [theme]);
 
     return (
-        <div className={isMobile === 'true' ? 'mobile' : 'desktop'}>
+        <div className={mobileView ? 'mobile' : 'desktop'}>
             <div className={layoutBlock('content')}>
                 <DocLeadingPage
                     {...(pageContent as DocLeadingPageData)}
+                    isMobile={mobileView}
                     wideFormat={true}
                     router={router}
                 />

@@ -2,7 +2,7 @@ import React from 'react';
 import {compose} from 'react-recompose';
 
 import {MetaProps, SocialSharingMeta} from '../SocialSharingMeta';
-import {DocMeta, DocMetaProps} from '../DocMeta';
+import {DocPageMeta, DocPageMetaProps} from '../DocPageMeta';
 import withRouter, {WithRouterProps} from '../../hoc/withRouter';
 import withLang, {WithLangProps} from '../../hoc/withLang';
 import {sanitizeHtml} from '../../utils/sanitize';
@@ -12,7 +12,7 @@ interface SharingProps {
     description?: string;
 }
 
-export interface MetaComponentProps extends DocMetaProps {
+export interface MetaComponentProps extends DocPageMetaProps {
     type?: string;
     url?: string;
     image?: string;
@@ -84,7 +84,7 @@ const Meta: React.FC<MetaComponentInnerProps> = (props) => {
 
     return (
         <React.Fragment>
-            <DocMeta {...documentMetaProps} />
+            <DocPageMeta {...documentMetaProps} />
             <SocialSharingMeta
                 type={type}
                 url={url || fullUrl}

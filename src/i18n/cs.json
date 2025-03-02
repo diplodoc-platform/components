@@ -133,5 +133,8 @@
   },
   "updated-at-date": {
     "title": "Aktualizováno na"
+  },
+  "header": {
+    "versions-select-placeholder": "Verze"
   }
 }

@@ -130,5 +130,8 @@
   "paginator": {
     "next": "Keyingi sahifa",
     "prev": "Avvalgi sahifa"
+  },
+  "header": {
+    "versions-select-placeholder": "Versiyalar"
   }
 }

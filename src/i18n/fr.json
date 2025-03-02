@@ -133,5 +133,8 @@
   },
   "updated-at-date": {
     "title": "Mis à jour à"
+  },
+  "header": {
+    "versions-select-placeholder": "Versions"
   }
 }

@@ -133,5 +133,8 @@
   },
   "updated-at-date": {
     "title": "Обновлена"
+  },
+  "header": {
+    "versions-select-placeholder": "Версии"
   }
 }

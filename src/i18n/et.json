@@ -130,5 +130,8 @@
   "paginator": {
     "next": "Järgmine lehekülg",
     "prev": "Eelmine lehekülg"
+  },
+  "header": {
+    "versions-select-placeholder": "Versioonid"
   }
 }

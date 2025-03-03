@@ -130,5 +130,8 @@
   "paginator": {
     "next": "Επόμενη σελίδα",
     "prev": "Προηγούμενη σελίδα"
+  },
+  "header": {
+    "versions-select-placeholder": "Εκδόσεις"
   }
 }

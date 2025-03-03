@@ -130,5 +130,8 @@
   "paginator": {
     "next": "下一页",
     "prev": "上一页"
+  },
+  "header": {
+    "versions-select-placeholder": "版本"
   }
 }

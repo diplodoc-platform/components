@@ -129,5 +129,8 @@
   "paginator": {
     "next": "Следваща страница",
     "prev": "Предходна страница"
+  },
+  "header": {
+    "versions-select-placeholder": "Версии"
   }
 }

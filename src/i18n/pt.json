@@ -130,5 +130,8 @@
   "paginator": {
     "next": "Página seguinte",
     "prev": "Página anterior"
+  },
+  "header": {
+    "versions-select-placeholder": "Versões"
   }
 }

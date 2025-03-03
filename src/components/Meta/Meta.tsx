@@ -1,8 +1,8 @@
 import React from 'react';
 import {compose} from 'react-recompose';
+import {Helmet} from 'react-helmet';
 
 import {MetaProps, SocialSharingMeta} from '../SocialSharingMeta';
-import {DocMeta, DocMetaProps} from '../DocMeta';
 import withRouter, {WithRouterProps} from '../../hoc/withRouter';
 import withLang, {WithLangProps} from '../../hoc/withLang';
 import {sanitizeHtml} from '../../utils/sanitize';
@@ -12,7 +12,7 @@ interface SharingProps {
     description?: string;
 }
 
-export interface MetaComponentProps extends DocMetaProps {
+export interface MetaComponentProps {
     type?: string;
     url?: string;
     image?: string;
@@ -27,6 +27,9 @@ export interface MetaComponentProps extends DocMetaProps {
     schemaJsonLd?: unknown;
     isAwsServer?: boolean;
     metadata?: Record<string, string>[];
+    title?: string;
+    defaultTitle?: string;
+    titleTemplate?: string;
 }
 
 type MetaComponentInnerProps = MetaComponentProps & WithRouterProps & WithLangProps;
@@ -55,6 +58,31 @@ const Meta: React.FC<MetaComponentInnerProps> = (props) => {
         return result;
     };
 
+    const sanitizeObject = (target: Record<string, string>) => {
+        const clear = Object.entries(target).map(
+            ([name, content]) => [sanitizeHtml(name), sanitizeHtml(content)] as [string, string],
+        );
+
+        return Object.fromEntries(clear);
+    };
+
+    const renderDocPageMeta = () => {
+        const title = sanitizeHtml(props.title);
+        const titleTemplate = sanitizeHtml(props.titleTemplate);
+        const defaultTitle = sanitizeHtml(props.defaultTitle);
+
+        const {metadata = []} = props;
+
+        return (
+            <Helmet title={title} defaultTitle={defaultTitle} titleTemplate={titleTemplate}>
+                {metadata.map((element, index) => {
+                    /* list is immutable */
+                    return <meta key={index} {...sanitizeObject(element)} />;
+                })}
+            </Helmet>
+        );
+    };
+
     const {
         extra,
         router,
@@ -64,7 +92,6 @@ const Meta: React.FC<MetaComponentInnerProps> = (props) => {
         noIndex,
         canonical,
         alternate,
-        ...documentMetaProps
     } = props;
 
     const {
@@ -84,7 +111,7 @@ const Meta: React.FC<MetaComponentInnerProps> = (props) => {
 
     return (
         <React.Fragment>
-            <DocMeta {...documentMetaProps} />
+            {renderDocPageMeta()}
             <SocialSharingMeta
                 type={type}
                 url={url || fullUrl}

@@ -32,7 +32,7 @@
 
     @media (max-width: map.get(variables.$screenBreakpoints, 'sm') - 1) {
         .pc-desktop-navigation__wrapper .pc-desktop-navigation__logo .pc-logo__icon {
-            max-width: calc(100vw - 131px);
+            max-width: 100%;
         }
     }
 }

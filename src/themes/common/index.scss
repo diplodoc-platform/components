@@ -18,6 +18,11 @@
     --dc-header-height: 0px;
     --dc-subnavigation-height: 52px;
     --dc-subheader-height: 40px;
+    --dc-color-mini-toc-border: var(--g-color-line-generic);
+    --dc-color-mini-toc: var(--g-color-text-secondary);
+    --dc-color-mini-toc-hover: var(--g-color-text-complementary);
+    --dc-color-mini-toc-active: var(--g-color-text-primary);
+    --dc-color-mini-toc-active-border: var(--g-color-text-primary);
 
     --dc-error-image-403: url('data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=');
     --dc-error-image-404: url('data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=');

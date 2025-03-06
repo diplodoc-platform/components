@@ -1,5 +1,20 @@
 # История изменений
 
+## [4.24.0](https://github.com/diplodoc-platform/components/compare/v4.23.2...v4.24.0) (2025-03-06)
+
+
+### Features
+
+* add VersionsSelect component ([#383](https://github.com/diplodoc-platform/components/issues/383)) ([a4f3c7a](https://github.com/diplodoc-platform/components/commit/a4f3c7a3a0ecca4d8ecbd326fc53404d64bb6698))
+
+
+### Bug Fixes
+
+* navigation button invisible when logo large ([#381](https://github.com/diplodoc-platform/components/issues/381)) ([5b48075](https://github.com/diplodoc-platform/components/commit/5b480752d72272fbb91873235b36b0e86b6a43c6))
+* pass fullscreen for every layout ([#386](https://github.com/diplodoc-platform/components/issues/386)) ([829dbb2](https://github.com/diplodoc-platform/components/commit/829dbb2ee4efb18af5e7fc755f7494e309cab60d))
+* sharebutton visible on desktop ([#377](https://github.com/diplodoc-platform/components/issues/377)) ([d93594a](https://github.com/diplodoc-platform/components/commit/d93594a7d862e4351007ed3d5873189916081b85))
+* subnav and share button visible, restyle subnav title ([#385](https://github.com/diplodoc-platform/components/issues/385)) ([babc6d4](https://github.com/diplodoc-platform/components/commit/babc6d4eb301929b1070c23ac690a76005612085))
+
 ## [4.23.2](https://github.com/diplodoc-platform/components/compare/v4.23.1...v4.23.2) (2025-02-25)
 
 

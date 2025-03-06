@@ -85,10 +85,6 @@
     @media (max-width: map.get(variables.$screenBreakpoints, 'md') - 1) {
         flex-direction: column-reverse;
 
-        &__right:has(.dc-subnavigation_visible) + &__center {
-            margin-top: var(--dc-subnavigation-height, variables.$subNavigationHeight);
-        }
-
         &__right {
             position: sticky;
             top: calc(var(--dc-header-height, #{variables.$headerHeight}) - 1px);

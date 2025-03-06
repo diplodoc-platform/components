@@ -27,6 +27,7 @@ export interface DocLeadingPageProps extends DocLeadingPageData, NotificationPro
     useMainTag?: boolean;
     legacyToc?: boolean;
     isMobile?: boolean;
+    fullScreen?: boolean;
 }
 
 export interface DocLinkProps {
@@ -121,6 +122,7 @@ export const DocLeadingPage: React.FC<DocLeadingPageProps> = ({
     notification,
     notificationCb,
     isMobile,
+    fullScreen,
 }) => {
     const modes = {
         'regular-page-width': !wideFormat,
@@ -137,12 +139,13 @@ export const DocLeadingPage: React.FC<DocLeadingPageProps> = ({
             tocTitleIcon={tocTitleIcon}
             footer={footer}
             legacyToc={legacyToc}
+            fullScreen={fullScreen}
         >
             <DocLayout.Center>
                 <Notification notification={notification} notificationCb={notificationCb} />
                 <ContentWrapper className={b('main')} useMainTag={useMainTag}>
                     {isMobile && <ShareButton className={b('share-button')} title={title} />}
-                    <DocPageTitle stage={toc.stage} className={b('title')}>
+                    <DocPageTitle stage={toc?.stage} className={b('title')}>
                         <HTML>{title}</HTML>
                     </DocPageTitle>
                     <div className={b('description')}>

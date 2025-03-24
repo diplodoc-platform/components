@@ -1,5 +1,12 @@
 # История изменений
 
+## [4.24.1](https://github.com/diplodoc-platform/components/compare/v4.24.0...v4.24.1) (2025-03-24)
+
+
+### Bug Fixes
+
+* share button and sticky mini-toc ([#387](https://github.com/diplodoc-platform/components/issues/387)) DOCSTOOLS-4045 ([7e6a23a](https://github.com/diplodoc-platform/components/commit/7e6a23ac07aa384c339fa68ff89cf551e8c4ecd0))
+
 ## [4.24.0](https://github.com/diplodoc-platform/components/compare/v4.23.2...v4.24.0) (2025-03-06)
 
 

@@ -186,6 +186,10 @@
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+
+        &_single {
+            padding-left: $horizontalPadding;
+        }
     }
 
     & &__share-button {

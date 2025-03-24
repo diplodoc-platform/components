@@ -1,6 +1,10 @@
 .dc-doc-page-title {
     position: relative;
 
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+
     &__label {
         position: absolute;
         left: 0;

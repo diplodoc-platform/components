@@ -141,9 +141,9 @@ export const DocLeadingPage: React.FC<DocLeadingPageProps> = ({
             <DocLayout.Center>
                 <Notification notification={notification} notificationCb={notificationCb} />
                 <ContentWrapper className={b('main')} useMainTag={useMainTag}>
-                    {isMobile && <ShareButton className={b('share-button')} title={title} />}
-                    <DocPageTitle stage={toc.stage} className={b('title')}>
+                    <DocPageTitle stage={toc?.stage} className={b('title')}>
                         <HTML>{title}</HTML>
+                        {isMobile && <ShareButton className={b('share-button')} title={title} />}
                     </DocPageTitle>
                     <div className={b('description')}>
                         <Text data={description} html block />

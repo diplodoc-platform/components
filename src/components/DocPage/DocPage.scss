@@ -12,11 +12,7 @@
     $block: &;
 
     &__aside {
-        position: fixed;
-        top: calc(
-            var(--dc-header-height, #{variables.$headerHeight}) +
-                var(--dc-subheader-height, #{variables.$subHeaderHeight})
-        );
+        position: sticky;
 
         padding-top: 24px;
         width: 176px;
@@ -24,8 +20,6 @@
         @include mixins.text-size(body-1);
 
         @media (max-width: map.get(variables.$screenBreakpoints, 'md') - 1) {
-            position: absolute;
-            top: 0;
             z-index: 117;
 
             display: flex;

@@ -36,6 +36,8 @@ export * from './components/VersionsSelect';
 
 export * from './components/navigation';
 
+export * from './contexts/LangContext';
+
 export * from './config';
 export * from './models';
 export * from './constants';

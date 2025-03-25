@@ -1,4 +1,6 @@
-import LangContext, {Lang} from '../contexts/LangContext';
+import {Lang} from 'src/models';
+
+import LangContext from '../contexts/LangContext';
 
 import withPropContext from './_withContext';
 

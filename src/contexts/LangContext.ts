@@ -1,4 +1,4 @@
-import {Lang} from 'src/models';
+import {Lang} from '../models';
 
 import namedContext from './_namedContext';
 

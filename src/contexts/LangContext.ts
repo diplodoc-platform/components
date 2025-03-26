@@ -1,12 +1,11 @@
+import {Lang as ModelsLang} from '../models';
+
 import namedContext from './_namedContext';
 
-//TODO: Similar type Lang (from models) already exists. Replace ContextLang when there is a new major.
-export enum ContextLang {
+//TODO: remove when there is a new major.
+export enum Lang {
     Ru = 'ru',
     En = 'en',
 }
 
-export default namedContext<ContextLang>(
-    'Lang',
-    (process.env.DEFAULT_LANG as ContextLang) || ContextLang.En,
-);
+export default namedContext<ModelsLang>('Lang', (process.env.DEFAULT_LANG as Lang) || Lang.En);

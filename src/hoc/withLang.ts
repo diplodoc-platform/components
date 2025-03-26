@@ -1,11 +1,9 @@
-import {Lang} from 'src/models';
-
-import LangContext from '../contexts/LangContext';
+import LangContext, {ContextLang} from '../contexts/LangContext';
 
 import withPropContext from './_withContext';
 
 export interface WithLangProps {
-    lang: Lang;
+    lang: ContextLang;
 }
 
 export default withPropContext<WithLangProps>('lang', LangContext);

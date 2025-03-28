@@ -1,0 +1,10 @@
+// same as bookmark button keep it sync :)
+
+.dc-share-button {
+    vertical-align: middle;
+    margin: 0 0 5px 12px;
+
+    &:hover::before {
+        background-color: transparent;
+    }
+}

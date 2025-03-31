@@ -156,7 +156,7 @@ After running tests playwright will create folder for snapshots (if it didn't ex
 If reference screenshot is incorrect you can update it:
 
 ```bash
-npm run playwright:docker npm run test:playwright --update-snapshots
+npm run playwright:docker npm run test:playwright:update
 ```
 
 ## License

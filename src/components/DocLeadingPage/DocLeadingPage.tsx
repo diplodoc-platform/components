@@ -9,6 +9,7 @@ import {DocPageTitle} from '../DocPageTitle';
 import {HTML} from '../HTML';
 import {Text} from '../Text';
 import {Notification, NotificationProps} from '../Notification';
+import {ShareButton} from '../ShareButton';
 
 import './DocLeadingPage.scss';
 
@@ -25,6 +26,8 @@ export interface DocLeadingPageProps extends DocLeadingPageData, NotificationPro
     tocTitleIcon?: React.ReactNode;
     useMainTag?: boolean;
     legacyToc?: boolean;
+    isMobile?: boolean;
+    fullScreen?: boolean;
 }
 
 export interface DocLinkProps {
@@ -118,6 +121,8 @@ export const DocLeadingPage: React.FC<DocLeadingPageProps> = ({
     legacyToc,
     notification,
     notificationCb,
+    isMobile,
+    fullScreen,
 }) => {
     const modes = {
         'regular-page-width': !wideFormat,
@@ -134,12 +139,14 @@ export const DocLeadingPage: React.FC<DocLeadingPageProps> = ({
             tocTitleIcon={tocTitleIcon}
             footer={footer}
             legacyToc={legacyToc}
+            fullScreen={fullScreen}
         >
             <DocLayout.Center>
                 <Notification notification={notification} notificationCb={notificationCb} />
                 <ContentWrapper className={b('main')} useMainTag={useMainTag}>
-                    <DocPageTitle stage={toc.stage} className={b('title')}>
+                    <DocPageTitle stage={toc?.stage} className={b('title')}>
                         <HTML>{title}</HTML>
+                        {isMobile && <ShareButton className={b('share-button')} title={title} />}
                     </DocPageTitle>
                     <div className={b('description')}>
                         <Text data={description} html block />

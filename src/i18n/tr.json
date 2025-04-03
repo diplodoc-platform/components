@@ -130,5 +130,8 @@
   "paginator": {
     "next": "Sonraki sayfa",
     "prev": "Önceki sayfa"
+  },
+  "header": {
+    "versions-select-placeholder": "Sürümler"
   }
 }

@@ -19,6 +19,7 @@ export interface DocContentPageProps extends DocContentPageData {
     tocTitleIcon?: React.ReactNode;
     useMainTag?: boolean;
     legacyToc?: boolean;
+    fullScreen?: boolean;
 }
 
 export const DocContentPage: React.FC<DocContentPageProps> = ({
@@ -34,6 +35,7 @@ export const DocContentPage: React.FC<DocContentPageProps> = ({
     children,
     useMainTag,
     legacyToc,
+    fullScreen,
 }) => {
     const modes = {
         'regular-page-width': !wideFormat,
@@ -47,7 +49,7 @@ export const DocContentPage: React.FC<DocContentPageProps> = ({
             className={b(modes)}
             hideTocHeader={hideTocHeader}
             hideToc={hideToc || data?.fullScreen}
-            fullScreen={data?.fullScreen}
+            fullScreen={fullScreen || data?.fullScreen}
             tocTitleIcon={tocTitleIcon}
             footer={footer}
             hideRight={true}

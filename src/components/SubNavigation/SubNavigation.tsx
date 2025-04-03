@@ -108,11 +108,10 @@ const SubNavigation = memo(
             />
         );
 
-        const miniTocButton = (
+        const navContent = (
             <button
                 className={b('mini-toc-button', {
                     disabled: menuOpen || hideMiniToc,
-                    label: hideMiniToc,
                 })}
                 type={'button'}
                 disabled={menuOpen || hideMiniToc}
@@ -123,13 +122,7 @@ const SubNavigation = memo(
                         <SquareListUl {...ICON_SIZE} />
                     </div>
                 )}
-                <span
-                    className={b('title', {
-                        label: hideMiniToc,
-                    })}
-                >
-                    {activeMiniTocTitle}
-                </span>
+                <span className={b('title', {single: true})}>{activeMiniTocTitle}</span>
             </button>
         );
 
@@ -157,7 +150,7 @@ const SubNavigation = memo(
                     })}
                 >
                     {menuButton}
-                    {miniTocButton}
+                    {navContent}
                     {shareButton}
                 </div>
                 {!hideMiniToc && miniToc}

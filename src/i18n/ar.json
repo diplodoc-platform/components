@@ -130,5 +130,8 @@
   "paginator": {
     "next": "الصفحة التالية",
     "prev": "الصفحة السابقة"
+  },
+  "header": {
+    "versions-select-placeholder": "الإصدارات"
   }
 }

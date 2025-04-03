@@ -3,7 +3,7 @@
   "description": "React components for drawing Diplodoc documentation",
   "author": "YFM Team <yfm-team@yandex.ru>",
   "license": "MIT",
-  "version": "4.23.1",
+  "version": "4.24.0",
   "repository": {
     "type": "git",
     "url": "git@github.com:yandex-cloud/docs-components.git"
@@ -53,6 +53,7 @@
     "typecheck": "tsc -p . --noEmit",
     "test": "exit 0",
     "test:playwright": "npx playwright test --config playwright/playwright.config.ts",
+    "test:playwright:update": "npx playwright test --config playwright/playwright.config.ts --update-snapshots",
     "playwright:docker": "sh ./playwright/playwright-docker.sh",
     "playwright:docker:windows": "sh ./playwright/playwright-docker-windows.sh",
     "dev": "run-s build _dev:watch",

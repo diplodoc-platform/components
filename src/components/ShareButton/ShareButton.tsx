@@ -1,9 +1,14 @@
 import React from 'react';
 import {ArrowShapeTurnUpRight} from '@gravity-ui/icons';
 import {Button, ButtonSize, ButtonView} from '@gravity-ui/uikit';
+import block from 'bem-cn-lite';
 
 import {useShareHandler} from '../../hooks';
 import {ClassNameProps} from '../../models';
+
+import './ShareButton.scss';
+
+const b = block('dc-share-button');
 
 const ICON_SIZE = {
     width: 24,
@@ -32,7 +37,7 @@ export const ShareButton: React.FC<ShareButtonProps> = ({
     const shareHandler = useShareHandler(title);
 
     return (
-        <Button className={className} size={size} view={view} onClick={shareHandler}>
+        <Button className={className + ' ' + b()} size={size} view={view} onClick={shareHandler}>
             <Button.Icon>
                 <ArrowShapeTurnUpRight {...iconSize} />
             </Button.Icon>

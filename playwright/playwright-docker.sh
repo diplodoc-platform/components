@@ -24,3 +24,5 @@ args=(
 
 docker build -t $IMAGE_NAME -f ./playwright/Dockerfile . &&  
 docker run "${args[@]}"
+
+echo "Playwright test completed"

@@ -1,5 +1,19 @@
 # История изменений
 
+## [4.25.0](https://github.com/diplodoc-platform/components/compare/v4.24.0...v4.25.0) (2025-04-11)
+
+
+### Features
+
+* re-export _namedContext ([#393](https://github.com/diplodoc-platform/components/issues/393)) ([519344b](https://github.com/diplodoc-platform/components/commit/519344b741dd30f0873ece7c1cedb5e8fa8611ef))
+
+
+### Bug Fixes
+
+* command for updating screenshots ([#392](https://github.com/diplodoc-platform/components/issues/392)) ([67120b7](https://github.com/diplodoc-platform/components/commit/67120b7eef90d0f593ca978a07ff3f9d896b0608))
+* share button and sticky mini-toc ([#387](https://github.com/diplodoc-platform/components/issues/387)) DOCSTOOLS-4045 ([7e6a23a](https://github.com/diplodoc-platform/components/commit/7e6a23ac07aa384c339fa68ff89cf551e8c4ecd0))
+* sticky toc on desktop and share button styles DOCSTOOLS-4045 ([#390](https://github.com/diplodoc-platform/components/issues/390)) ([78b0792](https://github.com/diplodoc-platform/components/commit/78b07920a314c3a2cd43b97e433cc384103a59e2))
+
 ## [4.24.0](https://github.com/diplodoc-platform/components/compare/v4.23.2...v4.24.0) (2025-03-06)
 
 

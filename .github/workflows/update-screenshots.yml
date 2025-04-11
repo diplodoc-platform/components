@@ -23,8 +23,8 @@ jobs:
             return user.role === 'admin' || user.role === 'maintainer';
 
   update-screenshots:
-    # needs: check-permissions
-    # if: needs.check-permissions.outputs.is_maintainer == 'true'
+    needs: check-permissions
+    if: needs.check-permissions.outputs.is_maintainer == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository

@@ -1,0 +1,66 @@
+name: Update Component Screenshots
+
+on:
+  issue_comment:
+    types: [created]
+    if: github.event.issue.pull_request && contains(github.event.comment.body, '/update-screenshots')
+
+jobs:
+  check-permissions:
+    runs-on: ubuntu-latest
+    outputs:
+      is_maintainer: ${{ steps.check.outputs.is_maintainer }}
+    steps:
+      - name: Check if user is maintainer
+        id: check
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const { data: user } = await github.rest.orgs.getMembershipForUser({
+              org: context.repo.owner,
+              username: context.actor
+            });
+            return user.role === 'admin' || user.role === 'maintainer';
+
+  update-screenshots:
+    needs: check-permissions
+    if: needs.check-permissions.outputs.is_maintainer == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          registry-url: 'https://registry.npmjs.org'
+
+      - run: npm ci
+        shell: bash
+
+      - name: Update screenshots
+        run: |
+          chmod +x ./playwright/playwright-docker.sh
+          npm run playwright:docker npm run test:update-screenshots
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name 'GitHub Action'
+          git config --global user.email 'action@github.com'
+          git add .
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore: update screenshots" && git push)
+
+      - name: Add comment to PR
+        uses: actions/github-script@v6
+        if: success()
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '✅ Screenshots have been updated successfully!'
+            });

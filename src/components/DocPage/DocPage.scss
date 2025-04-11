@@ -12,7 +12,11 @@
     $block: &;
 
     &__aside {
-        position: sticky;
+        position: fixed;
+        top: calc(
+            var(--dc-header-height, #{variables.$headerHeight}) +
+                var(--dc-subheader-height, #{variables.$subHeaderHeight})
+        );
 
         padding-top: 24px;
         width: 176px;
@@ -21,6 +25,7 @@
 
         @media (max-width: map.get(variables.$screenBreakpoints, 'md') - 1) {
             z-index: 117;
+            position: sticky;
 
             display: flex;
             flex-direction: column;
@@ -171,10 +176,6 @@
     }
 
     &__share-button {
-        vertical-align: middle;
-        margin-inline: 12px 4px;
-        margin-bottom: 4px;
-
         &:hover::before {
             background-color: transparent;
         }

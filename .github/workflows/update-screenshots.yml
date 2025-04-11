@@ -1,27 +1,26 @@
 name: Update Component Screenshots
 
 on:
-  workflow_dispatch:
   issue_comment:
     types: [created]
     if: github.event.issue.pull_request && contains(github.event.comment.body, '/update-screenshots')
 
 jobs:
-  # check-permissions:
-  #   runs-on: ubuntu-latest
-  #   outputs:
-  #     is_maintainer: ${{ steps.check.outputs.is_maintainer }}
-  #   steps:
-  #     - name: Check if user is maintainer
-  #       id: check
-  #       uses: actions/github-script@v6
-  #       with:
-  #         script: |
-  #           const { data: user } = await github.rest.orgs.getMembershipForUser({
-  #             org: context.repo.owner,
-  #             username: context.actor
-  #           });
-  #           return user.role === 'admin' || user.role === 'maintainer';
+  check-permissions:
+    runs-on: ubuntu-latest
+    outputs:
+      is_maintainer: ${{ steps.check.outputs.is_maintainer }}
+    steps:
+      - name: Check if user is maintainer
+        id: check
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const { data: user } = await github.rest.orgs.getMembershipForUser({
+              org: context.repo.owner,
+              username: context.actor
+            });
+            return user.role === 'admin' || user.role === 'maintainer';
 
   update-screenshots:
     # needs: check-permissions

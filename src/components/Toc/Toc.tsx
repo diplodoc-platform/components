@@ -15,7 +15,6 @@ import {TocItemRegistry} from './TocItemRegistry';
 import './Toc.scss';
 
 const b = block('dc-toc');
-const HEADER_DEFAULT_HEIGHT = 0;
 
 function zip<T>(array: string[], fill: T): Record<string, T> {
     return array.reduce((acc, item) => Object.assign(acc, {[item]: fill}), {});
@@ -66,10 +65,7 @@ class Toc extends React.Component<TocProps, TocState> {
     componentDidMount() {
         this.containerEl = document.querySelector('.Layout__content');
         this.footerEl = document.querySelector('.Footer');
-        this.setTocHeight();
 
-        window.addEventListener('scroll', this.handleScroll);
-        window.addEventListener('resize', this.handleResize);
         if (this.contentRef && this.contentRef.current) {
             this.contentRef.current.addEventListener('scroll', this.handleContentScroll);
         }
@@ -91,8 +87,6 @@ class Toc extends React.Component<TocProps, TocState> {
             prevProps.router.hash !== router.hash ||
             prevProps.singlePage !== singlePage
         ) {
-            this.setTocHeight();
-
             nextState = this.computeState(nextState || prevState);
         } else if (prevState.activeId !== this.state.activeId) {
             this.scrollToActiveItem();
@@ -104,8 +98,6 @@ class Toc extends React.Component<TocProps, TocState> {
     }
 
     componentWillUnmount() {
-        window.removeEventListener('scroll', this.handleScroll);
-        window.removeEventListener('resize', this.handleResize);
         if (this.contentRef && this.contentRef.current) {
             this.contentRef.current.removeEventListener('scroll', this.handleContentScroll);
         }
@@ -275,35 +267,6 @@ class Toc extends React.Component<TocProps, TocState> {
             </div>
         );
     }
-
-    private setTocHeight() {
-        const {headerHeight = HEADER_DEFAULT_HEIGHT} = this.props;
-        const containerHeight = this.containerEl?.offsetHeight ?? 0;
-        const footerHeight = this.footerEl?.offsetHeight ?? 0;
-        const scrollDiff =
-            window.scrollY + window.innerHeight + footerHeight - headerHeight - containerHeight;
-        const rootNode = this.rootRef.current;
-
-        if (!rootNode) {
-            return;
-        }
-
-        if (scrollDiff > 0) {
-            rootNode.style.height = window.innerHeight - headerHeight - scrollDiff + 'px';
-        } else if (containerHeight < window.innerHeight) {
-            rootNode.style.height = containerHeight - footerHeight + 'px';
-        } else {
-            rootNode.style.height = window.innerHeight - headerHeight + 'px';
-        }
-    }
-
-    private handleScroll = () => {
-        this.setTocHeight();
-    };
-
-    private handleResize = () => {
-        this.setTocHeight();
-    };
 
     private scrollToItem = () => {
         if (!this.activeRef.current) {

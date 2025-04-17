@@ -9,6 +9,7 @@ import {MobileControlsProps} from '../MobileControls';
 import {MiniToc} from '../MiniToc';
 import {OutsideClick} from '../OutsideClick';
 import {ShareButton} from '../ShareButton';
+import {useHeadingIntersectionObserver} from '../Scrollspy/ScrollspyV2';
 
 import {useMiniTocData, useVisibility} from './hooks';
 import './SubNavigation.scss';
@@ -59,6 +60,11 @@ const SubNavigation = memo(
             onActiveItemTitleChange,
         } = useMiniTocData(pageTitle, hideMiniToc, menuOpen);
         const [visible, setVisibility] = useVisibility(menuOpen, miniTocOpen);
+
+        useHeadingIntersectionObserver({
+            headings,
+            onVisibleHeadingChange: ({title}) => onActiveItemTitleChange(title),
+        });
 
         const onItemClick = useCallback(
             (event: MouseEvent) => {

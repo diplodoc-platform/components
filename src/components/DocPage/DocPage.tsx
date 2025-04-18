@@ -231,7 +231,9 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                             hideMiniToc={!this.showMiniToc}
                             hideBurger={hideBurger}
                             hideTocHeader={hideTocHeader}
-                            onMiniTocItemClick={onMiniTocItemClick}
+                            onMiniTocItemClick={
+                                onMiniTocItemClick as unknown as (event: React.MouseEvent) => void
+                            }
                         />
                     </div>
                 </DocLayout.Right>

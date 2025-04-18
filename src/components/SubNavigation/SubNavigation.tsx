@@ -1,4 +1,4 @@
-import React, {memo, useCallback, useRef, useState} from 'react';
+import React, {MouseEvent, memo, useCallback, useRef, useState} from 'react';
 import {SquareListUl} from '@gravity-ui/icons';
 import block from 'bem-cn-lite';
 
@@ -9,10 +9,10 @@ import {MobileControlsProps} from '../MobileControls';
 import {MiniToc} from '../MiniToc';
 import {OutsideClick} from '../OutsideClick';
 import {ShareButton} from '../ShareButton';
-import {useHeadingIntersectionObserver} from '../Scrollspy/ScrollspyV2';
 
 import {useMiniTocData, useVisibility} from './hooks';
 import './SubNavigation.scss';
+import {useHeadingIntersectionObserver} from './hooks/useHeadingIntersectionObserver';
 
 const b = block('dc-subnavigation');
 
@@ -52,18 +52,11 @@ const SubNavigation = memo(
         const ref = useRef<HTMLDivElement>(null);
 
         const [menuOpen, setMenuOpen] = useState(false);
-        const {
-            miniTocOpen,
-            activeMiniTocTitle,
-            closeMiniToc,
-            miniTocHandler,
-            onActiveItemTitleChange,
-        } = useMiniTocData(pageTitle, hideMiniToc, menuOpen);
+        const {miniTocOpen, closeMiniToc, miniTocHandler} = useMiniTocData(hideMiniToc, menuOpen);
         const [visible, setVisibility] = useVisibility(menuOpen, miniTocOpen);
 
-        useHeadingIntersectionObserver({
+        const {flatHeadings, activeHeading} = useHeadingIntersectionObserver({
             headings,
-            onVisibleHeadingChange: ({title}) => onActiveItemTitleChange(title),
         });
 
         const onItemClick = useCallback(
@@ -128,19 +121,19 @@ const SubNavigation = memo(
                         <SquareListUl {...ICON_SIZE} />
                     </div>
                 )}
-                <span className={b('title', {single: true})}>{activeMiniTocTitle}</span>
+                <span className={b('title', {single: true})}>
+                    {activeHeading?.title ?? pageTitle}
+                </span>
             </button>
         );
 
         const miniToc = !hideMiniToc && (
             <div ref={ref} className={b('mini-toc', {open: miniTocOpen})}>
                 <MiniToc
-                    headings={headings}
-                    router={router}
-                    headerHeight={headerHeight}
                     key={keyDOM}
+                    headings={flatHeadings}
+                    activeHeading={activeHeading}
                     onItemClick={onItemClick}
-                    onActiveItemTitleChange={onActiveItemTitleChange}
                 />
             </div>
         );

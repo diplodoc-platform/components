@@ -17,6 +17,8 @@
     &__sections {
         @include mixins.reset-list-style();
 
+        position: relative;
+
         max-height: calc(
             100vh - var(--dc-header-height, #{variables.$headerHeight}) - var(
                     --dc-subnavigation-height,

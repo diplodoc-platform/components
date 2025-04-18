@@ -1,13 +1,13 @@
-import {PropsWithChildren, RefObject, useEffect, useRef} from 'react';
+import {RefObject, useEffect, useMemo, useRef, useState} from 'react';
 
-import {useStableCallback} from '../../hooks/useStableCallback';
-import {DocHeadingItem} from '../../models';
+import {DocHeadingItem} from '../../../models';
+import {useStableCallback} from '../../../hooks/useStableCallback';
 
-interface FlatHeadingItem {
+export type FlatHeadingItem = {
     title: string;
     href: string;
     isChild: boolean;
-}
+};
 
 function getFlatHeadings(items: readonly DocHeadingItem[], isChild = false): FlatHeadingItem[] {
     return items.reduce((result, {href, title, items: subItems}) => {
@@ -15,11 +15,15 @@ function getFlatHeadings(items: readonly DocHeadingItem[], isChild = false): Fla
     }, [] as FlatHeadingItem[]);
 }
 
-type ScrollspyArgs = PropsWithChildren<{
+type HeadingIntersectionObserverHookArgs = {
     headings: readonly DocHeadingItem[];
-    onVisibleHeadingChange: (heading: FlatHeadingItem) => void;
     rootRef?: RefObject<HTMLElement>;
-}>;
+};
+
+type HeadingIntersectionObserverHookReturn = {
+    flatHeadings: readonly FlatHeadingItem[];
+    activeHeading: FlatHeadingItem | null;
+};
 
 type HeadingAssocMap = Map<Element, FlatHeadingItem>;
 
@@ -43,9 +47,10 @@ const mapHeadingsToElements = (
 
 export const useHeadingIntersectionObserver = ({
     headings,
-    onVisibleHeadingChange,
     rootRef,
-}: ScrollspyArgs): void => {
+}: HeadingIntersectionObserverHookArgs): HeadingIntersectionObserverHookReturn => {
+    const [activeHeading, setActiveHeading] = useState<FlatHeadingItem | null>(null);
+
     const elementMapRef = useRef<HeadingAssocMap>();
 
     const intersectionObserverCallback = useStableCallback(
@@ -54,7 +59,7 @@ export const useHeadingIntersectionObserver = ({
                 const maybeDescriptor = elementMapRef.current?.get(target);
 
                 if (isIntersecting && maybeDescriptor) {
-                    onVisibleHeadingChange(maybeDescriptor);
+                    setActiveHeading(maybeDescriptor);
 
                     break;
                 }
@@ -62,8 +67,9 @@ export const useHeadingIntersectionObserver = ({
         },
     );
 
+    const flatHeadings = useMemo(() => getFlatHeadings(headings), [headings]);
+
     useEffect(() => {
-        const flatHeadings = getFlatHeadings(headings);
         const mapping = mapHeadingsToElements(flatHeadings, rootRef?.current ?? undefined);
 
         elementMapRef.current = mapping;
@@ -75,5 +81,7 @@ export const useHeadingIntersectionObserver = ({
         [...mapping.keys()].forEach((element) => instance.observe(element));
 
         return () => instance.disconnect();
-    }, [rootRef, headings, intersectionObserverCallback]);
+    }, [rootRef, flatHeadings, intersectionObserverCallback]);
+
+    return {flatHeadings, activeHeading};
 };

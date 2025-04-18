@@ -79,6 +79,7 @@
     "@gravity-ui/uikit": "^6.2.0",
     "@popperjs/core": "^2.11.2",
     "bem-cn-lite": "4.1.0",
+    "clsx": "^2.1.1",
     "hoist-non-react-statics": "^3.3.2",
     "i18next": "^24.2.2",
     "isomorphic-dompurify": "^2.20.0",

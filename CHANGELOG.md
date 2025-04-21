@@ -1,5 +1,12 @@
 # История изменений
 
+## [4.26.2](https://github.com/diplodoc-platform/components/compare/v4.26.1...v4.26.2) (2025-04-21)
+
+
+### Bug Fixes
+
+* use `getElementById` instead of `querySelector` ([1f07bc9](https://github.com/diplodoc-platform/components/commit/1f07bc90b1b37c1f10bb33aa95f1e23953d43df8))
+
 ## [4.26.1](https://github.com/diplodoc-platform/components/compare/v4.26.0...v4.26.1) (2025-04-21)
 
 

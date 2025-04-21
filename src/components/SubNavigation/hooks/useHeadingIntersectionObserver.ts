@@ -30,18 +30,14 @@ type HeadingAssocMap = Map<Element, FlatHeadingItem>;
 const parseIdSelectorFromHref = (href: string) => {
     const [, maybeAnchor = ''] = href.split('#');
 
-    return `#${maybeAnchor}`;
+    return maybeAnchor;
 };
 
-const mapHeadingsToElements = (
-    headings: readonly FlatHeadingItem[],
-    root?: Element,
-): HeadingAssocMap => {
+const mapHeadingsToElements = (headings: readonly FlatHeadingItem[]): HeadingAssocMap => {
     const map: HeadingAssocMap = new Map();
-    const searchRoot = root ?? document;
 
     headings.forEach((descriptor) => {
-        const maybeElement = searchRoot.querySelector(parseIdSelectorFromHref(descriptor.href));
+        const maybeElement = document.getElementById(parseIdSelectorFromHref(descriptor.href));
 
         if (maybeElement) {
             map.set(maybeElement, descriptor);
@@ -76,7 +72,7 @@ export const useHeadingIntersectionObserver = ({
     const flatHeadings = useMemo(() => getFlatHeadings(headings), [headings]);
 
     useEffect(() => {
-        const mapping = mapHeadingsToElements(flatHeadings, rootRef?.current ?? undefined);
+        const mapping = mapHeadingsToElements(flatHeadings);
 
         elementMapRef.current = mapping;
 

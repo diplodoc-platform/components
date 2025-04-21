@@ -1,5 +1,12 @@
 # История изменений
 
+## [4.26.1](https://github.com/diplodoc-platform/components/compare/v4.26.0...v4.26.1) (2025-04-21)
+
+
+### Bug Fixes
+
+* extract id selector properly ([7f4c56f](https://github.com/diplodoc-platform/components/commit/7f4c56f450d2bd5808bc4f324ab9aecb35ff2592))
+
 ## [4.26.0](https://github.com/diplodoc-platform/components/compare/v4.25.0...v4.26.0) (2025-04-21)
 
 

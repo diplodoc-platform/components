@@ -1,5 +1,12 @@
 # История изменений
 
+## [4.26.0](https://github.com/diplodoc-platform/components/compare/v4.25.0...v4.26.0) (2025-04-21)
+
+
+### Features
+
+* implement new MiniToc component ([9160d82](https://github.com/diplodoc-platform/components/commit/9160d828b9159d7fb0986445a0e25d70a4a0ab99))
+
 ## [4.25.0](https://github.com/diplodoc-platform/components/compare/v4.24.0...v4.25.0) (2025-04-11)
 
 

@@ -27,6 +27,12 @@ type HeadingIntersectionObserverHookReturn = {
 
 type HeadingAssocMap = Map<Element, FlatHeadingItem>;
 
+const parseIdSelectorFromHref = (href: string) => {
+    const [, maybeAnchor = ''] = href.split('#');
+
+    return `#${maybeAnchor}`;
+};
+
 const mapHeadingsToElements = (
     headings: readonly FlatHeadingItem[],
     root?: Element,
@@ -35,7 +41,7 @@ const mapHeadingsToElements = (
     const searchRoot = root ?? document;
 
     headings.forEach((descriptor) => {
-        const maybeElement = searchRoot.querySelector(descriptor.href);
+        const maybeElement = searchRoot.querySelector(parseIdSelectorFromHref(descriptor.href));
 
         if (maybeElement) {
             map.set(maybeElement, descriptor);

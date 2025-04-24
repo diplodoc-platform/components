@@ -19,7 +19,13 @@ jobs:
     steps:
       - id: build-publish
         uses: bitovi/github-actions-react-to-github-pages@v1.2.4
+      - name: Install Packages
+        run: npm ci
+      - name: Install Demo Packages
+        run: cd demo && npm i
+      - name: Build Storybook
+        run: npm run build-storybook
         with:
-          install_command: npm ci && cd demo && npm ci
-          build_command: npm run build-storybook
+          # install_command: npm ci && cd demo && npm ci
+          # build_command: npm run build-storybook
           path: storybook-static

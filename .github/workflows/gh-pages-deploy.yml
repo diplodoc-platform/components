@@ -1,0 +1,25 @@
+on:
+  push:
+    branches:
+      - 'page'
+  pull_request:
+    branches: [master]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.build-publish.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - id: build-publish
+        uses: bitovi/github-actions-react-to-github-pages@v1.2.4
+        with:
+          install_command: npm i && npm run build && npm run postinstall && cd demo
+          build_command: npm run build-storybook
+          path: demo/storybook-static

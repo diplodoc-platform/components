@@ -20,4 +20,4 @@ jobs:
         with:
           install_command: npm i
           build_command: cd demo && npm run build-storybook
-          path: build # change to your build folder
+          path: demo/.storybook # change to your build folder

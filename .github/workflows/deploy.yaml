@@ -19,5 +19,5 @@ jobs:
         uses: bitovi/github-actions-react-to-github-pages@v1.2.4
         with:
           install_command: npm i
-          build_command: npm run dev
+          build_command: cd demo && npm run build-storybook
           path: build # change to your build folder

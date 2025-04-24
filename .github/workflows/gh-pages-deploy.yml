@@ -1,8 +1,5 @@
 on:
   push:
-    branches:
-      - 'page'
-  pull_request:
     branches: [master]
 
 permissions:

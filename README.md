@@ -1,4 +1,4 @@
-[![NPM version](https://img.shields.io/npm/v/@diplodoc/components.svg?style=flat)](https://www.npmjs.org/package/@diplodoc/components)
+[![NPM version](https://img.shields.io/npm/v/@diplodoc/components.svg?style=flat)](https://www.npmjs.org/package/@diplodoc/components) [![storybook](https://img.shields.io/badge/Storybook-deployed-ff4685?logo=storybook)](https://diplodoc-platform.github.io/components)
 
 # YFM Docs Components
 

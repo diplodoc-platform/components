@@ -14,5 +14,13 @@ fi
 
 COMMAND=$@
 
+args=(
+  --rm
+  -v $HOST_COMPONENTS_DIR:$CONTAINER_COMPONENTS_DIR
+  -v $HOST_REPORT_DIR:$CONTAINER_REPORT_DIR
+  $IMAGE_NAME
+  $COMMAND
+)
+
 docker build -t $IMAGE_NAME -f ./playwright/Dockerfile . &&  
-docker run --rm -v $HOST_COMPONENTS_DIR:$CONTAINER_COMPONENTS_DIR -v $HOST_REPORT_DIR:$CONTAINER_REPORT_DIR $IMAGE_NAME $COMMAND
+docker run "${args[@]}"

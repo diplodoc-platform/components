@@ -11,7 +11,6 @@ export * from './components/MiniToc';
 export * from './components/SubNavigation';
 export * from './components/ShareButton';
 export * from './components/SocialSharingMeta';
-export * from './components/Scrollspy';
 export * from './components/StageLabel';
 export * from './components/Text';
 export * from './components/Toc';
@@ -35,6 +34,8 @@ export * from './components/Notification';
 export * from './components/VersionsSelect';
 
 export * from './components/navigation';
+
+export * from './contexts/_namedContext';
 
 export * from './config';
 export * from './models';

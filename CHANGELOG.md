@@ -1,5 +1,40 @@
 # История изменений
 
+## [4.26.2](https://github.com/diplodoc-platform/components/compare/v4.26.1...v4.26.2) (2025-04-21)
+
+
+### Bug Fixes
+
+* use `getElementById` instead of `querySelector` ([1f07bc9](https://github.com/diplodoc-platform/components/commit/1f07bc90b1b37c1f10bb33aa95f1e23953d43df8))
+
+## [4.26.1](https://github.com/diplodoc-platform/components/compare/v4.26.0...v4.26.1) (2025-04-21)
+
+
+### Bug Fixes
+
+* extract id selector properly ([7f4c56f](https://github.com/diplodoc-platform/components/commit/7f4c56f450d2bd5808bc4f324ab9aecb35ff2592))
+
+## [4.26.0](https://github.com/diplodoc-platform/components/compare/v4.25.0...v4.26.0) (2025-04-21)
+
+
+### Features
+
+* implement new MiniToc component ([9160d82](https://github.com/diplodoc-platform/components/commit/9160d828b9159d7fb0986445a0e25d70a4a0ab99))
+
+## [4.25.0](https://github.com/diplodoc-platform/components/compare/v4.24.0...v4.25.0) (2025-04-11)
+
+
+### Features
+
+* re-export _namedContext ([#393](https://github.com/diplodoc-platform/components/issues/393)) ([519344b](https://github.com/diplodoc-platform/components/commit/519344b741dd30f0873ece7c1cedb5e8fa8611ef))
+
+
+### Bug Fixes
+
+* command for updating screenshots ([#392](https://github.com/diplodoc-platform/components/issues/392)) ([67120b7](https://github.com/diplodoc-platform/components/commit/67120b7eef90d0f593ca978a07ff3f9d896b0608))
+* share button and sticky mini-toc ([#387](https://github.com/diplodoc-platform/components/issues/387)) DOCSTOOLS-4045 ([7e6a23a](https://github.com/diplodoc-platform/components/commit/7e6a23ac07aa384c339fa68ff89cf551e8c4ecd0))
+* sticky toc on desktop and share button styles DOCSTOOLS-4045 ([#390](https://github.com/diplodoc-platform/components/issues/390)) ([78b0792](https://github.com/diplodoc-platform/components/commit/78b07920a314c3a2cd43b97e433cc384103a59e2))
+
 ## [4.24.0](https://github.com/diplodoc-platform/components/compare/v4.23.2...v4.24.0) (2025-03-06)
 
 

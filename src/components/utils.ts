@@ -11,5 +11,4 @@ export async function scrollDocumentPage(page: Page, y: number) {
     await page.evaluate((y) => {
         window.scrollTo(0, y);
     }, y);
-    await page.waitForTimeout(100);
 }

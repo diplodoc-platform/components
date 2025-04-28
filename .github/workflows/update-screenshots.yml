@@ -26,7 +26,8 @@ jobs:
       - name: Update screenshots
         run: |
           chmod +x ./playwright/playwright-docker.sh
-          npm run playwright:docker npm run test:update-screenshots
+          bash -c "npm run playwright:docker 'npm run test:update-screenshots'"
+        shell: bash
 
       - name: Commit and push changes
         run: |

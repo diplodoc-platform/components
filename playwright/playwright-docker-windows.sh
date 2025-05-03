@@ -4,6 +4,7 @@ set -e
 
 source ./playwright/variables.sh
 
+
 HOST_COMPONENTS_DIR="/src/components"
 HOST_REPORT_DIR="/playwright-report"
 

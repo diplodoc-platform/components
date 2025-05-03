@@ -8,8 +8,6 @@ on:
 jobs:
   update-screenshots:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -28,18 +26,14 @@ jobs:
       - name: Update screenshots
         run: |
           chmod +x ./playwright/playwright-docker.sh
-          bash -c "npm run playwright:docker 'npm run test:playwright:update'"
-        shell: bash
+          npm run playwright:docker npm run test:playwright:update
 
       - name: Commit and push changes
         run: |
           git config --global user.name 'GitHub Action'
           git config --global user.email 'action@github.com'
           git add .
-          if ! git diff --quiet || ! git diff --staged --quiet; then
-            git commit -m "chore: update screenshots"
-            git push "https://${{ secrets.GH_PAT }}@github.com/${{ github.repository }}.git"
-          fi
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore: update screenshots" && git push)
 
       - name: Add comment to PR
         uses: actions/github-script@v6

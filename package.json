@@ -55,7 +55,7 @@
     "test:playwright": "npx playwright test --config playwright/playwright.config.ts",
     "test:playwright:update": "UPDATE_SNAPSHOTS=true npx playwright test --config playwright/playwright.config.ts --update-snapshots",
     "playwright:docker": "./playwright/playwright-docker.sh",
-    "playwright:docker:windows": "sh ./playwright/playwright-docker-windows.sh",
+    "playwright:docker:windows": "./playwright/playwright-docker-windows.sh",
     "dev": "run-s build _dev:watch",
     "_dev:watch": "run-p _build:watch _storybook:watch",
     "build:clean": "rm -rf build",

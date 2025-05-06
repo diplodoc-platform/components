@@ -24,6 +24,7 @@ const b = block('dc-mobile-controls');
 export interface MobileControlsProps {
     controlSize: ControlSizes;
     userSettings: DocSettings & ControlsProps;
+    viewerInterface?: Record<string, boolean>;
 }
 
 const useLangControl = (

@@ -16,7 +16,14 @@ import {
     Theme,
     VcsType,
 } from '../../models';
-import {InnerProps, callSafe, getRandomKey, getStateKey, isContributor} from '../../utils';
+import {
+    InnerProps,
+    callSafe,
+    getRandomKey,
+    getStateKey,
+    isContributor,
+    isHiddenInterface,
+} from '../../utils';
 import {BookmarkButton} from '../BookmarkButton';
 import {Breadcrumbs} from '../Breadcrumbs';
 import {ContentWrapper} from '../ContentWrapper';
@@ -79,6 +86,7 @@ export interface DocPageProps extends DocPageData, DocSettings, NotificationProp
     onMiniTocItemClick?: (event: MouseEvent) => void;
     useMainTag?: boolean;
     isMobile?: boolean;
+    viewerInterface?: Record<string, boolean>;
 }
 
 type DocPageInnerProps = InnerProps<DocPageProps, DocSettings>;
@@ -157,9 +165,13 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             legacyToc,
             notification,
             notificationCb,
+            viewerInterface,
         } = this.props;
 
         const hideBurger = typeof headerHeight !== 'undefined' && headerHeight > 0;
+        const noToc = isHiddenInterface('toc', viewerInterface);
+        const noFeedback = isHiddenInterface('feedback', viewerInterface);
+        const noSearch = isHiddenInterface('search', viewerInterface);
 
         const modes = {
             'regular-page-width': !wideFormat,
@@ -176,6 +188,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                 theme,
                 onChangeTheme,
             },
+            ...(noToc && {noToc}),
         };
 
         return (
@@ -195,9 +208,10 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                 onChangeSinglePage={onChangeSinglePage}
                 pdfLink={pdfLink}
                 legacyToc={legacyToc}
+                noToc={noToc}
             >
                 <DocLayout.Center>
-                    {this.renderSearchBar()}
+                    {noSearch ? null : this.renderSearchBar()}
                     <Notification notification={notification} notificationCb={notificationCb} />
                     {this.renderBreadcrumbs()}
                     {this.renderControls()}
@@ -207,9 +221,9 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                             {this.renderPageContributors()}
                             {this.showMiniToc && this.renderContentMiniToc()}
                             {this.renderBody()}
-                            {this.renderFeedback()}
+                            {noFeedback ? null : this.renderFeedback()}
                         </ContentWrapper>
-                        {this.renderTocNavPanel()}
+                        {noToc ? null : this.renderTocNavPanel()}
                     </div>
                     {this.renderLoader()}
                     {this.renderSinglePageControls()}
@@ -547,9 +561,17 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
     }
 
     private renderFeedback() {
-        const {singlePage, isLiked, isDisliked, onSendFeedback, hideFeedbackControls} = this.props;
+        const {
+            singlePage,
+            isLiked,
+            isDisliked,
+            onSendFeedback,
+            hideFeedbackControls,
+            viewerInterface,
+        } = this.props;
+        const noLikes = viewerInterface?.['no-likes'];
 
-        if (singlePage || hideFeedbackControls || !onSendFeedback) {
+        if (noLikes || singlePage || hideFeedbackControls || !onSendFeedback) {
             return null;
         }
 
@@ -653,6 +675,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             hideControls,
             hideEditControl,
             hideFeedbackControls,
+            viewerInterface,
         } = this.props;
 
         if (hideControls) {
@@ -660,6 +683,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
         }
 
         const isVerticalView = this.getIsVerticalView();
+        const noFeedback = isHiddenInterface('feedback', viewerInterface);
 
         return (
             <div className={b('controls', {vertical: isVerticalView})}>
@@ -686,7 +710,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                         onSendFeedback={onSendFeedback}
                         onSubscribe={onSubscribe}
                         hideEditControl={hideEditControl || fullScreen || !this.isEditable()}
-                        hideFeedbackControls={hideFeedbackControls}
+                        hideFeedbackControls={hideFeedbackControls || noFeedback}
                     />
                 </ControlsLayout>
             </div>

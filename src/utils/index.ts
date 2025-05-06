@@ -140,3 +140,11 @@ export function getPageType({
 
     return DocumentType.Base;
 }
+
+export function isHiddenInterface(name: string, viewerInterface?: Record<string, boolean>) {
+    if (viewerInterface && name in viewerInterface) {
+        return !viewerInterface[name];
+    }
+
+    return false;
+}

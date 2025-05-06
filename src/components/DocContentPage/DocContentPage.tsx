@@ -1,6 +1,7 @@
 import React from 'react';
 import block from 'bem-cn-lite';
 
+import {isHiddenInterface} from '../../utils';
 import {DEFAULT_SETTINGS} from '../../constants';
 import {DocContentPageData, Router} from '../../models';
 import {ContentWrapper} from '../ContentWrapper';
@@ -20,6 +21,7 @@ export interface DocContentPageProps extends DocContentPageData {
     useMainTag?: boolean;
     legacyToc?: boolean;
     fullScreen?: boolean;
+    viewerInterface?: Record<string, boolean>;
 }
 
 export const DocContentPage: React.FC<DocContentPageProps> = ({
@@ -36,10 +38,12 @@ export const DocContentPage: React.FC<DocContentPageProps> = ({
     useMainTag,
     legacyToc,
     fullScreen,
+    viewerInterface,
 }) => {
     const modes = {
         'regular-page-width': !wideFormat,
     };
+    const noToc = isHiddenInterface('toc', viewerInterface);
 
     return (
         <DocLayout
@@ -48,13 +52,14 @@ export const DocContentPage: React.FC<DocContentPageProps> = ({
             headerHeight={headerHeight}
             className={b(modes)}
             hideTocHeader={hideTocHeader}
-            hideToc={hideToc || data?.fullScreen}
+            hideToc={hideToc}
             fullScreen={fullScreen || data?.fullScreen}
             tocTitleIcon={tocTitleIcon}
             footer={footer}
             hideRight={true}
             wideFormat={wideFormat}
             legacyToc={legacyToc}
+            noToc={noToc}
         >
             <DocLayout.Center>
                 <div className={b('main')}>

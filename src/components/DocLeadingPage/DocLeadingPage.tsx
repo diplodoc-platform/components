@@ -1,6 +1,7 @@
 import React from 'react';
 import block from 'bem-cn-lite';
 
+import {isHiddenInterface} from '../../utils';
 import {DEFAULT_SETTINGS} from '../../constants';
 import {DocLeadingLinks, DocLeadingPageData, Router} from '../../models';
 import {ContentWrapper} from '../ContentWrapper';
@@ -28,6 +29,7 @@ export interface DocLeadingPageProps extends DocLeadingPageData, NotificationPro
     legacyToc?: boolean;
     isMobile?: boolean;
     fullScreen?: boolean;
+    viewerInterface?: Record<string, boolean>;
 }
 
 export interface DocLinkProps {
@@ -123,10 +125,12 @@ export const DocLeadingPage: React.FC<DocLeadingPageProps> = ({
     notificationCb,
     isMobile,
     fullScreen,
+    viewerInterface,
 }) => {
     const modes = {
         'regular-page-width': !wideFormat,
     };
+    const noToc = isHiddenInterface('toc', viewerInterface);
 
     return (
         <DocLayout
@@ -140,6 +144,7 @@ export const DocLeadingPage: React.FC<DocLeadingPageProps> = ({
             footer={footer}
             legacyToc={legacyToc}
             fullScreen={fullScreen}
+            noToc={noToc}
         >
             <DocLayout.Center>
                 <Notification notification={notification} notificationCb={notificationCb} />

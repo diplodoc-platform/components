@@ -7,6 +7,7 @@ import {
 } from '@gravity-ui/page-constructor';
 import block from 'bem-cn-lite';
 
+import {isHiddenInterface} from '../../../utils';
 import {ClassNameProps, Router, TocData} from '../../../models/index';
 import MobileControls, {MobileControlsProps} from '../../MobileControls/MobileControls';
 import Toc from '../../Toc/Toc';
@@ -49,6 +50,7 @@ export const SidebarContent: React.FC<SidebarContentProps & PropsWithChildren> =
 }) => {
     const mainMenuIsOpened = mainMenuOpenessData && mainMenuOpenessData.isMainMenuOpened;
     const mainMenuIsClosed = mainMenuOpenessData && !mainMenuOpenessData.isMainMenuOpened;
+    const noToc = isHiddenInterface('toc', mobileControlsData?.viewerInterface);
 
     const toc = navigationTocData &&
         navigationTocData.toc &&
@@ -63,14 +65,16 @@ export const SidebarContent: React.FC<SidebarContentProps & PropsWithChildren> =
                         />
                     </div>
                 )}
-                <div className={b('toc')}>
-                    <Toc
-                        {...navigationTocData.toc}
-                        router={navigationTocData.router}
-                        headerHeight={navigationTocData.headerHeight}
-                        hideTocHeader
-                    />
-                </div>
+                {!noToc && (
+                    <div className={b('toc')}>
+                        <Toc
+                            {...navigationTocData.toc}
+                            router={navigationTocData.router}
+                            headerHeight={navigationTocData.headerHeight}
+                            hideTocHeader
+                        />
+                    </div>
+                )}
             </React.Fragment>
         );
 

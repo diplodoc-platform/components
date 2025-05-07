@@ -1,5 +1,22 @@
 # История изменений
 
+## [4.27.0](https://github.com/diplodoc-platform/components/compare/v4.26.2...v4.27.0) (2025-05-07)
+
+
+### Features
+
+* add workflow for github pages ([#403](https://github.com/diplodoc-platform/components/issues/403)) ([b8769d9](https://github.com/diplodoc-platform/components/commit/b8769d9bb13533984ebee24dc1e9b32d54194231))
+* update package.json ([1741ee1](https://github.com/diplodoc-platform/components/commit/1741ee1e69f521b16685cf15d8739c57262e93c7))
+* update package.json ([1b1ac58](https://github.com/diplodoc-platform/components/commit/1b1ac58129d29bc9d58d1655faab5bf128e4e4d6))
+* update update-screenshots.yml ([d62e1af](https://github.com/diplodoc-platform/components/commit/d62e1af30b36284cc4e90fff08a09effcf527aef))
+
+
+### Bug Fixes
+
+* remove required permissions from update screenshots command ([#406](https://github.com/diplodoc-platform/components/issues/406)) ([9a78076](https://github.com/diplodoc-platform/components/commit/9a7807639b8a5aa6be872813ac798644e4bbf777))
+* source to . in docker ([#407](https://github.com/diplodoc-platform/components/issues/407)) ([80af9ca](https://github.com/diplodoc-platform/components/commit/80af9ca39aaf13e00182c4b2dec4ede5f6f4e157))
+* Update PageData type ([4bbc1a0](https://github.com/diplodoc-platform/components/commit/4bbc1a072a66f6afeb8386b3a48c7f4a14a2c06a))
+
 ## [4.26.2](https://github.com/diplodoc-platform/components/compare/v4.26.1...v4.26.2) (2025-04-21)
 
 

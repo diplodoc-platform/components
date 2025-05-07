@@ -130,7 +130,7 @@ export interface TocLabel {
 
 export interface TocData {
     title?: string;
-    href: string;
+    href?: string;
     items: TocItem[];
     stage?: string;
     editable?: boolean;

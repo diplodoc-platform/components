@@ -1,5 +1,12 @@
 # История изменений
 
+## [4.27.1](https://github.com/diplodoc-platform/components/compare/v4.27.0...v4.27.1) (2025-05-07)
+
+
+### Bug Fixes
+
+* Fix TocData type ([6ed9552](https://github.com/diplodoc-platform/components/commit/6ed95529cbdbe7459536716220d34ccd4e51cda5))
+
 ## [4.27.0](https://github.com/diplodoc-platform/components/compare/v4.26.2...v4.27.0) (2025-05-07)
 
 

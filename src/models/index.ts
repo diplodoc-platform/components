@@ -131,7 +131,7 @@ export interface TocLabel {
 export interface TocData {
     title?: string;
     href?: string;
-    items: TocItem[];
+    items?: TocItem[];
     stage?: string;
     editable?: boolean;
     singlePage?: boolean;

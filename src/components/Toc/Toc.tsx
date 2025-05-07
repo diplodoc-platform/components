@@ -55,7 +55,7 @@ class Toc extends React.Component<TocProps, TocState> {
 
     getInitialState() {
         return {
-            registry: new TocItemRegistry(this.props.items, this.normalizeUrl),
+            registry: new TocItemRegistry(this.props.items || [], this.normalizeUrl),
             fixedById: {},
             activeId: null,
             contentScrolled: false,

@@ -49,36 +49,30 @@ export const SidebarContent: React.FC<SidebarContentProps & PropsWithChildren> =
 }) => {
     const mainMenuIsOpened = mainMenuOpenessData && mainMenuOpenessData.isMainMenuOpened;
     const mainMenuIsClosed = mainMenuOpenessData && !mainMenuOpenessData.isMainMenuOpened;
+    const tocItems = navigationTocData?.toc?.items || [];
 
-    const toc = navigationTocData &&
-        navigationTocData.toc &&
-        navigationTocData.toc.items.length > 0 &&
-        mainMenuIsClosed && (
-            <React.Fragment>
-                {pcNavigationData && Boolean(pcNavigationData?.leftItemsWithIconSize?.length) && (
-                    <div className={b('to-main-menu')}>
-                        <ToMainMenu
-                            mainMenuIsOpen={mainMenuIsOpened}
-                            openMainMenu={mainMenuOpenessData.openMainMenu}
-                        />
-                    </div>
-                )}
-                <div className={b('toc')}>
-                    <Toc
-                        {...navigationTocData.toc}
-                        router={navigationTocData.router}
-                        headerHeight={navigationTocData.headerHeight}
-                        hideTocHeader
+    const toc = navigationTocData && tocItems.length > 0 && mainMenuIsClosed && (
+        <React.Fragment>
+            {pcNavigationData && Boolean(pcNavigationData?.leftItemsWithIconSize?.length) && (
+                <div className={b('to-main-menu')}>
+                    <ToMainMenu
+                        mainMenuIsOpen={mainMenuIsOpened}
+                        openMainMenu={mainMenuOpenessData.openMainMenu}
                     />
                 </div>
-            </React.Fragment>
-        );
+            )}
+            <div className={b('toc')}>
+                <Toc
+                    {...navigationTocData.toc}
+                    router={navigationTocData.router}
+                    headerHeight={navigationTocData.headerHeight}
+                    hideTocHeader
+                />
+            </div>
+        </React.Fragment>
+    );
 
-    const withoutToc =
-        !navigationTocData ||
-        !navigationTocData.toc ||
-        (typeof navigationTocData.toc.items.length === 'number' &&
-            navigationTocData.toc.items.length === 0);
+    const withoutToc = tocItems.length === 0;
 
     const mainMenu = pcNavigationData && (mainMenuIsOpened || withoutToc) && (
         <div className={b('main-menu')}>

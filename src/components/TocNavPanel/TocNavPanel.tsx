@@ -89,7 +89,7 @@ const TocNavControl = memo<TocNavControlProps>(({item, isNext, onClick}) => {
 TocNavControl.displayName = 'TocNavControl';
 
 const TocNavPanel = memo<TocNavPanelProps>(({items, router, fixed, className, onClick}) => {
-    const flatToc = useMemo(() => getFlatToc(items), [items]);
+    const flatToc = useMemo(() => getFlatToc(items || []), [items]);
     const {prevItem, nextItem} = useMemo(
         () => getBoundingItems(flatToc, router),
         [flatToc, router],

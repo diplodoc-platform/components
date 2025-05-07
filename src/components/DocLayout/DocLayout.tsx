@@ -31,6 +31,7 @@ export interface DocLayoutProps {
     legacyToc?: boolean;
     onChangeSinglePage?: (value: boolean) => void;
     pdfLink?: string;
+    noToc?: boolean;
 }
 
 export class DocLayout extends React.Component<DocLayoutProps> {
@@ -48,6 +49,7 @@ export class DocLayout extends React.Component<DocLayoutProps> {
             loading = false,
             footer = null,
             legacyToc = false,
+            noToc,
         } = this.props;
         let left, center, right;
         const modes = {
@@ -81,7 +83,7 @@ export class DocLayout extends React.Component<DocLayoutProps> {
                 <div className={b('mobile-only')}>{footer}</div>
                 {fullScreen ? null : (
                     <div className={b('left', modes, legacyToc ? b('legacy-toc') : undefined)}>
-                        {this.renderToc()}
+                        {noToc ? null : this.renderToc()}
                         {left}
                     </div>
                 )}

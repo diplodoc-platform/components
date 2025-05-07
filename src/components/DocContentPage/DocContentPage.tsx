@@ -20,6 +20,7 @@ export interface DocContentPageProps extends DocContentPageData {
     useMainTag?: boolean;
     legacyToc?: boolean;
     fullScreen?: boolean;
+    viewerInterface?: Record<string, boolean>;
 }
 
 export const DocContentPage: React.FC<DocContentPageProps> = ({
@@ -29,17 +30,19 @@ export const DocContentPage: React.FC<DocContentPageProps> = ({
     headerHeight,
     wideFormat = defaultWideFormat,
     hideTocHeader,
-    hideToc,
+    // hideToc,
     tocTitleIcon,
     footer,
     children,
     useMainTag,
     legacyToc,
     fullScreen,
+    viewerInterface,
 }) => {
     const modes = {
         'regular-page-width': !wideFormat,
     };
+    const noToc = viewerInterface?.['no-toc'];
 
     return (
         <DocLayout
@@ -48,13 +51,14 @@ export const DocContentPage: React.FC<DocContentPageProps> = ({
             headerHeight={headerHeight}
             className={b(modes)}
             hideTocHeader={hideTocHeader}
-            hideToc={hideToc || data?.fullScreen}
+            hideToc={true}
             fullScreen={fullScreen || data?.fullScreen}
             tocTitleIcon={tocTitleIcon}
             footer={footer}
             hideRight={true}
             wideFormat={wideFormat}
             legacyToc={legacyToc}
+            noToc={noToc}
         >
             <DocLayout.Center>
                 <div className={b('main')}>

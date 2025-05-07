@@ -1,0 +1,295 @@
+{
+  "html": "<p>לשירותי Yandex.Cloud עשויים להיות מכסות ומגבלות:</p>\n<ul>\n<li><em>מכסות</em> הן הגבלות ארגוניות שניתן לשנות לפי בקשה לתמיכה טכנית.</li>\n<li><em>הגבלות</em> הן הגבלות טכניות הנובעות מהארכיטקטורה הספציפית של Yandex.Cloud. לא ניתן לשנות מגבלות.</li>\n</ul>\n<p>ניתן לראות את המכסות שנקבעו עבור חשבונך ב<a href=\"https://console.cloud.yandex.ru/cloud?section=quotas\" target=\"_blank\" rel=\"noreferrer noopener\">הנהלה מסוף </a>.</p>",
+  "title": "מכסות ומגבלות",
+  "headings": [
+    {
+      "title": "למה צריך מכסות?",
+      "href": "#quotas",
+      "level": 2
+    },
+    {
+      "title": "ברירת מחדל מכסות ומגבלות עבור שירותי ענן",
+      "href": "#quotas-and-limits-defaults-for-yandex.cloud-services",
+      "level": 2,
+      "items": [
+        {
+          "title": "Yandex Compute Cloud",
+          "href": "#compute",
+          "level": 3,
+          "items": []
+        },
+        {
+          "title": "Yandex Object Storage",
+          "href": "#storage",
+          "level": 3,
+          "items": []
+        },
+        {
+          "title": "Yandex Virtual Private Cloud",
+          "href": "#vpc",
+          "level": 3,
+          "items": []
+        },
+        {
+          "title": "Yandex Resource Manager",
+          "href": "#resource-manager",
+          "level": 3
+        },
+        {
+          "title": "Yandex Load Balancer",
+          "href": "#load-balancer",
+          "level": 3,
+          "items": []
+        },
+        {
+          "title": "Yandex Managed Service for ClickHouse",
+          "href": "#mch",
+          "level": 3,
+          "items": []
+        },
+        {
+          "title": "Yandex Managed Service for MongoDB",
+          "href": "#mmg",
+          "level": 3,
+          "items": []
+        },
+        {
+          "title": "Yandex Managed Service for MySQL",
+          "href": "#mmy",
+          "level": 3,
+          "items": []
+        },
+        {
+          "title": "Yandex Managed Service for PostgreSQL",
+          "href": "#mpg",
+          "level": 3,
+          "items": []
+        },
+        {
+          "title": "Yandex Managed Service for Redis",
+          "href": "#mrd",
+          "level": 3,
+          "items": []
+        },
+        {
+          "title": "Yandex Message Queue",
+          "href": "#mq",
+          "level": 3,
+          "items": []
+        },
+        {
+          "title": "Yandex SpeechKit",
+          "href": "#speechkit",
+          "level": 3,
+          "items": []
+        },
+        {
+          "title": "Yandex Translate",
+          "href": "#translate",
+          "level": 3,
+          "items": []
+        },
+        {
+          "title": "Yandex Vision",
+          "href": "#vision",
+          "level": 3,
+          "items": []
+        }
+      ]
+    }
+  ],
+  "meta": {
+    "author": {
+      "avatar": "https://avatars.githubusercontent.com/u/2485935?v=4",
+      "email": "",
+      "login": "robot-dataui-vcs@yandex-team.ru",
+      "name": "DataUI VCS Robot",
+      "url": "http://yandex.ru/"
+    },
+    "contributors": [
+      {
+        "avatar": "https://avatars.githubusercontent.com/u/2485945?v=6",
+        "email": "robot-dataui-vcs@yandex-team.ru",
+        "login": "",
+        "name": "DataUI VCS Robot",
+        "url": ""
+      }
+    ],
+    "updatedAt": "2024-01-15T15:00:00.000Z"
+  },
+  "toc": {
+    "title": "סקירת פלטפורמה",
+    "href": "/docs/overview/",
+    "label": {
+      "title": "חדש",
+      "description": "זה זה סעיף חדש",
+      "theme": "info"
+    },
+    "items": [
+      {
+        "name": "שירותי Yandex.Cloud",
+        "href": "/docs/overview/concepts/services",
+        "id": "e619422ec28a87ea25c41d4ad7e45563"
+      },
+      {
+        "name": "השוואה לפלטפורמות אחרות",
+        "expanded": true,
+        "items": [
+          {
+            "name": "סקירה",
+            "href": "/docs/overview/platform-comparison/",
+            "id": "6cb52f285fd5d6ec04cbd96854dffab6"
+          },
+          {
+            "name": "להשוות עם Amazon Web Services",
+            "href": "/docs/overview/platform-comparison/aws",
+            "id": "1d84cf0e31f3f0968bdc6e8c2e11ba2f"
+          },
+          {
+            "name": "להשוות עם Google Cloud Platform",
+            "href": "/docs/overview/platform-comparison/gcp",
+            "id": "931f7302b4162c44fbe9bb07cea05b1e"
+          },
+          {
+            "name": "להשוות עם Microsoft Azure",
+            "href": "/docs/overview/platform-comparison/azure",
+            "id": "c14b119f6944d57afd8d4b3e61c37e21"
+          }
+        ],
+        "id": "fa5cef5c0b0cf236fdaa1562cbc48eb8"
+      },
+      {
+        "name": "אזורי זמינות",
+        "href": "/docs/overview/concepts/geo-scope",
+        "id": "054328058d7c7b60ff85e3c95be1a264"
+      },
+      {
+        "name": "תחילת העבודה",
+        "href": "/docs/overview/quickstart",
+        "id": "c984893c04c28bc3fe91f5ff87b79c29"
+      },
+      {
+        "name": "שלבי מוכנות השירות",
+        "href": "/docs/overview/concepts/launch-stages",
+        "id": "c53a86addb3cf17f0847acde5282ad84"
+      },
+      {
+        "name": "מכסות ומגבלות",
+        "href": "/docs/overview/concepts/quotas-limits",
+        "id": "56baa37ef41a57f75c4fce09722ab06c"
+      },
+      {
+        "name": "API",
+        "href": "/docs/overview/api",
+        "id": "136bdc27253376a450eee99e4539c186"
+      },
+      {
+        "name": "בטיחות ותאימות",
+        "href": "/docs/overview/security-and-compliance/",
+        "items": [
+          {
+            "name": "המלצות אבטחה",
+            "href": "/docs/overview/security-bulletins/",
+            "id": "c87ac8d995548646dec5661b1b28e45c"
+          },
+          {
+            "name": "כללים לביצוע סריקות אבטחה חיצוניות",
+            "href": "/docs/overview/compliance/pentest",
+            "id": "544f4d243ace1fc32591d87d2460742d"
+          },
+          {
+            "name": "אבטחת פלטפורמת Yandex.Cloud",
+            "items": [
+              {
+                "name": "סקירה",
+                "href": "/docs/overview/security/",
+                "id": "022cc6311c43fdd3c2848a238c92de1e"
+              },
+              {
+                "name": "עקרונות בטיחות מרכזיים",
+                "href": "/docs/overview/security/principles",
+                "id": "fba46ca0333fec72f16d0e29fb78e239",
+                "names": [
+                  {
+                    "name": "אבטחת פלטפורמת Yandex.Cloud",
+                    "items": [
+                      {
+                        "name": "סקירה",
+                        "href": "/docs/overview/security/",
+                        "id": "022cc6311c43fdd3c2848a238c92de1e"
+                      },
+                      {
+                        "name": "עקרונות בטיחות מרכזיים",
+                        "href": "/docs/overview/security/principles",
+                        "id": "fba46ca0333fec72f16d0e29fb78e239"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "שיתוף באחריות לאבטחה",
+                "href": "/docs/overview/security/respons",
+                "id": "177e184118e1e45bc890a53bf76971c7"
+              },
+              {
+                "name": "מעקב אחר שיטות עבודה וסטנדרטים מומלצים",
+                "href": "/docs/overview/security/standarts",
+                "id": "778f32125645fc81b0f680d2d9d09d23"
+              },
+              {
+                "name": "עמידה בדרישות",
+                "href": "/docs/overview/security/conform",
+                "id": "4d7329262a479edc4b28a7607a31c2b4"
+              },
+              {
+                "name": "אמצעי הגנה טכניים בצד הספק",
+                "href": "/docs/overview/security/tech-measures",
+                "id": "98cfa650bb690aa5b9a9aa66f3e7e52b"
+              },
+              {
+                "name": "הגנות זמינות למשתמשי ענן",
+                "href": "/docs/overview/security/user-side",
+                "id": "aaffdd260266d59cd003e6fcab17a1ec"
+              },
+              {
+                "name": "משאבים שימושיים",
+                "href": "/docs/overview/security/resources",
+                "id": "72071e3e599234cb4df3fe56ac378dc1"
+              }
+            ],
+            "id": "f8cca556a8df3df325a1dce2ffec52dc"
+          }
+        ],
+        "id": "7f196892c00a04c9d36a10bc2275ccb8"
+      },
+      {
+        "name": "מחיקת נתוני משתמש",
+        "href": "/docs/overview/concepts/data-deletion",
+        "id": "66fe49c2a324ffd44541fe6a33e14ed0"
+      },
+      {
+        "name": "SLA",
+        "href": "/docs/overview/sla",
+        "id": "1636c6203504367fc47f73077e95ebad"
+      },
+      {
+        "name": "שאלות ותשובות",
+        "href": "/docs/overview/qa",
+        "id": "ff7aacc415c714c83d0ea5715eabb016"
+      }
+    ]
+  },
+  "breadcrumbs": [
+    {
+      "name": "תיעוד"
+    },
+    {
+      "name": "מכסות ומגבלות"
+    }
+  ],
+  "filePath": "/cache/c12878f1-cc2e-445f-8f96-7374fe76b074/ru/overview/concepts/quotas-limits.md",
+  "githubUrl": "https://github.com/yandex-cloud/docs/tree/master/ru/overview/concepts/quotas-limits.md",
+  "vcsType": "github",
+  "vcsUrl": "https://github.com/yandex-cloud/docs/tree/master/ru/overview/concepts/quotas-limits.md"
+}

@@ -28,6 +28,7 @@ export interface DocLeadingPageProps extends DocLeadingPageData, NotificationPro
     legacyToc?: boolean;
     isMobile?: boolean;
     fullScreen?: boolean;
+    viewerInterface?: Record<string, boolean>;
 }
 
 export interface DocLinkProps {
@@ -123,10 +124,12 @@ export const DocLeadingPage: React.FC<DocLeadingPageProps> = ({
     notificationCb,
     isMobile,
     fullScreen,
+    viewerInterface,
 }) => {
     const modes = {
         'regular-page-width': !wideFormat,
     };
+    const noToc = viewerInterface?.['no-toc'];
 
     return (
         <DocLayout
@@ -140,6 +143,7 @@ export const DocLeadingPage: React.FC<DocLeadingPageProps> = ({
             footer={footer}
             legacyToc={legacyToc}
             fullScreen={fullScreen}
+            noToc={noToc}
         >
             <DocLayout.Center>
                 <Notification notification={notification} notificationCb={notificationCb} />

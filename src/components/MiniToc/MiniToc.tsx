@@ -3,7 +3,6 @@ import block from 'bem-cn-lite';
 import clsx from 'clsx';
 
 import {useTranslation} from '../../hooks';
-import {DocHeadingItem, Router} from '../../models';
 import {FlatHeadingItem} from '../SubNavigation/hooks/useHeadingIntersectionObserver';
 
 import './MiniToc.scss';
@@ -11,20 +10,6 @@ import './MiniToc.scss';
 const b = block('dc-mini-toc');
 
 const overflownClassName = 'dc-mini-toc_overflowed';
-
-export interface MinitocProps {
-    headings: DocHeadingItem[];
-    router: Router;
-    headerHeight?: number;
-    onItemClick?: (event: MouseEvent) => void;
-    onActiveItemTitleChange?: (title: string) => void;
-}
-
-export interface MinitocSectionProps {
-    headings: DocHeadingItem[];
-    router: Router;
-    headerHeight?: number;
-}
 
 type MiniTocProps = {
     headings: readonly FlatHeadingItem[];

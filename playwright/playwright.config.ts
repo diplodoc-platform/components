@@ -20,7 +20,8 @@ export default defineConfig({
     reporter: 'html',
     webServer: {
         reuseExistingServer: true,
-        command: 'BROWSER=true npm run dev',
+        command: 'BROWSER=true npm run storybook -- --ci --quiet',
+        cwd: pathFromRoot('demo'),
         url: BASE_URL,
         timeout: 120 * 1000,
     },
@@ -42,6 +43,16 @@ export default defineConfig({
         {
             name: 'webkit',
             use: {...devices['Desktop Safari']},
+        },
+
+        {
+            name: 'Mobile Safari',
+            use: {...devices['iPhone 12 Pro']},
+        },
+
+        {
+            name: 'Mobile Chrome',
+            use: {...devices['Pixel 5']},
         },
     ],
 });

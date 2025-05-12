@@ -221,8 +221,9 @@ export interface ClassNameProps {
 export interface ISearchProvider {
     init(): void | (() => void);
     suggest(query: string): Promise<ISearchResult[]>;
-    search(query: string): Promise<ISearchResult[]>;
+    search(query: string, page?: number): Promise<{items: ISearchResult[]; total: number}>;
     link(query: string): string | null;
+    updateLinkProps(props: Record<string, unknown>): void;
 }
 
 export interface ISearchResult {

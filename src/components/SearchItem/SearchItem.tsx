@@ -13,6 +13,7 @@ export interface ISearchItem {
     url: string;
     title: string;
     description?: string;
+    objectID?: string; // Algolia
 }
 
 export interface SearchOnClickProps {

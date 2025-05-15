@@ -79,7 +79,21 @@
             color: var(--g-color-text-secondary);
 
             em {
-                font-weight: bolder;
+                position: relative;
+
+                font-style: inherit;
+
+                &::before {
+                    position: absolute;
+                    top: -3px;
+                    bottom: -1px;
+
+                    width: 100%;
+
+                    content: '';
+
+                    background-color: var(--g-color-base-selection);
+                }
             }
 
             &::after {

@@ -26,7 +26,7 @@ export function useProvider(provider: ISearchProvider): [Items, Request] {
                 const promise = (wait.current = (async () => {
                     try {
                         const data = await provider.suggest(query);
-                        const items = format(query, data, provider.link, t);
+                        const items = format(query, data, provider.link.bind(provider), t);
 
                         cache.set(query, items);
                         setTimeout(() => cache.delete(query), 30000);

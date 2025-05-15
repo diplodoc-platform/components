@@ -1,5 +1,17 @@
 # История изменений
 
+## [4.28.0](https://github.com/diplodoc-platform/components/compare/v4.27.1...v4.28.0) (2025-05-15)
+
+
+### Features
+
+* add storybook implementaion for MiniToc component ([99e2b04](https://github.com/diplodoc-platform/components/commit/99e2b04fabae47b93a3a3ed22dce1177b7cd83b2))
+
+
+### Bug Fixes
+
+* toc playable in page ([#405](https://github.com/diplodoc-platform/components/issues/405)) ([e02dce0](https://github.com/diplodoc-platform/components/commit/e02dce07978661d4d7f0358f9ea8a2f1db59fc95))
+
 ## [4.27.1](https://github.com/diplodoc-platform/components/compare/v4.27.0...v4.27.1) (2025-05-07)
 
 

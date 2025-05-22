@@ -95,6 +95,7 @@ export enum VcsType {
 export interface DocPageData extends DocBasePageData {
     leading?: false;
     breadcrumbs?: BreadcrumbItem[];
+    viewerInterface?: Record<string, boolean>;
     html: string;
     title?: string;
     headings: DocHeadingItem[];

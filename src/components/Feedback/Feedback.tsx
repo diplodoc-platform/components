@@ -1,7 +1,7 @@
 import React, {PropsWithChildren, useCallback, useEffect, useRef, useState} from 'react';
 import block from 'bem-cn-lite';
 
-import {usePopupState, useTranslation} from '../../hooks';
+import {useInterface, usePopupState, useTranslation} from '../../hooks';
 import {FeedbackSendData, FeedbackType} from '../../models';
 
 import DislikeControl from './controls/DislikeControl';
@@ -113,6 +113,11 @@ const Feedback: React.FC<FeedbackProps> = (props) => {
     );
 
     const isDislikePopupVisible = dislikeSuccessPopup.visible || dislikeVariantsPopup.visible;
+    const isFeedbackHidden = useInterface('feedback');
+
+    if (isFeedbackHidden) {
+        return null;
+    }
 
     return (
         <React.Fragment>

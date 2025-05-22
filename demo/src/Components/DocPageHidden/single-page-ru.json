@@ -1,0 +1,30 @@
+{
+  "html": "<h2 id=\"_ru_index_oznakomlenie\" data-original-article=\"/ru/index\"><a id=\"_ru_index\" href=\"#_ru_index\" class=\"yfm-anchor\" aria-hidden=\"true\"></a><a href=\"#_ru_index_oznakomlenie\" class=\"yfm-anchor\" aria-hidden=\"true\"></a>Ознакомление</h2>\n<p>Lorem Ipsum - это текст-&quot;рыба&quot;, часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной &quot;рыбой&quot; для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн. Его популяризации в новое время послужили публикация листов Letraset с образцами Lorem Ipsum в 60-х годах и, в более недавнее время, программы электронной вёрстки типа Aldus PageMaker, в шаблонах которых используется Lorem Ipsum.</p>\n<hr class=\"yfm-page__delimeter\">\n<h2 id=\"_ru_second-page_vtoraya-stranica\" data-original-article=\"/ru/second-page\"><a id=\"_ru_second-page\" href=\"#_ru_second-page\" class=\"yfm-anchor\" aria-hidden=\"true\"></a><a href=\"#_ru_second-page_vtoraya-stranica\" class=\"yfm-anchor\" aria-hidden=\"true\"></a>Вторая страница</h2>\n<p>Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют потому, что тот обеспечивает более или менее стандартное заполнение шаблона, а также реальное распределение букв и пробелов в абзацах, которое не получается при простой дубликации &quot;Здесь ваш текст.. Здесь ваш текст.. Здесь ваш текст..&quot; Многие программы электронной вёрстки и редакторы HTML используют Lorem Ipsum в качестве текста по умолчанию, так что поиск по ключевым словам &quot;lorem ipsum&quot; сразу показывает, как много веб-страниц всё ещё дожидаются своего настоящего рождения. За прошедшие годы текст Lorem Ipsum получил много версий. Некоторые версии появились по ошибке, некоторые - намеренно (например, юмористические варианты).</p>\n",
+  "title": "",
+  "headings": [
+    {"title": "Ознакомление", "href": "#_ru_index_oznakomlenie", "level": 2},
+    {"title": "Вторая страница", "href": "#_ru_second-page_vtoraya-stranica", "level": 2}
+  ],
+  "meta": {},
+  "toc": {
+    "title": "Тест языков",
+    "href": "/test-lang/",
+    "items": [
+      {
+        "name": "Ознакомление",
+        "href": "/test-lang/#_ru_index",
+        "id": "7c9fe5f5f46c91e3c70bc359bef65b22"
+      },
+      {
+        "name": "Вторая страница",
+        "href": "/test-lang/#_ru_second-page",
+        "id": "dc946863157ca4b7430495cf64689a64"
+      }
+    ],
+    "base": "ru",
+    "singlePage": true
+  },
+  "breadcrumbs": [],
+  "vcsUrl": "https://github.com/yandex-cloud/docs/tree/test-lang/1/ru/_single_page/index.md",
+  "vcsType": "github"
+}

@@ -3,6 +3,7 @@ import {Link} from '@gravity-ui/icons';
 import block from 'bem-cn-lite';
 import {createPortal} from 'react-dom';
 
+import {InterfaceContext} from '../../contexts/InterfaceContext';
 import {DEFAULT_SETTINGS} from '../../constants';
 import {
     ControlSizes,
@@ -79,6 +80,7 @@ export interface DocPageProps extends DocPageData, DocSettings, NotificationProp
     onMiniTocItemClick?: (event: MouseEvent) => void;
     useMainTag?: boolean;
     isMobile?: boolean;
+    viewerInterface?: Record<string, boolean>;
 }
 
 type DocPageInnerProps = InnerProps<DocPageProps, DocSettings>;
@@ -89,6 +91,8 @@ type DocPageState = {
 
 class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
     static defaultProps: DocSettings = DEFAULT_SETTINGS;
+    static contextType = InterfaceContext;
+    declare context: React.ContextType<typeof InterfaceContext>;
 
     state: DocPageState;
     bodyRef: HTMLDivElement | null = null;
@@ -548,8 +552,10 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
 
     private renderFeedback() {
         const {singlePage, isLiked, isDisliked, onSendFeedback, hideFeedbackControls} = this.props;
+        const {isHidden} = this.context;
+        const isFeedbackHidden = isHidden('feedback');
 
-        if (singlePage || hideFeedbackControls || !onSendFeedback) {
+        if (isFeedbackHidden || singlePage || hideFeedbackControls || !onSendFeedback) {
             return null;
         }
 
@@ -567,8 +573,10 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
 
     private renderTocNavPanel() {
         const {toc, singlePage, router, fullScreen, onTocNavPanelClick} = this.props;
+        const {isHidden} = this.context;
+        const isTocHidden = isHidden('toc');
 
-        if (!toc || singlePage) {
+        if (isTocHidden || !toc || singlePage) {
             return null;
         }
 
@@ -610,8 +618,10 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             onCloseSearchBar,
             singlePage,
         } = this.props;
+        const {isHidden} = this.context;
+        const isTocHidden = isHidden('toc');
 
-        if (!showSearchBar || singlePage) {
+        if (isTocHidden || !showSearchBar || singlePage) {
             return null;
         }
 

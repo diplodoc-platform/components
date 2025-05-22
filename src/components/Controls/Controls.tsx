@@ -1,9 +1,10 @@
-import React, {memo, useContext} from 'react';
 import block from 'bem-cn-lite';
+import React, {memo, useContext} from 'react';
 
-import {FeedbackSendData, Lang, SubscribeData, TextSizes, Theme} from '../../models';
 import {Feedback, FeedbackView} from '../Feedback';
 import {Subscribe, SubscribeView} from '../Subscribe';
+import {FeedbackSendData, Lang, SubscribeData, TextSizes, Theme} from '../../models';
+import {useInterface} from '../../hooks';
 
 import {ControlsLayoutContext} from './ControlsLayout';
 
@@ -19,8 +20,6 @@ import {
 
 // eslint-disable-next-line import/order
 import './Controls.scss';
-
-const b = block('dc-controls');
 
 export interface ControlsProps {
     lang?: `${Lang}` | Lang;
@@ -51,6 +50,8 @@ export interface ControlsProps {
     hideFeedbackControls?: boolean;
 }
 
+const b = block('dc-controls');
+
 type Defined = {
     [P in keyof ControlsProps]-?: ControlsProps[P];
 };
@@ -59,10 +60,8 @@ function hasLangs(langs?: (`${Lang}` | Lang)[]) {
     return langs?.length && langs.length > 1;
 }
 
-const Controls = memo<ControlsProps>((props) => {
-    const {isVerticalView} = useContext(ControlsLayoutContext);
+export const ControlsList: React.FC<ControlsProps & {isHiddenFeedback: boolean}> = (props) => {
     const {
-        className,
         fullScreen,
         singlePage,
         theme,
@@ -88,6 +87,7 @@ const Controls = memo<ControlsProps>((props) => {
         vcsType,
         isLiked,
         isDisliked,
+        isHiddenFeedback,
     } = props;
 
     const withFullscreenControl = Boolean(onChangeFullScreen);
@@ -98,7 +98,9 @@ const Controls = memo<ControlsProps>((props) => {
     const withSinglePageControl = Boolean(onChangeSinglePage);
     const withPdfControl = Boolean(pdfLink);
     const withEditControl = Boolean(!singlePage && !hideEditControl && vcsUrl);
-    const withFeedbackControl = Boolean(!singlePage && !hideFeedbackControls && onSendFeedback);
+    const withFeedbackControl = Boolean(
+        !singlePage && !hideFeedbackControls && !isHiddenFeedback && onSendFeedback,
+    );
     const withSubscribeControls = Boolean(!singlePage && onSubscribe);
 
     const controls = [
@@ -181,7 +183,17 @@ const Controls = memo<ControlsProps>((props) => {
             return result;
         }, [] as React.ReactElement[]);
 
-    if (!controls.length) {
+    return controls;
+};
+
+const Controls = memo<ControlsProps>((props) => {
+    const {isVerticalView} = useContext(ControlsLayoutContext);
+    const isHiddenFeedback = useInterface('feedback');
+    const {className} = props;
+
+    const controls = <ControlsList {...props} isHiddenFeedback={isHiddenFeedback} />;
+
+    if (!controls) {
         return null;
     }
 

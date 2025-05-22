@@ -36,6 +36,7 @@ export * from './components/VersionsSelect';
 export * from './components/navigation';
 
 export * from './contexts/_namedContext';
+export * from './contexts/InterfaceContext';
 
 export * from './config';
 export * from './models';

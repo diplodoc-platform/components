@@ -2,6 +2,7 @@ import React, {MouseEvent, memo, useCallback, useRef, useState} from 'react';
 import {SquareListUl} from '@gravity-ui/icons';
 import block from 'bem-cn-lite';
 
+import {useInterface} from '../../hooks/useInterface';
 import {DocHeadingItem, Router, TocData} from '../../models';
 import {Toc} from '../Toc';
 import {SidebarNavigation} from '../navigation';
@@ -50,6 +51,7 @@ const SubNavigation = memo(
         onMiniTocItemClick,
     }: SubNavigationProps) => {
         const ref = useRef<HTMLDivElement>(null);
+        const isTocHidden = useInterface('toc');
 
         const [menuOpen, setMenuOpen] = useState(false);
         const {miniTocOpen, closeMiniToc, miniTocHandler} = useMiniTocData(hideMiniToc, menuOpen);
@@ -84,14 +86,16 @@ const SubNavigation = memo(
                 onSidebarOpenedChange={onSidebarOpenedChange}
                 mobileControlsData={mobileControlsData}
             >
-                <div className={b('toc')}>
-                    <Toc
-                        {...toc}
-                        router={router}
-                        headerHeight={headerHeight}
-                        hideTocHeader={hideTocHeader}
-                    />
-                </div>
+                {!isTocHidden && (
+                    <div className={b('toc')}>
+                        <Toc
+                            {...toc}
+                            router={router}
+                            headerHeight={headerHeight}
+                            hideTocHeader={hideTocHeader}
+                        />
+                    </div>
+                )}
             </SidebarNavigation>
         );
 

@@ -11,6 +11,7 @@ import {ClassNameProps, Router, TocData} from '../../../models/index';
 import MobileControls, {MobileControlsProps} from '../../MobileControls/MobileControls';
 import Toc from '../../Toc/Toc';
 import ToMainMenu from '../ToMainMenu/ToMainMenu';
+import {useInterface} from '../../../hooks';
 
 import './SidebarContent.scss';
 
@@ -50,6 +51,7 @@ export const SidebarContent: React.FC<SidebarContentProps & PropsWithChildren> =
     const mainMenuIsOpened = mainMenuOpenessData && mainMenuOpenessData.isMainMenuOpened;
     const mainMenuIsClosed = mainMenuOpenessData && !mainMenuOpenessData.isMainMenuOpened;
     const tocItems = navigationTocData?.toc?.items || [];
+    const isTocHidden = useInterface('toc');
 
     const toc = navigationTocData && tocItems.length > 0 && mainMenuIsClosed && (
         <React.Fragment>
@@ -61,14 +63,16 @@ export const SidebarContent: React.FC<SidebarContentProps & PropsWithChildren> =
                     />
                 </div>
             )}
-            <div className={b('toc')}>
-                <Toc
-                    {...navigationTocData.toc}
-                    router={navigationTocData.router}
-                    headerHeight={navigationTocData.headerHeight}
-                    hideTocHeader
-                />
-            </div>
+            {!isTocHidden && (
+                <div className={b('toc')}>
+                    <Toc
+                        {...navigationTocData.toc}
+                        router={navigationTocData.router}
+                        headerHeight={navigationTocData.headerHeight}
+                        hideTocHeader
+                    />
+                </div>
+            )}
         </React.Fragment>
     );
 

@@ -1,5 +1,12 @@
 # История изменений
 
+## [4.28.1](https://github.com/diplodoc-platform/components/compare/v4.28.0...v4.28.1) (2025-05-23)
+
+
+### Bug Fixes
+
+* add yfm interface props ([066ec9c](https://github.com/diplodoc-platform/components/commit/066ec9c170f54e159f0d84417af01f5d1faf278f))
+
 ## [4.28.0](https://github.com/diplodoc-platform/components/compare/v4.27.1...v4.28.0) (2025-05-15)
 
 

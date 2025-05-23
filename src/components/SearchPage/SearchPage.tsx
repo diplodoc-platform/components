@@ -57,7 +57,7 @@ const FoundBlock: React.FC<RenderFoundProps> = ({
             <div className={b('search-list')}>
                 {items.map((item: ISearchItem) => (
                     <SearchItem
-                        key={item.url}
+                        key={item.objectID || item.url}
                         item={item}
                         className={b('search-item')}
                         itemOnClick={itemOnClick}

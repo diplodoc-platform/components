@@ -2,7 +2,7 @@ name: Update Component Screenshots
 
 on:
   pull_request:
-    types: [opened]
+    types: [opened, synchronize]
   issue_comment:
     types: [created]
     if: github.event.issue.pull_request && contains(github.event.comment.body, '/update-screenshots')

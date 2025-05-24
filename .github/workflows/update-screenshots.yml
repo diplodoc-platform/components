@@ -44,7 +44,7 @@ jobs:
           git config --global user.name 'GitHub Action'
           git config --global user.email 'action@github.com'
           git add .
-          git diff --quiet && git diff --staged --quiet || (git commit -m "chore: update screenshots" && git push)
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore: update screenshots" && git push origin HEAD:${{ github.event.pull_request.head.ref }})
 
       - name: Add comment to PR
         uses: actions/github-script@v6

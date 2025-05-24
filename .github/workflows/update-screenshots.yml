@@ -13,18 +13,15 @@ jobs:
     container:
         image: mcr.microsoft.com/playwright:v1.48.2-jammy
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
+          node-version: 18
+          cache: npm
           ref: ${{ github.event.pull_request.head.ref }}
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
-          cache: npm
       - name: Install Packages
         run: npm ci
       - name: Install Demo Packages
@@ -33,8 +30,9 @@ jobs:
         run: npm run build
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
-
       - name: Update screenshots
+        env:
+            HOME: /root
         run: |
           npm run test:playwright:update
 

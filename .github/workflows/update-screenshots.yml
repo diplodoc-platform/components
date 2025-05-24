@@ -14,20 +14,24 @@ jobs:
         image: mcr.microsoft.com/playwright:v1.48.2-jammy
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.ref }}
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
-
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           node-version: 18
-          registry-url: 'https://registry.npmjs.org'
-
-      - run: npm ci
-        shell: bash
+          cache: npm
+      - name: Install Packages
+        run: npm ci
+      - name: Install Demo Packages
+        run: cd demo && npm i
+      - name: Build Files
+        run: npm run build
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
 
       - name: Update screenshots
         run: |

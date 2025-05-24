@@ -10,8 +10,6 @@ on:
 jobs:
   update-screenshots:
     runs-on: ubuntu-latest
-    container:
-      image: mcr.microsoft.com/playwright:v1.48.2-jammy
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -29,7 +27,8 @@ jobs:
 
       - name: Update screenshots
         run: |
-          npm run test:playwright:update
+          chmod +x ./playwright/playwright-docker.sh
+          npm run playwright:docker npm run test:playwright:update
 
       - name: Commit and push changes
         run: |

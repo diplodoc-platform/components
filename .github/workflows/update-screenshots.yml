@@ -35,7 +35,8 @@ jobs:
             HOME: /root
         run: |
           npm run test:playwright:update
-
+      - name: Fix repository ownership
+        run: git config --global --add safe.directory /__w/components/components
       - name: Commit and push changes
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

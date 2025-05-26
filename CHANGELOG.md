@@ -1,5 +1,12 @@
 # История изменений
 
+## [4.28.2](https://github.com/diplodoc-platform/components/compare/v4.28.1...v4.28.2) (2025-05-26)
+
+
+### Bug Fixes
+
+* add useInterface export ([27910b0](https://github.com/diplodoc-platform/components/commit/27910b0e25fe1469b13eeb40b7903e7c39f4814d))
+
 ## [4.28.1](https://github.com/diplodoc-platform/components/compare/v4.28.0...v4.28.1) (2025-05-23)
 
 

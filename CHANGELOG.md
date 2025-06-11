@@ -1,5 +1,12 @@
 # История изменений
 
+## [4.28.3](https://github.com/diplodoc-platform/components/compare/v4.28.2...v4.28.3) (2025-06-11)
+
+
+### Bug Fixes
+
+* provider link method context loss ([#423](https://github.com/diplodoc-platform/components/issues/423)) ([e988c7e](https://github.com/diplodoc-platform/components/commit/e988c7eb052b85584f4972ef14792ec518245e44))
+
 ## [4.28.2](https://github.com/diplodoc-platform/components/compare/v4.28.1...v4.28.2) (2025-05-26)
 
 

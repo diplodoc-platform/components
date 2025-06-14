@@ -1,5 +1,12 @@
 # История изменений
 
+## [4.28.4](https://github.com/diplodoc-platform/components/compare/v4.28.3...v4.28.4) (2025-06-14)
+
+
+### Bug Fixes
+
+* extend search provider type ([#425](https://github.com/diplodoc-platform/components/issues/425)) ([1fc7971](https://github.com/diplodoc-platform/components/commit/1fc797119e9f2efc8b407522ae06a8c4d8ebe25c))
+
 ## [4.28.3](https://github.com/diplodoc-platform/components/compare/v4.28.2...v4.28.3) (2025-06-11)
 
 

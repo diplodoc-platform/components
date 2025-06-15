@@ -26,7 +26,12 @@ export type ChangeHandler<S> = <K extends keyof S, V extends S[K]>(
 ) => () => void;
 
 export function normalizePath(path?: string | null) {
-    return path?.replace(/\.html$/, '')?.replace(/\/index$/, '/');
+    if (!path) return path;
+
+    return path
+        .replace(/^\//, '')
+        .replace(/\.html$/, '')
+        .replace(/\/index$/, '/');
 }
 
 export function normalizeHash(hash?: string | null) {

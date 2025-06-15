@@ -1,5 +1,12 @@
 # История изменений
 
+## [4.28.5](https://github.com/diplodoc-platform/components/compare/v4.28.4...v4.28.5) (2025-06-15)
+
+
+### Bug Fixes
+
+* ensure consistent URL matching by removing leading slashes ([#427](https://github.com/diplodoc-platform/components/issues/427)) ([a6e9b72](https://github.com/diplodoc-platform/components/commit/a6e9b721e63dc86c7ce7fd29db4381aa1d660264))
+
 ## [4.28.4](https://github.com/diplodoc-platform/components/compare/v4.28.3...v4.28.4) (2025-06-14)
 
 

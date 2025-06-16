@@ -1,39 +1,65 @@
 name: Update Component Screenshots
 
 on:
+  pull_request:
+    types: [opened, synchronize]
   issue_comment:
     types: [created]
     if: github.event.issue.pull_request && contains(github.event.comment.body, '/update-screenshots')
 
+permissions:
+  contents: write
+  pull-requests: write
+  
 jobs:
   update-screenshots:
     runs-on: ubuntu-latest
+    container:
+        image: mcr.microsoft.com/playwright:v1.48.2-jammy
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.head.ref }}
-          fetch-depth: 0
-
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 18
-          registry-url: 'https://registry.npmjs.org'
-
-      - run: npm ci
-        shell: bash
-
+          cache: npm
+          ref: ${{ github.event.pull_request.head.ref }}
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+          persist-credentials: true
+          set-safe-directory: true
+          
+      - name: Install Packages
+        run: npm ci
+      - name: Install Demo Packages
+        run: cd demo && npm i
+      - name: Build Files
+        run: npm run build
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
       - name: Update screenshots
+        env:
+            HOME: /root
         run: |
-          chmod +x ./playwright/playwright-docker.sh
-          npm run playwright:docker npm run test:playwright:update
-
+          npm run test:playwright:update
+      - name: Fix repository ownership
+        run: git config --global --add safe.directory /__w/components/components
       - name: Commit and push changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          git remote set-url origin https://x-access-token:$GITHUB_TOKEN@github.com/${{ github.repository }}
+          
+          git checkout -B ${{ github.event.pull_request.head.ref }}
+          
           git config --global user.name 'GitHub Action'
           git config --global user.email 'action@github.com'
+          
           git add .
-          git diff --quiet && git diff --staged --quiet || (git commit -m "chore: update screenshots" && git push)
+          if ! git diff --quiet || ! git diff --staged --quiet; then
+            git commit -m "chore: update screenshots"
+            git push origin ${{ github.event.pull_request.head.ref }} --force
+          fi
 
       - name: Add comment to PR
         uses: actions/github-script@v6

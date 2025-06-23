@@ -1,10 +1,12 @@
 import React, {FC, useMemo} from 'react';
 
+import {MdxArtifacts} from '../../../../contexts/MdxArtifactsContext';
+
 export interface RenderBodyProps {
     html: string;
     forwardRef: (el: HTMLDivElement) => void;
     className: string;
-    mdxArtifacts: unknown;
+    mdxArtifacts?: MdxArtifacts;
 }
 
 const RenderBody: FC<RenderBodyProps> = ({html, forwardRef, className = ''}) => {

@@ -1,23 +1,16 @@
-import React, {FC, useMemo} from 'react';
+import React, {FC, useContext, useMemo} from 'react';
 
 import RenderBody, {RenderBodyProps} from '../RenderBody/RenderBody';
+import RenderBodyHooksContext from '../../../../contexts/RenderBodyHooksContext';
+import MdxArtifactsContext from '../../../../contexts/MdxArtifactsContext';
 
-export type RenderBodyWithHook = (c: FC<RenderBodyProps>) => FC<RenderBodyProps>;
+const RenderBodyWithHooks: FC<RenderBodyProps> = (props) => {
+    const hooks = useContext(RenderBodyHooksContext);
+    const mdxArtifacts = useContext(MdxArtifactsContext);
 
-export interface RenderBodyWithHooksProps extends RenderBodyProps {
-    hooks: RenderBodyWithHook[];
-}
+    const Component = useMemo(() => hooks.reduce((C, hook) => hook(C), RenderBody), [hooks]);
 
-const RenderBodyWithHooks: FC<RenderBodyWithHooksProps> = ({hooks, ...props}) => {
-    const Component = useMemo(
-        () =>
-            hooks.reduce((C, hook) => {
-                return hook(C);
-            }, RenderBody),
-        [hooks],
-    );
-
-    return React.createElement(Component, props);
+    return React.createElement(Component, {...props, mdxArtifacts});
 };
 
 export default RenderBodyWithHooks;

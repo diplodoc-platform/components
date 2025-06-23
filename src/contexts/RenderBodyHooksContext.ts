@@ -4,8 +4,8 @@ import {RenderBodyProps} from '../components/DocPage';
 
 import namedContext from './_namedContext';
 
-export type RenderBodyWithHook = (c: FC<RenderBodyProps>) => FC<RenderBodyProps>;
+export type RenderBodyHook = (c: FC<RenderBodyProps>) => FC<RenderBodyProps>;
 
-export type RenderBodyHooks = RenderBodyWithHook[];
+export type RenderBodyHooks = RenderBodyHook[];
 
 export default namedContext<RenderBodyHooks>('RenderBodyHooks', []);

@@ -1,4 +1,4 @@
-import React, {FC, ReactPortal} from 'react';
+import React, {ReactPortal} from 'react';
 import {Link} from '@gravity-ui/icons';
 import block from 'bem-cn-lite';
 import {createPortal} from 'react-dom';
@@ -34,7 +34,9 @@ import {TocNavPanel} from '../TocNavPanel';
 import UpdatedAtDate from '../UpdatedAtDate/UpdatedAtDate';
 import {Notification, NotificationProps} from '../Notification';
 
-import RenderBody, {RenderBodyProps} from './components/RenderBody/RenderBody';
+import RenderBodyWithHooks, {
+    RenderBodyWithHook,
+} from './components/RenderBodyWithHooks/RenderBodyWithHooks';
 import './DocPage.scss';
 
 const b = block('dc-doc-page');
@@ -83,7 +85,7 @@ export interface DocPageProps extends DocPageData, DocSettings, NotificationProp
     isMobile?: boolean;
     viewerInterface?: Record<string, boolean>;
 
-    renderBodyHooks?: ((c: FC<RenderBodyProps>) => FC<RenderBodyProps>)[];
+    renderBodyHooks?: RenderBodyWithHook[];
 }
 
 type DocPageInnerProps = InnerProps<DocPageProps, DocSettings>;
@@ -544,12 +546,9 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             return null;
         }
 
-        const Component = renderBodyHooks.reduce((C, hook) => {
-            return hook(C);
-        }, RenderBody);
-
         return (
-            <Component
+            <RenderBodyWithHooks
+                hooks={renderBodyHooks}
                 forwardRef={this.setBodyRef}
                 className={b('body', {'text-size': textSize}, 'yfm')}
                 html={html}

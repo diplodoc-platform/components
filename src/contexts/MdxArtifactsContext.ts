@@ -2,4 +2,7 @@ import namedContext from './_namedContext';
 
 export type MdxArtifacts = Record<string, unknown>;
 
-export default namedContext<MdxArtifacts>('MdxArtifactsContext', {});
+export const MdxArtifactsContext = namedContext<MdxArtifacts | undefined>(
+    'MdxArtifacts',
+    undefined,
+);

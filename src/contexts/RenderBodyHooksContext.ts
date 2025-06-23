@@ -8,4 +8,4 @@ export type RenderBodyHook = (c: FC<RenderBodyProps>) => FC<RenderBodyProps>;
 
 export type RenderBodyHooks = RenderBodyHook[];
 
-export default namedContext<RenderBodyHooks>('RenderBodyHooks', []);
+export const RenderBodyHooksContext = namedContext<RenderBodyHooks>('RenderBodyHooks', []);

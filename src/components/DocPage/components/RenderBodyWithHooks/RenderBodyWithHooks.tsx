@@ -1,8 +1,8 @@
 import React, {FC, useContext, useMemo} from 'react';
 
 import RenderBody, {RenderBodyProps} from '../RenderBody/RenderBody';
-import RenderBodyHooksContext from '../../../../contexts/RenderBodyHooksContext';
-import MdxArtifactsContext from '../../../../contexts/MdxArtifactsContext';
+import {RenderBodyHooksContext} from '../../../../contexts/RenderBodyHooksContext';
+import {MdxArtifactsContext} from '../../../../contexts/MdxArtifactsContext';
 
 const RenderBodyWithHooks: FC<RenderBodyProps> = (props) => {
     const hooks = useContext(RenderBodyHooksContext);

@@ -102,7 +102,6 @@ export interface DocPageData extends DocBasePageData {
     meta: DocMeta;
     vcsUrl?: string;
     vcsType?: VcsType;
-    mdxArtifacts?: Record<string, unknown>;
 }
 
 export interface DocHeadingItem {

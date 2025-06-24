@@ -536,7 +536,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
     }
 
     private renderBody() {
-        const {html, textSize} = this.props;
+        const {html, mdxArtifacts, textSize} = this.props;
 
         if (!html) {
             return null;
@@ -547,6 +547,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                 forwardRef={this.setBodyRef}
                 className={b('body', {'text-size': textSize}, 'yfm')}
                 html={html}
+                mdxArtifacts={mdxArtifacts}
             />
         );
     }

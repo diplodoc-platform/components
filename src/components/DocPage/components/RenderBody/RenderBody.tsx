@@ -1,6 +1,6 @@
 import React, {FC, useMemo} from 'react';
 
-import {MdxArtifacts} from '../../../../contexts/MdxArtifactsContext';
+export type MdxArtifacts = Record<string, unknown>;
 
 export interface RenderBodyProps {
     html: string;

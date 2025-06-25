@@ -37,6 +37,7 @@ export * from './components/navigation';
 
 export * from './contexts/_namedContext';
 export * from './contexts/InterfaceContext';
+export * from './contexts/RenderBodyHooksContext';
 export {useInterface} from './hooks/useInterface';
 
 export * from './config';

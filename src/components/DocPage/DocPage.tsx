@@ -34,6 +34,7 @@ import {TocNavPanel} from '../TocNavPanel';
 import UpdatedAtDate from '../UpdatedAtDate/UpdatedAtDate';
 import {Notification, NotificationProps} from '../Notification';
 
+import RenderBodyWithHooks from './components/RenderBodyWithHooks/RenderBodyWithHooks';
 import './DocPage.scss';
 
 const b = block('dc-doc-page');
@@ -535,17 +536,18 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
     }
 
     private renderBody() {
-        const {html, textSize} = this.props;
+        const {html, mdxArtifacts, textSize} = this.props;
 
         if (!html) {
             return null;
         }
 
         return (
-            <div
-                ref={this.setBodyRef}
+            <RenderBodyWithHooks
+                forwardRef={this.setBodyRef}
                 className={b('body', {'text-size': textSize}, 'yfm')}
-                dangerouslySetInnerHTML={{__html: html}}
+                html={html}
+                mdxArtifacts={mdxArtifacts}
             />
         );
     }

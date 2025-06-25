@@ -1,5 +1,12 @@
 # История изменений
 
+## [4.29.0](https://github.com/diplodoc-platform/components/compare/v4.28.5...v4.29.0) (2025-06-25)
+
+
+### Features
+
+* **render:** Add hooks for body renderer ([#429](https://github.com/diplodoc-platform/components/issues/429)) ([27ab321](https://github.com/diplodoc-platform/components/commit/27ab321c7acd21a1d52e3084b5cdaf081b211114))
+
 ## [4.28.5](https://github.com/diplodoc-platform/components/compare/v4.28.4...v4.28.5) (2025-06-15)
 
 

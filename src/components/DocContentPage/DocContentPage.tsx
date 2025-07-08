@@ -1,8 +1,9 @@
+import type {DocContentPageData, Router} from '../../models';
+
 import React from 'react';
 import block from 'bem-cn-lite';
 
 import {DEFAULT_SETTINGS} from '../../constants';
-import {DocContentPageData, Router} from '../../models';
 import {ContentWrapper} from '../ContentWrapper';
 import {DocLayout} from '../DocLayout';
 
@@ -14,7 +15,6 @@ export interface DocContentPageProps extends DocContentPageData {
     router: Router;
     headerHeight?: number;
     wideFormat?: boolean;
-    hideTocHeader?: boolean;
     hideToc?: boolean;
     tocTitleIcon?: React.ReactNode;
     useMainTag?: boolean;
@@ -29,7 +29,6 @@ export const DocContentPage: React.FC<DocContentPageProps> = ({
     router,
     headerHeight,
     wideFormat = defaultWideFormat,
-    hideTocHeader,
     hideToc,
     tocTitleIcon,
     footer,
@@ -47,7 +46,6 @@ export const DocContentPage: React.FC<DocContentPageProps> = ({
             router={router}
             headerHeight={headerHeight}
             className={b(modes)}
-            hideTocHeader={hideTocHeader}
             hideToc={hideToc}
             fullScreen={fullScreen || data?.fullScreen}
             tocTitleIcon={tocTitleIcon}

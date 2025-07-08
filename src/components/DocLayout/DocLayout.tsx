@@ -1,7 +1,9 @@
-import React, {PropsWithChildren, ReactElement} from 'react';
+import type {PropsWithChildren, ReactElement} from 'react';
+import type {Router, TocData} from '../../models';
+
+import React from 'react';
 import block from 'bem-cn-lite';
 
-import {Router, TocData} from '../../models';
 import {getStateKey} from '../../utils';
 import {Toc} from '../Toc';
 import {useInterface} from '../../hooks/useInterface';
@@ -53,13 +55,14 @@ export const DocLayout: React.FC<DocLayoutProps> & DocLayoutStatic = ({
     router,
     headerHeight,
     tocTitleIcon,
-    hideTocHeader,
     hideToc,
     singlePage,
     onChangeSinglePage,
     pdfLink,
+    hideTocHeader,
 }) => {
     const isTocHidden = useInterface('toc');
+    const isTocHeaderHidden = useInterface('toc-header');
 
     let left, center, right;
     const modes = {
@@ -102,7 +105,7 @@ export const DocLayout: React.FC<DocLayoutProps> & DocLayoutStatic = ({
                                       router={router}
                                       headerHeight={headerHeight}
                                       tocTitleIcon={tocTitleIcon}
-                                      hideTocHeader={hideTocHeader}
+                                      hideTocHeader={hideTocHeader || isTocHeaderHidden}
                                       singlePage={singlePage}
                                       onChangeSinglePage={onChangeSinglePage}
                                       pdfLink={pdfLink}

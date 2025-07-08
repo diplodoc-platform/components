@@ -22,7 +22,6 @@
     "@storybook/react-webpack5": "^7.6.17",
     "@storybook/testing-library": "^0.2.0",
     "@svgr/webpack": "^8.1.0",
-    "esbuild": "^0.23.1",
     "sass": "^1.66.1",
     "storybook": "^7.6.17"
   },

@@ -77,6 +77,7 @@
     "@gravity-ui/icons": "^2.5.0",
     "@gravity-ui/page-constructor": "^5.22.0",
     "@gravity-ui/uikit": "^6.2.0",
+    "@playwright/test": "^1.53.2",
     "@popperjs/core": "^2.11.2",
     "bem-cn-lite": "4.1.0",
     "clsx": "^2.1.1",
@@ -103,7 +104,6 @@
   "devDependencies": {
     "@diplodoc/lint": "^1.1.1",
     "@diplodoc/tsconfig": "^1.0.2",
-    "@playwright/test": "^1.53.2",
     "@types/hoist-non-react-statics": "^3.3.6",
     "@types/langs": "^2.0.1",
     "@types/lodash": "4.14.179",

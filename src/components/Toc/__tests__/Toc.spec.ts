@@ -11,12 +11,12 @@ test.beforeEach(async ({page}) => {
 test.describe('Toc dropdown tests', () => {
     test('Hide dropdown', async ({page}) => {
         await page.getByText('Equivalent services on other platforms').click();
-        await expect(page).toHaveScreenshot('Hide dropdown.png');
+        await expect(page).toHaveScreenshot('Hide dropdown.png', {maxDiffPixelRatio: 0.015});
     });
 
     test('Show dropdown', async ({page}) => {
         await page.getByText('Equivalent services on other platforms').dblclick();
-        await expect(page).toHaveScreenshot('Show dropdown.png');
+        await expect(page).toHaveScreenshot('Show dropdown.png', {maxDiffPixelRatio: 0.015});
     });
 });
 

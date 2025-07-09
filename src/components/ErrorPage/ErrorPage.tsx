@@ -65,7 +65,9 @@ const ErrorPage: React.FC<ErrorPageProps> = ({
                                 {links.map((link, id) => {
                                     return (
                                         <Link href={link.url} key={id} className={b('subtext-btn')}>
-                                            <Button>{t(`label_lang-${link.code}`)}</Button>
+                                            <Button view="outlined-info">
+                                                {t(`label_lang-${link.code}`)}
+                                            </Button>
                                         </Link>
                                     );
                                 })}

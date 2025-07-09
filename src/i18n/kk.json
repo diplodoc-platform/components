@@ -106,7 +106,24 @@
     "label_description-link": "Парақшаны қайта жүктеу",
     "label_description-2": ".",
     "label_link-main": "Басты бетке оралу",
-    "label_link-access": "Қолжетімділік сұрату"
+    "label_link-access": "Қолжетімділік сұрату",
+
+    "label_subtext": "Бұл мақала мына тілдерде қолжетімді:",
+    "label_lang-ar": "Араб",
+    "label_lang-bg": "Болгар",
+    "label_lang-cs": "Чех",
+    "label_lang-el": "Грек",
+    "label_lang-en": "Ағылшын",
+    "label_lang-es": "Испан",
+    "label_lang-et": "Эстон",
+    "label_lang-fr": "Француз",
+    "label_lang-he": "Еврей",
+    "label_lang-pt": "Португал",
+    "label_lang-ru": "Орыс",
+    "label_lang-tr": "Түрік",
+    "label_lang-uz": "Өзбек",
+    "label_lang-zh-tw": "Дәстүрлі қытай",
+    "label_lang-zh": "Қытай"
   },
   "search": {
     "search_placeholder": "Іздеу",

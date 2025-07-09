@@ -106,7 +106,24 @@
     "label_description-link": "Επαναφόρτωση σελίδας",
     "label_description-2": ".",
     "label_link-main": "Επιστροφή στην αρχική σελίδα",
-    "label_link-access": "Αίτημα πρόσβασης"
+    "label_link-access": "Αίτημα πρόσβασης",
+
+    "label_subtext": "Αυτό το άρθρο είναι διαθέσιμο στις γλώσσες:",
+    "label_lang-ar": "Αραβικά",
+    "label_lang-bg": "Βουλγαρικά",
+    "label_lang-cs": "Τσεχικά",
+    "label_lang-en": "Αγγλικά",
+    "label_lang-es": "Ισπανικά",
+    "label_lang-et": "Εσθονικά",
+    "label_lang-fr": "Γαλλικά",
+    "label_lang-he": "Εβραϊκά",
+    "label_lang-kk": "Καζακικά",
+    "label_lang-pt": "Πορτογαλικά",
+    "label_lang-ru": "Ρωσικά",
+    "label_lang-tr": "Τουρκικά",
+    "label_lang-uz": "Ουζμπεκικά",
+    "label_lang-zh-tw": "Κινεζικά Παραδοσιακά",
+    "label_lang-zh": "Κινεζικά"
   },
   "search": {
     "search_placeholder": "Αναζήτηση",

@@ -106,7 +106,24 @@
     "label_description-link": "Recarregar a página",
     "label_description-2": ".",
     "label_link-main": "Voltar para a página inicial",
-    "label_link-access": "Pedir acesso"
+    "label_link-access": "Pedir acesso",
+
+    "label_subtext": "Este artigo está disponível em idiomas:",
+    "label_lang-ar": "Árabe",
+    "label_lang-bg": "Búlgaro",
+    "label_lang-cs": "Tcheco",
+    "label_lang-el": "Grego",
+    "label_lang-en": "Inglês",
+    "label_lang-es": "Espanhol",
+    "label_lang-et": "Estoniano",
+    "label_lang-fr": "Francês",
+    "label_lang-he": "Hebraico",
+    "label_lang-kk": "Cazaque",
+    "label_lang-ru": "Russo",
+    "label_lang-tr": "Turco",
+    "label_lang-uz": "Uzbeque",
+    "label_lang-zh-tw": "Chinês Tradicional",
+    "label_lang-zh": "Chinês"
   },
   "search": {
     "search_placeholder": "Pesquisa",

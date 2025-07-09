@@ -106,7 +106,24 @@
     "label_description-link": "Перезагрузить страницу",
     "label_description-2": ".",
     "label_link-main": "Вернуться на главную",
-    "label_link-access": "Запросить доступ"
+    "label_link-access": "Запросить доступ",
+
+    "label_subtext": "Данная статья доступна на языках:",
+    "label_lang-ar": "Арабский",
+    "label_lang-bg": "Болгарский",
+    "label_lang-cs": "Чешский",
+    "label_lang-el": "Греческий",
+    "label_lang-en": "Английский",
+    "label_lang-es": "Испанский",
+    "label_lang-et": "Эстонский",
+    "label_lang-fr": "Французский",
+    "label_lang-he": "Иврит",
+    "label_lang-kk": "Казахский",
+    "label_lang-pt": "Португальский",
+    "label_lang-tr": "Турецкий",
+    "label_lang-uz": "Узбекский",
+    "label_lang-zh-tw": "Традиционный китайский",
+    "label_lang-zh": "Китайский"
   },
   "search": {
     "search_placeholder": "Поиск",

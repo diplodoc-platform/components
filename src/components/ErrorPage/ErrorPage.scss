@@ -58,6 +58,22 @@
         }
     }
 
+    &__subtext {
+        margin-bottom: 12px;
+
+        & p {
+            margin-top: 0;
+        }
+
+        & div {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 4px;
+        }
+    }
+
     a {
         @include mixins.link();
     }

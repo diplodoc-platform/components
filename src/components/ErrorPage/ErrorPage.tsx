@@ -9,11 +9,17 @@ import './ErrorPage.scss';
 
 const b = block('ErrorPage');
 
+type LinkType = {
+    url: string;
+    code: string;
+};
+
 export interface ErrorPageProps {
     code?: number;
     pageGroup?: string;
     homeUrl?: string;
     receiveAccessUrl?: string;
+    links?: LinkType[];
 }
 
 const ErrorPage: React.FC<ErrorPageProps> = ({
@@ -21,6 +27,7 @@ const ErrorPage: React.FC<ErrorPageProps> = ({
     homeUrl,
     receiveAccessUrl,
     pageGroup,
+    links,
 }) => {
     let title;
     let description;
@@ -50,7 +57,25 @@ const ErrorPage: React.FC<ErrorPageProps> = ({
             break;
         case ERROR_CODES.NOT_FOUND:
             title = t('label_title-404');
-            description = homeLink;
+            description = (
+                <React.Fragment>
+                    {links && links.length > 0 && (
+                        <div className={b('subtext')}>
+                            <p>{t('label_subtext')}</p>
+                            <div>
+                                {links.map((link, id) => {
+                                    return (
+                                        <Link href={link.url} key={id} className={b('subtext-btn')}>
+                                            <Button>{t(`label_lang-${link.code}`)}</Button>
+                                        </Link>
+                                    );
+                                })}
+                            </div>
+                        </div>
+                    )}
+                    {links && links.length === 0 && <div>{homeLink}</div>}
+                </React.Fragment>
+            );
             break;
         default:
             title = t('label_title-500');

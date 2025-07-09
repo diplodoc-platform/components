@@ -106,7 +106,24 @@
     "label_description-link": "Yangilashga urining",
     "label_description-2": ".",
     "label_link-main": "Asosiyga qaytish",
-    "label_link-access": "Kirishga ruxsat soʻrash"
+    "label_link-access": "Kirishga ruxsat soʻrash",
+
+    "label_subtext": "Ushbu maqola quyidagi tillarda mavjud:",
+    "label_lang-ar": "Arab",
+    "label_lang-bg": "Bolgarcha",
+    "label_lang-cs": "Chex",
+    "label_lang-el": "Yunon",
+    "label_lang-en": "Ingliz",
+    "label_lang-es": "Ispan",
+    "label_lang-et": "Eston",
+    "label_lang-fr": "Fransuz",
+    "label_lang-he": "Ibroniycha",
+    "label_lang-kk": "Qozoq",
+    "label_lang-pt": "Portugal",
+    "label_lang-ru": "Rus",
+    "label_lang-tr": "Turk",
+    "label_lang-zh-tw": "An'anaviy Xitoy",
+    "label_lang-zh": "Xitoy"
   },
   "search": {
     "search_placeholder": "Qidiruv",

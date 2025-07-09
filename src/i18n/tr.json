@@ -106,7 +106,24 @@
     "label_description-link": "Sayfayı yeniden yükle",
     "label_description-2": ".",
     "label_link-main": "Ana sayfaya geri dön",
-    "label_link-access": "Erişim iste"
+    "label_link-access": "Erişim iste",
+
+    "label_subtext": "Bu makale şu dillerde mevcuttur:",
+    "label_lang-ar": "Arapça",
+    "label_lang-bg": "Bulgarca",
+    "label_lang-cs": "Çekçe",
+    "label_lang-el": "Yunanca",
+    "label_lang-en": "İngilizce",
+    "label_lang-es": "İspanyolca",
+    "label_lang-et": "Estonca",
+    "label_lang-fr": "Fransızca",
+    "label_lang-he": "İbranice",
+    "label_lang-kk": "Kazakça",
+    "label_lang-pt": "Portekizce",
+    "label_lang-ru": "Rusça",
+    "label_lang-uz": "Özbekçe",
+    "label_lang-zh-tw": "Geleneksel Çince",
+    "label_lang-zh": "Çince"
   },
   "search": {
     "search_placeholder": "Ara",

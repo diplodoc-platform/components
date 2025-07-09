@@ -61,7 +61,6 @@ const ErrorPage: React.FC<ErrorPageProps> = ({
                 <React.Fragment>
                     {links && links.length > 0 && (
                         <div className={b('subtext')}>
-                            <p>{t('label_subtext')}</p>
                             <div>
                                 {links.map((link, id) => {
                                     return (
@@ -73,7 +72,7 @@ const ErrorPage: React.FC<ErrorPageProps> = ({
                             </div>
                         </div>
                     )}
-                    {links && links.length === 0 && <div>{homeLink}</div>}
+                    <div>{homeLink}</div>
                 </React.Fragment>
             );
             break;
@@ -99,7 +98,10 @@ const ErrorPage: React.FC<ErrorPageProps> = ({
                 className={b('image', {code: code.toString()})}
             />
             <h1 className={b('code')}>{t('label_title-code', {code})}</h1>
-            <h2 className={b('title')}>{title}</h2>
+            <h2 className={b('title')}>
+                {title}
+                {links && links.length > 0 && `. ${t('label_subtext')}`}
+            </h2>
             <p className={b('description')}>{description}</p>
         </div>
     );

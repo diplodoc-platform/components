@@ -114,7 +114,7 @@ $leftOffset: 57px;
 
         &_offset_top {
             @media (min-width: map.get(variables.$screenBreakpoints, 'md')) {
-                padding-top: 24px;
+                padding-top: 12px;
             }
         }
     }

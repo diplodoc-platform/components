@@ -1,5 +1,12 @@
 # История изменений
 
+## [4.30.0](https://github.com/diplodoc-platform/components/compare/v4.29.0...v4.30.0) (2025-07-10)
+
+
+### Features
+
+* added the ability to remove the header in the TOC through inter… ([#431](https://github.com/diplodoc-platform/components/issues/431)) ([df700ef](https://github.com/diplodoc-platform/components/commit/df700ef61afcb897d445f829411ec401d672caf3))
+
 ## [4.29.0](https://github.com/diplodoc-platform/components/compare/v4.28.5...v4.29.0) (2025-06-25)
 
 

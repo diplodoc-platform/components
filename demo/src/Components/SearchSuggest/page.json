@@ -15,6 +15,7 @@
     "type": "page",
     "title": "Example page 2",
     "description": "Some basic example page 2 with short description.",
+    "section": "Example section",
     "link": "/en/data-visualization/step-by-step/charts/example-2"
   },
   {

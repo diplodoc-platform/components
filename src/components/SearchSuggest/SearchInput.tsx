@@ -23,20 +23,14 @@ const b = block('dc-search-input');
 
 export const SearchInput = memo(
     forwardRef<HTMLElement, SuggestInputProps>((props, ref) => {
-        const {
-            id,
-            text,
-            size,
-            autoFocus,
-            placeholder,
-            endContent,
-            onBlur,
-            onFocus,
-            onUpdate,
-            onKeyDown,
-            className,
-            controlProps,
-        } = props;
+        const {id, text, size, autoFocus, placeholder, endContent, className, controlProps} = props;
+
+        const events = {
+            onUpdate: props.onUpdate,
+            onKeyDown: props.onKeyDown,
+            onFocus: props.onFocus,
+            onBlur: props.onBlur,
+        };
 
         return (
             <TextInput
@@ -48,10 +42,7 @@ export const SearchInput = memo(
                 autoComplete={false}
                 autoFocus={autoFocus}
                 hasClear={false}
-                onBlur={onBlur}
-                onUpdate={onUpdate}
-                onFocus={onFocus}
-                onKeyDown={onKeyDown}
+                {...events}
                 className={b('input', className)}
                 id={id}
                 controlProps={{

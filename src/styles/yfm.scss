@@ -10,8 +10,6 @@
     --yfm-color-hljs-deletion: var(--g-color-line-danger);
     --yfm-color-hljs-section: var(--g-color-line-danger);
 
-    --yfm-color-table-row-header-background: #373d36;
-
     &::-webkit-scrollbar,
     *::-webkit-scrollbar {
         height: var(--g-scrollbar-width);
@@ -226,6 +224,8 @@
 }
 
 .g-root_theme_dark .dc-doc-page .yfm {
+    --yfm-color-table-row-header-background: #373d36;
+
     .yfm-cut-title:before {
         background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiI+PHBhdGggc3Ryb2tlPSJyZ2JhKDI1NSwgMjU1LCAyNTUsIDAuNykiIGZpbGw9Im5vbmUiIGQ9Ik0zIDZsNSA1IDUtNSI+PC9wYXRoPjwvc3ZnPg==');
     }

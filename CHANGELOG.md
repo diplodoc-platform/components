@@ -1,5 +1,12 @@
 # История изменений
 
+## [4.31.0](https://github.com/diplodoc-platform/components/compare/v4.30.0...v4.31.0) (2025-07-16)
+
+
+### Features
+
+* added lang links in error page ([#432](https://github.com/diplodoc-platform/components/issues/432)) ([ad591b2](https://github.com/diplodoc-platform/components/commit/ad591b2f24f1988c0316a8371659945510645e38))
+
 ## [4.30.0](https://github.com/diplodoc-platform/components/compare/v4.29.0...v4.30.0) (2025-07-10)
 
 

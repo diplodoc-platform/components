@@ -1,13 +1,12 @@
 /* eslint-disable no-console */
+import type {FeedbackSendData, Lang, Theme} from '@diplodoc/components';
+
 import {join} from 'path';
 import React, {useCallback, useEffect, useState} from 'react';
 import {
     DEFAULT_SETTINGS,
     DocPage,
-    FeedbackSendData,
     FeedbackType,
-    Lang,
-    Theme,
     VcsType,
     configure as configureDocs,
 } from '@diplodoc/components';
@@ -270,6 +269,8 @@ const DocPageDemo = (
         join(`https://github.com/yandex-cloud/docs/blob/master/${lang}`, path);
     const renderLoader = () => 'Loading...';
 
+    const hideTocHeader = args['HideTocHeader'];
+
     return (
         <div className={layoutBlock('content')}>
             <DocPage
@@ -278,6 +279,7 @@ const DocPageDemo = (
                 convertPathToOriginalArticle={convertPathToOriginalArticle}
                 generatePathToVcs={generatePathToVcs}
                 renderLoader={renderLoader}
+                hideTocHeader={hideTocHeader}
                 // TODO: return highlight examples
                 // onContentMutation={onContentMutation}
                 // onContentLoaded={onContentLoaded}
@@ -290,6 +292,9 @@ export default {
     title: 'Pages/Document',
     component: DocPageDemo,
     argTypes: {
+        HideTocHeader: {
+            control: 'boolean',
+        },
         Mobile: {
             control: 'boolean',
         },
@@ -336,6 +341,7 @@ export default {
 
 export const Document = {
     args: {
+        HideTocHeader: false,
         Settings: true,
         Langs: true,
         Fullscreen: true,

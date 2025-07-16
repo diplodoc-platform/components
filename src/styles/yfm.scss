@@ -71,12 +71,14 @@
         color: var(--g-color-text-complementary);
     }
 
-    dfn {
+    dfn,
+    .inline_code_tooltip {
         background: var(--g-color-base-float);
         box-shadow: 0 8px 20px var(--g-color-sfx-shadow);
     }
 
-    dfn:before {
+    dfn:before,
+    .inline_code_tooltip:before {
         box-shadow: 0 0 0 1px var(--g-color-line-generic-solid);
     }
 
@@ -224,9 +226,13 @@
 }
 
 .g-root_theme_dark .dc-doc-page .yfm {
-    table thead,
-    table tr:nth-child(2n) {
-        background: var(--g-color-private-white-50-solid);
+    table[sticky-header] {
+        & th::before {
+            background: var(--g-color-base-background);
+        }
+        & th::after {
+            background: var(--g-color-base-generic);
+        }
     }
 
     .yfm-cut-title:before {

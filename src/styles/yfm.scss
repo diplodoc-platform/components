@@ -89,6 +89,7 @@
     }
 
     table thead,
+    table[sticky-header] thead th::after,
     table tr:nth-child(2n) {
         background: var(--g-color-base-generic);
     }

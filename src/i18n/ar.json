@@ -106,7 +106,24 @@
     "label_description-link": "يرجى تحديث الصفحة",
     "label_description-2": ".",
     "label_link-main": "العودة إلى الصفحة الرئيسية",
-    "label_link-access": "طلب الوصول"
+    "label_link-access": "طلب الوصول",
+
+    "label_subtext": "إنها متاحة على:",
+    "label_lang-bg": "البلغارية",
+    "label_lang-cs": "التشيكية",
+    "label_lang-el": "اليونانية",
+    "label_lang-en": "الإنجليزية",
+    "label_lang-es": "الإسبانية",
+    "label_lang-et": "الإستونية",
+    "label_lang-fr": "الفرنسية",
+    "label_lang-he": "العبرية",
+    "label_lang-kk": "الكازاخية",
+    "label_lang-pt": "البرتغالية",
+    "label_lang-ru": "الروسية",
+    "label_lang-tr": "التركية",
+    "label_lang-uz": "الأوزبكية",
+    "label_lang-zh-tw": "الصينية التقليدية",
+    "label_lang-zh": "الصينية"
   },
   "search": {
     "search_placeholder": "بحث",

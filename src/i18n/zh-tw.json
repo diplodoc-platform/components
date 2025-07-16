@@ -106,7 +106,24 @@
     "label_description-link": "重新加載頁面",
     "label_description-2": "。",
     "label_link-main": "返回主頁",
-    "label_link-access": "請求訪問權限"
+    "label_link-access": "請求訪問權限",
+
+    "label_subtext": "它可在以下語言使用：",
+    "label_lang-ar": "阿拉伯語",
+    "label_lang-bg": "保加利亞語",
+    "label_lang-cs": "捷克語",
+    "label_lang-el": "希臘語",
+    "label_lang-en": "英語",
+    "label_lang-es": "西班牙語",
+    "label_lang-et": "愛沙尼亞語",
+    "label_lang-fr": "法語",
+    "label_lang-he": "希伯來語",
+    "label_lang-kk": "哈薩克語",
+    "label_lang-pt": "葡萄牙語",
+    "label_lang-ru": "俄語",
+    "label_lang-tr": "土耳其語",
+    "label_lang-uz": "烏茲別克語",
+    "label_lang-zh": "簡體中文"
   },
   "search": {
     "search_placeholder": "搜索",

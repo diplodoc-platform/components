@@ -9,11 +9,17 @@ import './ErrorPage.scss';
 
 const b = block('ErrorPage');
 
+type LinkType = {
+    url: string;
+    code: string;
+};
+
 export interface ErrorPageProps {
     code?: number;
     pageGroup?: string;
     homeUrl?: string;
     receiveAccessUrl?: string;
+    links?: LinkType[];
 }
 
 const ErrorPage: React.FC<ErrorPageProps> = ({
@@ -21,6 +27,7 @@ const ErrorPage: React.FC<ErrorPageProps> = ({
     homeUrl,
     receiveAccessUrl,
     pageGroup,
+    links,
 }) => {
     let title;
     let description;
@@ -50,7 +57,24 @@ const ErrorPage: React.FC<ErrorPageProps> = ({
             break;
         case ERROR_CODES.NOT_FOUND:
             title = t('label_title-404');
-            description = homeLink;
+            description = (
+                <React.Fragment>
+                    {links && links.length > 0 && (
+                        <div className={b('subtext')}>
+                            {links.map((link) => {
+                                return (
+                                    <Link href={link.url} key={link.code}>
+                                        <Button view="outlined-info">
+                                            {t(`label_lang-${link.code}`)}
+                                        </Button>
+                                    </Link>
+                                );
+                            })}
+                        </div>
+                    )}
+                    <div>{homeLink}</div>
+                </React.Fragment>
+            );
             break;
         default:
             title = t('label_title-500');
@@ -74,7 +98,10 @@ const ErrorPage: React.FC<ErrorPageProps> = ({
                 className={b('image', {code: code.toString()})}
             />
             <h1 className={b('code')}>{t('label_title-code', {code})}</h1>
-            <h2 className={b('title')}>{title}</h2>
+            <h2 className={b('title')}>
+                {title}
+                {links && links.length > 0 && `. ${t('label_subtext')}`}
+            </h2>
             <p className={b('description')}>{description}</p>
         </div>
     );

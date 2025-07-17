@@ -1,5 +1,12 @@
 # История изменений
 
+## [4.31.1](https://github.com/diplodoc-platform/components/compare/v4.31.0...v4.31.1) (2025-07-17)
+
+
+### Bug Fixes
+
+* color in dark theme sticky-header table + inline code ([#434](https://github.com/diplodoc-platform/components/issues/434)) ([2c44b32](https://github.com/diplodoc-platform/components/commit/2c44b3215a52c33ee4c60270d59baf37d5c9bb2a))
+
 ## [4.31.0](https://github.com/diplodoc-platform/components/compare/v4.30.0...v4.31.0) (2025-07-16)
 
 

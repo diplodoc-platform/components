@@ -106,7 +106,24 @@
     "label_description-link": "Laadi lehekülg alla",
     "label_description-2": ".",
     "label_link-main": "Tagasi pealehele",
-    "label_link-access": "Küsi juurdepääsu"
+    "label_link-access": "Küsi juurdepääsu",
+
+    "label_subtext": "See on saadaval:",
+    "label_lang-ar": "Araabia",
+    "label_lang-bg": "Bulgaaria",
+    "label_lang-cs": "Tšehhi",
+    "label_lang-el": "Kreeka",
+    "label_lang-en": "Inglise",
+    "label_lang-es": "Hispaania",
+    "label_lang-fr": "Prantsuse",
+    "label_lang-he": "Heebrea",
+    "label_lang-kk": "Kasahhi",
+    "label_lang-pt": "Portugali",
+    "label_lang-ru": "Vene",
+    "label_lang-tr": "Türgi",
+    "label_lang-uz": "Usbeki",
+    "label_lang-zh-tw": "Traditsiooniline hiina",
+    "label_lang-zh": "Hiina"
   },
   "search": {
     "search_placeholder": "Otsing",

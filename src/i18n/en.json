@@ -106,7 +106,24 @@
     "label_description-link": "Refresh the page",
     "label_description-2": ".",
     "label_link-main": "Back to main page",
-    "label_link-access": "Request access"
+    "label_link-access": "Request access",
+
+    "label_subtext": "It's available in:",
+    "label_lang-ar": "Arabic",
+    "label_lang-bg": "Bulgarian",
+    "label_lang-cs": "Czech",
+    "label_lang-el": "Greek",
+    "label_lang-es": "Spanish",
+    "label_lang-et": "Estonian",
+    "label_lang-fr": "French",
+    "label_lang-he": "Hebrew",
+    "label_lang-kk": "Kazakh",
+    "label_lang-pt": "Portuguese",
+    "label_lang-ru": "Russian",
+    "label_lang-tr": "Turkish",
+    "label_lang-uz": "Uzbek",
+    "label_lang-zh-tw": "Chinese Traditional",
+    "label_lang-zh": "Chinese"
   },
   "search": {
     "search_placeholder": "Search",

@@ -106,7 +106,24 @@
     "label_description-link": "Actualiser la page",
     "label_description-2": ".",
     "label_link-main": "Retour à la page principale",
-    "label_link-access": "Demander l’accès"
+    "label_link-access": "Demander l’accès",
+
+    "label_subtext": "Elle est disponible en:",
+    "label_lang-ar": "Arabe",
+    "label_lang-bg": "Bulgare",
+    "label_lang-cs": "Tchèque",
+    "label_lang-el": "Grec",
+    "label_lang-en": "Anglais",
+    "label_lang-es": "Espagnol",
+    "label_lang-et": "Estonien",
+    "label_lang-he": "Hébreu",
+    "label_lang-kk": "Kazakh",
+    "label_lang-pt": "Portugais",
+    "label_lang-ru": "Russe",
+    "label_lang-tr": "Turc",
+    "label_lang-uz": "Ouzbek",
+    "label_lang-zh-tw": "Chinois traditionnel",
+    "label_lang-zh": "Chinois"
   },
   "search": {
     "search_placeholder": "Rechercher",

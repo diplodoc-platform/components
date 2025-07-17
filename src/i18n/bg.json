@@ -105,7 +105,24 @@
     "label_description-link": "Презаредете страницата",
     "label_description-2": ".",
     "label_link-main": "Върнете се към началната страница",
-    "label_link-access": "Поискайте достъп"
+    "label_link-access": "Поискайте достъп",
+
+    "label_subtext": "Тя е достъпна на:",
+    "label_lang-ar": "Арабски",
+    "label_lang-cs": "Чешки",
+    "label_lang-el": "Гръцки",
+    "label_lang-en": "Английски",
+    "label_lang-es": "Испански",
+    "label_lang-et": "Естонски",
+    "label_lang-fr": "Френски",
+    "label_lang-he": "Иврит",
+    "label_lang-kk": "Казахски",
+    "label_lang-pt": "Португалски",
+    "label_lang-ru": "Руски",
+    "label_lang-tr": "Турски",
+    "label_lang-uz": "Узбекски",
+    "label_lang-zh-tw": "Традиционен китайски",
+    "label_lang-zh": "Китайски"
   },
   "search": {
     "search_placeholder": "Търсене",

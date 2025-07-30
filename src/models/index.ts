@@ -138,6 +138,7 @@ export interface TocData {
     editable?: boolean;
     singlePage?: boolean;
     label?: TocLabel;
+    extraHeader?: React.ReactNode;
 }
 
 export interface TocItem {

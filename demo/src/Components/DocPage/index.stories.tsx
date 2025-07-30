@@ -10,11 +10,13 @@ import {
     VcsType,
     configure as configureDocs,
 } from '@diplodoc/components';
-import {configure as configureUikit} from '@gravity-ui/uikit';
+import {Icon, configure as configureUikit} from '@gravity-ui/uikit';
 import cn from 'bem-cn-lite';
+import {SquareListUl} from '@gravity-ui/icons';
 
 import {updateBodyClassName} from '../utils';
 
+import {ServiceLink} from './components/ServiceLink';
 import {getContent} from './data';
 import './index.scss';
 
@@ -23,7 +25,7 @@ const layoutBlock = cn('Layout');
 configureUikit({lang: 'en'});
 configureDocs({lang: 'en'});
 
-const tocTitleIcon = (
+let tocTitleIcon = (
     <svg width="14" height="12" fill="none" xmlns="http://www.w3.org/2000/svg">
         {/* eslint-disable-next-line max-len */}
         <path
@@ -231,13 +233,19 @@ const DocPageDemo = (
     const {wideFormat, showMiniToc, theme, textSize} = settings;
     const {fullScreen} = fullscreen;
     const {singlePage} = singlepage;
+    const content = getContent(lang, singlePage);
+
+    if (content.toc.extraHeader) {
+        content.toc.extraHeader = <ServiceLink />;
+        tocTitleIcon = <Icon data={SquareListUl} size={16} />;
+    }
 
     useEffect(() => {
         updateBodyClassName(theme);
     }, [theme]);
 
     const props = {
-        ...getContent(lang, singlePage),
+        ...content,
         vcsType,
         router,
         fullScreen,

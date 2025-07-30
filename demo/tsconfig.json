@@ -10,7 +10,8 @@
     "resolveJsonModule": true,
     "declaration": true,
     "outDir": "build",
-    "baseUrl": "."
+    "baseUrl": ".",
+    "jsx": "react"
   },
   "include": ["**/*.ts", "**/*.tsx"]
 }

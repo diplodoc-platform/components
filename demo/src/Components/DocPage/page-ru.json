@@ -118,8 +118,13 @@
     "updatedAt": "2024-01-15T15:00:00.000Z"
   },
   "toc": {
-    "title": "Документация <br /> Yandex Cloud Logging",
+    "title": "Обзор платформы",
     "href": "/docs/overview/",
+    "label": {
+      "title": "Новое",
+      "description": "Это новый раздел",
+      "theme": "info"
+    },
     "items": [
       {
         "name": "Сервисы Яндекс.Облака",

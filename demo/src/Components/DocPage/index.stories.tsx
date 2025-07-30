@@ -38,7 +38,7 @@ let tocTitleIcon = (
 const useSettings = () => {
     const [wideFormat, onChangeWideFormat] = useState(DEFAULT_SETTINGS.wideFormat);
     const [showMiniToc, onChangeShowMiniToc] = useState(DEFAULT_SETTINGS.showMiniToc);
-    const [theme, onChangeTheme] = useState('light');
+    const [theme, onChangeTheme] = useState(DEFAULT_SETTINGS.theme);
     const [textSize, onChangeTextSize] = useState(DEFAULT_SETTINGS.textSize);
 
     return {
@@ -75,7 +75,7 @@ const useDirection = (lang: string) => {
 
 const useLangs = () => {
     const langs = ['ru', 'en', 'cs', 'he'];
-    const [lang, onChangeLang] = useState('ru');
+    const [lang, onChangeLang] = useState(DEFAULT_SETTINGS.lang);
     useDirection(lang);
 
     return {
@@ -215,7 +215,7 @@ const DocPageDemo = (
     args: Record<string, boolean> & {Pdf: string; Search: string; VCS: VcsType},
 ) => {
     const vcsType = args['VCS'];
-    const router = {pathname: '/docs/overview/'};
+    const router = {pathname: '/docs/overview/security-and-compliance/'};
 
     const settings = useSettings();
     const langs = useLangs();

@@ -33,6 +33,7 @@ export interface SubNavigationProps {
     hideMiniToc: boolean;
     hideBurger: boolean;
     hideTocHeader?: boolean;
+    tocTitleIcon?: React.ReactNode;
     onMiniTocItemClick?: (event: MouseEvent) => void;
 }
 
@@ -48,6 +49,7 @@ const SubNavigation = memo(
         hideMiniToc,
         hideBurger,
         hideTocHeader,
+        tocTitleIcon,
         onMiniTocItemClick,
     }: SubNavigationProps) => {
         const ref = useRef<HTMLDivElement>(null);
@@ -90,6 +92,7 @@ const SubNavigation = memo(
                     <div className={b('toc')}>
                         <Toc
                             {...toc}
+                            tocTitleIcon={tocTitleIcon}
                             router={router}
                             headerHeight={headerHeight}
                             hideTocHeader={hideTocHeader}

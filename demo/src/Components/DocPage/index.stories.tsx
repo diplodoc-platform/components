@@ -278,6 +278,7 @@ const DocPageDemo = (
     const renderLoader = () => 'Loading...';
 
     const hideTocHeader = args['HideTocHeader'];
+    const hideFeedback = args['HideFeedback'];
 
     return (
         <div className={layoutBlock('content')}>
@@ -288,6 +289,7 @@ const DocPageDemo = (
                 generatePathToVcs={generatePathToVcs}
                 renderLoader={renderLoader}
                 hideTocHeader={hideTocHeader}
+                hideFeedback={hideFeedback}
                 // TODO: return highlight examples
                 // onContentMutation={onContentMutation}
                 // onContentLoaded={onContentLoaded}
@@ -301,6 +303,9 @@ export default {
     component: DocPageDemo,
     argTypes: {
         HideTocHeader: {
+            control: 'boolean',
+        },
+        HideFeedback: {
             control: 'boolean',
         },
         Mobile: {
@@ -350,6 +355,7 @@ export default {
 export const Document = {
     args: {
         HideTocHeader: false,
+        HideFeedback: false,
         Settings: true,
         Langs: true,
         Fullscreen: true,

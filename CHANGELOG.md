@@ -1,5 +1,12 @@
 # История изменений
 
+## [4.32.0](https://github.com/diplodoc-platform/components/compare/v4.31.1...v4.32.0) (2025-08-04)
+
+
+### Features
+
+* **Toc:** improve Toc component with extraHeader support ([#438](https://github.com/diplodoc-platform/components/issues/438)) ([1bc0ebe](https://github.com/diplodoc-platform/components/commit/1bc0ebe32c9cc1a36cf40b61c8ac9c926fe79558))
+
 ## [4.31.1](https://github.com/diplodoc-platform/components/compare/v4.31.0...v4.31.1) (2025-07-17)
 
 

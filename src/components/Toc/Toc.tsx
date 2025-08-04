@@ -216,7 +216,7 @@ class Toc extends React.Component<TocProps, TocState> {
         const {tocTitleIcon, title, label} = this.props;
         const topHeader = (
             <div className={b('top-header')}>
-                <HTML block>{title}</HTML>
+                <HTML>{title}</HTML>
             </div>
         );
 
@@ -273,7 +273,7 @@ class Toc extends React.Component<TocProps, TocState> {
         } else {
             topHeader = (
                 <div className={b('top-header')}>
-                    <HTML block>{title}</HTML>
+                    <HTML>{title}</HTML>
                 </div>
             );
         }

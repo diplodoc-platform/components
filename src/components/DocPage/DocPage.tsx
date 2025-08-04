@@ -1,12 +1,5 @@
-import React, {ReactPortal} from 'react';
-import {Link} from '@gravity-ui/icons';
-import block from 'bem-cn-lite';
-import {createPortal} from 'react-dom';
-
-import {InterfaceContext} from '../../contexts/InterfaceContext';
-import {DEFAULT_SETTINGS} from '../../constants';
-import {
-    ControlSizes,
+import type {ReactPortal} from 'react';
+import type {
     DocPageData,
     DocSettings,
     FeedbackSendData,
@@ -17,7 +10,18 @@ import {
     Theme,
     VcsType,
 } from '../../models';
-import {InnerProps, callSafe, getRandomKey, getStateKey, isContributor} from '../../utils';
+import type {InnerProps} from '../../utils';
+import type {NotificationProps} from '../Notification';
+
+import React from 'react';
+import {Link} from '@gravity-ui/icons';
+import block from 'bem-cn-lite';
+import {createPortal} from 'react-dom';
+
+import {InterfaceContext} from '../../contexts/InterfaceContext';
+import {DEFAULT_SETTINGS} from '../../constants';
+import {ControlSizes} from '../../models';
+import {callSafe, getRandomKey, getStateKey, isContributor} from '../../utils';
 import {BookmarkButton} from '../BookmarkButton';
 import {Breadcrumbs} from '../Breadcrumbs';
 import {ContentWrapper} from '../ContentWrapper';
@@ -32,7 +36,7 @@ import {SubNavigation} from '../SubNavigation';
 import {SearchBar, withHighlightedSearchWords} from '../SearchBar';
 import {TocNavPanel} from '../TocNavPanel';
 import UpdatedAtDate from '../UpdatedAtDate/UpdatedAtDate';
-import {Notification, NotificationProps} from '../Notification';
+import {Notification} from '../Notification';
 
 import RenderBodyWithHooks from './components/RenderBodyWithHooks/RenderBodyWithHooks';
 import './DocPage.scss';
@@ -58,6 +62,7 @@ export interface DocPageProps extends DocPageData, DocSettings, NotificationProp
     searchCountResults?: number;
 
     hideTocHeader?: boolean;
+    hideFeedback?: boolean;
     hideControls?: boolean;
     hideEditControl?: boolean;
     hideFeedbackControls?: boolean;
@@ -554,11 +559,24 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
     }
 
     private renderFeedback() {
-        const {singlePage, isLiked, isDisliked, onSendFeedback, hideFeedbackControls} = this.props;
+        const {
+            singlePage,
+            isLiked,
+            isDisliked,
+            onSendFeedback,
+            hideFeedback,
+            hideFeedbackControls,
+        } = this.props;
         const {isHidden} = this.context;
         const isFeedbackHidden = isHidden('feedback');
 
-        if (isFeedbackHidden || singlePage || hideFeedbackControls || !onSendFeedback) {
+        if (
+            hideFeedback ||
+            isFeedbackHidden ||
+            singlePage ||
+            hideFeedbackControls ||
+            !onSendFeedback
+        ) {
             return null;
         }
 

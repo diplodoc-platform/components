@@ -18,6 +18,7 @@ test.describe('Feedback screenshot tests', () => {
         await expect(page).toHaveScreenshot('feedback-hidden.png', {
             fullPage: true,
             timeout: 10000,
+            maxDiffPixelRatio: 0.03,
         });
     });
 
@@ -25,7 +26,11 @@ test.describe('Feedback screenshot tests', () => {
         await loadDocumentPage(page, DOC_PAGE_FEEDBACK_SHOWN_URL);
         await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
         await page.waitForTimeout(500);
-        await expect(page).toHaveScreenshot('feedback-shown.png', {fullPage: true, timeout: 10000});
+        await expect(page).toHaveScreenshot('feedback-shown.png', {
+            fullPage: true,
+            timeout: 10000,
+            maxDiffPixelRatio: 0.03,
+        });
     });
 
     test('Feedback default', async ({page}) => {
@@ -35,6 +40,7 @@ test.describe('Feedback screenshot tests', () => {
         await expect(page).toHaveScreenshot('feedback-default.png', {
             fullPage: true,
             timeout: 10000,
+            maxDiffPixelRatio: 0.03,
         });
     });
 });

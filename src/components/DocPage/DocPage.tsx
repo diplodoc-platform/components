@@ -228,6 +228,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                         <SubNavigation
                             router={router}
                             toc={toc}
+                            tocTitleIcon={tocTitleIcon}
                             keyDOM={this.state.keyDOM}
                             pageTitle={title}
                             headings={headings}

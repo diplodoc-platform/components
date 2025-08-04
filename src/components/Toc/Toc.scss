@@ -48,6 +48,56 @@ $leftOffset: 57px;
             border-bottom: 1px solid var(--g-color-line-generic);
         }
 
+        @mixin top-main-base {
+            display: flex;
+            align-items: flex-start;
+            width: 100%;
+            box-sizing: border-box;
+            padding: var(--g-spacing-2) var(--g-spacing-3);
+            gap: var(--g-spacing-2);
+        }
+
+        &_with-extra-header {
+            flex-direction: column;
+            margin-bottom: var(--g-spacing-1);
+
+            .dc-toc__top-main {
+                @include top-main-base;
+
+                &-link {
+                    @include top-main-base;
+                    cursor: pointer;
+
+                    @include mixins.reset-link-style();
+                    border-radius: 3px;
+
+                    &:hover {
+                        background: var(--g-color-base-simple-hover);
+                    }
+
+                    &_active {
+                        background: var(--g-color-base-selection);
+                    }
+                }
+            }
+            .dc-toc__top-header-icon,
+            .dc-toc-label_offset {
+                margin: 0;
+                flex-shrink: 0;
+            }
+            .dc-toc__top-header {
+                display: inline-flex;
+                flex-grow: 1;
+                font-size: var(--g-text-body-1-font-size);
+                font-weight: var(--g-text-body-font-weight);
+                line-height: var(--g-text-body-1-line-height);
+            }
+
+            .dc-toc__content > .dc-toc__list {
+                padding-left: var(--g-spacing-4);
+            }
+        }
+
         &-header-icon {
             display: flex;
             margin-right: 5px;
@@ -158,5 +208,9 @@ $leftOffset: 57px;
         @media (max-width: map.get(variables.$screenBreakpoints, 'md') - 1) {
             padding-right: 0;
         }
+    }
+
+    &__content_with-extra-header > &__list {
+        padding-right: 10px;
     }
 }

@@ -104,13 +104,19 @@ class Toc extends React.Component<TocProps, TocState> {
     }
 
     render() {
-        const {items, hideTocHeader} = this.props;
+        const {items, hideTocHeader, extraHeader} = this.props;
         const content = items ? this.renderList(items) : this.renderEmpty('');
 
         return (
             <nav className={b()} ref={this.rootRef}>
                 {this.renderTop()}
-                <div className={b('content', {offset_top: hideTocHeader})} ref={this.contentRef}>
+                <div
+                    className={b('content', {
+                        offset_top: hideTocHeader,
+                        'with-extra-header': Boolean(extraHeader),
+                    })}
+                    ref={this.contentRef}
+                >
                     {content}
                 </div>
                 {this.renderBottom()}
@@ -206,18 +212,55 @@ class Toc extends React.Component<TocProps, TocState> {
         return <div className={b('empty')}>{text}</div>;
     }
 
-    private renderTop() {
-        const {router, title, href, tocTitleIcon, hideTocHeader, singlePage, label} = this.props;
+    private renderTopMainContent() {
+        const {tocTitleIcon, title, label} = this.props;
+        const topHeader = (
+            <div className={b('top-header')}>
+                <HTML>{title}</HTML>
+            </div>
+        );
+
+        return (
+            <>
+                {tocTitleIcon && (
+                    <div className={b('top-header-icon')} aria-hidden="true">
+                        {tocTitleIcon}
+                    </div>
+                )}
+                {topHeader}
+                {label && <TocLabel label={label} />}
+            </>
+        );
+    }
+
+    private renderTopWithExtra() {
+        const {router, href, singlePage, extraHeader} = this.props;
         const {contentScrolled} = this.state;
+
+        const isActive = href ? isActiveItem(router, href, singlePage) : false;
+        const TopMainComponent = href ? 'a' : 'div';
+        const topMainProps = href
+            ? {className: b('top-main-link', {active: isActive})}
+            : {className: b('top-main')};
+
+        return (
+            <div
+                className={b('top', {scrolled: contentScrolled, 'with-extra-header': true})}
+                id={this.tocTopId}
+            >
+                {extraHeader}
+                <TopMainComponent {...topMainProps}>{this.renderTopMainContent()}</TopMainComponent>
+            </div>
+        );
+    }
+
+    private renderTopDefault() {
+        const {router, title, href, tocTitleIcon, singlePage, label} = this.props;
+        const {contentScrolled} = this.state;
+
         let topHeader;
-
-        if (hideTocHeader) {
-            return null;
-        }
-
         if (href) {
             const active = isActiveItem(router, href, singlePage);
-
             topHeader = (
                 <a
                     href={href}
@@ -237,15 +280,25 @@ class Toc extends React.Component<TocProps, TocState> {
 
         return (
             <div className={b('top', {scrolled: contentScrolled})} id={this.tocTopId}>
-                {tocTitleIcon ? (
-                    <div className={b('top-header-icon')} aria-hidden={'true'}>
+                {tocTitleIcon && (
+                    <div className={b('top-header-icon')} aria-hidden="true">
                         {tocTitleIcon}
                     </div>
-                ) : null}
+                )}
                 {topHeader}
-                {label ? <TocLabel label={label} /> : null}
+                {label && <TocLabel label={label} />}
             </div>
         );
+    }
+
+    private renderTop() {
+        const {hideTocHeader, extraHeader} = this.props;
+
+        if (hideTocHeader) {
+            return null;
+        }
+
+        return extraHeader ? this.renderTopWithExtra() : this.renderTopDefault();
     }
 
     private renderBottom() {

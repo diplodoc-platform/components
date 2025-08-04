@@ -1,5 +1,12 @@
 # История изменений
 
+## [4.33.0](https://github.com/diplodoc-platform/components/compare/v4.32.0...v4.33.0) (2025-08-04)
+
+
+### Features
+
+* added tests for feedback ([#439](https://github.com/diplodoc-platform/components/issues/439)) ([5636121](https://github.com/diplodoc-platform/components/commit/5636121fba2b5690052ea4940f1f8098f67a5d18))
+
 ## [4.32.0](https://github.com/diplodoc-platform/components/compare/v4.31.1...v4.32.0) (2025-08-04)
 
 

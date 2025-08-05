@@ -1,5 +1,12 @@
 # История изменений
 
+## [4.33.1](https://github.com/diplodoc-platform/components/compare/v4.33.0...v4.33.1) (2025-08-05)
+
+
+### Bug Fixes
+
+* **Toc:** return href and data-router-shallow for link ([#443](https://github.com/diplodoc-platform/components/issues/443)) ([617d9bb](https://github.com/diplodoc-platform/components/commit/617d9bb6a3cf706e1e59c5f4fd556d1e5e49cabc))
+
 ## [4.33.0](https://github.com/diplodoc-platform/components/compare/v4.32.0...v4.33.0) (2025-08-04)
 
 

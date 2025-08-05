@@ -61,6 +61,10 @@ $leftOffset: 57px;
             flex-direction: column;
             margin-bottom: var(--g-spacing-1);
 
+            @media (max-width: map.get(variables.$screenBreakpoints, 'md') - 1) {
+                padding: 0;
+            }
+
             .dc-toc__top-main {
                 @include top-main-base;
 
@@ -212,5 +216,9 @@ $leftOffset: 57px;
 
     &__content_with-extra-header > &__list {
         padding-right: 10px;
+
+        @media (max-width: #{map.get(variables.$screenBreakpoints, 'md') - 1px}) {
+            padding-right: 0;
+        }
     }
 }

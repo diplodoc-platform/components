@@ -240,7 +240,7 @@ class Toc extends React.Component<TocProps, TocState> {
         const isActive = href ? isActiveItem(router, href, singlePage) : false;
         const TopMainComponent = href ? 'a' : 'div';
         const topMainProps = href
-            ? {className: b('top-main-link', {active: isActive})}
+            ? {href, className: b('top-main-link', {active: isActive}), 'data-router-shallow': true}
             : {className: b('top-main')};
 
         return (

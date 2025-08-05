@@ -1,18 +1,19 @@
+import type {ThemeContextProps} from '@gravity-ui/uikit';
+import type {
+    Contributor,
+    DocContentPageData,
+    DocLeadingPageData,
+    DocPageData,
+    Router,
+} from '../models';
+
 import {parse} from 'url';
-import {ThemeContextProps} from '@gravity-ui/uikit';
 
 import {DocContentPage} from '../components/DocContentPage';
 import {DocLeadingPage} from '../components/DocLeadingPage';
 import {DocPage} from '../components/DocPage';
 import {PopperPosition} from '../hooks';
-import {
-    Contributor,
-    DocContentPageData,
-    DocLeadingPageData,
-    DocPageData,
-    DocumentType,
-    Router,
-} from '../models';
+import {DocumentType} from '../models';
 
 export type InnerProps<TProps extends Partial<TDefaultProps>, TDefaultProps> = Omit<
     TProps,
@@ -29,9 +30,10 @@ export function normalizePath(path?: string | null) {
     if (!path) return path;
 
     return path
-        .replace(/^\//, '')
+        .replace(/^\/+/, '')
         .replace(/\.html$/, '')
-        .replace(/\/index$/, '/');
+        .replace(/\/index$/, '')
+        .replace(/\/+$/, '');
 }
 
 export function normalizeHash(hash?: string | null) {
@@ -49,9 +51,19 @@ export function isActiveItem(router: Router, href: string, singlePage?: boolean)
     return normalizePath(router.pathname) === normalizePath(parse(href).pathname);
 }
 
-export function getLangPath(router: Router, lang: string, href?: string) {
+export function getLangPath(
+    router: Router,
+    lang: string,
+    href?: string,
+    skipHtmlExtension?: boolean,
+) {
     const {pathname, hash} = router;
-    const pathParts = pathname.split('/').filter(Boolean);
+    const normalizedPathname = normalizePath(pathname) || pathname;
+
+    const pathParts = (skipHtmlExtension ? normalizedPathname : pathname)
+        .split('/')
+        .filter(Boolean);
+
     const newPath = pathParts.slice(1).join('/');
     const hrefWithoutHash = href?.split('#')[0];
 

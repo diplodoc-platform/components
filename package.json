@@ -13,7 +13,7 @@
     "src/i18n"
   ],
   "engines": {
-    "node": ">=18",
+    "node": ">=22",
     "npm": ">=9.*"
   },
   "exports": {

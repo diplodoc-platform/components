@@ -1,5 +1,17 @@
 # История изменений
 
+## [4.34.0](https://github.com/diplodoc-platform/components/compare/v4.33.1...v4.34.0) (2025-08-14)
+
+
+### Features
+
+* add export hook useHeadingIntersectionObserver ([#447](https://github.com/diplodoc-platform/components/issues/447)) ([3a80d75](https://github.com/diplodoc-platform/components/commit/3a80d75830a9fb2e12120d917e6536efdf8d6314))
+
+
+### Bug Fixes
+
+* update version actions, node 22 ([50ebedc](https://github.com/diplodoc-platform/components/commit/50ebedcff1ada3ecdd4fc8ea45a7720904f24852))
+
 ## [4.33.1](https://github.com/diplodoc-platform/components/compare/v4.33.0...v4.33.1) (2025-08-05)
 
 

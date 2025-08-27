@@ -1,10 +1,13 @@
-import React, {useRef, useState} from 'react';
+import type {PaginatorProps} from '../Paginator';
+import type {ISearchItem, SearchOnClickProps} from '../SearchItem';
+
+import React, {useEffect, useRef, useState} from 'react';
 import {Button, Loader, TextInput} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 
 import {useTranslation} from '../../hooks';
-import {Paginator, PaginatorProps} from '../Paginator';
-import {ISearchItem, SearchItem, SearchOnClickProps} from '../SearchItem';
+import {Paginator} from '../Paginator';
+import {SearchItem} from '../SearchItem';
 
 import './SearchPage.scss';
 
@@ -148,6 +151,10 @@ const SearchPage = ({
 }: SearchPageInnerProps) => {
     const inputRef = useRef(null);
     const [currentQuery, setCurrentQuery] = useState(query);
+
+    useEffect(() => {
+        setCurrentQuery(query);
+    }, [query]);
 
     return (
         <div className={b('layout')}>

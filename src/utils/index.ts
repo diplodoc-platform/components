@@ -50,12 +50,6 @@ export function isActiveItem(router: Router, href: string, singlePage?: boolean)
     return normalizePath(router.pathname) === normalizePath(parse(href).pathname);
 }
 
-export function getLangPath(lang: string, href: string) {
-    const path = href.replace(/^https?:\/\/[^/]+/, '').replace(/^\/[a-z]{2}\//, '/');
-
-    return `${lang}${path}`;
-}
-
 export function isExternalHref(href: string) {
     return href.startsWith('http') || href.startsWith('//');
 }

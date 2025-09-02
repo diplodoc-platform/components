@@ -1,9 +1,10 @@
+import type {FeedbackSendData, Lang, SubscribeData, TextSizes, Theme} from '../../models';
+
 import block from 'bem-cn-lite';
 import React, {memo, useContext} from 'react';
 
 import {Feedback, FeedbackView} from '../Feedback';
 import {Subscribe, SubscribeView} from '../Subscribe';
-import {FeedbackSendData, Lang, SubscribeData, TextSizes, Theme} from '../../models';
 import {useInterface} from '../../hooks';
 
 import {ControlsLayoutContext} from './ControlsLayout';
@@ -48,6 +49,7 @@ export interface ControlsProps {
     className?: string;
     hideEditControl?: boolean;
     hideFeedbackControls?: boolean;
+    availableLangs?: (`${Lang}` | Lang)[];
 }
 
 const b = block('dc-controls');
@@ -88,6 +90,7 @@ export const ControlsList: React.FC<ControlsProps & {isHiddenFeedback: boolean}>
         isLiked,
         isDisliked,
         isHiddenFeedback,
+        availableLangs,
     } = props;
 
     const withFullscreenControl = Boolean(onChangeFullScreen);
@@ -129,6 +132,7 @@ export const ControlsList: React.FC<ControlsProps & {isHiddenFeedback: boolean}>
                 key="lang-control"
                 lang={lang as Lang}
                 langs={langs}
+                availableLangs={availableLangs}
                 onChangeLang={onChangeLang as Defined['onChangeLang']}
             />
         ),

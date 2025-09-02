@@ -18,6 +18,7 @@ const b = block('dc-lang-control');
 interface ControlProps {
     lang: `${Lang}` | Lang;
     langs?: string[];
+    availableLangs?: (`${Lang}` | Lang)[];
     onChangeLang: (lang: `${Lang}` | Lang) => void;
 }
 
@@ -32,7 +33,7 @@ const LangControl = (props: ControlProps) => {
     const {t} = useTranslation('controls');
     const {controlClassName, controlSize, isVerticalView, popupPosition} =
         useContext(ControlsLayoutContext);
-    const {lang, langs = DEFAULT_LANGS, onChangeLang} = props;
+    const {lang, langs = DEFAULT_LANGS, availableLangs, onChangeLang} = props;
 
     const controlRef = useRef<HTMLButtonElement | null>(null);
 
@@ -41,21 +42,25 @@ const LangControl = (props: ControlProps) => {
         const preparedLangs = langs
             .map((code) => {
                 const langData = allLangs.where('1', code);
+                const lang = (langData?.['1'] as Lang) || Lang.En;
+                const disabled = availableLangs && !availableLangs.includes(lang);
 
                 return langData
                     ? {
                           text: langData.local,
-                          value: langData['1'],
+                          value: lang,
+                          disabled,
                       }
                     : undefined;
             })
             .filter(Boolean) as ListItem[];
 
         return preparedLangs.length ? preparedLangs : LEGACY_LANG_ITEMS;
-    }, [langs]);
+    }, [langs, availableLangs]);
     const renderItem = useCallback((item: ListItem) => {
         return <button className={b('list-item')}>{item.text}</button>;
     }, []);
+
     const onItemClick = useCallback(
         (item: ListItem) => {
             onChangeLang(item.value as Lang);

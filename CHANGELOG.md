@@ -1,5 +1,12 @@
 # История изменений
 
+## [4.34.1](https://github.com/diplodoc-platform/components/compare/v4.34.0...v4.34.1) (2025-08-29)
+
+
+### Bug Fixes
+
+* fixed getLangPath ([#451](https://github.com/diplodoc-platform/components/issues/451)) ([77314ee](https://github.com/diplodoc-platform/components/commit/77314ee71dd29d36500ba864a62f31e3b055fd54))
+
 ## [4.34.0](https://github.com/diplodoc-platform/components/compare/v4.33.1...v4.34.0) (2025-08-14)
 
 

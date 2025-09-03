@@ -280,6 +280,8 @@ const DocPageDemo = (
     const hideTocHeader = args['HideTocHeader'];
     const hideFeedback = args['HideFeedback'];
 
+    const availableLangs = args['AvailableLangs'] || ['ru'];
+
     return (
         <div className={layoutBlock('content')}>
             <DocPage
@@ -290,6 +292,7 @@ const DocPageDemo = (
                 renderLoader={renderLoader}
                 hideTocHeader={hideTocHeader}
                 hideFeedback={hideFeedback}
+                availableLangs={availableLangs}
                 // TODO: return highlight examples
                 // onContentMutation={onContentMutation}
                 // onContentLoaded={onContentLoaded}
@@ -348,6 +351,10 @@ export default {
         },
         Pdf: {
             control: 'text',
+        },
+        AvailableLangs: {
+            control: {type: 'check'},
+            options: ['ru', 'en', 'cs', 'he'],
         },
     },
 };

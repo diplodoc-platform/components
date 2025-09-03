@@ -87,6 +87,7 @@ export interface DocPageProps extends DocPageData, DocSettings, NotificationProp
     useMainTag?: boolean;
     isMobile?: boolean;
     viewerInterface?: Record<string, boolean>;
+    availableLangs?: (`${Lang}` | Lang)[];
 }
 
 type DocPageInnerProps = InnerProps<DocPageProps, DocSettings>;
@@ -684,6 +685,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             hideControls,
             hideEditControl,
             hideFeedbackControls,
+            availableLangs,
         } = this.props;
 
         if (hideControls) {
@@ -718,6 +720,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                         onSubscribe={onSubscribe}
                         hideEditControl={hideEditControl || fullScreen || !this.isEditable()}
                         hideFeedbackControls={hideFeedbackControls}
+                        availableLangs={availableLangs}
                     />
                 </ControlsLayout>
             </div>

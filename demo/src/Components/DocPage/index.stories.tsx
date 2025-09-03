@@ -280,7 +280,9 @@ const DocPageDemo = (
     const hideTocHeader = args['HideTocHeader'];
     const hideFeedback = args['HideFeedback'];
 
-    const availableLangs = args['AvailableLangs'] || ['ru'];
+    const availableLangs: (`${Lang}` | Lang)[] = Array.isArray(args['AvailableLangs'])
+        ? args['AvailableLangs']
+        : ['ru'];
 
     return (
         <div className={layoutBlock('content')}>

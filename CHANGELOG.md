@@ -1,5 +1,12 @@
 # История изменений
 
+## [4.34.2](https://github.com/diplodoc-platform/components/compare/v4.34.1...v4.34.2) (2025-09-04)
+
+
+### Bug Fixes
+
+* fixed setCurrentQuery ([#452](https://github.com/diplodoc-platform/components/issues/452)) ([a19abe8](https://github.com/diplodoc-platform/components/commit/a19abe810e34dfd021c3bc656ba3cb6b396ba151))
+
 ## [4.34.1](https://github.com/diplodoc-platform/components/compare/v4.34.0...v4.34.1) (2025-08-29)
 
 

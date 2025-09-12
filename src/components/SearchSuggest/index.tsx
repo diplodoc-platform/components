@@ -1,6 +1,7 @@
 import type {KeyboardEvent, MouseEventHandler, SyntheticEvent} from 'react';
 import type {ISearchProvider} from '../../models';
 import type {SearchSuggestItem, SearchSuggestLinkableItem, SearchSuggestPageItem} from './types';
+import type {List} from '@gravity-ui/uikit';
 
 import React, {
     forwardRef,
@@ -11,7 +12,7 @@ import React, {
     useRef,
     useState,
 } from 'react';
-import {Icon, List, Popup} from '@gravity-ui/uikit';
+import {Icon, Popup} from '@gravity-ui/uikit';
 import {Xmark} from '@gravity-ui/icons';
 import block from 'bem-cn-lite';
 import uniqueId from 'lodash/uniqueId';
@@ -113,8 +114,11 @@ export const SearchSuggest = forwardRef<SearchSuggestApi, SearchSuggestProps>((p
 
     const close = useCallback(() => {
         setFocused(false);
+    }, [setFocused]);
+
+    const clearQuery = useCallback(() => {
         setQuery('');
-    }, [setFocused, setQuery]);
+    }, [setQuery]);
 
     const onSubmit = useCallback(
         (item: SearchSuggestItem, _index?: number, fromKeyboard?: boolean) => {
@@ -130,9 +134,10 @@ export const SearchSuggest = forwardRef<SearchSuggestApi, SearchSuggestProps>((p
     const onClose = useCallback(
         (event: SyntheticEvent) => {
             close();
+            clearQuery();
             onBlur?.(event);
         },
-        [close, onBlur],
+        [close, clearQuery, onBlur],
     );
 
     useEffect(() => provider.init(), [provider]);

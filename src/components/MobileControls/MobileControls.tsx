@@ -24,8 +24,8 @@ export interface MobileControlsProps {
 const useLangControl = (
     t: TFunction,
     lang: `${Lang}` | Lang,
+    availableLangs: (`${Lang}` | Lang)[],
     langs?: (`${Lang}` | Lang)[],
-    availableLangs?: (`${Lang}` | Lang)[],
     onChangeLang?: (lang: `${Lang}` | Lang) => void,
 ) => {
     const langItems = useMemo(() => {
@@ -111,8 +111,8 @@ const MobileControls = memo(({controlSize, userSettings}: MobileControlsProps) =
     const langControl = useLangControl(
         t,
         lang ?? Lang.En,
-        langs,
         availableLangs ? [...availableLangs] : [],
+        langs,
         onChangeLang,
     );
     const themeControl = useThemeControl(t, theme ?? Theme.Light, onChangeTheme);

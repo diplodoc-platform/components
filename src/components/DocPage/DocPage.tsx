@@ -1,5 +1,6 @@
 import type {ReactPortal} from 'react';
 import type {
+    AvailableLangs,
     DocPageData,
     DocSettings,
     FeedbackSendData,
@@ -87,7 +88,7 @@ export interface DocPageProps extends DocPageData, DocSettings, NotificationProp
     useMainTag?: boolean;
     isMobile?: boolean;
     viewerInterface?: Record<string, boolean>;
-    availableLangs?: readonly (`${Lang}` | Lang)[];
+    availableLangs?: AvailableLangs;
 }
 
 type DocPageInnerProps = InnerProps<DocPageProps, DocSettings>;

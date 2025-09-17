@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import type {FeedbackSendData, Lang, Theme} from '@diplodoc/components';
+import type {AvailableLangs, FeedbackSendData, Lang, Theme} from '@diplodoc/components';
 
 import {join} from 'path';
 import React, {useCallback, useEffect, useState} from 'react';
@@ -280,7 +280,7 @@ const DocPageDemo = (
     const hideTocHeader = args['HideTocHeader'];
     const hideFeedback = args['HideFeedback'];
 
-    const availableLangs: (`${Lang}` | Lang)[] = Array.isArray(args['AvailableLangs'])
+    const availableLangs: AvailableLangs = Array.isArray(args['AvailableLangs'])
         ? args['AvailableLangs']
         : ['ru'];
 

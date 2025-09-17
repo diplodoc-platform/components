@@ -1,5 +1,5 @@
 import type {ReactNode, SVGProps} from 'react';
-import type {Lang, ListItem, OnChangeValue} from '../../../models';
+import type {AvailableLangs, ListItem, OnChangeValue} from '../../../models';
 
 import React, {memo, useMemo, useState} from 'react';
 import {ChevronDown} from '@gravity-ui/icons';
@@ -20,7 +20,7 @@ export interface MobileControlProps {
     selectedItem: ReactNode;
     selectedItemIndex: number;
     displayItems: ListItem[];
-    availableLangs?: (`${Lang}` | Lang)[];
+    availableLangs?: AvailableLangs;
     onChangeValue?: OnChangeValue;
 }
 

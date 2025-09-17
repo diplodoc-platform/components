@@ -1,3 +1,5 @@
+import type {AvailableLangs} from '../../../../models';
+
 import React, {useCallback, useContext, useMemo, useRef} from 'react';
 import {Globe} from '@gravity-ui/icons';
 import {List, Popover} from '@gravity-ui/uikit';
@@ -18,7 +20,7 @@ const b = block('dc-lang-control');
 interface ControlProps {
     lang: `${Lang}` | Lang;
     langs?: string[];
-    availableLangs: readonly (`${Lang}` | Lang)[];
+    availableLangs: AvailableLangs;
     onChangeLang: (lang: `${Lang}` | Lang) => void;
 }
 

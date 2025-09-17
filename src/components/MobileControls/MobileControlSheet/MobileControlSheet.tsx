@@ -1,4 +1,4 @@
-import type {Lang, ListItem} from '../../../models';
+import type {AvailableLangs, Lang, ListItem} from '../../../models';
 
 import React, {memo, useCallback} from 'react';
 import {List, Sheet} from '@gravity-ui/uikit';
@@ -17,7 +17,7 @@ export interface MobileControlSheetProps {
     isVisible: boolean;
     onClose: () => void;
     selectedItemIndex: number;
-    availableLangs?: (`${Lang}` | Lang)[];
+    availableLangs?: AvailableLangs;
 }
 
 const MobileControlSheet = memo(

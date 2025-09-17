@@ -1,5 +1,12 @@
 import type {ControlsProps} from '../Controls';
-import type {ControlSizes, DocSettings, ListItem, OnChangeValue, TFunction} from '../../models';
+import type {
+    AvailableLangs,
+    ControlSizes,
+    DocSettings,
+    ListItem,
+    OnChangeValue,
+    TFunction,
+} from '../../models';
 
 import React, {memo, useMemo} from 'react';
 import {Globe, Sun} from '@gravity-ui/icons';
@@ -24,7 +31,7 @@ export interface MobileControlsProps {
 const useLangControl = (
     t: TFunction,
     lang: `${Lang}` | Lang,
-    availableLangs: (`${Lang}` | Lang)[],
+    availableLangs: AvailableLangs,
     langs?: (`${Lang}` | Lang)[],
     onChangeLang?: (lang: `${Lang}` | Lang) => void,
 ) => {
@@ -106,15 +113,9 @@ const useThemeControl = (t: TFunction, theme: Theme, onChangeTheme?: (theme: The
 
 const MobileControls = memo(({controlSize, userSettings}: MobileControlsProps) => {
     const {t} = useTranslation('controls');
-    const {onChangeLang, lang, langs, availableLangs, onChangeTheme, theme} = userSettings;
+    const {onChangeLang, lang, langs, availableLangs = [], onChangeTheme, theme} = userSettings;
 
-    const langControl = useLangControl(
-        t,
-        lang ?? Lang.En,
-        availableLangs ? [...availableLangs] : [],
-        langs,
-        onChangeLang,
-    );
+    const langControl = useLangControl(t, lang ?? Lang.En, availableLangs, langs, onChangeLang);
     const themeControl = useThemeControl(t, theme ?? Theme.Light, onChangeTheme);
 
     if (!onChangeTheme && !onChangeLang) {

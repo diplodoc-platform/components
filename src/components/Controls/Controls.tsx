@@ -1,4 +1,11 @@
-import type {FeedbackSendData, Lang, SubscribeData, TextSizes, Theme} from '../../models';
+import type {
+    AvailableLangs,
+    FeedbackSendData,
+    Lang,
+    SubscribeData,
+    TextSizes,
+    Theme,
+} from '../../models';
 
 import block from 'bem-cn-lite';
 import React, {memo, useContext} from 'react';
@@ -49,7 +56,7 @@ export interface ControlsProps {
     className?: string;
     hideEditControl?: boolean;
     hideFeedbackControls?: boolean;
-    availableLangs?: readonly (`${Lang}` | Lang)[];
+    availableLangs?: AvailableLangs;
 }
 
 const b = block('dc-controls');

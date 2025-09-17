@@ -240,3 +240,5 @@ export interface ISearchResult {
 }
 
 export type Query = Record<string, number | string | null>;
+
+export type AvailableLangs = readonly (`${Lang}` | Lang)[];

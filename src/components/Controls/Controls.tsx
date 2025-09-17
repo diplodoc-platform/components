@@ -49,7 +49,7 @@ export interface ControlsProps {
     className?: string;
     hideEditControl?: boolean;
     hideFeedbackControls?: boolean;
-    availableLangs?: (`${Lang}` | Lang)[];
+    availableLangs?: readonly (`${Lang}` | Lang)[];
 }
 
 const b = block('dc-controls');
@@ -90,7 +90,7 @@ export const ControlsList: React.FC<ControlsProps & {isHiddenFeedback: boolean}>
         isLiked,
         isDisliked,
         isHiddenFeedback,
-        availableLangs,
+        availableLangs = [],
     } = props;
 
     const withFullscreenControl = Boolean(onChangeFullScreen);

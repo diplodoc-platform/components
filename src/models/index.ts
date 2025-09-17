@@ -121,8 +121,8 @@ export interface DocMeta {
     author?: unknown | Contributor;
     __system?: Record<string, unknown>;
     updatedAt?: string;
-    canonical?: `${Lang}` | Lang;
-    alternate?: (`${Lang}` | Lang)[];
+    canonical?: string;
+    alternate?: string[];
 }
 
 export interface TocLabel {

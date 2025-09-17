@@ -1,9 +1,11 @@
-import React, {ReactNode, SVGProps, memo, useMemo, useState} from 'react';
+import type {ReactNode, SVGProps} from 'react';
+import type {Lang, ListItem, OnChangeValue} from '../../../models';
+
+import React, {memo, useMemo, useState} from 'react';
 import {ChevronDown} from '@gravity-ui/icons';
 import {Button} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 
-import {ListItem, OnChangeValue} from '../../../models';
 import MobileControlSheet from '../MobileControlSheet/MobileControlSheet';
 
 import './MobileControl.scss';
@@ -18,6 +20,7 @@ export interface MobileControlProps {
     selectedItem: ReactNode;
     selectedItemIndex: number;
     displayItems: ListItem[];
+    availableLangs?: (`${Lang}` | Lang)[];
     onChangeValue?: OnChangeValue;
 }
 
@@ -30,6 +33,7 @@ const MobileControl = memo(
         selectedItem,
         selectedItemIndex,
         displayItems,
+        availableLangs,
         onChangeValue,
     }: MobileControlProps) => {
         const labelText = useMemo(
@@ -56,6 +60,7 @@ const MobileControl = memo(
                     isVisible={sheetIsVisible}
                     onClose={onSheetClose}
                     selectedItemIndex={selectedItemIndex}
+                    availableLangs={availableLangs}
                 />
                 <Button
                     disabled={disabled}

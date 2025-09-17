@@ -87,7 +87,7 @@ export interface DocPageProps extends DocPageData, DocSettings, NotificationProp
     useMainTag?: boolean;
     isMobile?: boolean;
     viewerInterface?: Record<string, boolean>;
-    availableLangs?: (`${Lang}` | Lang)[];
+    availableLangs?: readonly (`${Lang}` | Lang)[];
 }
 
 type DocPageInnerProps = InnerProps<DocPageProps, DocSettings>;
@@ -168,6 +168,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             legacyToc,
             notification,
             notificationCb,
+            availableLangs = [],
         } = this.props;
 
         const hideBurger = typeof headerHeight !== 'undefined' && headerHeight > 0;
@@ -183,6 +184,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             lang,
             userSettings: {
                 langs,
+                availableLangs,
                 onChangeLang,
                 theme,
                 onChangeTheme,
@@ -685,7 +687,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             hideControls,
             hideEditControl,
             hideFeedbackControls,
-            availableLangs,
+            availableLangs = [],
         } = this.props;
 
         if (hideControls) {

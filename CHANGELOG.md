@@ -1,5 +1,12 @@
 # История изменений
 
+## [4.35.0](https://github.com/diplodoc-platform/components/compare/v4.34.2...v4.35.0) (2025-09-18)
+
+
+### Features
+
+* added availableLangs ([#454](https://github.com/diplodoc-platform/components/issues/454)) ([3f3dbb9](https://github.com/diplodoc-platform/components/commit/3f3dbb9929c68e76f3c47898a7399e263914c132))
+
 ## [4.34.2](https://github.com/diplodoc-platform/components/compare/v4.34.1...v4.34.2) (2025-09-04)
 
 

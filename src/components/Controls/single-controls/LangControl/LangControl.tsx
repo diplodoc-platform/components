@@ -45,7 +45,7 @@ const LangControl = (props: ControlProps) => {
             .map((code) => {
                 const langData = allLangs.where('1', code);
                 const lang = (langData?.['1'] as Lang) || Lang.En;
-                const disabled = availableLangs && !availableLangs.includes(lang);
+                const disabled = availableLangs.length && !availableLangs.includes(lang);
 
                 return langData
                     ? {

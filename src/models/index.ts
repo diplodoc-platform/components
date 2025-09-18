@@ -122,7 +122,7 @@ export interface DocMeta {
     __system?: Record<string, unknown>;
     updatedAt?: string;
     canonical?: string;
-    alternate?: string[];
+    alternate?: Alternate[];
 }
 
 export interface TocLabel {
@@ -171,6 +171,11 @@ export enum Lang {
     Cs = 'cs',
     Ar = 'ar',
 }
+
+export type Alternate = {
+    href: string;
+    hreflang?: string;
+};
 
 export interface Contributor {
     avatar: string;

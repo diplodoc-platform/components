@@ -1,20 +1,22 @@
+import type {ControlsProps} from '../Controls';
+import type {
+    AvailableLangs,
+    ControlSizes,
+    DocSettings,
+    ListItem,
+    OnChangeValue,
+    TFunction,
+} from '../../models';
+
 import React, {memo, useMemo} from 'react';
 import {Globe, Sun} from '@gravity-ui/icons';
 import block from 'bem-cn-lite';
 import allLangs from 'langs';
 
 import {DEFAULT_LANGS, LEGACY_LANG_ITEMS} from '../../constants';
-import {ControlsLayout, ControlsProps} from '../Controls';
+import {ControlsLayout} from '../Controls';
 import {useTranslation} from '../../hooks';
-import {
-    ControlSizes,
-    DocSettings,
-    Lang,
-    ListItem,
-    OnChangeValue,
-    TFunction,
-    Theme,
-} from '../../models';
+import {Lang, Theme} from '../../models';
 
 import MobileControl from './MobileControl/MobileControl';
 import './MobileControls.scss';
@@ -29,6 +31,7 @@ export interface MobileControlsProps {
 const useLangControl = (
     t: TFunction,
     lang: `${Lang}` | Lang,
+    availableLangs: AvailableLangs,
     langs?: (`${Lang}` | Lang)[],
     onChangeLang?: (lang: `${Lang}` | Lang) => void,
 ) => {
@@ -59,6 +62,7 @@ const useLangControl = (
             selectedItem={lang}
             selectedItemIndex={selectedItemIndex}
             displayItems={langItems}
+            availableLangs={availableLangs}
             onChangeValue={onChangeLang as OnChangeValue}
         />
     );
@@ -109,9 +113,9 @@ const useThemeControl = (t: TFunction, theme: Theme, onChangeTheme?: (theme: The
 
 const MobileControls = memo(({controlSize, userSettings}: MobileControlsProps) => {
     const {t} = useTranslation('controls');
-    const {onChangeLang, lang, langs, onChangeTheme, theme} = userSettings;
+    const {onChangeLang, lang, langs, availableLangs = [], onChangeTheme, theme} = userSettings;
 
-    const langControl = useLangControl(t, lang ?? Lang.En, langs, onChangeLang);
+    const langControl = useLangControl(t, lang ?? Lang.En, availableLangs, langs, onChangeLang);
     const themeControl = useThemeControl(t, theme ?? Theme.Light, onChangeTheme);
 
     if (!onChangeTheme && !onChangeLang) {

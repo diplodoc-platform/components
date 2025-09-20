@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import type {FeedbackSendData, Lang, Theme} from '@diplodoc/components';
+import type {AvailableLangs, FeedbackSendData, Lang, Theme} from '@diplodoc/components';
 
 import {join} from 'path';
 import React, {useCallback, useEffect, useState} from 'react';
@@ -280,6 +280,10 @@ const DocPageDemo = (
     const hideTocHeader = args['HideTocHeader'];
     const hideFeedback = args['HideFeedback'];
 
+    const availableLangs: AvailableLangs = Array.isArray(args['AvailableLangs'])
+        ? args['AvailableLangs']
+        : ['ru'];
+
     return (
         <div className={layoutBlock('content')}>
             <DocPage
@@ -290,6 +294,7 @@ const DocPageDemo = (
                 renderLoader={renderLoader}
                 hideTocHeader={hideTocHeader}
                 hideFeedback={hideFeedback}
+                availableLangs={availableLangs}
                 // TODO: return highlight examples
                 // onContentMutation={onContentMutation}
                 // onContentLoaded={onContentLoaded}
@@ -348,6 +353,10 @@ export default {
         },
         Pdf: {
             control: 'text',
+        },
+        AvailableLangs: {
+            control: {type: 'check'},
+            options: ['ru', 'en', 'cs', 'he'],
         },
     },
 };

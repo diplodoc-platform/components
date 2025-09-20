@@ -1,8 +1,7 @@
 import type {UseTranslationResponse} from 'react-i18next';
 import type {Loc} from '../config/i18n';
 import type {SuggestItemType} from '../components/SearchSuggest/types';
-
-import {LabelProps} from '@gravity-ui/uikit';
+import type {LabelProps} from '@gravity-ui/uikit';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type TFunction = UseTranslationResponse<any, undefined>['t'];
@@ -122,6 +121,8 @@ export interface DocMeta {
     author?: unknown | Contributor;
     __system?: Record<string, unknown>;
     updatedAt?: string;
+    canonical?: string;
+    alternate?: Alternate[];
 }
 
 export interface TocLabel {
@@ -170,6 +171,11 @@ export enum Lang {
     Cs = 'cs',
     Ar = 'ar',
 }
+
+export type Alternate = {
+    href: string;
+    hreflang?: string;
+};
 
 export interface Contributor {
     avatar: string;
@@ -239,3 +245,5 @@ export interface ISearchResult {
 }
 
 export type Query = Record<string, number | string | null>;
+
+export type AvailableLangs = readonly (`${Lang}` | Lang)[];

@@ -1,8 +1,8 @@
+import type {AvailableLangs, Lang, ListItem} from '../../../models';
+
 import React, {memo, useCallback} from 'react';
 import {List, Sheet} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
-
-import {ListItem} from '../../../models';
 
 import './MobileControlSheet.scss';
 
@@ -17,6 +17,7 @@ export interface MobileControlSheetProps {
     isVisible: boolean;
     onClose: () => void;
     selectedItemIndex: number;
+    availableLangs?: AvailableLangs;
 }
 
 const MobileControlSheet = memo(
@@ -27,10 +28,22 @@ const MobileControlSheet = memo(
         isVisible,
         onClose,
         selectedItemIndex,
+        availableLangs,
     }: MobileControlSheetProps) => {
         const renderItem = useCallback(
-            (item: ListItem) => <button className={b('list-item')}>{item.text}</button>,
-            [],
+            (item: ListItem) => {
+                const isDisabled = availableLangs && !availableLangs.includes(item.value as Lang);
+
+                return (
+                    <button
+                        className={b('list-item', {disabled: isDisabled})}
+                        disabled={isDisabled}
+                    >
+                        {item.text}
+                    </button>
+                );
+            },
+            [availableLangs],
         );
 
         return (

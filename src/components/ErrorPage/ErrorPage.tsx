@@ -20,6 +20,7 @@ export interface ErrorPageProps {
     homeUrl?: string;
     receiveAccessUrl?: string;
     links?: LinkType[];
+    errorTitle?: string;
 }
 
 const ErrorPage: React.FC<ErrorPageProps> = ({
@@ -28,6 +29,7 @@ const ErrorPage: React.FC<ErrorPageProps> = ({
     receiveAccessUrl,
     pageGroup,
     links,
+    errorTitle,
 }) => {
     let title;
     let description;
@@ -99,7 +101,7 @@ const ErrorPage: React.FC<ErrorPageProps> = ({
             />
             <h1 className={b('code')}>{t('label_title-code', {code})}</h1>
             <h2 className={b('title')}>
-                {title}
+                {errorTitle || title}
                 {links && links.length > 0 && `. ${t('label_subtext')}`}
             </h2>
             <p className={b('description')}>{description}</p>

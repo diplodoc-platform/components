@@ -1,5 +1,12 @@
 # История изменений
 
+## [4.36.0](https://github.com/diplodoc-platform/components/compare/v4.35.0...v4.36.0) (2025-09-22)
+
+
+### Features
+
+* added errorTitle to ErrorPage ([#460](https://github.com/diplodoc-platform/components/issues/460)) ([5aea0e6](https://github.com/diplodoc-platform/components/commit/5aea0e61cdd196d2e7448f648ec86b011bb1b129))
+
 ## [4.35.0](https://github.com/diplodoc-platform/components/compare/v4.34.2...v4.35.0) (2025-09-18)
 
 

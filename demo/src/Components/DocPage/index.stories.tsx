@@ -10,7 +10,7 @@ import {
     VcsType,
     configure as configureDocs,
 } from '@diplodoc/components';
-import {Icon, configure as configureUikit} from '@gravity-ui/uikit';
+import {Button, Icon, configure as configureUikit, spacing} from '@gravity-ui/uikit';
 import cn from 'bem-cn-lite';
 import {SquareListUl} from '@gravity-ui/icons';
 
@@ -33,6 +33,12 @@ let tocTitleIcon = (
             fill="#027BF3"
         />
     </svg>
+);
+
+const beforeSubNavigationContent = (
+    <Button view="action" className={spacing({mb: 4})}>
+        Action button
+    </Button>
 );
 
 const useSettings = () => {
@@ -295,6 +301,7 @@ const DocPageDemo = (
                 hideTocHeader={hideTocHeader}
                 hideFeedback={hideFeedback}
                 availableLangs={availableLangs}
+                beforeSubNavigationContent={beforeSubNavigationContent}
                 // TODO: return highlight examples
                 // onContentMutation={onContentMutation}
                 // onContentLoaded={onContentLoaded}

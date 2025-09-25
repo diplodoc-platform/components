@@ -32,13 +32,12 @@ const MobileControlSheet = memo(
     }: MobileControlSheetProps) => {
         const renderItem = useCallback(
             (item: ListItem) => {
-                const isDisabled = availableLangs && !availableLangs.includes(item.value as Lang);
+                const disabled = Boolean(
+                    availableLangs?.length && !availableLangs.includes(item.value as Lang),
+                );
 
                 return (
-                    <button
-                        className={b('list-item', {disabled: isDisabled})}
-                        disabled={isDisabled}
-                    >
+                    <button className={b('list-item', {disabled: disabled})} disabled={disabled}>
                         {item.text}
                     </button>
                 );

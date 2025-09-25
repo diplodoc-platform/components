@@ -1,5 +1,12 @@
 # История изменений
 
+## [4.36.1](https://github.com/diplodoc-platform/components/compare/v4.36.0...v4.36.1) (2025-09-25)
+
+
+### Bug Fixes
+
+* fixed mobile language switching ([#462](https://github.com/diplodoc-platform/components/issues/462)) ([8b23c8b](https://github.com/diplodoc-platform/components/commit/8b23c8b307bd4a30fadd4b5d712a3b1fa8f94102))
+
 ## [4.36.0](https://github.com/diplodoc-platform/components/compare/v4.35.0...v4.36.0) (2025-09-22)
 
 

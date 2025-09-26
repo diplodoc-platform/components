@@ -102,7 +102,10 @@ const ErrorPage: React.FC<ErrorPageProps> = ({
             <h1 className={b('code')}>{t('label_title-code', {code})}</h1>
             <h2 className={b('title')}>
                 {errorTitle || title}
-                {code === 404 && links && links.length > 0 && `. ${t('label_subtext')}`}
+                {code === ERROR_CODES.NOT_FOUND &&
+                    links &&
+                    links.length > 0 &&
+                    `. ${t('label_subtext')}`}
             </h2>
             <p className={b('description')}>{description}</p>
         </div>

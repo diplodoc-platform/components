@@ -1,5 +1,17 @@
 # История изменений
 
+## [4.37.0](https://github.com/diplodoc-platform/components/compare/v4.36.1...v4.37.0) (2025-09-26)
+
+
+### Features
+
+* **DocPage:** added new optional prop beforeSubNavigationContent ([#458](https://github.com/diplodoc-platform/components/issues/458)) ([148576a](https://github.com/diplodoc-platform/components/commit/148576a622fa97c6b85c05c9a909ce07b55a8a8f))
+
+
+### Bug Fixes
+
+* fixed links text ([#465](https://github.com/diplodoc-platform/components/issues/465)) ([b77508f](https://github.com/diplodoc-platform/components/commit/b77508f5a3bd5b90e26ac96565b9895ab749c8ce))
+
 ## [4.36.1](https://github.com/diplodoc-platform/components/compare/v4.36.0...v4.36.1) (2025-09-25)
 
 

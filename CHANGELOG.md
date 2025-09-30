@@ -1,5 +1,12 @@
 # История изменений
 
+## [4.37.1](https://github.com/diplodoc-platform/components/compare/v4.37.0...v4.37.1) (2025-09-30)
+
+
+### Bug Fixes
+
+* fixed LangControl style ([#466](https://github.com/diplodoc-platform/components/issues/466)) ([af7bf9f](https://github.com/diplodoc-platform/components/commit/af7bf9fdebf9ff4bcc410297e3e8d2997758c83c))
+
 ## [4.37.0](https://github.com/diplodoc-platform/components/compare/v4.36.1...v4.37.0) (2025-09-26)
 
 

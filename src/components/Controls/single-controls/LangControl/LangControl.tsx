@@ -39,13 +39,20 @@ const LangControl = (props: ControlProps) => {
 
     const controlRef = useRef<HTMLButtonElement | null>(null);
 
+    const isLangDisabled = useCallback(
+        (lang: string) => {
+            return Boolean(availableLangs?.length && !availableLangs.includes(lang as Lang));
+        },
+        [availableLangs],
+    );
+
     const popupState = usePopupState();
     const langItems = useMemo(() => {
         const preparedLangs = langs
             .map((code) => {
                 const langData = allLangs.where('1', code);
                 const lang = (langData?.['1'] as Lang) || Lang.En;
-                const disabled = availableLangs.length && !availableLangs.includes(lang);
+                const disabled = isLangDisabled(lang);
 
                 return langData
                     ? {
@@ -58,10 +65,20 @@ const LangControl = (props: ControlProps) => {
             .filter(Boolean) as ListItem[];
 
         return preparedLangs.length ? preparedLangs : LEGACY_LANG_ITEMS;
-    }, [langs, availableLangs]);
-    const renderItem = useCallback((item: ListItem) => {
-        return <button className={b('list-item')}>{item.text}</button>;
-    }, []);
+    }, [langs, isLangDisabled]);
+
+    const renderItem = useCallback(
+        (item: ListItem) => {
+            const disabled = isLangDisabled(item.value);
+
+            return (
+                <button className={b('list-item', {disabled})} disabled={disabled}>
+                    {item.text}
+                </button>
+            );
+        },
+        [isLangDisabled],
+    );
 
     const onItemClick = useCallback(
         (item: ListItem) => {

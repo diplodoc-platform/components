@@ -37,7 +37,7 @@ const MobileControlSheet = memo(
                 );
 
                 return (
-                    <button className={b('list-item', {disabled: disabled})} disabled={disabled}>
+                    <button className={b('list-item', {disabled})} disabled={disabled}>
                         {item.text}
                     </button>
                 );

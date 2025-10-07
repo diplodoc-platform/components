@@ -1,9 +1,46 @@
 @use 'mixins';
 @use 'variables';
+@use '@diplodoc/themes/lib/gravity/light.scss' as yfm-light;
+@use '@diplodoc/themes/lib/gravity/dark.scss' as yfm-dark;
+@use '@diplodoc/themes/lib/gravity/light-hc.scss' as yfm-light-hc;
+@use '@diplodoc/themes/lib/gravity/dark-hc.scss' as yfm-dark-hc;
+
+// Применяем темизацию для YFM элементов
+
+.g-root_theme_light .dc-doc-page .yfm {
+    @include yfm-light.gravity-colors-for-diplodoc-light();
+}
+
+.g-root_theme_light-hc .dc-doc-page .yfm {
+    @include yfm-light-hc.gravity-colors-for-diplodoc-light-hc();
+}
+
+.g-root_theme_dark .dc-doc-page .yfm {
+    @include yfm-dark.gravity-colors-for-diplodoc-dark();
+
+    table[sticky-header] {
+        & th::before {
+            background: var(--yfm-color-base);
+        }
+    }
+
+    .yfm-cut-title:before {
+        background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiI+PHBhdGggc3Ryb2tlPSJyZ2JhKDI1NSwgMjU1LCAyNTUsIDAuNykiIGZpbGw9Im5vbmUiIGQ9Ik0zIDZsNSA1IDUtNSI+PC9wYXRoPjwvc3ZnPg==');
+    }
+
+    .yfm-tabs-accordion .yfm-tab:after {
+        background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiI+PHBhdGggc3Ryb2tlPSJyZ2JhKDI1NSwgMjU1LCAyNTUsIDAuNykiIGZpbGw9Im5vbmUiIGQ9Ik0zIDZsNSA1IDUtNSI+PC9wYXRoPjwvc3ZnPg==');
+    }
+}
+
+.g-root_theme_dark-hc .dc-doc-page .yfm {
+    @include yfm-dark-hc.gravity-colors-for-diplodoc-dark-hc();
+}
 
 .dc-doc-page .yfm {
-    color: var(--g-color-text-primary);
+    color: var(--yfm-color-text);
 
+    // TODO: after determinate color for hljs in @diplodoc, remove this variables
     --yfm-color-hljs-background: var(--g-color-base-background);
     --yfm-color-hljs-subst: var(--g-color-text-complementary);
     --yfm-color-hljs-comment: var(--g-color-text-secondary);
@@ -21,13 +58,11 @@
         background: transparent;
     }
 
-    a:not(.pc-card-base-block) {
-        color: var(--g-color-text-link);
+    a {
         border-radius: var(--g-focus-border-radius);
 
         &:hover,
         &:active {
-            color: var(--g-color-text-link-hover);
         }
 
         @include mixins.focusable(0, 'box-shadow');
@@ -48,10 +83,10 @@
     }
 
     $backgroundColors: (
-        yfm-accent-info: var(--g-color-base-info-light),
-        yfm-accent-tip: var(--g-color-base-positive-light),
-        yfm-accent-alert: var(--g-color-base-danger-light),
-        yfm-accent-warning: var(--g-color-base-warning-light),
+        yfm-accent-info: var(--yfm-color-note-info-background),
+        yfm-accent-tip: var(--yfm-color-note-tip-background),
+        yfm-accent-alert: var(--yfm-color-note-important-background),
+        yfm-accent-warning: var(--yfm-color-note-warning-background),
     );
 
     @each $type, $color in $backgroundColors {
@@ -64,43 +99,34 @@
         font-size: var(--dc-code-short-font-size);
         line-height: var(--dc-code-short-line-height);
         padding: var(--dc-code-short-padding);
-        background: var(--g-color-base-misc-light);
-        color: var(--g-color-text-misc);
     }
 
     pre > code {
         font-size: var(--dc-code-font-size);
         line-height: var(--dc-code-line-height);
         padding: 16px;
-        background: var(--g-color-base-misc-light);
         color: var(--g-color-text-complementary);
     }
 
     dfn,
     .inline_code_tooltip {
-        background: var(--g-color-base-float);
-        box-shadow: 0 8px 20px var(--g-color-sfx-shadow);
+        background: var(--yfm-color-term-dfn-background);
+        box-shadow: 0 8px 20px var(--yfm-color-term-dfn-shadow);
     }
 
     dfn:before,
     .inline_code_tooltip:before {
-        box-shadow: 0 0 0 1px var(--g-color-line-generic-solid);
-    }
-
-    table {
-        color: var(--g-color-text-primary);
-        border-color: var(--g-color-line-generic);
-        background: var(--g-color-base-background);
+        box-shadow: 0 0 0 1px var(--yfm-color-term-dfn-pseudo-shadow);
     }
 
     table thead,
     table[sticky-header] thead th::after,
     table tr:nth-child(2n) {
-        background: var(--g-color-base-generic);
+        background: var(--yfm-color-table-row-background);
     }
 
     hr {
-        background-color: var(--g-color-base-background);
+        background-color: var(--yfm-color-base);
     }
 
     blockquote {
@@ -108,7 +134,7 @@
     }
 
     .yfm-tab-list {
-        border-bottom-color: var(--g-color-line-generic);
+        border-bottom-color: var(--yfm-color-border);
     }
 
     .yfm-tab {
@@ -116,7 +142,7 @@
 
         &:hover,
         &:active {
-            color: var(--g-color-text-link-hover);
+            color: var(--yfm-color-link-hover);
         }
         @include mixins.focusable();
     }
@@ -135,7 +161,7 @@
     }
 
     .yfm-term_title:hover {
-        color: var(--g-color-text-link-hover);
+        color: var(--yfm-color-link-hover);
     }
 
     // Margin collapse is not applied for a block and header with a negative margin.
@@ -181,7 +207,7 @@
     .yfm-page__delimeter {
         height: 4px;
         border-radius: 2px;
-        background: var(--g-color-line-generic);
+        background: var(--yfm-color-border);
         margin-top: 20px;
         margin-bottom: 0;
 
@@ -229,22 +255,6 @@
         }
     }
     /* stylelint-enable declaration-no-important */
-}
-
-.g-root_theme_dark .dc-doc-page .yfm {
-    table[sticky-header] {
-        & th::before {
-            background: var(--g-color-base-background);
-        }
-    }
-
-    .yfm-cut-title:before {
-        background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiI+PHBhdGggc3Ryb2tlPSJyZ2JhKDI1NSwgMjU1LCAyNTUsIDAuNykiIGZpbGw9Im5vbmUiIGQ9Ik0zIDZsNSA1IDUtNSI+PC9wYXRoPjwvc3ZnPg==');
-    }
-
-    .yfm-tabs-accordion .yfm-tab:after {
-        background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiI+PHBhdGggc3Ryb2tlPSJyZ2JhKDI1NSwgMjU1LCAyNTUsIDAuNykiIGZpbGw9Im5vbmUiIGQ9Ik0zIDZsNSA1IDUtNSI+PC9wYXRoPjwvc3ZnPg==');
-    }
 }
 
 .dc-neuro-expert-widget {

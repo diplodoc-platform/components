@@ -79,7 +79,7 @@ const config: StorybookConfig = {
             sassLoader.options.sassOptions.loadPaths = [
                 join(dirname(require.resolve('@diplodoc/transform/package.json')), 'dist/scss'),
                 join(__dirname, '../node_modules'),
-                dirname(dirname(__dirname)), // Корень проекта для @diplodoc/components
+                dirname(dirname(__dirname)), // project root for @diplodoc/components
             ];
         }
 

@@ -74,17 +74,13 @@ const config: StorybookConfig = {
 
         if (sassLoader) {
             sassLoader.options = sassLoader.options || {};
+            sassLoader.options.api = 'modern';
             sassLoader.options.sassOptions = sassLoader.options.sassOptions || {};
-            sassLoader.options.sassOptions.importer = (file: string) => {
-                if (!file.startsWith('@diplodoc/components')) {
-                    return {file};
-                }
-
-                const root = dirname(dirname(__dirname));
-                const pkg = require(join(root, '/package.json'));
-
-                return {file: join(root, pkg.exports['.'].import.style)};
-            };
+            sassLoader.options.sassOptions.loadPaths = [
+                join(dirname(require.resolve('@diplodoc/transform/package.json')), 'dist/scss'),
+                join(__dirname, '../node_modules'),
+                dirname(dirname(__dirname)), // Корень проекта для @diplodoc/components
+            ];
         }
 
         return config;

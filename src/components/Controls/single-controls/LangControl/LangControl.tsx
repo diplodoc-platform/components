@@ -1,3 +1,5 @@
+import type {AvailableLangs} from '../../../../models';
+
 import React, {useCallback, useContext, useMemo, useRef} from 'react';
 import {Globe} from '@gravity-ui/icons';
 import {List, Popover} from '@gravity-ui/uikit';
@@ -18,6 +20,7 @@ const b = block('dc-lang-control');
 interface ControlProps {
     lang: `${Lang}` | Lang;
     langs?: string[];
+    availableLangs: AvailableLangs;
     onChangeLang: (lang: `${Lang}` | Lang) => void;
 }
 
@@ -32,30 +35,51 @@ const LangControl = (props: ControlProps) => {
     const {t} = useTranslation('controls');
     const {controlClassName, controlSize, isVerticalView, popupPosition} =
         useContext(ControlsLayoutContext);
-    const {lang, langs = DEFAULT_LANGS, onChangeLang} = props;
+    const {lang, langs = DEFAULT_LANGS, availableLangs, onChangeLang} = props;
 
     const controlRef = useRef<HTMLButtonElement | null>(null);
+
+    const isLangDisabled = useCallback(
+        (lang: string) => {
+            return Boolean(availableLangs?.length && !availableLangs.includes(lang as Lang));
+        },
+        [availableLangs],
+    );
 
     const popupState = usePopupState();
     const langItems = useMemo(() => {
         const preparedLangs = langs
             .map((code) => {
                 const langData = allLangs.where('1', code);
+                const lang = (langData?.['1'] as Lang) || Lang.En;
+                const disabled = isLangDisabled(lang);
 
                 return langData
                     ? {
                           text: langData.local,
-                          value: langData['1'],
+                          value: lang,
+                          disabled,
                       }
                     : undefined;
             })
             .filter(Boolean) as ListItem[];
 
         return preparedLangs.length ? preparedLangs : LEGACY_LANG_ITEMS;
-    }, [langs]);
-    const renderItem = useCallback((item: ListItem) => {
-        return <button className={b('list-item')}>{item.text}</button>;
-    }, []);
+    }, [langs, isLangDisabled]);
+
+    const renderItem = useCallback(
+        (item: ListItem) => {
+            const disabled = isLangDisabled(item.value);
+
+            return (
+                <button className={b('list-item', {disabled})} disabled={disabled}>
+                    {item.text}
+                </button>
+            );
+        },
+        [isLangDisabled],
+    );
+
     const onItemClick = useCallback(
         (item: ListItem) => {
             onChangeLang(item.value as Lang);

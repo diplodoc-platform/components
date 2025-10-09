@@ -1,5 +1,6 @@
 import type {ReactPortal} from 'react';
 import type {
+    AvailableLangs,
     DocPageData,
     DocSettings,
     FeedbackSendData,
@@ -87,6 +88,8 @@ export interface DocPageProps extends DocPageData, DocSettings, NotificationProp
     useMainTag?: boolean;
     isMobile?: boolean;
     viewerInterface?: Record<string, boolean>;
+    availableLangs?: AvailableLangs;
+    beforeSubNavigationContent?: React.ReactNode;
 }
 
 type DocPageInnerProps = InnerProps<DocPageProps, DocSettings>;
@@ -167,6 +170,8 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             legacyToc,
             notification,
             notificationCb,
+            availableLangs = [],
+            beforeSubNavigationContent,
         } = this.props;
 
         const hideBurger = typeof headerHeight !== 'undefined' && headerHeight > 0;
@@ -182,6 +187,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             lang,
             userSettings: {
                 langs,
+                availableLangs,
                 onChangeLang,
                 theme,
                 onChangeTheme,
@@ -230,6 +236,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                         className={b('aside')}
                         key={getStateKey(this.showMiniToc, wideFormat, singlePage)}
                     >
+                        {beforeSubNavigationContent}
                         <SubNavigation
                             router={router}
                             toc={toc}
@@ -684,6 +691,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             hideControls,
             hideEditControl,
             hideFeedbackControls,
+            availableLangs = [],
         } = this.props;
 
         if (hideControls) {
@@ -718,6 +726,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                         onSubscribe={onSubscribe}
                         hideEditControl={hideEditControl || fullScreen || !this.isEditable()}
                         hideFeedbackControls={hideFeedbackControls}
+                        availableLangs={availableLangs}
                     />
                 </ControlsLayout>
             </div>

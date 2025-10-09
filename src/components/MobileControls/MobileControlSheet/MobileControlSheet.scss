@@ -25,7 +25,7 @@
         border: 0;
 
         color: inherit;
-        cursor: inherit;
+        cursor: pointer;
         background-color: inherit;
 
         font-family: inherit;
@@ -40,5 +40,11 @@
         [dir='rtl'] & {
             justify-content: end;
         }
+    }
+
+    &__list-item_disabled {
+        color: var(--g-color-text-secondary);
+        cursor: default;
+        opacity: 0.7;
     }
 }

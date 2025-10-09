@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import type {FeedbackSendData, Lang, Theme} from '@diplodoc/components';
+import type {AvailableLangs, FeedbackSendData, Lang, Theme} from '@diplodoc/components';
 
 import {join} from 'path';
 import React, {useCallback, useEffect, useState} from 'react';
@@ -10,7 +10,7 @@ import {
     VcsType,
     configure as configureDocs,
 } from '@diplodoc/components';
-import {Icon, configure as configureUikit} from '@gravity-ui/uikit';
+import {Button, Icon, configure as configureUikit, spacing} from '@gravity-ui/uikit';
 import cn from 'bem-cn-lite';
 import {SquareListUl} from '@gravity-ui/icons';
 
@@ -33,6 +33,12 @@ let tocTitleIcon = (
             fill="#027BF3"
         />
     </svg>
+);
+
+const beforeSubNavigationContent = (
+    <Button view="action" className={spacing({mb: 4})}>
+        Action button
+    </Button>
 );
 
 const useSettings = () => {
@@ -280,6 +286,10 @@ const DocPageDemo = (
     const hideTocHeader = args['HideTocHeader'];
     const hideFeedback = args['HideFeedback'];
 
+    const availableLangs: AvailableLangs = Array.isArray(args['AvailableLangs'])
+        ? args['AvailableLangs']
+        : ['ru'];
+
     return (
         <div className={layoutBlock('content')}>
             <DocPage
@@ -290,6 +300,8 @@ const DocPageDemo = (
                 renderLoader={renderLoader}
                 hideTocHeader={hideTocHeader}
                 hideFeedback={hideFeedback}
+                availableLangs={availableLangs}
+                beforeSubNavigationContent={beforeSubNavigationContent}
                 // TODO: return highlight examples
                 // onContentMutation={onContentMutation}
                 // onContentLoaded={onContentLoaded}
@@ -348,6 +360,10 @@ export default {
         },
         Pdf: {
             control: 'text',
+        },
+        AvailableLangs: {
+            control: {type: 'check'},
+            options: ['ru', 'en', 'cs', 'he'],
         },
     },
 };

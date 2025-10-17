@@ -21,7 +21,7 @@
         background: transparent;
     }
 
-    a {
+    a:not(.pc-card-base-block) {
         color: var(--g-color-text-link);
         border-radius: var(--g-focus-border-radius);
 
@@ -36,6 +36,11 @@
                 visibility: visible;
             }
         }
+    }
+
+    // Transform styles override PC icon size
+    .pc-icon-wrapper__icon {
+        max-height: none;
     }
 
     img {

@@ -1,5 +1,12 @@
 # История изменений
 
+## [4.37.2](https://github.com/diplodoc-platform/components/compare/v4.37.1...v4.37.2) (2025-10-17)
+
+
+### Bug Fixes
+
+* fixed PC styles ([#469](https://github.com/diplodoc-platform/components/issues/469)) ([7923d7b](https://github.com/diplodoc-platform/components/commit/7923d7b82e2fc276f871b82b2e49701f51b1c647))
+
 ## [4.37.1](https://github.com/diplodoc-platform/components/compare/v4.37.0...v4.37.1) (2025-09-30)
 
 

@@ -91,6 +91,22 @@ export enum VcsType {
     Arcanum = 'arcanum',
 }
 
+export type BaseNeuroExpert = {
+    hasOutsideClick?: boolean;
+    parentId?: string | null;
+};
+
+export type NeuroExpertSettings = BaseNeuroExpert & {
+    projectId: string;
+};
+
+export type NeuroExpert = BaseNeuroExpert & {
+    projectId?: {
+        [key: string]: string;
+    };
+    disabled?: boolean;
+};
+
 export interface DocPageData extends DocBasePageData {
     leading?: false;
     breadcrumbs?: BreadcrumbItem[];

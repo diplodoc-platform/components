@@ -139,6 +139,7 @@ export interface DocMeta {
     updatedAt?: string;
     canonical?: string;
     alternate?: Alternate[];
+    neuroExpert?: NeuroExpert;
 }
 
 export interface TocLabel {

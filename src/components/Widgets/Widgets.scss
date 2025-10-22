@@ -13,7 +13,6 @@
 
     @for $i from 1 through 3 {
         &:nth-child(#{$i}) {
-            height: calc(100vh - #{($i - 1) * $offset});
             bottom: #{($i - 1) * $offset};
         }
     }

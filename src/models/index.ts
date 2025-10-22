@@ -93,7 +93,7 @@ export enum VcsType {
 
 export type BaseNeuroExpert = {
     hasOutsideClick?: boolean;
-    parentId?: string | null;
+    parentId: string | null;
 };
 
 export type NeuroExpertSettings = BaseNeuroExpert & {

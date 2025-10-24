@@ -1,5 +1,19 @@
 # История изменений
 
+## [4.38.0](https://github.com/diplodoc-platform/components/compare/v4.37.2...v4.38.0) (2025-10-22)
+
+
+### Features
+
+* added neuro-expert widget and types ([#471](https://github.com/diplodoc-platform/components/issues/471)) ([#472](https://github.com/diplodoc-platform/components/issues/472)) ([62e98dd](https://github.com/diplodoc-platform/components/commit/62e98ddaeff5daeb715f55dd3da0374021189c3a))
+
+## [4.37.2](https://github.com/diplodoc-platform/components/compare/v4.37.1...v4.37.2) (2025-10-17)
+
+
+### Bug Fixes
+
+* fixed PC styles ([#469](https://github.com/diplodoc-platform/components/issues/469)) ([7923d7b](https://github.com/diplodoc-platform/components/commit/7923d7b82e2fc276f871b82b2e49701f51b1c647))
+
 ## [4.37.1](https://github.com/diplodoc-platform/components/compare/v4.37.0...v4.37.1) (2025-09-30)
 
 

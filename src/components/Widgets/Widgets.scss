@@ -11,9 +11,13 @@
 .dc-widgets > div {
     $offset: 60px;
 
-    @for $i from 1 through 3 {
+    @for $i from 1 through 5 {
         &:nth-child(#{$i}) {
             bottom: #{($i - 1) * $offset};
         }
+    }
+
+    &:nth-child(5) + * {
+        display: none;
     }
 }

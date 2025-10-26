@@ -1,5 +1,12 @@
 # История изменений
 
+## [4.38.1](https://github.com/diplodoc-platform/components/compare/v4.38.0...v4.38.1) (2025-10-24)
+
+
+### Bug Fixes
+
+* fixed search dropdown ([#457](https://github.com/diplodoc-platform/components/issues/457)) ([e1128b5](https://github.com/diplodoc-platform/components/commit/e1128b5f1a42c7875b25d010d2db7a9c53de8ba3))
+
 ## [4.38.0](https://github.com/diplodoc-platform/components/compare/v4.37.2...v4.38.0) (2025-10-22)
 
 

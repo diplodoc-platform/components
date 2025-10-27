@@ -1,5 +1,12 @@
 # История изменений
 
+## [4.38.2](https://github.com/diplodoc-platform/components/compare/v4.38.1...v4.38.2) (2025-10-27)
+
+
+### Bug Fixes
+
+* fixed NeuroExpert logic ([#475](https://github.com/diplodoc-platform/components/issues/475)) ([7c962f3](https://github.com/diplodoc-platform/components/commit/7c962f389765533b1d0636b4f61daad43e989629))
+
 ## [4.38.1](https://github.com/diplodoc-platform/components/compare/v4.38.0...v4.38.1) (2025-10-24)
 
 

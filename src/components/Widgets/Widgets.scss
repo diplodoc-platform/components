@@ -3,7 +3,7 @@
     right: 0;
     bottom: 0;
     width: fit-content;
-    z-index: 150;
+    z-index: 150; // This z-index is chosen so that the header does not overlap the widget
     pointer-events: none;
     overflow: hidden;
 }

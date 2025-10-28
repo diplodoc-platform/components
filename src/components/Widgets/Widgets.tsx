@@ -11,7 +11,7 @@ export interface WidgetsProps {
 const Widgets: React.FC<WidgetsProps> = ({children}) => {
     return (
         <div id="dc-widgets" className="dc-widgets">
-            {children || <></>}
+            {children}
         </div>
     );
 };

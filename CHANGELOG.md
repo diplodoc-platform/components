@@ -1,5 +1,12 @@
 # История изменений
 
+## [4.38.3](https://github.com/diplodoc-platform/components/compare/v4.38.2...v4.38.3) (2025-10-28)
+
+
+### Bug Fixes
+
+* fixed Widgets ([#477](https://github.com/diplodoc-platform/components/issues/477)) ([af79722](https://github.com/diplodoc-platform/components/commit/af79722e1b8c4e593415742af119d8631990425d))
+
 ## [4.38.2](https://github.com/diplodoc-platform/components/compare/v4.38.1...v4.38.2) (2025-10-27)
 
 

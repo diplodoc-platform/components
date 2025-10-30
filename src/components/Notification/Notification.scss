@@ -23,7 +23,7 @@ $importantBackgroundColor: rgba(235, 50, 38, 0.08);
     }
 
     &__xmark {
-        position: absolute;
+        position: absolute !important;
         top: 0;
         right: 0;
     }

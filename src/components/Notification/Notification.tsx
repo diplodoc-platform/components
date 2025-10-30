@@ -35,6 +35,7 @@ const Notification: React.FC<NotificationProps> = ({notification, notificationCb
                 <Button
                     view={'flat'}
                     className={bNote('xmark')}
+                    style={{position: 'absolute'}}
                     onClick={() => {
                         if (notificationCb) {
                             notificationCb();

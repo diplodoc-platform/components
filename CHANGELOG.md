@@ -1,5 +1,12 @@
 # История изменений
 
+## [4.38.4](https://github.com/diplodoc-platform/components/compare/v4.38.3...v4.38.4) (2025-11-05)
+
+
+### Bug Fixes
+
+* fixed minitoc items height ([#480](https://github.com/diplodoc-platform/components/issues/480)) ([8f5c6f4](https://github.com/diplodoc-platform/components/commit/8f5c6f447057b578453ee29783bb7091998d9cb5))
+
 ## [4.38.3](https://github.com/diplodoc-platform/components/compare/v4.38.2...v4.38.3) (2025-10-28)
 
 

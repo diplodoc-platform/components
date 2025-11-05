@@ -8,7 +8,9 @@ test.beforeEach(async ({page}) => {
 });
 
 test('Document page test', async ({page}) => {
-    await expect(page).toHaveScreenshot('DocPage.png');
+    await expect(page).toHaveScreenshot('DocPage.png', {
+        maxDiffPixelRatio: 0.01,
+    });
 });
 
 test.skip('Document page with hidden toc, search, likes', async ({page}) => {

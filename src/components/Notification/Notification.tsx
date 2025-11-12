@@ -33,7 +33,7 @@ const Notification: React.FC<NotificationProps> = ({notification, notificationCb
         <div className={bNote('wrapper')}>
             <div className={bNote({}, isNoteTypeCorrect ? `dc-accent-${type}` : bNote('template'))}>
                 {title && <p className={bNote('title')}>{title}</p>}
-                {permanent === 'true' && (
+                {!(permanent === 'true') && (
                     <Button
                         view={'flat'}
                         className={bNote('xmark')}

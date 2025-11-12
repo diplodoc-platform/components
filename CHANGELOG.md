@@ -1,5 +1,12 @@
 # История изменений
 
+## [4.38.5](https://github.com/diplodoc-platform/components/compare/v4.38.4...v4.38.5) (2025-11-12)
+
+
+### Bug Fixes
+
+* fixed button in notification ([#482](https://github.com/diplodoc-platform/components/issues/482)) ([661be11](https://github.com/diplodoc-platform/components/commit/661be1137fbf1aa630a8bf828be16d4735bd4ed9))
+
 ## [4.38.4](https://github.com/diplodoc-platform/components/compare/v4.38.3...v4.38.4) (2025-11-05)
 
 

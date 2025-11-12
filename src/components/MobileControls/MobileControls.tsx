@@ -3,6 +3,8 @@ import type {
     AvailableLangs,
     ControlSizes,
     DocSettings,
+    ExtendedLang,
+    LangOptions,
     ListItem,
     OnChangeValue,
     TFunction,
@@ -32,25 +34,45 @@ const useLangControl = (
     t: TFunction,
     lang: `${Lang}` | Lang,
     availableLangs: AvailableLangs,
-    langs?: (`${Lang}` | Lang)[],
-    onChangeLang?: (lang: `${Lang}` | Lang) => void,
+    langs?: (string | ExtendedLang)[],
+    onChangeLang?: (lang: `${Lang}` | Lang, options?: LangOptions) => void,
 ) => {
     const langItems = useMemo(() => {
         const preparedLangs = (langs ?? DEFAULT_LANGS)
             .map((code) => {
-                const langData = allLangs.where('1', code);
+                let langCode: string;
+                let domain: string | undefined;
+                let href: string | undefined;
+
+                if (typeof code === 'string') {
+                    langCode = code;
+                } else {
+                    langCode = code.lang;
+                    domain = code.domain;
+                    href = code.href;
+                }
+
+                const langData = allLangs.where('1', langCode);
+
+                const regionNames = new Intl.DisplayNames([lang], {type: 'region'});
+                const country = domain ? regionNames.of(domain.toUpperCase()) : undefined;
 
                 return langData
                     ? {
                           text: langData.local,
+                          country,
                           value: langData['1'],
+                          options: {
+                              domain,
+                              href,
+                          },
                       }
                     : undefined;
             })
             .filter(Boolean) as ListItem[];
 
         return preparedLangs.length ? preparedLangs : LEGACY_LANG_ITEMS;
-    }, [langs]);
+    }, [lang, langs]);
 
     const selectedItemIndex = useMemo(() => (langs ? langs.indexOf(lang) : -1), [lang, langs]);
 

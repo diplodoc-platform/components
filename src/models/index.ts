@@ -172,6 +172,17 @@ export enum Lang {
     Ar = 'ar',
 }
 
+export interface ExtendedLang {
+    lang: `${Lang}` | Lang;
+    domain: string;
+    href: string;
+}
+
+export interface LangOptions {
+    domain?: string;
+    href?: string;
+}
+
 export type Alternate = {
     href: string;
     hreflang?: string;
@@ -221,6 +232,9 @@ export enum DocumentType {
 export interface ListItem {
     value: string;
     text: string;
+    country?: string;
+    disabled?: boolean;
+    options?: LangOptions;
 }
 
 export interface ClassNameProps {

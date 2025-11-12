@@ -1,4 +1,4 @@
-import type {AvailableLangs} from '../../../../models';
+import type {AvailableLangs, ExtendedLang, LangOptions, ListItem} from '../../../../models';
 
 import React, {useCallback, useContext, useMemo, useRef} from 'react';
 import {Globe} from '@gravity-ui/icons';
@@ -19,14 +19,9 @@ const b = block('dc-lang-control');
 
 interface ControlProps {
     lang: `${Lang}` | Lang;
-    langs?: string[];
+    langs?: (string | ExtendedLang)[];
     availableLangs: AvailableLangs;
-    onChangeLang: (lang: `${Lang}` | Lang) => void;
-}
-
-interface ListItem {
-    value: string;
-    text: string;
+    onChangeLang: (lang: `${Lang}` | Lang, options?: LangOptions) => void;
 }
 
 const LIST_ITEM_HEIGHT = 36;
@@ -50,15 +45,35 @@ const LangControl = (props: ControlProps) => {
     const langItems = useMemo(() => {
         const preparedLangs = langs
             .map((code) => {
-                const langData = allLangs.where('1', code);
+                let langCode: string;
+                let domain: string | undefined;
+                let href: string | undefined;
+
+                if (typeof code === 'string') {
+                    langCode = code;
+                } else {
+                    langCode = code.lang;
+                    domain = code.domain;
+                    href = code.href;
+                }
+
+                const langData = allLangs.where('1', langCode);
                 const lang = (langData?.['1'] as Lang) || Lang.En;
-                const disabled = isLangDisabled(lang);
+                const disabled = isLangDisabled(lang) && !domain && !href;
+
+                const regionNames = new Intl.DisplayNames([lang], {type: 'region'});
+                const country = domain ? regionNames.of(domain.toUpperCase()) : undefined;
 
                 return langData
                     ? {
                           text: langData.local,
+                          country,
                           value: lang,
                           disabled,
+                          options: {
+                              domain,
+                              href,
+                          },
                       }
                     : undefined;
             })
@@ -69,11 +84,18 @@ const LangControl = (props: ControlProps) => {
 
     const renderItem = useCallback(
         (item: ListItem) => {
-            const disabled = isLangDisabled(item.value);
+            const {domain, href} = item.options || {};
+
+            const disabled = isLangDisabled(item.value) && !domain && !href;
+            const country = item.country;
 
             return (
-                <button className={b('list-item', {disabled})} disabled={disabled}>
+                <button
+                    className={b('list-item', {disabled, domain: Boolean(domain)})}
+                    disabled={disabled}
+                >
                     {item.text}
+                    {domain && country && <span>{country}</span>}
                 </button>
             );
         },
@@ -82,7 +104,9 @@ const LangControl = (props: ControlProps) => {
 
     const onItemClick = useCallback(
         (item: ListItem) => {
-            onChangeLang(item.value as Lang);
+            const options = item.options;
+
+            onChangeLang(item.value as Lang, options);
         },
         [onChangeLang],
     );
@@ -99,6 +123,13 @@ const LangControl = (props: ControlProps) => {
         },
         [popupState],
     );
+
+    const calcItemHeight = useCallback((item: ListItem) => {
+        const domain = item.options?.domain;
+        const domainItemHeight = domain ? 12 : 0;
+
+        return LIST_ITEM_HEIGHT + domainItemHeight;
+    }, []);
 
     return (
         <Popover
@@ -121,7 +152,7 @@ const LangControl = (props: ControlProps) => {
                     items={langItems}
                     onItemClick={onItemClick}
                     selectedItemIndex={selectedItemIndex}
-                    itemHeight={LIST_ITEM_HEIGHT}
+                    itemHeight={(item) => calcItemHeight(item)}
                     itemsHeight={itemsHeight}
                     renderItem={renderItem}
                 />

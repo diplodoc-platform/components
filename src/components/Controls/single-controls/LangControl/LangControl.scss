@@ -38,6 +38,17 @@
         @include mixins.focusable(-2px);
     }
 
+    &__list-item_domain {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 4px;
+    }
+
+    &__list-item_domain > span {
+        color: var(--g-color-text-hint);
+    }
+
     &__list-item_disabled {
         color: var(--g-color-text-secondary);
         cursor: default;

@@ -1,5 +1,12 @@
 # История изменений
 
+## [4.38.6](https://github.com/diplodoc-platform/components/compare/v4.38.5...v4.38.6) (2025-11-13)
+
+
+### Bug Fixes
+
+* fixed permanent type ([#485](https://github.com/diplodoc-platform/components/issues/485)) ([fd1220e](https://github.com/diplodoc-platform/components/commit/fd1220e979e86ea878778aab2e2b0d847d0d65cf))
+
 ## [4.38.5](https://github.com/diplodoc-platform/components/compare/v4.38.4...v4.38.5) (2025-11-12)
 
 

@@ -57,6 +57,8 @@ const LangControl = (props: ControlProps) => {
                     href = code.href;
                 }
 
+                langCode = langCode.split('-')[0];
+
                 const langData = allLangs.where('1', langCode);
                 const lang = (langData?.['1'] as Lang) || Lang.En;
                 const disabled = isLangDisabled(lang) && !href;

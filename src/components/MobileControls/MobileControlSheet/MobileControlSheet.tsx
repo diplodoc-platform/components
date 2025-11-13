@@ -4,6 +4,8 @@ import React, {memo, useCallback} from 'react';
 import {List, Sheet} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 
+import {getItemHeight, getItemsHeight} from '../../../utils';
+
 import './MobileControlSheet.scss';
 
 const LIST_ITEM_HEIGHT = 44;
@@ -62,8 +64,8 @@ const MobileControlSheet = memo(
                     filterable={false}
                     items={items}
                     onItemClick={(item: ListItem) => onItemClick(item.value, item.options)}
-                    itemHeight={LIST_ITEM_HEIGHT}
-                    itemsHeight={LIST_ITEM_HEIGHT * items.length}
+                    itemHeight={(items) => getItemHeight(LIST_ITEM_HEIGHT, items)}
+                    itemsHeight={(items) => getItemsHeight(LIST_ITEM_HEIGHT, items)}
                     renderItem={renderItem}
                     selectedItemIndex={selectedItemIndex}
                 />

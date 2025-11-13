@@ -40,19 +40,20 @@ const useLangControl = (
     const langItems = useMemo(() => {
         const preparedLangs = (langs ?? DEFAULT_LANGS)
             .map((code) => {
-                let langCode: string;
+                let lang: string;
                 let domain: string | undefined;
                 let href: string | undefined;
 
                 if (typeof code === 'string') {
-                    langCode = code;
+                    lang = code;
                 } else {
-                    langCode = code.lang;
+                    lang = code.lang;
                     domain = code.domain;
                     href = code.href;
                 }
 
-                const langData = allLangs.where('1', langCode);
+                const locale = lang.split('-')[0];
+                const langData = allLangs.where('1', locale);
 
                 const regionNames = new Intl.DisplayNames([lang], {type: 'region'});
                 const country = domain ? regionNames.of(domain.toUpperCase()) : undefined;
@@ -61,7 +62,7 @@ const useLangControl = (
                     ? {
                           text: langData.local,
                           country,
-                          value: langData['1'],
+                          value: lang,
                           options: {
                               domain,
                               href,
@@ -72,7 +73,7 @@ const useLangControl = (
             .filter(Boolean) as ListItem[];
 
         return preparedLangs.length ? preparedLangs : LEGACY_LANG_ITEMS;
-    }, [lang, langs]);
+    }, [langs]);
 
     const selectedItemIndex = useMemo(() => (langs ? langs.indexOf(lang) : -1), [lang, langs]);
 

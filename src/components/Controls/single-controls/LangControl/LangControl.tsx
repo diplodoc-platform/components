@@ -1,4 +1,4 @@
-import type {AvailableLangs, ExtendedLang, LangOptions, ListItem} from '../../../../models';
+import type {AvailableLangs, ExtendedLang, Lang, LangOptions, ListItem} from '../../../../models';
 
 import React, {useCallback, useContext, useMemo, useRef} from 'react';
 import {Globe} from '@gravity-ui/icons';
@@ -8,8 +8,7 @@ import allLangs from 'langs';
 
 import {DEFAULT_LANGS, LEGACY_LANG_ITEMS} from '../../../../constants';
 import {usePopupState, useTranslation} from '../../../../hooks';
-import {Lang} from '../../../../models';
-import {getPopupPosition} from '../../../../utils';
+import {getItemHeight, getItemsHeight, getPopupPosition} from '../../../../utils';
 import {Control} from '../../../Control';
 import {ControlsLayoutContext} from '../../ControlsLayout';
 
@@ -45,22 +44,20 @@ const LangControl = (props: ControlProps) => {
     const langItems = useMemo(() => {
         const preparedLangs = langs
             .map((code) => {
-                let langCode: string;
+                let lang: string;
                 let domain: string | undefined;
                 let href: string | undefined;
 
                 if (typeof code === 'string') {
-                    langCode = code;
+                    lang = code;
                 } else {
-                    langCode = code.lang;
+                    lang = code.lang;
                     domain = code.domain;
                     href = code.href;
                 }
 
-                langCode = langCode.split('-')[0];
-
-                const langData = allLangs.where('1', langCode);
-                const lang = (langData?.['1'] as Lang) || Lang.En;
+                const locale = lang.split('-')[0];
+                const langData = allLangs.where('1', locale);
                 const disabled = isLangDisabled(lang) && !href;
 
                 const regionNames = new Intl.DisplayNames([lang], {type: 'region'});
@@ -113,7 +110,6 @@ const LangControl = (props: ControlProps) => {
         [onChangeLang],
     );
 
-    const itemsHeight = LIST_ITEM_HEIGHT * langItems.length;
     const selectedItemIndex = langItems.findIndex(({value}) => value === lang);
     const onOpenChange = useCallback(
         (opened: boolean) => {
@@ -125,13 +121,6 @@ const LangControl = (props: ControlProps) => {
         },
         [popupState],
     );
-
-    const calcItemHeight = useCallback((item: ListItem) => {
-        const domain = item.options?.domain;
-        const domainItemHeight = domain ? 12 : 0;
-
-        return LIST_ITEM_HEIGHT + domainItemHeight;
-    }, []);
 
     return (
         <Popover
@@ -154,8 +143,8 @@ const LangControl = (props: ControlProps) => {
                     items={langItems}
                     onItemClick={onItemClick}
                     selectedItemIndex={selectedItemIndex}
-                    itemHeight={(item) => calcItemHeight(item)}
-                    itemsHeight={itemsHeight}
+                    itemHeight={(items) => getItemHeight(LIST_ITEM_HEIGHT, items)}
+                    itemsHeight={(items) => getItemsHeight(LIST_ITEM_HEIGHT, items)}
                     renderItem={renderItem}
                 />
             }

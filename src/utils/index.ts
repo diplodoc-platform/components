@@ -4,6 +4,7 @@ import type {
     DocContentPageData,
     DocLeadingPageData,
     DocPageData,
+    ListItem,
     Router,
 } from '../models';
 
@@ -134,4 +135,15 @@ export function getPageType({
     }
 
     return DocumentType.Base;
+}
+
+export function getItemHeight(baseItemHeight: number, item: ListItem) {
+    const domain = item.options?.domain;
+    const domainItemHeight = domain ? 16 : 0;
+
+    return baseItemHeight + domainItemHeight;
+}
+
+export function getItemsHeight(baseItemHeight: number, items: ListItem[]) {
+    return items.reduce((total, item) => total + getItemHeight(baseItemHeight, item), 0);
 }

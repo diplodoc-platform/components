@@ -59,7 +59,7 @@ const LangControl = (props: ControlProps) => {
 
                 const langData = allLangs.where('1', langCode);
                 const lang = (langData?.['1'] as Lang) || Lang.En;
-                const disabled = isLangDisabled(lang) && !domain && !href;
+                const disabled = isLangDisabled(lang) && !href;
 
                 const regionNames = new Intl.DisplayNames([lang], {type: 'region'});
                 const country = domain ? regionNames.of(domain.toUpperCase()) : undefined;
@@ -86,7 +86,7 @@ const LangControl = (props: ControlProps) => {
         (item: ListItem) => {
             const {domain, href} = item.options || {};
 
-            const disabled = isLangDisabled(item.value) && !domain && !href;
+            const disabled = isLangDisabled(item.value) && !href;
             const country = item.country;
 
             return (

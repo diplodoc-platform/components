@@ -37,9 +37,7 @@ const MobileControlSheet = memo(
                 const disabled =
                     Boolean(
                         availableLangs?.length && !availableLangs.includes(item.value as Lang),
-                    ) &&
-                    !domain &&
-                    !href;
+                    ) && !href;
 
                 const country = item.country;
 

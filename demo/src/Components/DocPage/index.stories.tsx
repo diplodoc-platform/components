@@ -80,7 +80,14 @@ const useDirection = (lang: string) => {
 };
 
 const useLangs = () => {
-    const langs = ['ru', 'en', 'cs', 'he'];
+    const langs = [
+        'ru',
+        'en',
+        'cs',
+        'he',
+        {lang: 'de', tld: 'de'},
+        {lang: 'tr', href: 'https://example.com'},
+    ];
     const [lang, onChangeLang] = useState(DEFAULT_SETTINGS.lang);
     useDirection(lang);
 

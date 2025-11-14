@@ -2,6 +2,7 @@ import type {
     AvailableLangs,
     FeedbackSendData,
     Lang,
+    LangOptions,
     SubscribeData,
     TextSizes,
     Theme,
@@ -42,7 +43,7 @@ export interface ControlsProps {
     vcsType?: string;
     isLiked?: boolean;
     isDisliked?: boolean;
-    onChangeLang?: (lang: `${Lang}` | Lang) => void;
+    onChangeLang?: (lang: `${Lang}` | Lang, options?: LangOptions) => void;
     onChangeFullScreen?: (value: boolean) => void;
     onChangeSinglePage?: (value: boolean) => void;
     onChangeWideFormat?: (value: boolean) => void;

@@ -1,5 +1,5 @@
 import type {ReactNode, SVGProps} from 'react';
-import type {AvailableLangs, ListItem, OnChangeValue} from '../../../models';
+import type {AvailableLangs, LangOptions, ListItem} from '../../../models';
 
 import React, {memo, useMemo, useState} from 'react';
 import {ChevronDown} from '@gravity-ui/icons';
@@ -21,7 +21,7 @@ export interface MobileControlProps {
     selectedItemIndex: number;
     displayItems: ListItem[];
     availableLangs?: AvailableLangs;
-    onChangeValue?: OnChangeValue;
+    onChangeValue?: (lang: string, options?: LangOptions) => void;
 }
 
 const MobileControl = memo(
@@ -49,7 +49,9 @@ const MobileControl = memo(
 
         const onSheetOpen = () => setSheetIsVisible(true);
         const onSheetClose = () => setSheetIsVisible(false);
-        const onItemClick = onChangeValue ? (value: string) => onChangeValue(value) : () => {};
+        const onItemClick = onChangeValue
+            ? (value: string, options?: LangOptions) => onChangeValue(value, options)
+            : () => {};
 
         return (
             <div key={name} className={b()}>

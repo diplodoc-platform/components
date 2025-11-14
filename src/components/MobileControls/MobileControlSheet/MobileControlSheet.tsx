@@ -1,8 +1,10 @@
-import type {AvailableLangs, Lang, ListItem} from '../../../models';
+import type {AvailableLangs, Lang, LangOptions, ListItem} from '../../../models';
 
 import React, {memo, useCallback} from 'react';
 import {List, Sheet} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
+
+import {getItemHeight, getItemsHeight} from '../../../utils';
 
 import './MobileControlSheet.scss';
 
@@ -13,7 +15,7 @@ const b = block('dc-mobile-control-sheet');
 export interface MobileControlSheetProps {
     title: string;
     items: ListItem[];
-    onItemClick: (value: string) => void;
+    onItemClick: (value: string, options?: LangOptions) => void;
     isVisible: boolean;
     onClose: () => void;
     selectedItemIndex: number;
@@ -32,13 +34,22 @@ const MobileControlSheet = memo(
     }: MobileControlSheetProps) => {
         const renderItem = useCallback(
             (item: ListItem) => {
-                const disabled = Boolean(
-                    availableLangs?.length && !availableLangs.includes(item.value as Lang),
-                );
+                const {tld, href} = item.options || {};
+
+                const disabled =
+                    Boolean(
+                        availableLangs?.length && !availableLangs.includes(item.value as Lang),
+                    ) && !href;
+
+                const country = item.country;
 
                 return (
-                    <button className={b('list-item', {disabled})} disabled={disabled}>
+                    <button
+                        className={b('list-item', {disabled, tld: Boolean(tld)})}
+                        disabled={disabled}
+                    >
                         {item.text}
+                        {tld && country && <span>{country}</span>}
                     </button>
                 );
             },
@@ -52,9 +63,9 @@ const MobileControlSheet = memo(
                     className={b('list')}
                     filterable={false}
                     items={items}
-                    onItemClick={(item: ListItem) => onItemClick(item.value)}
-                    itemHeight={LIST_ITEM_HEIGHT}
-                    itemsHeight={LIST_ITEM_HEIGHT * items.length}
+                    onItemClick={(item: ListItem) => onItemClick(item.value, item.options)}
+                    itemHeight={(items) => getItemHeight(LIST_ITEM_HEIGHT, items)}
+                    itemsHeight={(items) => getItemsHeight(LIST_ITEM_HEIGHT, items)}
                     renderItem={renderItem}
                     selectedItemIndex={selectedItemIndex}
                 />

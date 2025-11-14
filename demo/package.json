@@ -22,11 +22,11 @@
     "@storybook/react-webpack5": "^7.6.17",
     "@storybook/testing-library": "^0.2.0",
     "@svgr/webpack": "^8.1.0",
-    "sass": "^1.66.1",
+    "sass": "^1.80.6",
     "storybook": "^7.6.17"
   },
   "dependencies": {
-    "@diplodoc/transform": "^4.26.0",
+    "@diplodoc/transform": "^4.64.0",
     "bem-cn-lite": "^4.1.0",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",

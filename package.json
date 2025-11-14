@@ -73,7 +73,7 @@
     "prepare": "husky || true"
   },
   "dependencies": {
-    "@diplodoc/themes": "^1.1.1",
+    "@diplodoc/themes": "^1.2.0",
     "@gravity-ui/components": "^3.6.0",
     "@gravity-ui/icons": "^2.5.0",
     "@gravity-ui/page-constructor": "^5.22.0",

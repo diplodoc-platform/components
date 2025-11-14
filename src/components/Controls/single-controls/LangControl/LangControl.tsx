@@ -45,14 +45,14 @@ const LangControl = (props: ControlProps) => {
         const preparedLangs = langs
             .map((code) => {
                 let lang: string;
-                let domain: string | undefined;
+                let tld: string | undefined;
                 let href: string | undefined;
 
                 if (typeof code === 'string') {
                     lang = code;
                 } else {
                     lang = code.lang;
-                    domain = code.domain;
+                    tld = code.tld;
                     href = code.href;
                 }
 
@@ -61,7 +61,7 @@ const LangControl = (props: ControlProps) => {
                 const disabled = isLangDisabled(lang) && !href;
 
                 const regionNames = new Intl.DisplayNames([lang], {type: 'region'});
-                const country = domain ? regionNames.of(domain.toUpperCase()) : undefined;
+                const country = tld ? regionNames.of(tld.toUpperCase()) : undefined;
 
                 return langData
                     ? {
@@ -70,7 +70,7 @@ const LangControl = (props: ControlProps) => {
                           value: lang,
                           disabled,
                           options: {
-                              domain,
+                              tld,
                               href,
                           },
                       }
@@ -83,18 +83,18 @@ const LangControl = (props: ControlProps) => {
 
     const renderItem = useCallback(
         (item: ListItem) => {
-            const {domain, href} = item.options || {};
+            const {tld, href} = item.options || {};
 
             const disabled = isLangDisabled(item.value) && !href;
             const country = item.country;
 
             return (
                 <button
-                    className={b('list-item', {disabled, domain: Boolean(domain)})}
+                    className={b('list-item', {disabled, tld: Boolean(tld)})}
                     disabled={disabled}
                 >
                     {item.text}
-                    {domain && country && <span>{country}</span>}
+                    {tld && country && <span>{country}</span>}
                 </button>
             );
         },

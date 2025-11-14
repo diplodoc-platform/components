@@ -174,12 +174,12 @@ export enum Lang {
 
 export interface ExtendedLang {
     lang: `${Lang}` | Lang;
-    domain: string;
+    tld: string;
     href: string;
 }
 
 export interface LangOptions {
-    domain?: string;
+    tld?: string;
     href?: string;
 }
 

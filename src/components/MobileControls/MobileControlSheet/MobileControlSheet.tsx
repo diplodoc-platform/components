@@ -34,7 +34,7 @@ const MobileControlSheet = memo(
     }: MobileControlSheetProps) => {
         const renderItem = useCallback(
             (item: ListItem) => {
-                const {domain, href} = item.options || {};
+                const {tld, href} = item.options || {};
 
                 const disabled =
                     Boolean(
@@ -45,11 +45,11 @@ const MobileControlSheet = memo(
 
                 return (
                     <button
-                        className={b('list-item', {disabled, domain: Boolean(domain)})}
+                        className={b('list-item', {disabled, tld: Boolean(tld)})}
                         disabled={disabled}
                     >
                         {item.text}
-                        {domain && country && <span>{country}</span>}
+                        {tld && country && <span>{country}</span>}
                     </button>
                 );
             },

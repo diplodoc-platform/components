@@ -85,7 +85,7 @@ const useLangs = () => {
         'en',
         'cs',
         'he',
-        {lang: 'de', domain: 'de'},
+        {lang: 'de', tld: 'de'},
         {lang: 'tr', href: 'https://example.com'},
     ];
     const [lang, onChangeLang] = useState(DEFAULT_SETTINGS.lang);

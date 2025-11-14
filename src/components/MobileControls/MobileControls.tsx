@@ -41,14 +41,14 @@ const useLangControl = (
         const preparedLangs = (langs ?? DEFAULT_LANGS)
             .map((code) => {
                 let lang: string;
-                let domain: string | undefined;
+                let tld: string | undefined;
                 let href: string | undefined;
 
                 if (typeof code === 'string') {
                     lang = code;
                 } else {
                     lang = code.lang;
-                    domain = code.domain;
+                    tld = code.tld;
                     href = code.href;
                 }
 
@@ -56,7 +56,7 @@ const useLangControl = (
                 const langData = allLangs.where('1', locale);
 
                 const regionNames = new Intl.DisplayNames([lang], {type: 'region'});
-                const country = domain ? regionNames.of(domain.toUpperCase()) : undefined;
+                const country = tld ? regionNames.of(tld.toUpperCase()) : undefined;
 
                 return langData
                     ? {
@@ -64,7 +64,7 @@ const useLangControl = (
                           country,
                           value: lang,
                           options: {
-                              domain,
+                              tld,
                               href,
                           },
                       }

@@ -138,10 +138,10 @@ export function getPageType({
 }
 
 export function getItemHeight(baseItemHeight: number, item: ListItem) {
-    const domain = item.options?.domain;
-    const domainItemHeight = domain ? 16 : 0;
+    const tld = item.options?.tld;
+    const tldItemHeight = tld ? 16 : 0;
 
-    return baseItemHeight + domainItemHeight;
+    return baseItemHeight + tldItemHeight;
 }
 
 export function getItemsHeight(baseItemHeight: number, items: ListItem[]) {

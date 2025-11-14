@@ -18,7 +18,7 @@ const b = block('dc-lang-control');
 
 interface ControlProps {
     lang: `${Lang}` | Lang;
-    langs?: (string | ExtendedLang)[];
+    langs?: (`${Lang}` | Lang | ExtendedLang)[];
     availableLangs: AvailableLangs;
     onChangeLang: (lang: `${Lang}` | Lang, options?: LangOptions) => void;
 }

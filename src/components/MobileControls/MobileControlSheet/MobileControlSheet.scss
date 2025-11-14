@@ -42,14 +42,14 @@
         }
     }
 
-    &__list-item_domain {
+    &__list-item_tld {
         flex-direction: column;
         align-items: flex-start;
         justify-content: center;
         gap: 4px;
     }
 
-    &__list-item_domain > span {
+    &__list-item_tld > span {
         color: var(--g-color-text-hint);
     }
 

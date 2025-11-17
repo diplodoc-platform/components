@@ -14,3 +14,5 @@ export const DOC_PAGE_FEEDBACK_HIDDEN_URL =
     BASE_URL + '/iframe.html?args=HideFeedback:true&id=pages-document--document&viewMode=story';
 export const DOC_PAGE_FEEDBACK_SHOWN_URL =
     BASE_URL + '/iframe.html?args=HideFeedback:false&id=pages-document--document&viewMode=story';
+export const SEARCH_SUGGEST_URL =
+    BASE_URL + '/iframe.html?id=components-searchsuggest--search-suggest&viewMode=story';

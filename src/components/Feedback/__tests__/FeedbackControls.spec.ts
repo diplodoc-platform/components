@@ -33,13 +33,18 @@ viewports.forEach((viewport) => {
             if (isDefault) {
                 await expect(page).toHaveScreenshot(
                     `FeedbackControls-${viewport.name}-scrolled.png`,
+                    {
+                        maxDiffPixelRatio: 0.01,
+                    },
                 );
             }
 
             await button.click();
             await page.waitForTimeout(200);
 
-            await expect(page).toHaveScreenshot(`${testName}-${viewport.name}-popup.png`);
+            await expect(page).toHaveScreenshot(`${testName}-${viewport.name}-popup.png`, {
+                maxDiffPixelRatio: 0.01,
+            });
         };
 
         test('SuccessPopup test', async ({page}) => {

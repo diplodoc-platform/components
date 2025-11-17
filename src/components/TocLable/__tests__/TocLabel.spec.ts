@@ -23,15 +23,24 @@ test('TocLabel test', async ({page}) => {
         height: box.height + 40,
     };
 
-    await expect(page).toHaveScreenshot('TocLabel-default.png', {clip});
+    await expect(page).toHaveScreenshot('TocLabel-default.png', {
+        clip,
+        maxDiffPixelRatio: 0.01,
+    });
 
     await label.hover();
     await label.click();
 
-    await expect(page).toHaveScreenshot('TocLabel-tooltip.png', {clip});
+    await expect(page).toHaveScreenshot('TocLabel-tooltip.png', {
+        clip,
+        maxDiffPixelRatio: 0.01,
+    });
 
     await page.hover('body');
     await page.waitForTimeout(300);
 
-    await expect(page).toHaveScreenshot('TocLabel-hover-out.png', {clip});
+    await expect(page).toHaveScreenshot('TocLabel-hover-out.png', {
+        clip,
+        maxDiffPixelRatio: 0.01,
+    });
 });

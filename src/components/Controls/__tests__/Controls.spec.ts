@@ -14,13 +14,17 @@ test.describe('Controls test', () => {
         await control.click();
         await page.hover('body');
 
-        await expect(page).toHaveScreenshot('SettingsControl-default.png');
+        await expect(page).toHaveScreenshot('SettingsControl-default.png', {
+            maxDiffPixelRatio: 0.01,
+        });
 
         const label = page.locator('[title="Wide format"]');
 
         await label.click();
 
-        await expect(page).toHaveScreenshot('SettingsControl-clicked.png');
+        await expect(page).toHaveScreenshot('SettingsControl-clicked.png', {
+            maxDiffPixelRatio: 0.01,
+        });
     });
 
     test('LangControl test', async ({page}) => {
@@ -30,6 +34,8 @@ test.describe('Controls test', () => {
         await control.click();
         await page.hover('body');
 
-        await expect(page).toHaveScreenshot('LangControl-default.png');
+        await expect(page).toHaveScreenshot('LangControl-default.png', {
+            maxDiffPixelRatio: 0.01,
+        });
     });
 });

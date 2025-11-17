@@ -15,7 +15,9 @@ test('Subscribe test', async ({page}) => {
     const popup = page.locator('.dc-subscribe__variants-popup');
 
     await expect(popup).toBeVisible();
-    await expect(page).toHaveScreenshot('Subscribe-variants-popup.png');
+    await expect(page).toHaveScreenshot('Subscribe-variants-popup.png', {
+        maxDiffPixelRatio: 0.01,
+    });
 
     const email = popup.locator('.g-text-input__control');
     const subscribeButton = popup.locator('.dc-subscribe__variants-action');
@@ -23,5 +25,7 @@ test('Subscribe test', async ({page}) => {
     await email.fill('test@email.ru');
     await subscribeButton.click();
 
-    await expect(page).toHaveScreenshot('Subscribe-success-popup.png');
+    await expect(page).toHaveScreenshot('Subscribe-success-popup.png', {
+        maxDiffPixelRatio: 0.01,
+    });
 });

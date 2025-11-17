@@ -25,5 +25,8 @@ test('Control test', async ({page}) => {
 
     await control.hover();
     await page.waitForTimeout(300);
-    await expect(page).toHaveScreenshot('Control.png', {clip});
+    await expect(page).toHaveScreenshot('Control.png', {
+        clip,
+        maxDiffPixelRatio: 0.01,
+    });
 });

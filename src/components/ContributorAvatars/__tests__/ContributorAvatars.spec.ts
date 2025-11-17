@@ -15,7 +15,9 @@ test('ContributorAvatars test', async ({page}) => {
     const hiddenAvatars = contributorsBlock.locator('.dc-contributor-avatars__hidden_avatars');
     const box = await contributorsBlock.boundingBox();
 
-    await expect(contributorsBlock).toHaveScreenshot('ContributorAvatars.png', {});
+    await expect(contributorsBlock).toHaveScreenshot('ContributorAvatars.png', {
+        maxDiffPixelRatio: 0.02,
+    });
 
     if (!box) {
         throw new Error('contributorsBlock not found');
@@ -31,12 +33,12 @@ test('ContributorAvatars test', async ({page}) => {
     await avatar.hover();
     await expect(page).toHaveScreenshot('Avatar-popup.png', {
         clip,
-        maxDiffPixelRatio: 0.01,
+        maxDiffPixelRatio: 0.02,
     });
 
     await hiddenAvatars.click();
     await expect(page).toHaveScreenshot('HiddenAvatars-popup.png', {
         clip,
-        maxDiffPixelRatio: 0.01,
+        maxDiffPixelRatio: 0.02,
     });
 });

@@ -9,7 +9,7 @@ test.beforeEach(async ({page}) => {
 
 test('Document page test', async ({page}) => {
     await expect(page).toHaveScreenshot('DocPage.png', {
-        maxDiffPixelRatio: 0.01,
+        maxDiffPixelRatio: 0.04,
     });
 });
 

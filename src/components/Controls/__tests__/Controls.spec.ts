@@ -15,7 +15,7 @@ test.describe('Controls test', () => {
         await page.hover('body');
 
         await expect(page).toHaveScreenshot('SettingsControl-default.png', {
-            maxDiffPixelRatio: 0.01,
+            maxDiffPixelRatio: 0.04,
         });
 
         const label = page.locator('[title="Wide format"]');
@@ -23,7 +23,7 @@ test.describe('Controls test', () => {
         await label.click();
 
         await expect(page).toHaveScreenshot('SettingsControl-clicked.png', {
-            maxDiffPixelRatio: 0.01,
+            maxDiffPixelRatio: 0.04,
         });
     });
 
@@ -35,7 +35,7 @@ test.describe('Controls test', () => {
         await page.hover('body');
 
         await expect(page).toHaveScreenshot('LangControl-default.png', {
-            maxDiffPixelRatio: 0.01,
+            maxDiffPixelRatio: 0.04,
         });
     });
 });

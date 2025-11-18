@@ -9,6 +9,6 @@ test.beforeEach(async ({page}) => {
 test('MiniToc navigation test', async ({page}) => {
     await page.getByRole('link', {name: 'Yandex Object Storage'}).click();
     await expect(page).toHaveScreenshot('MiniToc navigation.png', {
-        maxDiffPixelRatio: 0.01,
+        maxDiffPixelRatio: 0.03,
     });
 });

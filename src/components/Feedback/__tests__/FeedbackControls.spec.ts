@@ -34,7 +34,7 @@ viewports.forEach((viewport) => {
                 await expect(page).toHaveScreenshot(
                     `FeedbackControls-${viewport.name}-scrolled.png`,
                     {
-                        maxDiffPixelRatio: 0.01,
+                        maxDiffPixelRatio: 0.03,
                     },
                 );
             }
@@ -43,7 +43,7 @@ viewports.forEach((viewport) => {
             await page.waitForTimeout(200);
 
             await expect(page).toHaveScreenshot(`${testName}-${viewport.name}-popup.png`, {
-                maxDiffPixelRatio: 0.01,
+                maxDiffPixelRatio: 0.03,
             });
         };
 

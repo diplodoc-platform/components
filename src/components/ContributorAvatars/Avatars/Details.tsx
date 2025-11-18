@@ -1,10 +1,12 @@
+import type {Contributor} from '../../../models';
+import type {AvatarData, PopupData} from '../models';
+
 import React from 'react';
 import {Link, Popup} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 
 import {PopperPosition} from '../../../hooks';
-import {Contributor} from '../../../models';
-import {AvatarData, AvatarSizes, PopupData} from '../models';
+import {AvatarSizes} from '../models';
 import {getName} from '../utils';
 
 import Avatar from './Avatar';

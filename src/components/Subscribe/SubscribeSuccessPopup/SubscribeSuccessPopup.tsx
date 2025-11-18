@@ -1,10 +1,11 @@
+import type {SubscribeView} from '../Subscribe';
+
 import React, {memo, useContext} from 'react';
 import {Popup, useDirection} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 
 import {useTranslation} from '../../../hooks';
 import {ControlsLayoutContext} from '../../Controls/ControlsLayout';
-import {SubscribeView} from '../Subscribe';
 import {getSubscribePopupPosition} from '../utils';
 
 const b = block('dc-subscribe');

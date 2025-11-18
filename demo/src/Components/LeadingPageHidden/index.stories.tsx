@@ -1,5 +1,7 @@
+import type {DocLeadingPageData} from '@diplodoc/components';
+
 import React, {useEffect} from 'react';
-import {DocLeadingPage, DocLeadingPageData, InterfaceProvider, Theme} from '@diplodoc/components';
+import {DocLeadingPage, InterfaceProvider, Theme} from '@diplodoc/components';
 import cn from 'bem-cn-lite';
 
 import {updateBodyClassName} from '../utils';

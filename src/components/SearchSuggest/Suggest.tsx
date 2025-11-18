@@ -1,9 +1,10 @@
 import type {ReactNode} from 'react';
 import type {ISearchProvider} from '../../models';
 import type {SearchSuggestItem} from './types';
+import type {ListItemData} from '@gravity-ui/uikit';
 
 import React, {forwardRef, memo, useEffect} from 'react';
-import {List, ListItemData, Loader} from '@gravity-ui/uikit';
+import {List, Loader} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 import pick from 'lodash/pick';
 

@@ -1,14 +1,16 @@
+import type {DocLeadingLinks, DocLeadingPageData, Router} from '../../models';
+import type {NotificationProps} from '../Notification';
+
 import React from 'react';
 import block from 'bem-cn-lite';
 
 import {DEFAULT_SETTINGS} from '../../constants';
-import {DocLeadingLinks, DocLeadingPageData, Router} from '../../models';
 import {ContentWrapper} from '../ContentWrapper';
 import {DocLayout} from '../DocLayout';
 import {DocPageTitle} from '../DocPageTitle';
 import {HTML} from '../HTML';
 import {Text} from '../Text';
-import {Notification, NotificationProps} from '../Notification';
+import {Notification} from '../Notification';
 import {ShareButton} from '../ShareButton';
 
 import './DocLeadingPage.scss';

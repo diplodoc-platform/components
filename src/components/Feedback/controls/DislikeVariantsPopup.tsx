@@ -1,6 +1,6 @@
+import type {RefObject, SyntheticEvent} from 'react';
+
 import React, {
-    RefObject,
-    SyntheticEvent,
     forwardRef,
     memo,
     useCallback,

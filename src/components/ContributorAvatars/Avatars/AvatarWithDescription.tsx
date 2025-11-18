@@ -1,7 +1,7 @@
-import React, {Fragment, useRef, useState} from 'react';
+import type {Contributor} from '../../../models';
+import type {AvatarData, AvatarSizes, PopupData} from '../models';
 
-import {Contributor} from '../../../models';
-import {AvatarData, AvatarSizes, PopupData} from '../models';
+import React, {Fragment, useRef, useState} from 'react';
 
 import Avatar from './Avatar';
 import Details from './Details';

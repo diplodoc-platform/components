@@ -1,8 +1,11 @@
+import type {ButtonProps} from '@gravity-ui/uikit';
+import type {PopperPosition} from '../../hooks';
+
 import React, {forwardRef, useCallback, useImperativeHandle, useRef} from 'react';
-import {Button, ButtonProps, Popup, useDirection} from '@gravity-ui/uikit';
+import {Button, Popup, useDirection} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 
-import {PopperPosition, usePopupState} from '../../hooks';
+import {usePopupState} from '../../hooks';
 import {ControlSizes} from '../../models';
 import {getPopupPosition} from '../../utils';
 

@@ -1,6 +1,7 @@
-import React, {PropsWithChildren, RefObject, createRef} from 'react';
+import type {PropsWithChildren, RefObject} from 'react';
+import type {ClassNameProps} from 'src/models';
 
-import {ClassNameProps} from 'src/models';
+import React, {createRef} from 'react';
 
 export interface OutsideClickProps extends ClassNameProps {
     onOutsideClick: () => void;

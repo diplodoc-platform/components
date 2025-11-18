@@ -1,7 +1,10 @@
-import React, {PropsWithChildren} from 'react';
+import type {PropsWithChildren} from 'react';
+import type {StageType} from '../StageLabel';
+
+import React from 'react';
 import block from 'bem-cn-lite';
 
-import {StageLabel, StageType} from '../StageLabel';
+import {StageLabel} from '../StageLabel';
 
 import './DocPageTitle.scss';
 

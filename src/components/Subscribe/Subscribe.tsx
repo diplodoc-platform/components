@@ -1,10 +1,12 @@
-import React, {PropsWithChildren, forwardRef, memo, useCallback, useContext, useRef} from 'react';
+import type {PropsWithChildren} from 'react';
+import type {SubscribeData} from '../../models';
+
+import React, {forwardRef, memo, useCallback, useContext, useRef} from 'react';
 import {Envelope} from '@gravity-ui/icons';
 import {Button} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 
 import {usePopupState, useTranslation} from '../../hooks';
-import {SubscribeData} from '../../models';
 import {Control} from '../Control';
 import {ControlsLayoutContext} from '../Controls/ControlsLayout';
 

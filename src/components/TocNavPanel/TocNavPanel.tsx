@@ -1,9 +1,10 @@
+import type {Router, TocData, TocItem} from '../../models';
+
 import React, {memo, useMemo} from 'react';
 import {ArrowLeft, ArrowRight} from '@gravity-ui/icons';
 import block from 'bem-cn-lite';
 
 import {useTranslation} from '../../hooks';
-import {Router, TocData, TocItem} from '../../models';
 import {isActiveItem, isExternalHref} from '../../utils';
 
 import './TocNavPanel.scss';

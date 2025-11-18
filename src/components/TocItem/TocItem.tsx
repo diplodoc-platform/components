@@ -1,10 +1,11 @@
+import type {TocItem as ITocItem} from '../../models';
+
 import React from 'react';
 import block from 'bem-cn-lite';
 import {Button} from '@gravity-ui/uikit';
 import {Ban} from '@gravity-ui/icons';
 
 import {useTranslation} from '../../hooks';
-import {TocItem as ITocItem} from '../../models';
 import {isExternalHref} from '../../utils';
 import {ToggleArrow} from '../ToggleArrow';
 

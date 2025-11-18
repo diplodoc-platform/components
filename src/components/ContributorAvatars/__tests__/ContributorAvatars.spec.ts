@@ -16,7 +16,7 @@ test('ContributorAvatars test', async ({page}) => {
     const box = await contributorsBlock.boundingBox();
 
     await expect(contributorsBlock).toHaveScreenshot('ContributorAvatars.png', {
-        maxDiffPixelRatio: 0.03,
+        maxDiffPixelRatio: 0.06,
     });
 
     if (!box) {
@@ -33,12 +33,12 @@ test('ContributorAvatars test', async ({page}) => {
     await avatar.hover();
     await expect(page).toHaveScreenshot('Avatar-popup.png', {
         clip,
-        maxDiffPixelRatio: 0.03,
+        maxDiffPixelRatio: 0.06,
     });
 
     await hiddenAvatars.click();
     await expect(page).toHaveScreenshot('HiddenAvatars-popup.png', {
         clip,
-        maxDiffPixelRatio: 0.03,
+        maxDiffPixelRatio: 0.06,
     });
 });

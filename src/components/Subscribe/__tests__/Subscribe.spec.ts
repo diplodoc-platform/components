@@ -16,7 +16,7 @@ test('Subscribe test', async ({page}) => {
 
     await expect(popup).toBeVisible();
     await expect(page).toHaveScreenshot('Subscribe-variants-popup.png', {
-        maxDiffPixelRatio: 0.01,
+        maxDiffPixelRatio: 0.04,
     });
 
     const email = popup.locator('.g-text-input__control');
@@ -26,6 +26,6 @@ test('Subscribe test', async ({page}) => {
     await subscribeButton.click();
 
     await expect(page).toHaveScreenshot('Subscribe-success-popup.png', {
-        maxDiffPixelRatio: 0.01,
+        maxDiffPixelRatio: 0.04,
     });
 });

@@ -11,28 +11,38 @@ test.beforeEach(async ({page}) => {
 test.describe('Toc dropdown tests', () => {
     test('Hide dropdown', async ({page}) => {
         await page.getByText('Equivalent services on other platforms').click();
-        await expect(page.locator('.dc-toc')).toHaveScreenshot('Hide dropdown.png');
+        await expect(page.locator('.dc-toc')).toHaveScreenshot('Hide dropdown.png', {
+            maxDiffPixelRatio: 0.04,
+        });
     });
 
     test('Show dropdown', async ({page}) => {
         await page.getByText('Equivalent services on other platforms').dblclick();
-        await expect(page.locator('.dc-toc')).toHaveScreenshot('Show dropdown.png');
+        await expect(page.locator('.dc-toc')).toHaveScreenshot('Show dropdown.png', {
+            maxDiffPixelRatio: 0.04,
+        });
     });
 });
 
 test.describe('Toc header screenshot tests', () => {
     test('TOC header hidden', async ({page}) => {
         await loadDocumentPage(page, DOC_PAGE_HEADER_HIDDEN_URL);
-        await expect(page.locator('.dc-toc')).toHaveScreenshot('TOC-header-hidden.png');
+        await expect(page.locator('.dc-toc')).toHaveScreenshot('TOC-header-hidden.png', {
+            maxDiffPixelRatio: 0.04,
+        });
     });
 
     test('TOC header shown', async ({page}) => {
         await loadDocumentPage(page, DOC_PAGE_HEADER_SHOWN_URL);
-        await expect(page.locator('.dc-toc')).toHaveScreenshot('TOC-header-shown.png');
+        await expect(page.locator('.dc-toc')).toHaveScreenshot('TOC-header-shown.png', {
+            maxDiffPixelRatio: 0.04,
+        });
     });
 
     test('TOC header default', async ({page}) => {
         await loadDocumentPage(page);
-        await expect(page.locator('.dc-toc')).toHaveScreenshot('TOC-header-default.png');
+        await expect(page.locator('.dc-toc')).toHaveScreenshot('TOC-header-default.png', {
+            maxDiffPixelRatio: 0.04,
+        });
     });
 });

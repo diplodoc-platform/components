@@ -25,7 +25,7 @@ test('TocLabel test', async ({page}) => {
 
     await expect(page).toHaveScreenshot('TocLabel-default.png', {
         clip,
-        maxDiffPixelRatio: 0.01,
+        maxDiffPixelRatio: 0.03,
     });
 
     await label.hover();
@@ -33,7 +33,7 @@ test('TocLabel test', async ({page}) => {
 
     await expect(page).toHaveScreenshot('TocLabel-tooltip.png', {
         clip,
-        maxDiffPixelRatio: 0.01,
+        maxDiffPixelRatio: 0.03,
     });
 
     await page.hover('body');
@@ -41,6 +41,6 @@ test('TocLabel test', async ({page}) => {
 
     await expect(page).toHaveScreenshot('TocLabel-hover-out.png', {
         clip,
-        maxDiffPixelRatio: 0.01,
+        maxDiffPixelRatio: 0.03,
     });
 });

@@ -1,5 +1,27 @@
 # История изменений
 
+## [4.38.7](https://github.com/diplodoc-platform/components/compare/v4.38.6...v4.38.7) (2025-11-19)
+
+
+### Bug Fixes
+
+* fixed release ([#492](https://github.com/diplodoc-platform/components/issues/492)) ([a463e1c](https://github.com/diplodoc-platform/components/commit/a463e1ccb79df81b10eecff157f1e0a70e0798c3))
+* fixed tests and lint ([#491](https://github.com/diplodoc-platform/components/issues/491)) ([f81dbe3](https://github.com/diplodoc-platform/components/commit/f81dbe38dc97eb8946f22f68e237b03924a01652))
+
+## [4.38.6](https://github.com/diplodoc-platform/components/compare/v4.38.5...v4.38.6) (2025-11-13)
+
+
+### Bug Fixes
+
+* fixed permanent type ([#485](https://github.com/diplodoc-platform/components/issues/485)) ([fd1220e](https://github.com/diplodoc-platform/components/commit/fd1220e979e86ea878778aab2e2b0d847d0d65cf))
+
+## [4.38.5](https://github.com/diplodoc-platform/components/compare/v4.38.4...v4.38.5) (2025-11-12)
+
+
+### Bug Fixes
+
+* fixed button in notification ([#482](https://github.com/diplodoc-platform/components/issues/482)) ([661be11](https://github.com/diplodoc-platform/components/commit/661be1137fbf1aa630a8bf828be16d4735bd4ed9))
+
 ## [4.38.4](https://github.com/diplodoc-platform/components/compare/v4.38.3...v4.38.4) (2025-11-05)
 
 

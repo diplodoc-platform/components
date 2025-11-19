@@ -14,6 +14,7 @@ export interface NotificationProps {
         title?: string;
         content?: string;
         type?: string;
+        permanent?: boolean;
     };
     notificationCb?: () => void;
 }
@@ -25,25 +26,28 @@ const Notification: React.FC<NotificationProps> = ({notification, notificationCb
         return null;
     }
 
-    const {title = '', content = '', type = ''} = notification;
+    const {title = '', content = '', type = '', permanent} = notification;
     const isNoteTypeCorrect = ['info', 'tip', 'warning', 'alert'].includes(type.toLowerCase());
 
     return (
         <div className={bNote('wrapper')}>
             <div className={bNote({}, isNoteTypeCorrect ? `dc-accent-${type}` : bNote('template'))}>
                 {title && <p className={bNote('title')}>{title}</p>}
-                <Button
-                    view={'flat'}
-                    className={bNote('xmark')}
-                    onClick={() => {
-                        if (notificationCb) {
-                            notificationCb();
-                        }
-                        setShowNotification(false);
-                    }}
-                >
-                    <Icon data={Xmark} />
-                </Button>
+                {!permanent && (
+                    <Button
+                        view={'flat'}
+                        className={bNote('xmark')}
+                        style={{position: 'absolute'}}
+                        onClick={() => {
+                            if (notificationCb) {
+                                notificationCb();
+                            }
+                            setShowNotification(false);
+                        }}
+                    >
+                        <Icon data={Xmark} />
+                    </Button>
+                )}
                 {content && <HTML className={bNote('content')}>{content}</HTML>}
             </div>
         </div>

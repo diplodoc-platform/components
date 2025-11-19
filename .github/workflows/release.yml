@@ -21,6 +21,7 @@ jobs:
       - name: Install latest npm (>= 11.5.1)
         run: |
           [ "$(printf '%s\n' "11.5.1" "$(npm -v)" | sort -V | head -n1)" = "11.5.1" ] || npm install -g npm@latest
+        shell: bash
       - run: npm ci
         shell: bash
       - uses: codex-team/action-nodejs-package-info@v1

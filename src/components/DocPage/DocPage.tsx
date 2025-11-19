@@ -5,6 +5,7 @@ import type {
     DocSettings,
     FeedbackSendData,
     Lang,
+    LangOptions,
     Router,
     SubscribeData,
     TextSizes,
@@ -71,7 +72,7 @@ export interface DocPageProps extends DocPageData, DocSettings, NotificationProp
     renderLoader?: () => React.ReactNode;
     convertPathToOriginalArticle?: (path: string) => string;
     generatePathToVcs?: (path: string) => string;
-    onChangeLang?: (lang: `${Lang}` | Lang) => void;
+    onChangeLang?: (lang: `${Lang}` | Lang, options?: LangOptions) => void;
     onChangeFullScreen?: (value: boolean) => void;
     onChangeSinglePage?: (value: boolean) => void;
     onChangeWideFormat?: (value: boolean) => void;

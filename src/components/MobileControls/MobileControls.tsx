@@ -3,6 +3,8 @@ import type {
     AvailableLangs,
     ControlSizes,
     DocSettings,
+    ExtendedLang,
+    LangOptions,
     ListItem,
     OnChangeValue,
     TFunction,
@@ -32,18 +34,39 @@ const useLangControl = (
     t: TFunction,
     lang: `${Lang}` | Lang,
     availableLangs: AvailableLangs,
-    langs?: (`${Lang}` | Lang)[],
-    onChangeLang?: (lang: `${Lang}` | Lang) => void,
+    langs?: (string | ExtendedLang)[],
+    onChangeLang?: (lang: `${Lang}` | Lang, options?: LangOptions) => void,
 ) => {
     const langItems = useMemo(() => {
         const preparedLangs = (langs ?? DEFAULT_LANGS)
             .map((code) => {
-                const langData = allLangs.where('1', code);
+                let lang: string;
+                let tld: string | undefined;
+                let href: string | undefined;
+
+                if (typeof code === 'string') {
+                    lang = code;
+                } else {
+                    lang = code.lang;
+                    tld = code.tld;
+                    href = code.href;
+                }
+
+                const locale = lang.split('-')[0];
+                const langData = allLangs.where('1', locale);
+
+                const regionNames = new Intl.DisplayNames([lang], {type: 'region'});
+                const country = tld ? regionNames.of(tld.toUpperCase()) : undefined;
 
                 return langData
                     ? {
                           text: langData.local,
-                          value: langData['1'],
+                          country,
+                          value: lang,
+                          options: {
+                              tld,
+                              href,
+                          },
                       }
                     : undefined;
             })

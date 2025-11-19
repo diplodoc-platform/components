@@ -1,4 +1,4 @@
-import type {AvailableLangs} from '../../../../models';
+import type {AvailableLangs, ExtendedLang, Lang, LangOptions, ListItem} from '../../../../models';
 
 import React, {useCallback, useContext, useMemo, useRef} from 'react';
 import {Globe} from '@gravity-ui/icons';
@@ -8,8 +8,7 @@ import allLangs from 'langs';
 
 import {DEFAULT_LANGS, LEGACY_LANG_ITEMS} from '../../../../constants';
 import {usePopupState, useTranslation} from '../../../../hooks';
-import {Lang} from '../../../../models';
-import {getPopupPosition} from '../../../../utils';
+import {getItemHeight, getItemsHeight, getPopupPosition} from '../../../../utils';
 import {Control} from '../../../Control';
 import {ControlsLayoutContext} from '../../ControlsLayout';
 
@@ -19,14 +18,9 @@ const b = block('dc-lang-control');
 
 interface ControlProps {
     lang: `${Lang}` | Lang;
-    langs?: string[];
+    langs?: (`${Lang}` | Lang | ExtendedLang)[];
     availableLangs: AvailableLangs;
-    onChangeLang: (lang: `${Lang}` | Lang) => void;
-}
-
-interface ListItem {
-    value: string;
-    text: string;
+    onChangeLang: (lang: `${Lang}` | Lang, options?: LangOptions) => void;
 }
 
 const LIST_ITEM_HEIGHT = 36;
@@ -50,15 +44,35 @@ const LangControl = (props: ControlProps) => {
     const langItems = useMemo(() => {
         const preparedLangs = langs
             .map((code) => {
-                const langData = allLangs.where('1', code);
-                const lang = (langData?.['1'] as Lang) || Lang.En;
-                const disabled = isLangDisabled(lang);
+                let lang: string;
+                let tld: string | undefined;
+                let href: string | undefined;
+
+                if (typeof code === 'string') {
+                    lang = code;
+                } else {
+                    lang = code.lang;
+                    tld = code.tld;
+                    href = code.href;
+                }
+
+                const locale = lang.split('-')[0];
+                const langData = allLangs.where('1', locale);
+                const disabled = isLangDisabled(lang) && !href;
+
+                const regionNames = new Intl.DisplayNames([lang], {type: 'region'});
+                const country = tld ? regionNames.of(tld.toUpperCase()) : undefined;
 
                 return langData
                     ? {
                           text: langData.local,
+                          country,
                           value: lang,
                           disabled,
+                          options: {
+                              tld,
+                              href,
+                          },
                       }
                     : undefined;
             })
@@ -69,11 +83,18 @@ const LangControl = (props: ControlProps) => {
 
     const renderItem = useCallback(
         (item: ListItem) => {
-            const disabled = isLangDisabled(item.value);
+            const {tld, href} = item.options || {};
+
+            const disabled = isLangDisabled(item.value) && !href;
+            const country = item.country;
 
             return (
-                <button className={b('list-item', {disabled})} disabled={disabled}>
+                <button
+                    className={b('list-item', {disabled, tld: Boolean(tld)})}
+                    disabled={disabled}
+                >
                     {item.text}
+                    {tld && country && <span>{country}</span>}
                 </button>
             );
         },
@@ -82,12 +103,13 @@ const LangControl = (props: ControlProps) => {
 
     const onItemClick = useCallback(
         (item: ListItem) => {
-            onChangeLang(item.value as Lang);
+            const options = item.options;
+
+            onChangeLang(item.value as Lang, options);
         },
         [onChangeLang],
     );
 
-    const itemsHeight = LIST_ITEM_HEIGHT * langItems.length;
     const selectedItemIndex = langItems.findIndex(({value}) => value === lang);
     const onOpenChange = useCallback(
         (opened: boolean) => {
@@ -121,8 +143,8 @@ const LangControl = (props: ControlProps) => {
                     items={langItems}
                     onItemClick={onItemClick}
                     selectedItemIndex={selectedItemIndex}
-                    itemHeight={LIST_ITEM_HEIGHT}
-                    itemsHeight={itemsHeight}
+                    itemHeight={(items) => getItemHeight(LIST_ITEM_HEIGHT, items)}
+                    itemsHeight={(items) => getItemsHeight(LIST_ITEM_HEIGHT, items)}
                     renderItem={renderItem}
                 />
             }

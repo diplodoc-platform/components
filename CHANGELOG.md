@@ -1,5 +1,12 @@
 # История изменений
 
+## [4.39.0](https://github.com/diplodoc-platform/components/compare/v4.38.7...v4.39.0) (2025-11-19)
+
+
+### Features
+
+* added options to change the language ([#484](https://github.com/diplodoc-platform/components/issues/484)) ([104e4a4](https://github.com/diplodoc-platform/components/commit/104e4a40b807e1e35e61e6ab268e6b78197a4d59))
+
 ## [4.38.7](https://github.com/diplodoc-platform/components/compare/v4.38.6...v4.38.7) (2025-11-19)
 
 

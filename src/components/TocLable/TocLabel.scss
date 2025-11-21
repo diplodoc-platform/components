@@ -9,4 +9,12 @@
             margin-right: 10px;
         }
     }
+
+    &__label-tooltip {
+        padding: 16px;
+    }
+
+    &__label-wrapper {
+        cursor: pointer;
+    }
 }

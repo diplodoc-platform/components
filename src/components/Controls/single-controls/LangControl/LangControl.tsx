@@ -27,7 +27,7 @@ const LIST_ITEM_HEIGHT = 36;
 
 const LangControl = (props: ControlProps) => {
     const {t} = useTranslation('controls');
-    const {controlClassName, controlSize, isVerticalView, popupPosition} =
+    const {controlClassName, controlSize, isVerticalView, isMobileView, popupPosition} =
         useContext(ControlsLayoutContext);
     const {lang, langs = DEFAULT_LANGS, availableLangs, onChangeLang} = props;
 
@@ -111,7 +111,7 @@ const LangControl = (props: ControlProps) => {
     );
 
     const selectedItemIndex = langItems.findIndex(({value}) => value === lang);
-    const onOpenChange = useCallback(
+    const handleOpenChange = useCallback(
         (opened: boolean) => {
             if (opened) {
                 popupState.open();
@@ -122,19 +122,17 @@ const LangControl = (props: ControlProps) => {
         [popupState],
     );
 
+    // UIKit up: ok
     return (
         <Popover
-            autoclosable={false}
-            openOnHover={false}
-            focusTrap
-            autoFocus
-            restoreFocusRef={controlRef}
+            open={popupState.visible}
+            onOpenChange={handleOpenChange}
+            trigger="click"
+            strategy="fixed"
             placement={getPopupPosition(isVerticalView)}
-            onCloseClick={popupState.close}
-            onOpenChange={onOpenChange}
-            className={controlClassName}
-            contentClassName={b('popup')}
-            tooltipContentClassName={b('popup-tooltip')}
+            hasArrow={!isMobileView}
+            returnFocus={true}
+            modal={false}
             content={
                 <List
                     role={'list'}
@@ -151,8 +149,8 @@ const LangControl = (props: ControlProps) => {
         >
             <Control
                 ref={controlRef}
+                className={controlClassName}
                 size={controlSize}
-                onClick={popupState.open}
                 isVerticalView={isVerticalView}
                 tooltipText={t('lang-text')}
                 icon={Globe}

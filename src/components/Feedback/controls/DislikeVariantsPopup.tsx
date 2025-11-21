@@ -1,6 +1,6 @@
+import type {RefObject, SyntheticEvent} from 'react';
+
 import React, {
-    RefObject,
-    SyntheticEvent,
     forwardRef,
     memo,
     useCallback,
@@ -159,19 +159,15 @@ const DislikeVariantsPopup: React.FC<DislikeVariantsPopupProps> = memo(
             [onSubmit],
         );
 
+        // UIKit up: ok
         return (
             <Popup
-                anchorRef={anchor}
+                anchorElement={anchor.current}
                 open={visible}
                 onOutsideClick={onOutsideClick}
-                contentClassName={b('variants-popup', {view})}
+                className={b('variants-popup', {view})}
                 placement={position}
-                modifiers={[
-                    {
-                        name: 'preventOverflow',
-                        options: {padding: 1, altBoundary: true, altAxis: true},
-                    },
-                ]}
+                offset={{mainAxis: 1, crossAxis: 0}}
             >
                 <h3 className={b('popup-title')}>{t('dislike-variants-title')}</h3>
                 <form onSubmit={onFormSubmit}>

@@ -5,7 +5,8 @@
 $popupWidth: 320px;
 
 @mixin tooltip-in-center {
-    @media screen and (max-width: map.get(variables.$screenBreakpoints, 'xs')) {
+    // use sm to cover a larger number of smartphones
+    @media screen and (max-width: map.get(variables.$screenBreakpoints, 'sm')) {
         & {
             // stylelint-disable declaration-no-important
             right: 0 !important;
@@ -122,8 +123,8 @@ $popupWidth: 320px;
     }
 
     &__control {
-        &:last-child,
-        &:first-child {
+        &:nth-child(1),
+        &:nth-child(2) {
             display: flex;
             align-items: center;
 
@@ -135,7 +136,7 @@ $popupWidth: 320px;
         &_view_wide {
             margin-right: 24px;
 
-            &:last-child {
+            &:last-of-type {
                 margin-right: 0;
             }
         }
@@ -143,7 +144,7 @@ $popupWidth: 320px;
         &_view_regular {
             margin-right: 4px;
 
-            &:last-child {
+            &:last-of-type {
                 margin-right: 0;
             }
         }

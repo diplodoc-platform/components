@@ -140,6 +140,12 @@ export const SearchSuggest = forwardRef<SearchSuggestApi, SearchSuggestProps>((p
         [close, clearQuery, onBlur],
     );
 
+    const onOutsideClick = useCallback(() => {
+        if (focused) {
+            close();
+        }
+    }, [focused, close]);
+
     useEffect(() => provider.init(), [provider]);
     useEffect(() => {
         if (focused) {
@@ -175,12 +181,15 @@ export const SearchSuggest = forwardRef<SearchSuggestApi, SearchSuggestProps>((p
             />
             {closeButton && focused && <CloseButton onClick={onClose} className={classNameClose} />}
             {input.current && (
+                // UIKit up: ok
                 <Popup
                     open={Boolean(query && focused)}
+                    onOutsideClick={onOutsideClick}
                     id={`dc-popup-${id}`}
-                    contentClassName={b('popup')}
+                    className={b('popup')}
                     style={{width: box.width}}
                     anchorRef={box}
+                    strategy="fixed"
                 >
                     <Suggest
                         ref={suggest}

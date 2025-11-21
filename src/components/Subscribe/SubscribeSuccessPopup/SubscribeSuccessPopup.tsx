@@ -1,10 +1,11 @@
+import type {SubscribeView} from '../Subscribe';
+
 import React, {memo, useContext} from 'react';
 import {Popup, useDirection} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 
 import {useTranslation} from '../../../hooks';
 import {ControlsLayoutContext} from '../../Controls/ControlsLayout';
-import {SubscribeView} from '../Subscribe';
 import {getSubscribePopupPosition} from '../utils';
 
 const b = block('dc-subscribe');
@@ -18,13 +19,15 @@ const SubscribeSuccessPopup = memo<{
     const {isVerticalView} = useContext(ControlsLayoutContext);
     const direction = useDirection();
 
+    // UIKit up: ok
     return (
         <Popup
             anchorRef={anchor}
             open={true}
             onOutsideClick={onOutsideClick}
-            contentClassName={b('success-popup', {view})}
+            className={b('success-popup', {view})}
             placement={getSubscribePopupPosition(isVerticalView, view, direction)}
+            strategy="fixed"
         >
             <h3 className={b('popup-title')}>{t('verify-title')}</h3>
             <p className={b('popup-text')}>{t('verify-text')}</p>

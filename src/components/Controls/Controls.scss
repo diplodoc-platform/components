@@ -4,7 +4,7 @@
 
 .dc-controls {
     display: flex;
-    align-items: center;
+
     @include mixins.text-size(body-1);
 
     &__control:not(:last-child),

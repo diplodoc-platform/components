@@ -104,7 +104,7 @@ $popupWidth: 320px;
     }
 
     &__control {
-        &:last-child {
+        &:last-of-type {
             font-size: 13px;
             line-height: 18px;
             display: flex;
@@ -114,7 +114,7 @@ $popupWidth: 320px;
         &_view_wide {
             margin-right: 12px;
 
-            &:last-child {
+            &:last-of-type {
                 margin-right: 0;
             }
         }
@@ -122,7 +122,7 @@ $popupWidth: 320px;
         &_view_regular {
             margin-right: 4px;
 
-            &:last-child {
+            &:last-of-type {
                 margin-right: 0;
             }
         }

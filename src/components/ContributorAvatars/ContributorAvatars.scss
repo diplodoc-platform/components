@@ -126,14 +126,12 @@ $avatarWrapperBigSize: 33px;
 
     &__popup {
         box-shadow: 0px 3px 24px rgba(0, 0, 0, 0.2);
-        @include disable-link-styles;
-    }
-
-    &__popup_content {
         padding: $detailsIndent;
 
         & > *:not(:last-child) {
             margin-bottom: $detailsIndent;
         }
+
+        @include disable-link-styles;
     }
 }

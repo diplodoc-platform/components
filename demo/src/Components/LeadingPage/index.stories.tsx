@@ -1,5 +1,7 @@
+import type {DocLeadingPageData} from '@diplodoc/components';
+
 import React, {useEffect} from 'react';
-import {DocLeadingPage, DocLeadingPageData, Theme} from '@diplodoc/components';
+import {DocLeadingPage, Theme} from '@diplodoc/components';
 import cn from 'bem-cn-lite';
 
 import {updateBodyClassName} from '../utils';
@@ -30,6 +32,7 @@ const DocLeadingPageDemo = (args: Args) => {
                     isMobile={mobileView}
                     wideFormat={true}
                     router={router}
+                    pdfLink={'test'}
                 />
             </div>
         </div>

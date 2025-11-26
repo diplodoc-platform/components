@@ -1,5 +1,12 @@
 # История изменений
 
+## [4.39.2](https://github.com/diplodoc-platform/components/compare/v4.39.1...v4.39.2) (2025-11-26)
+
+
+### Bug Fixes
+
+* add pdf link ([f1015a6](https://github.com/diplodoc-platform/components/commit/f1015a60e0af3773c909c7c96bd87192d0524db2))
+
 ## [4.39.1](https://github.com/diplodoc-platform/components/compare/v4.39.0...v4.39.1) (2025-11-25)
 
 

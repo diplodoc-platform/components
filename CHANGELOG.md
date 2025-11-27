@@ -1,5 +1,16 @@
 # История изменений
 
+## [5.0.0](https://github.com/diplodoc-platform/components/compare/v4.39.2...v5.0.0) (2025-11-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* updated to UIKit 7.26.0 ([#499](https://github.com/diplodoc-platform/components/issues/499))
+
+### Features
+
+* updated to UIKit 7.26.0 ([#499](https://github.com/diplodoc-platform/components/issues/499)) ([6d53f3e](https://github.com/diplodoc-platform/components/commit/6d53f3e344d6de1d36d8f7c66a9cfb42bb8573bf))
+
 ## [4.39.2](https://github.com/diplodoc-platform/components/compare/v4.39.1...v4.39.2) (2025-11-26)
 
 

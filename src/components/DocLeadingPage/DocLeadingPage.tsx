@@ -1,14 +1,16 @@
+import type {DocLeadingLinks, DocLeadingPageData, Router} from '../../models';
+import type {NotificationProps} from '../Notification';
+
 import React from 'react';
 import block from 'bem-cn-lite';
 
 import {DEFAULT_SETTINGS} from '../../constants';
-import {DocLeadingLinks, DocLeadingPageData, Router} from '../../models';
 import {ContentWrapper} from '../ContentWrapper';
 import {DocLayout} from '../DocLayout';
 import {DocPageTitle} from '../DocPageTitle';
 import {HTML} from '../HTML';
 import {Text} from '../Text';
-import {Notification, NotificationProps} from '../Notification';
+import {Notification} from '../Notification';
 import {ShareButton} from '../ShareButton';
 
 import './DocLeadingPage.scss';
@@ -28,6 +30,7 @@ export interface DocLeadingPageProps extends DocLeadingPageData, NotificationPro
     legacyToc?: boolean;
     isMobile?: boolean;
     fullScreen?: boolean;
+    pdfLink?: string;
 }
 
 export interface DocLinkProps {
@@ -123,6 +126,7 @@ export const DocLeadingPage: React.FC<DocLeadingPageProps> = ({
     notificationCb,
     isMobile,
     fullScreen,
+    pdfLink,
 }) => {
     const modes = {
         'regular-page-width': !wideFormat,
@@ -140,6 +144,7 @@ export const DocLeadingPage: React.FC<DocLeadingPageProps> = ({
             footer={footer}
             legacyToc={legacyToc}
             fullScreen={fullScreen}
+            pdfLink={pdfLink}
         >
             <DocLayout.Center>
                 <Notification notification={notification} notificationCb={notificationCb} />

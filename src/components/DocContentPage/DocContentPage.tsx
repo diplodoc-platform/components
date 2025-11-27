@@ -22,6 +22,7 @@ export interface DocContentPageProps extends DocContentPageData {
     fullScreen?: boolean;
     viewerInterface?: Record<string, boolean>;
     hideTocHeader?: boolean;
+    pdfLink?: string;
 }
 
 export const DocContentPage: React.FC<DocContentPageProps> = ({
@@ -38,6 +39,7 @@ export const DocContentPage: React.FC<DocContentPageProps> = ({
     legacyToc,
     fullScreen,
     hideTocHeader,
+    pdfLink,
 }) => {
     const modes = {
         'regular-page-width': !wideFormat,
@@ -56,6 +58,7 @@ export const DocContentPage: React.FC<DocContentPageProps> = ({
             wideFormat={wideFormat}
             legacyToc={legacyToc}
             hideTocHeader={hideTocHeader}
+            pdfLink={pdfLink}
         >
             <DocLayout.Center>
                 <div className={b('main')}>

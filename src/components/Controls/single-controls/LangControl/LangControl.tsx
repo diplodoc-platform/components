@@ -27,7 +27,7 @@ const LIST_ITEM_HEIGHT = 36;
 
 const LangControl = (props: ControlProps) => {
     const {t} = useTranslation('controls');
-    const {controlClassName, controlSize, isVerticalView, popupPosition} =
+    const {controlClassName, controlSize, isVerticalView, isMobileView, popupPosition} =
         useContext(ControlsLayoutContext);
     const {lang, langs = DEFAULT_LANGS, availableLangs, onChangeLang} = props;
 
@@ -111,7 +111,7 @@ const LangControl = (props: ControlProps) => {
     );
 
     const selectedItemIndex = langItems.findIndex(({value}) => value === lang);
-    const onOpenChange = useCallback(
+    const handleOpenChange = useCallback(
         (opened: boolean) => {
             if (opened) {
                 popupState.open();
@@ -124,35 +124,34 @@ const LangControl = (props: ControlProps) => {
 
     return (
         <Popover
-            autoclosable={false}
-            openOnHover={false}
-            focusTrap
-            autoFocus
-            restoreFocusRef={controlRef}
+            open={popupState.visible}
+            onOpenChange={handleOpenChange}
+            trigger="click"
+            strategy="fixed"
             placement={getPopupPosition(isVerticalView)}
-            onCloseClick={popupState.close}
-            onOpenChange={onOpenChange}
-            className={controlClassName}
-            contentClassName={b('popup')}
-            tooltipContentClassName={b('popup-tooltip')}
+            hasArrow={!isMobileView}
+            returnFocus={true}
+            modal={false}
             content={
-                <List
-                    role={'list'}
-                    filterable={false}
-                    className={b('list')}
-                    items={langItems}
-                    onItemClick={onItemClick}
-                    selectedItemIndex={selectedItemIndex}
-                    itemHeight={(items) => getItemHeight(LIST_ITEM_HEIGHT, items)}
-                    itemsHeight={(items) => getItemsHeight(LIST_ITEM_HEIGHT, items)}
-                    renderItem={renderItem}
-                />
+                <div className={b('popup', {tooltip: true, 'tooltip-content': true})}>
+                    <List
+                        role={'list'}
+                        filterable={false}
+                        className={b('list')}
+                        items={langItems}
+                        onItemClick={onItemClick}
+                        selectedItemIndex={selectedItemIndex}
+                        itemHeight={(items) => getItemHeight(LIST_ITEM_HEIGHT, items)}
+                        itemsHeight={(items) => getItemsHeight(LIST_ITEM_HEIGHT, items)}
+                        renderItem={renderItem}
+                    />
+                </div>
             }
         >
             <Control
                 ref={controlRef}
+                className={controlClassName}
                 size={controlSize}
-                onClick={popupState.open}
                 isVerticalView={isVerticalView}
                 tooltipText={t('lang-text')}
                 icon={Globe}

@@ -1,9 +1,11 @@
-import React, {ReactElement, useCallback, useContext, useRef, useState} from 'react';
+import type {ReactElement} from 'react';
+
+import React, {useCallback, useContext, useRef} from 'react';
 import {Gear} from '@gravity-ui/icons';
 import {Button, List, Popover, Switch, useDirection} from '@gravity-ui/uikit';
 import cn from 'bem-cn-lite';
 
-import {useTranslation} from '../../../../hooks';
+import {usePopupState, useTranslation} from '../../../../hooks';
 import {TextSizes, Theme} from '../../../../models';
 import {getPopupPosition} from '../../../../utils';
 import {Control} from '../../../Control';
@@ -53,9 +55,18 @@ const SettingsControl = (props: ControlProps) => {
     const controlRef = useRef<HTMLButtonElement | null>(null);
     const direction = useDirection();
 
-    const [isVisiblePopup, setIsVisiblePopup] = useState(false);
-    const showPopup = () => setIsVisiblePopup(true);
-    const hidePopup = () => setIsVisiblePopup(false);
+    const popupState = usePopupState();
+
+    const handleOpenChange = useCallback(
+        (opened: boolean) => {
+            if (opened) {
+                popupState.open();
+            } else {
+                popupState.close();
+            }
+        },
+        [popupState],
+    );
 
     const _onChangeTextSize = useCallback(
         (textSizeKey: TextSizes) => () => {
@@ -186,53 +197,49 @@ const SettingsControl = (props: ControlProps) => {
 
     return (
         <Popover
-            autoclosable={false}
-            openOnHover={false}
-            focusTrap
-            autoFocus
-            restoreFocusRef={controlRef}
-            onCloseClick={hidePopup}
-            onOpenChange={setIsVisiblePopup}
+            open={popupState.visible}
+            onOpenChange={handleOpenChange}
+            trigger="click"
+            strategy="fixed"
             placement={getPopupPosition(isVerticalView, direction)}
-            className={controlClassName}
-            contentClassName={b('popup')}
-            tooltipClassName={b('popup-tooltip')}
-            tooltipContentClassName={b('popup-tooltip-content')}
             hasArrow={!isMobileView}
+            returnFocus={true}
             content={
-                <List
-                    role={'list'}
-                    items={settingsItems}
-                    className={b('list')}
-                    itemHeight={ITEM_HEIGHT}
-                    itemsHeight={ITEM_HEIGHT * settingsItems.length}
-                    filterable={false}
-                    renderItem={(item: SettingControlItem) => {
-                        return (
-                            <div className={b('list-item')}>
-                                <div className={b('list-item-content')}>
-                                    <div className={b('list-item-text')}>{item.text}</div>
-                                    <div className={b('list-item-description')}>
-                                        {item.description}
+                <div className={b('popup', {tooltip: true, 'tooltip-content': true})}>
+                    <List
+                        role={'list'}
+                        items={settingsItems}
+                        className={b('list')}
+                        itemHeight={ITEM_HEIGHT}
+                        itemsHeight={ITEM_HEIGHT * settingsItems.length}
+                        filterable={false}
+                        renderItem={(item: SettingControlItem) => {
+                            return (
+                                <div className={b('list-item')}>
+                                    <div className={b('list-item-content')}>
+                                        <div className={b('list-item-text')}>{item.text}</div>
+                                        <div className={b('list-item-description')}>
+                                            {item.description}
+                                        </div>
                                     </div>
+                                    <div className={b('list-item-control')}>{item.control}</div>
                                 </div>
-                                <div className={b('list-item-control')}>{item.control}</div>
-                            </div>
-                        );
-                    }}
-                />
+                            );
+                        }}
+                    />
+                </div>
             }
         >
             <Control
                 ref={controlRef}
+                className={controlClassName}
                 size={controlSize}
-                onClick={showPopup}
                 isWideView={isWideView}
                 isVerticalView={isVerticalView}
                 tooltipText={t('settings-text')}
                 popupPosition={popupPosition}
                 icon={Gear}
-                isTooltipHidden={isVisiblePopup}
+                isTooltipHidden={popupState.visible}
             />
         </Popover>
     );

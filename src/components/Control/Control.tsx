@@ -1,8 +1,11 @@
+import type {ButtonProps} from '@gravity-ui/uikit';
+import type {PopperPosition} from '../../hooks';
+
 import React, {forwardRef, useCallback, useImperativeHandle, useRef} from 'react';
-import {Button, ButtonProps, Popup, useDirection} from '@gravity-ui/uikit';
+import {Button, Popup, useDirection} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 
-import {PopperPosition, usePopupState} from '../../hooks';
+import {usePopupState} from '../../hooks';
 import {ControlSizes} from '../../models';
 import {getPopupPosition} from '../../utils';
 
@@ -38,7 +41,7 @@ const ICONS_SIZES = {
     [ControlSizes.XL]: 20,
 };
 
-const Control = forwardRef((props: ControlProps, ref) => {
+const Control = forwardRef<HTMLButtonElement, ControlProps>((props, ref) => {
     const {
         onClick,
         className,
@@ -68,7 +71,7 @@ const Control = forwardRef((props: ControlProps, ref) => {
         return getPopupPosition(isVerticalView, direction);
     }, [isVerticalView, popupPosition, direction]);
 
-    useImperativeHandle(ref, () => controlRef.current, [controlRef]);
+    useImperativeHandle(ref, () => controlRef.current as HTMLButtonElement, []);
 
     const position = getTooltipAlign();
     const Icon = icon;
@@ -77,20 +80,17 @@ const Control = forwardRef((props: ControlProps, ref) => {
     return (
         <React.Fragment>
             <Button
-                view="flat-secondary"
-                onClick={onClick}
                 ref={controlRef}
+                view="flat-secondary"
+                className={b(null, className)}
+                onClick={onClick}
                 onMouseEnter={popupState.open}
                 onMouseLeave={popupState.close}
-                className={b(null, className)}
+                aria-label={tooltipText}
                 size={size}
-                href={href}
-                target={target}
-                rel={rel}
-                extraProps={{
-                    'aria-label': tooltipText,
-                    ...extraProps,
-                }}
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                {...(href ? ({href, target, rel} as any) : {})} // Button cannot detect type automatically
+                {...extraProps}
             >
                 <Button.Icon>
                     <Icon width={iconSize} height={iconSize} />
@@ -99,11 +99,16 @@ const Control = forwardRef((props: ControlProps, ref) => {
             </Button>
             {controlRef.current && (
                 <Popup
-                    anchorRef={controlRef}
+                    anchorElement={controlRef.current}
                     open={isTooltipHidden ? false : popupState.visible}
-                    onOutsideClick={popupState.close}
-                    contentClassName={b('tooltip')}
+                    onOpenChange={(open) => {
+                        if (!open) {
+                            popupState.close();
+                        }
+                    }}
+                    className={b('tooltip')}
                     placement={position}
+                    returnFocus={false}
                 >
                     <span className={b('tooltip-text')}>{tooltipText}</span>
                 </Popup>

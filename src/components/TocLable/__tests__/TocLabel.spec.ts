@@ -30,6 +30,7 @@ test('TocLabel test', async ({page}) => {
 
     await label.hover();
     await label.click();
+    await page.waitForTimeout(200);
 
     await expect(page).toHaveScreenshot('TocLabel-tooltip.png', {
         clip,

@@ -1,4 +1,6 @@
-import React, {RefObject, memo, useContext, useMemo} from 'react';
+import type {RefObject} from 'react';
+
+import React, {memo, useContext, useMemo} from 'react';
 import {Popup, useDirection} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 
@@ -34,11 +36,9 @@ const SuccessPopup = memo<SuccessPopupProps>(({visible, anchor, onOutsideClick, 
             anchorRef={anchor}
             open={visible}
             onOutsideClick={onOutsideClick}
-            contentClassName={b('success-popup', {view})}
+            className={b('success-popup', {view})}
             placement={position}
-            modifiers={[
-                {name: 'preventOverflow', options: {padding: 1, altBoundary: true, altAxis: true}},
-            ]}
+            offset={{mainAxis: 1, crossAxis: 0}}
         >
             <h3 className={b('popup-title')}>{t('success-title')}</h3>
             <p className={b('popup-text')}>{t('success-text')}</p>

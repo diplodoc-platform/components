@@ -83,8 +83,8 @@ We use [Playwright](https://playwright.dev/docs/intro) for testing.
 Each version of Playwright needs specific versions of browser binaries to operate.
 
 ```bash
-# loads binaries
-npx playwright install
+# Install playwright browsers and dependencies (run once on initial setup)
+npm run playwright:install
 ```
 
 By default playwright will use http://localhost:6006 as URL for storybook server.
@@ -96,36 +96,90 @@ If you want to change it, you should add `.env` file in repository's root direct
 BASE_URL= # for example:'http://localhost:6006'
 ```
 
-### Running tests on MacOS and Linux
+### Running tests locally (Linux/MacOS)
+
+**Option 1: Storybook in Docker, tests locally (recommended for development)**
+
+This approach is easier for debugging - you can see storybook running in your browser.
+
+1. Start storybook in Docker (in one terminal):
+```bash
+npm run playwright:docker:dev
+```
+
+2. Run tests locally (in another terminal):
+```bash
+npm run playwright:local
+```
+
+Update snapshots:
+```bash
+npm run playwright:local:update
+```
+
+**Option 2: Everything local (storybook + tests)**
+
+All tests (storybook will be started automatically):
+
+```bash
+npm run playwright
+```
+
+Update snapshots:
+
+```bash
+npm run playwright:update
+```
+
+Clear cache:
+
+```bash
+npm run playwright:clear-cache
+```
+
+### Running tests in Docker (recommended for consistent screenshots)
+
+**Note:** Tests run in Docker container to ensure consistent screenshots across different operating systems (Mac, Linux, Windows).
 
 All tests:
 
 ```bash
-npm run playwright:docker npm run test:playwright
+npm run playwright:docker
 ```
 
 Single test:
 
 ```bash
-npm run playwright:docker npm run test:playwright test_name.spec.ts
+./playwright/playwright-docker.sh 'npm run playwright -- src/components/YourComponent/__tests__/YourComponent.spec.ts'
 ```
 
 Several sets of test files from different folders:
 
 ```bash
-npm run playwright:docker npm run test:playwright __tests__/folder1 __tests__/folder2
+./playwright/playwright-docker.sh 'npm run playwright -- src/components/Component1/__tests__ src/components/Component2/__tests__'
+```
+
+Update snapshots:
+
+```bash
+npm run playwright:docker:update
+```
+
+Clear Docker cache (if you have issues with dependencies):
+
+```bash
+npm run playwright:docker:clear-cache
+```
+
+### Running tests on Windows
+
+```bash
+npm run playwright:docker:windows
 ```
 
 These commands run storybook server before tests.
 
 If storybook server is already running, playwright will use it for tests and won't run another server.
-
-### Running tests on Windows
-
-```bash
-# add ':windows'
-npm run playwright:docker:windows npm run test:playwright
-```
 
 ### Test reports
 
@@ -156,7 +210,13 @@ After running tests playwright will create folder for snapshots (if it didn't ex
 If reference screenshot is incorrect you can update it:
 
 ```bash
-npm run playwright:docker npm run test:playwright:update
+npm run playwright:update
+```
+
+Or using Docker:
+
+```bash
+npm run playwright:docker:update
 ```
 
 ## License

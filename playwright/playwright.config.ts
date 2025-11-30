@@ -4,7 +4,6 @@ import {defineConfig, devices} from '@playwright/test';
 import {BASE_URL} from '../src/components/constants';
 
 function pathFromRoot(p: string) {
-    // replace for Windows users
     return resolve(__dirname, '../', p).replace(/\\/g, '/');
 }
 
@@ -19,19 +18,28 @@ export default defineConfig({
     workers: 1,
     reporter: 'html',
     webServer: {
-        reuseExistingServer: true,
+        reuseExistingServer: !process.env.IS_DOCKER,
         command: 'BROWSER=true npm run dev',
         url: BASE_URL,
-        timeout: 120 * 1000,
+        timeout: 300 * 1000,
     },
     use: {
         trace: 'on-first-retry',
+        navigationTimeout: 60000,
     },
+    timeout: 60000,
 
     projects: [
         {
             name: 'chromium',
-            use: {...devices['Desktop Chrome']},
+            use: {
+                ...devices['Desktop Chrome'],
+                launchOptions: process.env.IS_DOCKER
+                    ? {
+                          args: ['--single-process'],
+                      }
+                    : undefined,
+            },
         },
 
         {

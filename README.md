@@ -78,54 +78,49 @@ npm run dev
 
 We use [Playwright](https://playwright.dev/docs/intro) for testing.
 
-### Preparation
+### Running tests in Docker
 
-Each version of Playwright needs specific versions of browser binaries to operate.
-
-```bash
-# loads binaries
-npx playwright install
-```
-
-By default playwright will use http://localhost:6006 as URL for storybook server.
-
-If you want to change it, you should add `.env` file in repository's root directory with the data below:
-
-```bash
-# the URL where the storybook is running
-BASE_URL= # for example:'http://localhost:6006'
-```
-
-### Running tests on MacOS and Linux
+**Note:** Tests run in Docker container to ensure consistent screenshots across different operating systems (Mac, Linux, Windows).
 
 All tests:
 
 ```bash
-npm run playwright:docker npm run test:playwright
+npm run playwright:docker
 ```
 
 Single test:
 
 ```bash
-npm run playwright:docker npm run test:playwright test_name.spec.ts
+./playwright/playwright-docker.sh 'npm run playwright -- src/components/YourComponent/__tests__/YourComponent.spec.ts'
 ```
 
 Several sets of test files from different folders:
 
 ```bash
-npm run playwright:docker npm run test:playwright __tests__/folder1 __tests__/folder2
+./playwright/playwright-docker.sh 'npm run playwright -- src/components/Component1/__tests__ src/components/Component2/__tests__'
+```
+
+Update snapshots:
+
+```bash
+npm run playwright:docker:update
+```
+
+Clear Docker cache (if you have issues with dependencies):
+
+```bash
+npm run playwright:docker:clear-cache
+```
+
+### Running tests on Windows
+
+```bash
+npm run playwright:docker:windows
 ```
 
 These commands run storybook server before tests.
 
 If storybook server is already running, playwright will use it for tests and won't run another server.
-
-### Running tests on Windows
-
-```bash
-# add ':windows'
-npm run playwright:docker:windows npm run test:playwright
-```
 
 ### Test reports
 
@@ -156,7 +151,7 @@ After running tests playwright will create folder for snapshots (if it didn't ex
 If reference screenshot is incorrect you can update it:
 
 ```bash
-npm run playwright:docker npm run test:playwright:update
+npm run playwright:docker:update
 ```
 
 ## License

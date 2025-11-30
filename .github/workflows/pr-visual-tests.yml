@@ -8,18 +8,12 @@ jobs:
   visual_tests:
     name: Visual Tests
     runs-on: ubuntu-latest
-    container:
-      image: mcr.microsoft.com/playwright:v1.48.2-jammy
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
-      - name: Install latest npm (>= 11.5.1)
-        run: |
-          [ "$(printf '%s\n' "11.5.1" "$(npm -v)" | sort -V | head -n1)" = "11.5.1" ] || npm install -g npm@latest
-        shell: bash
       - name: Install Packages
         run: npm ci
       - name: Install Demo Packages
@@ -27,11 +21,9 @@ jobs:
       - name: Build Files
         run: npm run build
       - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
+        run: npx playwright install --with-deps chromium webkit firefox
       - name: Run Visual Tests
-        env:
-          HOME: /root
-        run: npm run test:playwright
+        run: npm run playwright
       - name: Upload Playwright Report
         if: always()
         uses: actions/upload-artifact@v4

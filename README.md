@@ -78,66 +78,7 @@ npm run dev
 
 We use [Playwright](https://playwright.dev/docs/intro) for testing.
 
-### Preparation
-
-Each version of Playwright needs specific versions of browser binaries to operate.
-
-```bash
-# Install playwright browsers and dependencies (run once on initial setup)
-npm run playwright:install
-```
-
-By default playwright will use http://localhost:6006 as URL for storybook server.
-
-If you want to change it, you should add `.env` file in repository's root directory with the data below:
-
-```bash
-# the URL where the storybook is running
-BASE_URL= # for example:'http://localhost:6006'
-```
-
-### Running tests locally (Linux/MacOS)
-
-**Option 1: Storybook in Docker, tests locally (recommended for development)**
-
-This approach is easier for debugging - you can see storybook running in your browser.
-
-1. Start storybook in Docker (in one terminal):
-```bash
-npm run playwright:docker:dev
-```
-
-2. Run tests locally (in another terminal):
-```bash
-npm run playwright:local
-```
-
-Update snapshots:
-```bash
-npm run playwright:local:update
-```
-
-**Option 2: Everything local (storybook + tests)**
-
-All tests (storybook will be started automatically):
-
-```bash
-npm run playwright
-```
-
-Update snapshots:
-
-```bash
-npm run playwright:update
-```
-
-Clear cache:
-
-```bash
-npm run playwright:clear-cache
-```
-
-### Running tests in Docker (recommended for consistent screenshots)
+### Running tests in Docker
 
 **Note:** Tests run in Docker container to ensure consistent screenshots across different operating systems (Mac, Linux, Windows).
 
@@ -208,12 +149,6 @@ After running tests playwright will create folder for snapshots (if it didn't ex
 `**.__screenshots__` folders contain screenshots which are used for comparison with test screenshots.
 
 If reference screenshot is incorrect you can update it:
-
-```bash
-npm run playwright:update
-```
-
-Or using Docker:
 
 ```bash
 npm run playwright:docker:update

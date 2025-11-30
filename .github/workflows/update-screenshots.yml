@@ -18,12 +18,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          registry-url: 'https://registry.npmjs.org'
-
-      - name: Install latest npm (>= 11.5.1)
-        run: |
-          [ "$(printf '%s\n' "11.5.1" "$(npm -v)" | sort -V | head -n1)" = "11.5.1" ] || npm install -g npm@latest
-        shell: bash
+          cache: npm
 
       - run: npm ci
         shell: bash
@@ -31,7 +26,7 @@ jobs:
       - name: Update screenshots
         run: |
           chmod +x ./playwright/playwright-docker.sh
-          npm run playwright:docker npm run test:playwright:update
+          npm run playwright:docker:update
 
       - name: Commit and push changes
         run: |

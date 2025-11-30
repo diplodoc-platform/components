@@ -36,9 +36,11 @@ export default defineConfig({
             name: 'chromium',
             use: {
                 ...devices['Desktop Chrome'],
-                launchOptions: process.env.IS_DOCKER ? {
-                    args: ['--single-process'],
-                } : undefined,
+                launchOptions: process.env.IS_DOCKER
+                    ? {
+                          args: ['--single-process'],
+                      }
+                    : undefined,
             },
         },
 

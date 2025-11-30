@@ -36,17 +36,6 @@ run_command() {
   fi
 }
 
-run_dev_command() {
-  build_image
-  $CONTAINER_TOOL run --rm -it -w /work \
-    -v $(pwd):/work \
-    -v "$NODE_MODULES_CACHE_DIR:/work/node_modules" \
-    -e IS_DOCKER=1 \
-    -p 6006:6006 \
-    "$IMAGE_NAME" \
-    /bin/bash -c "$*"
-}
-
 if [[ "$(uname -s)" == "Darwin" ]] && command_exists podman; then
   CONTAINER_TOOL="podman"
   echo "Using Podman"
@@ -64,16 +53,6 @@ fi
 if [[ "$*" = "clear-cache" ]]; then
   rm -rf "$NODE_MODULES_CACHE_DIR"
   $CONTAINER_TOOL rmi "$IMAGE_NAME" 2>/dev/null || true
-  exit 0
-fi
-
-if [[ "$*" = "dev" ]] || [[ "$*" =~ "npm run dev" ]] || [[ "$*" =~ "storybook" ]]; then
-  if [[ ! -d "$NODE_MODULES_CACHE_DIR" ]]; then
-    mkdir -p "$NODE_MODULES_CACHE_DIR"
-    run_command 'npm ci'
-  fi
-  echo "Starting storybook at http://localhost:6006"
-  run_dev_command "$*"
   exit 0
 fi
 

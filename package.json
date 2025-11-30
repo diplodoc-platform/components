@@ -59,7 +59,6 @@
     "playwright:local": "SKIP_WEBSERVER=true playwright test --config=playwright/playwright.config.ts",
     "playwright:local:update": "SKIP_WEBSERVER=true npm run playwright -- -u",
     "playwright:docker": "./playwright/playwright-docker.sh npm run playwright --",
-    "playwright:docker:single": "./playwright/playwright-docker.sh 'npm run playwright -- src/components/ContributorAvatars/__tests__/ContributorAvatars.spec.ts'",
     "playwright:docker:update": "./playwright/playwright-docker.sh npm run playwright:update --",
     "playwright:docker:clear-cache": "./playwright/playwright-docker.sh clear-cache",
     "playwright:docker:dev": "./playwright/playwright-docker.sh 'BROWSER=true npm run dev'",

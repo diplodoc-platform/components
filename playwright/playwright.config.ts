@@ -22,8 +22,6 @@ export default defineConfig({
         command: 'BROWSER=true npm run dev',
         url: BASE_URL,
         timeout: 300 * 1000,
-        stdout: process.env.IS_DOCKER ? 'inherit' : 'pipe',
-        stderr: process.env.IS_DOCKER ? 'inherit' : 'pipe',
     },
     use: {
         trace: 'on-first-retry',

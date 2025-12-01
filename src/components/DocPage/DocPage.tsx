@@ -69,6 +69,7 @@ export interface DocPageProps extends DocPageData, DocSettings, NotificationProp
     hideEditControl?: boolean;
     hideFeedbackControls?: boolean;
     hideContributors?: boolean;
+
     renderLoader?: () => React.ReactNode;
     convertPathToOriginalArticle?: (path: string) => string;
     generatePathToVcs?: (path: string) => string;
@@ -81,6 +82,7 @@ export interface DocPageProps extends DocPageData, DocSettings, NotificationProp
     onChangeTheme?: (theme: Theme) => void;
     onChangeTextSize?: (textSize: TextSizes) => void;
     onSendFeedback?: (data: FeedbackSendData) => void;
+    feedbackUrl?: string;
     onContentMutation?: () => void;
     onContentLoaded?: () => void;
     onSubscribe?: (data: SubscribeData) => void;
@@ -567,14 +569,8 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
     }
 
     private renderFeedback() {
-        const {
-            singlePage,
-            isLiked,
-            isDisliked,
-            onSendFeedback,
-            hideFeedback,
-            hideFeedbackControls,
-        } = this.props;
+        const {singlePage, isLiked, isDisliked, hideFeedback, hideFeedbackControls, feedbackUrl} =
+            this.props;
         const {isHidden} = this.context;
         const isFeedbackHidden = isHidden('feedback');
 
@@ -583,7 +579,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             isFeedbackHidden ||
             singlePage ||
             hideFeedbackControls ||
-            !onSendFeedback
+            feedbackUrl === undefined
         ) {
             return null;
         }
@@ -593,8 +589,8 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                 <Feedback
                     isLiked={isLiked}
                     isDisliked={isDisliked}
-                    onSendFeedback={onSendFeedback}
                     view={FeedbackView.Wide}
+                    url={feedbackUrl}
                 />
             </div>
         );

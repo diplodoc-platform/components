@@ -20,8 +20,9 @@ export enum FeedbackView {
 export interface FeedbackProps {
     isLiked?: boolean;
     isDisliked?: boolean;
-    onSendFeedback: (data: FeedbackSendData) => void;
+    onSendFeedback?: (data: FeedbackSendData) => void;
     view?: FeedbackView;
+    url?: string;
 }
 
 const getInnerState = (isLiked: boolean, isDisliked: boolean) => {
@@ -56,7 +57,7 @@ const Feedback: React.FC<FeedbackProps> = (props) => {
     const {
         isLiked = false,
         isDisliked = false,
-        onSendFeedback,
+        onSendFeedback = () => {},
         view = FeedbackView.Regular,
     } = props;
 
@@ -78,38 +79,63 @@ const Feedback: React.FC<FeedbackProps> = (props) => {
         dislikeVariantsPopup.close();
     }, [likeSuccessPopup, dislikeSuccessPopup, dislikeVariantsPopup]);
 
+    const sendFeedback = useCallback(
+        (data: FeedbackSendData) => {
+            // Вызываем внешний колбэк
+            onSendFeedback(data);
+
+            // Отправляем данные на URL, если он предоставлен
+            if (props.url) {
+                fetch(props.url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                }).catch((error) => {
+                    throw error;
+                });
+            }
+        },
+        [onSendFeedback, props.url],
+    );
+
     const onChangeLike = useCallback(() => {
         hideFeedbackPopups();
 
         if (innerState === FeedbackType.like) {
             setInnerState(FeedbackType.indeterminate);
-            onSendFeedback({type: FeedbackType.indeterminate});
+            const data = {type: FeedbackType.indeterminate};
+            sendFeedback(data);
         } else {
             setInnerState(FeedbackType.like);
-            onSendFeedback({type: FeedbackType.like});
+            const data = {type: FeedbackType.like};
+            sendFeedback(data);
             likeSuccessPopup.open();
         }
-    }, [onSendFeedback, setInnerState, innerState, likeSuccessPopup, hideFeedbackPopups]);
+    }, [sendFeedback, setInnerState, innerState, likeSuccessPopup, hideFeedbackPopups]);
 
     const onChangeDislike = useCallback(() => {
         hideFeedbackPopups();
 
         if (innerState === FeedbackType.dislike) {
             setInnerState(FeedbackType.indeterminate);
-            onSendFeedback({type: FeedbackType.indeterminate});
+            const data = {type: FeedbackType.indeterminate};
+            sendFeedback(data);
         } else {
             dislikeVariantsPopup.open();
         }
-    }, [onSendFeedback, setInnerState, innerState, dislikeVariantsPopup, hideFeedbackPopups]);
+    }, [sendFeedback, setInnerState, innerState, dislikeVariantsPopup, hideFeedbackPopups]);
 
     const onSendDislikeInformation = useCallback(
         (data: FormData) => {
             hideFeedbackPopups();
             dislikeSuccessPopup.open();
             setInnerState(FeedbackType.dislike);
-            onSendFeedback({type: FeedbackType.dislike, ...data});
+            const feedbackData = {type: FeedbackType.dislike, ...data};
+            sendFeedback(feedbackData);
         },
-        [onSendFeedback, setInnerState, dislikeSuccessPopup, hideFeedbackPopups],
+        [sendFeedback, setInnerState, dislikeSuccessPopup, hideFeedbackPopups],
     );
 
     const isDislikePopupVisible = dislikeSuccessPopup.visible || dislikeVariantsPopup.visible;

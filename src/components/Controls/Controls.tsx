@@ -51,6 +51,7 @@ export interface ControlsProps {
     onChangeTheme?: (theme: Theme) => void;
     onChangeTextSize?: (textSize: TextSizes) => void;
     onSendFeedback?: (data: FeedbackSendData) => void;
+    feedbackUrl?: string;
     onSubscribe?: (data: SubscribeData) => void;
     onEditClick?: () => void;
     pdfLink?: string;
@@ -88,6 +89,7 @@ export const ControlsList: React.FC<ControlsProps & {isHiddenFeedback: boolean}>
         onChangeLang,
         onChangeSinglePage,
         onSendFeedback,
+        feedbackUrl,
         onSubscribe,
         onEditClick,
         lang,
@@ -169,6 +171,7 @@ export const ControlsList: React.FC<ControlsProps & {isHiddenFeedback: boolean}>
                 isDisliked={isDisliked}
                 onSendFeedback={onSendFeedback as Defined['onSendFeedback']}
                 view={FeedbackView.Regular}
+                url={feedbackUrl}
             />
         ),
         '---',

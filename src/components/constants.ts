@@ -16,3 +16,6 @@ export const DOC_PAGE_FEEDBACK_SHOWN_URL =
     BASE_URL + '/iframe.html?args=HideFeedback:false&id=pages-document--document&viewMode=story';
 export const SEARCH_SUGGEST_URL =
     BASE_URL + '/iframe.html?id=components-searchsuggest--search-suggest&viewMode=story';
+export const ERROR_PAGE_URL =
+    BASE_URL +
+    '/iframe.html?args=ErrorCode:403;Title:Page%20403;ReceiveAccessText:Custom%20link;ReceiveAccessUrl:access&id=pages-error--error&viewMode=story';

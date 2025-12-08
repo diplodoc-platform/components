@@ -1,5 +1,13 @@
 # История изменений
 
+## [5.1.0](https://github.com/diplodoc-platform/components/compare/v5.0.0...v5.1.0) (2025-12-04)
+
+
+### Features
+
+* install themes lib ([#511](https://github.com/diplodoc-platform/components/issues/511)) ([80b7881](https://github.com/diplodoc-platform/components/commit/80b78816907bc14af3766a0a6ceb9b7084f9e2b3))
+* **playwright:** improved playwright stability, docker setup with Node 22 and podman support ([af19f4d](https://github.com/diplodoc-platform/components/commit/af19f4d7fef846cc87db8d52b7d1a8583509d4e2))
+
 ## [5.0.0](https://github.com/diplodoc-platform/components/compare/v4.39.2...v5.0.0) (2025-11-27)
 
 

@@ -12,6 +12,7 @@ test('ContributorAvatars test', async ({page}) => {
         .locator('.dc-contributor-avatars__displayed_avatars')
         .locator('a')
         .nth(0);
+        
     const hiddenAvatars = contributorsBlock.locator('.dc-contributor-avatars__hidden_avatars');
     const box = await contributorsBlock.boundingBox();
 

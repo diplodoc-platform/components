@@ -18,12 +18,15 @@ const ErrorPageDemo = (args: Args) => {
     const receiveAccessText = args['ReceiveAccessText'];
     const receiveAccessUrl = args['ReceiveAccessUrl'];
 
+    const processedUrl = receiveAccessUrl?.trim();
+    const renderMultiline = (text: string) => text.replace(/\r\n/g, '\n').replace(/\\n/g, '\n');
+
     return (
         <div className={isMobile === 'true' ? 'mobile' : 'desktop'}>
             <ErrorPage
                 code={Number(errorCode)}
-                receiveAccessText={receiveAccessText}
-                receiveAccessUrl={receiveAccessUrl}
+                receiveAccessText={renderMultiline(receiveAccessText)}
+                receiveAccessUrl={processedUrl}
                 errorTitle={title}
             />
         </div>

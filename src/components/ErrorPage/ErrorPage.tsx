@@ -43,16 +43,14 @@ const ErrorPage: React.FC<ErrorPageProps> = ({
         </Link>
     );
 
-    const processedUrl = receiveAccessUrl?.trim();
-
     switch (code) {
         case ERROR_CODES.ACCESS_DENIED:
             title = pageGroup ? t('label_title-403_page-group') : t('label_title-403_project');
             description = (
                 <React.Fragment>
                     {homeLink}
-                    {processedUrl && (
-                        <Link href={processedUrl} target="_blank" rel="noopener noreferrer">
+                    {receiveAccessUrl && (
+                        <Link href={receiveAccessUrl} target="_blank" rel="noopener noreferrer">
                             <Button view="action" className={b('description-link')}>
                                 {receiveAccessText || t('label_link-access')}
                             </Button>
@@ -97,8 +95,6 @@ const ErrorPage: React.FC<ErrorPageProps> = ({
             );
     }
 
-    const renderMultiline = (text: string) => text.replace(/\r\n/g, '\n').replace(/\\n/g, '\n');
-
     return (
         <div className={b()}>
             <div
@@ -107,7 +103,7 @@ const ErrorPage: React.FC<ErrorPageProps> = ({
             />
             <h1 className={b('code')}>{t('label_title-code', {code})}</h1>
             <h2 className={b('title')}>
-                {renderMultiline(errorTitle || title)}
+                {errorTitle || title}
                 {code === ERROR_CODES.NOT_FOUND &&
                     links &&
                     links.length > 0 &&

@@ -15,7 +15,7 @@ const ErrorPageDemo = (args: Args) => {
     const title = args['Title'];
     const isMobile = args['Mobile'];
     const errorCode = args['ErrorCode'];
-    const receiveAccessText = args['ReceiveAccessText'];
+    const receiveAccessText = args['ReceiveAccessText'] || '';
     const receiveAccessUrl = args['ReceiveAccessUrl'];
 
     const processedUrl = receiveAccessUrl?.trim();

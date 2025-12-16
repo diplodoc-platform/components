@@ -1,7 +1,7 @@
 import React from 'react';
 import {ERROR_CODES, ErrorPage} from '@diplodoc/components';
 
-import './index.scss';
+// import './index.scss';
 
 type Args = {
     Title: string;

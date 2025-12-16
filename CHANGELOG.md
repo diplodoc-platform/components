@@ -1,5 +1,17 @@
 # История изменений
 
+## [5.2.0](https://github.com/diplodoc-platform/components/compare/v5.1.0...v5.2.0) (2025-12-16)
+
+
+### Features
+
+* 403 page customization added ([#510](https://github.com/diplodoc-platform/components/issues/510)) ([5f8efd9](https://github.com/diplodoc-platform/components/commit/5f8efd9f584e7169462c5a99f2716ba1fdd170e9))
+
+
+### Dependency update
+
+* update esbuild 0.27.0 ([#516](https://github.com/diplodoc-platform/components/issues/516)) ([daeeb4d](https://github.com/diplodoc-platform/components/commit/daeeb4d6999bfb9adf8dca80526e441cd7dc5501))
+
 ## [5.1.0](https://github.com/diplodoc-platform/components/compare/v5.0.0...v5.1.0) (2025-12-04)
 
 

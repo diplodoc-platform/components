@@ -232,7 +232,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                     {this.renderSinglePageControls()}
                 </DocLayout.Center>
                 <DocLayout.Right>
-                    {/* This key allows recalculating the offset for the mini-toc for Safari */}
+                    {/* This key allows recalculating the offset for the mini-toc for Safari  */}
                     <div
                         className={b('aside')}
                         key={getStateKey(this.showMiniToc, wideFormat, singlePage)}

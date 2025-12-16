@@ -18,6 +18,7 @@ export interface ErrorPageProps {
     code?: number;
     pageGroup?: string;
     homeUrl?: string;
+    receiveAccessText?: string;
     receiveAccessUrl?: string;
     links?: LinkType[];
     errorTitle?: string;
@@ -26,6 +27,7 @@ export interface ErrorPageProps {
 const ErrorPage: React.FC<ErrorPageProps> = ({
     code = 500,
     homeUrl,
+    receiveAccessText,
     receiveAccessUrl,
     pageGroup,
     links,
@@ -50,7 +52,7 @@ const ErrorPage: React.FC<ErrorPageProps> = ({
                     {receiveAccessUrl && (
                         <Link href={receiveAccessUrl} target="_blank" rel="noopener noreferrer">
                             <Button view="action" className={b('description-link')}>
-                                {t('label_link-access')}
+                                {receiveAccessText || t('label_link-access')}
                             </Button>
                         </Link>
                     )}

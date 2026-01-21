@@ -23,6 +23,7 @@ export interface SearchSuggestPageItem extends SearchSuggestBaseItem {
     title: string;
     link: string;
     description?: string;
+    section?: string;
     breadcrumbs?: BreadcrumbItem[];
 }
 

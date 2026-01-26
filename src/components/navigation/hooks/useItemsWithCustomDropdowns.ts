@@ -1,4 +1,4 @@
-import {NavigationDropdownItem, NavigationItemModel} from '@gravity-ui/page-constructor';
+import type {NavigationDropdownItem, NavigationItemModel} from '@gravity-ui/page-constructor';
 
 const useItemsWithCustomDropdowns = (
     leftItems: NavigationItemModel[],

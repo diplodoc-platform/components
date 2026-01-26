@@ -14,13 +14,6 @@
       "@diplodoc/components": ["./"]
     }
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "demo/**/*.ts",
-    "demo/**/*.tsx",
-    "demo/.storybook/**/*.ts",
-    "demo/.storybook/**/*.tsx",
-    "playwright/playwright.config.ts"
-  ]
+  "include": ["src/**/*.ts", "src/**/*.tsx", "playwright/playwright.config.ts"],
+  "exclude": ["demo"]
 }

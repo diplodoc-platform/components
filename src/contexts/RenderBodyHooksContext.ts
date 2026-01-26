@@ -1,6 +1,5 @@
-import {FC} from 'react';
-
-import {RenderBodyProps} from '../components/DocPage';
+import type {FC} from 'react';
+import type {RenderBodyProps} from '../components/DocPage';
 
 import namedContext from './_namedContext';
 

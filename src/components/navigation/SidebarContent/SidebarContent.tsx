@@ -1,14 +1,13 @@
-import React, {PropsWithChildren} from 'react';
-import {
-    ItemColumnName,
-    NavigationItemModel,
-    NavigationLayout,
-    NavigationList,
-} from '@gravity-ui/page-constructor';
+import type {PropsWithChildren} from 'react';
+import type {NavigationItemModel} from '@gravity-ui/page-constructor';
+import type {ClassNameProps, Router, TocData} from '../../../models/index';
+import type {MobileControlsProps} from '../../MobileControls/MobileControls';
+
+import React from 'react';
+import {ItemColumnName, NavigationLayout, NavigationList} from '@gravity-ui/page-constructor';
 import block from 'bem-cn-lite';
 
-import {ClassNameProps, Router, TocData} from '../../../models/index';
-import MobileControls, {MobileControlsProps} from '../../MobileControls/MobileControls';
+import MobileControls from '../../MobileControls/MobileControls';
 import Toc from '../../Toc/Toc';
 import ToMainMenu from '../ToMainMenu/ToMainMenu';
 import {useInterface} from '../../../hooks';

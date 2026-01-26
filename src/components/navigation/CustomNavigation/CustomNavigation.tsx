@@ -1,18 +1,20 @@
+import type {NavigationComponentProps} from '@gravity-ui/page-constructor';
+import type {MobileControlsProps} from '../../MobileControls/MobileControls';
+import type {NavigationTocProps} from '../SidebarContent/SidebarContent';
+
 import React, {memo} from 'react';
 import {
     Col,
     DesktopNavigation,
     Grid,
-    NavigationComponentProps,
     Row,
     useActiveNavItem,
     useShowBorder,
 } from '@gravity-ui/page-constructor';
 import block from 'bem-cn-lite';
 
-import {MobileControlsProps} from '../../MobileControls/MobileControls';
 import Sidebar from '../Sidebar/Sidebar';
-import SidebarContent, {NavigationTocProps} from '../SidebarContent/SidebarContent';
+import SidebarContent from '../SidebarContent/SidebarContent';
 import {useItemsWithCustomDropdowns} from '../hooks';
 
 import './CustomNavigation.scss';

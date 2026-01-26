@@ -1,6 +1,7 @@
 import type {SearchSuggestItem} from './types';
+import type {FC, PropsWithChildren} from 'react';
 
-import React, {FC, PropsWithChildren} from 'react';
+import React from 'react';
 import {ChevronRight} from '@gravity-ui/icons';
 import {Link} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';

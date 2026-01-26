@@ -1,4 +1,4 @@
-import {Theme} from '@diplodoc/components';
+import type {Theme} from '@diplodoc/components';
 
 export function updateBodyClassName(theme: Theme) {
     const bodyEl = document.body;

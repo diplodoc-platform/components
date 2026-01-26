@@ -1,12 +1,14 @@
-import React, {MouseEvent, memo, useCallback, useRef, useState} from 'react';
+import type {MouseEvent} from 'react';
+import type {DocHeadingItem, Router, TocData} from '../../models';
+import type {MobileControlsProps} from '../MobileControls';
+
+import React, {memo, useCallback, useRef, useState} from 'react';
 import {SquareListUl} from '@gravity-ui/icons';
 import block from 'bem-cn-lite';
 
 import {useInterface} from '../../hooks/useInterface';
-import {DocHeadingItem, Router, TocData} from '../../models';
 import {Toc} from '../Toc';
 import {SidebarNavigation} from '../navigation';
-import {MobileControlsProps} from '../MobileControls';
 import {MiniToc} from '../MiniToc';
 import {OutsideClick} from '../OutsideClick';
 import {ShareButton} from '../ShareButton';

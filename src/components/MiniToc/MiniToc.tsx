@@ -1,9 +1,11 @@
-import React, {FC, MouseEvent, useLayoutEffect, useRef, useState} from 'react';
+import type {FC, MouseEvent} from 'react';
+import type {FlatHeadingItem} from '../SubNavigation/hooks/useHeadingIntersectionObserver';
+
+import React, {useLayoutEffect, useRef, useState} from 'react';
 import block from 'bem-cn-lite';
 import clsx from 'clsx';
 
 import {useTranslation} from '../../hooks';
-import {FlatHeadingItem} from '../SubNavigation/hooks/useHeadingIntersectionObserver';
 
 import './MiniToc.scss';
 

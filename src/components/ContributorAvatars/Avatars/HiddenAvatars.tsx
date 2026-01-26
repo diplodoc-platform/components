@@ -1,8 +1,9 @@
-import React, {BaseSyntheticEvent, Fragment, useRef, useState} from 'react';
-import block from 'bem-cn-lite';
+import type {BaseSyntheticEvent} from 'react';
+import type {Contributor} from '../../../models';
+import type {AvatarSizes, PopupData} from '../models';
 
-import {Contributor} from '../../../models';
-import {AvatarSizes, PopupData} from '../models';
+import React, {Fragment, useRef, useState} from 'react';
+import block from 'bem-cn-lite';
 
 import Details from './Details';
 

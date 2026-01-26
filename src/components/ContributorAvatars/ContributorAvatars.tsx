@@ -1,13 +1,15 @@
-import React, {Fragment, ReactElement} from 'react';
+import type {ReactElement} from 'react';
+import type {Contributor} from '../../models';
+import type {AvatarData} from './models';
+
+import React, {Fragment} from 'react';
 import {Link} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
-
-import {Contributor} from '../../models';
 
 import Avatar from './Avatars/Avatar';
 import AvatarWithDescription from './Avatars/AvatarWithDescription';
 import HiddenAvatars from './Avatars/HiddenAvatars';
-import {AvatarData, AvatarSizes} from './models';
+import {AvatarSizes} from './models';
 import {getName} from './utils';
 import './ContributorAvatars.scss';
 

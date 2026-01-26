@@ -1,7 +1,9 @@
+import type {AnalyticsParams} from '../../hooks';
+
 import React from 'react';
 import {ConsentManager, ConsentMode, CookieConsent} from '@gravity-ui/components';
 
-import {AnalyticsParams, useAnalytics} from '../../hooks';
+import {useAnalytics} from '../../hooks';
 
 const ConsentPopup: React.FC<AnalyticsParams> = (props) => {
     const consentManager = React.useMemo(

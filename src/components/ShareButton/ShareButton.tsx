@@ -1,10 +1,12 @@
+import type {ButtonSize, ButtonView} from '@gravity-ui/uikit';
+import type {ClassNameProps} from '../../models';
+
 import React from 'react';
 import {ArrowShapeTurnUpRight} from '@gravity-ui/icons';
-import {Button, ButtonSize, ButtonView} from '@gravity-ui/uikit';
+import {Button} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 
 import {useShareHandler} from '../../hooks';
-import {ClassNameProps} from '../../models';
 
 import './ShareButton.scss';
 

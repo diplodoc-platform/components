@@ -1,11 +1,15 @@
-import React, {PropsWithChildren, useCallback, useEffect, useRef, useState} from 'react';
+import type {PropsWithChildren} from 'react';
+import type {FeedbackSendData} from '../../models';
+import type {FormData} from './controls/DislikeVariantsPopup';
+
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import block from 'bem-cn-lite';
 
 import {useInterface, usePopupState, useTranslation} from '../../hooks';
-import {FeedbackSendData, FeedbackType} from '../../models';
+import {FeedbackType} from '../../models';
 
 import DislikeControl from './controls/DislikeControl';
-import DislikeVariantsPopup, {FormData} from './controls/DislikeVariantsPopup';
+import DislikeVariantsPopup from './controls/DislikeVariantsPopup';
 import LikeControl from './controls/LikeControl';
 import SuccessPopup from './controls/SuccessPopup';
 import './Feedback.scss';

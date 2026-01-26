@@ -1,10 +1,14 @@
+import type {MetaProps} from '../SocialSharingMeta';
+import type {WithRouterProps} from '../../hoc/withRouter';
+import type {WithLangProps} from '../../hoc/withLang';
+
 import React from 'react';
 import {compose} from 'react-recompose';
 import {Helmet} from 'react-helmet';
 
-import {MetaProps, SocialSharingMeta} from '../SocialSharingMeta';
-import withRouter, {WithRouterProps} from '../../hoc/withRouter';
-import withLang, {WithLangProps} from '../../hoc/withLang';
+import {SocialSharingMeta} from '../SocialSharingMeta';
+import withRouter from '../../hoc/withRouter';
+import withLang from '../../hoc/withLang';
 import {sanitizeHtml} from '../../utils/sanitize';
 
 interface SharingProps {

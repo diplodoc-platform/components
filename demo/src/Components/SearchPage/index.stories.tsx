@@ -1,5 +1,7 @@
+import type {ISearchItem} from '@diplodoc/components';
+
 import React, {useState} from 'react';
-import {ISearchItem, SearchPage} from '@diplodoc/components';
+import {SearchPage} from '@diplodoc/components';
 
 import mockData from './data';
 

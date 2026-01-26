@@ -1,14 +1,13 @@
 /* eslint-disable no-console */
+import type {FeedbackSendData, Lang, Theme} from '@diplodoc/components';
+
 import {join} from 'path';
 import React, {useCallback, useEffect, useState} from 'react';
 import {
     DEFAULT_SETTINGS,
     DocPage,
-    FeedbackSendData,
     FeedbackType,
     InterfaceProvider,
-    Lang,
-    Theme,
     VcsType,
     configure as configureDocs,
 } from '@diplodoc/components';

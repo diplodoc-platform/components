@@ -1,10 +1,12 @@
-import React, {MouseEvent, PropsWithChildren, useCallback} from 'react';
+import type {MouseEvent, PropsWithChildren} from 'react';
+import type {ClassNameProps} from '../../../models/index';
+import type {MobileControlsProps} from '../../MobileControls/MobileControls';
+
+import React, {useCallback} from 'react';
 import {Bars, Xmark} from '@gravity-ui/icons';
 import {Button} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 
-import {ClassNameProps} from '../../../models/index';
-import {MobileControlsProps} from '../../MobileControls/MobileControls';
 import Sidebar from '../Sidebar/Sidebar';
 import SidebarContent from '../SidebarContent/SidebarContent';
 

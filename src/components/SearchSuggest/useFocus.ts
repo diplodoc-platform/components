@@ -1,4 +1,6 @@
-import {SyntheticEvent, useCallback, useMemo, useState} from 'react';
+import type {SyntheticEvent} from 'react';
+
+import {useCallback, useMemo, useState} from 'react';
 
 type Props = {
     onFocus?: (event: SyntheticEvent) => void;

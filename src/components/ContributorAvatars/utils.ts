@@ -1,4 +1,4 @@
-import {Contributor} from '../../models';
+import type {Contributor} from '../../models';
 
 export function getName(contributor: Contributor, useFullName = false): string {
     return useFullName

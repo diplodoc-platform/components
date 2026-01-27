@@ -23,7 +23,7 @@
     "@storybook/testing-library": "^0.2.0",
     "@svgr/webpack": "^8.1.0",
     "sass": "^1.80.6",
-    "storybook": "^7.6.17"
+    "storybook": "^7.6.21"
   },
   "dependencies": {
     "@diplodoc/transform": "^4.64.0",

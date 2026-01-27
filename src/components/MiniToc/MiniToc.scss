@@ -33,7 +33,7 @@
         display: block;
 
         & > #{$class}__section-link {
-            border-left-color: var(--g-color-line-generic);
+            border-left-color: var(--dc-color-mini-toc-border, var(--g-color-line-generic));
 
             @include mixins.focusable(-2px);
         }
@@ -44,12 +44,12 @@
             padding: 6px 6px 6px 12px;
             min-height: 28px;
 
-            color: var(--g-color-text-secondary);
+            color: var(--dc-color-mini-toc, var(--g-color-text-secondary));
             border-left: 2px solid transparent;
             text-decoration: none;
 
             &:hover {
-                color: var(--g-color-text-complementary);
+                color: var(--dc-color-mini-toc-hover, var(--g-color-text-complementary));
             }
         }
 
@@ -60,8 +60,8 @@
         }
 
         &_active > #{$class}__section-link {
-            color: var(--g-color-text-primary);
-            border-left-color: var(--g-color-text-primary);
+            color: var(--dc-color-mini-toc-active, var(--g-color-text-primary));
+            border-left-color: var(--dc-color-mini-toc-active-border, var(--g-color-text-primary));
         }
     }
 

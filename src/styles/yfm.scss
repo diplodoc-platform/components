@@ -99,13 +99,14 @@
         font-size: var(--dc-code-short-font-size);
         line-height: var(--dc-code-short-line-height);
         padding: var(--dc-code-short-padding);
+        color: var(--yfm-color-inline-code, var(--yfm-color-text));
     }
 
     pre > code {
         font-size: var(--dc-code-font-size);
         line-height: var(--dc-code-line-height);
         padding: 16px;
-        color: var(--g-color-text-complementary);
+        color: var(--yfm-color-code, var(--g-color-text-complementary));
     }
 
     dfn,
@@ -130,7 +131,7 @@
     }
 
     blockquote {
-        border-left-color: var(--g-color-base-brand);
+        border-left-color: var(--yfm-color-quote, var(--g-color-base-brand));
     }
 
     .yfm-tab-list {
@@ -139,16 +140,17 @@
 
     .yfm-tab {
         border-radius: var(--g-focus-border-radius);
+        color: var(--yfm-color-tab-text, var(--yfm-color-text));
 
         &:hover,
         &:active {
-            color: var(--yfm-color-link-hover);
+            color: var(--yfm-color-tab-text-hover, var(--yfm-color-link-hover));
         }
         @include mixins.focusable();
     }
 
     .yfm-tab.active {
-        border-bottom-color: var(--g-color-base-brand);
+        border-bottom-color: var(--yfm-color-tab-active, var(--g-color-base-brand));
     }
 
     /* TODO: move yfm-cut styles to yfm-transform */

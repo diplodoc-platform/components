@@ -2,7 +2,7 @@ import React from 'react';
 import {Button, Link} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 
-import {ERROR_CODES} from '../../constants';
+import {ERROR_CODES, SUPPORTED_LANGS} from '../../constants';
 import {useTranslation} from '../../hooks';
 
 import './ErrorPage.scss';
@@ -66,13 +66,19 @@ const ErrorPage: React.FC<ErrorPageProps> = ({
                     {links && links.length > 0 && (
                         <div className={b('subtext')}>
                             {links.map((link) => {
-                                return (
-                                    <Link href={link.url} key={link.code}>
-                                        <Button view="outlined-info">
-                                            {t(`label_lang-${link.code}`)}
-                                        </Button>
-                                    </Link>
-                                );
+                                const code = link.code;
+
+                                if (code && SUPPORTED_LANGS.includes(code)) {
+                                    return (
+                                        <Link href={link.url} key={link.code}>
+                                            <Button view="outlined-info">
+                                                {t(`label_lang-${link.code}`)}
+                                            </Button>
+                                        </Link>
+                                    );
+                                } else {
+                                    return <></>;
+                                }
                             })}
                         </div>
                     )}

@@ -112,6 +112,7 @@
     "label_lang-ar": "Αραβικά",
     "label_lang-bg": "Βουλγαρικά",
     "label_lang-cs": "Τσεχικά",
+    "label_lang-el": "Ελληνικά",
     "label_lang-en": "Αγγλικά",
     "label_lang-es": "Ισπανικά",
     "label_lang-et": "Εσθονικά",
@@ -122,9 +123,8 @@
     "label_lang-ru": "Ρωσικά",
     "label_lang-tr": "Τουρκικά",
     "label_lang-uz": "Ουζμπεκικά",
-    "label_lang-zh-tw": "Κινεζικά Παραδοσιακά",
     "label_lang-zh": "Κινεζικά",
-    "label_lang-el": "Ελληνικά"
+    "label_lang-zh-tw": "Κινεζικά Παραδοσιακά"
   },
   "search": {
     "search_placeholder": "Αναζήτηση",

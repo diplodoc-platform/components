@@ -113,6 +113,7 @@
     "label_lang-bg": "Bulgarian",
     "label_lang-cs": "Czech",
     "label_lang-el": "Greek",
+    "label_lang-en": "English",
     "label_lang-es": "Spanish",
     "label_lang-et": "Estonian",
     "label_lang-fr": "French",
@@ -122,9 +123,8 @@
     "label_lang-ru": "Russian",
     "label_lang-tr": "Turkish",
     "label_lang-uz": "Uzbek",
-    "label_lang-zh-tw": "Chinese Traditional",
     "label_lang-zh": "Chinese",
-    "label_lang-en": "English"
+    "label_lang-zh-tw": "Chinese Traditional"
   },
   "search": {
     "search_placeholder": "Search",

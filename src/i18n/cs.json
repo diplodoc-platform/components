@@ -111,6 +111,7 @@
     "label_subtext": "Je k dispozici v:",
     "label_lang-ar": "Arabština",
     "label_lang-bg": "Bulharština",
+    "label_lang-cs": "Čeština",
     "label_lang-el": "Řečtina",
     "label_lang-en": "Angličtina",
     "label_lang-es": "Španělština",
@@ -122,9 +123,8 @@
     "label_lang-ru": "Ruština",
     "label_lang-tr": "Turečtina",
     "label_lang-uz": "Uzbečtina",
-    "label_lang-zh-tw": "Tradiční čínština",
     "label_lang-zh": "Čínština",
-    "label_lang-cs": "Čeština"
+    "label_lang-zh-tw": "Tradiční čínština"
   },
   "search": {
     "search_placeholder": "Hledat",

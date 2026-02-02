@@ -115,6 +115,7 @@
     "label_lang-el": "Kreeka",
     "label_lang-en": "Inglise",
     "label_lang-es": "Hispaania",
+    "label_lang-et": "Eesti",
     "label_lang-fr": "Prantsuse",
     "label_lang-he": "Heebrea",
     "label_lang-kk": "Kasahhi",
@@ -122,9 +123,8 @@
     "label_lang-ru": "Vene",
     "label_lang-tr": "Türgi",
     "label_lang-uz": "Usbeki",
-    "label_lang-zh-tw": "Traditsiooniline hiina",
     "label_lang-zh": "Hiina",
-    "label_lang-et": "Eesti"
+    "label_lang-zh-tw": "Traditsiooniline hiina"
   },
   "search": {
     "search_placeholder": "Otsing",

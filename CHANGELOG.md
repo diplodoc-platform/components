@@ -1,5 +1,17 @@
 # История изменений
 
+## [5.2.2](https://github.com/diplodoc-platform/components/compare/v5.2.1...v5.2.2) (2026-02-02)
+
+
+### Bug Fixes
+
+* added translations of the langs for itself ([0ead395](https://github.com/diplodoc-platform/components/commit/0ead395257b576f6d966b1cee0882745ced67efb))
+* exclude demo from typecheck and remove duplicate CI workflow ([e647fa4](https://github.com/diplodoc-platform/components/commit/e647fa4992e82798660664fbb66b34499a616a20))
+* Fix package releases ([2c3f002](https://github.com/diplodoc-platform/components/commit/2c3f00249e32bb0187a47fe90c29247fc9eacbfd))
+* fixed ErrorPage ([a57f092](https://github.com/diplodoc-platform/components/commit/a57f092cc6c061d734d0e575f187ea93d2d2c9bc))
+* fixed ErrorPage ([2493471](https://github.com/diplodoc-platform/components/commit/2493471e80d9d4f4dc26c1ea3c6f20edbf83f34f))
+* fixed order ([b410863](https://github.com/diplodoc-platform/components/commit/b4108634ea23a9de3adf8383f6a993838f0726fd))
+
 ## [5.2.1](https://github.com/diplodoc-platform/components/compare/v5.2.0...v5.2.1) (2026-01-27)
 
 

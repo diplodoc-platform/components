@@ -123,7 +123,8 @@
     "label_lang-tr": "Turco",
     "label_lang-uz": "Uzbeko",
     "label_lang-zh-tw": "Chino tradicional",
-    "label_lang-zh": "Chino"
+    "label_lang-zh": "Chino",
+    "label_lang-es": "Español"
   },
   "search": {
     "search_placeholder": "Buscar",

@@ -122,7 +122,8 @@
     "label_lang-tr": "Турски",
     "label_lang-uz": "Узбекски",
     "label_lang-zh-tw": "Традиционен китайски",
-    "label_lang-zh": "Китайски"
+    "label_lang-zh": "Китайски",
+    "label_lang-bg": "Български"
   },
   "search": {
     "search_placeholder": "Търсене",

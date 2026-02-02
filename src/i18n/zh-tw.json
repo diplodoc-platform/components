@@ -123,7 +123,8 @@
     "label_lang-ru": "俄語",
     "label_lang-tr": "土耳其語",
     "label_lang-uz": "烏茲別克語",
-    "label_lang-zh": "簡體中文"
+    "label_lang-zh": "簡體中文",
+    "label_lang-zh-tw": "繁體中文"
   },
   "search": {
     "search_placeholder": "搜索",

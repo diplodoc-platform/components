@@ -123,7 +123,8 @@
     "label_lang-tr": "Turečtina",
     "label_lang-uz": "Uzbečtina",
     "label_lang-zh-tw": "Tradiční čínština",
-    "label_lang-zh": "Čínština"
+    "label_lang-zh": "Čínština",
+    "label_lang-cs": "Čeština"
   },
   "search": {
     "search_placeholder": "Hledat",

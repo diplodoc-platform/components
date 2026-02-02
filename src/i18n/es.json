@@ -114,6 +114,7 @@
     "label_lang-cs": "Checo",
     "label_lang-el": "Griego",
     "label_lang-en": "Inglés",
+    "label_lang-es": "Español",
     "label_lang-et": "Estonio",
     "label_lang-fr": "Francés",
     "label_lang-he": "Hebreo",
@@ -122,9 +123,8 @@
     "label_lang-ru": "Ruso",
     "label_lang-tr": "Turco",
     "label_lang-uz": "Uzbeko",
-    "label_lang-zh-tw": "Chino tradicional",
     "label_lang-zh": "Chino",
-    "label_lang-es": "Español"
+    "label_lang-zh-tw": "Chino tradicional"
   },
   "search": {
     "search_placeholder": "Buscar",

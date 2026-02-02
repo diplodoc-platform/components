@@ -109,6 +109,7 @@
     "label_link-access": "طلب الوصول",
 
     "label_subtext": "إنها متاحة على:",
+    "label_lang-ar": "العربية",
     "label_lang-bg": "البلغارية",
     "label_lang-cs": "التشيكية",
     "label_lang-el": "اليونانية",
@@ -122,9 +123,8 @@
     "label_lang-ru": "الروسية",
     "label_lang-tr": "التركية",
     "label_lang-uz": "الأوزبكية",
-    "label_lang-zh-tw": "الصينية التقليدية",
     "label_lang-zh": "الصينية",
-    "label_lang-ar": "العربية"
+    "label_lang-zh-tw": "الصينية التقليدية"
   },
   "search": {
     "search_placeholder": "بحث",

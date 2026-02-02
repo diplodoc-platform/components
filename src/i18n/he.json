@@ -117,14 +117,14 @@
     "label_lang-es": "ספרדית",
     "label_lang-et": "אסטונית",
     "label_lang-fr": "צרפתית",
+    "label_lang-he": "עברית",
     "label_lang-kk": "קזחית",
     "label_lang-pt": "פורטוגזית",
     "label_lang-ru": "רוסית",
     "label_lang-tr": "טורקית",
     "label_lang-uz": "אוזבקית",
-    "label_lang-zh-tw": "סינית מסורתית",
     "label_lang-zh": "סינית",
-    "label_lang-he": "עברית"
+    "label_lang-zh-tw": "סינית מסורתית"
   },
   "search": {
     "search_placeholder": "חיפוש",

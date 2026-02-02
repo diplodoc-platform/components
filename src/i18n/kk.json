@@ -118,13 +118,13 @@
     "label_lang-et": "Эстон",
     "label_lang-fr": "Француз",
     "label_lang-he": "Еврей",
+    "label_lang-kk": "Қазақша",
     "label_lang-pt": "Португал",
     "label_lang-ru": "Орыс",
     "label_lang-tr": "Түрік",
     "label_lang-uz": "Өзбек",
-    "label_lang-zh-tw": "Дәстүрлі қытай",
     "label_lang-zh": "Қытай",
-    "label_lang-kk": "Қазақша"
+    "label_lang-zh-tw": "Дәстүрлі қытай"
   },
   "search": {
     "search_placeholder": "Іздеу",

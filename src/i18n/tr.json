@@ -121,10 +121,10 @@
     "label_lang-kk": "Kazakça",
     "label_lang-pt": "Portekizce",
     "label_lang-ru": "Rusça",
+    "label_lang-tr": "Türkçe",
     "label_lang-uz": "Özbekçe",
-    "label_lang-zh-tw": "Geleneksel Çince",
     "label_lang-zh": "Çince",
-    "label_lang-tr": "Türkçe"
+    "label_lang-zh-tw": "Geleneksel Çince"
   },
   "search": {
     "search_placeholder": "Ara",

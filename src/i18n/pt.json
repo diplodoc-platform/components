@@ -119,12 +119,12 @@
     "label_lang-fr": "Francês",
     "label_lang-he": "Hebraico",
     "label_lang-kk": "Cazaque",
+    "label_lang-pt": "Português",
     "label_lang-ru": "Russo",
     "label_lang-tr": "Turco",
     "label_lang-uz": "Uzbeque",
-    "label_lang-zh-tw": "Chinês Tradicional",
     "label_lang-zh": "Chinês",
-    "label_lang-pt": "Português"
+    "label_lang-zh-tw": "Chinês Tradicional"
   },
   "search": {
     "search_placeholder": "Pesquisa",

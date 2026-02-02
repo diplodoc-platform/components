@@ -109,6 +109,7 @@
 
     "label_subtext": "Тя е достъпна на:",
     "label_lang-ar": "Арабски",
+    "label_lang-bg": "Български",
     "label_lang-cs": "Чешки",
     "label_lang-el": "Гръцки",
     "label_lang-en": "Английски",
@@ -121,9 +122,8 @@
     "label_lang-ru": "Руски",
     "label_lang-tr": "Турски",
     "label_lang-uz": "Узбекски",
-    "label_lang-zh-tw": "Традиционен китайски",
     "label_lang-zh": "Китайски",
-    "label_lang-bg": "Български"
+    "label_lang-zh-tw": "Традиционен китайски"
   },
   "search": {
     "search_placeholder": "Търсене",

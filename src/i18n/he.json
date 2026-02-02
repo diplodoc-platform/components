@@ -123,7 +123,8 @@
     "label_lang-tr": "טורקית",
     "label_lang-uz": "אוזבקית",
     "label_lang-zh-tw": "סינית מסורתית",
-    "label_lang-zh": "סינית"
+    "label_lang-zh": "סינית",
+    "label_lang-he": "עברית"
   },
   "search": {
     "search_placeholder": "חיפוש",

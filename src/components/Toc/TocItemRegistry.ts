@@ -1,4 +1,4 @@
-import {TocItem} from '../../models';
+import type {TocItem} from '../../models';
 
 type NormalizeUrl = (path: string, hash: string | undefined) => string | null | undefined;
 

@@ -1,4 +1,4 @@
-!demo/.storybook
+demo/.storybook
 
 .idea
 .vscode
@@ -13,3 +13,8 @@ node_modules
 /coverage
 /external
 /playwright-report
+.lintstagedrc.js
+.eslintrc.js
+.prettierrc.js
+.stylelintrc.js
+esbuild/**/*.mjs

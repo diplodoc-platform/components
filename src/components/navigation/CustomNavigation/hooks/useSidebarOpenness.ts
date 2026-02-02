@@ -1,6 +1,6 @@
-import {useCallback, useEffect, useState} from 'react';
+import type {NavigationTocProps} from '../../SidebarContent/SidebarContent';
 
-import {NavigationTocProps} from '../../SidebarContent/SidebarContent';
+import {useCallback, useEffect, useState} from 'react';
 
 type UseSidebarOpennessReturnData = [
     isSidebarOpened: boolean,

@@ -1,4 +1,6 @@
-import RouterContext, {RouterData} from '../contexts/RouterContext';
+import type {RouterData} from '../contexts/RouterContext';
+
+import RouterContext from '../contexts/RouterContext';
 
 import withPropContext from './_withContext';
 

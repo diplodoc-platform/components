@@ -1,6 +1,6 @@
-import {useCallback, useState} from 'react';
+import type {MainMenuOpenessProps} from '../../SidebarContent/SidebarContent';
 
-import {MainMenuOpenessProps} from '../../SidebarContent/SidebarContent';
+import {useCallback, useState} from 'react';
 
 type UseMainMenuOpennessReturnData = [
     isOpened: boolean,

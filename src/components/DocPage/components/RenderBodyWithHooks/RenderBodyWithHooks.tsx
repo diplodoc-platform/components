@@ -1,6 +1,9 @@
-import React, {FC, useContext, useMemo} from 'react';
+import type {FC} from 'react';
+import type {RenderBodyProps} from '../RenderBody/RenderBody';
 
-import RenderBody, {RenderBodyProps} from '../RenderBody/RenderBody';
+import React, {useContext, useMemo} from 'react';
+
+import RenderBody from '../RenderBody/RenderBody';
 import {RenderBodyHooksContext} from '../../../../contexts/RenderBodyHooksContext';
 
 const RenderBodyWithHooks: FC<RenderBodyProps> = (props) => {

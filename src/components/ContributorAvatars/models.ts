@@ -1,4 +1,4 @@
-import {Contributor} from '../../models';
+import type {Contributor} from '../../models';
 
 export type PopupData = {
     ref: React.MutableRefObject<(HTMLButtonElement & HTMLImageElement) | null>;

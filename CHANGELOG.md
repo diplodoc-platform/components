@@ -1,5 +1,12 @@
 # История изменений
 
+## [5.2.1](https://github.com/diplodoc-platform/components/compare/v5.2.0...v5.2.1) (2026-01-27)
+
+
+### Bug Fixes
+
+* changed name for base color ([#521](https://github.com/diplodoc-platform/components/issues/521)) ([a565ee5](https://github.com/diplodoc-platform/components/commit/a565ee50a8d9d6396518a466c3565923368d78f3))
+
 ## [5.2.0](https://github.com/diplodoc-platform/components/compare/v5.1.0...v5.2.0) (2025-12-16)
 
 

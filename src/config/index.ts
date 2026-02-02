@@ -1,6 +1,8 @@
+import type {Config} from '../models';
+
 import {Lang as LangUIKit, configure as configureUIKit} from '@gravity-ui/uikit';
 
-import {Config, Lang} from '../models';
+import {Lang} from '../models';
 
 import {configureI18N} from './i18n';
 

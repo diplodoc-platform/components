@@ -1,4 +1,4 @@
-import {ThemeContextProps} from '@gravity-ui/uikit';
+import type {ThemeContextProps} from '@gravity-ui/uikit';
 
 import {PopperPosition} from '../../hooks';
 import {getPopupPosition} from '../../utils';

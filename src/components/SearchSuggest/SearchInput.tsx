@@ -1,7 +1,8 @@
 import type {KeyboardEvent, SyntheticEvent} from 'react';
+import type {TextInputSize} from '@gravity-ui/uikit';
 
 import React, {forwardRef, memo} from 'react';
-import {TextInput, TextInputSize} from '@gravity-ui/uikit';
+import {TextInput} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 
 type SuggestInputProps = {

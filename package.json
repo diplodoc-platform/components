@@ -3,7 +3,7 @@
   "description": "React components for drawing Diplodoc documentation",
   "author": "YFM Team <yfm-team@yandex.ru>",
   "license": "MIT",
-  "version": "5.2.0",
+  "version": "5.2.1",
   "repository": {
     "type": "git",
     "url": "git@github.com:diplodoc-platform/components.git"
@@ -104,13 +104,13 @@
     "react-dom": ">=16.8.0 || >=17.0.0 || >=18.0.0 || >=19.0.0"
   },
   "devDependencies": {
-    "@diplodoc/lint": "^1.1.1",
+    "@diplodoc/lint": "^1.10.2",
     "@diplodoc/tsconfig": "^1.0.2",
     "@playwright/test": "^1.48.2",
     "@types/hoist-non-react-statics": "^3.3.6",
     "@types/langs": "^2.0.1",
     "@types/lodash": "4.14.179",
-    "@types/node": "^22.9.0",
+    "@types/node": "^22.19.7",
     "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
     "@types/react-gtm-module": "^2.0.3",
@@ -118,7 +118,7 @@
     "@types/react-recompose": "^0.33.6",
     "@types/react-transition-group": "^4.4.10",
     "autoprefixer": "^10.4.15",
-    "esbuild": "^0.27.0",
+    "esbuild": "^0.27.2",
     "esbuild-sass-plugin": "^3.3.1",
     "npm-run-all": "^4.1.5",
     "postcss": "^8.4.28",

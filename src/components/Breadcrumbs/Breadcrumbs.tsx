@@ -1,7 +1,7 @@
+import type {BreadcrumbItem} from '../../models';
+
 import React from 'react';
 import block from 'bem-cn-lite';
-
-import {BreadcrumbItem} from '../../models';
 
 import './Breadcrumbs.scss';
 

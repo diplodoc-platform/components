@@ -1,10 +1,12 @@
+import type {Router, TocData, TocItem} from '../../models';
+
 import React from 'react';
 import {getUniqId} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 import omit from 'lodash/omit';
 
 import {PopperPosition} from '../../hooks';
-import {ControlSizes, Router, TocData, TocItem} from '../../models';
+import {ControlSizes} from '../../models';
 import {isActiveItem, normalizeHash, normalizePath} from '../../utils';
 import {Controls, ControlsLayout} from '../Controls';
 import {HTML} from '../HTML';

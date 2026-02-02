@@ -1,6 +1,8 @@
-import {RefObject, useEffect, useMemo, useRef, useState} from 'react';
+import type {RefObject} from 'react';
+import type {DocHeadingItem} from '../../../models';
 
-import {DocHeadingItem} from '../../../models';
+import {useEffect, useMemo, useRef, useState} from 'react';
+
 import {useStableCallback} from '../../../hooks/useStableCallback';
 
 export type FlatHeadingItem = {

@@ -1,9 +1,11 @@
-import React, {MouseEvent, memo, useCallback, useState} from 'react';
+import type {MouseEvent} from 'react';
+import type {NavigationDropdownItem} from '@gravity-ui/page-constructor';
+
+import React, {memo, useCallback, useState} from 'react';
 import {ChevronDown} from '@gravity-ui/icons';
 import {
     Foldable,
     ItemColumnName,
-    NavigationDropdownItem,
     NavigationLayout,
     NavigationList,
     useActiveNavItem,

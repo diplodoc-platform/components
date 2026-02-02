@@ -1,8 +1,9 @@
+import type {Contributor} from '../../models';
+
 import React from 'react';
 import block from 'bem-cn-lite';
 
 import {useTranslation} from '../../hooks';
-import {Contributor} from '../../models';
 import {ContributorAvatars} from '../ContributorAvatars';
 
 import './Contributors.scss';

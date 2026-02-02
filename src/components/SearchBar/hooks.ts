@@ -1,4 +1,6 @@
-import {SyntheticEvent, useCallback, useEffect, useRef, useState} from 'react';
+import type {SyntheticEvent} from 'react';
+
+import {useCallback, useEffect, useRef, useState} from 'react';
 import throttle from 'lodash/throttle';
 
 import {CLASSNAME, CLASSNAME_SELECTED, HIGHLIGHT_OPTIONS} from './constants';

@@ -65,21 +65,15 @@ const ErrorPage: React.FC<ErrorPageProps> = ({
                 <React.Fragment>
                     {links && links.length > 0 && (
                         <div className={b('subtext')}>
-                            {links.map((link) => {
-                                const code = link.code;
-
-                                if (code && SUPPORTED_LANGS.includes(code)) {
-                                    return (
-                                        <Link href={link.url} key={link.code}>
-                                            <Button view="outlined-info">
-                                                {t(`label_lang-${link.code}`)}
-                                            </Button>
-                                        </Link>
-                                    );
-                                } else {
-                                    return <></>;
-                                }
-                            })}
+                            {links
+                                .filter((link) => link.code && SUPPORTED_LANGS.includes(link.code))
+                                .map((link) => (
+                                    <Link href={link.url} key={link.code}>
+                                        <Button view="outlined-info">
+                                            {t(`label_lang-${link.code}`)}
+                                        </Button>
+                                    </Link>
+                                ))}
                         </div>
                     )}
                     <div>{homeLink}</div>

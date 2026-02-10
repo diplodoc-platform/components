@@ -55,7 +55,7 @@ const SubscribeVariantsPopup = memo<{
                     });
 
                     onSubmit();
-                } catch (e) {
+                } catch {
                     setShowError(t('email-request-fail'));
                 }
 

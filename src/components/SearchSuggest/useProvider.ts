@@ -32,7 +32,7 @@ export function useProvider(provider: ISearchProvider): [Items, Request] {
                         setTimeout(() => cache.delete(query), 30000);
 
                         return items;
-                    } catch (error) {
+                    } catch {
                         return [
                             {
                                 type: SuggestItemType.Text,

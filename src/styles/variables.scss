@@ -15,7 +15,8 @@ $centerBlockMaxWidth: 736px;
 $toMainMenuVerticalPadding: 4px;
 $toMainMenuHorizontalPadding: 12px;
 $toMainMenuHeight: calc(
-    var(--dc-subnavigation-height, $subNavigationHeight) - #{$toMainMenuVerticalPadding} - #{$toMainMenuVerticalPadding}
+    var(--dc-subnavigation-height, $subNavigationHeight) - #{$toMainMenuVerticalPadding} -
+        #{$toMainMenuVerticalPadding}
 );
 
 // MiniToc

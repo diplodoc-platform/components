@@ -110,7 +110,8 @@
                 100vh - var(--dc-header-height, #{variables.$headerHeight}) - var(
                         --dc-subnavigation-height,
                         #{variables.$subNavigationHeight}
-                    ) + 1px
+                    ) +
+                    1px
             );
             height: 100%;
             width: 100vw;

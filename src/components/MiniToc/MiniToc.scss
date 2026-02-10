@@ -24,7 +24,8 @@
             100vh - var(--dc-header-height, #{variables.$headerHeight}) - var(
                     --dc-subnavigation-height,
                     #{variables.$subNavigationHeight}
-                ) - #{variables.$miniTocOffset}
+                ) -
+                #{variables.$miniTocOffset}
         );
         overflow: hidden auto;
     }
@@ -96,7 +97,8 @@
                     100vh - var(--dc-header-height, #{variables.$headerHeight}) - var(
                             --dc-subnavigation-height,
                             #{variables.$subNavigationHeight}
-                        ) - #{variables.$mobileMiniTocOffset} - #{$bottomHeight}
+                        ) -
+                        #{variables.$mobileMiniTocOffset} - #{$bottomHeight}
                 );
             }
         }
@@ -120,7 +122,8 @@
                 100vh - var(--dc-header-height, #{variables.$headerHeight}) - var(
                         --dc-subnavigation-height,
                         #{variables.$subNavigationHeight}
-                    ) - #{variables.$mobileMiniTocOffset}
+                    ) -
+                    #{variables.$mobileMiniTocOffset}
             );
         }
     }

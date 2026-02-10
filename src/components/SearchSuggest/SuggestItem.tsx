@@ -30,7 +30,10 @@ export const SuggestItem: React.FC<SearchSuggestItem> = (item) => {
         case SuggestItemType.Page:
             return (
                 <Link className={b('item', {type: item.type})} view={'primary'} href={item.link}>
-                    <HTML className={b('item-title')}>{item.title}</HTML>
+                    <HTML className={b('item-title')}>
+                        {item.section ? item.section : item.title}
+                    </HTML>
+                    {item.section && <HTML className={b('item-subtitle')}>{item.title}</HTML>}
                     <HTML className={b('item-description')}>{item.description}</HTML>
                 </Link>
             );

@@ -32,8 +32,8 @@ export function normalizePath(path?: string | null) {
 
     return path
         .replace(/^\//, '')
-        .replace(/\.html$/, '')
-        .replace(/\/index$/, '/');
+        .replace(/\.html(\?.*)?$/, '$1')
+        .replace(/\/index(\?.*)?$/, '/$1');
 }
 
 export function normalizeHash(hash?: string | null) {

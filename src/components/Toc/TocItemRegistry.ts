@@ -58,7 +58,8 @@ export class TocItemRegistry {
             this.itemById.set(item.id, item);
 
             if (item.href) {
-                const [pathname, hash] = item.href.split('#');
+                const [leftPart, hash] = item.href.split('#');
+                const [pathname] = leftPart.split('?');
                 const url = this.normalizeUrl(pathname, hash);
 
                 if (url) {

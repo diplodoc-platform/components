@@ -87,7 +87,8 @@ class Toc extends React.Component<TocProps, TocState> {
         if (
             prevProps.router.pathname !== router.pathname ||
             prevProps.router.hash !== router.hash ||
-            prevProps.singlePage !== singlePage
+            prevProps.singlePage !== singlePage ||
+            nextState
         ) {
             nextState = this.computeState(nextState || prevState);
         } else if (prevState.activeId !== this.state.activeId) {

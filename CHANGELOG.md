@@ -1,5 +1,13 @@
 # История изменений
 
+## [5.2.3](https://github.com/diplodoc-platform/components/compare/v5.2.2...v5.2.3) (2026-02-16)
+
+
+### Bug Fixes
+
+* Add toc item url with query support ([1b671b3](https://github.com/diplodoc-platform/components/commit/1b671b3b5dceee8763da00204c530c2ca6b3d980))
+* Update infra to v1.13.2 ([5c0d550](https://github.com/diplodoc-platform/components/commit/5c0d550a838c678cc5562d3cc23c478b3f3f80dd))
+
 ## [5.2.2](https://github.com/diplodoc-platform/components/compare/v5.2.1...v5.2.2) (2026-02-02)
 
 

@@ -1,5 +1,12 @@
 # История изменений
 
+## [5.2.4](https://github.com/diplodoc-platform/components/compare/v5.2.3...v5.2.4) (2026-02-26)
+
+
+### Bug Fixes
+
+* fixed twitching search bar ([214c8a2](https://github.com/diplodoc-platform/components/commit/214c8a2d86fd830b1279ff9af571a23fedeb7024))
+
 ## [5.2.3](https://github.com/diplodoc-platform/components/compare/v5.2.2...v5.2.3) (2026-02-16)
 
 

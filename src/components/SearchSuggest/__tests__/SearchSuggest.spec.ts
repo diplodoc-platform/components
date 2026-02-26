@@ -11,19 +11,13 @@ test('SearchSuggest test', async ({page}) => {
     const searchSuggest = page.locator('.dc-search-suggest__wrapper');
     const input = searchSuggest.locator('input.g-text-input__control_type_input');
 
-    await expect(page).toHaveScreenshot('SearchSuggest-default.png', {
-        maxDiffPixelRatio: 0.01,
-    });
+    await expect(page).toHaveScreenshot('SearchSuggest-default.png');
 
     await input.fill('test');
 
-    await expect(page).toHaveScreenshot('SearchSuggest-search.png', {
-        maxDiffPixelRatio: 0.01,
-    });
+    await expect(page).toHaveScreenshot('SearchSuggest-search.png');
 
     await page.locator('body').click();
 
-    await expect(page).toHaveScreenshot('SearchSuggest-out.png', {
-        maxDiffPixelRatio: 0.01,
-    });
+    await expect(page).toHaveScreenshot('SearchSuggest-out.png');
 });

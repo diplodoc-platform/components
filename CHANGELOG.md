@@ -1,5 +1,12 @@
 # История изменений
 
+## [5.2.5](https://github.com/diplodoc-platform/components/compare/v5.2.4...v5.2.5) (2026-02-27)
+
+
+### Bug Fixes
+
+* fixed search bar ([b748634](https://github.com/diplodoc-platform/components/commit/b7486342a2d34963bd89ec53b3ba49cd03f9f2e6))
+
 ## [5.2.4](https://github.com/diplodoc-platform/components/compare/v5.2.3...v5.2.4) (2026-02-26)
 
 

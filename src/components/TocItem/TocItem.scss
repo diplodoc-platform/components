@@ -122,11 +122,25 @@ $visibleStartPadding: 12px;
     }
 
     &__arrow {
+        align-self: stretch;
+        height: auto;
+
         @media (max-width: map.get(variables.$screenBreakpoints, 'md') - 1) {
             margin-right: 20px;
+            left: $visibleStartPadding;
 
             [dir='rtl'] & {
+                left: 0;
                 margin-left: 20px;
+            }
+
+            .g-button__icon {
+                left: -$visibleStartPadding;
+
+                [dir='rtl'] & {
+                    left: 0;
+                    right: 0;
+                }
             }
         }
 

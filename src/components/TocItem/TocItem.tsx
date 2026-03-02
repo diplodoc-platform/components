@@ -34,6 +34,12 @@ export const TocItem: React.FC<TocItemProps> = React.forwardRef(
             toggleItem(id, expanded);
         };
 
+        const handleArrowClick = (event: React.MouseEvent) => {
+            event.stopPropagation();
+            event.preventDefault();
+            toggleItem(id, expanded);
+        };
+
         const {t} = useTranslation('toc-nav-panel');
 
         const deprecatedIcon = deprecated ? <Ban /> : null;
@@ -87,21 +93,21 @@ export const TocItem: React.FC<TocItemProps> = React.forwardRef(
 
         if (expandable && href) {
             return (
-                <div className={b('wrapper', b('text', textProps))}>
-                    <Button
-                        size={'xs'}
-                        className={b('arrow')}
-                        view={'flat'}
-                        onClick={handleClick}
-                        extraProps={allyButtonProps}
-                        ref={ref}
-                    >
-                        <Button.Icon>{icon}</Button.Icon>
-                    </Button>
-                    <a {...linkAttributes}>
+                <a {...linkAttributes}>
+                    <div className={b('wrapper', b('text', textProps))}>
+                        <Button
+                            size={'xs'}
+                            className={b('arrow')}
+                            view={'flat'}
+                            onClick={handleArrowClick}
+                            extraProps={allyButtonProps}
+                            ref={ref}
+                        >
+                            <Button.Icon>{icon}</Button.Icon>
+                        </Button>
                         <span className={b('text')}>{text}</span>
-                    </a>
-                </div>
+                    </div>
+                </a>
             );
         }
 

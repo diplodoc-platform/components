@@ -1,5 +1,12 @@
 # История изменений
 
+## [5.2.6](https://github.com/diplodoc-platform/components/compare/v5.2.5...v5.2.6) (2026-03-02)
+
+
+### Bug Fixes
+
+* updated toc link logic ([25f1fe0](https://github.com/diplodoc-platform/components/commit/25f1fe0502c5ab9e7eed70941403b71f79c160bf))
+
 ## [5.2.5](https://github.com/diplodoc-platform/components/compare/v5.2.4...v5.2.5) (2026-02-27)
 
 

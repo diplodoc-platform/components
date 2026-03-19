@@ -1,5 +1,12 @@
 # История изменений
 
+## [5.2.7](https://github.com/diplodoc-platform/components/compare/v5.2.6...v5.2.7) (2026-03-19)
+
+
+### Bug Fixes
+
+* **DocLayout:** removed max-height for legacy toc in mobile and tablet views ([#572](https://github.com/diplodoc-platform/components/issues/572)) ([3bbce59](https://github.com/diplodoc-platform/components/commit/3bbce595e0b7a1023c8feacc8b3aba24c9d38693))
+
 ## [5.2.6](https://github.com/diplodoc-platform/components/compare/v5.2.5...v5.2.6) (2026-03-02)
 
 

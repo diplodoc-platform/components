@@ -11,6 +11,7 @@ import {usePopupState, useTranslation} from '../../../../hooks';
 import {getItemHeight, getItemsHeight, getPopupPosition} from '../../../../utils';
 import {Control} from '../../../Control';
 import {ControlsLayoutContext} from '../../ControlsLayout';
+import {CommonAnalyticsEvent, useAnalytics} from '../../../../shared/libs/analytics';
 
 import './LangControl.scss';
 
@@ -26,6 +27,7 @@ interface ControlProps {
 const LIST_ITEM_HEIGHT = 36;
 
 const LangControl = (props: ControlProps) => {
+    const analytics = useAnalytics();
     const {t} = useTranslation('controls');
     const {controlClassName, controlSize, isVerticalView, isMobileView, popupPosition} =
         useContext(ControlsLayoutContext);
@@ -114,12 +116,13 @@ const LangControl = (props: ControlProps) => {
     const handleOpenChange = useCallback(
         (opened: boolean) => {
             if (opened) {
+                analytics.track(CommonAnalyticsEvent.DOCS_LANG_CLICK);
                 popupState.open();
             } else {
                 popupState.close();
             }
         },
-        [popupState],
+        [analytics, popupState],
     );
 
     return (

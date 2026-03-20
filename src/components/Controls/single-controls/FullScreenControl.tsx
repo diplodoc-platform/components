@@ -4,6 +4,7 @@ import {SquareDashed, SquareDashedCircle} from '@gravity-ui/icons';
 import {useTranslation} from '../../../hooks';
 import {Control} from '../../Control';
 import {ControlsLayoutContext} from '../ControlsLayout';
+import {CommonAnalyticsEvent, useAnalytics} from '../../../shared/libs/analytics';
 
 interface ControlProps {
     value?: boolean;
@@ -12,15 +13,18 @@ interface ControlProps {
 
 const FullScreenControl = memo<ControlProps>((props) => {
     const {t} = useTranslation('controls');
+    const analytics = useAnalytics();
     const {controlClassName, controlSize, isVerticalView, popupPosition} =
         useContext(ControlsLayoutContext);
     const {value, onChange} = props;
 
     const onClick = useCallback(() => {
+        analytics.track(CommonAnalyticsEvent.DOCS_READING_MODE_CLICK);
+
         if (onChange) {
             onChange(!value);
         }
-    }, [value, onChange]);
+    }, [analytics, onChange, value]);
 
     const onKeyDown = useCallback(
         (event: KeyboardEvent | React.KeyboardEvent) => {

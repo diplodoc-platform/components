@@ -10,6 +10,7 @@ import {TextSizes, Theme} from '../../../../models';
 import {getPopupPosition} from '../../../../utils';
 import {Control} from '../../../Control';
 import {ControlsLayoutContext} from '../../ControlsLayout';
+import {CommonAnalyticsEvent, useAnalytics} from '../../../../shared/libs/analytics';
 
 import './SettingsControl.scss';
 
@@ -37,6 +38,7 @@ interface SettingControlItem {
 
 const SettingsControl = (props: ControlProps) => {
     const {t} = useTranslation('controls');
+    const analytics = useAnalytics();
     const {controlClassName, controlSize, isVerticalView, isWideView, isMobileView, popupPosition} =
         useContext(ControlsLayoutContext);
     const {
@@ -60,21 +62,25 @@ const SettingsControl = (props: ControlProps) => {
     const handleOpenChange = useCallback(
         (opened: boolean) => {
             if (opened) {
+                analytics.track(CommonAnalyticsEvent.DOCS_HEADER_SETTINGS_CLICK);
+
                 popupState.open();
             } else {
                 popupState.close();
             }
         },
-        [popupState],
+        [analytics, popupState],
     );
 
     const _onChangeTextSize = useCallback(
         (textSizeKey: TextSizes) => () => {
+            analytics.track(CommonAnalyticsEvent.DOCS_FONTSIZE_MODE_CLICK);
+
             if (onChangeTextSize) {
                 onChangeTextSize(textSizeKey);
             }
         },
-        [onChangeTextSize],
+        [onChangeTextSize, analytics],
     );
     const _onChangeTheme = useCallback(() => {
         if (onChangeTheme) {
@@ -82,15 +88,19 @@ const SettingsControl = (props: ControlProps) => {
         }
     }, [theme, onChangeTheme]);
     const _onChangeWideFormat = useCallback(() => {
+        analytics.track(CommonAnalyticsEvent.DOCS_WIDESCREEN_MODE_CLICK);
+
         if (onChangeWideFormat) {
             onChangeWideFormat(!wideFormat);
         }
-    }, [wideFormat, onChangeWideFormat]);
+    }, [wideFormat, onChangeWideFormat, analytics]);
     const _onChangeShowMiniToc = useCallback(() => {
+        analytics.track(CommonAnalyticsEvent.DOCS_HIDE_PAGE_NAV_CLICK);
+
         if (onChangeShowMiniToc) {
             onChangeShowMiniToc(!showMiniToc);
         }
-    }, [showMiniToc, onChangeShowMiniToc]);
+    }, [showMiniToc, onChangeShowMiniToc, analytics]);
 
     const getSettingsItems = useCallback(() => {
         const allTextSizes = Object.values(TextSizes);

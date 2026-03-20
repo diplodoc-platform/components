@@ -17,6 +17,7 @@ import {Xmark} from '@gravity-ui/icons';
 import block from 'bem-cn-lite';
 import uniqueId from 'lodash/uniqueId';
 
+import {CommonAnalyticsEvent, useAnalytics} from '../../shared/libs/analytics';
 import {useTranslation, useVirtualElementRef} from '../../hooks';
 
 import {SearchInput} from './SearchInput';
@@ -77,6 +78,7 @@ export const SearchSuggest = forwardRef<SearchSuggestApi, SearchSuggestProps>((p
         closeButton,
         onBlur,
     } = props;
+    const analytics = useAnalytics();
     const href = useRef<HTMLAnchorElement>(null);
     const input = useRef<HTMLElement>(null);
     const suggest = useRef<List<SearchSuggestItem>>(null);
@@ -149,11 +151,13 @@ export const SearchSuggest = forwardRef<SearchSuggestApi, SearchSuggestProps>((p
     useEffect(() => provider.init(), [provider]);
     useEffect(() => {
         if (focused) {
+            analytics.track(CommonAnalyticsEvent.DOCS_SEARCH_CLICK);
+
             return watch();
         }
 
         return () => {};
-    }, [focused, watch]);
+    }, [analytics, focused, watch]);
 
     useImperativeHandle(api, () => ({open, close}), [open, close]);
 

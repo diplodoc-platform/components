@@ -1,11 +1,12 @@
 import type {Router, TocData, TocItem} from '../../models';
 
-import React, {memo, useMemo} from 'react';
+import React, {memo, useCallback, useMemo} from 'react';
 import {ArrowLeft, ArrowRight} from '@gravity-ui/icons';
 import block from 'bem-cn-lite';
 
 import {useTranslation} from '../../hooks';
 import {isActiveItem, isExternalHref} from '../../utils';
+import {CommonAnalyticsEvent, useAnalytics} from '../../shared/libs/analytics';
 
 import './TocNavPanel.scss';
 
@@ -90,13 +91,27 @@ const TocNavControl = memo<TocNavControlProps>(({item, isNext, onClick}) => {
 TocNavControl.displayName = 'TocNavControl';
 
 const TocNavPanel = memo<TocNavPanelProps>(({items, router, fixed, className, onClick}) => {
+    const analytics = useAnalytics();
     const flatToc = useMemo(() => getFlatToc(items || []), [items]);
     const {prevItem, nextItem} = useMemo(
         () => getBoundingItems(flatToc, router),
         [flatToc, router],
     );
 
-    const handleClickFactory = (at: 'prev' | 'next') => () => onClick?.(at);
+    const handleClick = useCallback(
+        (at: 'prev' | 'next') => {
+            const event =
+                at === 'prev'
+                    ? CommonAnalyticsEvent.DOCS_FOOTER_PREV_CLICK
+                    : CommonAnalyticsEvent.DOCS_FOOTER_NEXT_CLICK;
+
+            analytics.track(event);
+            onClick?.(at);
+        },
+        [onClick, analytics],
+    );
+    const handlePrev = useCallback(() => handleClick('prev'), [handleClick]);
+    const handleNext = useCallback(() => handleClick('next'), [handleClick]);
 
     if (!flatToc.length) {
         return null;
@@ -105,14 +120,8 @@ const TocNavPanel = memo<TocNavPanelProps>(({items, router, fixed, className, on
     return (
         <div className={b({fixed}, className)}>
             <div className={b('content')}>
-                {<TocNavControl item={prevItem} onClick={handleClickFactory('prev')} />}
-                {
-                    <TocNavControl
-                        item={nextItem}
-                        isNext={true}
-                        onClick={handleClickFactory('next')}
-                    />
-                }
+                <TocNavControl item={prevItem} onClick={handlePrev} />
+                <TocNavControl item={nextItem} isNext={true} onClick={handleNext} />
             </div>
         </div>
     );

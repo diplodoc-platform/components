@@ -8,8 +8,6 @@ import type {
     Router,
 } from '../models';
 
-import {parse} from 'url';
-
 import {DocContentPage} from '../components/DocContentPage';
 import {DocLeadingPage} from '../components/DocLeadingPage';
 import {DocPage} from '../components/DocPage';
@@ -45,10 +43,15 @@ export function normalizeHash(hash?: string | null) {
 
 export function isActiveItem(router: Router, href: string, singlePage?: boolean) {
     if (singlePage) {
-        return normalizeHash(router.hash) === normalizeHash(parse(href).hash);
+        return (
+            normalizeHash(router.hash) === normalizeHash(new URL(href, window.location.href).hash)
+        );
     }
 
-    return normalizePath(router.pathname) === normalizePath(parse(href).pathname);
+    return (
+        normalizePath(router.pathname) ===
+        normalizePath(new URL(href, window.location.href).pathname)
+    );
 }
 
 export function isExternalHref(href: string) {

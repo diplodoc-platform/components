@@ -43,15 +43,10 @@ export function normalizeHash(hash?: string | null) {
 
 export function isActiveItem(router: Router, href: string, singlePage?: boolean) {
     if (singlePage) {
-        return (
-            normalizeHash(router.hash) === normalizeHash(new URL(href, window.location.href).hash)
-        );
+        return normalizeHash(router.hash) === normalizeHash(new URL(href).hash);
     }
 
-    return (
-        normalizePath(router.pathname) ===
-        normalizePath(new URL(href, window.location.href).pathname)
-    );
+    return normalizePath(router.pathname) === normalizePath(new URL(href).pathname);
 }
 
 export function isExternalHref(href: string) {

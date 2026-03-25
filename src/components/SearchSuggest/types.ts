@@ -1,4 +1,5 @@
 import type {BreadcrumbItem} from '../../models';
+import type {ReactNode} from 'react';
 
 export enum SuggestItemType {
     Text = 'text',
@@ -6,7 +7,11 @@ export enum SuggestItemType {
     Group = 'group',
     Delimiter = 'delimiter',
     Link = 'link',
+    AiHint = 'ai-hint',
 }
+
+export type SearchSuggestIconMap = Partial<Record<SuggestItemType, ReactNode>>;
+export type SearchSuggestHintMap = Partial<Record<SuggestItemType, ReactNode>>;
 
 interface SearchSuggestBaseItem {
     type: SuggestItemType;
@@ -41,9 +46,17 @@ interface SearchSuggestLinkItem extends SearchSuggestBaseItem {
     link: string;
 }
 
+export interface SearchSuggestAiHintItem extends SearchSuggestBaseItem {
+    type: SuggestItemType.AiHint;
+    title: string;
+    description: string;
+    onClick: () => void;
+}
+
 export type SearchSuggestLinkableItem = SearchSuggestPageItem | SearchSuggestLinkItem;
 
 export type SearchSuggestItem =
+    | SearchSuggestAiHintItem
     | SearchSuggestLinkableItem
     | SearchSuggestTextItem
     | SearchSuggestGroupItem

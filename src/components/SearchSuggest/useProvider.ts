@@ -12,10 +12,17 @@ type Link = (query: string) => string | null;
 type Zalgo<T> = Promise<T> | T;
 type Items = Zalgo<SearchSuggestItem[] | null>;
 type Request = (query: string) => () => void;
+type UseProviderOptions = {
+    withAllResults?: boolean;
+};
 
 const cache = new Map<string, SearchSuggestItem[]>();
 
-export function useProvider(provider: ISearchProvider): [Items, Request] {
+export function useProvider(
+    provider: ISearchProvider,
+    options: UseProviderOptions = {},
+): [Items, Request] {
+    const {withAllResults = true} = options;
     const wait = useRef<Zalgo<SearchSuggestItem[] | null>>(null);
     const [items, setItems] = useState<Zalgo<SearchSuggestItem[] | null>>(null);
     const {t} = useTranslation('search-suggest');
@@ -23,13 +30,20 @@ export function useProvider(provider: ISearchProvider): [Items, Request] {
     const suggest = useMemo(
         () =>
             debounce((query: string) => {
+                const cacheKey = `${withAllResults ? 'all' : 'items'}:${query}`;
                 const promise = (wait.current = (async () => {
                     try {
                         const data = await provider.suggest(query);
-                        const items = format(query, data, (args) => provider.link(args), t);
+                        const items = format(
+                            query,
+                            data,
+                            (args) => provider.link(args),
+                            t,
+                            withAllResults,
+                        );
 
-                        cache.set(query, items);
-                        setTimeout(() => cache.delete(query), 30000);
+                        cache.set(cacheKey, items);
+                        setTimeout(() => cache.delete(cacheKey), 30000);
 
                         return items;
                     } catch {
@@ -51,49 +65,86 @@ export function useProvider(provider: ISearchProvider): [Items, Request] {
                     }
                 });
             }, 300),
-        [t, provider, wait, setItems],
+        [t, provider, wait, setItems, withAllResults],
     );
 
     const request = useCallback(
         (query: string) => {
+            const cacheKey = `${withAllResults ? 'all' : 'items'}:${query}`;
+
             if (!query) {
                 wait.current = null;
                 setItems(null);
-            } else if (cache.has(query)) {
+            } else if (cache.has(cacheKey)) {
                 wait.current = null;
-                setItems(cache.get(query) as SearchSuggestItem[]);
+                setItems(cache.get(cacheKey) as SearchSuggestItem[]);
             } else {
                 suggest(query);
             }
 
             return suggest.cancel;
         },
-        [suggest, setItems],
+        [suggest, setItems, withAllResults],
     );
 
     return [items, request];
 }
 
-function format(query: string, items: ISearchResult[], link: Link, t: TFunction) {
+function format(
+    query: string,
+    items: ISearchResult[],
+    link: Link,
+    t: TFunction,
+    withAllResults: boolean,
+) {
     const page = link(query);
-    const groups = Object.values(
-        items.reduce(
-            (result, item) => {
-                result[item.type] = result[item.type] || {type: item.type, items: []};
-                result[item.type].items.push({
-                    type: SuggestItemType.Page,
-                    title: item.title,
-                    link: item.link,
-                    description: item.description,
-                    breadcrumbs: item.breadcrumbs,
-                });
-                return result;
-            },
-            {} as Record<string, SearchGroup>,
-        ),
-    );
+    const preparedItems: SearchSuggestItem[] = [];
+    const groupedItemsMap = {} as Record<string, SearchGroup>;
 
-    const result =
+    items.forEach((item) => {
+        if (item.type === SuggestItemType.AiHint) {
+            preparedItems.push({
+                type: SuggestItemType.AiHint,
+                title: item.title,
+                description: item.description || '',
+                onClick: item.onClick,
+            });
+            return;
+        }
+
+        if (item.type === SuggestItemType.Page) {
+            preparedItems.push({
+                type: SuggestItemType.Page,
+                title: item.title,
+                link: item.link,
+                description: item.description,
+                breadcrumbs: item.breadcrumbs,
+            });
+            return;
+        }
+
+        if (item.type === SuggestItemType.Link) {
+            preparedItems.push({
+                type: SuggestItemType.Link,
+                title: item.title,
+                link: item.link,
+            });
+            return;
+        }
+
+        groupedItemsMap[item.type] = groupedItemsMap[item.type] || {type: item.type, items: []};
+        groupedItemsMap[item.type].items.push({
+            type: SuggestItemType.Page,
+            title: item.title,
+            link: item.link,
+            description: item.description,
+            breadcrumbs: item.breadcrumbs,
+        });
+    });
+
+    const groups = Object.values(groupedItemsMap);
+
+    const groupedItems =
         groups.length === 1
             ? groups[0].items
             : groups.reduce((result, group) => {
@@ -113,7 +164,9 @@ function format(query: string, items: ISearchResult[], link: Link, t: TFunction)
                   return result.concat(group.items as SearchSuggestItem[]);
               }, [] as SearchSuggestItem[]);
 
-    if (result.length > 0 && page) {
+    const result = preparedItems.concat(groupedItems);
+
+    if (withAllResults && result.length > 0 && page) {
         result.push({
             type: SuggestItemType.Link,
             title: t('search-suggest_all-results'),

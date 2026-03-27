@@ -1,6 +1,6 @@
 import type {ReactNode} from 'react';
 import type {ISearchProvider} from '../../models';
-import type {SearchSuggestItem} from './types';
+import type {SearchSuggestAiHintItem, SearchSuggestItem} from './types';
 import type {ListItemData} from '@gravity-ui/uikit';
 
 import React, {forwardRef, memo, useEffect} from 'react';
@@ -25,10 +25,14 @@ const SuggestLoader = memo(() => {
 
 SuggestLoader.displayName = 'SuggestLoader';
 
-const SuggestEmpty = memo<{query: string}>(({query}) => {
+const SuggestEmpty = memo<{query: string; emptyState?: ReactNode}>(({query, emptyState}) => {
     const {t} = useTranslation('search-suggest');
 
-    return <div className={b('list', {empty: true})}>{t('search-suggest_not-found', {query})}</div>;
+    return (
+        <div className={b('list', {empty: true})}>
+            {emptyState === undefined ? t('search-suggest_not-found', {query}) : emptyState}
+        </div>
+    );
 });
 
 SuggestEmpty.displayName = 'SuggestEmpty';
@@ -43,11 +47,12 @@ type SuggestListProps = {
         fromKeyboard?: boolean,
     ) => boolean | void;
     onChangeActive: (index?: number) => void;
+    activeItemIndex?: number;
 };
 
 const SuggestList = memo(
     forwardRef<List<SearchSuggestItem>, SuggestListProps>((props, ref) => {
-        const {id, items, renderItem, onItemClick, onChangeActive} = props;
+        const {id, items, renderItem, onItemClick, onChangeActive, activeItemIndex} = props;
 
         return (
             <List
@@ -61,6 +66,7 @@ const SuggestList = memo(
                 renderItem={renderItem}
                 onItemClick={onItemClick}
                 onChangeActive={onChangeActive}
+                activeItemIndex={activeItemIndex}
             />
         );
     }),
@@ -72,14 +78,33 @@ type SuggestProps = {
     id: string;
     query: string;
     provider: ISearchProvider;
+    withAllResults?: boolean;
+    focusFirstSearchResult?: boolean;
+    emptyState?: ReactNode;
+    aiHintOnEmpty?: (query: string) => SearchSuggestAiHintItem;
 } & Omit<SuggestListProps, 'items'>;
 
 export const Suggest = memo(
     forwardRef<List<SearchSuggestItem>, SuggestProps>((props, ref) => {
-        const {query, provider} = props;
-        const [items, suggest] = useProvider(provider);
+        const {
+            query,
+            provider,
+            withAllResults = true,
+            focusFirstSearchResult = false,
+            emptyState,
+            aiHintOnEmpty,
+            onChangeActive,
+        } = props;
+        const [items, suggest] = useProvider(provider, {withAllResults});
 
         useEffect(() => suggest(query), [query, suggest]);
+
+        const isEmptyWithHint = Array.isArray(items) && !items.length && Boolean(aiHintOnEmpty);
+        useEffect(() => {
+            if (focusFirstSearchResult && isEmptyWithHint) {
+                onChangeActive(0);
+            }
+        }, [focusFirstSearchResult, isEmptyWithHint, onChangeActive]);
 
         if (!items) {
             return null;
@@ -90,14 +115,39 @@ export const Suggest = memo(
         }
 
         if (Array.isArray(items) && !items.length) {
-            return <SuggestEmpty query={query} />;
+            const emptyItems = aiHintOnEmpty ? [aiHintOnEmpty(query)] : [];
+
+            return (
+                <>
+                    {Boolean(emptyItems.length) && (
+                        <SuggestList
+                            ref={ref}
+                            items={emptyItems}
+                            {...pick(props, [
+                                'id',
+                                'renderItem',
+                                'onItemClick',
+                                'onChangeActive',
+                                'activeItemIndex',
+                            ])}
+                        />
+                    )}
+                    <SuggestEmpty query={query} emptyState={emptyState} />
+                </>
+            );
         }
 
         return (
             <SuggestList
                 ref={ref}
                 items={items}
-                {...pick(props, ['id', 'renderItem', 'onItemClick', 'onChangeActive'])}
+                {...pick(props, [
+                    'id',
+                    'renderItem',
+                    'onItemClick',
+                    'onChangeActive',
+                    'activeItemIndex',
+                ])}
             />
         );
     }),

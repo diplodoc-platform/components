@@ -250,13 +250,24 @@ export interface ISearchProvider {
     link(query: string): string | null;
 }
 
-export interface ISearchResult {
+interface ISearchResultBase {
     type: SuggestItemType;
     title: string;
-    link: string;
     description?: string;
     breadcrumbs?: BreadcrumbItem[];
 }
+
+export interface ISearchResultAiHint extends ISearchResultBase {
+    type: SuggestItemType.AiHint;
+    onClick: () => void;
+}
+
+export interface ISearchResultWithLink extends ISearchResultBase {
+    type: Exclude<SuggestItemType, SuggestItemType.AiHint>;
+    link: string;
+}
+
+export type ISearchResult = ISearchResultAiHint | ISearchResultWithLink;
 
 export type Query = Record<string, number | string | null>;
 

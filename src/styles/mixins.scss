@@ -144,3 +144,34 @@
         display: none;
     }
 }
+
+@mixin gravity-ui-text-sizes($delta) {
+    --g-text-body-1-font-size: #{13px + $delta};
+    --g-text-body-2-font-size: #{15px + $delta};
+    --g-text-body-3-font-size: #{17px + $delta};
+    --g-text-body-short-font-size: #{13px + $delta};
+    --g-text-caption-1-font-size: #{9px + $delta};
+    --g-text-caption-2-font-size: #{11px + $delta};
+    --g-text-header-1-font-size: #{20px + $delta};
+    --g-text-header-2-font-size: #{24px + $delta};
+    --g-text-subheader-1-font-size: #{13px + $delta};
+    --g-text-subheader-2-font-size: #{15px + $delta};
+    --g-text-subheader-3-font-size: #{17px + $delta};
+    --g-text-display-1-font-size: #{28px + $delta};
+    --g-text-display-2-font-size: #{32px + $delta};
+    --g-text-display-3-font-size: #{40px + $delta};
+    --g-text-display-4-font-size: #{48px + $delta};
+    --g-text-code-1-font-size: #{12px + $delta};
+    --g-text-code-2-font-size: #{14px + $delta};
+    --g-text-code-3-font-size: #{16px + $delta};
+    --g-text-code-inline-1-font-size: #{12px + $delta};
+    --g-text-code-inline-2-font-size: #{14px + $delta};
+    --g-text-code-inline-3-font-size: #{16px + $delta};
+
+    --yfm-font-size: var(--g-text-body-2-font-size);
+    --yfm-font-size-h2: var(--g-text-header-2-font-size);
+    --yfm-font-size-h3: var(--g-text-header-1-font-size);
+    --yfm-font-size-h4: var(--g-text-subheader-3-font-size);
+    --yfm-font-size-h5: var(--g-text-subheader-2-font-size);
+    --yfm-font-size-h6: var(--g-text-subheader-1-font-size);
+}

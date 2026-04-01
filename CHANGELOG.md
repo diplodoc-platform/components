@@ -1,5 +1,18 @@
 # История изменений
 
+## [5.3.0](https://github.com/diplodoc-platform/components/compare/v5.2.7...v5.3.0) (2026-03-27)
+
+
+### Features
+
+* implement analytics lib ([e4227df](https://github.com/diplodoc-platform/components/commit/e4227df9e5cfb2e986fb575ae531e9c10a8a55ce))
+
+
+### Bug Fixes
+
+* hide search item on mobile screens in main menu ([#580](https://github.com/diplodoc-platform/components/issues/580)) ([46e07ce](https://github.com/diplodoc-platform/components/commit/46e07ce37dceef4508e1f46f0e0af92c62d75f11))
+* track common analytics events ([7b5e85e](https://github.com/diplodoc-platform/components/commit/7b5e85e564c81eb9e33d3ab8f704276468478f6e))
+
 ## [5.2.7](https://github.com/diplodoc-platform/components/compare/v5.2.6...v5.2.7) (2026-03-19)
 
 

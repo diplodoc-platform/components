@@ -7,6 +7,7 @@ import block from 'bem-cn-lite';
 
 import {useInterface, usePopupState, useTranslation} from '../../hooks';
 import {FeedbackType} from '../../models';
+import {CommonAnalyticsEvent, useAnalytics} from '../../shared/libs/analytics';
 
 import DislikeControl from './controls/DislikeControl';
 import DislikeVariantsPopup from './controls/DislikeVariantsPopup';
@@ -63,7 +64,7 @@ const Feedback: React.FC<FeedbackProps> = (props) => {
         onSendFeedback,
         view = FeedbackView.Regular,
     } = props;
-
+    const analytics = useAnalytics();
     const likeControlRef = useRef<HTMLButtonElement | null>(null);
     const dislikeControlRef = useRef<HTMLButtonElement | null>(null);
 
@@ -83,6 +84,11 @@ const Feedback: React.FC<FeedbackProps> = (props) => {
     }, [likeSuccessPopup, dislikeSuccessPopup, dislikeVariantsPopup]);
 
     const onChangeLike = useCallback(() => {
+        const event =
+            view === FeedbackView.Regular
+                ? CommonAnalyticsEvent.DOCS_ASIDE_LIKE_CLICK
+                : CommonAnalyticsEvent.DOCS_FOOTER_LIKE_CLICK;
+        analytics.track(event);
         hideFeedbackPopups();
 
         if (innerState === FeedbackType.like) {
@@ -93,9 +99,14 @@ const Feedback: React.FC<FeedbackProps> = (props) => {
             onSendFeedback({type: FeedbackType.like});
             likeSuccessPopup.open();
         }
-    }, [onSendFeedback, setInnerState, innerState, likeSuccessPopup, hideFeedbackPopups]);
+    }, [view, analytics, hideFeedbackPopups, innerState, onSendFeedback, likeSuccessPopup]);
 
     const onChangeDislike = useCallback(() => {
+        const event =
+            view === FeedbackView.Regular
+                ? CommonAnalyticsEvent.DOCS_ASIDE_DISLIKE_CLICK
+                : CommonAnalyticsEvent.DOCS_FOOTER_DISLIKE_CLICK;
+        analytics.track(event);
         hideFeedbackPopups();
 
         if (innerState === FeedbackType.dislike) {
@@ -104,7 +115,7 @@ const Feedback: React.FC<FeedbackProps> = (props) => {
         } else {
             dislikeVariantsPopup.open();
         }
-    }, [onSendFeedback, setInnerState, innerState, dislikeVariantsPopup, hideFeedbackPopups]);
+    }, [view, analytics, hideFeedbackPopups, innerState, onSendFeedback, dislikeVariantsPopup]);
 
     const onSendDislikeInformation = useCallback(
         (data: FormData) => {

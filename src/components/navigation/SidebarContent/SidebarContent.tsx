@@ -1,9 +1,9 @@
 import type {PropsWithChildren} from 'react';
-import type {NavigationItemModel} from '@gravity-ui/page-constructor';
+import type {NavigationItemModel, NavigationItemType} from '@gravity-ui/page-constructor';
 import type {ClassNameProps, Router, TocData} from '../../../models/index';
 import type {MobileControlsProps} from '../../MobileControls/MobileControls';
 
-import React from 'react';
+import React, {useMemo} from 'react';
 import {ItemColumnName, NavigationLayout, NavigationList} from '@gravity-ui/page-constructor';
 import block from 'bem-cn-lite';
 
@@ -52,6 +52,13 @@ export const SidebarContent: React.FC<SidebarContentProps & PropsWithChildren> =
     const tocItems = navigationTocData?.toc?.items || [];
     const isTocHidden = useInterface('toc');
 
+    const rightNavigationItems = useMemo(() => {
+        const searchItemType = 'search' as NavigationItemType;
+        const items = pcNavigationData?.rightItemsWithIconSize ?? [];
+
+        return items.filter((item) => item.type !== searchItemType);
+    }, [pcNavigationData?.rightItemsWithIconSize]);
+
     const toc = navigationTocData && tocItems.length > 0 && mainMenuIsClosed && (
         <React.Fragment>
             {pcNavigationData && Boolean(pcNavigationData?.leftItemsWithIconSize?.length) && (
@@ -88,9 +95,9 @@ export const SidebarContent: React.FC<SidebarContentProps & PropsWithChildren> =
                     menuLayout={NavigationLayout.Mobile}
                 />
             )}
-            {pcNavigationData.rightItemsWithIconSize && (
+            {rightNavigationItems.length > 0 && (
                 <NavigationList
-                    items={pcNavigationData.rightItemsWithIconSize}
+                    items={rightNavigationItems}
                     itemClassName={b('main-menu-item')}
                     column={ItemColumnName.Bottom}
                     onActiveItemChange={pcNavigationData.onActiveItemChange}

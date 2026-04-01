@@ -48,7 +48,7 @@ interface SearchSuggestLinkItem extends SearchSuggestBaseItem {
 export interface SearchSuggestActionItem extends SearchSuggestBaseItem {
     type: SuggestItemType.Action;
     title: string;
-    description: string;
+    description?: string;
     onClick: () => void;
 }
 

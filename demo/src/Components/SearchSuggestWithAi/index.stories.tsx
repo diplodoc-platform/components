@@ -96,6 +96,17 @@ const SearchSuggestDemo = () => {
         link(query: string) {
             return query;
         },
+
+        onEmptyAction(query: string) {
+            return {
+                type: SuggestItemType.Action,
+                title: query,
+                description: `Спросить у AI`,
+                icon: <AiIcon />,
+                hint: ENTER_HINT,
+                onClick: () => alert(`clicked ${query}`),
+            };
+        },
     };
 
     const [search, setSearch] = useState(false);
@@ -116,14 +127,6 @@ const SearchSuggestDemo = () => {
                         Не нашли подходящих статей
                     </Text>
                 }
-                actionOnEmpty={(query: string) => ({
-                    type: SuggestItemType.Action,
-                    title: query,
-                    description: `Спросить у AI`,
-                    icon: <AiIcon />,
-                    hint: ENTER_HINT,
-                    onClick: () => alert(`clicked ${query}`),
-                })}
                 focusFirstSearchResult={true}
             />
         </FakeHeader>

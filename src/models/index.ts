@@ -244,6 +244,7 @@ export interface ClassNameProps {
 export interface ISearchProvider {
     init(): void | (() => void);
     suggest(query: string): Promise<ISearchResult[]>;
+    onEmptyAction?(query: string): ISearchResultWithAction | null;
     search(
         query: string,
     ): Promise<ISearchResult[]> | Promise<{items: ISearchResult[]; total: number}>;

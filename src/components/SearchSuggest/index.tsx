@@ -1,6 +1,6 @@
 import type {KeyboardEvent, MouseEventHandler, SyntheticEvent} from 'react';
 import type {ISearchProvider} from '../../models';
-import type {SearchSuggestActionItem, SearchSuggestItem, SearchSuggestLinkableItem} from './types';
+import type {SearchSuggestItem, SearchSuggestLinkableItem} from './types';
 import type {List} from '@gravity-ui/uikit';
 
 import React, {
@@ -52,7 +52,6 @@ export interface SearchSuggestProps {
     hasClear?: boolean;
     withFocusOverlay?: boolean;
     emptyState?: React.ReactNode;
-    actionOnEmpty?: (query: string) => SearchSuggestActionItem;
 }
 
 export interface SearchSuggestApi {
@@ -96,7 +95,6 @@ export const SearchSuggest = forwardRef<SearchSuggestApi, SearchSuggestProps>((p
         hasClear = false,
         withFocusOverlay = false,
         emptyState,
-        actionOnEmpty,
     } = props;
     const href = useRef<HTMLAnchorElement>(null);
     const input = useRef<HTMLElement>(null);
@@ -236,13 +234,11 @@ export const SearchSuggest = forwardRef<SearchSuggestApi, SearchSuggestProps>((p
                         query={query}
                         provider={provider}
                         withAllResults={withAllResults}
-                        focusFirstSearchResult={focusFirstSearchResult}
                         activeItemIndex={focusFirstSearchResult ? (active ?? 0) : active}
                         renderItem={SuggestItem}
                         onItemClick={onSubmit}
                         onChangeActive={setActive}
                         emptyState={emptyState}
-                        actionOnEmpty={actionOnEmpty}
                     />
                 </Popup>
             )}

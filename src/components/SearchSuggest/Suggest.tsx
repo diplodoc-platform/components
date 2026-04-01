@@ -79,32 +79,20 @@ type SuggestProps = {
     query: string;
     provider: ISearchProvider;
     withAllResults?: boolean;
-    focusFirstSearchResult?: boolean;
     emptyState?: ReactNode;
-    actionOnEmpty?: (query: string) => SearchSuggestActionItem;
 } & Omit<SuggestListProps, 'items'>;
 
 export const Suggest = memo(
     forwardRef<List<SearchSuggestItem>, SuggestProps>((props, ref) => {
-        const {
-            query,
-            provider,
-            withAllResults = true,
-            focusFirstSearchResult = false,
-            emptyState,
-            actionOnEmpty,
-            onChangeActive,
-        } = props;
+        const {query, provider, withAllResults = true, emptyState} = props;
         const [items, suggest] = useProvider(provider, {withAllResults});
 
         useEffect(() => suggest(query), [query, suggest]);
 
-        const isEmptyWithAction = Array.isArray(items) && !items.length && Boolean(actionOnEmpty);
-        useEffect(() => {
-            if (focusFirstSearchResult && isEmptyWithAction) {
-                onChangeActive(0);
-            }
-        }, [focusFirstSearchResult, isEmptyWithAction, onChangeActive]);
+        const emptyAction =
+            Array.isArray(items) && !items.length
+                ? (provider.onEmptyAction?.(query) ?? null)
+                : null;
 
         if (!items) {
             return null;
@@ -123,7 +111,7 @@ export const Suggest = memo(
         ]);
 
         if (Array.isArray(items) && !items.length) {
-            const emptyItems = actionOnEmpty ? [actionOnEmpty(query)] : [];
+            const emptyItems: SearchSuggestActionItem[] = emptyAction ? [emptyAction] : [];
 
             return (
                 <>

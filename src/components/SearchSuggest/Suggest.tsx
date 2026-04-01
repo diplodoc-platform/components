@@ -1,6 +1,6 @@
 import type {ReactNode} from 'react';
 import type {ISearchProvider} from '../../models';
-import type {SearchSuggestAiHintItem, SearchSuggestItem} from './types';
+import type {SearchSuggestActionItem, SearchSuggestItem} from './types';
 import type {ListItemData} from '@gravity-ui/uikit';
 
 import React, {forwardRef, memo, useEffect} from 'react';
@@ -81,7 +81,7 @@ type SuggestProps = {
     withAllResults?: boolean;
     focusFirstSearchResult?: boolean;
     emptyState?: ReactNode;
-    aiHintOnEmpty?: (query: string) => SearchSuggestAiHintItem;
+    actionOnEmpty?: (query: string) => SearchSuggestActionItem;
 } & Omit<SuggestListProps, 'items'>;
 
 export const Suggest = memo(
@@ -92,19 +92,19 @@ export const Suggest = memo(
             withAllResults = true,
             focusFirstSearchResult = false,
             emptyState,
-            aiHintOnEmpty,
+            actionOnEmpty,
             onChangeActive,
         } = props;
         const [items, suggest] = useProvider(provider, {withAllResults});
 
         useEffect(() => suggest(query), [query, suggest]);
 
-        const isEmptyWithHint = Array.isArray(items) && !items.length && Boolean(aiHintOnEmpty);
+        const isEmptyWithAction = Array.isArray(items) && !items.length && Boolean(actionOnEmpty);
         useEffect(() => {
-            if (focusFirstSearchResult && isEmptyWithHint) {
+            if (focusFirstSearchResult && isEmptyWithAction) {
                 onChangeActive(0);
             }
-        }, [focusFirstSearchResult, isEmptyWithHint, onChangeActive]);
+        }, [focusFirstSearchResult, isEmptyWithAction, onChangeActive]);
 
         if (!items) {
             return null;
@@ -114,42 +114,28 @@ export const Suggest = memo(
             return <SuggestLoader />;
         }
 
+        const listProps = pick(props, [
+            'id',
+            'renderItem',
+            'onItemClick',
+            'onChangeActive',
+            'activeItemIndex',
+        ]);
+
         if (Array.isArray(items) && !items.length) {
-            const emptyItems = aiHintOnEmpty ? [aiHintOnEmpty(query)] : [];
+            const emptyItems = actionOnEmpty ? [actionOnEmpty(query)] : [];
 
             return (
                 <>
                     {Boolean(emptyItems.length) && (
-                        <SuggestList
-                            ref={ref}
-                            items={emptyItems}
-                            {...pick(props, [
-                                'id',
-                                'renderItem',
-                                'onItemClick',
-                                'onChangeActive',
-                                'activeItemIndex',
-                            ])}
-                        />
+                        <SuggestList ref={ref} items={emptyItems} {...listProps} />
                     )}
                     <SuggestEmpty query={query} emptyState={emptyState} />
                 </>
             );
         }
 
-        return (
-            <SuggestList
-                ref={ref}
-                items={items}
-                {...pick(props, [
-                    'id',
-                    'renderItem',
-                    'onItemClick',
-                    'onChangeActive',
-                    'activeItemIndex',
-                ])}
-            />
-        );
+        return <SuggestList ref={ref} items={items} {...listProps} />;
     }),
 );
 

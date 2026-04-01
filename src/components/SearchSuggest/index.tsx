@@ -1,12 +1,6 @@
 import type {KeyboardEvent, MouseEventHandler, SyntheticEvent} from 'react';
 import type {ISearchProvider} from '../../models';
-import type {
-    SearchSuggestAiHintItem,
-    SearchSuggestHintMap,
-    SearchSuggestIconMap,
-    SearchSuggestItem,
-    SearchSuggestLinkableItem,
-} from './types';
+import type {SearchSuggestActionItem, SearchSuggestItem, SearchSuggestLinkableItem} from './types';
 import type {List} from '@gravity-ui/uikit';
 
 import React, {
@@ -35,9 +29,7 @@ import './index.scss';
 const b = block('dc-search-suggest');
 
 export type {
-    SearchSuggestAiHintItem,
-    SearchSuggestHintMap,
-    SearchSuggestIconMap,
+    SearchSuggestActionItem,
     SearchSuggestItem,
     SearchSuggestLinkableItem,
     SearchSuggestPageItem,
@@ -55,14 +47,12 @@ export interface SearchSuggestProps {
     startContent?: React.ReactNode;
     endContent?: React.ReactNode;
     closeButton?: boolean;
-    iconMap?: SearchSuggestIconMap;
-    hintMap?: SearchSuggestHintMap;
     withAllResults?: boolean;
     focusFirstSearchResult?: boolean;
     hasClear?: boolean;
     withFocusOverlay?: boolean;
     emptyState?: React.ReactNode;
-    aiHintOnEmpty?: (query: string) => SearchSuggestAiHintItem;
+    actionOnEmpty?: (query: string) => SearchSuggestActionItem;
 }
 
 export interface SearchSuggestApi {
@@ -100,15 +90,13 @@ export const SearchSuggest = forwardRef<SearchSuggestApi, SearchSuggestProps>((p
         startContent,
         endContent,
         closeButton,
-        iconMap,
-        hintMap,
         onBlur,
         withAllResults = true,
         focusFirstSearchResult = false,
         hasClear = false,
         withFocusOverlay = false,
         emptyState,
-        aiHintOnEmpty,
+        actionOnEmpty,
     } = props;
     const href = useRef<HTMLAnchorElement>(null);
     const input = useRef<HTMLElement>(null);
@@ -165,7 +153,7 @@ export const SearchSuggest = forwardRef<SearchSuggestApi, SearchSuggestProps>((p
                 return;
             }
 
-            if (item.type === SuggestItemType.AiHint) {
+            if (item.type === SuggestItemType.Action) {
                 item.onClick();
                 return;
             }
@@ -198,7 +186,6 @@ export const SearchSuggest = forwardRef<SearchSuggestApi, SearchSuggestProps>((p
 
         return () => {};
     }, [focused, watch]);
-
     useImperativeHandle(api, () => ({open, close}), [open, close]);
 
     const wrapperClassName = [b('wrapper', {focused}), classNameContainer]
@@ -251,13 +238,11 @@ export const SearchSuggest = forwardRef<SearchSuggestApi, SearchSuggestProps>((p
                         withAllResults={withAllResults}
                         focusFirstSearchResult={focusFirstSearchResult}
                         activeItemIndex={focusFirstSearchResult ? (active ?? 0) : active}
-                        renderItem={(item) => (
-                            <SuggestItem item={item} iconMap={iconMap} hintMap={hintMap} />
-                        )}
+                        renderItem={SuggestItem}
                         onItemClick={onSubmit}
                         onChangeActive={setActive}
                         emptyState={emptyState}
-                        aiHintOnEmpty={aiHintOnEmpty}
+                        actionOnEmpty={actionOnEmpty}
                     />
                 </Popup>
             )}

@@ -7,15 +7,14 @@ export enum SuggestItemType {
     Group = 'group',
     Delimiter = 'delimiter',
     Link = 'link',
-    AiHint = 'ai-hint',
+    Action = 'action',
 }
-
-export type SearchSuggestIconMap = Partial<Record<SuggestItemType, ReactNode>>;
-export type SearchSuggestHintMap = Partial<Record<SuggestItemType, ReactNode>>;
 
 interface SearchSuggestBaseItem {
     type: SuggestItemType;
     disabled?: boolean;
+    icon?: ReactNode;
+    hint?: ReactNode;
 }
 
 interface SearchSuggestTextItem extends SearchSuggestBaseItem {
@@ -46,8 +45,8 @@ interface SearchSuggestLinkItem extends SearchSuggestBaseItem {
     link: string;
 }
 
-export interface SearchSuggestAiHintItem extends SearchSuggestBaseItem {
-    type: SuggestItemType.AiHint;
+export interface SearchSuggestActionItem extends SearchSuggestBaseItem {
+    type: SuggestItemType.Action;
     title: string;
     description: string;
     onClick: () => void;
@@ -56,7 +55,7 @@ export interface SearchSuggestAiHintItem extends SearchSuggestBaseItem {
 export type SearchSuggestLinkableItem = SearchSuggestPageItem | SearchSuggestLinkItem;
 
 export type SearchSuggestItem =
-    | SearchSuggestAiHintItem
+    | SearchSuggestActionItem
     | SearchSuggestLinkableItem
     | SearchSuggestTextItem
     | SearchSuggestGroupItem

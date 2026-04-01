@@ -255,19 +255,21 @@ interface ISearchResultBase {
     title: string;
     description?: string;
     breadcrumbs?: BreadcrumbItem[];
+    icon?: React.ReactNode;
+    hint?: React.ReactNode;
 }
 
-export interface ISearchResultAiHint extends ISearchResultBase {
-    type: SuggestItemType.AiHint;
+export interface ISearchResultWithAction extends ISearchResultBase {
+    type: SuggestItemType.Action;
     onClick: () => void;
 }
 
 export interface ISearchResultWithLink extends ISearchResultBase {
-    type: Exclude<SuggestItemType, SuggestItemType.AiHint>;
+    type: Exclude<SuggestItemType, SuggestItemType.Action>;
     link: string;
 }
 
-export type ISearchResult = ISearchResultAiHint | ISearchResultWithLink;
+export type ISearchResult = ISearchResultWithAction | ISearchResultWithLink;
 
 export type Query = Record<string, number | string | null>;
 

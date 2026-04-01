@@ -7,8 +7,8 @@ import block from 'bem-cn-lite';
 import {ArrowUpRightFromSquare, SparklesFill} from '@gravity-ui/icons';
 import {Icon, Text} from '@gravity-ui/uikit';
 
-import data from './page.json';
-import './index.scss';
+import data from '../SearchSuggestWithAi/page.json';
+import '../SearchSuggestWithAi/index.scss';
 
 const b = block('header');
 
@@ -66,16 +66,21 @@ const SearchSuggestDemo = () => {
         async suggest(query: string) {
             await wait(3000);
 
-            const items: ISearchResult[] = filter(data as ISearchResultWithLink[], query).slice(
-                0,
-                10,
-            );
+            const items: ISearchResult[] = filter(data as ISearchResultWithLink[], query)
+                .slice(0, 10)
+                .map((item) => ({
+                    ...item,
+                    icon: <PageIcon />,
+                    hint: ENTER_HINT,
+                }));
 
             if (items.length > 0) {
                 items.unshift({
-                    type: SuggestItemType.AiHint,
+                    type: SuggestItemType.Action,
                     title: query,
                     description: 'Спросить у AI',
+                    icon: <AiIcon />,
+                    hint: ENTER_HINT,
                     onClick: () => {
                         alert('clicked');
                     },
@@ -103,15 +108,6 @@ const SearchSuggestDemo = () => {
                 onFocus={() => setSearch(true)}
                 onBlur={() => setSearch(false)}
                 startContent={<AiIcon className={b('ai-icon')} />}
-                iconMap={{
-                    [SuggestItemType.Page]: <PageIcon />,
-                    [SuggestItemType.AiHint]: <AiIcon />,
-                }}
-                hintMap={{
-                    [SuggestItemType.AiHint]: ENTER_HINT,
-                    [SuggestItemType.Page]: ENTER_HINT,
-                    [SuggestItemType.Link]: ENTER_HINT,
-                }}
                 withAllResults={false}
                 hasClear={true}
                 withFocusOverlay={true}
@@ -120,10 +116,12 @@ const SearchSuggestDemo = () => {
                         Не нашли подходящих статей
                     </Text>
                 }
-                aiHintOnEmpty={(query: string) => ({
-                    type: SuggestItemType.AiHint,
+                actionOnEmpty={(query: string) => ({
+                    type: SuggestItemType.Action,
                     title: query,
                     description: `Спросить у AI`,
+                    icon: <AiIcon />,
+                    hint: ENTER_HINT,
                     onClick: () => alert(`clicked ${query}`),
                 })}
                 focusFirstSearchResult={true}

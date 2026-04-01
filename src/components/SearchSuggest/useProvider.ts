@@ -102,12 +102,14 @@ function format(
     const groupedItemsMap = {} as Record<string, SearchGroup>;
 
     items.forEach((item) => {
-        if (item.type === SuggestItemType.AiHint) {
+        if (item.type === SuggestItemType.Action) {
             preparedItems.push({
-                type: SuggestItemType.AiHint,
+                type: SuggestItemType.Action,
                 title: item.title,
                 description: item.description || '',
                 onClick: item.onClick,
+                icon: item.icon,
+                hint: item.hint,
             });
             return;
         }
@@ -119,6 +121,8 @@ function format(
                 link: item.link,
                 description: item.description,
                 breadcrumbs: item.breadcrumbs,
+                icon: item.icon,
+                hint: item.hint,
             });
             return;
         }
@@ -128,6 +132,8 @@ function format(
                 type: SuggestItemType.Link,
                 title: item.title,
                 link: item.link,
+                icon: item.icon,
+                hint: item.hint,
             });
             return;
         }
@@ -139,6 +145,8 @@ function format(
             link: item.link,
             description: item.description,
             breadcrumbs: item.breadcrumbs,
+            icon: item.icon,
+            hint: item.hint,
         });
     });
 

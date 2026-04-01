@@ -1,9 +1,4 @@
-import type {
-    SearchSuggestAiHintItem,
-    SearchSuggestHintMap,
-    SearchSuggestIconMap,
-    SearchSuggestItem,
-} from './types';
+import type {SearchSuggestActionItem, SearchSuggestItem} from './types';
 import type {FC, PropsWithChildren} from 'react';
 
 import React from 'react';
@@ -23,32 +18,25 @@ const BasicSuggestItem: FC<PropsWithChildren<{item: SearchSuggestItem}>> = ({ite
 
 type SuggestItemContentWrapperProps = PropsWithChildren<{
     item: SearchSuggestItem;
-    icon?: React.ReactNode;
-    hint?: React.ReactNode;
 }>;
 
-const SuggestItemContentWrapper: FC<SuggestItemContentWrapperProps> = ({
-    item,
-    icon,
-    hint,
-    children,
-}) => {
+const SuggestItemContentWrapper: FC<SuggestItemContentWrapperProps> = ({item, children}) => {
     return (
         <div className={b('item-content')}>
-            {icon}
+            {item.icon}
             <div className={b('item-main')}>{children}</div>
-            {!item.disabled && hint}
+            {!item.disabled && item.hint ? (
+                <span className={b('item-hint')}>{item.hint}</span>
+            ) : undefined}
         </div>
     );
 };
 
-type AiHintProps = {
-    item: SearchSuggestAiHintItem;
-    icon?: React.ReactNode;
-    hint?: React.ReactNode;
+type ActionProps = {
+    item: SearchSuggestActionItem;
 };
 
-export const AiHint: React.FC<AiHintProps> = ({item, icon, hint}) => {
+export const Action: React.FC<ActionProps> = ({item}) => {
     return (
         <Link
             className={b('item', {type: item.type})}
@@ -59,7 +47,7 @@ export const AiHint: React.FC<AiHintProps> = ({item, icon, hint}) => {
                 item.onClick();
             }}
         >
-            <SuggestItemContentWrapper item={item} icon={icon} hint={hint}>
+            <SuggestItemContentWrapper item={item}>
                 <span className={b('item-title')}>{item.title}</span>
                 <span className={b('item-description')}>{item.description}</span>
             </SuggestItemContentWrapper>
@@ -67,26 +55,16 @@ export const AiHint: React.FC<AiHintProps> = ({item, icon, hint}) => {
     );
 };
 
-type SuggestItemProps = {
-    item: SearchSuggestItem;
-    iconMap?: SearchSuggestIconMap;
-    hintMap?: SearchSuggestHintMap;
-};
-
-export const SuggestItem: React.FC<SuggestItemProps> = ({item, iconMap, hintMap}) => {
-    const icon = iconMap?.[item.type];
-    const hintNode = hintMap?.[item.type];
-    const hint = hintNode ? <span className={b('item-hint')}>{hintNode}</span> : undefined;
-
+export const SuggestItem = (item: SearchSuggestItem) => {
     switch (item.type) {
         case SuggestItemType.Delimiter:
             return <BasicSuggestItem item={item}>{null}</BasicSuggestItem>;
-        case SuggestItemType.AiHint:
-            return <AiHint item={item} icon={icon} hint={hint} />;
+        case SuggestItemType.Action:
+            return <Action item={item} />;
         case SuggestItemType.Link:
             return (
                 <Link className={b('item', {type: item.type})} view={'primary'} href={item.link}>
-                    <SuggestItemContentWrapper item={item} icon={icon} hint={hint}>
+                    <SuggestItemContentWrapper item={item}>
                         <span>{item.title}</span>
                         <ChevronRight width={13} height={13} viewBox={'0 0 13 13'} />
                     </SuggestItemContentWrapper>
@@ -95,7 +73,7 @@ export const SuggestItem: React.FC<SuggestItemProps> = ({item, iconMap, hintMap}
         case SuggestItemType.Page:
             return (
                 <Link className={b('item', {type: item.type})} view={'primary'} href={item.link}>
-                    <SuggestItemContentWrapper item={item} icon={icon} hint={hint}>
+                    <SuggestItemContentWrapper item={item}>
                         <HTML className={b('item-title')}>{item.title}</HTML>
                         <HTML className={b('item-description')}>{item.description}</HTML>
                     </SuggestItemContentWrapper>

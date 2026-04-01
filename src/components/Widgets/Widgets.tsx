@@ -1,6 +1,6 @@
 import type {FC, ReactNode} from 'react';
 
-import {useEffect, useRef, useState} from 'react';
+import {useEffect, useState} from 'react';
 import {createPortal} from 'react-dom';
 
 import './Widgets.scss';
@@ -11,15 +11,8 @@ export interface WidgetsProps {
 
 const Widgets: FC<WidgetsProps> = ({children}) => {
     const [container, setContainer] = useState<HTMLElement | null>(null);
-    const created = useRef(false);
 
     useEffect(() => {
-        if (created.current) {
-            return;
-        }
-
-        created.current = true;
-
         let element = document.getElementById('dc-widgets');
 
         if (!element) {

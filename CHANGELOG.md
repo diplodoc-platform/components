@@ -1,5 +1,12 @@
 # История изменений
 
+## [5.3.1](https://github.com/diplodoc-platform/components/compare/v5.3.0...v5.3.1) (2026-04-01)
+
+
+### Bug Fixes
+
+* made the widget component into a portal ([#588](https://github.com/diplodoc-platform/components/issues/588)) ([8721079](https://github.com/diplodoc-platform/components/commit/8721079f3a4d2080aeb6712f3eafa7e70222cadb))
+
 ## [5.3.0](https://github.com/diplodoc-platform/components/compare/v5.2.7...v5.3.0) (2026-03-27)
 
 

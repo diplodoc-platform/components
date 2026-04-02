@@ -1,5 +1,12 @@
 # История изменений
 
+## [5.3.2](https://github.com/diplodoc-platform/components/compare/v5.3.1...v5.3.2) (2026-04-02)
+
+
+### Bug Fixes
+
+* apply font-size changes to leading pages ([#586](https://github.com/diplodoc-platform/components/issues/586)) ([04cda6d](https://github.com/diplodoc-platform/components/commit/04cda6d293a57e8b01048925f07fd4a636086ca1))
+
 ## [5.3.1](https://github.com/diplodoc-platform/components/compare/v5.3.0...v5.3.1) (2026-04-01)
 
 

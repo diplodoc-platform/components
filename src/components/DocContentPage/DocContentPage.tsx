@@ -1,4 +1,4 @@
-import type {DocContentPageData, Router} from '../../models';
+import type {DocContentPageData, Router, TextSizes} from '../../models';
 
 import React from 'react';
 import block from 'bem-cn-lite';
@@ -15,6 +15,7 @@ export interface DocContentPageProps extends DocContentPageData {
     router: Router;
     headerHeight?: number;
     wideFormat?: boolean;
+    textSize?: TextSizes;
     hideToc?: boolean;
     tocTitleIcon?: React.ReactNode;
     useMainTag?: boolean;
@@ -40,7 +41,9 @@ export const DocContentPage: React.FC<DocContentPageProps> = ({
     fullScreen,
     hideTocHeader,
     pdfLink,
+    textSize,
 }) => {
+    const textSizeClassName = b('body', {'text-size': textSize}, 'yfm');
     const modes = {
         'regular-page-width': !wideFormat,
     };
@@ -62,7 +65,10 @@ export const DocContentPage: React.FC<DocContentPageProps> = ({
         >
             <DocLayout.Center>
                 <div className={b('main')}>
-                    <ContentWrapper className={b('content')} useMainTag={useMainTag}>
+                    <ContentWrapper
+                        className={b('content', {}, textSizeClassName)}
+                        useMainTag={useMainTag}
+                    >
                         {children}
                     </ContentWrapper>
                 </div>

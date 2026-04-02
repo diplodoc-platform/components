@@ -244,19 +244,33 @@ export interface ClassNameProps {
 export interface ISearchProvider {
     init(): void | (() => void);
     suggest(query: string): Promise<ISearchResult[]>;
+    onEmptyAction?(query: string): ISearchResultWithAction | null;
     search(
         query: string,
     ): Promise<ISearchResult[]> | Promise<{items: ISearchResult[]; total: number}>;
     link(query: string): string | null;
 }
 
-export interface ISearchResult {
+interface ISearchResultBase {
     type: SuggestItemType;
     title: string;
-    link: string;
     description?: string;
     breadcrumbs?: BreadcrumbItem[];
+    icon?: React.ReactNode;
+    hint?: React.ReactNode;
 }
+
+export interface ISearchResultWithAction extends ISearchResultBase {
+    type: SuggestItemType.Action;
+    onClick: () => void;
+}
+
+export interface ISearchResultWithLink extends ISearchResultBase {
+    type: Exclude<SuggestItemType, SuggestItemType.Action>;
+    link: string;
+}
+
+export type ISearchResult = ISearchResultWithAction | ISearchResultWithLink;
 
 export type Query = Record<string, number | string | null>;
 

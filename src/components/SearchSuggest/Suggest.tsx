@@ -1,6 +1,6 @@
 import type {ReactNode} from 'react';
 import type {ISearchProvider} from '../../models';
-import type {SearchSuggestItem} from './types';
+import type {SearchSuggestActionItem, SearchSuggestItem} from './types';
 import type {ListItemData} from '@gravity-ui/uikit';
 
 import React, {forwardRef, memo, useEffect} from 'react';
@@ -25,10 +25,14 @@ const SuggestLoader = memo(() => {
 
 SuggestLoader.displayName = 'SuggestLoader';
 
-const SuggestEmpty = memo<{query: string}>(({query}) => {
+const SuggestEmpty = memo<{query: string; emptyState?: ReactNode}>(({query, emptyState}) => {
     const {t} = useTranslation('search-suggest');
 
-    return <div className={b('list', {empty: true})}>{t('search-suggest_not-found', {query})}</div>;
+    return (
+        <div className={b('list', {empty: true})}>
+            {emptyState === undefined ? t('search-suggest_not-found', {query}) : emptyState}
+        </div>
+    );
 });
 
 SuggestEmpty.displayName = 'SuggestEmpty';
@@ -43,11 +47,12 @@ type SuggestListProps = {
         fromKeyboard?: boolean,
     ) => boolean | void;
     onChangeActive: (index?: number) => void;
+    activeItemIndex?: number;
 };
 
 const SuggestList = memo(
     forwardRef<List<SearchSuggestItem>, SuggestListProps>((props, ref) => {
-        const {id, items, renderItem, onItemClick, onChangeActive} = props;
+        const {id, items, renderItem, onItemClick, onChangeActive, activeItemIndex} = props;
 
         return (
             <List
@@ -61,6 +66,7 @@ const SuggestList = memo(
                 renderItem={renderItem}
                 onItemClick={onItemClick}
                 onChangeActive={onChangeActive}
+                activeItemIndex={activeItemIndex}
             />
         );
     }),
@@ -72,14 +78,21 @@ type SuggestProps = {
     id: string;
     query: string;
     provider: ISearchProvider;
+    withAllResults?: boolean;
+    emptyState?: ReactNode;
 } & Omit<SuggestListProps, 'items'>;
 
 export const Suggest = memo(
     forwardRef<List<SearchSuggestItem>, SuggestProps>((props, ref) => {
-        const {query, provider} = props;
-        const [items, suggest] = useProvider(provider);
+        const {query, provider, withAllResults = true, emptyState} = props;
+        const [items, suggest] = useProvider(provider, {withAllResults});
 
         useEffect(() => suggest(query), [query, suggest]);
+
+        const emptyAction =
+            Array.isArray(items) && !items.length
+                ? (provider.onEmptyAction?.(query) ?? null)
+                : null;
 
         if (!items) {
             return null;
@@ -89,17 +102,28 @@ export const Suggest = memo(
             return <SuggestLoader />;
         }
 
+        const listProps = pick(props, [
+            'id',
+            'renderItem',
+            'onItemClick',
+            'onChangeActive',
+            'activeItemIndex',
+        ]);
+
         if (Array.isArray(items) && !items.length) {
-            return <SuggestEmpty query={query} />;
+            const emptyItems: SearchSuggestActionItem[] = emptyAction ? [emptyAction] : [];
+
+            return (
+                <>
+                    {Boolean(emptyItems.length) && (
+                        <SuggestList ref={ref} items={emptyItems} {...listProps} />
+                    )}
+                    <SuggestEmpty query={query} emptyState={emptyState} />
+                </>
+            );
         }
 
-        return (
-            <SuggestList
-                ref={ref}
-                items={items}
-                {...pick(props, ['id', 'renderItem', 'onItemClick', 'onChangeActive'])}
-            />
-        );
+        return <SuggestList ref={ref} items={items} {...listProps} />;
     }),
 );
 

@@ -19,6 +19,26 @@
     &__wrapper {
         position: relative;
         width: 100%;
+
+        &_focused {
+            > .dc-search-suggest,
+            > .dc-search-suggest__close {
+                position: relative;
+                z-index: 101;
+            }
+        }
+    }
+
+    &__overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        opacity: 0.5;
+        background: #000;
+    }
+
+    &__popup {
+        z-index: 1002;
     }
 
     &__loader {
@@ -57,6 +77,23 @@
         text-overflow: ellipsis;
 
         @include mixins.text-size(body-1);
+
+        &-content {
+            display: flex;
+            gap: 8px;
+        }
+
+        &-main {
+            flex: 1;
+            min-width: 0;
+        }
+
+        &-hint {
+            flex-shrink: 0;
+            align-self: center;
+            opacity: 0;
+            color: var(--g-color-text-secondary);
+        }
 
         &-title,
         &-description,
@@ -139,6 +176,17 @@
 
                 background-color: var(--g-color-line-generic);
             }
+
+            &_action {
+                &:hover,
+                &:focus-visible {
+                    background-color: var(--g-color-base-simple-hover);
+
+                    #{$block}__item-hint {
+                        opacity: 1;
+                    }
+                }
+            }
         }
 
         h5 {
@@ -165,6 +213,16 @@
 
                 background-color: var(--g-color-base-selection);
             }
+        }
+    }
+
+    // popup renders via portal outside .dc-search-suggest,
+    // so these selectors must not have it as an ancestor
+    @at-root {
+        .g-list__item_active #{$block}__item-hint,
+        #{$block}__item:hover #{$block}__item-hint,
+        #{$block}__item:focus-within #{$block}__item-hint {
+            opacity: 1;
         }
     }
 }

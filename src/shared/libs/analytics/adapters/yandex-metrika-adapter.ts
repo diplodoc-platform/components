@@ -1,6 +1,27 @@
 import type {AnalyticsAdapter, AnalyticsParams} from '../types';
 
+import {appendScriptOnce} from '../../script-utils';
+
+const METRIKA_SCRIPT_SRC = 'https://mc.yandex.ru/metrika/tag.js';
+
+export interface YandexMetrikaInitParams {
+    accurateTrackBounce?: boolean | number;
+    childIframe?: boolean;
+    clickmap?: boolean;
+    defer?: boolean;
+    ecommerce?: boolean | string | string[];
+    trackHash?: boolean;
+    trackLinks?: boolean;
+    trustedDomains?: string[];
+    webvisor?: boolean;
+    triggerEvent?: boolean;
+    sendTitle?: boolean;
+    ssr?: boolean;
+    experiments?: string;
+}
+
 export interface YandexMetrikaFn {
+    (counter: number, method: 'init', params: YandexMetrikaInitParams): void;
     (counter: number, method: 'addFileExtension', extensions: string | string[]): void;
     (counter: number, method: 'extLink', url: string, options?: Record<string, unknown>): void;
     (counter: number, method: 'file', url: string, options?: Record<string, unknown>): void;
@@ -16,6 +37,7 @@ export interface YandexMetrikaFn {
 
 export interface YandexMetrikaAdapterConfig {
     id: number;
+    params?: YandexMetrikaInitParams;
 }
 
 interface YandexMetrikaInternalFn extends YandexMetrikaFn {
@@ -26,8 +48,34 @@ interface YandexMetrikaInternalFn extends YandexMetrikaFn {
 export class YandexMetrikaAdapter implements AnalyticsAdapter {
     private config: YandexMetrikaAdapterConfig;
 
+    private initialized = false;
+
     constructor(config: YandexMetrikaAdapterConfig) {
         this.config = config;
+    }
+
+    async init() {
+        if (this.initialized) {
+            return;
+        }
+
+        this.initialized = true;
+
+        try {
+            const {id, params = {}} = this.config;
+            const ym = getMetrikaFn();
+
+            ym(id, 'init', params);
+
+            await appendScriptOnce({
+                url: METRIKA_SCRIPT_SRC,
+                element: document.head,
+                defer: false,
+            });
+        } catch (error) {
+            // eslint-disable-next-line no-console
+            console.error('Yandex Metrika load failed', error);
+        }
     }
 
     send(event: string, params?: AnalyticsParams) {

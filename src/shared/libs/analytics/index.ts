@@ -2,6 +2,7 @@ export type {AnalyticsAdapter, AnalyticsParams} from './types';
 export {
     YandexMetrikaAdapter,
     type YandexMetrikaAdapterConfig,
+    type YandexMetrikaInitParams,
 } from './adapters/yandex-metrika-adapter';
 export {Analytics, type AnalyticsConfig} from './analytics';
 export {CommonAnalyticsEvent} from './constant';

@@ -1,4 +1,4 @@
-import type {AnalyticsAdapter, AnalyticsParams} from './types';
+import type {AnalyticsAdapter, AnalyticsParams, AnalyticsTrackOptions} from './types';
 
 import {ConsoleAnalyticsAdapter} from './adapters/console-analytics-adapter';
 import {checkDebugMode} from './utils';
@@ -22,8 +22,14 @@ export class Analytics {
         }
     }
 
-    track(event: string, params?: AnalyticsParams) {
+    track(event: string, params?: AnalyticsParams, options?: AnalyticsTrackOptions) {
         for (const adapter of this.adapters) {
+            if (adapter.key && options?.includeKeys && !options.includeKeys.includes(adapter.key)) {
+                continue;
+            }
+            if (adapter.key && options?.excludeKeys && options.excludeKeys.includes(adapter.key)) {
+                continue;
+            }
             adapter.send(event, params);
         }
     }

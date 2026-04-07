@@ -2,11 +2,13 @@ import type {TocItem as ITocItem} from '../../models';
 
 import React from 'react';
 import block from 'bem-cn-lite';
+import {useAnalytics} from '@gravity-ui/page-constructor';
 import {Button} from '@gravity-ui/uikit';
 import {Ban} from '@gravity-ui/icons';
 
 import {useTranslation} from '../../hooks';
 import {isExternalHref} from '../../utils';
+import {DefaultAnalyticsEventNames} from '../../shared/libs/analytics';
 import {ToggleArrow} from '../ToggleArrow';
 
 import './TocItem.scss';
@@ -27,10 +29,28 @@ export interface TocItemProps extends ITocItem {
 
 export const TocItem: React.FC<TocItemProps> = React.forwardRef(
     (
-        {id, name, href, active, expandable, expanded, toggleItem, labeled, deprecated},
+        {
+            id,
+            name,
+            href,
+            active,
+            expandable,
+            expanded,
+            toggleItem,
+            labeled,
+            deprecated,
+            analyticsEvents,
+        },
         ref: React.ForwardedRef<HTMLButtonElement>,
     ) => {
+        const handleAnalytics = useAnalytics(DefaultAnalyticsEventNames.DOCS_TOC_ITEM_CLICK, href);
+
+        const sendAnalytics = () => {
+            handleAnalytics(analyticsEvents);
+        };
+
         const handleClick = () => {
+            sendAnalytics();
             toggleItem(id, expanded);
         };
 
@@ -63,12 +83,22 @@ export const TocItem: React.FC<TocItemProps> = React.forwardRef(
             deprecated,
         };
 
+        const getContentClickHandler = () => {
+            if (href) {
+                return undefined;
+            }
+            if (expandable) {
+                return handleClick;
+            }
+            return handleAnalytics;
+        };
+
         const content = React.createElement(
             href ? 'div' : 'button',
             {
                 ref,
                 className: b('text', textProps, b('text-block')),
-                onClick: expandable ? handleClick : undefined,
+                onClick: getContentClickHandler(),
                 ...allyButtonProps,
             },
             icon,
@@ -85,7 +115,7 @@ export const TocItem: React.FC<TocItemProps> = React.forwardRef(
             target: isExternal ? '_blank' : '_self',
             rel: isExternal ? 'noopener noreferrer' : undefined,
             className: b('link'),
-            onClick: expandable && href ? handleClick : undefined,
+            onClick: expandable && href ? handleClick : sendAnalytics,
             'aria-expanded': expandable ? expanded : undefined,
             'aria-current': active ? ('true' as const) : undefined,
             'data-router-shallow': true,

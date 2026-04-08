@@ -16,3 +16,7 @@ export enum CommonAnalyticsEvent {
     DOCS_HIDE_PAGE_NAV_CLICK = 'DOCS_HIDE-PAGE-NAV_CLICK',
     DOCS_FONTSIZE_MODE_CLICK = 'DOCS_FONTSIZE-MODE_CLICK',
 }
+
+export const DefaultAnalyticsEventNames = {
+    DOCS_TOC_ITEM_CLICK: 'DOCS_TOC_ITEM_CLICK',
+} as const;

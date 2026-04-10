@@ -116,8 +116,6 @@
                 --dc-code-short-line-height: 14px;
                 --dc-code-short-padding: 1px 2px;
 
-                @include mixins.text-size(body-1);
-
                 &,
                 .g-root {
                     @include mixins.gravity-ui-text-sizes(-2px);
@@ -142,8 +140,6 @@
                 --dc-code-short-font-size: 16px;
                 --dc-code-short-line-height: 20px;
                 --dc-code-short-padding: 1px 6px;
-
-                @include mixins.text-size(body-3);
 
                 &,
                 .g-root {

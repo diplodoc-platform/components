@@ -1,5 +1,17 @@
 # История изменений
 
+## [5.4.0](https://github.com/diplodoc-platform/components/compare/v5.3.2...v5.4.0) (2026-04-10)
+
+
+### Features
+
+* **analytics:** support metrika initialization on client side ([#598](https://github.com/diplodoc-platform/components/issues/598)) ([fda4f41](https://github.com/diplodoc-platform/components/commit/fda4f4146e4f0f89667efacc89b7030a9d0f65ee))
+
+
+### Bug Fixes
+
+* set correct text size for s and l text mode ([#600](https://github.com/diplodoc-platform/components/issues/600)) ([6cc7f42](https://github.com/diplodoc-platform/components/commit/6cc7f426d647cee6d64a1c7ff1b26c3cdcf52795))
+
 ## [5.3.2](https://github.com/diplodoc-platform/components/compare/v5.3.1...v5.3.2) (2026-04-02)
 
 

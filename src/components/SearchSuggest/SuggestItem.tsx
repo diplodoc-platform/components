@@ -1,4 +1,4 @@
-import type {SearchSuggestItem} from './types';
+import type {SearchSuggestActionItem, SearchSuggestItem} from './types';
 import type {FC, PropsWithChildren} from 'react';
 
 import React from 'react';
@@ -16,22 +16,67 @@ const BasicSuggestItem: FC<PropsWithChildren<{item: SearchSuggestItem}>> = ({ite
     return <div className={b('item', {type: item.type})}>{children}</div>;
 };
 
-export const SuggestItem: React.FC<SearchSuggestItem> = (item) => {
+type SuggestItemContentWrapperProps = PropsWithChildren<{
+    item: SearchSuggestItem;
+}>;
+
+const SuggestItemContentWrapper: FC<SuggestItemContentWrapperProps> = ({item, children}) => {
+    return (
+        <div className={b('item-content')}>
+            {item.icon}
+            <div className={b('item-main')}>{children}</div>
+            {!item.disabled && item.hint ? (
+                <span className={b('item-hint')}>{item.hint}</span>
+            ) : undefined}
+        </div>
+    );
+};
+
+type ActionProps = {
+    item: SearchSuggestActionItem;
+};
+
+export const Action: React.FC<ActionProps> = ({item}) => {
+    return (
+        <Link
+            className={b('item', {type: item.type})}
+            view={'primary'}
+            href="#"
+            onClick={(event) => {
+                event.preventDefault();
+                item.onClick();
+            }}
+        >
+            <SuggestItemContentWrapper item={item}>
+                <span className={b('item-title')}>{item.title}</span>
+                <span className={b('item-description')}>{item.description}</span>
+            </SuggestItemContentWrapper>
+        </Link>
+    );
+};
+
+export const SuggestItem = (item: SearchSuggestItem) => {
     switch (item.type) {
         case SuggestItemType.Delimiter:
             return <BasicSuggestItem item={item}>{null}</BasicSuggestItem>;
+        case SuggestItemType.Action:
+            return <Action item={item} />;
         case SuggestItemType.Link:
             return (
                 <Link className={b('item', {type: item.type})} view={'primary'} href={item.link}>
-                    <span>{item.title}</span>
-                    <ChevronRight width={13} height={13} viewBox={'0 0 13 13'} />
+                    <SuggestItemContentWrapper item={item}>
+                        <span>{item.title}</span>
+                        <ChevronRight width={13} height={13} viewBox={'0 0 13 13'} />
+                    </SuggestItemContentWrapper>
                 </Link>
             );
         case SuggestItemType.Page:
             return (
                 <Link className={b('item', {type: item.type})} view={'primary'} href={item.link}>
-                    <HTML className={b('item-title')}>{item.title}</HTML>
-                    <HTML className={b('item-description')}>{item.description}</HTML>
+                    <SuggestItemContentWrapper item={item}>
+                        <HTML className={b('item-title')}>{item.title}</HTML>
+                        <HTML className={b('item-description')}>{item.description}</HTML>
+                    </SuggestItemContentWrapper>
                 </Link>
             );
         case SuggestItemType.Group:

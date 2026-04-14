@@ -11,6 +11,8 @@ export interface AnalyticsConfig {
 export class Analytics {
     private adapters: Set<AnalyticsAdapter>;
 
+    private initialized = false;
+
     constructor(config: AnalyticsConfig) {
         this.adapters = new Set(config.adapters);
         this.track = this.track.bind(this);
@@ -19,6 +21,31 @@ export class Analytics {
 
         if (isDebug) {
             this.adapters.add(new ConsoleAnalyticsAdapter());
+        }
+    }
+
+    async init() {
+        if (this.initialized) {
+            return;
+        }
+
+        this.initialized = true;
+
+        try {
+            const promises = Array.from(this.adapters, (adapter) => {
+                if (typeof adapter.init === 'function') {
+                    return adapter.init();
+                }
+
+                return null;
+            });
+
+            await Promise.all(promises);
+        } catch (error) {
+            this.initialized = false;
+
+            // eslint-disable-next-line no-console
+            console.error('Failed to initialize the analytics service:', error);
         }
     }
 

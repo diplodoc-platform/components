@@ -1,6 +1,6 @@
 import type {KeyboardEvent, MouseEventHandler, SyntheticEvent} from 'react';
 import type {ISearchProvider} from '../../models';
-import type {SearchSuggestItem, SearchSuggestLinkableItem, SearchSuggestPageItem} from './types';
+import type {SearchSuggestItem, SearchSuggestLinkableItem} from './types';
 import type {List} from '@gravity-ui/uikit';
 
 import React, {
@@ -20,6 +20,7 @@ import uniqueId from 'lodash/uniqueId';
 import {CommonAnalyticsEvent, useAnalytics} from '../../shared/libs/analytics';
 import {useTranslation, useVirtualElementRef} from '../../hooks';
 
+import {SuggestItemType} from './types';
 import {SearchInput} from './SearchInput';
 import {Suggest} from './Suggest';
 import {SuggestItem} from './SuggestItem';
@@ -28,7 +29,13 @@ import './index.scss';
 
 const b = block('dc-search-suggest');
 
-export type {SearchSuggestItem, SearchSuggestLinkableItem, SearchSuggestPageItem};
+export type {
+    SearchSuggestActionItem,
+    SearchSuggestItem,
+    SearchSuggestLinkableItem,
+    SearchSuggestPageItem,
+} from './types';
+export {SuggestItemType} from './types';
 
 export interface SearchSuggestProps {
     provider: ISearchProvider;
@@ -38,8 +45,14 @@ export interface SearchSuggestProps {
     className?: string;
     onFocus?: (event: SyntheticEvent) => void;
     onBlur?: (event: SyntheticEvent) => void;
+    startContent?: React.ReactNode;
     endContent?: React.ReactNode;
     closeButton?: boolean;
+    withAllResults?: boolean;
+    focusFirstSearchResult?: boolean;
+    hasClear?: boolean;
+    withFocusOverlay?: boolean;
+    emptyState?: React.ReactNode;
 }
 
 export interface SearchSuggestApi {
@@ -74,9 +87,15 @@ export const SearchSuggest = forwardRef<SearchSuggestApi, SearchSuggestProps>((p
         classNameContainer,
         classNameClose,
         placeholder = t('search_placeholder'),
+        startContent,
         endContent,
         closeButton,
         onBlur,
+        withAllResults = true,
+        focusFirstSearchResult = false,
+        hasClear = false,
+        withFocusOverlay = false,
+        emptyState,
     } = props;
     const analytics = useAnalytics();
     const href = useRef<HTMLAnchorElement>(null);
@@ -101,13 +120,19 @@ export const SearchSuggest = forwardRef<SearchSuggestApi, SearchSuggestProps>((p
     const page = provider.link(query);
     const onKeyDown = useCallback(
         (event: KeyboardEvent<HTMLElement>) => {
-            if (event.key === 'Enter' && active === undefined && page) {
+            if (
+                event.key === 'Enter' &&
+                withAllResults &&
+                !focusFirstSearchResult &&
+                active === undefined &&
+                page
+            ) {
                 submitItem(page);
             } else if (suggest.current) {
                 suggest.current.onKeyDown(event);
             }
         },
-        [suggest, active, submitItem, page],
+        [suggest, active, submitItem, page, withAllResults, focusFirstSearchResult],
     );
 
     const open = useCallback(() => {
@@ -125,6 +150,11 @@ export const SearchSuggest = forwardRef<SearchSuggestApi, SearchSuggestProps>((p
     const onSubmit = useCallback(
         (item: SearchSuggestItem, _index?: number, fromKeyboard?: boolean) => {
             if (!fromKeyboard) {
+                return;
+            }
+
+            if (item.type === SuggestItemType.Action) {
+                item.onClick();
                 return;
             }
 
@@ -161,8 +191,15 @@ export const SearchSuggest = forwardRef<SearchSuggestApi, SearchSuggestProps>((p
 
     useImperativeHandle(api, () => ({open, close}), [open, close]);
 
+    const wrapperClassName = [b('wrapper', {focused}), classNameContainer]
+        .filter(Boolean)
+        .join(' ');
+
     return (
-        <div className={b('wrapper', classNameContainer)}>
+        <div className={wrapperClassName}>
+            {withFocusOverlay && focused && (
+                <div className={b('overlay')} onClick={onOutsideClick} />
+            )}
             <a ref={href} href="#" hidden aria-hidden />
             <SearchInput
                 {...handlers}
@@ -175,6 +212,7 @@ export const SearchSuggest = forwardRef<SearchSuggestApi, SearchSuggestProps>((p
                 onKeyDown={onKeyDown}
                 autoFocus={focused}
                 placeholder={placeholder}
+                startContent={startContent}
                 endContent={!focused && endContent}
                 controlProps={{
                     'aria-controls': `dc-popup-${id}`,
@@ -182,6 +220,7 @@ export const SearchSuggest = forwardRef<SearchSuggestApi, SearchSuggestProps>((p
                     'aria-activedescendant':
                         active === undefined ? undefined : `dc-${id}-list-item-${active}`,
                 }}
+                hasClear={hasClear}
             />
             {closeButton && focused && <CloseButton onClick={onClose} className={classNameClose} />}
             {input.current && (
@@ -190,7 +229,7 @@ export const SearchSuggest = forwardRef<SearchSuggestApi, SearchSuggestProps>((p
                     onOutsideClick={onOutsideClick}
                     id={`dc-popup-${id}`}
                     className={b('popup')}
-                    style={{width: box.width}}
+                    style={{width: box.width, zIndex: 1002}}
                     anchorRef={box}
                     strategy="fixed"
                 >
@@ -199,9 +238,12 @@ export const SearchSuggest = forwardRef<SearchSuggestApi, SearchSuggestProps>((p
                         id={`dc-${id}-list`}
                         query={query}
                         provider={provider}
+                        withAllResults={withAllResults}
+                        activeItemIndex={focusFirstSearchResult ? (active ?? 0) : active}
                         renderItem={SuggestItem}
                         onItemClick={onSubmit}
                         onChangeActive={setActive}
+                        emptyState={emptyState}
                     />
                 </Popup>
             )}

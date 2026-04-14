@@ -1,5 +1,6 @@
 import type {
     AvailableLangs,
+    ControlSizes,
     FeedbackSendData,
     Lang,
     LangOptions,
@@ -8,8 +9,8 @@ import type {
     Theme,
 } from '../../models';
 
-import block from 'bem-cn-lite';
 import React, {memo, useContext} from 'react';
+import block from 'bem-cn-lite';
 
 import {Feedback, FeedbackView} from '../Feedback';
 import {Subscribe, SubscribeView} from '../Subscribe';
@@ -54,6 +55,7 @@ export interface ControlsProps {
     onSubscribe?: (data: SubscribeData) => void;
     onEditClick?: () => void;
     pdfLink?: string;
+    pdfIconConfig?: {position?: string; size?: 'S' | 'M' | 'L'; icon?: string};
     className?: string;
     hideEditControl?: boolean;
     hideFeedbackControls?: boolean;
@@ -93,6 +95,7 @@ export const ControlsList: React.FC<ControlsProps & {isHiddenFeedback: boolean}>
         lang,
         langs,
         pdfLink,
+        pdfIconConfig,
         vcsUrl,
         vcsType,
         isLiked,
@@ -151,7 +154,14 @@ export const ControlsList: React.FC<ControlsProps & {isHiddenFeedback: boolean}>
                 onChange={onChangeSinglePage as Defined['onChangeSinglePage']}
             />
         ),
-        withPdfControl && <PdfControl key="pdf-control" pdfLink={pdfLink as Defined['pdfLink']} />,
+        withPdfControl && (
+            <PdfControl
+                key="pdf-control"
+                pdfLink={pdfLink as Defined['pdfLink']}
+                icon={pdfIconConfig?.icon}
+                size={pdfIconConfig?.size as ControlSizes | undefined}
+            />
+        ),
         '---',
         withEditControl && (
             <EditControl

@@ -24,6 +24,7 @@ export interface DocContentPageProps extends DocContentPageData {
     viewerInterface?: Record<string, boolean>;
     hideTocHeader?: boolean;
     pdfLink?: string;
+    pdfIconConfig?: {position?: string; size?: 'S' | 'M' | 'L'; icon?: string};
 }
 
 export const DocContentPage: React.FC<DocContentPageProps> = ({
@@ -42,6 +43,7 @@ export const DocContentPage: React.FC<DocContentPageProps> = ({
     hideTocHeader,
     pdfLink,
     textSize,
+    pdfIconConfig,
 }) => {
     const textSizeClassName = b('body', {'text-size': textSize}, 'yfm');
     const modes = {
@@ -62,6 +64,7 @@ export const DocContentPage: React.FC<DocContentPageProps> = ({
             legacyToc={legacyToc}
             hideTocHeader={hideTocHeader}
             pdfLink={pdfLink}
+            pdfIconConfig={pdfIconConfig}
         >
             <DocLayout.Center>
                 <div className={b('main')}>

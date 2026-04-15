@@ -11,3 +11,4 @@ export {default as SidebarContent} from './SidebarContent/SidebarContent';
 export {default as Sidebar} from './Sidebar/Sidebar';
 export {default as ToMainMenu} from './ToMainMenu/ToMainMenu';
 export {default as MobileDropdown} from './MobileDropdown/MobileDropdown';
+export {Label as NavigationLabel, type LabelProps as NavigationLabelProps} from './Label';

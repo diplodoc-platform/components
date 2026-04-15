@@ -1,5 +1,13 @@
 # История изменений
 
+## [5.5.0](https://github.com/diplodoc-platform/components/compare/v5.4.1...v5.5.0) (2026-04-15)
+
+
+### Features
+
+* add AI hint related props to searchsuggest ([#604](https://github.com/diplodoc-platform/components/issues/604)) ([1cd9134](https://github.com/diplodoc-platform/components/commit/1cd91345f431823ed4da8684be1bf7139c253d8d))
+* add navigation label component ([#603](https://github.com/diplodoc-platform/components/issues/603)) ([0cad3b8](https://github.com/diplodoc-platform/components/commit/0cad3b803b498291a7b1d0733010f217cf09aaba))
+
 ## [5.4.1](https://github.com/diplodoc-platform/components/compare/v5.4.0...v5.4.1) (2026-04-15)
 
 

@@ -1,5 +1,12 @@
 # История изменений
 
+## [5.4.1](https://github.com/diplodoc-platform/components/compare/v5.4.0...v5.4.1) (2026-04-15)
+
+
+### Bug Fixes
+
+* remove background color for image PC DOCSTOOLS-5675 ([58fad7e](https://github.com/diplodoc-platform/components/commit/58fad7e7f08979929b86c95ad305b8bf176fa545))
+
 ## [5.4.0](https://github.com/diplodoc-platform/components/compare/v5.3.2...v5.4.0) (2026-04-10)
 
 

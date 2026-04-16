@@ -1,15 +1,17 @@
 import type {ReactNode} from 'react';
 import type {ISearchProvider} from '../../models';
+import {SuggestItemType} from './types';
 import type {SearchSuggestActionItem, SearchSuggestItem} from './types';
 import type {ListItemData} from '@gravity-ui/uikit';
 
-import React, {forwardRef, memo, useEffect} from 'react';
-import {List, Loader} from '@gravity-ui/uikit';
+import React, {forwardRef, memo, useEffect, useMemo} from 'react';
+import {List, Loader, Text} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 import pick from 'lodash/pick';
 
 import {useTranslation} from '../../hooks';
 
+import {AiIcon} from './AiIcon';
 import {useProvider} from './useProvider';
 import './index.scss';
 
@@ -36,6 +38,12 @@ const SuggestEmpty = memo<{query: string; emptyState?: ReactNode}>(({query, empt
 });
 
 SuggestEmpty.displayName = 'SuggestEmpty';
+
+const ENTER_HINT = (
+    <Text variant="body-short" color="secondary">
+        ENTER
+    </Text>
+);
 
 type SuggestListProps = {
     id: string;
@@ -80,14 +88,30 @@ type SuggestProps = {
     provider: ISearchProvider;
     withAllResults?: boolean;
     emptyState?: ReactNode;
+    onAiAction?: (query: string) => void;
 } & Omit<SuggestListProps, 'items'>;
 
 export const Suggest = memo(
     forwardRef<List<SearchSuggestItem>, SuggestProps>((props, ref) => {
-        const {query, provider, withAllResults = true, emptyState} = props;
+        const {query, provider, withAllResults = true, emptyState, onAiAction} = props;
+        const {t} = useTranslation('search-suggest');
         const [items, suggest] = useProvider(provider, {withAllResults});
 
         useEffect(() => suggest(query), [query, suggest]);
+
+        const aiActionItem: SearchSuggestActionItem | null = useMemo(
+            () =>
+                onAiAction && query
+                    ? {
+                          type: SuggestItemType.Action,
+                          title: t('search-suggest_ask-ai'),
+                          icon: <AiIcon />,
+                          hint: ENTER_HINT,
+                          onClick: () => onAiAction(query),
+                      }
+                    : null,
+            [onAiAction, query, t],
+        );
 
         const emptyAction =
             Array.isArray(items) && !items.length
@@ -111,7 +135,10 @@ export const Suggest = memo(
         ]);
 
         if (Array.isArray(items) && !items.length) {
-            const emptyItems: SearchSuggestActionItem[] = emptyAction ? [emptyAction] : [];
+            const emptyItems: SearchSuggestActionItem[] = [
+                ...(aiActionItem ? [aiActionItem] : []),
+                ...(emptyAction ? [emptyAction] : []),
+            ];
 
             return (
                 <>
@@ -123,7 +150,9 @@ export const Suggest = memo(
             );
         }
 
-        return <SuggestList ref={ref} items={items} {...listProps} />;
+        const allItems = aiActionItem ? [aiActionItem, ...items] : items;
+
+        return <SuggestList ref={ref} items={allItems} {...listProps} />;
     }),
 );
 

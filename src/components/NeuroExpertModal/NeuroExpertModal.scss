@@ -1,0 +1,75 @@
+@use 'sass:map';
+@use '../../styles/variables';
+
+.dc-neuro-expert-modal {
+    &__modal {
+        display: grid;
+
+        .g-modal__content {
+            border-radius: 8px;
+            width: 50vw;
+            height: 70vh;
+        }
+    }
+
+    &__header-caption {
+        display: grid;
+        align-items: center;
+        grid-template-columns: auto 1fr;
+        width: fit-content;
+        gap: 8px;
+    }
+
+    &__header {
+        display: grid;
+        justify-content: center;
+        padding-bottom: 20px;
+    }
+
+    &__body {
+        position: relative;
+        padding: 0;
+    }
+
+    &__container {
+        width: 100%;
+        height: 62vh;
+    }
+
+    &__iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+
+    &__loader {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--g-color-base-background);
+    }
+
+    @media (max-width: map.get(variables.$screenBreakpoints, 'xl')) {
+        &__modal {
+            .g-modal__content {
+                width: 70vw;
+            }
+        }
+    }
+
+    @media (max-width: map.get(variables.$screenBreakpoints, 'md')) {
+        &__modal {
+            .g-modal__content {
+                border-radius: 0;
+                width: 100vw;
+                height: 100vh;
+            }
+        }
+
+        &__container {
+            height: 92vh;
+        }
+    }
+}

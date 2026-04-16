@@ -2,9 +2,9 @@ import type {FC, PropsWithChildren} from 'react';
 import type {ISearchProvider, ISearchResult, ISearchResultWithLink} from '@diplodoc/components';
 
 import React, {useState} from 'react';
-import {SearchSuggest as Component, SuggestItemType} from '@diplodoc/components';
+import {AiIcon, SearchSuggest as Component, SuggestItemType} from '@diplodoc/components';
 import block from 'bem-cn-lite';
-import {ArrowUpRightFromSquare, SparklesFill} from '@gravity-ui/icons';
+import {ArrowUpRightFromSquare} from '@gravity-ui/icons';
 import {Icon, Text} from '@gravity-ui/uikit';
 
 import data from '../SearchSuggestWithAi/page.json';
@@ -34,14 +34,6 @@ const FakeHeader: FC<PropsWithChildren<Props>> = ({children, className}) => {
             <div className="header-center"></div>
             <div className="header-right">{children}</div>
         </div>
-    );
-};
-
-const AiIcon = ({className}: {className?: string}) => {
-    return (
-        <span className={className}>
-            <Icon data={SparklesFill} size={16} />
-        </span>
     );
 };
 

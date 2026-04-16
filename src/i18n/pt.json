@@ -143,7 +143,9 @@
     "search-suggest_error-text": "Algo deu errado. Tente novamente.",
     "search-item_type-all": "Tudo",
     "search-item_type-doc": "Documentação",
-    "search-item_type-main": "Principal"
+    "search-item_type-main": "Principal",
+    "search-suggest_ask-ai": "Perguntar à IA",
+    "search-suggest_ai-chat": "Chat de IA"
   },
   "paginator": {
     "next": "Página seguinte",

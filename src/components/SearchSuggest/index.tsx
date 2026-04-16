@@ -36,6 +36,7 @@ export type {
     SearchSuggestPageItem,
 } from './types';
 export {SuggestItemType} from './types';
+export {AiIcon} from './AiIcon';
 
 export interface SearchSuggestProps {
     provider: ISearchProvider;
@@ -53,6 +54,7 @@ export interface SearchSuggestProps {
     hasClear?: boolean;
     withFocusOverlay?: boolean;
     emptyState?: React.ReactNode;
+    onAiAction?: (query: string) => void;
 }
 
 export interface SearchSuggestApi {
@@ -96,6 +98,7 @@ export const SearchSuggest = forwardRef<SearchSuggestApi, SearchSuggestProps>((p
         hasClear = false,
         withFocusOverlay = false,
         emptyState,
+        onAiAction,
     } = props;
     const analytics = useAnalytics();
     const href = useRef<HTMLAnchorElement>(null);
@@ -244,6 +247,7 @@ export const SearchSuggest = forwardRef<SearchSuggestApi, SearchSuggestProps>((p
                         onItemClick={onSubmit}
                         onChangeActive={setActive}
                         emptyState={emptyState}
+                        onAiAction={onAiAction}
                     />
                 </Popup>
             )}

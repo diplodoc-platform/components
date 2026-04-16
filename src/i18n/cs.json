@@ -143,7 +143,9 @@
     "search-suggest_error-text": "Něco se pokazilo. Zkuste to znovu.",
     "search-item_type-all": "Vše",
     "search-item_type-doc": "Dokumentace",
-    "search-item_type-main": "Hlavní"
+    "search-item_type-main": "Hlavní",
+    "search-suggest_ask-ai": "Zeptat se AI",
+    "search-suggest_ai-chat": "AI chat"
   },
   "paginator": {
     "next": "Další stránka",

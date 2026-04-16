@@ -1,6 +1,5 @@
 import type {ReactNode} from 'react';
 import type {ISearchProvider} from '../../models';
-import {SuggestItemType} from './types';
 import type {SearchSuggestActionItem, SearchSuggestItem} from './types';
 import type {ListItemData} from '@gravity-ui/uikit';
 
@@ -11,6 +10,7 @@ import pick from 'lodash/pick';
 
 import {useTranslation} from '../../hooks';
 
+import {SuggestItemType} from './types';
 import {AiIcon} from './AiIcon';
 import {useProvider} from './useProvider';
 import './index.scss';

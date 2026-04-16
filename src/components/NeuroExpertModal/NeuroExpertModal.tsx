@@ -5,8 +5,9 @@ import {Dialog, Loader, Text} from '@gravity-ui/uikit';
 import {useTranslation} from 'react-i18next';
 import block from 'bem-cn-lite';
 
-import './NeuroExpertModal.scss';
 import {AiIcon} from '../SearchSuggest';
+
+import './NeuroExpertModal.scss';
 
 const b = block('dc-neuro-expert-modal');
 

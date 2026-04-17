@@ -21,6 +21,7 @@ import {CommonAnalyticsEvent, useAnalytics} from '../../shared/libs/analytics';
 import {useTranslation, useVirtualElementRef} from '../../hooks';
 
 import {SuggestItemType} from './types';
+import {useAiActionItem} from './useAiAction';
 import {SearchInput} from './SearchInput';
 import {Suggest} from './Suggest';
 import {SuggestItem} from './SuggestItem';
@@ -37,6 +38,7 @@ export type {
 } from './types';
 export {SuggestItemType} from './types';
 export {AiIcon} from './AiIcon';
+export {useAiActionItem} from './useAiAction';
 
 export interface SearchSuggestProps {
     provider: ISearchProvider;
@@ -109,6 +111,11 @@ export const SearchSuggest = forwardRef<SearchSuggestApi, SearchSuggestProps>((p
     const [active, setActive] = useState<undefined | number>(undefined);
     const [focused, setFocused, handlers] = useFocus(props);
     const [box, watch] = useVirtualElementRef(input.current);
+
+    const aiActionItem = useAiActionItem({
+        query,
+        onAiAction,
+    });
 
     const submitItem = useCallback(
         (link: string) => {
@@ -247,7 +254,7 @@ export const SearchSuggest = forwardRef<SearchSuggestApi, SearchSuggestProps>((p
                         onItemClick={onSubmit}
                         onChangeActive={setActive}
                         emptyState={emptyState}
-                        onAiAction={onAiAction}
+                        prependItems={aiActionItem ? [aiActionItem] : undefined}
                     />
                 </Popup>
             )}

@@ -11,9 +11,7 @@ import './NeuroExpertModal.scss';
 
 const b = block('dc-neuro-expert-modal');
 
-const PARENT_ID = 'dc-neuro-expert-chat';
 const IFRAME_BASE_URL = 'https://expert.yandex.ru/expert/projects';
-const MOUNT_DELAY = 1500;
 
 export interface NeuroExpertModalProps {
     open: boolean;
@@ -21,6 +19,7 @@ export interface NeuroExpertModalProps {
     projectId: string;
     onClose: () => void;
 }
+
 const HeaderCaption = () => {
     const {t} = useTranslation('search-suggest');
 
@@ -33,82 +32,60 @@ const HeaderCaption = () => {
 };
 
 export const NeuroExpertModal: FC<NeuroExpertModalProps> = ({open, query, projectId, onClose}) => {
-    const [loading, setLoading] = useState(true);
-    const pollRef = useRef<number>();
-    const iframeRef = useRef<HTMLIFrameElement | null>(null);
+    const [loaded, setLoaded] = useState<boolean>(false);
+    const iframeRef = useRef<HTMLIFrameElement>(null);
+    const iframeSrc = `${IFRAME_BASE_URL}/${projectId}/iframe`;
 
     useEffect(() => {
-        if (!open || !query || !projectId) {
+        if (loaded) {
             return;
         }
 
-        setLoading(true);
-
-        function tryMount() {
-            const container = document.getElementById(PARENT_ID);
-
-            if (!container) {
-                pollRef.current = window.setTimeout(tryMount, 30);
-
+        const handleMessage = (event: MessageEvent) => {
+            if (event.source !== iframeRef.current?.contentWindow) {
                 return;
             }
 
-            container.innerHTML = '';
-
-            const iframe = document.createElement('iframe');
-            iframe.src = `${IFRAME_BASE_URL}/${projectId}/iframe`;
-            iframe.style.cssText = 'width:100%;height:100%;border:none;';
-            iframeRef.current = iframe;
-
-            iframe.addEventListener(
-                'load',
-                () => {
-                    setTimeout(() => {
-                        setLoading(false);
-                        iframe.contentWindow?.postMessage(
-                            {type: 'send-message', payload: {text: query}},
-                            '*',
-                        );
-                    }, MOUNT_DELAY);
-                },
-                {once: true},
-            );
-
-            container.appendChild(iframe);
-        }
-
-        tryMount();
-
-        return () => {
-            if (pollRef.current) {
-                clearTimeout(pollRef.current);
+            if (event.data?.type === 'chat-mounted') {
+                setLoaded(true);
             }
         };
-    }, [open, query, projectId]);
+
+        window.addEventListener('message', handleMessage);
+
+        return () => window.removeEventListener('message', handleMessage);
+    }, [loaded]);
 
     useEffect(() => {
-        if (!open) {
-            iframeRef.current = null;
-            setLoading(true);
-            const container = document.getElementById(PARENT_ID);
-            if (container) {
-                container.innerHTML = '';
-            }
+        if (!open || !loaded) {
+            return;
         }
-    }, [open]);
+
+        iframeRef.current?.contentWindow?.postMessage(
+            {type: 'send-message', payload: {text: query}},
+            '*',
+        );
+    }, [open, loaded, query]);
 
     return (
         <Dialog
             open={open}
             onClose={onClose}
             hasCloseButton
+            keepMounted={loaded}
             className={b()}
             modalClassName={b('modal')}
         >
             <Dialog.Header className={b('header')} caption={<HeaderCaption />} />
             <Dialog.Body className={b('body')}>
-                <div id={PARENT_ID} className={b('container')} />
-                {loading && open && (
+                <div className={b('container')}>
+                    <iframe
+                        ref={iframeRef}
+                        src={iframeSrc}
+                        style={{width: '100%', height: '100%', border: 'none'}}
+                    />
+                </div>
+                {!loaded && (
                     <div className={b('loader')}>
                         <Loader size="l" />
                     </div>

@@ -1,5 +1,12 @@
 # История изменений
 
+## [5.7.0](https://github.com/diplodoc-platform/components/compare/v5.6.0...v5.7.0) (2026-04-17)
+
+
+### Features
+
+* added neuroExpert in search ([#611](https://github.com/diplodoc-platform/components/issues/611)) ([e32ae5c](https://github.com/diplodoc-platform/components/commit/e32ae5c403f949025931474f12676932aca3be25))
+
 ## [5.6.0](https://github.com/diplodoc-platform/components/compare/v5.5.0...v5.6.0) (2026-04-16)
 
 

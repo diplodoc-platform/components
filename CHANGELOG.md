@@ -1,5 +1,12 @@
 # История изменений
 
+## [5.6.0](https://github.com/diplodoc-platform/components/compare/v5.5.0...v5.6.0) (2026-04-16)
+
+
+### Features
+
+* extend pdf icon settings ([49f697a](https://github.com/diplodoc-platform/components/commit/49f697a4b0a48178efd6d2884683233398c151b7))
+
 ## [5.5.0](https://github.com/diplodoc-platform/components/compare/v5.4.1...v5.5.0) (2026-04-15)
 
 

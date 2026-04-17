@@ -85,6 +85,7 @@ export interface DocPageProps extends DocPageData, DocSettings, NotificationProp
     onContentLoaded?: () => void;
     onSubscribe?: (data: SubscribeData) => void;
     pdfLink?: string;
+    pdfIconConfig?: {position?: string; size?: 'S' | 'M' | 'L'; icon?: string};
     onMiniTocItemClick?: (event: MouseEvent) => void;
     useMainTag?: boolean;
     isMobile?: boolean;
@@ -164,6 +165,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             footer,
             onChangeSinglePage,
             pdfLink,
+            pdfIconConfig,
             useMainTag,
             onChangeLang,
             onChangeTheme,
@@ -211,6 +213,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                 singlePage={singlePage}
                 onChangeSinglePage={onChangeSinglePage}
                 pdfLink={pdfLink}
+                pdfIconConfig={pdfIconConfig}
                 legacyToc={legacyToc}
             >
                 <DocLayout.Center>

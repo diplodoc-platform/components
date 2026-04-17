@@ -16,6 +16,15 @@
         --g-text-input-border-color-hover: rgba(255, 255, 255, 0.5);
     }
 
+    &__ai-icon {
+        color: #fc4714;
+        padding: 0 8px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
     &__wrapper {
         position: relative;
         width: 100%;

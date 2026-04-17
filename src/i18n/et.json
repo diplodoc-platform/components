@@ -143,7 +143,9 @@
     "search-suggest_error-text": "Midagi läks valesti. Proovi uuesti.",
     "search-item_type-all": "Kõik",
     "search-item_type-doc": "Dokumentatsioon",
-    "search-item_type-main": "Pealeht"
+    "search-item_type-main": "Pealeht",
+    "search-suggest_ask-ai": "Küsi AI-lt",
+    "search-suggest_ai-chat": "AI vestlus"
   },
   "paginator": {
     "next": "Järgmine lehekülg",

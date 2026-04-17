@@ -17,7 +17,7 @@ test('SearchSuggestWithAi test', async ({page}) => {
 
     await input.fill('test');
 
-    await expect(page.getByText('Спросить у AI').first()).toBeVisible({timeout: 5000});
+    await expect(page.getByText('Ask AI').first()).toBeVisible({timeout: 5000});
 
     await expect(page).toHaveScreenshot('SearchSuggestWithAi-search.png', {
         maxDiffPixelRatio: 0.01,

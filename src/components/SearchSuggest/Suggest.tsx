@@ -80,19 +80,15 @@ type SuggestProps = {
     provider: ISearchProvider;
     withAllResults?: boolean;
     emptyState?: ReactNode;
+    prependItems?: SearchSuggestActionItem[];
 } & Omit<SuggestListProps, 'items'>;
 
 export const Suggest = memo(
     forwardRef<List<SearchSuggestItem>, SuggestProps>((props, ref) => {
-        const {query, provider, withAllResults = true, emptyState} = props;
+        const {query, provider, withAllResults = true, emptyState, prependItems} = props;
         const [items, suggest] = useProvider(provider, {withAllResults});
 
         useEffect(() => suggest(query), [query, suggest]);
-
-        const emptyAction =
-            Array.isArray(items) && !items.length
-                ? (provider.onEmptyAction?.(query) ?? null)
-                : null;
 
         if (!items) {
             return null;
@@ -111,19 +107,17 @@ export const Suggest = memo(
         ]);
 
         if (Array.isArray(items) && !items.length) {
-            const emptyItems: SearchSuggestActionItem[] = emptyAction ? [emptyAction] : [];
-
             return (
                 <>
-                    {Boolean(emptyItems.length) && (
-                        <SuggestList ref={ref} items={emptyItems} {...listProps} />
-                    )}
+                    {prependItems && <SuggestList ref={ref} items={prependItems} {...listProps} />}
                     <SuggestEmpty query={query} emptyState={emptyState} />
                 </>
             );
         }
 
-        return <SuggestList ref={ref} items={items} {...listProps} />;
+        const allItems = prependItems?.length ? [...prependItems, ...items] : items;
+
+        return <SuggestList ref={ref} items={allItems} {...listProps} />;
     }),
 );
 

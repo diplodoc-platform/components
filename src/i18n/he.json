@@ -143,7 +143,9 @@
     "search-suggest_error-text": "משהו השתבש. נסה שוב.",
     "search-item_type-all": "הכל",
     "search-item_type-doc": "תיעוד",
-    "search-item_type-main": "ראשי"
+    "search-item_type-main": "ראשי",
+    "search-suggest_ask-ai": "שאל את ה-AI",
+    "search-suggest_ai-chat": "צ'אט AI"
   },
   "paginator": {
     "next": "העמוד הבא",

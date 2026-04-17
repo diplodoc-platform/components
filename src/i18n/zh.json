@@ -143,7 +143,9 @@
     "search-suggest_error-text": "出现了一些问题。请再试一次。",
     "search-item_type-all": "全部",
     "search-item_type-doc": "文档",
-    "search-item_type-main": "首页"
+    "search-item_type-main": "首页",
+    "search-suggest_ask-ai": "向 AI 提问",
+    "search-suggest_ai-chat": "AI 聊天"
   },
   "paginator": {
     "next": "下一页",

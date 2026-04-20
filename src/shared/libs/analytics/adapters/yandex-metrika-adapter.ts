@@ -38,6 +38,7 @@ export interface YandexMetrikaFn {
 export interface YandexMetrikaAdapterConfig {
     id: number;
     params?: YandexMetrikaInitParams;
+    key?: string;
 }
 
 interface YandexMetrikaInternalFn extends YandexMetrikaFn {
@@ -46,11 +47,13 @@ interface YandexMetrikaInternalFn extends YandexMetrikaFn {
 }
 
 export class YandexMetrikaAdapter implements AnalyticsAdapter {
+    key: string;
     private config: YandexMetrikaAdapterConfig;
 
     private initialized = false;
 
     constructor(config: YandexMetrikaAdapterConfig) {
+        this.key = config.key || String(config.id);
         this.config = config;
     }
 

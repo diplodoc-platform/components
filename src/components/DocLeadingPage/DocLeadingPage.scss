@@ -17,6 +17,20 @@
         padding: 0 40px;
     }
 
+    &__body {
+        @include mixins.text-size(body-2);
+
+        &_text-size {
+            &_s {
+                @include mixins.gravity-ui-text-sizes(-2px);
+            }
+
+            &_l {
+                @include mixins.gravity-ui-text-sizes(2px);
+            }
+        }
+    }
+
     &__title {
         margin: 40px 0 variables.$normalOffset;
 

@@ -1,5 +1,12 @@
 # История изменений
 
+## [5.7.2](https://github.com/diplodoc-platform/components/compare/v5.7.1...v5.7.2) (2026-04-23)
+
+
+### Bug Fixes
+
+* drill pdf config props ([bc39e60](https://github.com/diplodoc-platform/components/commit/bc39e601a804e31c98bbc7c652bc76cae68cd97b))
+
 ## [5.7.1](https://github.com/diplodoc-platform/components/compare/v5.7.0...v5.7.1) (2026-04-21)
 
 

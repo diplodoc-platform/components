@@ -1,5 +1,12 @@
 # История изменений
 
+## [5.7.3](https://github.com/diplodoc-platform/components/compare/v5.7.2...v5.7.3) (2026-04-30)
+
+
+### Bug Fixes
+
+* goals of the neuroexpert's actions in the metrics ([#618](https://github.com/diplodoc-platform/components/issues/618)) ([f17d973](https://github.com/diplodoc-platform/components/commit/f17d973a5a477ac3bcb6ec79de4e3cbdadf75118))
+
 ## [5.7.2](https://github.com/diplodoc-platform/components/compare/v5.7.1...v5.7.2) (2026-04-23)
 
 

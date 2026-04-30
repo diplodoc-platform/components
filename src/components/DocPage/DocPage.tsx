@@ -164,7 +164,6 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             hideToc,
             footer,
             onChangeSinglePage,
-            pdfLink,
             pdfIconConfig,
             useMainTag,
             onChangeLang,
@@ -178,6 +177,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
         } = this.props;
 
         const hideBurger = typeof headerHeight !== 'undefined' && headerHeight > 0;
+        const {tocPdfLink} = this.resolvePdfPlacement();
 
         const modes = {
             'regular-page-width': !wideFormat,
@@ -212,7 +212,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                 footer={footer}
                 singlePage={singlePage}
                 onChangeSinglePage={onChangeSinglePage}
-                pdfLink={pdfLink}
+                pdfLink={tocPdfLink}
                 pdfIconConfig={pdfIconConfig}
                 legacyToc={legacyToc}
             >
@@ -671,6 +671,16 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
         );
     };
 
+    private resolvePdfPlacement() {
+        const {pdfLink, pdfIconConfig} = this.props;
+        const inHeader = pdfIconConfig?.position === 'header';
+        return {
+            tocPdfLink: inHeader ? undefined : pdfLink,
+            headerPdfLink: inHeader ? pdfLink : undefined,
+            headerPdfIconConfig: inHeader ? pdfIconConfig : undefined,
+        };
+    }
+
     private renderControls() {
         const {
             lang,
@@ -703,6 +713,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
         }
 
         const isVerticalView = this.getIsVerticalView();
+        const {headerPdfLink, headerPdfIconConfig} = this.resolvePdfPlacement();
 
         return (
             <div className={b('controls', {vertical: isVerticalView})}>
@@ -731,6 +742,8 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                         hideEditControl={hideEditControl || fullScreen || !this.isEditable()}
                         hideFeedbackControls={hideFeedbackControls}
                         availableLangs={availableLangs}
+                        pdfLink={headerPdfLink}
+                        pdfIconConfig={headerPdfIconConfig}
                     />
                 </ControlsLayout>
             </div>

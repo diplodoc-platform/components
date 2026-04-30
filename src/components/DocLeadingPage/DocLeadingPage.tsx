@@ -1,4 +1,4 @@
-import type {DocLeadingLinks, DocLeadingPageData, Router} from '../../models';
+import type {DocLeadingLinks, DocLeadingPageData, Router, TextSizes} from '../../models';
 import type {NotificationProps} from '../Notification';
 
 import React from 'react';
@@ -31,6 +31,7 @@ export interface DocLeadingPageProps extends DocLeadingPageData, NotificationPro
     isMobile?: boolean;
     fullScreen?: boolean;
     pdfLink?: string;
+    textSize?: TextSizes;
 }
 
 export interface DocLinkProps {
@@ -127,6 +128,7 @@ export const DocLeadingPage: React.FC<DocLeadingPageProps> = ({
     isMobile,
     fullScreen,
     pdfLink,
+    textSize,
 }) => {
     const modes = {
         'regular-page-width': !wideFormat,
@@ -156,7 +158,9 @@ export const DocLeadingPage: React.FC<DocLeadingPageProps> = ({
                     <div className={b('description')}>
                         <Text data={description} html block />
                     </div>
-                    <Links links={links} isRoot />
+                    <div className={b('body', {'text-size': textSize})}>
+                        <Links links={links} isRoot />
+                    </div>
                 </ContentWrapper>
             </DocLayout.Center>
         </DocLayout>

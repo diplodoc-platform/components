@@ -90,7 +90,7 @@ export const TocItem: React.FC<TocItemProps> = React.forwardRef(
             if (expandable) {
                 return handleClick;
             }
-            return handleAnalytics;
+            return sendAnalytics;
         };
 
         const content = React.createElement(

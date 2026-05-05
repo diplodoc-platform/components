@@ -143,7 +143,9 @@
     "search-suggest_error-text": "Something went wrong. Try again.",
     "search-item_type-all": "All",
     "search-item_type-doc": "Documentation",
-    "search-item_type-main": "Main"
+    "search-item_type-main": "Main",
+    "search-suggest_ask-ai": "Ask AI",
+    "search-suggest_ai-chat": "AI Chat"
   },
   "paginator": {
     "next": "Next page",

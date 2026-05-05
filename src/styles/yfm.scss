@@ -76,6 +76,7 @@
     // Transform styles override PC icon size
     .pc-icon-wrapper__icon {
         max-height: none;
+        background-color: inherit;
     }
 
     img {

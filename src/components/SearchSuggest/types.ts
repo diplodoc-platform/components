@@ -1,4 +1,5 @@
 import type {BreadcrumbItem} from '../../models';
+import type {ReactNode} from 'react';
 
 export enum SuggestItemType {
     Text = 'text',
@@ -6,11 +7,14 @@ export enum SuggestItemType {
     Group = 'group',
     Delimiter = 'delimiter',
     Link = 'link',
+    Action = 'action',
 }
 
 interface SearchSuggestBaseItem {
     type: SuggestItemType;
     disabled?: boolean;
+    icon?: ReactNode;
+    hint?: ReactNode;
 }
 
 interface SearchSuggestTextItem extends SearchSuggestBaseItem {
@@ -41,9 +45,17 @@ interface SearchSuggestLinkItem extends SearchSuggestBaseItem {
     link: string;
 }
 
+export interface SearchSuggestActionItem extends SearchSuggestBaseItem {
+    type: SuggestItemType.Action;
+    title: string;
+    description?: string;
+    onClick: () => void;
+}
+
 export type SearchSuggestLinkableItem = SearchSuggestPageItem | SearchSuggestLinkItem;
 
 export type SearchSuggestItem =
+    | SearchSuggestActionItem
     | SearchSuggestLinkableItem
     | SearchSuggestTextItem
     | SearchSuggestGroupItem

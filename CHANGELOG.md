@@ -1,5 +1,55 @@
 # История изменений
 
+## [5.7.3](https://github.com/diplodoc-platform/components/compare/v5.7.2...v5.7.3) (2026-04-30)
+
+
+### Bug Fixes
+
+* goals of the neuroexpert's actions in the metrics ([#618](https://github.com/diplodoc-platform/components/issues/618)) ([f17d973](https://github.com/diplodoc-platform/components/commit/f17d973a5a477ac3bcb6ec79de4e3cbdadf75118))
+
+## [5.7.2](https://github.com/diplodoc-platform/components/compare/v5.7.1...v5.7.2) (2026-04-23)
+
+
+### Bug Fixes
+
+* drill pdf config props ([bc39e60](https://github.com/diplodoc-platform/components/commit/bc39e601a804e31c98bbc7c652bc76cae68cd97b))
+
+## [5.7.1](https://github.com/diplodoc-platform/components/compare/v5.7.0...v5.7.1) (2026-04-21)
+
+
+### Bug Fixes
+
+* change text size on leading pages ([#613](https://github.com/diplodoc-platform/components/issues/613)) ([57e11de](https://github.com/diplodoc-platform/components/commit/57e11de9f5ddafc7852dfe2da48475e0add279aa))
+
+## [5.7.0](https://github.com/diplodoc-platform/components/compare/v5.6.0...v5.7.0) (2026-04-17)
+
+
+### Features
+
+* added neuroExpert in search ([#611](https://github.com/diplodoc-platform/components/issues/611)) ([e32ae5c](https://github.com/diplodoc-platform/components/commit/e32ae5c403f949025931474f12676932aca3be25))
+
+## [5.6.0](https://github.com/diplodoc-platform/components/compare/v5.5.0...v5.6.0) (2026-04-16)
+
+
+### Features
+
+* extend pdf icon settings ([49f697a](https://github.com/diplodoc-platform/components/commit/49f697a4b0a48178efd6d2884683233398c151b7))
+
+## [5.5.0](https://github.com/diplodoc-platform/components/compare/v5.4.1...v5.5.0) (2026-04-15)
+
+
+### Features
+
+* add AI hint related props to searchsuggest ([#604](https://github.com/diplodoc-platform/components/issues/604)) ([1cd9134](https://github.com/diplodoc-platform/components/commit/1cd91345f431823ed4da8684be1bf7139c253d8d))
+* add navigation label component ([#603](https://github.com/diplodoc-platform/components/issues/603)) ([0cad3b8](https://github.com/diplodoc-platform/components/commit/0cad3b803b498291a7b1d0733010f217cf09aaba))
+
+## [5.4.1](https://github.com/diplodoc-platform/components/compare/v5.4.0...v5.4.1) (2026-04-15)
+
+
+### Bug Fixes
+
+* remove background color for image PC DOCSTOOLS-5675 ([58fad7e](https://github.com/diplodoc-platform/components/commit/58fad7e7f08979929b86c95ad305b8bf176fa545))
+
 ## [5.4.0](https://github.com/diplodoc-platform/components/compare/v5.3.2...v5.4.0) (2026-04-10)
 
 

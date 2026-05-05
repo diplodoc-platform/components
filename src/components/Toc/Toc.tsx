@@ -30,6 +30,7 @@ export interface TocProps extends TocData {
     singlePage?: boolean;
     onChangeSinglePage?: (value: boolean) => void;
     pdfLink?: string;
+    pdfIconConfig?: {position?: string; size?: 'S' | 'M' | 'L'; icon?: string};
 }
 
 interface TocState {
@@ -305,19 +306,20 @@ class Toc extends React.Component<TocProps, TocState> {
     }
 
     private renderBottom() {
-        const {singlePage, onChangeSinglePage, pdfLink} = this.props;
+        const {singlePage, onChangeSinglePage, pdfLink, pdfIconConfig} = this.props;
         const {contentScrolled} = this.state;
 
         return (
             <div className={b('bottom', {scrolled: contentScrolled})}>
                 <ControlsLayout
-                    controlSize={ControlSizes.L}
+                    controlSize={(pdfIconConfig?.size as ControlSizes) ?? ControlSizes.L}
                     popupPosition={PopperPosition.TOP_START}
                 >
                     <Controls
                         singlePage={singlePage}
                         onChangeSinglePage={onChangeSinglePage}
                         pdfLink={pdfLink}
+                        pdfIconConfig={pdfIconConfig}
                     />
                 </ControlsLayout>
             </div>

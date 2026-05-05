@@ -11,6 +11,7 @@ type SuggestInputProps = {
     size?: TextInputSize;
     autoFocus?: boolean;
     placeholder?: string;
+    startContent?: React.ReactNode;
     endContent?: React.ReactNode;
     onUpdate?: (item: string) => void;
     onKeyDown?: (event: KeyboardEvent<HTMLElement>) => void;
@@ -18,6 +19,7 @@ type SuggestInputProps = {
     onBlur?: (event: SyntheticEvent) => void;
     className?: string;
     controlProps?: React.InputHTMLAttributes<HTMLInputElement>;
+    hasClear?: boolean;
 };
 
 const b = block('dc-search-input');
@@ -30,6 +32,7 @@ export const SearchInput = memo(
             size,
             autoFocus,
             placeholder,
+            startContent,
             endContent,
             onBlur,
             onFocus,
@@ -37,6 +40,7 @@ export const SearchInput = memo(
             onKeyDown,
             className,
             controlProps,
+            hasClear = false,
         } = props;
 
         return (
@@ -45,10 +49,11 @@ export const SearchInput = memo(
                 size={size}
                 value={text}
                 placeholder={placeholder}
+                startContent={startContent}
                 endContent={endContent}
                 autoComplete={false}
                 autoFocus={autoFocus}
-                hasClear={false}
+                hasClear={hasClear}
                 onBlur={onBlur}
                 onUpdate={onUpdate}
                 onFocus={onFocus}

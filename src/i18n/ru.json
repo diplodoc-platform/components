@@ -143,7 +143,9 @@
     "search-suggest_error-text": "Что-то пошло не так. Попробуйте ещё раз.",
     "search-item_type-all": "Всё",
     "search-item_type-doc": "Документация",
-    "search-item_type-main": "Главная"
+    "search-item_type-main": "Главная",
+    "search-suggest_ask-ai": "Спросить у AI",
+    "search-suggest_ai-chat": "AI чат"
   },
   "paginator": {
     "next": "Следующая страница",

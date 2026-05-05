@@ -4,6 +4,7 @@
 
 .dc-controls {
     display: flex;
+    align-items: center;
 
     @include mixins.text-size(body-1);
 

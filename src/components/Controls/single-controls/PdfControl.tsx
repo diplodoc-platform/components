@@ -1,3 +1,5 @@
+import type {ControlSizes} from '../../../models';
+
 import React, {memo, useContext} from 'react';
 import {Icon} from '@gravity-ui/uikit';
 
@@ -14,21 +16,29 @@ const PdfIcon = `
 
 interface ControlProps {
     pdfLink: string;
+    icon?: string;
+    size?: ControlSizes;
 }
 
 const PdfControl = memo<ControlProps>((props) => {
     const {t} = useTranslation('controls');
     const {controlClassName, controlSize, isVerticalView, popupPosition} =
         useContext(ControlsLayoutContext);
-    const {pdfLink} = props;
+    const {pdfLink, icon = PdfIcon, size} = props;
+
+    const isInlineSvg = icon?.trimStart().startsWith('<');
 
     return (
         <Control
-            size={controlSize}
+            size={size ?? controlSize}
             className={controlClassName}
             isVerticalView={isVerticalView}
             tooltipText={t('pdf-text')}
-            icon={(args) => <Icon data={PdfIcon} {...args} />}
+            icon={
+                isInlineSvg
+                    ? (args) => <Icon data={icon} {...args} />
+                    : (args) => <img src={icon} width={args.width} height={args.height} alt="" />
+            }
             popupPosition={popupPosition}
             href={pdfLink}
             target="_blank"

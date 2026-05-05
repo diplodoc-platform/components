@@ -34,6 +34,7 @@ export interface DocLayoutProps {
     legacyToc?: boolean;
     onChangeSinglePage?: (value: boolean) => void;
     pdfLink?: string;
+    pdfIconConfig?: {position?: string; size?: 'S' | 'M' | 'L'; icon?: string};
 }
 
 type DocLayoutStatic = {
@@ -59,6 +60,7 @@ export const DocLayout: React.FC<DocLayoutProps> & DocLayoutStatic = ({
     singlePage,
     onChangeSinglePage,
     pdfLink,
+    pdfIconConfig,
     hideTocHeader,
 }) => {
     const isTocHidden = useInterface('toc');
@@ -109,6 +111,7 @@ export const DocLayout: React.FC<DocLayoutProps> & DocLayoutStatic = ({
                                       singlePage={singlePage}
                                       onChangeSinglePage={onChangeSinglePage}
                                       pdfLink={pdfLink}
+                                      pdfIconConfig={pdfIconConfig}
                                   />
                               </div>
                           )}

@@ -143,7 +143,9 @@
     "search-suggest_error-text": "Бір нәрсе дұрыс емес. Қайта көрініз.",
     "search-item_type-all": "Барлығы",
     "search-item_type-doc": "Құжаттама",
-    "search-item_type-main": "Басты"
+    "search-item_type-main": "Басты",
+    "search-suggest_ask-ai": "AI-дан сұра",
+    "search-suggest_ai-chat": "AI чат"
   },
   "paginator": {
     "next": "Келесі бет",

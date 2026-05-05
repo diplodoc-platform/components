@@ -143,7 +143,9 @@
     "search-suggest_error-text": "حدث خطأ ما. حاول مرة أخرى.",
     "search-item_type-all": "الكل",
     "search-item_type-doc": "الوثائق",
-    "search-item_type-main": "الرئيسية"
+    "search-item_type-main": "الرئيسية",
+    "search-suggest_ask-ai": "اسأل AI",
+    "search-suggest_ai-chat": "دردشة AI"
   },
   "paginator": {
     "next": "الصفحة التالية",

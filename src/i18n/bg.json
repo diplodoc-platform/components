@@ -142,7 +142,9 @@
     "search-suggest_error-text": "Нещо се обърка. Моля, опитайте отново.",
     "search-item_type-all": "Всичко",
     "search-item_type-doc": "Документация",
-    "search-item_type-main": "Начална"
+    "search-item_type-main": "Начална",
+    "search-suggest_ask-ai": "Попитай AI",
+    "search-suggest_ai-chat": "AI чат"
   },
   "paginator": {
     "next": "Следваща страница",

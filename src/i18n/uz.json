@@ -143,7 +143,9 @@
     "search-suggest_error-text": "Nimadir noto'g'ri. Qayta urinib ko'ring.",
     "search-item_type-all": "Hammasi",
     "search-item_type-doc": "Hujjatlar",
-    "search-item_type-main": "Asosiy"
+    "search-item_type-main": "Asosiy",
+    "search-suggest_ask-ai": "AI'dan so'rash",
+    "search-suggest_ai-chat": "AI suhbati"
   },
   "paginator": {
     "next": "Keyingi sahifa",

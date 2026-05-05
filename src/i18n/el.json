@@ -143,7 +143,9 @@
     "search-suggest_error-text": "Κάτι πήγε στραβά. Δοκιμάστε ξανά.",
     "search-item_type-all": "Όλα",
     "search-item_type-doc": "Τεκμηρίωση",
-    "search-item_type-main": "Κύρια"
+    "search-item_type-main": "Κύρια",
+    "search-suggest_ask-ai": "Ρώτησε την AI",
+    "search-suggest_ai-chat": "Συνομιλία AI"
   },
   "paginator": {
     "next": "Επόμενη σελίδα",

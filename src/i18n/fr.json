@@ -143,7 +143,9 @@
     "search-suggest_error-text": "Quelque chose a mal tourné. Réessayez.",
     "search-item_type-all": "Tout",
     "search-item_type-doc": "Documentation",
-    "search-item_type-main": "Principal"
+    "search-item_type-main": "Principal",
+    "search-suggest_ask-ai": "Demander à l'IA",
+    "search-suggest_ai-chat": "Chat IA"
   },
   "paginator": {
     "next": "Page suivante",

@@ -1,5 +1,12 @@
 # История изменений
 
+## [5.8.0](https://github.com/diplodoc-platform/components/compare/v5.7.3...v5.8.0) (2026-05-05)
+
+
+### Features
+
+* add toc analytics, add condition analytics track ([#599](https://github.com/diplodoc-platform/components/issues/599)) ([09d0fa8](https://github.com/diplodoc-platform/components/commit/09d0fa8aa33306445a23a891f5995983a1cbf1c9))
+
 ## [5.7.3](https://github.com/diplodoc-platform/components/compare/v5.7.2...v5.7.3) (2026-04-30)
 
 

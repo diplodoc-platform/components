@@ -17,3 +17,7 @@ export enum CommonAnalyticsEvent {
     DOCS_FONTSIZE_MODE_CLICK = 'DOCS_FONTSIZE-MODE_CLICK',
     DOCS_NEUROEXPERT_ACTION = 'DOCS_NEUROEXPERT_ACTION',
 }
+
+export const DefaultAnalyticsEventNames = {
+    DOCS_TOC_ITEM_CLICK: 'DOCS_TOC_ITEM_CLICK',
+} as const;

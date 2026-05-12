@@ -3,16 +3,11 @@ import type {NavigationDropdownItem} from '@gravity-ui/page-constructor';
 
 import React, {memo, useCallback, useState} from 'react';
 import {ChevronDown} from '@gravity-ui/icons';
-import {
-    Foldable,
-    ItemColumnName,
-    NavigationLayout,
-    NavigationList,
-    useActiveNavItem,
-} from '@gravity-ui/page-constructor';
+import {Foldable} from '@gravity-ui/page-constructor';
 import block from 'bem-cn-lite';
 
 import {OutsideClick} from '../../OutsideClick';
+import {DropdownContent} from '../DropdownContent';
 
 import './MobileDropdown.scss';
 
@@ -21,10 +16,9 @@ const ICON_SIZE = 20;
 const b = block('dc-mobile-dropdown');
 
 const MobileDropdown: React.FC<NavigationDropdownItem> = memo((item) => {
-    const {text, isActive, items} = item;
+    const {text, isActive} = item;
 
     const [isOpened, setIsOpen] = useState(isActive);
-    const {onActiveItemChange} = useActiveNavItem(ICON_SIZE, items);
 
     const toggleOpennes = useCallback(
         (event: MouseEvent) => {
@@ -46,14 +40,7 @@ const MobileDropdown: React.FC<NavigationDropdownItem> = memo((item) => {
                 />
             </span>
             <Foldable className={b('foldable')} isOpened={isOpened}>
-                <NavigationList
-                    items={items}
-                    className={b('list')}
-                    itemClassName={b('list-item')}
-                    column={ItemColumnName.Top}
-                    menuLayout={NavigationLayout.Mobile}
-                    onActiveItemChange={onActiveItemChange}
-                />
+                <DropdownContent items={item.items} />
             </Foldable>
         </OutsideClick>
     );

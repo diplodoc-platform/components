@@ -1,0 +1,11 @@
+.dropdown-content__section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--g-spacing-half);
+}
+
+.dropdown-content__section-title {
+    text-transform: uppercase;
+    white-space: pre-wrap;
+    padding: var(--g-spacing-2) var(--g-spacing-3);
+}

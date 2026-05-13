@@ -1,5 +1,12 @@
 # История изменений
 
+## [5.9.0](https://github.com/diplodoc-platform/components/compare/v5.8.0...v5.9.0) (2026-05-13)
+
+
+### Features
+
+* add support multi column dropdown menu ([#621](https://github.com/diplodoc-platform/components/issues/621)) ([1e154ec](https://github.com/diplodoc-platform/components/commit/1e154ec4e8d3caa745227d46b8346441be22299c))
+
 ## [5.8.0](https://github.com/diplodoc-platform/components/compare/v5.7.3...v5.8.0) (2026-05-05)
 
 

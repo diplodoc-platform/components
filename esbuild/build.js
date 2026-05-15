@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const autoprefixer = require('autoprefixer');
-const esbuild = require('@diplodoc/lint/esbuild');
+const esbuild = require('@diplodoc/infra/esbuild');
 const {sassPlugin} = require('esbuild-sass-plugin');
 const {resolve} = require('node:path');
 const postcss = require('postcss');

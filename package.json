@@ -126,7 +126,7 @@
     "react-dom": "^18.2.0",
     "sass": "^1.80.6",
     "typescript": "^5.2.2",
-    "@diplodoc/infra": "1.0.0"
+    "@diplodoc/infra": "2.0.0"
   },
   "keywords": [
     "markdown",

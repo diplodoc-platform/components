@@ -65,7 +65,8 @@
     "title": "文章已完成"
   },
   "contributors": {
-    "title": "已得到完善"
+    "title": "已得到完善",
+    "no-author-title": "文章已改善"
   },
   "feedback": {
     "like-text": "文章有所裨益",
@@ -107,7 +108,6 @@
     "label_description-2": "。",
     "label_link-main": "返回主页",
     "label_link-access": "请求访问权限",
-
     "label_subtext": "可在以下语言使用：",
     "label_lang-ar": "阿拉伯语",
     "label_lang-bg": "保加利亚语",
@@ -150,6 +150,10 @@
   "paginator": {
     "next": "下一页",
     "prev": "上一页"
+  },
+  "updated-at-date": {
+    "title": "已更新",
+    "no-author-title": "文章已更新"
   },
   "header": {
     "versions-select-placeholder": "版本"

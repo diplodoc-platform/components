@@ -11,9 +11,10 @@ const b = block('dc-updated-at-date');
 
 export interface UpdatedAtDateProps {
     updatedAt: string;
+    hasAuthor: boolean;
 }
 
-const UpdatedAtDate: React.FC<UpdatedAtDateProps> = ({updatedAt}) => {
+const UpdatedAtDate: React.FC<UpdatedAtDateProps> = ({updatedAt, hasAuthor}) => {
     const {t} = useTranslation('updated-at-date');
 
     const updatedAtFormatted = useMemo(() => {
@@ -21,10 +22,12 @@ const UpdatedAtDate: React.FC<UpdatedAtDateProps> = ({updatedAt}) => {
         return format(updatedAt, 'longDate', localeCode);
     }, [updatedAt]);
 
+    const titleKey = hasAuthor ? 'title' : 'no-author-title';
+
     return (
         <div className={b()}>
             <div className={b('wrapper')}>
-                {t('title')} {updatedAtFormatted}
+                {t(titleKey)} {updatedAtFormatted}
             </div>
         </div>
     );

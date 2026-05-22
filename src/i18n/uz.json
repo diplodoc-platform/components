@@ -65,7 +65,8 @@
     "title": "Maqola yaratilgan sana"
   },
   "contributors": {
-    "title": "yaxshilandi"
+    "title": "yaxshilandi",
+    "no-author-title": "Maqola yaxshilandi"
   },
   "feedback": {
     "like-text": "Maqola foyda berdi",
@@ -107,7 +108,6 @@
     "label_description-2": ".",
     "label_link-main": "Asosiyga qaytish",
     "label_link-access": "Kirishga ruxsat soʻrash",
-
     "label_subtext": "U mavjud:",
     "label_lang-ar": "Arab",
     "label_lang-bg": "Bolgarcha",
@@ -150,6 +150,10 @@
   "paginator": {
     "next": "Keyingi sahifa",
     "prev": "Avvalgi sahifa"
+  },
+  "updated-at-date": {
+    "title": "yangilandi",
+    "no-author-title": "Maqola yangilandi"
   },
   "header": {
     "versions-select-placeholder": "Versiyalar"

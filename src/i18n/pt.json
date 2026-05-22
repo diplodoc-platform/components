@@ -65,7 +65,8 @@
     "title": "Artigo criado por"
   },
   "contributors": {
-    "title": "está melhor"
+    "title": "Melhorado por",
+    "no-author-title": "O artigo foi melhorado"
   },
   "feedback": {
     "like-text": "Este artigo foi útil",
@@ -107,7 +108,6 @@
     "label_description-2": ".",
     "label_link-main": "Voltar para a página inicial",
     "label_link-access": "Pedir acesso",
-
     "label_subtext": "Está disponível em:",
     "label_lang-ar": "Árabe",
     "label_lang-bg": "Búlgaro",
@@ -150,6 +150,10 @@
   "paginator": {
     "next": "Página seguinte",
     "prev": "Página anterior"
+  },
+  "updated-at-date": {
+    "title": "Atualizado em",
+    "no-author-title": "O artigo foi atualizado"
   },
   "header": {
     "versions-select-placeholder": "Versões"

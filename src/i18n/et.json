@@ -65,7 +65,8 @@
     "title": "Selle artikli on koostanud"
   },
   "contributors": {
-    "title": "parandatud"
+    "title": "parandatud",
+    "no-author-title": "Artikkel on parandatud"
   },
   "feedback": {
     "like-text": "Kasulik artikkel",
@@ -107,7 +108,6 @@
     "label_description-2": ".",
     "label_link-main": "Tagasi pealehele",
     "label_link-access": "Küsi juurdepääsu",
-
     "label_subtext": "See on saadaval:",
     "label_lang-ar": "Araabia",
     "label_lang-bg": "Bulgaaria",
@@ -150,6 +150,10 @@
   "paginator": {
     "next": "Järgmine lehekülg",
     "prev": "Eelmine lehekülg"
+  },
+  "updated-at-date": {
+    "title": "Uuendatud",
+    "no-author-title": "Artikkel on uuendatud"
   },
   "header": {
     "versions-select-placeholder": "Versioonid"

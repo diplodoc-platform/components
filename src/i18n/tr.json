@@ -65,7 +65,8 @@
     "title": "Yazı oluşturuldu"
   },
   "contributors": {
-    "title": "iyileştirildi"
+    "title": "iyileştirildi",
+    "no-author-title": "Makale iyileştirildi"
   },
   "feedback": {
     "like-text": "Yazı yararlı oldu",
@@ -107,7 +108,6 @@
     "label_description-2": ".",
     "label_link-main": "Ana sayfaya geri dön",
     "label_link-access": "Erişim iste",
-
     "label_subtext": "Şurada mevcut:",
     "label_lang-ar": "Arapça",
     "label_lang-bg": "Bulgarca",
@@ -150,6 +150,10 @@
   "paginator": {
     "next": "Sonraki sayfa",
     "prev": "Önceki sayfa"
+  },
+  "updated-at-date": {
+    "title": "güncellendi",
+    "no-author-title": "Makale güncellendi"
   },
   "header": {
     "versions-select-placeholder": "Sürümler"

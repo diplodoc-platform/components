@@ -65,7 +65,8 @@
     "title": "Το άρθρο δημιουργήθηκε"
   },
   "contributors": {
-    "title": "βελτιώθηκε"
+    "title": "βελτιώθηκε",
+    "no-author-title": "Το άρθρο βελτιώθηκε"
   },
   "feedback": {
     "like-text": "Το άρθρο είναι χρήσιμο",
@@ -107,7 +108,6 @@
     "label_description-2": ".",
     "label_link-main": "Επιστροφή στην αρχική σελίδα",
     "label_link-access": "Αίτημα πρόσβασης",
-
     "label_subtext": "Είναι διαθέσιμο σε:",
     "label_lang-ar": "Αραβικά",
     "label_lang-bg": "Βουλγαρικά",
@@ -150,6 +150,10 @@
   "paginator": {
     "next": "Επόμενη σελίδα",
     "prev": "Προηγούμενη σελίδα"
+  },
+  "updated-at-date": {
+    "title": "Ενημερώθηκε",
+    "no-author-title": "Το άρθρο ενημερώθηκε"
   },
   "header": {
     "versions-select-placeholder": "Εκδόσεις"

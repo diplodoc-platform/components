@@ -65,7 +65,8 @@
     "title": "Rédigé par"
   },
   "contributors": {
-    "title": "amélioré par"
+    "title": "amélioré par",
+    "no-author-title": "L'article a été amélioré"
   },
   "feedback": {
     "like-text": "Utile",
@@ -107,7 +108,6 @@
     "label_description-2": ".",
     "label_link-main": "Retour à la page principale",
     "label_link-access": "Demander l’accès",
-
     "label_subtext": "Elle est disponible en:",
     "label_lang-ar": "Arabe",
     "label_lang-bg": "Bulgare",
@@ -152,7 +152,8 @@
     "prev": "Page précédente"
   },
   "updated-at-date": {
-    "title": "Mis à jour à"
+    "title": "Mis à jour à",
+    "no-author-title": "L'article a été mis à jour"
   },
   "header": {
     "versions-select-placeholder": "Versions"

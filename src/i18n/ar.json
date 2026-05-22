@@ -65,7 +65,8 @@
     "title": "من تأليف"
   },
   "contributors": {
-    "title": "من تنقيح"
+    "title": "مُحَسَّنة",
+    "no-author-title": "تم تحسين المقالة"
   },
   "feedback": {
     "like-text": "مفيد",
@@ -107,7 +108,6 @@
     "label_description-2": ".",
     "label_link-main": "العودة إلى الصفحة الرئيسية",
     "label_link-access": "طلب الوصول",
-
     "label_subtext": "إنها متاحة على:",
     "label_lang-ar": "العربية",
     "label_lang-bg": "البلغارية",
@@ -150,6 +150,10 @@
   "paginator": {
     "next": "الصفحة التالية",
     "prev": "الصفحة السابقة"
+  },
+  "updated-at-date": {
+    "title": "مُحْدَّثة",
+    "no-author-title": "تم تحديث المقالة"
   },
   "header": {
     "versions-select-placeholder": "الإصدارات"

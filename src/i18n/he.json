@@ -65,7 +65,8 @@
     "title": "נכתב על ידי"
   },
   "contributors": {
-    "title": "שופר על ידי"
+    "title": "שופר על ידי",
+    "no-author-title": "המאמר שופר"
   },
   "feedback": {
     "like-text": "שימושי",
@@ -107,7 +108,6 @@
     "label_description-2": ".",
     "label_link-main": "חזרה לדף הראשי",
     "label_link-access": "בקשת גישה",
-
     "label_subtext": "היא זמינה ב:",
     "label_lang-ar": "ערבית",
     "label_lang-bg": "בולגרית",
@@ -150,6 +150,10 @@
   "paginator": {
     "next": "העמוד הבא",
     "prev": "העמוד הקודם"
+  },
+  "updated-at-date": {
+    "title": "עודכן ב",
+    "no-author-title": "המאמר עודכן"
   },
   "header": {
     "versions-select-placeholder": "גרסאות"

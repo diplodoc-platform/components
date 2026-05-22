@@ -64,7 +64,8 @@
     "title": "Статията е създадена"
   },
   "contributors": {
-    "title": "подобрена"
+    "title": "подобрена",
+    "no-author-title": "Статията е подобрена"
   },
   "feedback": {
     "like-text": "Статията е полезна",
@@ -106,7 +107,6 @@
     "label_description-2": ".",
     "label_link-main": "Върнете се към началната страница",
     "label_link-access": "Поискайте достъп",
-
     "label_subtext": "Тя е достъпна на:",
     "label_lang-ar": "Арабски",
     "label_lang-bg": "Български",
@@ -149,6 +149,10 @@
   "paginator": {
     "next": "Следваща страница",
     "prev": "Предходна страница"
+  },
+  "updated-at-date": {
+    "title": "Обновена",
+    "no-author-title": "Статията е обновена"
   },
   "header": {
     "versions-select-placeholder": "Версии"

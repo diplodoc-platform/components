@@ -65,7 +65,7 @@
     "title": "Статья создана"
   },
   "contributors": {
-    "title": "Улучшена"
+    "title": "Статья улучшена"
   },
   "feedback": {
     "like-text": "Статья полезна",
@@ -152,7 +152,7 @@
     "prev": "Предыдущая страница"
   },
   "updated-at-date": {
-    "title": "Обновлена"
+    "title": "Статья обновлена"
   },
   "header": {
     "versions-select-placeholder": "Версии"

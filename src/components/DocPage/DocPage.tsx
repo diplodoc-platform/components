@@ -458,9 +458,11 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             return null;
         }
 
+        const hasAuthor = isContributor(meta?.author);
+
         const author = this.renderAuthor(!meta?.contributors?.length);
-        const contributors = this.renderContributors();
-        const updatedAt = this.renderUpdatedAt(meta?.updatedAt);
+        const contributors = this.renderContributors(hasAuthor);
+        const updatedAt = this.renderUpdatedAt(meta?.updatedAt, hasAuthor);
 
         return (
             <div className={b('page-contributors')}>
@@ -471,12 +473,12 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
         );
     }
 
-    private renderUpdatedAt(updatedAt?: string) {
+    private renderUpdatedAt(updatedAt?: string, hasAuthor = false) {
         if (!updatedAt) {
             return null;
         }
 
-        return <UpdatedAtDate updatedAt={updatedAt} />;
+        return <UpdatedAtDate updatedAt={updatedAt} hasAuthor={hasAuthor} />;
     }
 
     private renderAuthor(onlyAuthor: boolean) {
@@ -496,14 +498,14 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
         );
     }
 
-    private renderContributors() {
+    private renderContributors(hasAuthor: boolean) {
         const {meta} = this.props;
 
         if (!meta?.contributors || meta.contributors.length === 0) {
             return null;
         }
 
-        return <Contributors users={meta.contributors} />;
+        return <Contributors users={meta.contributors} isAuthor={false} hasAuthor={hasAuthor} />;
     }
 
     private renderContentMiniToc() {

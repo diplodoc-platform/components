@@ -65,7 +65,8 @@
     "title": "Мақала жасалды"
   },
   "contributors": {
-    "title": "жақсартылды"
+    "title": "жақсартылды",
+    "no-author-title": "Мақала жақсартылды"
   },
   "feedback": {
     "like-text": "Мақала пайдалы болды",
@@ -107,7 +108,6 @@
     "label_description-2": ".",
     "label_link-main": "Басты бетке оралу",
     "label_link-access": "Қолжетімділік сұрату",
-
     "label_subtext": "Қол жетімді:",
     "label_lang-ar": "Араб",
     "label_lang-bg": "Болгар",
@@ -150,6 +150,10 @@
   "paginator": {
     "next": "Келесі бет",
     "prev": "Алдыңғы бет"
+  },
+  "updated-at-date": {
+    "title": "Жаңартылды",
+    "no-author-title": "Мақала жаңартылды"
   },
   "header": {
     "versions-select-placeholder": "Нұсқалар"

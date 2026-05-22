@@ -65,7 +65,8 @@
     "title": "Written by"
   },
   "contributors": {
-    "title": "Improved by"
+    "title": "Improved by",
+    "no-author-title": "Article has been improved"
   },
   "feedback": {
     "like-text": "Helpful",
@@ -107,7 +108,6 @@
     "label_description-2": ".",
     "label_link-main": "Back to main page",
     "label_link-access": "Request access",
-
     "label_subtext": "It's available in:",
     "label_lang-ar": "Arabic",
     "label_lang-bg": "Bulgarian",
@@ -152,7 +152,8 @@
     "prev": "Previous page"
   },
   "updated-at-date": {
-    "title": "Updated at"
+    "title": "Updated at",
+    "no-author-title": "Article last updated at"
   },
   "header": {
     "versions-select-placeholder": "Versions"

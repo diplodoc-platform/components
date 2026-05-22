@@ -65,7 +65,8 @@
     "title": "Napsal(a)"
   },
   "contributors": {
-    "title": "vylepšil(a)"
+    "title": "vylepšil(a)",
+    "no-author-title": "Článek byl vylepšen"
   },
   "feedback": {
     "like-text": "Užitečné",
@@ -107,7 +108,6 @@
     "label_description-2": ".",
     "label_link-main": "Zpět na hlavní stránku",
     "label_link-access": "Požádat o přístup",
-
     "label_subtext": "Je k dispozici v:",
     "label_lang-ar": "Arabština",
     "label_lang-bg": "Bulharština",
@@ -152,7 +152,8 @@
     "prev": "Předchozí stránka"
   },
   "updated-at-date": {
-    "title": "Aktualizováno na"
+    "title": "Aktualizováno na",
+    "no-author-title": "Stránka byla aktualizována"
   },
   "header": {
     "versions-select-placeholder": "Verze"

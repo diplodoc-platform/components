@@ -1,5 +1,12 @@
 # История изменений
 
+## [5.9.1](https://github.com/diplodoc-platform/components/compare/v5.9.0...v5.9.1) (2026-05-25)
+
+
+### Bug Fixes
+
+* update ru translation for article updates (DOCSTOOLS-5924) ([27d7429](https://github.com/diplodoc-platform/components/commit/27d74290e783b7c36ff118c0e08f733893d7257d))
+
 ## [5.9.0](https://github.com/diplodoc-platform/components/compare/v5.8.0...v5.9.0) (2026-05-13)
 
 

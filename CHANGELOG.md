@@ -1,5 +1,12 @@
 # История изменений
 
+## [5.9.2](https://github.com/diplodoc-platform/components/compare/v5.9.1...v5.9.2) (2026-05-27)
+
+
+### Bug Fixes
+
+* fixed release ([#632](https://github.com/diplodoc-platform/components/issues/632)) ([4ad336f](https://github.com/diplodoc-platform/components/commit/4ad336f0d36f745016fe8c365c9687818b3de5eb))
+
 ## [5.9.1](https://github.com/diplodoc-platform/components/compare/v5.9.0...v5.9.1) (2026-05-25)
 
 

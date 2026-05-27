@@ -12,9 +12,9 @@
         {"type": "perf", "section": "Performance Improvements"},
         {"type": "refactor", "section": "Refactoring"},
         {"type": "docs", "section": "Documentation"},
-        {"type": "chore", "section": "Chores"},
         {"type": "revert", "section": "Reverts"},
-        {"type": "deps", "section": "Dependency update"}
+        {"type": "deps", "section": "Dependency update"},
+        {"type": "chore", "section": "Chores"}
       ],
       "bump-minor-pre-major": true
     }

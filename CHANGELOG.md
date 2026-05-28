@@ -1,5 +1,12 @@
 # История изменений
 
+## [5.9.3](https://github.com/diplodoc-platform/components/compare/v5.9.2...v5.9.3) (2026-05-28)
+
+
+### Bug Fixes
+
+* **deps:** updated node to 24 ([#634](https://github.com/diplodoc-platform/components/issues/634)) ([985f4c4](https://github.com/diplodoc-platform/components/commit/985f4c4a9e6b33c72a55c5e375492bc1cae3a309))
+
 ## [5.9.2](https://github.com/diplodoc-platform/components/compare/v5.9.1...v5.9.2) (2026-05-27)
 
 

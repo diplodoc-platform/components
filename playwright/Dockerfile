@@ -1,5 +1,5 @@
-# Based on node:22 with Playwright dependencies
-FROM node:22-bookworm
+# Based on node:24 with Playwright dependencies
+FROM node:24-bookworm
 
 # Update npm to meet requirements (>=11.5.1)
 RUN npm install -g npm@latest

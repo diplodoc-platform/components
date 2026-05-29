@@ -6,6 +6,7 @@ import {ToggleArrow, block} from '@gravity-ui/page-constructor';
 
 import {NavigationPopup} from './Popup';
 import {ContentWrapper} from './ContentWrapper';
+import './NavigationDropdown.scss';
 
 const b = block('navigation-dropdown');
 

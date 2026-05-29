@@ -106,7 +106,7 @@
   "devDependencies": {
     "@diplodoc/infra": "2.0.2",
     "@diplodoc/tsconfig": "^1.0.2",
-    "@playwright/test": "^1.48.2",
+    "@playwright/test": "^1.60.0",
     "@types/hoist-non-react-statics": "^3.3.6",
     "@types/langs": "^2.0.1",
     "@types/lodash": "4.14.179",

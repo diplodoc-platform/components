@@ -1,5 +1,12 @@
 # История изменений
 
+## [5.9.4](https://github.com/diplodoc-platform/components/compare/v5.9.3...v5.9.4) (2026-05-29)
+
+
+### Bug Fixes
+
+* fixed playwright ([#637](https://github.com/diplodoc-platform/components/issues/637)) ([b2e2365](https://github.com/diplodoc-platform/components/commit/b2e2365e7aa45bc45d76580946d5be7c737dd331))
+
 ## [5.9.3](https://github.com/diplodoc-platform/components/compare/v5.9.2...v5.9.3) (2026-05-28)
 
 

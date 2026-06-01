@@ -1,5 +1,12 @@
 # История изменений
 
+## [5.9.5](https://github.com/diplodoc-platform/components/compare/v5.9.4...v5.9.5) (2026-06-01)
+
+
+### Bug Fixes
+
+* add cursor pointer to NavigationDropdown ([2c8ff68](https://github.com/diplodoc-platform/components/commit/2c8ff686a3eddde044c61838109b5502af75ff47))
+
 ## [5.9.4](https://github.com/diplodoc-platform/components/compare/v5.9.3...v5.9.4) (2026-05-29)
 
 

@@ -151,6 +151,15 @@ const useFeedback = () => {
 const useSubscribe = () => {
     return {
         onSubscribe: () => {},
+        consentContent: (
+            <span>
+                I agree to the processing of my personal data under the{' '}
+                <a href="https://example.com/policy" target="_blank" rel="noopener noreferrer">
+                    Privacy Policy
+                </a>
+                .
+            </span>
+        ),
     };
 };
 

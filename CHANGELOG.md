@@ -1,5 +1,12 @@
 # История изменений
 
+## [5.10.0](https://github.com/diplodoc-platform/components/compare/v5.9.5...v5.10.0) (2026-06-02)
+
+
+### Features
+
+* **Subscribe:** add optional consentContent checkbox prop ([#642](https://github.com/diplodoc-platform/components/issues/642)) ([286d212](https://github.com/diplodoc-platform/components/commit/286d21290f3780919cab03786dce5a4bce2cb263))
+
 ## [5.9.5](https://github.com/diplodoc-platform/components/compare/v5.9.4...v5.9.5) (2026-06-01)
 
 

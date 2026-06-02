@@ -87,8 +87,15 @@ $popupWidth: 320px;
     }
 
     &__consent {
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
         margin-top: 12px;
-        max-width: 280px;
+    }
+
+    &__consent-content {
+        font-size: var(--g-text-body-1-font-size);
+        line-height: var(--g-text-body-1-line-height);
     }
 
     &__title {

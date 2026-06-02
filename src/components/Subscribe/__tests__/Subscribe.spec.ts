@@ -24,10 +24,7 @@ test('Subscribe test', async ({page}) => {
     const consentCheckbox = popup.locator('.dc-subscribe__consent input[type="checkbox"]');
 
     await email.fill('test@email.ru');
-
-    if (await consentCheckbox.isVisible()) {
-        await consentCheckbox.check();
-    }
+    await consentCheckbox.check();
 
     await subscribeButton.click();
 

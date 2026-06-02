@@ -117,9 +117,8 @@ const SubscribeVariantsPopup = memo<{
                 </div>
                 {consentContent ? (
                     <div className={b('consent')}>
-                        <Checkbox size="m" checked={consentChecked} onUpdate={setConsentChecked}>
-                            {consentContent}
-                        </Checkbox>
+                        <Checkbox size="m" checked={consentChecked} onUpdate={setConsentChecked} />
+                        <span className={b('consent-content')}>{consentContent}</span>
                     </div>
                 ) : null}
                 <div className={b('variants-actions')}>

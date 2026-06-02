@@ -68,9 +68,28 @@ jobs:
         id: package
 
       - name: Install latest npm (>= 11.5.1)
-        run: |
-          [ "$(printf '%s\n' "11.5.1" "$(npm -v)" | sort -V | head -n1)" = "11.5.1" ] || npm install -g npm@11.5.1
         shell: bash
+        run: |
+          REQUIRED=11.5.1
+          if [ "$(printf '%s\n' "$REQUIRED" "$(npm -v)" | sort -V | head -n1)" = "$REQUIRED" ]; then
+            echo "npm $(npm -v) is up-to-date (>= $REQUIRED)"
+            exit 0
+          fi
+          # Use a user-writable prefix so this works in PRs from forks where
+          # the default global prefix may be read-only. Prepend its bin dir to
+          # PATH via $GITHUB_PATH so subsequent steps pick up the new npm.
+          NPM_PREFIX="$RUNNER_TEMP/npm-global"
+          mkdir -p "$NPM_PREFIX"
+          npm install --prefix "$NPM_PREFIX" -g "npm@$REQUIRED"
+          # On Linux/macOS npm puts binaries into $prefix/bin, on Windows
+          # directly into $prefix (as npm.cmd). Pick whichever exists.
+          if [ -x "$NPM_PREFIX/bin/npm" ] || [ -x "$NPM_PREFIX/bin/npm.cmd" ]; then
+            NPM_BIN_DIR="$NPM_PREFIX/bin"
+          else
+            NPM_BIN_DIR="$NPM_PREFIX"
+          fi
+          echo "$NPM_BIN_DIR" >> "$GITHUB_PATH"
+          "$NPM_BIN_DIR"/npm -v 2>/dev/null || "$NPM_BIN_DIR"/npm.cmd -v
 
       - name: Install dependencies
         if: inputs.release_type != 'deprecate'
@@ -125,14 +144,21 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       # === DEPRECATE STEPS ===
+      # workflow_dispatch inputs are user-controlled. Do not interpolate them
+      # directly into a shell script (${{ inputs.* }} in run:) — pass them
+      # through env: and reference as "$VAR" so quotes / $(...) / ;-chains in
+      # input values cannot escape into the shell.
       - name: Validate deprecate inputs
         if: github.event_name == 'workflow_dispatch' && inputs.release_type == 'deprecate'
+        env:
+          INPUT_DEPRECATE_VERSION: ${{ inputs.deprecate_version }}
+          INPUT_DEPRECATE_MESSAGE: ${{ inputs.deprecate_message }}
         run: |
-          if [[ -z "${{ inputs.deprecate_version }}" ]]; then
+          if [[ -z "$INPUT_DEPRECATE_VERSION" ]]; then
             echo "::error::deprecate_version is required for deprecate action"
             exit 1
           fi
-          if [[ -z "${{ inputs.deprecate_message }}" ]]; then
+          if [[ -z "$INPUT_DEPRECATE_MESSAGE" ]]; then
             echo "::error::deprecate_message is required for deprecate action"
             exit 1
           fi
@@ -141,23 +167,25 @@ jobs:
         if: github.event_name == 'workflow_dispatch' && inputs.release_type == 'deprecate'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          # See note above the "Validate deprecate inputs" step.
+          PACKAGE_NAME: ${{ steps.package.outputs.name }}
+          INPUT_DEPRECATE_VERSION: ${{ inputs.deprecate_version }}
+          INPUT_DEPRECATE_MESSAGE: ${{ inputs.deprecate_message }}
+          INPUT_DEPRECATE_NEW_LATEST: ${{ inputs.deprecate_new_latest }}
         run: |
           set -e
 
-          PACKAGE="${{ steps.package.outputs.name }}"
-          LATEST="$(npm view $PACKAGE@latest version 2>/dev/null || echo '')"
-          VERSION="${{ inputs.deprecate_version }}"
-          MESSAGE="${{ inputs.deprecate_message }}"
-          TARGET="$PACKAGE@$VERSION"
+          LATEST="$(npm view "$PACKAGE_NAME@latest" version 2>/dev/null || echo '')"
+          TARGET="$PACKAGE_NAME@$INPUT_DEPRECATE_VERSION"
 
-          if [[ "$LATEST" == "$VERSION" ]]; then
-            if [[ -z "${{ inputs.deprecate_new_latest }}" ]]; then
+          if [[ "$LATEST" == "$INPUT_DEPRECATE_VERSION" ]]; then
+            if [[ -z "$INPUT_DEPRECATE_NEW_LATEST" ]]; then
               echo "::error::deprecate_new_latest is required when deprecating the current latest version ($LATEST)"
               exit 1
             fi
-            echo "::notice::Setting new latest tag to $PACKAGE@${{ inputs.deprecate_new_latest }}"
-            npm dist-tag add "$PACKAGE@${{ inputs.deprecate_new_latest }}" latest
+            echo "::notice::Setting new latest tag to $PACKAGE_NAME@$INPUT_DEPRECATE_NEW_LATEST"
+            npm dist-tag add "$PACKAGE_NAME@$INPUT_DEPRECATE_NEW_LATEST" latest
           fi
 
-          echo "::notice::Deprecating $TARGET. Reason: $MESSAGE"
-          npm deprecate "$TARGET" "$MESSAGE"
+          echo "::notice::Deprecating $TARGET. Reason: $INPUT_DEPRECATE_MESSAGE"
+          npm deprecate "$TARGET" "$INPUT_DEPRECATE_MESSAGE"

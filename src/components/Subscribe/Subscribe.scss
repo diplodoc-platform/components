@@ -86,6 +86,11 @@ $popupWidth: 320px;
         padding: 8px 0;
     }
 
+    &__consent {
+        margin-top: 12px;
+        max-width: 280px;
+    }
+
     &__title {
         &_view_wide {
             font-size: var(--g-text-body2-font-size);

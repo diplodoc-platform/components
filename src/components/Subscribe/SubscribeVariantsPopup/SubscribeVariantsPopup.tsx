@@ -3,7 +3,7 @@ import type {SubscribeData} from '../../../models';
 import type {SubscribeView} from '../Subscribe';
 
 import React, {memo, useCallback, useContext, useState} from 'react';
-import {Button, List, Popup, TextInput, useDirection} from '@gravity-ui/uikit';
+import {Button, Checkbox, List, Popup, TextInput, useDirection} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 
 import {useTranslation} from '../../../hooks';
@@ -19,6 +19,7 @@ const LIST_ITEM_HEIGHT = 36;
 const SubscribeVariantsPopup = memo<{
     anchor: React.RefObject<HTMLElement>;
     view?: SubscribeView;
+    consentContent?: React.ReactNode;
     onSubscribe?: (data: SubscribeData) => void;
     onSubmit: () => void;
     onOutsideClick: () => void;
@@ -26,19 +27,25 @@ const SubscribeVariantsPopup = memo<{
     const {t} = useTranslation('controls');
     const {isVerticalView} = useContext(ControlsLayoutContext);
     const direction = useDirection();
-    const {anchor, view, onSubscribe, onSubmit, onOutsideClick} = props;
+    const {anchor, view, consentContent, onSubscribe, onSubmit, onOutsideClick} = props;
 
     const [email, setEmail] = useState('');
     const [showError, setShowError] = useState('');
     const [subscribeSelectors, setSubscribeSelectors] = useState(SubscribeType.documentation);
+    const [consentChecked, setConsentChecked] = useState(false);
 
     const resetSubscribeAdditionalInfo = useCallback(() => {
         setEmail('');
+        setConsentChecked(false);
     }, []);
 
     const onSendSubscribeInformation = useCallback(
         (event: SyntheticEvent) => {
             event.preventDefault();
+
+            if (consentContent && !consentChecked) {
+                return;
+            }
 
             if (isInvalidEmail(email)) {
                 setShowError(t('email-text-invalid'));
@@ -62,7 +69,16 @@ const SubscribeVariantsPopup = memo<{
                 resetSubscribeAdditionalInfo();
             }
         },
-        [onSubscribe, email, resetSubscribeAdditionalInfo, subscribeSelectors, onSubmit, t],
+        [
+            onSubscribe,
+            email,
+            resetSubscribeAdditionalInfo,
+            subscribeSelectors,
+            onSubmit,
+            t,
+            consentContent,
+            consentChecked,
+        ],
     );
 
     const renderSubscribeVariantsList = useCallback(() => {
@@ -99,14 +115,26 @@ const SubscribeVariantsPopup = memo<{
                         onUpdate={setEmail}
                     />
                 </div>
+                {consentContent ? (
+                    <div className={b('consent')}>
+                        <Checkbox size="m" checked={consentChecked} onUpdate={setConsentChecked}>
+                            {consentContent}
+                        </Checkbox>
+                    </div>
+                ) : null}
                 <div className={b('variants-actions')}>
-                    <Button view="action" className={b('variants-action')} type={'submit'}>
+                    <Button
+                        view="action"
+                        className={b('variants-action')}
+                        type={'submit'}
+                        disabled={Boolean(consentContent) && !consentChecked}
+                    >
                         {t('subscribe-text')}
                     </Button>
                 </div>
             </form>
         );
-    }, [email, showError, onSendSubscribeInformation, t]);
+    }, [email, showError, consentContent, consentChecked, onSendSubscribeInformation, t]);
 
     return (
         <Popup

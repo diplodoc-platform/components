@@ -53,6 +53,7 @@ export interface ControlsProps {
     onChangeTextSize?: (textSize: TextSizes) => void;
     onSendFeedback?: (data: FeedbackSendData) => void;
     onSubscribe?: (data: SubscribeData) => void;
+    consentContent?: React.ReactNode;
     onEditClick?: () => void;
     pdfLink?: string;
     pdfIconConfig?: {position?: string; size?: 'S' | 'M' | 'L'; icon?: string};
@@ -91,6 +92,7 @@ export const ControlsList: React.FC<ControlsProps & {isHiddenFeedback: boolean}>
         onChangeSinglePage,
         onSendFeedback,
         onSubscribe,
+        consentContent,
         onEditClick,
         lang,
         langs,
@@ -186,6 +188,7 @@ export const ControlsList: React.FC<ControlsProps & {isHiddenFeedback: boolean}>
             <Subscribe
                 key="subscribe-control"
                 onSubscribe={onSubscribe as Defined['onSubscribe']}
+                consentContent={consentContent}
                 view={SubscribeView.Regular}
             />
         ),

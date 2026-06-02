@@ -84,6 +84,7 @@ export interface DocPageProps extends DocPageData, DocSettings, NotificationProp
     onContentMutation?: () => void;
     onContentLoaded?: () => void;
     onSubscribe?: (data: SubscribeData) => void;
+    consentContent?: React.ReactNode;
     pdfLink?: string;
     pdfIconConfig?: {position?: string; size?: 'S' | 'M' | 'L'; icon?: string};
     onMiniTocItemClick?: (event: MouseEvent) => void;
@@ -702,6 +703,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             onChangeTextSize,
             onSendFeedback,
             onSubscribe,
+            consentContent,
             isLiked,
             isDisliked,
             hideControls,
@@ -741,6 +743,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                         onChangeTextSize={onChangeTextSize}
                         onSendFeedback={onSendFeedback}
                         onSubscribe={onSubscribe}
+                        consentContent={consentContent}
                         hideEditControl={hideEditControl || fullScreen || !this.isEditable()}
                         hideFeedbackControls={hideFeedbackControls}
                         availableLangs={availableLangs}

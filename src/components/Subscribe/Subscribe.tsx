@@ -23,6 +23,7 @@ export enum SubscribeView {
 
 export interface SubscribeProps {
     onSubscribe: (data: SubscribeData) => void;
+    consentContent?: React.ReactNode;
     view?: SubscribeView;
 }
 
@@ -92,7 +93,7 @@ const SubscribeControlsLayout = memo<PropsWithChildren<{view: SubscribeView}>>(
 SubscribeControlsLayout.displayName = 'SubscribeControlsLayout';
 
 const Subscribe = memo<SubscribeProps>((props) => {
-    const {view = SubscribeView.Regular, onSubscribe} = props;
+    const {view = SubscribeView.Regular, onSubscribe, consentContent} = props;
 
     const subscribeControlRef = useRef<HTMLButtonElement | null>(null);
 
@@ -129,6 +130,7 @@ const Subscribe = memo<SubscribeProps>((props) => {
                 <SubscribeVariantsPopup
                     view={view}
                     anchor={subscribeControlRef}
+                    consentContent={consentContent}
                     onOutsideClick={variantsPopup.close}
                     onSubscribe={onSubscribe}
                     onSubmit={onSubmitVariants}

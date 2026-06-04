@@ -15,18 +15,10 @@ jobs:
           ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0
 
-      - uses: actions/setup-node@v4
+      - name: Setup Node.js and install dependencies
+        uses: diplodoc-platform/setup-node-action@v1
         with:
-          node-version: ${{ vars.NODE_VERSION }}
-          cache: npm
-
-      - name: Install latest npm (>= 11.5.1)
-        run: |
-          [ "$(printf '%s\n' "11.5.1" "$(npm -v)" | sort -V | head -n1)" = "11.5.1" ] || npm install -g npm@latest
-        shell: bash
-
-      - run: npm ci
-        shell: bash
+          node-version: ${{ vars.NODE_VERSION || '24' }}
 
       - name: Update screenshots
         run: |

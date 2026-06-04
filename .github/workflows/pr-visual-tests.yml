@@ -10,16 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Setup Node.js and install dependencies
+        uses: diplodoc-platform/setup-node-action@v1
         with:
-          node-version: ${{ vars.NODE_VERSION }}
-          cache: npm
-      - name: Install latest npm (>= 11.5.1)
-        run: |
-          [ "$(printf '%s\n' "11.5.1" "$(npm -v)" | sort -V | head -n1)" = "11.5.1" ] || npm install -g npm@11.5.1
-        shell: bash
-      - name: Install Packages
-        run: npm ci
+          node-version: ${{ vars.NODE_VERSION || '24' }}
       - name: Install Demo Packages
         run: cd demo && npm i
       - name: Build Files

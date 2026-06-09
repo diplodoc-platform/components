@@ -104,7 +104,7 @@
     "react-dom": ">=16.8.0 || >=17.0.0 || >=18.0.0 || >=19.0.0"
   },
   "devDependencies": {
-    "@diplodoc/infra": "2.0.4",
+    "@diplodoc/infra": "2.0.5",
     "@diplodoc/tsconfig": "^1.0.2",
     "@playwright/test": "^1.60.0",
     "@types/hoist-non-react-statics": "^3.3.6",

@@ -45,7 +45,7 @@ export const DocContentPage: React.FC<DocContentPageProps> = ({
     textSize,
     pdfIconConfig,
 }) => {
-    const textSizeClassName = b('body', {'text-size': textSize}, 'yfm');
+    const textSizeClassName = b('body', {'text-size': textSize});
     const modes = {
         'regular-page-width': !wideFormat,
     };

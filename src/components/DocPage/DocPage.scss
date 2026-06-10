@@ -146,6 +146,20 @@
                     @include mixins.gravity-ui-text-sizes(2px);
                 }
             }
+
+            &_s {
+                &,
+                .g-root {
+                    @include mixins.gravity-ui-text-sizes(-2px);
+                }
+            }
+
+            &_l {
+                &,
+                .g-root {
+                    @include mixins.gravity-ui-text-sizes(2px);
+                }
+            }
         }
     }
 

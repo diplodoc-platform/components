@@ -5,8 +5,21 @@
     $itemPadding: 24px;
 
     &__button {
-        margin-right: 14px;
         user-select: none;
+
+        &_active {
+            color: var(--g-color-text-primary);
+
+            &::before {
+                background-color: var(--g-color-base-generic);
+            }
+
+            &:hover {
+                &::before {
+                    background-color: var(--g-color-base-generic);
+                }
+            }
+        }
     }
 
     &__navigation {

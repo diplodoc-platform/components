@@ -12,7 +12,7 @@ import {
 } from '@diplodoc/components';
 import {Button, Icon, configure as configureUikit, spacing} from '@gravity-ui/uikit';
 import cn from 'bem-cn-lite';
-import {SquareListUl} from '@gravity-ui/icons';
+import {Dots9, SquareListUl, Xmark} from '@gravity-ui/icons';
 
 import {updateBodyClassName} from '../utils';
 
@@ -40,6 +40,10 @@ const beforeSubNavigationContent = (
         Action button
     </Button>
 );
+
+const sidebarOpenIcon = <Dots9 width={20} height={20} />;
+
+const sidebarCloseIcon = <Xmark width={20} height={20} />;
 
 const useSettings = () => {
     const [wideFormat, onChangeWideFormat] = useState(DEFAULT_SETTINGS.wideFormat);
@@ -317,7 +321,9 @@ const DocPageDemo = (
                 hideTocHeader={hideTocHeader}
                 hideFeedback={hideFeedback}
                 availableLangs={availableLangs}
-                beforeSubNavigationContent={beforeSubNavigationContent}
+                beforeSubNavigationContent={mobileView ? undefined : beforeSubNavigationContent}
+                sidebarOpenIcon={sidebarOpenIcon}
+                sidebarCloseIcon={sidebarCloseIcon}
                 // TODO: return highlight examples
                 // onContentMutation={onContentMutation}
                 // onContentLoaded={onContentLoaded}
@@ -329,6 +335,7 @@ const DocPageDemo = (
 export default {
     title: 'Pages/Document',
     component: DocPageDemo,
+    parameters: {layout: 'fullscreen'},
     argTypes: {
         HideTocHeader: {
             control: 'boolean',

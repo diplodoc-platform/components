@@ -11,6 +11,7 @@
 
     display: flex;
     justify-content: space-between;
+    align-items: center;
 
     box-sizing: content-box;
     width: calc(100% - 2 * #{$horizontalPadding});
@@ -85,7 +86,19 @@
         justify-content: center;
         align-items: center;
 
-        padding: 12px;
+        padding: var(--g-spacing-2, 8px) var(--g-spacing-3, 12px);
+    }
+
+    &__arrow {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        transition: transform 0.15s;
+
+        .dc-subnavigation__mini-toc-button_active & {
+            transform: rotate(180deg);
+        }
     }
 
     &__mini-toc-button {
@@ -104,9 +117,8 @@
         padding-left: 4px;
         gap: $gap;
 
-        border-radius: var(--g-border-radius-xs, 3px);
+        border-radius: var(--g-border-radius-xl, 10px);
         border: none;
-        border-left: 1px solid var(--g-color-line-generic);
         outline: none;
 
         color: var(--g-color-text-primary);
@@ -139,6 +151,13 @@
 
         &_disabled {
             user-select: text;
+        }
+
+        &_active {
+            &:not(&_disabled) {
+                color: var(--g-color-text-primary);
+                background-color: var(--g-color-base-generic);
+            }
         }
 
         &_label {
@@ -180,19 +199,22 @@
                 outline-style: solid;
             }
         }
+
+        &:has(.dc-subnavigation__arrow) {
+            padding-right: var(--g-spacing-3, 12px);
+        }
     }
 
     &__title {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-
-        &_single {
-            padding-left: $horizontalPadding;
-        }
+        flex: 1 0 0;
     }
 
     & &__share-button {
+        margin: 0;
+
         &_absolute {
             position: absolute;
             right: 0;

@@ -93,6 +93,8 @@ export interface DocPageProps extends DocPageData, DocSettings, NotificationProp
     viewerInterface?: Record<string, boolean>;
     availableLangs?: AvailableLangs;
     beforeSubNavigationContent?: React.ReactNode;
+    sidebarOpenIcon?: React.ReactNode;
+    sidebarCloseIcon?: React.ReactNode;
 }
 
 type DocPageInnerProps = InnerProps<DocPageProps, DocSettings>;
@@ -175,6 +177,8 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             notificationCb,
             availableLangs = [],
             beforeSubNavigationContent,
+            sidebarOpenIcon,
+            sidebarCloseIcon,
         } = this.props;
 
         const hideBurger = typeof headerHeight !== 'undefined' && headerHeight > 0;
@@ -257,6 +261,8 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                             onMiniTocItemClick={
                                 onMiniTocItemClick as unknown as (event: React.MouseEvent) => void
                             }
+                            sidebarOpenIcon={sidebarOpenIcon}
+                            sidebarCloseIcon={sidebarCloseIcon}
                         />
                     </div>
                 </DocLayout.Right>

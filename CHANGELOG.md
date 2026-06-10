@@ -1,5 +1,12 @@
 # История изменений
 
+## [5.10.1](https://github.com/diplodoc-platform/components/compare/v5.10.0...v5.10.1) (2026-06-10)
+
+
+### Bug Fixes
+
+* dc-breadcrumbs__item:after content ([9438f90](https://github.com/diplodoc-platform/components/commit/9438f906dc6693121d43b9f9cd5acff996588a6a))
+
 ## [5.10.0](https://github.com/diplodoc-platform/components/compare/v5.9.5...v5.10.0) (2026-06-02)
 
 

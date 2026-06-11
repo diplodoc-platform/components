@@ -14,6 +14,7 @@ import type {
 } from '../../models';
 import type {InnerProps} from '../../utils';
 import type {NotificationProps} from '../Notification';
+import type {RenderSidebarIcon} from '../navigation';
 
 import React from 'react';
 import {Link} from '@gravity-ui/icons';
@@ -93,7 +94,7 @@ export interface DocPageProps extends DocPageData, DocSettings, NotificationProp
     viewerInterface?: Record<string, boolean>;
     availableLangs?: AvailableLangs;
     beforeSubNavigationContent?: React.ReactNode;
-    renderSidebarIcon?: (isSidebarOpened: boolean) => React.ReactNode;
+    renderSidebarIcon?: RenderSidebarIcon;
 }
 
 type DocPageInnerProps = InnerProps<DocPageProps, DocSettings>;

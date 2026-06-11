@@ -1,6 +1,7 @@
 import type {MouseEvent} from 'react';
 import type {DocHeadingItem, Router, TocData} from '../../models';
 import type {MobileControlsProps} from '../MobileControls';
+import type {RenderSidebarIcon} from '../navigation';
 
 import React, {memo, useCallback, useRef, useState} from 'react';
 import {ChevronDown, SquareListUl} from '@gravity-ui/icons';
@@ -42,7 +43,7 @@ export interface SubNavigationProps {
     hideTocHeader?: boolean;
     tocTitleIcon?: React.ReactNode;
     onMiniTocItemClick?: (event: MouseEvent) => void;
-    renderSidebarIcon?: (isSidebarOpened: boolean) => React.ReactNode;
+    renderSidebarIcon?: RenderSidebarIcon;
 }
 
 const SubNavigation = memo(

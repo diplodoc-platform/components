@@ -19,11 +19,17 @@ const ICON_SIZE = {
     height: 20,
 };
 
+export interface RenderSidebarIconProps {
+    isSidebarOpened: boolean;
+}
+
+export type RenderSidebarIcon = (props: RenderSidebarIconProps) => React.ReactNode;
+
 export interface SidebarNavigationProps extends ClassNameProps {
     isSidebarOpened: boolean;
     onSidebarOpenedChange: (isOpened: boolean) => void;
     mobileControlsData?: MobileControlsProps;
-    renderSidebarIcon?: (isSidebarOpened: boolean) => React.ReactNode;
+    renderSidebarIcon?: RenderSidebarIcon;
 }
 
 const SidebarNavigation: React.FC<SidebarNavigationProps & PropsWithChildren> = ({
@@ -54,7 +60,7 @@ const SidebarNavigation: React.FC<SidebarNavigationProps & PropsWithChildren> = 
             >
                 <Button.Icon>
                     {renderSidebarIcon ? (
-                        renderSidebarIcon(isSidebarOpened)
+                        renderSidebarIcon({isSidebarOpened})
                     ) : (
                         <SidebarIcon {...ICON_SIZE} />
                     )}

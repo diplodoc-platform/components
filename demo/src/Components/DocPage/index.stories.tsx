@@ -1,5 +1,11 @@
 /* eslint-disable no-console */
-import type {AvailableLangs, FeedbackSendData, Lang, Theme} from '@diplodoc/components';
+import type {
+    AvailableLangs,
+    FeedbackSendData,
+    Lang,
+    RenderSidebarIcon,
+    Theme,
+} from '@diplodoc/components';
 
 import {join} from 'path';
 import React, {useCallback, useEffect, useState} from 'react';
@@ -41,7 +47,7 @@ const beforeSubNavigationContent = (
     </Button>
 );
 
-const renderSidebarIcon = (isSidebarOpened: boolean) =>
+const renderSidebarIcon: RenderSidebarIcon = ({isSidebarOpened}) =>
     isSidebarOpened ? <Xmark width={20} height={20} /> : <Dots9 width={20} height={20} />;
 
 const useSettings = () => {

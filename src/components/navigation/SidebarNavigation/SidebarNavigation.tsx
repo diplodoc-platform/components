@@ -14,16 +14,29 @@ import './SidebarNavigation.scss';
 
 const b = block('dc-sidebar-navigation');
 
+const ICON_SIZE = {
+    width: 20,
+    height: 20,
+};
+
+export interface RenderSidebarIconProps {
+    isSidebarOpened: boolean;
+}
+
+export type RenderSidebarIcon = (props: RenderSidebarIconProps) => React.ReactNode;
+
 export interface SidebarNavigationProps extends ClassNameProps {
     isSidebarOpened: boolean;
     onSidebarOpenedChange: (isOpened: boolean) => void;
     mobileControlsData?: MobileControlsProps;
+    renderSidebarIcon?: RenderSidebarIcon;
 }
 
 const SidebarNavigation: React.FC<SidebarNavigationProps & PropsWithChildren> = ({
     isSidebarOpened,
     onSidebarOpenedChange,
     mobileControlsData,
+    renderSidebarIcon,
     children,
     className,
 }) => {
@@ -35,14 +48,21 @@ const SidebarNavigation: React.FC<SidebarNavigationProps & PropsWithChildren> = 
         [isSidebarOpened, onSidebarOpenedChange],
     );
 
+    const SidebarIcon = isSidebarOpened ? Xmark : Bars;
+
     return (
         <div className={b()}>
-            <Button className={b('button', className)} onClick={toggle} view={'flat'} size="xl">
+            <Button
+                className={b('button', {active: isSidebarOpened}, className)}
+                onClick={toggle}
+                view={'flat'}
+                size="xl"
+            >
                 <Button.Icon>
-                    {isSidebarOpened ? (
-                        <Xmark width={20} height={20} />
+                    {renderSidebarIcon ? (
+                        renderSidebarIcon({isSidebarOpened})
                     ) : (
-                        <Bars width={20} height={20} />
+                        <SidebarIcon {...ICON_SIZE} />
                     )}
                 </Button.Icon>
             </Button>

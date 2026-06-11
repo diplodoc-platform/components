@@ -9,13 +9,13 @@
     align-items: center;
     justify-content: space-between;
 
-    height: 44px;
+    height: #{variables.$mobileControlsHeight};
 
     width: calc(100% - 2 * #{$padding-inline});
 
     box-sizing: content-box;
-    padding-top: 4px;
-    padding-bottom: 34px;
+    padding-top: #{variables.$mobileControlsTopPadding};
+    padding-bottom: #{variables.$mobileControlsBottomPadding};
     padding-inline: $padding-inline;
 
     background-color: var(--g-color-base-background);

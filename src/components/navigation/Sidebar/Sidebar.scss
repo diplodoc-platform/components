@@ -6,10 +6,16 @@
     $transitionTime: 0.4s;
 
     position: fixed;
-    top: var(--dc-header-height, #{variables.$headerHeight});
+    top: calc(
+        var(--dc-header-height, #{variables.$headerHeight}) + #{variables.$subNavigationHeight} +
+            1px
+    );
     z-index: 119;
 
-    height: calc(100% - var(--dc-header-height, #{variables.$headerHeight}) + 1px);
+    height: calc(
+        100% - var(--dc-header-height, #{variables.$headerHeight}) -
+            #{variables.$subNavigationHeight} + 1px
+    );
     width: 100vw;
 
     background-color: var(--g-color-base-background, #fff);

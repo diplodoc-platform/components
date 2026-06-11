@@ -25,6 +25,12 @@ $leftOffset: 57px;
 
         border-right: none;
         overflow-y: auto;
+        height: calc(
+            100vh - var(--dc-header-height, #{variables.$headerHeight}) -
+                #{variables.$subNavigationHeight} - 1px - #{variables.$mobileControlsHeight} -
+                #{variables.$mobileControlsTopPadding} - #{variables.$mobileControlsBottomPadding} -
+                1px
+        );
     }
 
     &__empty {

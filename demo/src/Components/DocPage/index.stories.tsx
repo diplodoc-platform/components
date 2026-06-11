@@ -41,9 +41,8 @@ const beforeSubNavigationContent = (
     </Button>
 );
 
-const sidebarOpenIcon = <Dots9 width={20} height={20} />;
-
-const sidebarCloseIcon = <Xmark width={20} height={20} />;
+const renderSidebarIcon = (isSidebarOpened: boolean) =>
+    isSidebarOpened ? <Xmark width={20} height={20} /> : <Dots9 width={20} height={20} />;
 
 const useSettings = () => {
     const [wideFormat, onChangeWideFormat] = useState(DEFAULT_SETTINGS.wideFormat);
@@ -322,8 +321,7 @@ const DocPageDemo = (
                 hideFeedback={hideFeedback}
                 availableLangs={availableLangs}
                 beforeSubNavigationContent={mobileView ? undefined : beforeSubNavigationContent}
-                sidebarOpenIcon={sidebarOpenIcon}
-                sidebarCloseIcon={sidebarCloseIcon}
+                renderSidebarIcon={renderSidebarIcon}
                 // TODO: return highlight examples
                 // onContentMutation={onContentMutation}
                 // onContentLoaded={onContentLoaded}

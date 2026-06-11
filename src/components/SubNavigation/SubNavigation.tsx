@@ -42,8 +42,7 @@ export interface SubNavigationProps {
     hideTocHeader?: boolean;
     tocTitleIcon?: React.ReactNode;
     onMiniTocItemClick?: (event: MouseEvent) => void;
-    sidebarOpenIcon?: React.ReactNode;
-    sidebarCloseIcon?: React.ReactNode;
+    renderSidebarIcon?: (isSidebarOpened: boolean) => React.ReactNode;
 }
 
 const SubNavigation = memo(
@@ -60,8 +59,7 @@ const SubNavigation = memo(
         hideTocHeader,
         tocTitleIcon,
         onMiniTocItemClick,
-        sidebarOpenIcon,
-        sidebarCloseIcon,
+        renderSidebarIcon,
     }: SubNavigationProps) => {
         const ref = useRef<HTMLDivElement>(null);
         const isTocHidden = useInterface('toc');
@@ -98,8 +96,7 @@ const SubNavigation = memo(
                 isSidebarOpened={menuOpen}
                 onSidebarOpenedChange={onSidebarOpenedChange}
                 mobileControlsData={mobileControlsData}
-                sidebarOpenIcon={sidebarOpenIcon}
-                sidebarCloseIcon={sidebarCloseIcon}
+                renderSidebarIcon={renderSidebarIcon}
             >
                 {!isTocHidden && (
                     <div className={b('toc')}>

@@ -23,16 +23,14 @@ export interface SidebarNavigationProps extends ClassNameProps {
     isSidebarOpened: boolean;
     onSidebarOpenedChange: (isOpened: boolean) => void;
     mobileControlsData?: MobileControlsProps;
-    sidebarOpenIcon?: React.ReactNode;
-    sidebarCloseIcon?: React.ReactNode;
+    renderSidebarIcon?: (isSidebarOpened: boolean) => React.ReactNode;
 }
 
 const SidebarNavigation: React.FC<SidebarNavigationProps & PropsWithChildren> = ({
     isSidebarOpened,
     onSidebarOpenedChange,
     mobileControlsData,
-    sidebarOpenIcon,
-    sidebarCloseIcon,
+    renderSidebarIcon,
     children,
     className,
 }) => {
@@ -44,6 +42,8 @@ const SidebarNavigation: React.FC<SidebarNavigationProps & PropsWithChildren> = 
         [isSidebarOpened, onSidebarOpenedChange],
     );
 
+    const SidebarIcon = isSidebarOpened ? Xmark : Bars;
+
     return (
         <div className={b()}>
             <Button
@@ -53,9 +53,11 @@ const SidebarNavigation: React.FC<SidebarNavigationProps & PropsWithChildren> = 
                 size="xl"
             >
                 <Button.Icon>
-                    {isSidebarOpened
-                        ? sidebarCloseIcon || <Xmark {...ICON_SIZE} />
-                        : sidebarOpenIcon || <Bars {...ICON_SIZE} />}
+                    {renderSidebarIcon ? (
+                        renderSidebarIcon(isSidebarOpened)
+                    ) : (
+                        <SidebarIcon {...ICON_SIZE} />
+                    )}
                 </Button.Icon>
             </Button>
             <Sidebar isOpened={isSidebarOpened}>

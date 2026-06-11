@@ -93,7 +93,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-
+        padding: 0 var(--g-spacing-3, 12px);
         transition: transform 0.15s;
 
         .dc-subnavigation__mini-toc-button_active & {
@@ -198,10 +198,6 @@
                 outline-width: 2px;
                 outline-style: solid;
             }
-        }
-
-        &:has(.dc-subnavigation__arrow) {
-            padding-right: var(--g-spacing-3, 12px);
         }
     }
 

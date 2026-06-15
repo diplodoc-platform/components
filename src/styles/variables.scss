@@ -25,6 +25,11 @@ $miniTocTitleHeight: 20px; // line-height body-2
 $miniTocTitleMargin: 12px;
 $mobileMiniTocOffset: 2 * $miniTocVerticalPadding + $miniTocTitleHeight + $miniTocTitleMargin;
 
+// MobileControls
+$mobileControlsHeight: 44px;
+$mobileControlsTopPadding: 4px;
+$mobileControlsBottomPadding: 34px;
+
 $screenBreakpoints: (
     'xs': 375px,
     'sm': 577px,

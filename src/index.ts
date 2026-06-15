@@ -3,6 +3,7 @@ export * from './components/ConsentPopup';
 export * from './components/DocLayout';
 export * from './components/DocLeadingPage';
 export * from './components/DocPage';
+export * from './components/Gallery';
 export * from './components/DocPageTitle';
 export * from './components/HTML';
 export * from './components/Mark';

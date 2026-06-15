@@ -8,6 +8,6 @@ RUN npm install -g npm@latest
 RUN npx playwright install-deps chromium webkit firefox
 
 # Install browsers
-RUN npx playwright@1.48.2 install chromium webkit firefox
+RUN npx playwright@1.60 install chromium webkit firefox
 
 WORKDIR /work

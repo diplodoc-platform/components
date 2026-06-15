@@ -39,6 +39,7 @@ import {SearchBar, withHighlightedSearchWords} from '../SearchBar';
 import {TocNavPanel} from '../TocNavPanel';
 import UpdatedAtDate from '../UpdatedAtDate/UpdatedAtDate';
 import {Notification} from '../Notification';
+import {Gallery} from '../Gallery';
 
 import RenderBodyWithHooks from './components/RenderBodyWithHooks/RenderBodyWithHooks';
 import './DocPage.scss';
@@ -234,6 +235,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                     </div>
                     {this.renderLoader()}
                     {this.renderSinglePageControls()}
+                    <Gallery />
                 </DocLayout.Center>
                 <DocLayout.Right>
                     {/* This key allows recalculating the offset for the mini-toc for Safari */}

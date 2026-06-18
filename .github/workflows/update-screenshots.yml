@@ -20,10 +20,17 @@ jobs:
         with:
           node-version: ${{ vars.NODE_VERSION || '24' }}
 
+      - name: Install Demo Packages
+        run: cd demo && npm i
+
+      - name: Build Files
+        run: npm run build
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps chromium webkit firefox
+
       - name: Update screenshots
-        run: |
-          chmod +x ./playwright/playwright-docker.sh
-          npm run playwright:docker:update
+        run: npm run playwright:update
 
       - name: Commit and push changes
         run: |

@@ -1,5 +1,12 @@
 # История изменений
 
+## [5.10.3](https://github.com/diplodoc-platform/components/compare/v5.10.2...v5.10.3) (2026-06-18)
+
+
+### Bug Fixes
+
+* add Gallery from gravity-ui, custom hook useGalleryOpen ([4c14915](https://github.com/diplodoc-platform/components/commit/4c149152afc990b9d7f6758b3a28dadfe93396d6))
+
 ## [5.10.2](https://github.com/diplodoc-platform/components/compare/v5.10.1...v5.10.2) (2026-06-10)
 
 

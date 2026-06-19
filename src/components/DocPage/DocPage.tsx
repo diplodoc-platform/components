@@ -14,6 +14,7 @@ import type {
 } from '../../models';
 import type {InnerProps} from '../../utils';
 import type {NotificationProps} from '../Notification';
+import type {RenderSidebarIcon} from '../navigation';
 
 import React from 'react';
 import {Link} from '@gravity-ui/icons';
@@ -94,6 +95,7 @@ export interface DocPageProps extends DocPageData, DocSettings, NotificationProp
     viewerInterface?: Record<string, boolean>;
     availableLangs?: AvailableLangs;
     beforeSubNavigationContent?: React.ReactNode;
+    renderSidebarIcon?: RenderSidebarIcon;
 }
 
 type DocPageInnerProps = InnerProps<DocPageProps, DocSettings>;
@@ -176,6 +178,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             notificationCb,
             availableLangs = [],
             beforeSubNavigationContent,
+            renderSidebarIcon,
         } = this.props;
 
         const hideBurger = typeof headerHeight !== 'undefined' && headerHeight > 0;
@@ -259,6 +262,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                             onMiniTocItemClick={
                                 onMiniTocItemClick as unknown as (event: React.MouseEvent) => void
                             }
+                            renderSidebarIcon={renderSidebarIcon}
                         />
                     </div>
                 </DocLayout.Right>

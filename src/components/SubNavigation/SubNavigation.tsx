@@ -1,9 +1,10 @@
 import type {MouseEvent} from 'react';
 import type {DocHeadingItem, Router, TocData} from '../../models';
 import type {MobileControlsProps} from '../MobileControls';
+import type {RenderSidebarIcon} from '../navigation';
 
 import React, {memo, useCallback, useRef, useState} from 'react';
-import {SquareListUl} from '@gravity-ui/icons';
+import {ChevronDown, SquareListUl} from '@gravity-ui/icons';
 import block from 'bem-cn-lite';
 
 import {useInterface} from '../../hooks/useInterface';
@@ -24,6 +25,11 @@ const ICON_SIZE = {
     height: 20,
 };
 
+const ARROW_SIZE = {
+    width: 16,
+    height: 16,
+};
+
 export interface SubNavigationProps {
     router: Router;
     toc: TocData;
@@ -37,6 +43,7 @@ export interface SubNavigationProps {
     hideTocHeader?: boolean;
     tocTitleIcon?: React.ReactNode;
     onMiniTocItemClick?: (event: MouseEvent) => void;
+    renderSidebarIcon?: RenderSidebarIcon;
 }
 
 const SubNavigation = memo(
@@ -53,6 +60,7 @@ const SubNavigation = memo(
         hideTocHeader,
         tocTitleIcon,
         onMiniTocItemClick,
+        renderSidebarIcon,
     }: SubNavigationProps) => {
         const ref = useRef<HTMLDivElement>(null);
         const isTocHidden = useInterface('toc');
@@ -89,6 +97,7 @@ const SubNavigation = memo(
                 isSidebarOpened={menuOpen}
                 onSidebarOpenedChange={onSidebarOpenedChange}
                 mobileControlsData={mobileControlsData}
+                renderSidebarIcon={renderSidebarIcon}
             >
                 {!isTocHidden && (
                     <div className={b('toc')}>
@@ -106,8 +115,8 @@ const SubNavigation = memo(
 
         const shareButton = (
             <ShareButton
-                size={'xl'}
-                view={'flat'}
+                size="xl"
+                view="flat"
                 iconSize={ICON_SIZE}
                 className={b('share-button', {
                     invisible: menuOpen && hideBurger,
@@ -120,6 +129,7 @@ const SubNavigation = memo(
             <button
                 className={b('mini-toc-button', {
                     disabled: menuOpen || hideMiniToc,
+                    active: miniTocOpen,
                 })}
                 type={'button'}
                 disabled={menuOpen || hideMiniToc}
@@ -130,9 +140,12 @@ const SubNavigation = memo(
                         <SquareListUl {...ICON_SIZE} />
                     </div>
                 )}
-                <span className={b('title', {single: true})}>
-                    {activeHeading?.title ?? pageTitle}
-                </span>
+                <span className={b('title')}>{activeHeading?.title ?? pageTitle}</span>
+                {!hideMiniToc && (
+                    <div className={b('arrow')}>
+                        <ChevronDown {...ARROW_SIZE} />
+                    </div>
+                )}
             </button>
         );
 

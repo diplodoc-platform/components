@@ -87,7 +87,7 @@
 
         &__right {
             position: sticky;
-            top: calc(var(--dc-header-height, #{variables.$headerHeight}) - 1px);
+            top: calc(var(--dc-header-height, #{variables.$headerHeight}));
             left: 0;
             z-index: 118;
 

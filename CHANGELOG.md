@@ -1,5 +1,17 @@
 # История изменений
 
+## [5.11.0](https://github.com/diplodoc-platform/components/compare/v5.10.3...v5.11.0) (2026-06-19)
+
+
+### Features
+
+* **subnavigation:** Sidebar custom menu icons, style improvements ([#661](https://github.com/diplodoc-platform/components/issues/661)) ([d3b0fd2](https://github.com/diplodoc-platform/components/commit/d3b0fd22b8310f0daaf660227346bacf54ba57a6))
+
+
+### Bug Fixes
+
+* remove Gallery import, test, screenshots ([b6e260d](https://github.com/diplodoc-platform/components/commit/b6e260d555ea29cbc2c44a6d1ad0868aa532dbf8))
+
 ## [5.10.3](https://github.com/diplodoc-platform/components/compare/v5.10.2...v5.10.3) (2026-06-18)
 
 

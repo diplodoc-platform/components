@@ -15,6 +15,8 @@ export type GetGalleryItemVideoArgs = {
 export const isExcludedByParent = (el: HTMLElement): boolean => {
     if (el.closest('.dc-contributor-avatars__avatar')) return true;
 
+    if (el.closest('[class*="background"]')) return true;
+
     return Boolean(
         el.closest(
             '[class^="icon"], [class*=" icon"], [class*="-icon"], [class*="_icon"], [class*="Icon"]',

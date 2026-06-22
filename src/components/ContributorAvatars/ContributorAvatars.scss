@@ -84,6 +84,11 @@ $avatarWrapperBigSize: 33px;
         & > * {
             margin-left: $avatarBorder;
             margin-right: calc(#{$avatarBorder} + #{$avatarsDistance});
+
+            [dir='rtl'] & {
+                margin-left: calc(#{$avatarBorder} + #{$avatarsDistance});
+                margin-right: $avatarBorder;
+            }
         }
         & a {
             border-radius: 50%; // to have rounded outline on focus as all avatars rounded

@@ -157,5 +157,8 @@
   },
   "header": {
     "versions-select-placeholder": "الإصدارات"
+  },
+  "markdown-button": {
+    "view-in-markdown": "عرض في Markdown"
   }
 }

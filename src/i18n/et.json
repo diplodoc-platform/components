@@ -157,5 +157,8 @@
   },
   "header": {
     "versions-select-placeholder": "Versioonid"
+  },
+  "markdown-button": {
+    "view-in-markdown": "Vaata Markdownis"
   }
 }

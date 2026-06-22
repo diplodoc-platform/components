@@ -158,5 +158,8 @@
   },
   "header": {
     "versions-select-placeholder": "Версии"
+  },
+  "markdown-button": {
+    "view-in-markdown": "Открыть в Markdown"
   }
 }

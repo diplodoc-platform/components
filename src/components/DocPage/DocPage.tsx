@@ -21,10 +21,11 @@ import {Link} from '@gravity-ui/icons';
 import block from 'bem-cn-lite';
 import {createPortal} from 'react-dom';
 
+import {Notification} from '../Notification';
+import {callSafe, getRandomKey, getStateKey, isContributor} from '../../utils';
+import {ControlSizes} from '../../models';
 import {InterfaceContext} from '../../contexts/InterfaceContext';
 import {DEFAULT_SETTINGS} from '../../constants';
-import {ControlSizes} from '../../models';
-import {callSafe, getRandomKey, getStateKey, isContributor} from '../../utils';
 import {BookmarkButton} from '../BookmarkButton';
 import {Breadcrumbs} from '../Breadcrumbs';
 import {ContentWrapper} from '../ContentWrapper';
@@ -39,8 +40,8 @@ import {SubNavigation} from '../SubNavigation';
 import {SearchBar, withHighlightedSearchWords} from '../SearchBar';
 import {TocNavPanel} from '../TocNavPanel';
 import UpdatedAtDate from '../UpdatedAtDate/UpdatedAtDate';
-import {Notification} from '../Notification';
 
+import MarkdownButton from './components/MarkdownButton/MarkdownButton';
 import RenderBodyWithHooks from './components/RenderBodyWithHooks/RenderBodyWithHooks';
 import './DocPage.scss';
 
@@ -86,6 +87,7 @@ export interface DocPageProps extends DocPageData, DocSettings, NotificationProp
     onContentLoaded?: () => void;
     onSubscribe?: (data: SubscribeData) => void;
     consentContent?: React.ReactNode;
+    mdDocsUrl?: string;
     pdfLink?: string;
     pdfIconConfig?: {position?: string; size?: 'S' | 'M' | 'L'; icon?: string};
     onMiniTocItemClick?: (event: MouseEvent) => void;
@@ -228,7 +230,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                     <div className={b('main')}>
                         <ContentWrapper className={b('content')} useMainTag={useMainTag}>
                             {this.renderTitle()}
-                            {this.renderPageContributors()}
+                            {this.underTitleInfo()}
                             {this.showMiniToc && this.renderContentMiniToc()}
                             {this.renderBody()}
                             {this.renderFeedback()}
@@ -453,6 +455,36 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                 )}
                 {withShare && <ShareButton className={b('share-button')} title={title} />}
             </DocPageTitle>
+        );
+    }
+
+    private underTitleInfo() {
+        const contributors = this.renderPageContributors();
+        const markdownButton = this.renderMarkdownButton();
+
+        if (!contributors && !markdownButton) {
+            return null;
+        }
+
+        return (
+            <div className={b('under-title-info')}>
+                {contributors}
+                {markdownButton}
+            </div>
+        );
+    }
+
+    private renderMarkdownButton() {
+        const {mdDocsUrl} = this.props;
+
+        if (!mdDocsUrl) {
+            return null;
+        }
+
+        return (
+            <div className={b('markdown-button')}>
+                <MarkdownButton mdDocsUrl={mdDocsUrl} />
+            </div>
         );
     }
 

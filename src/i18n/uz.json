@@ -157,5 +157,8 @@
   },
   "header": {
     "versions-select-placeholder": "Versiyalar"
+  },
+  "markdown-button": {
+    "view-in-markdown": "Markdown'da ko'rish"
   }
 }

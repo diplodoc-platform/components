@@ -157,5 +157,8 @@
   },
   "header": {
     "versions-select-placeholder": "Нұсқалар"
+  },
+  "markdown-button": {
+    "view-in-markdown": "Markdown-да қарау"
   }
 }

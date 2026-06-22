@@ -302,9 +302,15 @@
         }
     }
 
+    &__under-title-info {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        margin-bottom: 24px;
+    }
+
     &__page-contributors {
         display: flex;
-        margin-bottom: 24px;
         flex-wrap: wrap;
 
         & > div {
@@ -316,6 +322,14 @@
         & > div:last-child {
             margin-right: 0;
         }
+    }
+
+    &__markdown-button {
+        margin-left: auto;
+        padding-left: 16px;
+        display: flex;
+        align-items: center;
+        margin-bottom: 8px;
     }
 
     @media screen and (max-width: 1440px) {

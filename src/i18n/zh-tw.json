@@ -157,5 +157,8 @@
   },
   "header": {
     "versions-select-placeholder": "版本"
+  },
+  "markdown-button": {
+    "view-in-markdown": "在 Markdown 中檢視"
   }
 }

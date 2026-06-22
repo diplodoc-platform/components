@@ -157,5 +157,8 @@
   },
   "header": {
     "versions-select-placeholder": "גרסאות"
+  },
+  "markdown-button": {
+    "view-in-markdown": "הצג ב-Markdown"
   }
 }

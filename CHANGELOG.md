@@ -1,5 +1,12 @@
 # История изменений
 
+## [5.11.1](https://github.com/diplodoc-platform/components/compare/v5.11.0...v5.11.1) (2026-06-22)
+
+
+### Bug Fixes
+
+* add bg images to gallery filter ([5d852d3](https://github.com/diplodoc-platform/components/commit/5d852d3ef989dce43ffc69348941cb45be607574))
+
 ## [5.11.0](https://github.com/diplodoc-platform/components/compare/v5.10.3...v5.11.0) (2026-06-19)
 
 

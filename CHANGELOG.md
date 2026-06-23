@@ -1,5 +1,12 @@
 # История изменений
 
+## [5.12.1](https://github.com/diplodoc-platform/components/compare/v5.12.0...v5.12.1) (2026-06-23)
+
+
+### Bug Fixes
+
+* add isStaff flag ([f5b8e8e](https://github.com/diplodoc-platform/components/commit/f5b8e8e84505abf7a30c776dda9aefbb5c9a127f))
+
 ## [5.12.0](https://github.com/diplodoc-platform/components/compare/v5.11.1...v5.12.0) (2026-06-23)
 
 

@@ -100,10 +100,10 @@
   ],
   "meta": {
     "author": {
-      "avatar": "https://avatars.githubusercontent.com/u/2485935?v=4",
-      "email": "",
-      "login": "robot-dataui-vcs@yandex-team.ru",
-      "name": "DataUI VCS Robot",
+      "avatar": "",
+      "email": "robot-dataui-vcs@yandex-team.ru",
+      "login": "",
+      "name": "",
       "url": "http://yandex.ru/"
     },
     "contributors": [
@@ -113,10 +113,46 @@
         "login": "",
         "name": "DataUI VCS Robot",
         "url": ""
+      },
+      {
+        "avatar": "",
+        "email": "skanunnikov@yandex-team.ru",
+        "login": "",
+        "name": "Sergey Kanunnikov",
+        "url": ""
+      },
+      {
+        "avatar": "https://avatars.githubusercontent.com/u/2485935?v=4",
+        "email": "",
+        "login": "zamulla",
+        "name": "Aleksey Zamulla",
+        "url": "http://yandex.ru/"
+      },
+      {
+        "avatar": "https://avatars.githubusercontent.com/u/2485945?v=6",
+        "email": "migelle@yandex-team.ru",
+        "login": "migelle",
+        "name": "",
+        "url": "http://yandex.ru/"
+      },
+      {
+        "avatar": "https://avatars.githubusercontent.com/u/2485945?v=6",
+        "email": "leeuw@yandex-team.ru",
+        "login": "",
+        "name": "",
+        "url": "http://yandex.ru/"
+      },
+      {
+        "avatar": "",
+        "email": "dottir@yandex-team.ru",
+        "login": "",
+        "name": "Anastasia Karavaeva",
+        "url": ""
       }
     ],
     "updatedAt": "2024-01-15T15:00:00.000Z"
   },
+  "mdDocsUrl": "/docs/overview/index.md",
   "toc": {
     "title": "סקירת פלטפורמה",
     "href": "/docs/overview/",

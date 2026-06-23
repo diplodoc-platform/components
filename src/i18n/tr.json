@@ -157,5 +157,8 @@
   },
   "header": {
     "versions-select-placeholder": "Sürümler"
+  },
+  "markdown-button": {
+    "view-in-markdown": "Markdown'da görüntüle"
   }
 }

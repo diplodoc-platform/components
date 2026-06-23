@@ -157,5 +157,8 @@
   },
   "header": {
     "versions-select-placeholder": "Versions"
+  },
+  "markdown-button": {
+    "view-in-markdown": "View in Markdown"
   }
 }

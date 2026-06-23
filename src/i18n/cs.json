@@ -157,5 +157,8 @@
   },
   "header": {
     "versions-select-placeholder": "Verze"
+  },
+  "markdown-button": {
+    "view-in-markdown": "Zobrazit v Markdown"
   }
 }

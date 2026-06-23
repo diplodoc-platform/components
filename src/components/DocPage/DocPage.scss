@@ -302,19 +302,49 @@
         }
     }
 
+    &__under-title-info {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        margin-bottom: 24px;
+    }
+
     &__page-contributors {
         display: flex;
-        margin-bottom: 24px;
         flex-wrap: wrap;
 
         & > div {
             margin-right: 20px;
             margin-bottom: 8px;
             line-height: 24px;
+
+            [dir='rtl'] & {
+                margin-right: 0;
+                margin-left: 20px;
+            }
         }
 
         & > div:last-child {
             margin-right: 0;
+
+            [dir='rtl'] & {
+                margin-left: 0;
+            }
+        }
+    }
+
+    &__markdown-button {
+        margin-left: auto;
+        padding-left: 16px;
+        display: flex;
+        align-items: center;
+        margin-bottom: 8px;
+
+        [dir='rtl'] & {
+            margin-left: 0;
+            margin-right: auto;
+            padding-left: 0;
+            padding-right: 16px;
         }
     }
 

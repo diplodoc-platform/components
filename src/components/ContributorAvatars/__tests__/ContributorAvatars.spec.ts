@@ -1,5 +1,6 @@
 import {expect, test} from '@playwright/test';
 
+import {CONTRIBUTOR_AVATARS_URL} from 'src/components/constants';
 import {loadDocumentPage} from 'src/components/utils';
 
 test.beforeEach(async ({page}) => {
@@ -39,6 +40,18 @@ test('ContributorAvatars test', async ({page}) => {
     await hiddenAvatars.click();
     await expect(page).toHaveScreenshot('HiddenAvatars-popup.png', {
         clip,
+        maxDiffPixelRatio: 0.02,
+    });
+});
+
+test('ContributorAvatars story should render data-staff attribute', async ({page}) => {
+    await loadDocumentPage(page, CONTRIBUTOR_AVATARS_URL);
+
+    const author = page.locator('.dc-contributor-avatars__one_contributor a').nth(0);
+
+    await expect(author).toHaveAttribute('data-staff', 'robot-dataui-vcs-login');
+
+    await expect(page).toHaveScreenshot('ContributorAvatars-InternalStaff.png', {
         maxDiffPixelRatio: 0.02,
     });
 });

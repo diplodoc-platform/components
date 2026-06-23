@@ -1,7 +1,6 @@
 import type {Router, TocData, TocItem} from '../../models';
 
-import React from 'react';
-import {getUniqId} from '@gravity-ui/uikit';
+import React, {useId} from 'react';
 import block from 'bem-cn-lite';
 import omit from 'lodash/omit';
 
@@ -33,6 +32,10 @@ export interface TocProps extends TocData {
     pdfIconConfig?: {position?: string; size?: 'S' | 'M' | 'L'; icon?: string};
 }
 
+interface TocInternalProps extends TocProps {
+    tocTopId: string;
+}
+
 interface TocState {
     activeId: string | null | undefined;
     fixedById: Record<string, 'opened' | 'closed'>;
@@ -40,7 +43,7 @@ interface TocState {
     registry: TocItemRegistry;
 }
 
-class Toc extends React.Component<TocProps, TocState> {
+class TocClass extends React.Component<TocInternalProps, TocState> {
     contentRef = React.createRef<HTMLDivElement>();
     rootRef = React.createRef<HTMLDivElement>();
     activeRef = React.createRef<HTMLButtonElement>();
@@ -49,11 +52,11 @@ class Toc extends React.Component<TocProps, TocState> {
     footerEl: HTMLElement | null = null;
     tocTopId: string;
 
-    constructor(props: TocProps) {
+    constructor(props: TocInternalProps) {
         super(props);
 
         this.state = this.computeState(this.getInitialState());
-        this.tocTopId = getUniqId();
+        this.tocTopId = props.tocTopId;
     }
 
     getInitialState() {
@@ -397,6 +400,11 @@ class Toc extends React.Component<TocProps, TocState> {
             this.openItem(id);
         }
     };
+}
+
+function Toc(props: TocProps) {
+    const tocTopId = useId();
+    return <TocClass {...props} tocTopId={tocTopId} />;
 }
 
 export default Toc;

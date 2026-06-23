@@ -23,3 +23,5 @@ export const ERROR_PAGE_URL =
     '/iframe.html?args=ErrorCode:403;Title:Page%20403;ReceiveAccessText:Custom%20link;ReceiveAccessUrl:access&id=pages-error--error&viewMode=story';
 export const SEARCH_SUGGEST_WITH_AI_URL =
     BASE_URL + '/iframe.html?id=pages-searchsuggestwithai--search-suggest-with-ai&viewMode=story';
+export const CONTRIBUTOR_AVATARS_URL =
+    BASE_URL + '/iframe.html?id=components-contributoravatars--contributor-avatars&viewMode=story';

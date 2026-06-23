@@ -196,6 +196,7 @@ export interface Contributor {
     url: string;
     name: string | null;
     email: string | null;
+    enableDataStaffLogin: boolean;
 }
 
 export interface DislikeData {

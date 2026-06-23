@@ -44,6 +44,7 @@ const ContributorAvatars: React.FC<ContributorAvatarsProps> = (props) => {
                 key={`displayed-contributors-${login || email}`}
                 href={url}
                 extraProps={{tabIndex: contributor.avatar ? undefined : -1}} // as Avatar component may be button
+                {...(contributor.enableDataStaffLogin && login ? {'data-staff': login} : {})}
             >
                 <AvatarWithDescription contributor={contributor} avatarSize={AvatarSizes.SMALL} />
             </Link>
@@ -75,12 +76,18 @@ function getOneAvatar(
     };
 
     const wrapperModifiers = isAuthor ? {onlyAuthor} : {};
-
+    const enableStaffLogin = contributor.enableDataStaffLogin
+        ? {['data-staff']: contributor.login}
+        : {};
     return (
         <div className={b('one_contributor', wrapperModifiers)}>
             {getRedirectingAvatar(avatarData, contributor.url)}
             <div>
-                <Link href={contributor.url}>{getName(contributor, isAuthor)}</Link>
+                <Link href={contributor.url} {...enableStaffLogin}>
+                    {contributor.enableDataStaffLogin
+                        ? contributor.login
+                        : getName(contributor, isAuthor)}
+                </Link>
             </div>
         </div>
     );
@@ -88,8 +95,15 @@ function getOneAvatar(
 
 function getRedirectingAvatar(avatarData: AvatarData, url: string, isRedirect = false) {
     // as Avatar component may be a button, one need to set tabIndex
+    const enableStaffLogin = avatarData.contributor.enableDataStaffLogin
+        ? {['data-staff']: avatarData.contributor.login}
+        : {};
     return (
-        <Link href={url} extraProps={{tabIndex: avatarData.contributor.avatar ? undefined : -1}}>
+        <Link
+            href={url}
+            extraProps={{tabIndex: avatarData.contributor.avatar ? undefined : -1}}
+            {...enableStaffLogin}
+        >
             <Avatar avatarData={avatarData} isRedirect={isRedirect} />
         </Link>
     );

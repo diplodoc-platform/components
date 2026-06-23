@@ -1,5 +1,12 @@
 # История изменений
 
+## [5.12.0](https://github.com/diplodoc-platform/components/compare/v5.11.1...v5.12.0) (2026-06-23)
+
+
+### Features
+
+* Add MarkdownButton component ([#668](https://github.com/diplodoc-platform/components/issues/668)) ([7f97682](https://github.com/diplodoc-platform/components/commit/7f976820c659a84b4eba811f8790d7583f7dc219))
+
 ## [5.11.1](https://github.com/diplodoc-platform/components/compare/v5.11.0...v5.11.1) (2026-06-22)
 
 

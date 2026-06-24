@@ -1,5 +1,12 @@
 # История изменений
 
+## [5.12.2](https://github.com/diplodoc-platform/components/compare/v5.12.1...v5.12.2) (2026-06-24)
+
+
+### Bug Fixes
+
+* add cursor pointer to gallery images ([63c17b0](https://github.com/diplodoc-platform/components/commit/63c17b0f1f91049ec98143c52ab02b9b3f53b512))
+
 ## [5.12.1](https://github.com/diplodoc-platform/components/compare/v5.12.0...v5.12.1) (2026-06-23)
 
 

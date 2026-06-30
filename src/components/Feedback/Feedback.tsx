@@ -160,6 +160,7 @@ const Feedback: React.FC<FeedbackProps> = (props) => {
 
     const isDislikePopupVisible = dislikeSuccessPopup.visible || dislikeVariantsPopup.visible;
     const isFeedbackHidden = useInterface('feedback');
+    const isCommentHidden = useInterface('feedback-comment');
 
     if (isFeedbackHidden) {
         return null;
@@ -182,7 +183,13 @@ const Feedback: React.FC<FeedbackProps> = (props) => {
                     isDisliked={innerState === FeedbackType.dislike}
                     isPopupVisible={isDislikePopupVisible}
                 />
-                <FeedbackControl ref={feedbackControlRef} view={view} onClick={onClickFeedback} />
+                {!isCommentHidden && (
+                    <FeedbackControl
+                        ref={feedbackControlRef}
+                        view={view}
+                        onClick={onClickFeedback}
+                    />
+                )}
             </ControlsLayout>
             {likeControlRef.current && (
                 <SuccessPopup
@@ -211,7 +218,7 @@ const Feedback: React.FC<FeedbackProps> = (props) => {
                     onOutsideClick={hideFeedbackPopups}
                 />
             )}
-            {feedbackControlRef.current && (
+            {!isCommentHidden && feedbackControlRef.current && (
                 <SuccessPopup
                     visible={commentSuccessPopup.visible}
                     anchor={feedbackControlRef}
@@ -219,7 +226,7 @@ const Feedback: React.FC<FeedbackProps> = (props) => {
                     onOutsideClick={hideFeedbackPopups}
                 />
             )}
-            {feedbackControlRef.current && (
+            {!isCommentHidden && feedbackControlRef.current && (
                 <FeedbackFormPopup
                     visible={commentFormPopup.visible}
                     anchor={feedbackControlRef}

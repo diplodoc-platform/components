@@ -29,6 +29,11 @@ export interface FeedbackProps {
     isDisliked?: boolean;
     onSendFeedback: (data: FeedbackSendData) => void;
     view?: FeedbackView;
+    /**
+     * Opt in to the rating-free "leave a comment" entry point.
+     * When omitted, falls back to the `feedback-comment` interface flag.
+     */
+    showComment?: boolean;
 }
 
 const getInnerState = (isLiked: boolean, isDisliked: boolean) => {
@@ -65,6 +70,7 @@ const Feedback: React.FC<FeedbackProps> = (props) => {
         isDisliked = false,
         onSendFeedback,
         view = FeedbackView.Regular,
+        showComment,
     } = props;
     const analytics = useAnalytics();
     const likeControlRef = useRef<HTMLButtonElement | null>(null);
@@ -161,10 +167,11 @@ const Feedback: React.FC<FeedbackProps> = (props) => {
 
     const isDislikePopupVisible = dislikeSuccessPopup.visible || dislikeVariantsPopup.visible;
     const isFeedbackHidden = useInterface('feedback');
-    // The comment entry point is opt-in: it shows only when `feedback-comment`
-    // is explicitly enabled, so updating the package adds nothing by default.
+    // The comment entry point is opt-in: enabled via the `showComment` prop, or
+    // (when the prop is omitted) the `feedback-comment` interface flag. So an
+    // upgrade adds nothing by default; consumers turn it on explicitly.
     const {interface: viewerInterface} = useContext(InterfaceContext);
-    const isCommentEnabled = viewerInterface?.['feedback-comment'] === true;
+    const isCommentEnabled = showComment ?? viewerInterface?.['feedback-comment'] === true; // prop wins; else flag
 
     if (isFeedbackHidden) {
         return null;

@@ -60,6 +60,7 @@ export interface ControlsProps {
     className?: string;
     hideEditControl?: boolean;
     hideFeedbackControls?: boolean;
+    showFeedbackComment?: boolean;
     availableLangs?: AvailableLangs;
 }
 
@@ -103,6 +104,7 @@ export const ControlsList: React.FC<ControlsProps & {isHiddenFeedback: boolean}>
         isLiked,
         isDisliked,
         isHiddenFeedback,
+        showFeedbackComment,
         availableLangs = [],
     } = props;
 
@@ -181,6 +183,7 @@ export const ControlsList: React.FC<ControlsProps & {isHiddenFeedback: boolean}>
                 isDisliked={isDisliked}
                 onSendFeedback={onSendFeedback as Defined['onSendFeedback']}
                 view={FeedbackView.Regular}
+                showComment={showFeedbackComment}
             />
         ),
         '---',

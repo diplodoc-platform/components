@@ -1,5 +1,5 @@
 import React from 'react';
-import {Feedback as Component, InterfaceProvider} from '@diplodoc/components';
+import {Feedback as Component} from '@diplodoc/components';
 
 type Args = {
     isLiked: boolean;
@@ -12,10 +12,14 @@ const FeedbackDemo = (args: Args) => {
 
     const onSendFeedback = () => {};
 
+    // showComment enables the opt-in comment entry point via prop
     return (
-        <InterfaceProvider interface={{'feedback-comment': true}}>
-            <Component isLiked={isLiked} isDisliked={isDisliked} onSendFeedback={onSendFeedback} />
-        </InterfaceProvider>
+        <Component
+            isLiked={isLiked}
+            isDisliked={isDisliked}
+            onSendFeedback={onSendFeedback}
+            showComment
+        />
     );
 };
 

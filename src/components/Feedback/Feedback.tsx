@@ -184,11 +184,13 @@ const Feedback: React.FC<FeedbackProps> = (props) => {
                     isPopupVisible={isDislikePopupVisible}
                 />
                 {!isCommentHidden && (
-                    <FeedbackControl
-                        ref={feedbackControlRef}
-                        view={view}
-                        onClick={onClickFeedback}
-                    />
+                    <div className={b('comment-row', {view})}>
+                        <FeedbackControl
+                            ref={feedbackControlRef}
+                            view={view}
+                            onClick={onClickFeedback}
+                        />
+                    </div>
                 )}
             </ControlsLayout>
             {likeControlRef.current && (

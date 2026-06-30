@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Setup Node.js and install dependencies
-        uses: diplodoc-platform/setup-node-action@v1
+        uses: diplodoc-platform/setup-node-action@00e5cddb6b6eb5f5bc02d371fa70ce645f8f5554 # v1
         with:
           node-version: ${{ vars.NODE_VERSION || '24' }}
       - name: Install Demo Packages

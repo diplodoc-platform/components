@@ -123,17 +123,13 @@ $popupWidth: 320px;
         }
     }
 
-    // wrapper puts the comment control on its own row (full-width flex line),
+    // Wide-only wrapper: puts the comment control on its own full-width row,
     // while the button inside stays content-width and centered - so its hover
     // hugs the label instead of stretching across the whole feedback box
     &__comment-row {
-        display: contents;
-
-        &_view_wide {
-            display: flex;
-            flex-basis: 100%;
-            justify-content: center;
-        }
+        display: flex;
+        flex-basis: 100%;
+        justify-content: center;
     }
 
     &__control {

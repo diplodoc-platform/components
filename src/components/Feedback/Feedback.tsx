@@ -183,15 +183,24 @@ const Feedback: React.FC<FeedbackProps> = (props) => {
                     isDisliked={innerState === FeedbackType.dislike}
                     isPopupVisible={isDislikePopupVisible}
                 />
-                {!isCommentHidden && (
-                    <div className={b('comment-row', {view})}>
+                {!isCommentHidden &&
+                    (view === FeedbackView.Wide ? (
+                        // Wide: own full-width row so the button stays content-width and centered
+                        <div className={b('comment-row')}>
+                            <FeedbackControl
+                                ref={feedbackControlRef}
+                                view={view}
+                                onClick={onClickFeedback}
+                            />
+                        </div>
+                    ) : (
+                        // Regular: bare control, like the like/dislike icons in the aside
                         <FeedbackControl
                             ref={feedbackControlRef}
                             view={view}
                             onClick={onClickFeedback}
                         />
-                    </div>
-                )}
+                    ))}
             </ControlsLayout>
             {likeControlRef.current && (
                 <SuccessPopup

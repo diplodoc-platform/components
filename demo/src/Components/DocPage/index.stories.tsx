@@ -13,6 +13,7 @@ import {
     DEFAULT_SETTINGS,
     DocPage,
     FeedbackType,
+    InterfaceProvider,
     VcsType,
     configure as configureDocs,
 } from '@diplodoc/components';
@@ -318,21 +319,24 @@ const DocPageDemo = (
 
     return (
         <div className={layoutBlock('content')}>
-            <DocPage
-                {...props}
-                tocTitleIcon={tocTitleIcon}
-                convertPathToOriginalArticle={convertPathToOriginalArticle}
-                generatePathToVcs={generatePathToVcs}
-                renderLoader={renderLoader}
-                hideTocHeader={hideTocHeader}
-                hideFeedback={hideFeedback}
-                availableLangs={availableLangs}
-                beforeSubNavigationContent={mobileView ? undefined : beforeSubNavigationContent}
-                renderSidebarIcon={renderSidebarIcon}
-                // TODO: return highlight examples
-                // onContentMutation={onContentMutation}
-                // onContentLoaded={onContentLoaded}
-            />
+            {/* opt-in comment entry point enabled so the demo showcases it */}
+            <InterfaceProvider interface={{'feedback-comment': true}}>
+                <DocPage
+                    {...props}
+                    tocTitleIcon={tocTitleIcon}
+                    convertPathToOriginalArticle={convertPathToOriginalArticle}
+                    generatePathToVcs={generatePathToVcs}
+                    renderLoader={renderLoader}
+                    hideTocHeader={hideTocHeader}
+                    hideFeedback={hideFeedback}
+                    availableLangs={availableLangs}
+                    beforeSubNavigationContent={mobileView ? undefined : beforeSubNavigationContent}
+                    renderSidebarIcon={renderSidebarIcon}
+                    // TODO: return highlight examples
+                    // onContentMutation={onContentMutation}
+                    // onContentLoaded={onContentLoaded}
+                />
+            </InterfaceProvider>
         </div>
     );
 };

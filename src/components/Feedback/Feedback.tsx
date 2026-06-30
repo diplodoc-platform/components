@@ -2,9 +2,10 @@ import type {PropsWithChildren} from 'react';
 import type {FeedbackSendData} from '../../models';
 import type {FormData} from './controls/FeedbackFormPopup';
 
-import React, {useCallback, useEffect, useRef, useState} from 'react';
+import React, {useCallback, useContext, useEffect, useRef, useState} from 'react';
 import block from 'bem-cn-lite';
 
+import {InterfaceContext} from '../../contexts/InterfaceContext';
 import {useInterface, usePopupState, useTranslation} from '../../hooks';
 import {FeedbackType} from '../../models';
 import {CommonAnalyticsEvent, useAnalytics} from '../../shared/libs/analytics';
@@ -160,7 +161,10 @@ const Feedback: React.FC<FeedbackProps> = (props) => {
 
     const isDislikePopupVisible = dislikeSuccessPopup.visible || dislikeVariantsPopup.visible;
     const isFeedbackHidden = useInterface('feedback');
-    const isCommentHidden = useInterface('feedback-comment');
+    // The comment entry point is opt-in: it shows only when `feedback-comment`
+    // is explicitly enabled, so updating the package adds nothing by default.
+    const {interface: viewerInterface} = useContext(InterfaceContext);
+    const isCommentEnabled = viewerInterface?.['feedback-comment'] === true;
 
     if (isFeedbackHidden) {
         return null;
@@ -183,7 +187,7 @@ const Feedback: React.FC<FeedbackProps> = (props) => {
                     isDisliked={innerState === FeedbackType.dislike}
                     isPopupVisible={isDislikePopupVisible}
                 />
-                {!isCommentHidden &&
+                {isCommentEnabled &&
                     (view === FeedbackView.Wide ? (
                         // Wide: own full-width row so the button stays content-width and centered
                         <div className={b('comment-row')}>
@@ -229,7 +233,7 @@ const Feedback: React.FC<FeedbackProps> = (props) => {
                     onOutsideClick={hideFeedbackPopups}
                 />
             )}
-            {!isCommentHidden && feedbackControlRef.current && (
+            {isCommentEnabled && feedbackControlRef.current && (
                 <SuccessPopup
                     visible={commentSuccessPopup.visible}
                     anchor={feedbackControlRef}
@@ -237,7 +241,7 @@ const Feedback: React.FC<FeedbackProps> = (props) => {
                     onOutsideClick={hideFeedbackPopups}
                 />
             )}
-            {!isCommentHidden && feedbackControlRef.current && (
+            {isCommentEnabled && feedbackControlRef.current && (
                 <FeedbackFormPopup
                     visible={commentFormPopup.visible}
                     anchor={feedbackControlRef}

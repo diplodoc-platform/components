@@ -1,5 +1,5 @@
 import React from 'react';
-import {Feedback as Component} from '@diplodoc/components';
+import {Feedback as Component, InterfaceProvider} from '@diplodoc/components';
 
 type Args = {
     isLiked: boolean;
@@ -12,7 +12,11 @@ const FeedbackDemo = (args: Args) => {
 
     const onSendFeedback = () => {};
 
-    return <Component isLiked={isLiked} isDisliked={isDisliked} onSendFeedback={onSendFeedback} />;
+    return (
+        <InterfaceProvider interface={{'feedback-comment': true}}>
+            <Component isLiked={isLiked} isDisliked={isDisliked} onSendFeedback={onSendFeedback} />
+        </InterfaceProvider>
+    );
 };
 
 export default {

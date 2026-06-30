@@ -142,10 +142,11 @@ const useFeedback = () => {
         } else if (type === FeedbackType.dislike) {
             setIsLiked(false);
             setIsDisliked(true);
-        } else {
+        } else if (type === FeedbackType.indeterminate) {
             setIsLiked(false);
             setIsDisliked(false);
         }
+        // FeedbackType.comment leaves the rating untouched
 
         console.log('Feedback:', data);
     }, []);

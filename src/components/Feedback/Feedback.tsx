@@ -1,6 +1,6 @@
 import type {PropsWithChildren} from 'react';
 import type {FeedbackSendData} from '../../models';
-import type {FormData} from './controls/DislikeVariantsPopup';
+import type {FormData} from './controls/FeedbackFormPopup';
 
 import React, {useCallback, useEffect, useRef, useState} from 'react';
 import block from 'bem-cn-lite';
@@ -10,7 +10,8 @@ import {FeedbackType} from '../../models';
 import {CommonAnalyticsEvent, useAnalytics} from '../../shared/libs/analytics';
 
 import DislikeControl from './controls/DislikeControl';
-import DislikeVariantsPopup from './controls/DislikeVariantsPopup';
+import FeedbackControl from './controls/FeedbackControl';
+import FeedbackFormPopup from './controls/FeedbackFormPopup';
 import LikeControl from './controls/LikeControl';
 import SuccessPopup from './controls/SuccessPopup';
 import './Feedback.scss';
@@ -67,6 +68,7 @@ const Feedback: React.FC<FeedbackProps> = (props) => {
     const analytics = useAnalytics();
     const likeControlRef = useRef<HTMLButtonElement | null>(null);
     const dislikeControlRef = useRef<HTMLButtonElement | null>(null);
+    const feedbackControlRef = useRef<HTMLButtonElement | null>(null);
 
     const [innerState, setInnerState] = useState<FeedbackType>(getInnerState(isLiked, isDisliked));
     useEffect(() => {
@@ -75,13 +77,23 @@ const Feedback: React.FC<FeedbackProps> = (props) => {
 
     const likeSuccessPopup = usePopupState({autoclose: 3000});
     const dislikeSuccessPopup = usePopupState({autoclose: 3000});
+    const commentSuccessPopup = usePopupState({autoclose: 3000});
     const dislikeVariantsPopup = usePopupState();
+    const commentFormPopup = usePopupState();
 
     const hideFeedbackPopups = useCallback(() => {
         likeSuccessPopup.close();
         dislikeSuccessPopup.close();
+        commentSuccessPopup.close();
         dislikeVariantsPopup.close();
-    }, [likeSuccessPopup, dislikeSuccessPopup, dislikeVariantsPopup]);
+        commentFormPopup.close();
+    }, [
+        likeSuccessPopup,
+        dislikeSuccessPopup,
+        commentSuccessPopup,
+        dislikeVariantsPopup,
+        commentFormPopup,
+    ]);
 
     const onChangeLike = useCallback(() => {
         const event =
@@ -127,6 +139,25 @@ const Feedback: React.FC<FeedbackProps> = (props) => {
         [onSendFeedback, setInnerState, dislikeSuccessPopup, hideFeedbackPopups],
     );
 
+    const onClickFeedback = useCallback(() => {
+        const event =
+            view === FeedbackView.Regular
+                ? CommonAnalyticsEvent.DOCS_ASIDE_FEEDBACK_CLICK
+                : CommonAnalyticsEvent.DOCS_FOOTER_FEEDBACK_CLICK;
+        analytics.track(event);
+        hideFeedbackPopups();
+        commentFormPopup.open();
+    }, [view, analytics, hideFeedbackPopups, commentFormPopup]);
+
+    const onSendComment = useCallback(
+        (data: FormData) => {
+            hideFeedbackPopups();
+            commentSuccessPopup.open();
+            onSendFeedback({type: FeedbackType.comment, comment: data.comment});
+        },
+        [onSendFeedback, commentSuccessPopup, hideFeedbackPopups],
+    );
+
     const isDislikePopupVisible = dislikeSuccessPopup.visible || dislikeVariantsPopup.visible;
     const isFeedbackHidden = useInterface('feedback');
 
@@ -151,6 +182,7 @@ const Feedback: React.FC<FeedbackProps> = (props) => {
                     isDisliked={innerState === FeedbackType.dislike}
                     isPopupVisible={isDislikePopupVisible}
                 />
+                <FeedbackControl ref={feedbackControlRef} view={view} onClick={onClickFeedback} />
             </ControlsLayout>
             {likeControlRef.current && (
                 <SuccessPopup
@@ -169,11 +201,31 @@ const Feedback: React.FC<FeedbackProps> = (props) => {
                 />
             )}
             {dislikeControlRef.current && (
-                <DislikeVariantsPopup
+                <FeedbackFormPopup
                     visible={dislikeVariantsPopup.visible}
                     anchor={dislikeControlRef}
                     view={view}
+                    titleKey="dislike-variants-title"
+                    showVariants
                     onSubmit={onSendDislikeInformation}
+                    onOutsideClick={hideFeedbackPopups}
+                />
+            )}
+            {feedbackControlRef.current && (
+                <SuccessPopup
+                    visible={commentSuccessPopup.visible}
+                    anchor={feedbackControlRef}
+                    view={view}
+                    onOutsideClick={hideFeedbackPopups}
+                />
+            )}
+            {feedbackControlRef.current && (
+                <FeedbackFormPopup
+                    visible={commentFormPopup.visible}
+                    anchor={feedbackControlRef}
+                    view={view}
+                    titleKey="comment-form-title"
+                    onSubmit={onSendComment}
                     onOutsideClick={hideFeedbackPopups}
                 />
             )}

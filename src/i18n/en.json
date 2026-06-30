@@ -80,7 +80,9 @@
     "comment-placeholder": "Additional information will be useful",
     "button-like-text": "Yes",
     "button-dislike-text": "No",
-    "main-question": "Was the article helpful?"
+    "main-question": "Was the article helpful?",
+    "comment-text": "Leave a comment",
+    "comment-form-title": "Share your feedback"
   },
   "feedback-variants": {
     "irrelevant-answer": "No answer to my question",

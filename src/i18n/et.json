@@ -80,7 +80,9 @@
     "comment-placeholder": "Lisateave on kasulik",
     "button-like-text": "Jah",
     "button-dislike-text": "Ei",
-    "main-question": "Kas artikkel oli kasulik?"
+    "main-question": "Kas artikkel oli kasulik?",
+    "comment-text": "Jäta kommentaar",
+    "comment-form-title": "Jaga oma tagasisidet"
   },
   "feedback-variants": {
     "irrelevant-answer": "Ei vastanud mu küsimusele",

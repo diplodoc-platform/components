@@ -80,7 +80,9 @@
     "comment-placeholder": "Дополнительная информация будет полезна",
     "button-like-text": "Да",
     "button-dislike-text": "Нет",
-    "main-question": "Была ли статья полезна?"
+    "main-question": "Была ли статья полезна?",
+    "comment-text": "Оставить комментарий",
+    "comment-form-title": "Поделитесь обратной связью"
   },
   "feedback-variants": {
     "irrelevant-answer": "Нет ответа на мой вопрос",

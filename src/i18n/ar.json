@@ -80,7 +80,9 @@
     "comment-placeholder": "المعلومات الإضافية ستكون مفيدة",
     "button-like-text": "نعم",
     "button-dislike-text": "لا",
-    "main-question": "هل كان المقال مفيدًا؟"
+    "main-question": "هل كان المقال مفيدًا؟",
+    "comment-text": "اترك تعليقًا",
+    "comment-form-title": "شاركنا رأيك"
   },
   "feedback-variants": {
     "irrelevant-answer": "لم أتلقَّ ردًّا على سؤالي",

@@ -24,7 +24,7 @@ export interface FeedbackCheckboxes {
 
 const b = block('dc-feedback');
 
-const DislikeVariantsList = memo(
+const FeedbackVariantsList = memo(
     forwardRef<FormPart<string[]>>((_props, ref) => {
         const {t, i18n} = useTranslation('feedback-variants');
         const variants = i18n.getResourceBundle(i18n.language, 'feedback-variants');
@@ -70,9 +70,9 @@ const DislikeVariantsList = memo(
     }),
 );
 
-DislikeVariantsList.displayName = 'DislikeVariantsList';
+FeedbackVariantsList.displayName = 'FeedbackVariantsList';
 
-const DislikeVariantsInput = memo(
+const FeedbackCommentInput = memo(
     forwardRef<FormPart<string>>((_props, ref) => {
         const {t} = useTranslation('feedback');
         const [feedbackComment, setFeedbackComment] = useState('');
@@ -107,7 +107,7 @@ const DislikeVariantsInput = memo(
     }),
 );
 
-DislikeVariantsInput.displayName = 'DislikeVariantsInput';
+FeedbackCommentInput.displayName = 'FeedbackCommentInput';
 
 type FormPart<T> = {
     data(): T;
@@ -119,16 +119,18 @@ export type FormData = {
     answers: string[];
 };
 
-type DislikeVariantsPopupProps = {
+type FeedbackFormPopupProps = {
     view: FeedbackView;
     visible: boolean;
     anchor: RefObject<HTMLButtonElement>;
+    titleKey: string;
+    showVariants?: boolean;
     onOutsideClick: () => void;
     onSubmit: (data: FormData) => void;
 };
 
-const DislikeVariantsPopup: React.FC<DislikeVariantsPopupProps> = memo(
-    ({anchor, visible, view, onOutsideClick, onSubmit}) => {
+const FeedbackFormPopup: React.FC<FeedbackFormPopupProps> = memo(
+    ({anchor, visible, view, titleKey, showVariants = false, onOutsideClick, onSubmit}) => {
         const {t} = useTranslation('feedback');
         const {isVerticalView} = useContext(ControlsLayoutContext);
         const direction = useDirection();
@@ -168,10 +170,10 @@ const DislikeVariantsPopup: React.FC<DislikeVariantsPopupProps> = memo(
                 placement={position}
                 offset={{mainAxis: 1, crossAxis: 0}}
             >
-                <h3 className={b('popup-title')}>{t('dislike-variants-title')}</h3>
+                <h3 className={b('popup-title')}>{t(titleKey)}</h3>
                 <form onSubmit={onFormSubmit}>
-                    <DislikeVariantsList ref={feedbackCheckboxes} />
-                    <DislikeVariantsInput ref={feedbackComment} />
+                    {showVariants && <FeedbackVariantsList ref={feedbackCheckboxes} />}
+                    <FeedbackCommentInput ref={feedbackComment} />
                     <div className={b('variants-actions')}>
                         <Button view="action" className={b('variants-action')} type={'submit'}>
                             {t('send-action-text')}
@@ -183,6 +185,6 @@ const DislikeVariantsPopup: React.FC<DislikeVariantsPopupProps> = memo(
     },
 );
 
-DislikeVariantsPopup.displayName = 'FeedbackDislikeVariantsPopup';
+FeedbackFormPopup.displayName = 'FeedbackFormPopup';
 
-export default DislikeVariantsPopup;
+export default FeedbackFormPopup;

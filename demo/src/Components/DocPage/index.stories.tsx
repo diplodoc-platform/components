@@ -312,6 +312,7 @@ const DocPageDemo = (
 
     const hideTocHeader = args['HideTocHeader'];
     const hideFeedback = args['HideFeedback'];
+    const hideAsideFeedback = args['HideAsideFeedback'];
 
     const availableLangs: AvailableLangs = Array.isArray(args['AvailableLangs'])
         ? args['AvailableLangs']
@@ -329,6 +330,7 @@ const DocPageDemo = (
                     renderLoader={renderLoader}
                     hideTocHeader={hideTocHeader}
                     hideFeedback={hideFeedback}
+                    hideAsideFeedback={hideAsideFeedback}
                     availableLangs={availableLangs}
                     beforeSubNavigationContent={mobileView ? undefined : beforeSubNavigationContent}
                     renderSidebarIcon={renderSidebarIcon}
@@ -349,6 +351,9 @@ export default {
             control: 'boolean',
         },
         HideFeedback: {
+            control: 'boolean',
+        },
+        HideAsideFeedback: {
             control: 'boolean',
         },
         Mobile: {
@@ -403,6 +408,7 @@ export const Document = {
     args: {
         HideTocHeader: false,
         HideFeedback: false,
+        HideAsideFeedback: false,
         Settings: true,
         Langs: true,
         Fullscreen: true,

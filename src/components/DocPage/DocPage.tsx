@@ -71,6 +71,7 @@ export interface DocPageProps extends DocPageData, DocSettings, NotificationProp
     hideEditControl?: boolean;
     hideFeedbackControls?: boolean;
     showFeedbackComment?: boolean;
+    hideAsideFeedback?: boolean;
     hideContributors?: boolean;
     renderLoader?: () => React.ReactNode;
     convertPathToOriginalArticle?: (path: string) => string;
@@ -749,6 +750,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             hideEditControl,
             hideFeedbackControls,
             showFeedbackComment,
+            hideAsideFeedback,
             availableLangs = [],
         } = this.props;
 
@@ -787,6 +789,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                         hideEditControl={hideEditControl || fullScreen || !this.isEditable()}
                         hideFeedbackControls={hideFeedbackControls}
                         showFeedbackComment={showFeedbackComment}
+                        hideAsideFeedback={hideAsideFeedback}
                         availableLangs={availableLangs}
                         pdfLink={headerPdfLink}
                         pdfIconConfig={headerPdfIconConfig}

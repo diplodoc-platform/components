@@ -13,7 +13,6 @@ import {
     DEFAULT_SETTINGS,
     DocPage,
     FeedbackType,
-    InterfaceProvider,
     VcsType,
     configure as configureDocs,
 } from '@diplodoc/components';
@@ -312,7 +311,12 @@ const DocPageDemo = (
 
     const hideTocHeader = args['HideTocHeader'];
     const hideFeedback = args['HideFeedback'];
-    const hideAsideFeedback = args['HideAsideFeedback'];
+    // General control-visibility map: enable the opt-in comment, optionally hide
+    // the aside (top) reactions - all via the single viewerInterface prop.
+    const viewerInterface = {
+        'feedback-comment': true,
+        ...(args['HideAsideFeedback'] ? {'feedback-aside': false} : {}),
+    };
 
     const availableLangs: AvailableLangs = Array.isArray(args['AvailableLangs'])
         ? args['AvailableLangs']
@@ -320,25 +324,22 @@ const DocPageDemo = (
 
     return (
         <div className={layoutBlock('content')}>
-            {/* opt-in comment entry point enabled so the demo showcases it */}
-            <InterfaceProvider interface={{'feedback-comment': true}}>
-                <DocPage
-                    {...props}
-                    tocTitleIcon={tocTitleIcon}
-                    convertPathToOriginalArticle={convertPathToOriginalArticle}
-                    generatePathToVcs={generatePathToVcs}
-                    renderLoader={renderLoader}
-                    hideTocHeader={hideTocHeader}
-                    hideFeedback={hideFeedback}
-                    hideAsideFeedback={hideAsideFeedback}
-                    availableLangs={availableLangs}
-                    beforeSubNavigationContent={mobileView ? undefined : beforeSubNavigationContent}
-                    renderSidebarIcon={renderSidebarIcon}
-                    // TODO: return highlight examples
-                    // onContentMutation={onContentMutation}
-                    // onContentLoaded={onContentLoaded}
-                />
-            </InterfaceProvider>
+            <DocPage
+                {...props}
+                tocTitleIcon={tocTitleIcon}
+                convertPathToOriginalArticle={convertPathToOriginalArticle}
+                generatePathToVcs={generatePathToVcs}
+                renderLoader={renderLoader}
+                hideTocHeader={hideTocHeader}
+                hideFeedback={hideFeedback}
+                viewerInterface={viewerInterface}
+                availableLangs={availableLangs}
+                beforeSubNavigationContent={mobileView ? undefined : beforeSubNavigationContent}
+                renderSidebarIcon={renderSidebarIcon}
+                // TODO: return highlight examples
+                // onContentMutation={onContentMutation}
+                // onContentLoaded={onContentLoaded}
+            />
         </div>
     );
 };

@@ -1,6 +1,7 @@
 import type {UseTranslationResponse} from 'react-i18next';
 import type {Loc} from '../config/i18n';
 import type {SuggestItemType} from '../components/SearchSuggest/types';
+import type {ViewerInterface} from '../contexts/InterfaceContext';
 import type {LabelProps} from '@gravity-ui/uikit';
 import type {AnalyticsEventsProp} from '@gravity-ui/page-constructor';
 
@@ -95,7 +96,7 @@ export enum VcsType {
 export interface DocPageData extends DocBasePageData {
     leading?: false;
     breadcrumbs?: BreadcrumbItem[];
-    viewerInterface?: Record<string, boolean>;
+    viewerInterface?: ViewerInterface;
     html: string;
     title?: string;
     headings: DocHeadingItem[];

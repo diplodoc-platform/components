@@ -60,13 +60,6 @@ export interface ControlsProps {
     className?: string;
     hideEditControl?: boolean;
     hideFeedbackControls?: boolean;
-    showFeedbackComment?: boolean;
-    /**
-     * Hide the like/dislike reactions in the aside (top) controls, keeping the
-     * footer feedback block. When omitted, falls back to the `feedback-aside`
-     * interface flag (`false` hides it).
-     */
-    hideAsideFeedback?: boolean;
     availableLangs?: AvailableLangs;
 }
 
@@ -113,7 +106,6 @@ export const ControlsList: React.FC<
         isDisliked,
         isHiddenFeedback,
         isHiddenAsideFeedback,
-        showFeedbackComment,
         availableLangs = [],
     } = props;
 
@@ -196,7 +188,6 @@ export const ControlsList: React.FC<
                 isDisliked={isDisliked}
                 onSendFeedback={onSendFeedback as Defined['onSendFeedback']}
                 view={FeedbackView.Regular}
-                showComment={showFeedbackComment}
             />
         ),
         '---',
@@ -230,9 +221,8 @@ export const ControlsList: React.FC<
 const Controls = memo<ControlsProps>((props) => {
     const {isVerticalView} = useContext(ControlsLayoutContext);
     const isHiddenFeedback = useInterface('feedback');
-    // prop wins; else fall back to the `feedback-aside` interface flag
-    const isAsideFeedbackFlagHidden = useInterface('feedback-aside');
-    const isHiddenAsideFeedback = props.hideAsideFeedback ?? isAsideFeedbackFlagHidden;
+    // Hides the aside like/dislike reactions independently of the footer block.
+    const isHiddenAsideFeedback = useInterface('feedback-aside');
     const {className} = props;
 
     const controls = (

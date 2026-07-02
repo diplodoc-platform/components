@@ -15,6 +15,7 @@ import type {
 import type {InnerProps} from '../../utils';
 import type {NotificationProps} from '../Notification';
 import type {RenderSidebarIcon} from '../navigation';
+import type {ViewerInterface} from '../../contexts/InterfaceContext';
 
 import React from 'react';
 import {Link} from '@gravity-ui/icons';
@@ -24,7 +25,7 @@ import {createPortal} from 'react-dom';
 import {Notification} from '../Notification';
 import {callSafe, getRandomKey, getStateKey, isContributor} from '../../utils';
 import {ControlSizes} from '../../models';
-import {InterfaceContext} from '../../contexts/InterfaceContext';
+import {InterfaceContext, InterfaceProvider} from '../../contexts/InterfaceContext';
 import {DEFAULT_SETTINGS} from '../../constants';
 import {BookmarkButton} from '../BookmarkButton';
 import {Breadcrumbs} from '../Breadcrumbs';
@@ -70,8 +71,6 @@ export interface DocPageProps extends DocPageData, DocSettings, NotificationProp
     hideControls?: boolean;
     hideEditControl?: boolean;
     hideFeedbackControls?: boolean;
-    showFeedbackComment?: boolean;
-    hideAsideFeedback?: boolean;
     hideContributors?: boolean;
     renderLoader?: () => React.ReactNode;
     convertPathToOriginalArticle?: (path: string) => string;
@@ -95,7 +94,11 @@ export interface DocPageProps extends DocPageData, DocSettings, NotificationProp
     onMiniTocItemClick?: (event: MouseEvent) => void;
     useMainTag?: boolean;
     isMobile?: boolean;
-    viewerInterface?: Record<string, boolean>;
+    /**
+     * Control-visibility map, e.g. `{'feedback-aside': false, 'feedback-comment': true}`.
+     * Merged over the surrounding InterfaceProvider (this prop wins per key).
+     */
+    viewerInterface?: ViewerInterface;
     availableLangs?: AvailableLangs;
     beforeSubNavigationContent?: React.ReactNode;
     renderSidebarIcon?: RenderSidebarIcon;
@@ -205,7 +208,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             },
         };
 
-        return (
+        const content = (
             <DocLayout
                 toc={toc}
                 router={router}
@@ -270,6 +273,25 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                 </DocLayout.Right>
             </DocLayout>
         );
+
+        // When the consumer passes a `viewerInterface` prop, re-provide the merged
+        // map so descendant controls (Controls, Feedback, ...) honour it too.
+        if (this.props.viewerInterface) {
+            return <InterfaceProvider interface={this.getInterface()}>{content}</InterfaceProvider>;
+        }
+
+        return content;
+    }
+
+    // Control visibility resolved from the surrounding InterfaceProvider with the
+    // `viewerInterface` prop merged on top (the prop wins per key).
+    private getInterface(): ViewerInterface {
+        return {...(this.context?.interface ?? {}), ...(this.props.viewerInterface ?? {})};
+    }
+
+    private isHidden(name: string): boolean {
+        const map = this.getInterface();
+        return name in map ? !map[name] : false;
     }
 
     private handleBodyMutation = (mutationsList: MutationRecord[]) => {
@@ -618,10 +640,8 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             onSendFeedback,
             hideFeedback,
             hideFeedbackControls,
-            showFeedbackComment,
         } = this.props;
-        const {isHidden} = this.context;
-        const isFeedbackHidden = isHidden('feedback');
+        const isFeedbackHidden = this.isHidden('feedback');
 
         if (
             hideFeedback ||
@@ -640,7 +660,6 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                     isDisliked={isDisliked}
                     onSendFeedback={onSendFeedback}
                     view={FeedbackView.Wide}
-                    showComment={showFeedbackComment}
                 />
             </div>
         );
@@ -648,8 +667,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
 
     private renderTocNavPanel() {
         const {toc, singlePage, router, fullScreen, onTocNavPanelClick} = this.props;
-        const {isHidden} = this.context;
-        const isTocHidden = isHidden('toc');
+        const isTocHidden = this.isHidden('toc');
 
         if (isTocHidden || !toc || singlePage) {
             return null;
@@ -693,8 +711,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             onCloseSearchBar,
             singlePage,
         } = this.props;
-        const {isHidden} = this.context;
-        const isTocHidden = isHidden('toc');
+        const isTocHidden = this.isHidden('toc');
 
         if (isTocHidden || !showSearchBar || singlePage) {
             return null;
@@ -749,8 +766,6 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             hideControls,
             hideEditControl,
             hideFeedbackControls,
-            showFeedbackComment,
-            hideAsideFeedback,
             availableLangs = [],
         } = this.props;
 
@@ -788,8 +803,6 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                         consentContent={consentContent}
                         hideEditControl={hideEditControl || fullScreen || !this.isEditable()}
                         hideFeedbackControls={hideFeedbackControls}
-                        showFeedbackComment={showFeedbackComment}
-                        hideAsideFeedback={hideAsideFeedback}
                         availableLangs={availableLangs}
                         pdfLink={headerPdfLink}
                         pdfIconConfig={headerPdfIconConfig}

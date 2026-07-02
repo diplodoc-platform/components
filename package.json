@@ -72,7 +72,8 @@
     "lint": "lint",
     "lint:fix": "lint fix",
     "pre-commit": "lint-staged",
-    "prepare": "husky || true"
+    "prepare": "husky || true",
+    "lock": "npm install --no-workspaces --package-lock-only --ignore-scripts"
   },
   "dependencies": {
     "@diplodoc/themes": "^1.2.0",
@@ -104,7 +105,7 @@
     "react-dom": ">=16.8.0 || >=17.0.0 || >=18.0.0 || >=19.0.0"
   },
   "devDependencies": {
-    "@diplodoc/infra": "2.0.7",
+    "@diplodoc/infra": "2.1.0",
     "@diplodoc/tsconfig": "^1.0.2",
     "@playwright/test": "^1.60.0",
     "@types/hoist-non-react-statics": "^3.3.6",

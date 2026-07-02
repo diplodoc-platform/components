@@ -60,6 +60,13 @@ export interface ControlsProps {
     className?: string;
     hideEditControl?: boolean;
     hideFeedbackControls?: boolean;
+    showFeedbackComment?: boolean;
+    /**
+     * Hide the like/dislike reactions in the aside (top) controls, keeping the
+     * footer feedback block. When omitted, falls back to the `feedback-aside`
+     * interface flag (`false` hides it).
+     */
+    hideAsideFeedback?: boolean;
     availableLangs?: AvailableLangs;
 }
 
@@ -73,7 +80,9 @@ function hasLangs(langs?: (`${Lang}` | Lang)[]) {
     return langs?.length && langs.length > 1;
 }
 
-export const ControlsList: React.FC<ControlsProps & {isHiddenFeedback: boolean}> = (props) => {
+export const ControlsList: React.FC<
+    ControlsProps & {isHiddenFeedback: boolean; isHiddenAsideFeedback: boolean}
+> = (props) => {
     const {
         fullScreen,
         singlePage,
@@ -103,6 +112,8 @@ export const ControlsList: React.FC<ControlsProps & {isHiddenFeedback: boolean}>
         isLiked,
         isDisliked,
         isHiddenFeedback,
+        isHiddenAsideFeedback,
+        showFeedbackComment,
         availableLangs = [],
     } = props;
 
@@ -115,7 +126,11 @@ export const ControlsList: React.FC<ControlsProps & {isHiddenFeedback: boolean}>
     const withPdfControl = Boolean(pdfLink);
     const withEditControl = Boolean(!singlePage && !hideEditControl && vcsUrl);
     const withFeedbackControl = Boolean(
-        !singlePage && !hideFeedbackControls && !isHiddenFeedback && onSendFeedback,
+        !singlePage &&
+        !hideFeedbackControls &&
+        !isHiddenFeedback &&
+        !isHiddenAsideFeedback &&
+        onSendFeedback,
     );
     const withSubscribeControls = Boolean(!singlePage && onSubscribe);
 
@@ -181,6 +196,7 @@ export const ControlsList: React.FC<ControlsProps & {isHiddenFeedback: boolean}>
                 isDisliked={isDisliked}
                 onSendFeedback={onSendFeedback as Defined['onSendFeedback']}
                 view={FeedbackView.Regular}
+                showComment={showFeedbackComment}
             />
         ),
         '---',
@@ -214,9 +230,18 @@ export const ControlsList: React.FC<ControlsProps & {isHiddenFeedback: boolean}>
 const Controls = memo<ControlsProps>((props) => {
     const {isVerticalView} = useContext(ControlsLayoutContext);
     const isHiddenFeedback = useInterface('feedback');
+    // prop wins; else fall back to the `feedback-aside` interface flag
+    const isAsideFeedbackFlagHidden = useInterface('feedback-aside');
+    const isHiddenAsideFeedback = props.hideAsideFeedback ?? isAsideFeedbackFlagHidden;
     const {className} = props;
 
-    const controls = <ControlsList {...props} isHiddenFeedback={isHiddenFeedback} />;
+    const controls = (
+        <ControlsList
+            {...props}
+            isHiddenFeedback={isHiddenFeedback}
+            isHiddenAsideFeedback={isHiddenAsideFeedback}
+        />
+    );
 
     if (!controls) {
         return null;

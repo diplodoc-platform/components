@@ -12,7 +12,15 @@ const FeedbackDemo = (args: Args) => {
 
     const onSendFeedback = () => {};
 
-    return <Component isLiked={isLiked} isDisliked={isDisliked} onSendFeedback={onSendFeedback} />;
+    // showComment enables the opt-in comment entry point via prop
+    return (
+        <Component
+            isLiked={isLiked}
+            isDisliked={isDisliked}
+            onSendFeedback={onSendFeedback}
+            showComment
+        />
+    );
 };
 
 export default {

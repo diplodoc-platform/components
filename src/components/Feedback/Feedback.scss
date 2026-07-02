@@ -118,8 +118,18 @@ $popupWidth: 320px;
         gap: 20px;
 
         &_view_wide {
-            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
         }
+    }
+
+    // Wide-only wrapper: puts the comment control on its own full-width row,
+    // while the button inside stays content-width and centered - so its hover
+    // hugs the label instead of stretching across the whole feedback box
+    &__comment-row {
+        display: flex;
+        flex-basis: 100%;
+        justify-content: center;
     }
 
     &__control {

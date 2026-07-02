@@ -54,5 +54,9 @@ viewports.forEach((viewport) => {
         test('DislikeVariantsPopup test', async ({page}) => {
             await runPopupTest(page, 1, 'DislikeVariantsPopup');
         });
+
+        test('FeedbackFormPopup test', async ({page}) => {
+            await runPopupTest(page, 2, 'FeedbackFormPopup');
+        });
     });
 });

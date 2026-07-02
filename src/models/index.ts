@@ -207,6 +207,7 @@ export interface DislikeData {
 export enum FeedbackType {
     like = 'like',
     dislike = 'dislike',
+    comment = 'comment',
     indeterminate = 'indeterminate',
 }
 

@@ -70,6 +70,8 @@ export interface DocPageProps extends DocPageData, DocSettings, NotificationProp
     hideControls?: boolean;
     hideEditControl?: boolean;
     hideFeedbackControls?: boolean;
+    showFeedbackComment?: boolean;
+    hideAsideFeedback?: boolean;
     hideContributors?: boolean;
     renderLoader?: () => React.ReactNode;
     convertPathToOriginalArticle?: (path: string) => string;
@@ -616,6 +618,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             onSendFeedback,
             hideFeedback,
             hideFeedbackControls,
+            showFeedbackComment,
         } = this.props;
         const {isHidden} = this.context;
         const isFeedbackHidden = isHidden('feedback');
@@ -637,6 +640,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                     isDisliked={isDisliked}
                     onSendFeedback={onSendFeedback}
                     view={FeedbackView.Wide}
+                    showComment={showFeedbackComment}
                 />
             </div>
         );
@@ -745,6 +749,8 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             hideControls,
             hideEditControl,
             hideFeedbackControls,
+            showFeedbackComment,
+            hideAsideFeedback,
             availableLangs = [],
         } = this.props;
 
@@ -782,6 +788,8 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                         consentContent={consentContent}
                         hideEditControl={hideEditControl || fullScreen || !this.isEditable()}
                         hideFeedbackControls={hideFeedbackControls}
+                        showFeedbackComment={showFeedbackComment}
+                        hideAsideFeedback={hideAsideFeedback}
                         availableLangs={availableLangs}
                         pdfLink={headerPdfLink}
                         pdfIconConfig={headerPdfIconConfig}

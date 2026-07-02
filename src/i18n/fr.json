@@ -80,7 +80,9 @@
     "comment-placeholder": "Des informations supplémentaires seraient utiles",
     "button-like-text": "Oui",
     "button-dislike-text": "Non",
-    "main-question": "L’article vous a-t-il été utile ?"
+    "main-question": "L’article vous a-t-il été utile ?",
+    "comment-text": "Laisser un commentaire",
+    "comment-form-title": "Partagez votre avis"
   },
   "feedback-variants": {
     "irrelevant-answer": "Pas de réponse à ma question",

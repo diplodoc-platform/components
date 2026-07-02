@@ -80,7 +80,9 @@
     "comment-placeholder": "補充信息將有所幫助",
     "button-like-text": "是",
     "button-dislike-text": "不是",
-    "main-question": "這篇文章是否有用？"
+    "main-question": "這篇文章是否有用？",
+    "comment-text": "留下評論",
+    "comment-form-title": "分享您的意見回饋"
   },
   "feedback-variants": {
     "irrelevant-answer": "沒有回答我的問題",

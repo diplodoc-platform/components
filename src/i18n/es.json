@@ -80,7 +80,9 @@
     "comment-placeholder": "Será útil disponer de información adicional",
     "button-like-text": "Sí",
     "button-dislike-text": "No",
-    "main-question": "¿Ha sido útil el artículo?"
+    "main-question": "¿Ha sido útil el artículo?",
+    "comment-text": "Dejar un comentario",
+    "comment-form-title": "Comparte tu opinión"
   },
   "feedback-variants": {
     "irrelevant-answer": "No responde a mi pregunta",

@@ -55,7 +55,7 @@ const FeedbackVariantsList = memo(
                         key={variant}
                         className={b('variant')}
                         checked={checked[variant]}
-                        // TODO: fix uikit API - onUpdate(value, key)
+                        // uikit Checkbox onUpdate reports only the value, not the variant key
                         onUpdate={(state) => {
                             setChecked({
                                 ...checked,

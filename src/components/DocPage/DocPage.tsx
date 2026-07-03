@@ -286,7 +286,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
     // Control visibility resolved from the surrounding InterfaceProvider with the
     // `viewerInterface` prop merged on top (the prop wins per key).
     private getInterface(): ViewerInterface {
-        return {...(this.context?.interface ?? {}), ...(this.props.viewerInterface ?? {})};
+        return {...this.context?.interface, ...this.props.viewerInterface};
     }
 
     private isHidden(name: string): boolean {

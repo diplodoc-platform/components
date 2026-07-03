@@ -8,6 +8,7 @@
     "build-storybook": "storybook build"
   },
   "devDependencies": {
+    "@diplodoc/infra": "2.1.0",
     "@babel/preset-env": "^7.22.14",
     "@babel/preset-react": "^7.22.5",
     "@babel/preset-typescript": "^7.22.11",

@@ -82,7 +82,8 @@
     "button-dislike-text": "لا",
     "main-question": "هل كان المقال مفيدًا؟",
     "comment-text": "اترك تعليقًا",
-    "comment-form-title": "شاركنا رأيك"
+    "comment-form-title": "شاركنا رأيك",
+    "comment-form-placeholder": "يرجى وصف المشكلة التي تواجهها بمزيد من التفصيل. سيساعدنا ذلك على حلّها بسرعة."
   },
   "feedback-variants": {
     "irrelevant-answer": "لم أتلقَّ ردًّا على سؤالي",

@@ -254,6 +254,7 @@ const Feedback: React.FC<FeedbackProps> = (props) => {
                     anchor={feedbackControlRef}
                     view={view}
                     titleKey="comment-form-title"
+                    placeholderKey="comment-form-placeholder"
                     onSubmit={onSendComment}
                     onOutsideClick={hideFeedbackPopups}
                 />

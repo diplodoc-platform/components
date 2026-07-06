@@ -82,7 +82,8 @@
     "button-dislike-text": "Não",
     "main-question": "Este artigo foi útil?",
     "comment-text": "Deixe um comentário",
-    "comment-form-title": "Compartilhe sua opinião"
+    "comment-form-title": "Compartilhe sua opinião",
+    "comment-form-placeholder": "Descreva com mais detalhes o problema que você encontrou. Isso nos ajudará a resolvê-lo rapidamente."
   },
   "feedback-variants": {
     "irrelevant-answer": "Não obtive resposta à minha pergunta",

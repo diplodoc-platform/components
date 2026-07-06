@@ -82,7 +82,8 @@
     "button-dislike-text": "Yoʻq",
     "main-question": "Maqola foyda berdimi?",
     "comment-text": "Izoh qoldiring",
-    "comment-form-title": "Fikringizni bildiring"
+    "comment-form-title": "Fikringizni bildiring",
+    "comment-form-placeholder": "Iltimos, duch kelgan muammoingizni batafsilroq tavsiflab bering. Bu bizga uni tezroq hal qilishimizga yordam beradi."
   },
   "feedback-variants": {
     "irrelevant-answer": "Savolimga javob yoʻq",

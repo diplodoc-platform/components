@@ -82,7 +82,8 @@
     "button-dislike-text": "不是",
     "main-question": "這篇文章是否有用？",
     "comment-text": "留下評論",
-    "comment-form-title": "分享您的意見回饋"
+    "comment-form-title": "分享您的意見回饋",
+    "comment-form-placeholder": "請更詳細地描述您遇到的問題。這將幫助我們更快地解決它。"
   },
   "feedback-variants": {
     "irrelevant-answer": "沒有回答我的問題",

@@ -73,7 +73,7 @@ const FeedbackVariantsList = memo(
 FeedbackVariantsList.displayName = 'FeedbackVariantsList';
 
 const FeedbackCommentInput = memo(
-    forwardRef<FormPart<string>>((_props, ref) => {
+    forwardRef<FormPart<string>, {placeholderKey: string}>(({placeholderKey}, ref) => {
         const {t} = useTranslation('feedback');
         const [feedbackComment, setFeedbackComment] = useState('');
         const onChange = useCallback((event: SyntheticEvent) => {
@@ -97,7 +97,7 @@ const FeedbackCommentInput = memo(
                 <TextArea
                     size="m"
                     rows={6}
-                    placeholder={t('comment-placeholder')}
+                    placeholder={t(placeholderKey)}
                     hasClear
                     value={feedbackComment}
                     onChange={onChange}
@@ -124,13 +124,23 @@ type FeedbackFormPopupProps = {
     visible: boolean;
     anchor: RefObject<HTMLButtonElement>;
     titleKey: string;
+    placeholderKey?: string;
     showVariants?: boolean;
     onOutsideClick: () => void;
     onSubmit: (data: FormData) => void;
 };
 
 const FeedbackFormPopup: React.FC<FeedbackFormPopupProps> = memo(
-    ({anchor, visible, view, titleKey, showVariants = false, onOutsideClick, onSubmit}) => {
+    ({
+        anchor,
+        visible,
+        view,
+        titleKey,
+        placeholderKey = 'comment-placeholder',
+        showVariants = false,
+        onOutsideClick,
+        onSubmit,
+    }) => {
         const {t} = useTranslation('feedback');
         const {isVerticalView} = useContext(ControlsLayoutContext);
         const direction = useDirection();
@@ -173,7 +183,7 @@ const FeedbackFormPopup: React.FC<FeedbackFormPopupProps> = memo(
                 <h3 className={b('popup-title')}>{t(titleKey)}</h3>
                 <form onSubmit={onFormSubmit}>
                     {showVariants && <FeedbackVariantsList ref={feedbackCheckboxes} />}
-                    <FeedbackCommentInput ref={feedbackComment} />
+                    <FeedbackCommentInput ref={feedbackComment} placeholderKey={placeholderKey} />
                     <div className={b('variants-actions')}>
                         <Button view="action" className={b('variants-action')} type={'submit'}>
                             {t('send-action-text')}

@@ -82,7 +82,8 @@
     "button-dislike-text": "Ne",
     "main-question": "Byl článek užitečný?",
     "comment-text": "Zanechat komentář",
-    "comment-form-title": "Podělte se o názor"
+    "comment-form-title": "Podělte se o názor",
+    "comment-form-placeholder": "Popište prosím podrobněji problém, se kterým jste se setkali. Pomůže nám to jej rychleji vyřešit."
   },
   "feedback-variants": {
     "irrelevant-answer": "Žádná odpověď na mou otázku",

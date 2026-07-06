@@ -82,7 +82,8 @@
     "button-dislike-text": "Ei",
     "main-question": "Kas artikkel oli kasulik?",
     "comment-text": "Jäta kommentaar",
-    "comment-form-title": "Jaga oma tagasisidet"
+    "comment-form-title": "Jaga oma tagasisidet",
+    "comment-form-placeholder": "Palun kirjeldage üksikasjalikumalt probleemi, millega kokku puutusite. See aitab meil selle kiiremini lahendada."
   },
   "feedback-variants": {
     "irrelevant-answer": "Ei vastanud mu küsimusele",

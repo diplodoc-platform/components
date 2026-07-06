@@ -82,7 +82,8 @@
     "button-dislike-text": "Жоқ",
     "main-question": "Мақала пайдалы болды ма?",
     "comment-text": "Пікір қалдыру",
-    "comment-form-title": "Пікіріңізбен бөлісіңіз"
+    "comment-form-title": "Пікіріңізбен бөлісіңіз",
+    "comment-form-placeholder": "Кездескен мәселені толығырақ сипаттап беріңіз. Бұл бізге оны тезірек шешуге көмектеседі."
   },
   "feedback-variants": {
     "irrelevant-answer": "Менің сұрағыма жауап жоқ",

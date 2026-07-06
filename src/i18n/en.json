@@ -82,7 +82,8 @@
     "button-dislike-text": "No",
     "main-question": "Was the article helpful?",
     "comment-text": "Leave a comment",
-    "comment-form-title": "Share your feedback"
+    "comment-form-title": "Share your feedback",
+    "comment-form-placeholder": "Please describe the issue you're experiencing in more detail. This will help us resolve it quickly."
   },
   "feedback-variants": {
     "irrelevant-answer": "No answer to my question",

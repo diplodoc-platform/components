@@ -43,6 +43,12 @@ export const NeuroExpertModal: FC<NeuroExpertModalProps> = ({open, query, projec
     const iframeRef = useRef<HTMLIFrameElement>(null);
     const iframeSrc = `${IFRAME_BASE_URL}/${projectId}/iframe`;
 
+    const restoreBodyScroll = useCallback(() => {
+        document.body.style.removeProperty('overflow');
+        document.body.style.removeProperty('padding-right');
+        document.body.style.removeProperty('--floating-ui-scrollbar-width');
+    }, []);
+
     const trackAction = useCallback(
         (action: string) => {
             analytics.track(CommonAnalyticsEvent.DOCS_NEUROEXPERT_ACTION, {
@@ -101,6 +107,7 @@ export const NeuroExpertModal: FC<NeuroExpertModalProps> = ({open, query, projec
             keepMounted={loaded}
             className={b()}
             modalClassName={b('modal')}
+            onTransitionOutComplete={restoreBodyScroll}
         >
             <Dialog.Header className={b('header')} caption={<HeaderCaption />} />
             <Dialog.Body className={b('body')}>

@@ -1,5 +1,12 @@
 # История изменений
 
+## [5.12.3](https://github.com/diplodoc-platform/components/compare/v5.12.2...v5.12.3) (2026-07-08)
+
+
+### Bug Fixes
+
+* fixed neuroexpert modal overflow ([#681](https://github.com/diplodoc-platform/components/issues/681)) ([7f3e30b](https://github.com/diplodoc-platform/components/commit/7f3e30bcde8fa0a1b6087e54d6811bfde8c55e3a))
+
 ## [5.12.2](https://github.com/diplodoc-platform/components/compare/v5.12.1...v5.12.2) (2026-06-24)
 
 

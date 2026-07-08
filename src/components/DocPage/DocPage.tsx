@@ -88,6 +88,7 @@ export interface DocPageProps extends DocPageData, DocSettings, NotificationProp
     onSubscribe?: (data: SubscribeData) => void;
     consentContent?: React.ReactNode;
     mdDocsUrl?: string;
+    onMdDocsButtonClick?: React.MouseEventHandler<HTMLElement>;
     pdfLink?: string;
     pdfIconConfig?: {position?: string; size?: 'S' | 'M' | 'L'; icon?: string};
     onMiniTocItemClick?: (event: MouseEvent) => void;
@@ -475,7 +476,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
     }
 
     private renderMarkdownButton() {
-        const {mdDocsUrl} = this.props;
+        const {mdDocsUrl, onMdDocsButtonClick} = this.props;
 
         if (!mdDocsUrl) {
             return null;
@@ -483,7 +484,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
 
         return (
             <div className={b('markdown-button')}>
-                <MarkdownButton mdDocsUrl={mdDocsUrl} />
+                <MarkdownButton mdDocsUrl={mdDocsUrl} onClick={onMdDocsButtonClick} />
             </div>
         );
     }

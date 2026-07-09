@@ -16,10 +16,7 @@ type FeedbackControlProps = {
 const b = block('dc-feedback');
 
 const FeedbackControl = memo(
-    forwardRef<HTMLButtonElement, FeedbackControlProps>(function FeedbackControlRender(
-        {view, onClick},
-        ref,
-    ) {
+    forwardRef<HTMLButtonElement, FeedbackControlProps>(({view, onClick}, ref) => {
         const {t} = useTranslation('feedback');
         const {isVerticalView, popupPosition, controlClassName} = useContext(ControlsLayoutContext);
 

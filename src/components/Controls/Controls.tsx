@@ -221,7 +221,6 @@ export const ControlsList: React.FC<
 const Controls = memo<ControlsProps>((props) => {
     const {isVerticalView} = useContext(ControlsLayoutContext);
     const isHiddenFeedback = useInterface('feedback');
-    // Hides the aside like/dislike reactions independently of the footer block.
     const isHiddenAsideFeedback = useInterface('feedback-aside');
     const {className} = props;
 

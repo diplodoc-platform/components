@@ -167,11 +167,8 @@ const Feedback: React.FC<FeedbackProps> = (props) => {
 
     const isDislikePopupVisible = dislikeSuccessPopup.visible || dislikeVariantsPopup.visible;
     const isFeedbackHidden = useInterface('feedback');
-    // The comment entry point is opt-in: enabled via the `showComment` prop, or
-    // (when the prop is omitted) the `feedback-comment` interface flag. So an
-    // upgrade adds nothing by default; consumers turn it on explicitly.
     const {interface: viewerInterface} = useContext(InterfaceContext);
-    const isCommentEnabled = showComment ?? viewerInterface?.['feedback-comment'] === true; // prop wins; else flag
+    const isCommentEnabled = showComment ?? viewerInterface?.['feedback-comment'] === true;
 
     if (isFeedbackHidden) {
         return null;
@@ -196,7 +193,6 @@ const Feedback: React.FC<FeedbackProps> = (props) => {
                 />
                 {isCommentEnabled &&
                     (view === FeedbackView.Wide ? (
-                        // Wide: own full-width row so the button stays content-width and centered
                         <div className={b('comment-row')}>
                             <FeedbackControl
                                 ref={feedbackControlRef}
@@ -205,7 +201,6 @@ const Feedback: React.FC<FeedbackProps> = (props) => {
                             />
                         </div>
                     ) : (
-                        // Regular: bare control, like the like/dislike icons in the aside
                         <FeedbackControl
                             ref={feedbackControlRef}
                             view={view}

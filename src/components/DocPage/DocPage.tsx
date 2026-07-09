@@ -274,8 +274,6 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             </DocLayout>
         );
 
-        // When the consumer passes a `viewerInterface` prop, re-provide the merged
-        // map so descendant controls (Controls, Feedback, ...) honour it too.
         if (this.props.viewerInterface) {
             return <InterfaceProvider interface={this.getInterface()}>{content}</InterfaceProvider>;
         }
@@ -283,8 +281,6 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
         return content;
     }
 
-    // Control visibility resolved from the surrounding InterfaceProvider with the
-    // `viewerInterface` prop merged on top (the prop wins per key).
     private getInterface(): ViewerInterface {
         return {...this.context?.interface, ...this.props.viewerInterface};
     }

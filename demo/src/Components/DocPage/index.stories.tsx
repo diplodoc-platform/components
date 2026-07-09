@@ -311,8 +311,6 @@ const DocPageDemo = (
 
     const hideTocHeader = args['HideTocHeader'];
     const hideFeedback = args['HideFeedback'];
-    // General control-visibility map: enable the opt-in comment, optionally hide
-    // the aside (top) reactions - all via the single viewerInterface prop.
     const viewerInterface = {
         'feedback-comment': true,
         ...(args['HideAsideFeedback'] ? {'feedback-aside': false} : {}),

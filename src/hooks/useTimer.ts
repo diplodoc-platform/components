@@ -1,7 +1,7 @@
 import {useCallback, useRef} from 'react';
 
 export function useTimer(timeout = 3000) {
-    const timerId = useRef<number | unknown>();
+    const timerId = useRef<number | unknown>(undefined);
 
     const clearTimer = useCallback(() => {
         clearTimeout(timerId.current as number);

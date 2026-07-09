@@ -5,7 +5,7 @@ import React, {createRef} from 'react';
 
 export interface OutsideClickProps extends ClassNameProps {
     onOutsideClick: () => void;
-    anchor?: HTMLElement | RefObject<HTMLElement> | null;
+    anchor?: HTMLElement | RefObject<HTMLElement | null> | null;
 }
 
 export default class OutsideClick extends React.Component<PropsWithChildren<OutsideClickProps>> {

@@ -3,8 +3,8 @@ import {useCallback, useEffect, useMemo, useRef, useState} from 'react';
 type DOMRectLike = Omit<DOMRect, 'toJSON'>;
 
 export const useVirtualElementRef = (element: HTMLElement | null) => {
-    const observer = useRef<ResizeObserver>();
-    const rect = useRef<DOMRectLike>();
+    const observer = useRef<ResizeObserver>(undefined);
+    const rect = useRef<DOMRectLike>(undefined);
 
     const x = 0;
     const y = 0;

@@ -122,7 +122,7 @@ export type FormData = {
 type FeedbackFormPopupProps = {
     view: FeedbackView;
     visible: boolean;
-    anchor: RefObject<HTMLButtonElement>;
+    anchor: RefObject<HTMLButtonElement | null>;
     titleKey: string;
     placeholderKey?: string;
     showVariants?: boolean;

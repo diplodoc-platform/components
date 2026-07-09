@@ -12,7 +12,7 @@ import {FeedbackView} from '../Feedback';
 type SuccessPopupProps = {
     view: FeedbackView;
     visible: boolean;
-    anchor: RefObject<HTMLButtonElement>;
+    anchor: RefObject<HTMLButtonElement | null>;
     onOutsideClick: () => void;
 };
 

@@ -17,7 +17,7 @@ const b = block('dc-subscribe');
 const LIST_ITEM_HEIGHT = 36;
 
 const SubscribeVariantsPopup = memo<{
-    anchor: React.RefObject<HTMLElement>;
+    anchor: React.RefObject<HTMLElement | null>;
     view?: SubscribeView;
     consentContent?: React.ReactNode;
     onSubscribe?: (data: SubscribeData) => void;

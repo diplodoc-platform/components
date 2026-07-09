@@ -1,3 +1,5 @@
+import './react-compat';
+
 export * from './components/Breadcrumbs';
 export * from './components/ConsentPopup';
 export * from './components/ContributorAvatars';

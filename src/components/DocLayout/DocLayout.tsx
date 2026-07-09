@@ -12,6 +12,8 @@ import './DocLayout.scss';
 
 const b = block('dc-doc-layout');
 
+type DocLayoutReactElement = ReactElement<PropsWithChildren, React.FC>;
+
 const Left: React.FC<PropsWithChildren> = () => null;
 const Center: React.FC<PropsWithChildren> = () => null;
 const Right: React.FC<PropsWithChildren> = () => null;
@@ -19,7 +21,7 @@ const Right: React.FC<PropsWithChildren> = () => null;
 export interface DocLayoutProps {
     toc: TocData;
     router: Router;
-    children: (ReactElement | null)[] | ReactElement<unknown, React.FC>;
+    children: (DocLayoutReactElement | null)[] | DocLayoutReactElement;
     fullScreen?: boolean;
     hideRight?: boolean;
     wideFormat?: boolean;

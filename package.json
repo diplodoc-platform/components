@@ -102,8 +102,8 @@
     "url": "^0.11.1"
   },
   "peerDependencies": {
-    "react": ">=16.8.0 || >=17.0.0 || >=18.0.0 || >=19.0.0",
-    "react-dom": ">=16.8.0 || >=17.0.0 || >=18.0.0 || >=19.0.0"
+    "react": ">=16.14.0 || >=17.0.0 || >=18.0.0 || >=19.0.0",
+    "react-dom": ">=16.14.0 || >=17.0.0 || >=18.0.0 || >=19.0.0"
   },
   "devDependencies": {
     "@diplodoc/infra": "2.2.1",
@@ -112,8 +112,8 @@
     "@types/langs": "^2.0.1",
     "@types/lodash": "4.14.179",
     "@types/node": "^22.19.7",
-    "@types/react": "^18.2.21",
-    "@types/react-dom": "^18.2.7",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
     "@types/react-gtm-module": "^2.0.3",
     "@types/react-helmet": "^6.1.11",
     "@types/react-recompose": "^0.33.6",
@@ -124,8 +124,8 @@
     "postcss": "^8.4.28",
     "postcss-preset-env": "^9.1.2",
     "prop-types": "^15.8.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
     "sass": "^1.80.6",
     "typescript": "^5.2.2"
   },

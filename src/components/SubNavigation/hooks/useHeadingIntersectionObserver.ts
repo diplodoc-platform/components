@@ -55,7 +55,7 @@ export const useHeadingIntersectionObserver = ({
 }: HeadingIntersectionObserverHookArgs): HeadingIntersectionObserverHookReturn => {
     const [activeHeading, setActiveHeading] = useState<FlatHeadingItem | null>(null);
 
-    const elementMapRef = useRef<HeadingAssocMap>();
+    const elementMapRef = useRef<HeadingAssocMap>(undefined);
 
     const intersectionObserverCallback = useStableCallback(
         (entries: IntersectionObserverEntry[]) => {

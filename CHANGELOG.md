@@ -1,5 +1,12 @@
 # История изменений
 
+## [5.14.0](https://github.com/diplodoc-platform/components/compare/v5.13.0...v5.14.0) (2026-07-09)
+
+
+### Features
+
+* add onclick hanlder to markdown btn ([8f55b01](https://github.com/diplodoc-platform/components/commit/8f55b01ef6d5ccef0cae7c0e85d2f7d3d0d424fe))
+
 ## [5.13.0](https://github.com/diplodoc-platform/components/compare/v5.12.3...v5.13.0) (2026-07-09)
 
 

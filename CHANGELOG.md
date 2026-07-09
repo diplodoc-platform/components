@@ -1,5 +1,12 @@
 # История изменений
 
+## [5.13.0](https://github.com/diplodoc-platform/components/compare/v5.12.3...v5.13.0) (2026-07-09)
+
+
+### Features
+
+* **feedback:** add standalone comment entry point ([#676](https://github.com/diplodoc-platform/components/issues/676)) ([c9b66cf](https://github.com/diplodoc-platform/components/commit/c9b66cf7a5d1c3ed65a035e38794590b5f1c4494))
+
 ## [5.12.3](https://github.com/diplodoc-platform/components/compare/v5.12.2...v5.12.3) (2026-07-08)
 
 

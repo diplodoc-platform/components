@@ -80,7 +80,10 @@
     "comment-placeholder": "补充信息将有所帮助",
     "button-like-text": "是",
     "button-dislike-text": "不是",
-    "main-question": "这篇文章是否有用？"
+    "main-question": "这篇文章是否有用？",
+    "comment-text": "发表评论",
+    "comment-form-title": "分享您的反馈",
+    "comment-form-placeholder": "请更详细地描述您遇到的问题。这将帮助我们更快地解决它。"
   },
   "feedback-variants": {
     "irrelevant-answer": "没有回答我的问题",

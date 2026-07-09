@@ -1,7 +1,29 @@
 import React, {createContext, useCallback, useMemo} from 'react';
 
+/**
+ * Known control-visibility keys. Any other string is still accepted, but the
+ * listed keys get autocomplete and typo-checking.
+ */
+export type InterfaceKey =
+    | 'toc'
+    | 'toc-header'
+    | 'search'
+    | 'feedback'
+    | 'feedback-aside'
+    | 'feedback-comment'
+    | 'edit'
+    | 'subscribe'
+    | 'contributors';
+
+/**
+ * Control-visibility map. A key set to `false` hides the control; `true` shows
+ * it. Absent keys fall back to each control's own default (most controls are
+ * shown by default; `feedback-comment` is opt-in and hidden by default).
+ */
+export type ViewerInterface = Partial<Record<InterfaceKey | (string & {}), boolean>>;
+
 export interface InterfaceContextType {
-    interface: Record<string, boolean>;
+    interface: ViewerInterface;
     isHidden: (name: string) => boolean;
 }
 
@@ -11,7 +33,7 @@ export const InterfaceContext = createContext<InterfaceContextType>({
 });
 
 export interface InterfaceProviderProps {
-    interface: Record<string, boolean>;
+    interface: ViewerInterface;
     children: React.ReactNode;
 }
 

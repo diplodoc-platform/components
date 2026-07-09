@@ -142,10 +142,11 @@ const useFeedback = () => {
         } else if (type === FeedbackType.dislike) {
             setIsLiked(false);
             setIsDisliked(true);
-        } else {
+        } else if (type === FeedbackType.indeterminate) {
             setIsLiked(false);
             setIsDisliked(false);
         }
+        // FeedbackType.comment leaves the rating untouched
 
         console.log('Feedback:', data);
     }, []);
@@ -310,6 +311,10 @@ const DocPageDemo = (
 
     const hideTocHeader = args['HideTocHeader'];
     const hideFeedback = args['HideFeedback'];
+    const viewerInterface = {
+        'feedback-comment': true,
+        ...(args['HideAsideFeedback'] ? {'feedback-aside': false} : {}),
+    };
 
     const availableLangs: AvailableLangs = Array.isArray(args['AvailableLangs'])
         ? args['AvailableLangs']
@@ -325,6 +330,7 @@ const DocPageDemo = (
                 renderLoader={renderLoader}
                 hideTocHeader={hideTocHeader}
                 hideFeedback={hideFeedback}
+                viewerInterface={viewerInterface}
                 availableLangs={availableLangs}
                 beforeSubNavigationContent={mobileView ? undefined : beforeSubNavigationContent}
                 renderSidebarIcon={renderSidebarIcon}
@@ -344,6 +350,9 @@ export default {
             control: 'boolean',
         },
         HideFeedback: {
+            control: 'boolean',
+        },
+        HideAsideFeedback: {
             control: 'boolean',
         },
         Mobile: {
@@ -398,6 +407,7 @@ export const Document = {
     args: {
         HideTocHeader: false,
         HideFeedback: false,
+        HideAsideFeedback: false,
         Settings: true,
         Langs: true,
         Fullscreen: true,

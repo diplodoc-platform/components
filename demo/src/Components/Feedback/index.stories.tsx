@@ -12,7 +12,14 @@ const FeedbackDemo = (args: Args) => {
 
     const onSendFeedback = () => {};
 
-    return <Component isLiked={isLiked} isDisliked={isDisliked} onSendFeedback={onSendFeedback} />;
+    return (
+        <Component
+            isLiked={isLiked}
+            isDisliked={isDisliked}
+            onSendFeedback={onSendFeedback}
+            showComment
+        />
+    );
 };
 
 export default {

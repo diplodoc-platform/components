@@ -80,7 +80,10 @@
     "comment-placeholder": "מידע נוסף יהיה שימושי",
     "button-like-text": "כן",
     "button-dislike-text": "לא",
-    "main-question": "האם המאמר היה שימושי?"
+    "main-question": "האם המאמר היה שימושי?",
+    "comment-text": "השאירו תגובה",
+    "comment-form-title": "שתפו אותנו במשוב",
+    "comment-form-placeholder": "אנא תארו ביתר פירוט את הבעיה שנתקלתם בה. זה יעזור לנו לפתור אותה מהר יותר."
   },
   "feedback-variants": {
     "irrelevant-answer": "אין תשובה לשאלה שלי",

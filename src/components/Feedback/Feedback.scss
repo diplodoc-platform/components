@@ -118,8 +118,16 @@ $popupWidth: 320px;
         gap: 20px;
 
         &_view_wide {
-            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
         }
+    }
+
+    // Wide-only: own full-width row so the button stays content-width and centered
+    &__comment-row {
+        display: flex;
+        flex-basis: 100%;
+        justify-content: center;
     }
 
     &__control {

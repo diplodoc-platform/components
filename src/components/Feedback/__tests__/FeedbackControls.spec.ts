@@ -28,7 +28,7 @@ viewports.forEach((viewport) => {
             const button = controls.locator('button').nth(buttonIdx);
 
             await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
-            await page.waitForTimeout(200);
+            await expect(button).toBeInViewport();
 
             if (isDefault) {
                 await expect(page).toHaveScreenshot(
@@ -40,7 +40,9 @@ viewports.forEach((viewport) => {
             }
 
             await button.click();
-            await page.waitForTimeout(200);
+            await expect(
+                page.locator('.dc-feedback__success-popup, .dc-feedback__variants-popup').first(),
+            ).toBeVisible();
 
             await expect(page).toHaveScreenshot(`${testName}-${viewport.name}-popup.png`, {
                 maxDiffPixelRatio: 0.02,
@@ -53,6 +55,10 @@ viewports.forEach((viewport) => {
 
         test('DislikeVariantsPopup test', async ({page}) => {
             await runPopupTest(page, 1, 'DislikeVariantsPopup');
+        });
+
+        test('FeedbackFormPopup test', async ({page}) => {
+            await runPopupTest(page, 2, 'FeedbackFormPopup');
         });
     });
 });

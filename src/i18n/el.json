@@ -80,7 +80,10 @@
     "comment-placeholder": "Πρόσθετες πληροφορίες θα είναι χρήσιμες",
     "button-like-text": "Ναι",
     "button-dislike-text": "Όχι",
-    "main-question": "Ήταν χρήσιμο το άρθρο;"
+    "main-question": "Ήταν χρήσιμο το άρθρο;",
+    "comment-text": "Αφήστε σχόλιο",
+    "comment-form-title": "Μοιραστείτε τη γνώμη σας",
+    "comment-form-placeholder": "Παρακαλούμε περιγράψτε πιο αναλυτικά το πρόβλημα που αντιμετωπίζετε. Αυτό θα μας βοηθήσει να το λύσουμε γρήγορα."
   },
   "feedback-variants": {
     "irrelevant-answer": "Δεν υπάρχει απάντηση στην ερώτησή μου",

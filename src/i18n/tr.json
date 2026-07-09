@@ -80,7 +80,10 @@
     "comment-placeholder": "Ek bilgiler yararlı olacaktır",
     "button-like-text": "Evet",
     "button-dislike-text": "Hayır",
-    "main-question": "Yazı yararlı oldu mu?"
+    "main-question": "Yazı yararlı oldu mu?",
+    "comment-text": "Yorum bırakın",
+    "comment-form-title": "Görüşünüzü paylaşın",
+    "comment-form-placeholder": "Lütfen karşılaştığınız sorunu daha ayrıntılı açıklayın. Bu, sorunu daha hızlı çözmemize yardımcı olacaktır."
   },
   "feedback-variants": {
     "irrelevant-answer": "Sorum yanıtlanmadı",

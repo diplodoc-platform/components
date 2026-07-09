@@ -79,7 +79,10 @@
     "comment-placeholder": "Допълнителната информация ще бъде полезна",
     "button-like-text": "Да",
     "button-dislike-text": "Не",
-    "main-question": "Беше ли полезна статията?"
+    "main-question": "Беше ли полезна статията?",
+    "comment-text": "Оставете коментар",
+    "comment-form-title": "Споделете мнението си",
+    "comment-form-placeholder": "Моля, опишете по-подробно проблема, с която се сблъскахте. Това ще ни помогне да я решим по-бързо."
   },
   "feedback-variants": {
     "irrelevant-answer": "Няма отговор на моя въпрос",

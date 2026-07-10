@@ -164,7 +164,8 @@
     "items": [
       {
         "name": "Yandex.Cloud services",
-        "href": "/docs/overview/concepts/services",
+        "href": "https://example.com",
+        "target": "_self",
         "id": "86fb5a9101b917e55d57955e41a4a773"
       },
       {

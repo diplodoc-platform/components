@@ -1444,7 +1444,8 @@
       {
         "title": "Пошаговые инструкции",
         "description": "Инструкции по выполнению рутинных операций",
-        "href": "operations/"
+        "href": "https://example.com",
+        "target": "_self"
       },
       {
         "title": "Концепции",

@@ -8,6 +8,14 @@ test.beforeEach(async ({page}) => {
     await loadDocumentPage(page);
 });
 
+test('Uses target from TOC item', async ({page}) => {
+    const link = page.locator('.dc-toc a.dc-toc-item__link', {
+        hasText: 'Yandex.Cloud services',
+    });
+
+    await expect(link).toHaveAttribute('target', '_self');
+});
+
 test.describe('Toc dropdown tests', () => {
     test('Hide dropdown', async ({page}) => {
         await page.getByText('Equivalent services on other platforms').click();

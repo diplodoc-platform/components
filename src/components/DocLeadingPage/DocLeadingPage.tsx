@@ -12,6 +12,7 @@ import {HTML} from '../HTML';
 import {Text} from '../Text';
 import {Notification} from '../Notification';
 import {ShareButton} from '../ShareButton';
+import {isExternalHref} from '../../utils';
 
 import './DocLeadingPage.scss';
 
@@ -54,12 +55,19 @@ const renderLeft = (data: DocLeadingLinks, isRoot?: boolean) => {
 };
 
 const renderRight = (data: DocLeadingLinks, isRoot?: boolean) => {
-    const {title, description, href, links} = data;
+    const {title, description, href, target, links} = data;
     let titleContent;
 
     if (href) {
+        const linkTarget = target || (isExternalHref(href) ? '_blank' : '_self');
+
         titleContent = (
-            <a href={href} className={b('links-link')}>
+            <a
+                href={href}
+                target={linkTarget}
+                rel={linkTarget === '_blank' ? 'noopener noreferrer' : undefined}
+                className={b('links-link')}
+            >
                 {title}
             </a>
         );

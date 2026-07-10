@@ -40,6 +40,7 @@ export const TocItem: React.FC<TocItemProps> = React.forwardRef(
             labeled,
             deprecated,
             analyticsEvents,
+            target,
         },
         ref: React.ForwardedRef<HTMLButtonElement>,
     ) => {
@@ -110,10 +111,11 @@ export const TocItem: React.FC<TocItemProps> = React.forwardRef(
         }
 
         const isExternal = isExternalHref(href);
+        const linkTarget = target || (isExternal ? '_blank' : '_self');
         const linkAttributes = {
             href,
-            target: isExternal ? '_blank' : '_self',
-            rel: isExternal ? 'noopener noreferrer' : undefined,
+            target: linkTarget,
+            rel: linkTarget === '_blank' ? 'noopener noreferrer' : undefined,
             className: b('link'),
             onClick: expandable && href ? handleClick : sendAnalytics,
             'aria-expanded': expandable ? expanded : undefined,

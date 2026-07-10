@@ -84,6 +84,7 @@ export interface DocLeadingLinks {
     title: string;
     description?: string;
     href?: string;
+    target?: string;
     imgSrc?: string;
     links?: DocLeadingLinks[];
 }
@@ -148,6 +149,7 @@ export interface TocItem {
     id: string;
     name: string;
     href?: string;
+    target?: string;
     items?: TocItem[];
     expanded?: boolean;
     labeled?: boolean;

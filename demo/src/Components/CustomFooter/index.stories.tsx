@@ -3,6 +3,8 @@ import type {FooterMenuItemConfig} from '@diplodoc/components';
 import React from 'react';
 import {CustomFooter as Component} from '@diplodoc/components';
 
+import './index.scss';
+
 type CustomFooterDemoArgs = {
     WithDivider: boolean;
     MoreButtonTitle: string;

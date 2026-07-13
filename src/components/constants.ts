@@ -25,3 +25,5 @@ export const SEARCH_SUGGEST_WITH_AI_URL =
     BASE_URL + '/iframe.html?id=pages-searchsuggestwithai--search-suggest-with-ai&viewMode=story';
 export const CONTRIBUTOR_AVATARS_URL =
     BASE_URL + '/iframe.html?id=components-contributoravatars--contributor-avatars&viewMode=story';
+export const CUSTOM_FOOTER_URL =
+    BASE_URL + '/iframe.html?id=components-customfooter--custom-footer&viewMode=story';

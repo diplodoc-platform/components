@@ -1,0 +1,20 @@
+@use 'sass:map';
+@use '../../../styles/variables';
+
+.dc-footer {
+    &__desktop {
+        display: block;
+
+        @media (max-width: map.get(variables.$screenBreakpoints, 'md') - 1) {
+            display: none;
+        }
+    }
+
+    &__mobile {
+        display: none;
+
+        @media (max-width: map.get(variables.$screenBreakpoints, 'md') - 1) {
+            display: block;
+        }
+    }
+}

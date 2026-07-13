@@ -1,4 +1,4 @@
-import type {PopperPosition} from '../../../hooks';
+import type {PopperPosition} from '../../../constants';
 
 import React, {forwardRef, memo, useContext} from 'react';
 import {ThumbsUp, ThumbsUpFill} from '@gravity-ui/icons';

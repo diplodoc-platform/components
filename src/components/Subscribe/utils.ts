@@ -1,6 +1,6 @@
 import type {ThemeContextProps} from '@gravity-ui/uikit';
 
-import {PopperPosition} from '../../hooks';
+import {PopperPosition} from '../../constants';
 import {getPopupPosition} from '../../utils';
 
 import {SubscribeView} from './Subscribe';

@@ -13,7 +13,7 @@ import {parse} from 'url';
 import {DocContentPage} from '../components/DocContentPage';
 import {DocLeadingPage} from '../components/DocLeadingPage';
 import {DocPage} from '../components/DocPage';
-import {PopperPosition} from '../hooks';
+import {PopperPosition} from '../constants';
 import {DocumentType} from '../models';
 
 export type InnerProps<TProps extends Partial<TDefaultProps>, TDefaultProps> = Omit<

@@ -1,9 +1,7 @@
 {
-  "extends": "./tsconfig.json",
+  "extends": "./tsconfig.lib.json",
   "compilerOptions": {
     "module": "ESNext",
-    "target": "ES2017",
     "outDir": "build/esm"
-  },
-  "include": ["src/**/*.ts", "src/**/*.tsx"]
+  }
 }

@@ -7,6 +7,8 @@ import {initReactI18next} from 'react-i18next';
 import locales from '../i18n';
 import {Lang} from '../models';
 
+type LangKey = keyof typeof locales;
+
 export type Loc = Record<string, typeof locales.en>;
 
 export interface I18NConfig {
@@ -21,10 +23,11 @@ export const configureI18N = ({lang, loc}: I18NConfig) => {
         lang = lang || Lang.En;
         loc =
             loc ||
-            Object.keys(locales).reduce(
-                (acc, lng) => ({...acc, [lng]: JSON.parse(locales[lng] as unknown as string)}),
-                {},
-            );
+            Object.keys(locales).reduce((acc, lng) => {
+                const content = locales[lng as LangKey];
+
+                return {...acc, [lng]: content};
+            }, {});
 
         initializePromise = i18n.use(initReactI18next).init({
             lng: lang,

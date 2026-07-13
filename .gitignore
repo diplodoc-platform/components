@@ -13,7 +13,7 @@ node_modules
 /dist
 /cache
 /coverage
-/demo/storybook-static
+/storybook-static
 /test-results/
 /playwright-report/
 /blob-report/

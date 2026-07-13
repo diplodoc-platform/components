@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.lib.tsbuildinfo",
+    "target": "ES2017",
+    "moduleResolution": "bundler",
+    "esModuleInterop": true,
+    "baseUrl": "."
+  },
+  "include": ["src"],
+  "exclude": ["src/**/__tests__/**/*"]
+}

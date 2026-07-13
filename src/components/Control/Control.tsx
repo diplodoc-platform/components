@@ -1,5 +1,5 @@
 import type {ButtonProps} from '@gravity-ui/uikit';
-import type {PopperPosition} from '../../hooks';
+import type {PopperPosition} from '../../constants';
 
 import React, {forwardRef, useCallback, useImperativeHandle, useRef} from 'react';
 import {Button, Popup, useDirection} from '@gravity-ui/uikit';

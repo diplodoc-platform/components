@@ -3,7 +3,7 @@ import type {PropsWithChildren} from 'react';
 import React, {createContext} from 'react';
 import block from 'bem-cn-lite';
 
-import {PopperPosition} from '../../hooks';
+import {PopperPosition} from '../../constants';
 import {ControlSizes} from '../../models';
 
 type ControlsLayoutProps = {

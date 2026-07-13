@@ -5,7 +5,7 @@ import React from 'react';
 import {Link, Popup} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 
-import {PopperPosition} from '../../../hooks';
+import {PopperPosition} from '../../../constants';
 import {AvatarSizes} from '../models';
 import {getName} from '../utils';
 

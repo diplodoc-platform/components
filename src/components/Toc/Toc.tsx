@@ -4,7 +4,7 @@ import React, {useId} from 'react';
 import block from 'bem-cn-lite';
 import omit from 'lodash/omit';
 
-import {PopperPosition} from '../../hooks';
+import {PopperPosition} from '../../constants';
 import {ControlSizes} from '../../models';
 import {isActiveItem, normalizeHash, normalizePath} from '../../utils';
 import {Controls, ControlsLayout} from '../Controls';

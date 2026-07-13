@@ -1,4 +1,4 @@
-import React, {memo, useCallback, useContext} from 'react';
+import {memo, useCallback, useContext} from 'react';
 import {Pencil} from '@gravity-ui/icons';
 import {Button} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';

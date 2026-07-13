@@ -10,7 +10,7 @@ import type {
     TFunction,
 } from '../../models';
 
-import React, {memo, useMemo} from 'react';
+import {memo, useMemo} from 'react';
 import {Globe, Sun} from '@gravity-ui/icons';
 import block from 'bem-cn-lite';
 import allLangs from 'langs';

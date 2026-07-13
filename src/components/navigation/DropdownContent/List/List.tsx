@@ -1,7 +1,6 @@
 import type {FC} from 'react';
 import type {NavigationLinkItem} from '../../types';
 
-import React from 'react';
 import {NavigationItem, NavigationLayout, block} from '@gravity-ui/page-constructor';
 
 const b = block('navigation-popup');

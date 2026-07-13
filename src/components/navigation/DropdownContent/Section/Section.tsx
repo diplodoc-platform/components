@@ -1,7 +1,6 @@
 import type {FC} from 'react';
 import type {NavigationSectionItem} from '../../types';
 
-import React from 'react';
 import {Text} from '@gravity-ui/uikit';
 
 import {List} from '../List';

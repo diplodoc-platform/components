@@ -1,4 +1,3 @@
-import React from 'react';
 import {SparklesFill} from '@gravity-ui/icons';
 import {Icon} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';

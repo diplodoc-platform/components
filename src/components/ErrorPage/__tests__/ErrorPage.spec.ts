@@ -1,7 +1,7 @@
 import {expect, test} from '@playwright/test';
 
-import {ERROR_PAGE_URL} from 'src/components/constants';
-import {loadDocumentPage} from 'src/components/utils';
+import {ERROR_PAGE_URL} from '../../constants';
+import {loadDocumentPage} from '../../utils';
 
 test.beforeEach(async ({page}) => {
     await loadDocumentPage(page, ERROR_PAGE_URL);

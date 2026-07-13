@@ -50,7 +50,7 @@
   "scripts": {
     "deps:install": "npm ci",
     "deps:truncate": "npm prune --production",
-    "typecheck": "tsc -p . --noEmit",
+    "typecheck": "tsc -b --noEmit",
     "test": "exit 0",
     "playwright": "playwright test --config=playwright/playwright.config.ts",
     "playwright:update": "npm run playwright -- -u",
@@ -58,22 +58,20 @@
     "playwright:docker:update": "./playwright/playwright-docker.sh npm run playwright:update --",
     "playwright:docker:clear-cache": "./playwright/playwright-docker.sh clear-cache",
     "playwright:docker:windows": "./playwright/playwright-docker-windows.sh",
-    "dev": "run-s build _dev:watch",
-    "_dev:watch": "run-p _build:watch _storybook:watch",
+    "dev": "node esbuild/build.js --watch",
     "build:clean": "rm -rf build",
     "build:compile": "node esbuild/build.js",
     "_build:declarations:esm": "tsc --emitDeclarationOnly -p tsconfig.esm.json",
     "_build:declarations:cjs": "tsc --emitDeclarationOnly -p tsconfig.cjs.json",
     "build": "run-s build:clean build:compile _build:declarations:*",
-    "_build:watch": "node esbuild/build.js --watch",
-    "_storybook:watch": "cd demo && npm run storybook",
     "prepublishOnly": "npm run lint && npm run test && npm run build",
-    "postinstall": "cd demo && npm i || true",
     "lint": "lint",
     "lint:fix": "lint fix",
     "pre-commit": "lint-staged",
     "prepare": "husky || true",
-    "lock": "npm install --no-workspaces --package-lock-only --ignore-scripts"
+    "lock": "npm install --no-workspaces --package-lock-only --ignore-scripts",
+    "storybook:start": "storybook dev -p 6006",
+    "storybook:build": "storybook build"
   },
   "dependencies": {
     "@diplodoc/themes": "^1.2.0",
@@ -82,7 +80,6 @@
     "@gravity-ui/navigation": "^6.1.2",
     "@gravity-ui/page-constructor": "^8.11.0",
     "@gravity-ui/uikit": "^7.26.0",
-    "@popperjs/core": "^2.11.2",
     "bem-cn-lite": "4.1.0",
     "clsx": "^2.1.1",
     "hoist-non-react-statics": "^3.3.2",
@@ -95,10 +92,7 @@
     "react-helmet": "^6.1.0",
     "react-hotkeys-hook": "^4.6.1",
     "react-i18next": "^15.4.0",
-    "react-popper": "^2.3.0",
-    "react-recompose": "^0.33.0",
     "react-transition-group": "^4.4.5",
-    "scroll-into-view-if-needed": "^3.1.0",
     "url": "^0.11.1"
   },
   "peerDependencies": {
@@ -107,27 +101,30 @@
   },
   "devDependencies": {
     "@diplodoc/infra": "2.2.1",
+    "@diplodoc/transform": "^4.76.7",
     "@playwright/test": "^1.60.0",
+    "@storybook/react-vite": "^10.4.6",
     "@types/hoist-non-react-statics": "^3.3.6",
     "@types/langs": "^2.0.1",
     "@types/lodash": "4.14.179",
-    "@types/node": "^22.19.7",
+    "@types/node": "^24.13.3",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
     "@types/react-gtm-module": "^2.0.3",
     "@types/react-helmet": "^6.1.11",
-    "@types/react-recompose": "^0.33.6",
     "@types/react-transition-group": "^4.4.10",
     "autoprefixer": "^10.4.15",
     "esbuild-sass-plugin": "^3.3.1",
     "npm-run-all": "^4.1.5",
     "postcss": "^8.4.28",
     "postcss-preset-env": "^9.1.2",
-    "prop-types": "^15.8.1",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "sass": "^1.80.6",
-    "typescript": "^5.2.2"
+    "storybook": "^10.4.6",
+    "typescript": "^5.2.2",
+    "vite": "^8.1.4",
+    "vite-plugin-svgr": "^5.2.0"
   },
   "keywords": [
     "markdown",
@@ -139,5 +136,8 @@
     "tools",
     "components",
     "diplodoc"
-  ]
+  ],
+  "overrides": {
+    "@babel/core": "^7.29.0"
+  }
 }

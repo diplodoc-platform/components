@@ -1,0 +1,44 @@
+.header {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    padding: 0 20px;
+
+    &-center,
+    &-right {
+        transition: min-width 0.3s;
+    }
+
+    &-center {
+        min-width: 200px;
+    }
+
+    &-right,
+    &.with-search &-center {
+        min-width: 0;
+    }
+
+    &.with-search &-right {
+        min-width: 400px;
+    }
+
+    &-left {
+        flex: none;
+        display: flex;
+        align-items: center;
+    }
+
+    &-logo {
+        width: 30px;
+        height: 30px;
+        border: solid 2px;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+
+    &-title {
+        font-size: 30px;
+    }
+}

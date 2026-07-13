@@ -1,19 +1,8 @@
 {
-  "extends": "@diplodoc/infra/tsconfig.json",
-  "compilerOptions": {
-    "lib": ["DOM", "ES2017"],
-    "module": "ESNext",
-    "allowJs": false,
-    "importHelpers": true,
-    "resolveJsonModule": true,
-    "declaration": true,
-    "jsx": "react-jsx",
-    "target": "ESNext",
-    "baseUrl": ".",
-    "paths": {
-      "@diplodoc/components": ["./"]
-    }
-  },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "playwright/playwright.config.ts"],
-  "exclude": ["demo"]
+  "references": [
+    {"path": "./tsconfig.lib.json"},
+    {"path": "./tsconfig.storybook.json"},
+    {"path": "./tsconfig.test.json"}
+  ],
+  "files": []
 }

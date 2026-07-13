@@ -1,0 +1,13 @@
+{
+  "extends": "@diplodoc/infra/tsconfig.json",
+  "compilerOptions": {
+    "lib": ["DOM", "ES2017"],
+    "module": "ESNext",
+    "allowJs": false,
+    "importHelpers": true,
+    "resolveJsonModule": true,
+    "declaration": true,
+    "jsx": "react-jsx",
+    "target": "ESNext"
+  }
+}

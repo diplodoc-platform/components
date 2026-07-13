@@ -1,5 +1,5 @@
 import type {PropsWithChildren, RefObject} from 'react';
-import type {ClassNameProps} from 'src/models';
+import type {ClassNameProps} from '../../models';
 
 import React, {createRef} from 'react';
 

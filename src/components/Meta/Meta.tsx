@@ -3,12 +3,12 @@ import type {WithRouterProps} from '../../hoc/withRouter';
 import type {WithLangProps} from '../../hoc/withLang';
 
 import React from 'react';
-import {compose} from 'react-recompose';
 import {Helmet} from 'react-helmet';
 
 import {SocialSharingMeta} from '../SocialSharingMeta';
 import withRouter from '../../hoc/withRouter';
 import withLang from '../../hoc/withLang';
+import {compose} from '../../utils';
 import {sanitizeHtml} from '../../utils/sanitize';
 
 interface SharingProps {

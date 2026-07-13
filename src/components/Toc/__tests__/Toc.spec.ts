@@ -1,7 +1,6 @@
 import {expect, test} from '@playwright/test';
 
-import {DOC_PAGE_HEADER_HIDDEN_URL, DOC_PAGE_HEADER_SHOWN_URL} from 'src/components/constants';
-
+import {DOC_PAGE_HEADER_HIDDEN_URL, DOC_PAGE_HEADER_SHOWN_URL} from '../../constants';
 import {loadDocumentPage} from '../../utils';
 
 test.beforeEach(async ({page}) => {

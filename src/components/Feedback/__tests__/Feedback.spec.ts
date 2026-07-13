@@ -1,7 +1,6 @@
 import {expect, test} from '@playwright/test';
 
-import {DOC_PAGE_FEEDBACK_HIDDEN_URL, DOC_PAGE_FEEDBACK_SHOWN_URL} from 'src/components/constants';
-
+import {DOC_PAGE_FEEDBACK_HIDDEN_URL, DOC_PAGE_FEEDBACK_SHOWN_URL} from '../../constants';
 import {loadDocumentPage} from '../../utils';
 
 test.describe('Feedback presence tests', () => {

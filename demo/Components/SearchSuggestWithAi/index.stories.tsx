@@ -1,4 +1,3 @@
-import type {FC, PropsWithChildren} from 'react';
 import type {ISearchProvider, ISearchResultWithLink} from '@diplodoc/components';
 
 import {useState} from 'react';
@@ -7,35 +6,11 @@ import {ArrowUpRightFromSquare} from '@gravity-ui/icons';
 import {Icon, Text} from '@gravity-ui/uikit';
 import {AiIcon, SearchSuggest as Component} from '@diplodoc/components';
 
+import {FakeHeader, filter, wait} from '../shared/search-suggest';
 import data from '../SearchSuggestWithAi/page.json';
 import '../SearchSuggestWithAi/index.scss';
 
 const b = block('header');
-
-const wait = (delay: number) => new Promise((resolve) => setTimeout(resolve, delay));
-
-const filter = (items: ISearchResultWithLink[], query: string) => {
-    return items.filter((item) => {
-        return item.title?.indexOf(query) > -1 || (item.description || '').indexOf(query) > -1;
-    });
-};
-
-type Props = {
-    className: string;
-};
-
-const FakeHeader: FC<PropsWithChildren<Props>> = ({children, className}) => {
-    return (
-        <div className={b(null, className)}>
-            <div className="header-left">
-                <div className="header-logo"></div>
-                <div className="header-title">Example</div>
-            </div>
-            <div className="header-center"></div>
-            <div className="header-right">{children}</div>
-        </div>
-    );
-};
 
 const PageIcon = () => {
     return (

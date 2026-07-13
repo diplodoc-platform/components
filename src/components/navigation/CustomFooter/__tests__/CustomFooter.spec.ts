@@ -10,7 +10,7 @@ test.beforeEach(async ({page}) => {
 test('CustomFooter test', async ({page}) => {
     const footer = page.locator('.dc-footer');
     const desktopFooter = footer.locator('.dc-footer__desktop');
-    const telegramLink = desktopFooter.getByText('Telegram');
+    const telegramLink = desktopFooter.locator('a').filter({hasText: 'Telegram'});
 
     await expect(telegramLink).toHaveAttribute('href', 'https://t.me/diplodoc_ru');
 

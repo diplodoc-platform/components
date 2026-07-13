@@ -3,7 +3,7 @@ import type {ISearchProvider} from '../../models';
 import type {SearchSuggestActionItem, SearchSuggestItem} from './types';
 import type {ListItemData} from '@gravity-ui/uikit';
 
-import React, {forwardRef, memo, useEffect} from 'react';
+import {forwardRef, memo, useEffect} from 'react';
 import {List, Loader} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 import pick from 'lodash/pick';

@@ -1,6 +1,6 @@
 import type {FC} from 'react';
 
-import React, {useMemo} from 'react';
+import {useMemo} from 'react';
 
 export type MdxArtifacts = Record<string, unknown>;
 

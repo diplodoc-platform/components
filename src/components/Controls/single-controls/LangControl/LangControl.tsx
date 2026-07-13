@@ -1,6 +1,6 @@
 import type {AvailableLangs, ExtendedLang, Lang, LangOptions, ListItem} from '../../../../models';
 
-import React, {useCallback, useContext, useMemo, useRef} from 'react';
+import {useCallback, useContext, useMemo, useRef} from 'react';
 import {Globe} from '@gravity-ui/icons';
 import {List, Popover} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';

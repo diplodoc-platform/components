@@ -1,4 +1,3 @@
-import React from 'react';
 import {
     type GalleryItemProps,
     getGalleryItemCopyLinkAction,
@@ -49,11 +48,19 @@ export const isExcludedByParent = (el: HTMLElement): boolean =>
     Boolean(el.closest(EXCLUDED_PARENT_SELECTORS));
 
 export const isContentImage = (el: HTMLImageElement): boolean => {
-    if (el.getAttribute('aria-hidden') === 'true') return false;
-    if (el.getAttribute('role') === 'presentation') return false;
+    if (el.getAttribute('aria-hidden') === 'true') {
+        return false;
+    }
+
+    if (el.getAttribute('role') === 'presentation') {
+        return false;
+    }
 
     const hasValidParent = ['figure', 'picture', 'p'].some((tag) => Boolean(el.closest(tag)));
-    if (!hasValidParent) return false;
+
+    if (!hasValidParent) {
+        return false;
+    }
 
     return true;
 };
@@ -72,9 +79,17 @@ export const isSvgElement = (el: Element): el is SVGSVGElement => {
 };
 
 export const isMediaElement = (el: HTMLElement): boolean => {
-    if (isExcludedByParent(el)) return false;
-    if (isImageElement(el)) return isContentImage(el);
-    if (isSvgElement(el)) return isContentSize(el);
+    if (isExcludedByParent(el)) {
+        return false;
+    }
+
+    if (isImageElement(el)) {
+        return isContentImage(el);
+    }
+
+    if (isSvgElement(el)) {
+        return isContentSize(el);
+    }
 
     return true;
 };

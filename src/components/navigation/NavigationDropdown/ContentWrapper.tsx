@@ -1,7 +1,7 @@
 import type {FC} from 'react';
 import type {ImageProps} from '@gravity-ui/page-constructor';
 
-import React, {useMemo} from 'react';
+import {useMemo} from 'react';
 import {Image, block} from '@gravity-ui/page-constructor';
 
 const b = block('content-wrapper');

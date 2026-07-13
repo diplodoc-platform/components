@@ -1,6 +1,6 @@
 import type {ControlSizes} from '../../../models';
 
-import React, {memo, useContext} from 'react';
+import {memo, useContext} from 'react';
 import {Icon} from '@gravity-ui/uikit';
 
 import {useTranslation} from '../../../hooks';

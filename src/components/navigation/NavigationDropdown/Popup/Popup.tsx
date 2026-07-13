@@ -1,7 +1,7 @@
 import type {FC, RefObject} from 'react';
 import type {NavigationColumnItem, NavigationLinkItem, NavigationSectionItem} from '../../types';
 
-import React, {useCallback} from 'react';
+import {useCallback} from 'react';
 import {Popup} from '@gravity-ui/uikit';
 import {block} from '@gravity-ui/page-constructor';
 

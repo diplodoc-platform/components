@@ -19,7 +19,7 @@ export default defineConfig({
     reporter: 'html',
     webServer: {
         reuseExistingServer: !process.env.IS_DOCKER,
-        command: 'BROWSER=true npm run dev',
+        command: 'BROWSER=true npm run storybook:start',
         url: BASE_URL,
         timeout: 300 * 1000,
     },

@@ -11,10 +11,7 @@ const {FileWatcher} = require('./FileWatcher');
 const {SparsedBuild} = require('./SparsedBuild');
 
 async function build({path, format}) {
-    const tsconfig = require(`../tsconfig${format ? '.' + format : ''}.json`);
-    const {
-        compilerOptions: {target},
-    } = tsconfig;
+    const tsconfig = require(`../tsconfig.lib.json`);
 
     const watcher = new FileWatcher(process.argv.indexOf('--watch') > -1);
     const sparsed = new SparsedBuild(
@@ -22,15 +19,12 @@ async function build({path, format}) {
             return esbuild.context({
                 bundle: true,
                 sourcemap: true,
-                target: target,
-                tsconfig: './tsconfig.json',
+                target: tsconfig.compilerOptions.target,
+                tsconfig: './tsconfig.lib.json',
                 entryPoints: [entry],
                 outbase: './src',
                 outdir: `./build${format ? '/' + format : ''}`,
-                format: format,
-                loader: {
-                    '.json': 'text',
-                },
+                format,
                 logOverride: {
                     'package.json': 'silent',
                 },

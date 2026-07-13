@@ -4,3 +4,7 @@ declare module 'url' {
         pathname?: string;
     };
 }
+
+declare module '*.css' {}
+
+declare module '*.scss' {}

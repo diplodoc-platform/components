@@ -1,7 +1,7 @@
 import {expect, test} from '@playwright/test';
 
-import {CONTRIBUTOR_AVATARS_URL} from 'src/components/constants';
-import {loadDocumentPage} from 'src/components/utils';
+import {loadDocumentPage} from '../../utils';
+import {CONTRIBUTOR_AVATARS_URL} from '../../constants';
 
 test.beforeEach(async ({page}) => {
     await loadDocumentPage(page);

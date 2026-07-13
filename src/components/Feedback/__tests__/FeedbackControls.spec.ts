@@ -2,7 +2,7 @@ import type {Page} from '@playwright/test';
 
 import {expect, test} from '@playwright/test';
 
-import {loadDocumentPage} from 'src/components/utils';
+import {loadDocumentPage} from '../../utils';
 
 const viewports = [{name: 'desktop'}, {name: 'mobile', width: 430, height: 932}];
 

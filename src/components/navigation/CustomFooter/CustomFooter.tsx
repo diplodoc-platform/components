@@ -1,20 +1,40 @@
-import type {CustomFooterProps} from './types';
-
 import React, {memo, useMemo} from 'react';
 import {Footer, MobileFooter} from '@gravity-ui/navigation';
+import type {FooterProps} from '@gravity-ui/navigation';
+import block from 'bem-cn-lite';
 
-import {buildFooterProps} from './utils';
+import type {FooterLogoConfig, FooterMenuItemConfig} from './types';
+import {mapLogo, mapMenuItems} from './utils';
+
 import './CustomFooter.scss';
 
+const b = block('dc-footer');
+
+export interface CustomFooterProps extends Omit<FooterProps, 'logo' | 'menuItems' | 'copyright'> {
+    copyright?: string;
+    logo?: string | FooterLogoConfig;
+    menuItems?: FooterMenuItemConfig[];
+}
+
 export const CustomFooter: React.FC<CustomFooterProps> = memo((props) => {
-    const footerProps = useMemo(() => buildFooterProps(props), [props]);
+    const {copyright = '', logo: logoProp, menuItems: menuItemsProp, ...otherProps} = props;
+
+    const logo = useMemo(() => mapLogo(logoProp), [logoProp]);
+    const menuItems = useMemo(() => mapMenuItems(menuItemsProp), [menuItemsProp]);
+
+    const footerProps: FooterProps = {
+        ...otherProps,
+        copyright,
+        logo,
+        menuItems,
+    };
 
     return (
-        <div className="dc-footer">
-            <div className="dc-footer__desktop">
+        <div className={b()}>
+            <div className={b('desktop')}>
                 <Footer {...footerProps} />
             </div>
-            <div className="dc-footer__mobile">
+            <div className={b('mobile')}>
                 <MobileFooter {...footerProps} />
             </div>
         </div>
@@ -22,5 +42,3 @@ export const CustomFooter: React.FC<CustomFooterProps> = memo((props) => {
 });
 
 CustomFooter.displayName = 'CustomFooter';
-
-export default CustomFooter;

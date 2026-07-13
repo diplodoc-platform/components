@@ -7,7 +7,6 @@ export * from './ToMainMenu/ToMainMenu';
 export * from './MobileDropdown/MobileDropdown';
 
 export {default as CustomNavigation} from './CustomNavigation/CustomNavigation';
-export {default as CustomFooter} from './CustomFooter';
 export {default as SidebarNavigation} from './SidebarNavigation/SidebarNavigation';
 export {default as SidebarContent} from './SidebarContent/SidebarContent';
 export {default as Sidebar} from './Sidebar/Sidebar';

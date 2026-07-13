@@ -1,13 +1,5 @@
 import type {FooterProps} from '@gravity-ui/navigation';
-import type {CustomFooterProps, FooterMenuItemConfig} from './types';
-
-export function resolveTarget(target?: 'self' | 'blank'): '_self' | '_blank' {
-    if (target === 'self') {
-        return '_self';
-    }
-
-    return '_blank';
-}
+import type {FooterLogoConfig, FooterMenuItemConfig} from './types';
 
 export function mapMenuItems(items?: FooterMenuItemConfig[]): FooterProps['menuItems'] {
     if (!items || items.length === 0) {
@@ -17,11 +9,11 @@ export function mapMenuItems(items?: FooterMenuItemConfig[]): FooterProps['menuI
     return items.map((item) => ({
         text: item.text || '',
         href: item.url,
-        target: resolveTarget(item.target),
+        target: item.target ?? '_blank',
     }));
 }
 
-export function mapLogo(logo: CustomFooterProps['logo']): FooterProps['logo'] | undefined {
+export function mapLogo(logo?: string | FooterLogoConfig): FooterProps['logo'] | undefined {
     if (typeof logo === 'string') {
         return {
             text: '',
@@ -39,35 +31,4 @@ export function mapLogo(logo: CustomFooterProps['logo']): FooterProps['logo'] | 
     }
 
     return undefined;
-}
-
-export function buildFooterProps(props: CustomFooterProps): FooterProps {
-    const {
-        className,
-        withDivider,
-        view,
-        moreButtonTitle,
-        copyright = '',
-        logo,
-        logoWrapperClassName,
-        menuItems,
-    } = props;
-
-    const footerProps: FooterProps = {
-        className,
-        withDivider,
-        view,
-        moreButtonTitle,
-        copyright,
-        logoWrapperClassName,
-        menuItems: mapMenuItems(menuItems),
-    };
-
-    const mappedLogo = mapLogo(logo);
-
-    if (mappedLogo) {
-        footerProps.logo = mappedLogo;
-    }
-
-    return footerProps;
 }

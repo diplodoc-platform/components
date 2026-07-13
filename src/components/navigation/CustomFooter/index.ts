@@ -1,2 +1,3 @@
-export {CustomFooter, default} from './CustomFooter';
-export type {CustomFooterProps, FooterMenuItemConfig, FooterLogoConfig} from './types';
+export {CustomFooter} from './CustomFooter';
+export type {CustomFooterProps} from './CustomFooter';
+export type {FooterMenuItemConfig, FooterLogoConfig} from './types';

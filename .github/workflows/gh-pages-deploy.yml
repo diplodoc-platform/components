@@ -23,6 +23,6 @@ jobs:
       - id: build-publish
         uses: bitovi/github-actions-react-to-github-pages@v1.2.4
         with:
-          install_command: npm i && npm run build && npm run postinstall && cd demo
-          build_command: npm run build-storybook
-          path: demo/storybook-static
+          install_command: npm ci
+          build_command: npm run build && npm run storybook:build
+          path: storybook-static

@@ -1,6 +1,6 @@
 import type {RefObject} from 'react';
 
-import React, {memo, useContext, useMemo} from 'react';
+import {memo, useContext, useMemo} from 'react';
 import {Popup, useDirection} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 

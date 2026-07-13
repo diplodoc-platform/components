@@ -1,8 +1,6 @@
 import type {FC} from 'react';
 import type {NavigationColumnItem, NavigationLinkItem, NavigationSectionItem} from '../types';
 
-import React from 'react';
-
 import {useColumns} from '../hooks';
 
 import {cnDropdownContent} from './utils';

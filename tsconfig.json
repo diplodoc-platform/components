@@ -7,7 +7,7 @@
     "importHelpers": true,
     "resolveJsonModule": true,
     "declaration": true,
-    "jsx": "react",
+    "jsx": "react-jsx",
     "target": "ESNext",
     "baseUrl": ".",
     "paths": {

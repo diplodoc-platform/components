@@ -1,6 +1,5 @@
 import type {ReactNode} from 'react';
 
-import React from 'react';
 import {ArrowLeft, ArrowRight} from '@gravity-ui/icons';
 import {Button} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';

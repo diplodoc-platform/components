@@ -2,7 +2,6 @@ import type {NavigationItemProps} from '@gravity-ui/page-constructor';
 import type {FC} from 'react';
 import type {LabelProps as BaseLabelProps} from '@gravity-ui/uikit';
 
-import React from 'react';
 import {Label as BaseLabel} from '@gravity-ui/uikit';
 
 import './Label.scss';

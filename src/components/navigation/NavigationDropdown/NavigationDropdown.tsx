@@ -1,7 +1,7 @@
 import type {FC} from 'react';
 import type {NavigationDropdownItem, NavigationItemProps} from '@gravity-ui/page-constructor';
 
-import React, {useRef} from 'react';
+import {useRef} from 'react';
 import {ToggleArrow, block} from '@gravity-ui/page-constructor';
 
 import {NavigationPopup} from './Popup';

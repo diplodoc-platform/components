@@ -1,7 +1,6 @@
 import type {FC} from 'react';
 import type {TocLabel as TocLabelType} from '../../models';
 
-import React from 'react';
 import {Label, Popover, useDirection} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 

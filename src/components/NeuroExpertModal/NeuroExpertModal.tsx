@@ -1,6 +1,6 @@
 import type {FC} from 'react';
 
-import React, {useCallback, useEffect, useRef, useState} from 'react';
+import {useCallback, useEffect, useRef, useState} from 'react';
 import {Dialog, Loader, Text} from '@gravity-ui/uikit';
 import {useTranslation} from 'react-i18next';
 import block from 'bem-cn-lite';

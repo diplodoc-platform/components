@@ -14,8 +14,6 @@ jobs:
         uses: diplodoc-platform/setup-node-action@v1
         with:
           node-version: ${{ vars.NODE_VERSION || '24' }}
-      - name: Install Demo Packages
-        run: cd demo && npm i
       - name: Build Files
         run: npm run build
       - name: Install Playwright Browsers

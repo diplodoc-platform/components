@@ -1,11 +1,11 @@
+import type {FooterLogoConfig, FooterMenuItemConfig} from './types';
+import type {FooterProps} from '@gravity-ui/navigation';
+
 import React, {memo, useMemo} from 'react';
 import {Footer, MobileFooter} from '@gravity-ui/navigation';
-import type {FooterProps} from '@gravity-ui/navigation';
 import block from 'bem-cn-lite';
 
-import type {FooterLogoConfig, FooterMenuItemConfig} from './types';
 import {mapLogo, mapMenuItems} from './utils';
-
 import './CustomFooter.scss';
 
 const b = block('dc-footer');

@@ -1,5 +1,17 @@
 # История изменений
 
+## [5.15.0](https://github.com/diplodoc-platform/components/compare/v5.14.0...v5.15.0) (2026-07-14)
+
+
+### Features
+
+* added footer ([#688](https://github.com/diplodoc-platform/components/issues/688)) ([4f49170](https://github.com/diplodoc-platform/components/commit/4f491700a762a9e22756bc191a8e07c47e18b672))
+
+
+### Bug Fixes
+
+* add target ([#685](https://github.com/diplodoc-platform/components/issues/685)) ([30ec4c8](https://github.com/diplodoc-platform/components/commit/30ec4c86a0b69252a996a3a81fcdc7dff5f2c519))
+
 ## [5.14.0](https://github.com/diplodoc-platform/components/compare/v5.13.0...v5.14.0) (2026-07-09)
 
 

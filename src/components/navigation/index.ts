@@ -1,4 +1,5 @@
 export * from './CustomNavigation/CustomNavigation';
+export * from './CustomFooter';
 export * from './SidebarNavigation/SidebarNavigation';
 export * from './SidebarContent/SidebarContent';
 export * from './Sidebar/Sidebar';

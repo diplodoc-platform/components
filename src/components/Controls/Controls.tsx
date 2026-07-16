@@ -107,7 +107,10 @@ export const ControlsList: React.FC<
         isHiddenFeedback,
         isHiddenAsideFeedback,
         availableLangs = [],
+        className,
     } = props;
+
+    const {isVerticalView} = useContext(ControlsLayoutContext);
 
     const withFullscreenControl = Boolean(onChangeFullScreen);
     const withSettingsControl = Boolean(
@@ -215,28 +218,24 @@ export const ControlsList: React.FC<
             return result;
         }, [] as React.ReactElement[]);
 
-    return controls;
+    if (!controls.length) {
+        return null;
+    }
+
+    return <div className={b({vertical: isVerticalView}, className)}>{controls}</div>;
 };
 
 const Controls = memo<ControlsProps>((props) => {
-    const {isVerticalView} = useContext(ControlsLayoutContext);
     const isHiddenFeedback = useInterface('feedback');
     const isHiddenAsideFeedback = useInterface('feedback-aside');
-    const {className} = props;
 
-    const controls = (
+    return (
         <ControlsList
             {...props}
             isHiddenFeedback={isHiddenFeedback}
             isHiddenAsideFeedback={isHiddenAsideFeedback}
         />
     );
-
-    if (!controls) {
-        return null;
-    }
-
-    return <div className={b({vertical: isVerticalView}, className)}>{controls}</div>;
 });
 
 Controls.displayName = 'DCControls';

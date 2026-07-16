@@ -157,6 +157,10 @@ $leftOffset: 57px;
                 border-top: 0;
             }
         }
+
+        &:empty {
+            display: none;
+        }
     }
 
     &__content {

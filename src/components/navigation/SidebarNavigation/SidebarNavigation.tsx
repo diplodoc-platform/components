@@ -55,8 +55,8 @@ const SidebarNavigation: React.FC<SidebarNavigationProps & PropsWithChildren> = 
             <Button
                 className={b('button', {active: isSidebarOpened}, className)}
                 onClick={toggle}
-                view={'flat'}
-                size="xl"
+                view="flat"
+                size="l"
             >
                 <Button.Icon>
                     {renderSidebarIcon ? (

@@ -1,5 +1,18 @@
 # История изменений
 
+## [5.16.0](https://github.com/diplodoc-platform/components/compare/v5.15.0...v5.16.0) (2026-07-16)
+
+
+### Features
+
+* **MobileControls:** changed height and paddings of mobile controls in sidebar ([#692](https://github.com/diplodoc-platform/components/issues/692)) ([f00a44e](https://github.com/diplodoc-platform/components/commit/f00a44edc33507cc6e5d44d1da921cfecfa17a86))
+* **SidebarNavigation:** changed toggle button size ([#691](https://github.com/diplodoc-platform/components/issues/691)) ([e34b6e1](https://github.com/diplodoc-platform/components/commit/e34b6e15fbdbb034912fc7938b47ccad85d8f9ef))
+
+
+### Bug Fixes
+
+* **Controls:** fixed empty ControlsList rendering ([#693](https://github.com/diplodoc-platform/components/issues/693)) ([faeb228](https://github.com/diplodoc-platform/components/commit/faeb228dc9ccf4cbb94ab0e3ea3452c94f19cda6))
+
 ## [5.15.0](https://github.com/diplodoc-platform/components/compare/v5.14.0...v5.15.0) (2026-07-14)
 
 

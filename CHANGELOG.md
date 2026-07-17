@@ -1,5 +1,12 @@
 # История изменений
 
+## [5.16.1](https://github.com/diplodoc-platform/components/compare/v5.16.0...v5.16.1) (2026-07-17)
+
+
+### Bug Fixes
+
+* **Sidebar:** added nodeRef prop on CSSTransition for react 19 support ([#695](https://github.com/diplodoc-platform/components/issues/695)) ([40e9da1](https://github.com/diplodoc-platform/components/commit/40e9da159823ef54b5d081e033e59464344717e1))
+
 ## [5.16.0](https://github.com/diplodoc-platform/components/compare/v5.15.0...v5.16.0) (2026-07-16)
 
 

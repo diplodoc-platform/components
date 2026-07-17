@@ -18,6 +18,7 @@ export interface SidebarProps {
 const Sidebar: React.FC<PropsWithChildren & SidebarProps> = ({isOpened, children}) => {
     const [body, setBody] = useState<HTMLElement>();
     const ref = useRef<HTMLDivElement>(null);
+    const transitionNodeRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         setBody(document.body);
@@ -41,8 +42,9 @@ const Sidebar: React.FC<PropsWithChildren & SidebarProps> = ({isOpened, children
             classNames={b('transition')}
             unmountOnExit
             timeout={TRANSITION_TIME}
+            nodeRef={transitionNodeRef}
         >
-            <div className={b()}>
+            <div ref={transitionNodeRef} className={b()}>
                 <div ref={ref} className={b('bar')}>
                     {children}
                 </div>

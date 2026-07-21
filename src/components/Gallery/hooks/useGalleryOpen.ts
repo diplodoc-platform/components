@@ -10,27 +10,18 @@ export interface UseGalleryOpenProps {
 export function useGalleryOpen({contentSelector}: UseGalleryOpenProps) {
     const {openGallery} = useGallery();
 
-    useEffect(() => {
-        const container = document.querySelector(contentSelector);
-        if (!container) return;
-
-        Array.from(container.querySelectorAll<HTMLElement>('img'))
-            .filter((el) => isMediaElement(el) && !el.closest('a'))
-            .forEach((el) => el.classList.add('dc-gallery__media-clickable'));
-    }, [contentSelector]);
-
     const handleGlobalClick = useCallback(
         (event: MouseEvent) => {
             const target = event.target as HTMLElement;
 
-            const clickedMedia = target.closest<HTMLElement>('img');
+            const clickedMedia = target.closest<HTMLElement>('img, svg');
             if (!clickedMedia || !isMediaElement(clickedMedia) || clickedMedia.closest('a')) return;
 
             const container = clickedMedia.closest(contentSelector);
             if (!container) return;
 
             const allMedia = Array.from(
-                container.querySelectorAll<HTMLElement>('img, .embed-responsive'),
+                container.querySelectorAll<HTMLElement>('img, svg, .embed-responsive'),
             ).filter(isMediaElement);
 
             const clickedIndex = allMedia.indexOf(clickedMedia);

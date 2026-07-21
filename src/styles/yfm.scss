@@ -37,6 +37,28 @@
     @include yfm-dark-hc.gravity-colors-for-diplodoc-dark-hc();
 }
 
+.dc-doc-page {
+    &__main {
+        img,
+        svg {
+            &:not(a *) {
+                &:not(
+                    [class*='dc-contributor-avatars__avatar'] img,
+                    [class*='background'] img,
+                    [class*='icon' i] img,
+                    [class*='icon' i] svg,
+                    [class*='noreferrer'] svg,
+                    [class*='noopener'] svg,
+                    [class*='nav' i] svg,
+                    [class*='button' i] svg
+                ) {
+                    cursor: zoom-in;
+                }
+            }
+        }
+    }
+}
+
 .dc-doc-page .yfm {
     color: var(--yfm-color-text);
 

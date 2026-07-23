@@ -1,5 +1,12 @@
 # История изменений
 
+## [5.16.2](https://github.com/diplodoc-platform/components/compare/v5.16.1...v5.16.2) (2026-07-23)
+
+
+### Bug Fixes
+
+* add svg images to gallery, cursor zoom-in, remove default alt ([112f099](https://github.com/diplodoc-platform/components/commit/112f0992759c1437af1b9d7a89d9ce26b25a86ca))
+
 ## [5.16.1](https://github.com/diplodoc-platform/components/compare/v5.16.0...v5.16.1) (2026-07-17)
 
 

@@ -1,3 +1,4 @@
+import type {ComponentType} from 'react';
 import type {ThemeContextProps} from '@gravity-ui/uikit';
 import type {
     Contributor,
@@ -13,7 +14,7 @@ import {parse} from 'url';
 import {DocContentPage} from '../components/DocContentPage';
 import {DocLeadingPage} from '../components/DocLeadingPage';
 import {DocPage} from '../components/DocPage';
-import {PopperPosition} from '../hooks';
+import {PopperPosition} from '../constants';
 import {DocumentType} from '../models';
 
 export type InnerProps<TProps extends Partial<TDefaultProps>, TDefaultProps> = Omit<
@@ -28,7 +29,9 @@ export type ChangeHandler<S> = <K extends keyof S, V extends S[K]>(
 ) => () => void;
 
 export function normalizePath(path?: string | null) {
-    if (!path) return path;
+    if (!path) {
+        return path;
+    }
 
     return path
         .replace(/^\//, '')
@@ -146,4 +149,21 @@ export function getItemHeight(baseItemHeight: number, item: ListItem) {
 
 export function getItemsHeight(baseItemHeight: number, items: ListItem[]) {
     return items.reduce((total, item) => total + getItemHeight(baseItemHeight, item), 0);
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type ComposeEnhancer<TInner = any, TOuter = any> = (
+    Component: ComponentType<TInner>,
+) => ComponentType<TOuter>;
+
+export function compose<TInner, TOuter>(...enhancers: ComposeEnhancer[]) {
+    const enhancer: ComposeEnhancer<TInner, TOuter> = (Component) => {
+        const EnhancedComponent = enhancers.reduceRight((Wrapped, enhance) => {
+            return enhance(Wrapped);
+        }, Component);
+
+        return EnhancedComponent;
+    };
+
+    return enhancer;
 }

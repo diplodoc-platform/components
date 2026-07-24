@@ -338,7 +338,7 @@ export function useCurrentWordSelectionSyncScrollEffect({
     headerHeight,
     setSyncOnScroll,
 }: UseCurrentWordSelectionSyncScrollEffect) {
-    const scrollEndTimer = useRef<ReturnType<typeof setTimeout>>();
+    const scrollEndTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
 
     const handleScroll = useCallback(() => {
         if (scrollEndTimer.current) {

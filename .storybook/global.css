@@ -1,0 +1,6 @@
+@import '@diplodoc/components/styles';
+@import '@diplodoc/transform/dist/scss/yfm-base.scss';
+
+.sb-show-main.sb-main-centered #storybook-root {
+    padding: 0;
+}

@@ -1,7 +1,7 @@
 import {expect, test} from '@playwright/test';
 
-import {SEARCH_SUGGEST_URL} from 'src/components/constants';
-import {loadDocumentPage} from 'src/components/utils';
+import {SEARCH_SUGGEST_URL} from '../../constants';
+import {loadDocumentPage} from '../../utils';
 
 test.beforeEach(async ({page}) => {
     await loadDocumentPage(page, SEARCH_SUGGEST_URL);

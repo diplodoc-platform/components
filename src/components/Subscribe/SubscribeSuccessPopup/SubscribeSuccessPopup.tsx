@@ -11,7 +11,7 @@ import {getSubscribePopupPosition} from '../utils';
 const b = block('dc-subscribe');
 
 const SubscribeSuccessPopup = memo<{
-    anchor: React.RefObject<HTMLElement>;
+    anchor: React.RefObject<HTMLElement | null>;
     view?: SubscribeView;
     onOutsideClick: () => void;
 }>(({anchor, view, onOutsideClick}) => {

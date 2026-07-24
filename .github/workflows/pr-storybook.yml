@@ -14,18 +14,16 @@ jobs:
         uses: diplodoc-platform/setup-node-action@00e5cddb6b6eb5f5bc02d371fa70ce645f8f5554 # v1
         with:
           node-version: ${{ vars.NODE_VERSION || '24' }}
-      - name: Install Demo Packages
-        run: cd demo && npm i
       - name: Build Files
         run: npm run build
       - name: Build Storybook
-        run: cd demo && npm run build-storybook
+        run: npm run storybook:build
       - name: Upload Storybook Static
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: storybook-static
-          path: ./demo/storybook-static
+          path: ./storybook-static
           retention-days: 1
       - name: Save PR ID
         if: always()

@@ -1,4 +1,4 @@
-import React, {memo, useState} from 'react';
+import {memo, useState} from 'react';
 import {Button} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 

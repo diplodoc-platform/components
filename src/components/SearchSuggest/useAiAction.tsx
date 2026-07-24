@@ -1,6 +1,6 @@
 import type {SearchSuggestActionItem} from './types';
 
-import React, {useMemo} from 'react';
+import {useMemo} from 'react';
 import {Text} from '@gravity-ui/uikit';
 
 import {useTranslation} from '../../hooks';

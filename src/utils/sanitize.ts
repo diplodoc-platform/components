@@ -1,4 +1,4 @@
-import {sanitize} from 'isomorphic-dompurify';
+import DOMPurify from 'isomorphic-dompurify';
 
 const sanitizeStripOptions = {
     ALLOWED_TAGS: [],
@@ -6,5 +6,5 @@ const sanitizeStripOptions = {
 };
 
 export function sanitizeHtml(html?: string) {
-    return html && sanitize(html, sanitizeStripOptions);
+    return html && DOMPurify.sanitize(html, sanitizeStripOptions);
 }

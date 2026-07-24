@@ -1,8 +1,6 @@
 import type {FC} from 'react';
 import type {NavigationColumnItem} from '../../types';
 
-import React from 'react';
-
 import {Section} from '../Section';
 import {useSections} from '../../hooks';
 import {cnDropdownContent} from '../utils';

@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.storybook.tsbuildinfo",
+    "paths": {
+      "@diplodoc/components": ["./src"]
+    }
+  },
+  "include": ["src/internal-typings/global.d.ts", ".storybook", "demo"]
+}

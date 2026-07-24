@@ -1,7 +1,7 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, type ComponentProps} from 'react';
 import {Helmet} from 'react-helmet';
 
-export type MetaProps = JSX.IntrinsicElements['meta'];
+export type MetaProps = ComponentProps<'meta'>;
 
 export interface SocialSharingMetaProps {
     url?: string;

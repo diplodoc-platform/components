@@ -1,11 +1,11 @@
 import type {PropsWithChildren, RefObject} from 'react';
-import type {ClassNameProps} from 'src/models';
+import type {ClassNameProps} from '../../models';
 
 import React, {createRef} from 'react';
 
 export interface OutsideClickProps extends ClassNameProps {
     onOutsideClick: () => void;
-    anchor?: HTMLElement | RefObject<HTMLElement> | null;
+    anchor?: HTMLElement | RefObject<HTMLElement | null> | null;
 }
 
 export default class OutsideClick extends React.Component<PropsWithChildren<OutsideClickProps>> {

@@ -1,4 +1,4 @@
-import React, {forwardRef, memo, useContext} from 'react';
+import {forwardRef, memo, useContext} from 'react';
 import {Comment} from '@gravity-ui/icons';
 import {Button} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';

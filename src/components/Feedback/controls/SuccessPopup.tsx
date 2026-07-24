@@ -1,10 +1,11 @@
 import type {RefObject} from 'react';
 
-import React, {memo, useContext, useMemo} from 'react';
+import {memo, useContext, useMemo} from 'react';
 import {Popup, useDirection} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 
-import {PopperPosition, useTranslation} from '../../../hooks';
+import {PopperPosition} from '../../../constants';
+import {useTranslation} from '../../../hooks';
 import {getPopupPosition} from '../../../utils';
 import {ControlsLayoutContext} from '../../Controls/ControlsLayout';
 import {FeedbackView} from '../Feedback';
@@ -12,7 +13,7 @@ import {FeedbackView} from '../Feedback';
 type SuccessPopupProps = {
     view: FeedbackView;
     visible: boolean;
-    anchor: RefObject<HTMLButtonElement>;
+    anchor: RefObject<HTMLButtonElement | null>;
     onOutsideClick: () => void;
 };
 

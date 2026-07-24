@@ -1,7 +1,7 @@
 import type {FC, MouseEvent} from 'react';
 import type {FlatHeadingItem} from '../SubNavigation/hooks/useHeadingIntersectionObserver';
 
-import React, {useLayoutEffect, useRef, useState} from 'react';
+import {useLayoutEffect, useRef, useState} from 'react';
 import block from 'bem-cn-lite';
 import clsx from 'clsx';
 
@@ -26,8 +26,9 @@ const MiniToc: FC<MiniTocProps> = ({headings, activeHeading, onItemClick}) => {
     const rootContainerRef = useRef<HTMLUListElement>(null);
     const [refMappings] = useState(() => new WeakMap<FlatHeadingItem, HTMLLIElement>());
 
-    const refCb = (forHeading: FlatHeadingItem) => (current: HTMLLIElement) =>
+    const refCb = (forHeading: FlatHeadingItem) => (current: HTMLLIElement) => {
         refMappings.set(forHeading, current);
+    };
 
     useLayoutEffect(() => {
         const scrollHeight = rootContainerRef.current?.scrollHeight ?? 0;

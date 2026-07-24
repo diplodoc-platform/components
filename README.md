@@ -75,13 +75,12 @@ Install Dependencies
 
 ```shell
 npm ci
-cd demo && npm ci
 ```
 
 To start the development server with storybook run the following:
 
 ```shell
-npm run dev
+npm run storybook:start
 ```
 
 ## Testing

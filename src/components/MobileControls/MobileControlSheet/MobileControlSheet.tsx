@@ -1,6 +1,6 @@
 import type {AvailableLangs, Lang, LangOptions, ListItem} from '../../../models';
 
-import React, {memo, useCallback} from 'react';
+import {memo, useCallback} from 'react';
 import {List, Sheet} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
 

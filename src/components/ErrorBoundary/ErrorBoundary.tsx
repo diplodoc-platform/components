@@ -1,4 +1,4 @@
-import type {PropsWithChildren} from 'react';
+import type {PropsWithChildren, ReactNode} from 'react';
 
 import React from 'react';
 import isEqual from 'lodash/isEqual';
@@ -23,7 +23,7 @@ class ErrorBoundary extends React.Component<PropsWithChildren<ErrorBoundaryState
         this.setState({error, errorInfo});
     }
 
-    render() {
+    render(): ReactNode {
         const {children} = this.props;
         const {error} = this.state;
 

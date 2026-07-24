@@ -1,5 +1,12 @@
 # История изменений
 
+## [5.17.1](https://github.com/diplodoc-platform/components/compare/v5.17.0...v5.17.1) (2026-07-24)
+
+
+### Bug Fixes
+
+* **deps:** Update dev:@diplodoc/transform@4.77.5 ([72d18cb](https://github.com/diplodoc-platform/components/commit/72d18cb19887ed2b12450f0203db1fe2fc5f0d92))
+
 ## [5.17.0](https://github.com/diplodoc-platform/components/compare/v5.16.3...v5.17.0) (2026-07-24)
 
 

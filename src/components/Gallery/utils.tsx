@@ -7,7 +7,7 @@ import {
 } from '@gravity-ui/components';
 import {FilePreview} from '@gravity-ui/uikit';
 
-const MIN_CONTENT_SIZE = 24;
+const MIN_CONTENT_SIZE = 150;
 
 const ICON_SELECTORS = [
     '[class^="icon"]',
@@ -24,6 +24,9 @@ const INTERACTIVE_SELECTORS = [
     '[role="tab"]',
     '[class*="button"]',
     '[class*="dc-nav-toc-panel__link"]',
+    '[class*="erDiagram"]',
+    '[class*="mermaid"]',
+    'img[src*="mermaid"]',
 ];
 
 const MISC_EXCLUDED_SELECTORS = ['.dc-contributor-avatars__avatar', '[class*="background"]'];

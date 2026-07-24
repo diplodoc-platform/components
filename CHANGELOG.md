@@ -1,5 +1,14 @@
 # История изменений
 
+## [5.17.0](https://github.com/diplodoc-platform/components/compare/v5.16.3...v5.17.0) (2026-07-24)
+
+
+### Features
+
+* remove unused react-popper from code ([2167988](https://github.com/diplodoc-platform/components/commit/2167988f154b6970549ca67cd37d2d5cf851eff1))
+* update react to 19 ([e9638cc](https://github.com/diplodoc-platform/components/commit/e9638cccbdf557ac25caafc478a5c9e991c623f9))
+* update storybook ([92700c2](https://github.com/diplodoc-platform/components/commit/92700c2e4524c265ead5d298bdbd3b7c1af7f414))
+
 ## [5.16.3](https://github.com/diplodoc-platform/components/compare/v5.16.2...v5.16.3) (2026-07-24)
 
 

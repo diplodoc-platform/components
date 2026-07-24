@@ -1,5 +1,12 @@
 # История изменений
 
+## [5.16.3](https://github.com/diplodoc-platform/components/compare/v5.16.2...v5.16.3) (2026-07-24)
+
+
+### Bug Fixes
+
+* add mermaid to gallery filter and change min content image size ([5523268](https://github.com/diplodoc-platform/components/commit/5523268bbe97b1ef5ff18bfb5e5c5ac5f77f3168))
+
 ## [5.16.2](https://github.com/diplodoc-platform/components/compare/v5.16.1...v5.16.2) (2026-07-23)
 
 

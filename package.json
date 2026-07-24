@@ -101,7 +101,7 @@
   },
   "devDependencies": {
     "@diplodoc/infra": "2.2.1",
-    "@diplodoc/transform": "^4.76.7",
+    "@diplodoc/transform": "^4.77.5",
     "@playwright/test": "^1.60.0",
     "@storybook/react-vite": "^10.4.6",
     "@types/hoist-non-react-statics": "^3.3.6",

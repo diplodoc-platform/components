@@ -1,5 +1,12 @@
 # История изменений
 
+## [5.17.2](https://github.com/diplodoc-platform/components/compare/v5.17.1...v5.17.2) (2026-07-26)
+
+
+### Bug Fixes
+
+* **lint:** resolve @diplodoc/components from src in demo eslint config ([8f260b2](https://github.com/diplodoc-platform/components/commit/8f260b2b50a84ba01b722ba316f09dc57a9b5369))
+
 ## [5.17.1](https://github.com/diplodoc-platform/components/compare/v5.17.0...v5.17.1) (2026-07-24)
 
 

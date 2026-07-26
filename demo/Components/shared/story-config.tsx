@@ -1,6 +1,7 @@
 import type {AvailableLangs} from '@diplodoc/components';
 
 import {Button, spacing} from '@gravity-ui/uikit';
+
 import {VcsType} from '@diplodoc/components';
 
 export const commonArgTypes = {

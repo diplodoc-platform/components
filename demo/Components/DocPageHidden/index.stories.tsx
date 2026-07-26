@@ -2,6 +2,7 @@ import type {VcsType} from '@diplodoc/components';
 
 import {configure as configureUikit} from '@gravity-ui/uikit';
 import cn from 'bem-cn-lite';
+
 import {DocPage, InterfaceProvider, configure as configureDocs} from '@diplodoc/components';
 
 import {TocTitleIcon} from '../shared/toc-title-icon';

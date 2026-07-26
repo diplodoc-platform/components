@@ -3,6 +3,7 @@ import type {FeedbackSendData, Lang, Theme} from '@diplodoc/components';
 
 import {useCallback, useEffect, useState} from 'react';
 import {configure as configureUikit} from '@gravity-ui/uikit';
+
 import {DEFAULT_SETTINGS, FeedbackType, configure as configureDocs} from '@diplodoc/components';
 
 import {updateBodyClassName} from '../utils';

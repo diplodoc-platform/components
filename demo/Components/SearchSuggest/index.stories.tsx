@@ -2,6 +2,7 @@ import type {ISearchProvider, ISearchResult} from '@diplodoc/components';
 
 import {useState} from 'react';
 import block from 'bem-cn-lite';
+
 import {SearchSuggest as Component} from '@diplodoc/components';
 
 import {FakeHeader, filter, wait} from '../shared/search-suggest';

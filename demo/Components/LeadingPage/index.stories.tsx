@@ -2,6 +2,7 @@ import type {DocLeadingPageData} from '@diplodoc/components';
 
 import {useEffect} from 'react';
 import cn from 'bem-cn-lite';
+
 import {DocLeadingPage, Theme} from '@diplodoc/components';
 
 import {updateBodyClassName} from '../utils';

@@ -1,5 +1,6 @@
 import React from 'react';
 import {Button, TextInput} from '@gravity-ui/uikit';
+
 import {ConsentPopup as Component} from '@diplodoc/components';
 
 const ConsentPopupDemo = () => {

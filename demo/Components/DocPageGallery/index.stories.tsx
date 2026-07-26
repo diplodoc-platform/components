@@ -3,6 +3,7 @@ import type {VcsType} from '@diplodoc/components';
 import {Icon, configure as configureUikit} from '@gravity-ui/uikit';
 import cn from 'bem-cn-lite';
 import {SquareListUl} from '@gravity-ui/icons';
+
 import {DocPage, configure as configureDocs} from '@diplodoc/components';
 
 import {ServiceLink} from '../shared/service-link';

@@ -4,6 +4,7 @@ import {useState} from 'react';
 import block from 'bem-cn-lite';
 import {ArrowUpRightFromSquare} from '@gravity-ui/icons';
 import {Icon, Text} from '@gravity-ui/uikit';
+
 import {AiIcon, SearchSuggest as Component} from '@diplodoc/components';
 
 import {FakeHeader, filter, wait} from '../shared/search-suggest';

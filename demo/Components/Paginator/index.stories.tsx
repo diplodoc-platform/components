@@ -1,4 +1,5 @@
 import {useState} from 'react';
+
 import {Paginator as Component} from '@diplodoc/components';
 
 const PaginatorDemo = () => {

@@ -1,6 +1,6 @@
 import type {DocPageData, Router} from '../../models';
 
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {type JSX, useCallback, useEffect, useState} from 'react';
 
 import {
     useCurrentWordSelectionEffect,

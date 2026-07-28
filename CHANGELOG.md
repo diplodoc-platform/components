@@ -1,5 +1,12 @@
 # История изменений
 
+## [5.17.3](https://github.com/diplodoc-platform/components/compare/v5.17.2...v5.17.3) (2026-07-28)
+
+
+### Bug Fixes
+
+* missing JSX.Element in react-compat shim ([bc81ee2](https://github.com/diplodoc-platform/components/commit/bc81ee233911fb28ba055a889524103d1bc35ade))
+
 ## [5.17.2](https://github.com/diplodoc-platform/components/compare/v5.17.1...v5.17.2) (2026-07-26)
 
 

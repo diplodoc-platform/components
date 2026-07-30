@@ -7,6 +7,7 @@ import React, {createContext, useCallback, useMemo} from 'react';
 export type InterfaceKey =
     | 'toc'
     | 'toc-header'
+    | 'gallery'
     | 'search'
     | 'feedback'
     | 'feedback-aside'

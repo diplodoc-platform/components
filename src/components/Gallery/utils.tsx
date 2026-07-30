@@ -8,20 +8,7 @@ import {FilePreview} from '@gravity-ui/uikit';
 
 const MIN_CONTENT_SIZE = 150;
 
-const ICON_SELECTORS = [
-    '[class^="icon"]',
-    '[class*=" icon"]',
-    '[class*="-icon"]',
-    '[class*="_icon"]',
-    '[class*="Icon"]',
-];
-
 const INTERACTIVE_SELECTORS = [
-    'button',
-    'a[role="button"]',
-    '[role="button"]',
-    '[role="tab"]',
-    '[class*="button"]',
     '[class*="dc-nav-toc-panel__link"]',
     '[class*="erDiagram"]',
     '[class*="mermaid"]',
@@ -30,11 +17,7 @@ const INTERACTIVE_SELECTORS = [
 
 const MISC_EXCLUDED_SELECTORS = ['.dc-contributor-avatars__avatar', '[class*="background"]'];
 
-const EXCLUDED_PARENT_SELECTORS = [
-    ...ICON_SELECTORS,
-    ...INTERACTIVE_SELECTORS,
-    ...MISC_EXCLUDED_SELECTORS,
-].join(', ');
+const EXCLUDED_PARENT_SELECTORS = [...INTERACTIVE_SELECTORS, ...MISC_EXCLUDED_SELECTORS].join(', ');
 
 export type GetGalleryItemVideoArgs = {
     index: number;
@@ -50,26 +33,9 @@ export type ImageSource = {
 export const isExcludedByParent = (el: HTMLElement): boolean =>
     Boolean(el.closest(EXCLUDED_PARENT_SELECTORS));
 
-export const isContentImage = (el: HTMLImageElement): boolean => {
-    if (el.getAttribute('aria-hidden') === 'true') {
-        return false;
-    }
-
-    if (el.getAttribute('role') === 'presentation') {
-        return false;
-    }
-
-    const hasValidParent = ['figure', 'picture', 'p'].some((tag) => Boolean(el.closest(tag)));
-
-    if (!hasValidParent) {
-        return false;
-    }
-
-    return true;
-};
-
-export const isContentSize = (el: SVGSVGElement): boolean => {
+export const isContentSize = (el: Element): boolean => {
     const rect = el.getBoundingClientRect();
+
     return rect.width > MIN_CONTENT_SIZE && rect.height > MIN_CONTENT_SIZE;
 };
 
@@ -82,19 +48,13 @@ export const isSvgElement = (el: Element): el is SVGSVGElement => {
 };
 
 export const isMediaElement = (el: HTMLElement): boolean => {
-    if (isExcludedByParent(el)) {
-        return false;
-    }
+    if (isExcludedByParent(el)) return false;
 
-    if (isImageElement(el)) {
-        return isContentImage(el);
-    }
+    const galleryAttr = el.dataset.gallery;
+    if (galleryAttr === 'true') return true;
+    if (galleryAttr === 'false') return false;
 
-    if (isSvgElement(el)) {
-        return isContentSize(el);
-    }
-
-    return true;
+    return isContentSize(el);
 };
 
 export const getImageMimeType = (src: string): string => {

@@ -38,20 +38,13 @@
 }
 
 .dc-doc-page {
-    &__main {
-        img,
-        svg {
+    &__main[data-gallery-enabled='true'] {
+        img[data-gallery='true'],
+        svg[data-gallery='true'],
+        img[class~='pc-media-component-image__item'],
+        svg[class~='pc-media-component-image__item'] {
             &:not(a *) {
-                &:not(
-                    [class*='dc-contributor-avatars__avatar'] img,
-                    [class*='background'] img,
-                    [class*='icon' i] img,
-                    [class*='icon' i] svg,
-                    [class*='noreferrer'] svg,
-                    [class*='noopener'] svg,
-                    [class*='nav' i] svg,
-                    [class*='button' i] svg
-                ) {
+                &:not([class*='background'] img) {
                     cursor: zoom-in;
                 }
             }

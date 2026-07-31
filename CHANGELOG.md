@@ -1,5 +1,12 @@
 # История изменений
 
+## [5.17.4](https://github.com/diplodoc-platform/components/compare/v5.17.3...v5.17.4) (2026-07-31)
+
+
+### Bug Fixes
+
+* add gallery flag logic and tests ([792684e](https://github.com/diplodoc-platform/components/commit/792684eaa85950d61d97da6c75a1248fa87a73a8))
+
 ## [5.17.3](https://github.com/diplodoc-platform/components/compare/v5.17.2...v5.17.3) (2026-07-28)
 
 

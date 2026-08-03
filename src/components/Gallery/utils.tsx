@@ -53,6 +53,7 @@ export const isMediaElement = (el: HTMLElement): boolean => {
     const galleryAttr = el.dataset.gallery;
     if (galleryAttr === 'true') return true;
     if (galleryAttr === 'false') return false;
+    if (el.dataset.gallerySrc) return true;
 
     return isContentSize(el);
 };
@@ -117,16 +118,27 @@ export function getGalleryItemVideo({index, iframeEl}: GetGalleryItemVideoArgs):
 
 export const getImageSource = (el: HTMLElement): ImageSource => {
     if (isImageElement(el)) {
+        const src = el.dataset.gallerySrc || el.src;
         return {
             name: el.alt || '',
-            src: el.src,
-            mimeType: getImageMimeType(el.src),
+            src,
+            mimeType: getImageMimeType(src),
         };
     }
 
     if (isSvgElement(el)) {
+        const name = el.getAttribute('aria-label') || el.querySelector('title')?.textContent || '';
+
+        if (el.dataset.gallerySrc) {
+            const src = el.dataset.gallerySrc;
+            return {
+                name,
+                src: src,
+                mimeType: getImageMimeType(src),
+            };
+        }
         return {
-            name: el.getAttribute('aria-label') || el.querySelector('title')?.textContent || '',
+            name,
             src: serializeInlineSvg(el),
             mimeType: 'image/svg+xml',
         };

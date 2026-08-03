@@ -1,8 +1,9 @@
-import React, {useEffect} from 'react';
+import React, {useLayoutEffect} from 'react';
 import {GalleryProvider} from '@gravity-ui/components';
 
 import {useInterface} from '../../hooks/useInterface';
 
+import {applyGalleryCursors} from './utils';
 import {useGalleryOpen} from './hooks/useGalleryOpen';
 import './Gallery.scss';
 
@@ -18,12 +19,22 @@ const GalleryCore: React.FC<{contentSelector: string}> = ({contentSelector}) => 
 export const Gallery: React.FC<GalleryProps> = ({contentSelector = '.dc-doc-page__main'}) => {
     const isGalleryHidden = useInterface('gallery');
 
-    useEffect(() => {
-        const element = document.querySelector(contentSelector);
-        if (element) {
-            (element as HTMLElement).dataset.galleryEnabled = String(!isGalleryHidden);
-        }
-    }, [contentSelector, isGalleryHidden]);
+    useLayoutEffect(() => {
+        const container = document.querySelector<HTMLElement>(contentSelector);
+        if (!container) return;
+        applyGalleryCursors(container);
+
+        const images = container.querySelectorAll<HTMLImageElement>('img, svg');
+        const handleLoad = () => applyGalleryCursors(container);
+        images.forEach((img) => {
+            if (img instanceof HTMLImageElement && !img.complete) {
+                img.addEventListener('load', handleLoad, {once: true});
+            }
+        });
+        return () => {
+            images.forEach((img) => img.removeEventListener('load', handleLoad));
+        };
+    }, [contentSelector]);
 
     if (isGalleryHidden) return null;
 

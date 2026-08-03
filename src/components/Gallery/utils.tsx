@@ -16,8 +16,8 @@ const INTERACTIVE_SELECTORS = [
 ];
 
 const MISC_EXCLUDED_SELECTORS = ['.dc-contributor-avatars__avatar', '[class*="background"]'];
-
 const EXCLUDED_PARENT_SELECTORS = [...INTERACTIVE_SELECTORS, ...MISC_EXCLUDED_SELECTORS].join(', ');
+const GALLERY_ITEM_CLASS = 'dc-gallery__item';
 
 export type GetGalleryItemVideoArgs = {
     index: number;
@@ -57,6 +57,17 @@ export const isMediaElement = (el: HTMLElement): boolean => {
 
     return isContentSize(el);
 };
+
+export function applyGalleryCursors(container: HTMLElement): void {
+    const media = container.querySelectorAll<HTMLElement>('img, svg');
+
+    media.forEach((el) => {
+        const isZoomable = isMediaElement(el) && !el.closest('a');
+        if (isZoomable) {
+            el.classList.add(GALLERY_ITEM_CLASS);
+        }
+    });
+}
 
 export const getImageMimeType = (src: string): string => {
     const ext = src.split('.').pop()?.split(/[?#]/)[0]?.toLowerCase();

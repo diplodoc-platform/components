@@ -38,16 +38,10 @@
 }
 
 .dc-doc-page {
-    &__main[data-gallery-enabled='true'] {
-        img[data-gallery='true'],
-        svg[data-gallery='true'],
-        img[class~='pc-media-component-image__item'],
-        svg[class~='pc-media-component-image__item'] {
-            &:not(a *) {
-                &:not([class*='background'] img) {
-                    cursor: zoom-in;
-                }
-            }
+    img[class~='dc-gallery__item'],
+    svg[class~='dc-gallery__item'] {
+        &:not(a *) {
+            cursor: zoom-in;
         }
     }
 }

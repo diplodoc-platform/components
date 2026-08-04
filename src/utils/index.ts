@@ -33,6 +33,10 @@ export function normalizePath(path?: string | null) {
         return path;
     }
 
+    if (path === '/') {
+        return './';
+    }
+
     return path
         .replace(/^\//, '')
         .replace(/\.html(\?.*)?$/, '$1')

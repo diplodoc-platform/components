@@ -1,5 +1,13 @@
 # История изменений
 
+## [5.17.5](https://github.com/diplodoc-platform/components/compare/v5.17.4...v5.17.5) (2026-08-04)
+
+
+### Bug Fixes
+
+* add class for gallery imgs to zoom ([eddc375](https://github.com/diplodoc-platform/components/commit/eddc37518437120fd7bcadd9b8f60f4bb96f3f26))
+* add src path for gallery special attribute ([60bbc92](https://github.com/diplodoc-platform/components/commit/60bbc92c1bcd1ef6781d70dc75bb21c3987d141f))
+
 ## [5.17.4](https://github.com/diplodoc-platform/components/compare/v5.17.3...v5.17.4) (2026-07-31)
 
 

@@ -1,5 +1,12 @@
 # История изменений
 
+## [5.17.6](https://github.com/diplodoc-platform/components/compare/v5.17.5...v5.17.6) (2026-08-05)
+
+
+### Bug Fixes
+
+* adapt gallery styles for mobile devices ([4bacac6](https://github.com/diplodoc-platform/components/commit/4bacac6cf3524665c147101433069da0c1327554))
+
 ## [5.17.5](https://github.com/diplodoc-platform/components/compare/v5.17.4...v5.17.5) (2026-08-04)
 
 

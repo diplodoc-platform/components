@@ -8,7 +8,7 @@ function pathFromRoot(p: string) {
 }
 
 export default defineConfig({
-    testDir: pathFromRoot('src/components'),
+    testDir: pathFromRoot('src'),
     updateSnapshots: process.env.UPDATE_SNAPSHOTS ? 'all' : 'missing',
     snapshotPathTemplate:
         '{testDir}/{testFilePath}/../../__screenshots__/{arg}-{projectName}-{platform}{ext}',

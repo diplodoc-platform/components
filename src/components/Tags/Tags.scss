@@ -1,0 +1,25 @@
+.dc-tags {
+    margin-bottom: var(--g-spacing-6);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--g-spacing-2);
+    align-items: center;
+
+    &__tag {
+        display: grid;
+        flex: 0 0 auto;
+        align-items: center;
+        padding: var(--g-spacing-1) calc(var(--g-spacing-2) + var(--g-spacing-half));
+        border-radius: var(--g-border-radius-m);
+        background: var(--g-color-base-generic);
+        color: inherit;
+        font-size: var(--g-text-body-1-font-size);
+        line-height: var(--g-text-body-2-line-height);
+        text-decoration: none;
+
+        &:hover,
+        &:active {
+            background: var(--g-color-base-generic-hover);
+        }
+    }
+}

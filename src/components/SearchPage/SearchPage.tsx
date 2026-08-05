@@ -20,6 +20,7 @@ interface Loading {
 interface InputProps {
     query: string;
     onSubmit: (query: string) => void;
+    filters?: React.ReactNode;
 }
 
 type RenderInput = {
@@ -34,6 +35,7 @@ interface SearchPageProps extends Loading {
     page: number;
     isMobile?: boolean;
     loading?: boolean;
+    hasRequest?: boolean;
 }
 
 type RenderFoundProps = SearchPageProps & SearchOnClickProps & PaginatorProps;
@@ -96,7 +98,7 @@ const WithoutContentBlock: React.FC<RenderNoContent> = ({loading}) => {
     );
 };
 
-const InputBlock: React.FC<RenderInput> = ({query, onQueryUpdate, onSubmit, inputRef}) => {
+const InputBlock: React.FC<RenderInput> = ({query, onQueryUpdate, onSubmit, inputRef, filters}) => {
     const {t} = useTranslation('search');
 
     return (
@@ -130,6 +132,7 @@ const InputBlock: React.FC<RenderInput> = ({query, onQueryUpdate, onSubmit, inpu
                     </Button>
                 </div>
             </form>
+            {filters && <div className={b('filters')}>{filters}</div>}
         </div>
     );
 };
@@ -148,6 +151,8 @@ const SearchPage = ({
     irrelevantOnClick,
     relevantOnClick,
     loading,
+    hasRequest,
+    filters,
 }: SearchPageInnerProps) => {
     const inputRef = useRef(null);
     const [currentQuery, setCurrentQuery] = useState(query);
@@ -165,11 +170,12 @@ const SearchPage = ({
                         onQueryUpdate: setCurrentQuery,
                         onSubmit,
                         inputRef,
+                        filters,
                     }}
                 />
             </div>
             <div className={b('content')}>
-                {items?.length && query ? (
+                {items?.length && (hasRequest ?? Boolean(query)) ? (
                     <FoundBlock
                         {...{
                             items,

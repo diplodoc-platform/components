@@ -29,3 +29,9 @@ export const CONTRIBUTOR_AVATARS_URL =
     BASE_URL + '/iframe.html?id=components-contributoravatars--contributor-avatars&viewMode=story';
 export const CUSTOM_FOOTER_URL =
     BASE_URL + '/iframe.html?id=components-customfooter--custom-footer&viewMode=story';
+export const TAGS_URL = BASE_URL + '/iframe.html?id=components-tags--tags&viewMode=story';
+export const TAGS_MOBILE_URL = BASE_URL + '/iframe.html?id=components-tags--mobile&viewMode=story';
+export const TAGS_FILTER_URL =
+    BASE_URL + '/iframe.html?id=components-tagsfilter--tags-filter&viewMode=story';
+export const TAGS_FILTER_MOBILE_URL =
+    BASE_URL + '/iframe.html?id=components-tagsfilter--mobile&viewMode=story';

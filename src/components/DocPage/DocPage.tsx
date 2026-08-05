@@ -15,6 +15,7 @@ import type {
 import type {InnerProps} from '../../utils';
 import type {NotificationProps} from '../Notification';
 import type {RenderSidebarIcon} from '../navigation';
+import type {GetSearchLink} from '../Tags';
 import type {ViewerInterface} from '../../contexts/InterfaceContext';
 
 import React from 'react';
@@ -40,6 +41,7 @@ import {ShareButton} from '../ShareButton';
 import {SubNavigation} from '../SubNavigation';
 import {SearchBar, withHighlightedSearchWords} from '../SearchBar';
 import {TocNavPanel} from '../TocNavPanel';
+import {Tags} from '../Tags';
 import UpdatedAtDate from '../UpdatedAtDate/UpdatedAtDate';
 
 import MarkdownButton from './components/MarkdownButton/MarkdownButton';
@@ -103,6 +105,7 @@ export interface DocPageProps extends DocPageData, DocSettings, NotificationProp
     availableLangs?: AvailableLangs;
     beforeSubNavigationContent?: React.ReactNode;
     renderSidebarIcon?: RenderSidebarIcon;
+    getSearchLink?: GetSearchLink;
 }
 
 type DocPageInnerProps = InnerProps<DocPageProps, DocSettings>;
@@ -241,6 +244,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                             {this.renderBody()}
                             {this.renderFeedback()}
                         </ContentWrapper>
+                        {this.renderTags()}
                         {this.renderTocNavPanel()}
                     </div>
                     {this.renderLoader()}
@@ -736,6 +740,17 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             headerPdfLink: inHeader ? pdfLink : undefined,
             headerPdfIconConfig: inHeader ? pdfIconConfig : undefined,
         };
+    }
+
+    private renderTags() {
+        const {getSearchLink, meta} = this.props;
+        const tags = meta.tags || [];
+
+        if (tags.length === 0) {
+            return null;
+        }
+
+        return <Tags tags={tags} getSearchLink={getSearchLink} />;
     }
 
     private renderControls() {

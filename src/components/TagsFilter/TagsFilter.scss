@@ -1,0 +1,56 @@
+.dc-tags-filter {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--g-spacing-2);
+    width: 100%;
+
+    &__tag {
+        display: grid;
+        flex: 0 0 auto;
+        align-items: center;
+        padding: var(--g-spacing-1) calc(var(--g-spacing-2) + var(--g-spacing-half));
+        border: none;
+        border-radius: var(--g-border-radius-m);
+        background: var(--g-color-base-generic);
+        cursor: pointer;
+        font-family: inherit;
+        font-size: var(--g-text-body-1-font-size);
+        line-height: var(--g-text-body-2-line-height);
+        white-space: nowrap;
+
+        &:hover,
+        &:active {
+            background: var(--g-color-base-generic-hover);
+        }
+
+        &_selected {
+            color: var(--g-color-text-brand-contrast);
+            background: var(--g-color-text-link);
+
+            &:hover,
+            &:active {
+                background: var(--g-color-text-link-hover);
+            }
+        }
+    }
+
+    &__toggle {
+        display: grid;
+        flex: 0 0 auto;
+        place-items: center;
+        width: var(--g-spacing-7);
+        height: var(--g-spacing-7);
+        padding: 0;
+        border: none;
+        border-radius: var(--g-border-radius-m);
+        color: inherit;
+        background: var(--g-color-base-generic);
+        cursor: pointer;
+
+        &:hover,
+        &:active {
+            background: var(--g-color-base-generic-hover);
+        }
+    }
+}

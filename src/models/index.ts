@@ -126,6 +126,7 @@ export interface DocMeta {
     updatedAt?: string;
     canonical?: string;
     alternate?: Alternate[];
+    tags?: string[];
 }
 
 export interface TocLabel {
@@ -254,8 +255,11 @@ export interface ISearchProvider {
     onEmptyAction?(query: string): ISearchResultWithAction | null;
     search(
         query: string,
+        page?: number,
+        count?: number,
+        tags?: string[],
     ): Promise<ISearchResult[]> | Promise<{items: ISearchResult[]; total: number}>;
-    link(query: string): string | null;
+    link(query: string, page?: number, tags?: string[]): string | null;
 }
 
 interface ISearchResultBase {

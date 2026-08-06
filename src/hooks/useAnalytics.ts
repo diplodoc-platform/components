@@ -13,11 +13,12 @@ type GtagEventFunction = (
     force?: boolean,
 ) => void;
 
-declare global {
-    interface Window {
-        gtag: undefined | null | GtagEventFunction;
-    }
-}
+// There used to be a `declare global { interface Window { gtag: ... } }` here.
+// It was removed: this package never read `window.gtag` (analytics goes through
+// TagManager.dataLayer), and the type did not match the real gtag.js, whose
+// signature is (command, targetId, params). The global declaration overrode the
+// type of a browser API for every consumer of this package and broke correct
+// calls such as `window.gtag('config', id, {...})`.
 
 export type AnalyticsParams = {
     gtmId: string;

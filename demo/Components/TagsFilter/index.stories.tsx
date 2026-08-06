@@ -1,7 +1,8 @@
 import type {TagsFilterProps} from '@diplodoc/components';
 
-import {TagsFilter as Component} from '@diplodoc/components';
 import {useState} from 'react';
+
+import {TagsFilter as Component} from '@diplodoc/components';
 
 const tags = [
     'Diplodoc',

@@ -4,6 +4,8 @@
     "description_wide_format_enabled": "Enabled",
     "description_wide_format_disabled": "Disabled",
     "label_show_mini_toc": "Navigation for the article",
+    "collapse-toc-text": "Collapse table of contents",
+    "expand-toc-text": "Expand table of contents",
     "description_show_mini_toc_enabled": "Enabled",
     "description_show_mini_toc_disabled": "Disabled",
     "label_theme": "Theme",

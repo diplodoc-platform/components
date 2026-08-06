@@ -4,6 +4,8 @@
     "description_wide_format_enabled": "התאפשר",
     "description_wide_format_disabled": "הושבת",
     "label_show_mini_toc": "ניווט לכתבה",
+    "collapse-toc-text": "כיווץ תוכן העניינים",
+    "expand-toc-text": "הרחבת תוכן העניינים",
     "description_show_mini_toc_enabled": "מופעלת",
     "description_show_mini_toc_disabled": "מושבתת",
     "label_theme": "נושא",

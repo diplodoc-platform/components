@@ -4,6 +4,8 @@
     "description_wide_format_enabled": "Ligado",
     "description_wide_format_disabled": "Desligado",
     "label_show_mini_toc": "Navegar nesta página",
+    "collapse-toc-text": "Recolher o índice",
+    "expand-toc-text": "Expandir o índice",
     "description_show_mini_toc_enabled": "Ativada",
     "description_show_mini_toc_disabled": "Desativada",
     "label_theme": "Tema",

@@ -1,5 +1,6 @@
 import type {RenderSidebarIcon, VcsType} from '@diplodoc/components';
 
+import {useState} from 'react';
 import {Icon, configure as configureUikit} from '@gravity-ui/uikit';
 import cn from 'bem-cn-lite';
 import {Dots9, SquareListUl, Xmark} from '@gravity-ui/icons';
@@ -40,6 +41,7 @@ const DocPageDemo = (
         langs: extendedLangs,
         withConsent: true,
     });
+    const [tocCollapsed, setTocCollapsed] = useState(false);
 
     const content = getContent(lang, singlePage);
 
@@ -71,6 +73,8 @@ const DocPageDemo = (
                 availableLangs={resolveAvailableLangs(args['AvailableLangs'])}
                 beforeSubNavigationContent={mobileView ? undefined : beforeSubNavigationContent}
                 renderSidebarIcon={renderSidebarIcon}
+                tocCollapsed={args['CollapsibleToc'] ? tocCollapsed : undefined}
+                onChangeTocCollapsed={args['CollapsibleToc'] ? setTocCollapsed : undefined}
                 // TODO: return highlight examples
                 // onContentMutation={onContentMutation}
                 // onContentLoaded={onContentLoaded}
@@ -87,6 +91,7 @@ export default {
         HideTocHeader: {control: 'boolean'},
         HideFeedback: {control: 'boolean'},
         HideAsideFeedback: {control: 'boolean'},
+        CollapsibleToc: {control: 'boolean'},
         AvailableLangs: availableLangsArgType,
     },
 };
@@ -97,5 +102,6 @@ export const Document = {
         HideTocHeader: false,
         HideFeedback: false,
         HideAsideFeedback: false,
+        CollapsibleToc: false,
     },
 };

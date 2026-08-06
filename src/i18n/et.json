@@ -4,6 +4,8 @@
     "description_wide_format_enabled": "Sisselülitatud",
     "description_wide_format_disabled": "Väljalülitatud",
     "label_show_mini_toc": "Praeguses artiklis navigeerimine",
+    "collapse-toc-text": "Ahenda sisukord",
+    "expand-toc-text": "Laienda sisukorda",
     "description_show_mini_toc_enabled": "Sisselülitatud",
     "description_show_mini_toc_disabled": "Väljalülitatud",
     "label_theme": "Teema",

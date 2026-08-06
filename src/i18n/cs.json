@@ -4,6 +4,8 @@
     "description_wide_format_enabled": "Povoleno",
     "description_wide_format_disabled": "Zakázáno",
     "label_show_mini_toc": "Navigace k článku",
+    "collapse-toc-text": "Sbalit obsah",
+    "expand-toc-text": "Rozbalit obsah",
     "description_show_mini_toc_enabled": "Zapnuto",
     "description_show_mini_toc_disabled": "Vypnuto",
     "label_theme": "Téma",

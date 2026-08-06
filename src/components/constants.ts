@@ -14,6 +14,8 @@ export const DOC_PAGE_HEADER_HIDDEN_URL =
     BASE_URL + '/iframe.html?args=HideTocHeader:true&id=pages-document--document&viewMode=story';
 export const DOC_PAGE_HEADER_SHOWN_URL =
     BASE_URL + '/iframe.html?args=HideTocHeader:false&id=pages-document--document&viewMode=story';
+export const DOC_PAGE_COLLAPSIBLE_TOC_URL =
+    BASE_URL + '/iframe.html?args=CollapsibleToc:true&id=pages-document--document&viewMode=story';
 export const DOC_PAGE_FEEDBACK_HIDDEN_URL =
     BASE_URL + '/iframe.html?args=HideFeedback:true&id=pages-document--document&viewMode=story';
 export const DOC_PAGE_FEEDBACK_SHOWN_URL =

@@ -4,6 +4,8 @@
     "description_wide_format_enabled": "Ενεργοποιημένη",
     "description_wide_format_disabled": "Απενεργοποιημένη",
     "label_show_mini_toc": "Πλοήγηση τρέχοντος άρθρου",
+    "collapse-toc-text": "Σύμπτυξη πίνακα περιεχομένων",
+    "expand-toc-text": "Ανάπτυξη πίνακα περιεχομένων",
     "description_show_mini_toc_enabled": "Ενεργοποιημένη",
     "description_show_mini_toc_disabled": "Απενεργοποιημένη",
     "label_theme": "Θέμα",

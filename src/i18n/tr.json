@@ -4,6 +4,8 @@
     "description_wide_format_enabled": "Açık",
     "description_wide_format_disabled": "Kapalı",
     "label_show_mini_toc": "Yazı içi navigasyon",
+    "collapse-toc-text": "İçindekiler bölümünü daralt",
+    "expand-toc-text": "İçindekiler bölümünü genişlet",
     "description_show_mini_toc_enabled": "Etkin",
     "description_show_mini_toc_disabled": "Devre dışı",
     "label_theme": "Tema",

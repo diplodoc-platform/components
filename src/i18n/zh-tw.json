@@ -4,6 +4,8 @@
     "description_wide_format_enabled": "已開啓",
     "description_wide_format_disabled": "已關閉",
     "label_show_mini_toc": "浏覽當前文章",
+    "collapse-toc-text": "收合目錄",
+    "expand-toc-text": "展開目錄",
     "description_show_mini_toc_enabled": "已啟用",
     "description_show_mini_toc_disabled": "已停用",
     "label_theme": "主題",

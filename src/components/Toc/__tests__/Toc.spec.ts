@@ -1,6 +1,10 @@
 import {expect, test} from '@playwright/test';
 
-import {DOC_PAGE_HEADER_HIDDEN_URL, DOC_PAGE_HEADER_SHOWN_URL} from '../../constants';
+import {
+    DOC_PAGE_COLLAPSIBLE_TOC_URL,
+    DOC_PAGE_HEADER_HIDDEN_URL,
+    DOC_PAGE_HEADER_SHOWN_URL,
+} from '../../constants';
 import {loadDocumentPage} from '../../utils';
 
 test.beforeEach(async ({page}) => {
@@ -52,4 +56,45 @@ test.describe('Toc header screenshot tests', () => {
             maxDiffPixelRatio: 0.01,
         });
     });
+});
+
+test('Collapses and expands the documentation table of contents', async ({page}) => {
+    await loadDocumentPage(page, DOC_PAGE_COLLAPSIBLE_TOC_URL);
+
+    const layout = page.locator('.dc-doc-layout__left');
+    const toc = page.locator('.dc-toc');
+    const collapseButton = page.getByRole('button', {name: 'Collapse table of contents'});
+    const icon = collapseButton.locator('svg');
+    const tocId = await toc.getAttribute('id');
+
+    await expect(collapseButton).toHaveAttribute('aria-expanded', 'true');
+    expect(tocId).toBeTruthy();
+    await expect(collapseButton).toHaveAttribute('aria-controls', tocId || '');
+    await expect(layout).toHaveCSS('width', '276px');
+    await expect(icon).toHaveAttribute('viewBox', '0 0 8 8');
+    await expect(icon.locator('path')).toHaveAttribute(
+        'd',
+        'm.72 7.64 6.39-3.2a.5.5 0 0 0 0-.89L.72.36A.5.5 0 0 0 0 .81v6.38c0 .37.4.61.72.45Z',
+    );
+
+    await collapseButton.click();
+
+    const expandButton = page.getByRole('button', {name: 'Expand table of contents'});
+    await expect(expandButton).toHaveAttribute('aria-expanded', 'false');
+    await expect(layout).toHaveCSS('width', '56px');
+    await expect(toc).toBeHidden();
+
+    await expandButton.click();
+
+    await expect(collapseButton).toHaveAttribute('aria-expanded', 'true');
+    await expect(layout).toHaveCSS('width', '276px');
+    await expect(toc).toBeVisible();
+});
+
+test('Keeps the table of contents available on mobile', async ({page}) => {
+    await page.setViewportSize({width: 375, height: 800});
+    await loadDocumentPage(page, DOC_PAGE_COLLAPSIBLE_TOC_URL);
+
+    await expect(page.getByRole('button', {name: 'Collapse table of contents'})).toBeHidden();
+    await expect(page.locator('.dc-toc')).toHaveCSS('display', 'flex');
 });

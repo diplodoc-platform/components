@@ -22,6 +22,7 @@ function zip<T>(array: string[], fill: T): Record<string, T> {
 }
 
 export interface TocProps extends TocData {
+    id?: string;
     router: Router;
     headerHeight?: number;
     tocTitleIcon?: React.ReactNode;
@@ -111,11 +112,11 @@ class TocClass extends React.Component<TocInternalProps, TocState> {
     }
 
     render() {
-        const {items, hideTocHeader, extraHeader} = this.props;
+        const {id, items, hideTocHeader, extraHeader} = this.props;
         const content = items ? this.renderList(items) : this.renderEmpty('');
 
         return (
-            <nav className={b()} ref={this.rootRef}>
+            <nav id={id} className={b()} ref={this.rootRef}>
                 {this.renderTop()}
                 <div
                     className={b('content', {

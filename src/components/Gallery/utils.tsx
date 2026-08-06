@@ -20,6 +20,7 @@ const EXCLUDED_PARENT_SELECTORS = [...INTERACTIVE_SELECTORS, ...MISC_EXCLUDED_SE
 const HEADING_SELECTOR = 'h1, h2, h3, h4, h5, h6';
 const TABS_SELECTOR = '.yfm-tabs';
 const TAB_PANEL_SELECTOR = '.yfm-tab-panel';
+const MEDIA_SELECTOR = 'img, svg, .embed-responsive';
 
 export type GetGalleryItemVideoArgs = {
     index: number;
@@ -70,42 +71,42 @@ const getGroupingContext = (el: HTMLElement, container: HTMLElement): HTMLElemen
     return tabPanel && container.contains(tabPanel) ? tabPanel : container;
 };
 
-const isBefore = (first: HTMLElement, second: HTMLElement): boolean =>
-    first.compareDocumentPosition(second) === Node.DOCUMENT_POSITION_FOLLOWING;
-
-const getPreviousBoundary = (
-    media: HTMLElement,
-    boundaries: HTMLElement[],
-): HTMLElement | undefined => {
-    let previousBoundary: HTMLElement | undefined;
-
-    for (const boundary of boundaries) {
-        if (boundary === media || boundary.contains(media) || !isBefore(boundary, media)) continue;
-
-        if (!previousBoundary || isBefore(previousBoundary, boundary)) {
-            previousBoundary = boundary;
-        }
-    }
-
-    return previousBoundary;
-};
-
-const getStructuralBoundaries = (
+const getContextGalleryMedia = (
     media: HTMLElement[],
+    clickedMedia: HTMLElement,
     context: HTMLElement,
     container: HTMLElement,
 ): HTMLElement[] => {
     const structureSelector = context.matches(TAB_PANEL_SELECTOR)
         ? TABS_SELECTOR
         : `${HEADING_SELECTOR}, ${TABS_SELECTOR}`;
-    const structureBoundaries = Array.from(
-        context.querySelectorAll<HTMLElement>(structureSelector),
-    ).filter((el) => getGroupingContext(el, container) === context);
-    const explicitGalleryBoundaries = media.filter(
-        (el) => getGalleryId(el) && getGroupingContext(el, container) === context,
+    const mediaSet = new Set(media);
+    const elements = Array.from(
+        context.querySelectorAll<HTMLElement>(`${structureSelector}, ${MEDIA_SELECTOR}`),
     );
+    let currentGroup: HTMLElement[] = [];
 
-    return [...structureBoundaries, ...explicitGalleryBoundaries];
+    for (const element of elements) {
+        if (getGroupingContext(element, container) !== context) continue;
+
+        const isGalleryMedia = mediaSet.has(element);
+        const isBoundary =
+            element.matches(structureSelector) ||
+            (isGalleryMedia && Boolean(getGalleryId(element)));
+
+        if (isBoundary) {
+            if (currentGroup.includes(clickedMedia)) return currentGroup;
+
+            currentGroup = [];
+            continue;
+        }
+
+        if (isGalleryMedia) {
+            currentGroup.push(element);
+        }
+    }
+
+    return currentGroup.includes(clickedMedia) ? currentGroup : [];
 };
 
 export const getGalleryMedia = (
@@ -120,15 +121,8 @@ export const getGalleryMedia = (
     }
 
     const context = getGroupingContext(clickedMedia, container);
-    const boundaries = getStructuralBoundaries(media, context, container);
-    const previousBoundary = getPreviousBoundary(clickedMedia, boundaries);
 
-    return media.filter(
-        (el) =>
-            !getGalleryId(el) &&
-            getGroupingContext(el, container) === context &&
-            getPreviousBoundary(el, boundaries) === previousBoundary,
-    );
+    return getContextGalleryMedia(media, clickedMedia, context, container);
 };
 
 export const getImageMimeType = (src: string): string => {

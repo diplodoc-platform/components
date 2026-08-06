@@ -17,6 +17,9 @@ const INTERACTIVE_SELECTORS = [
 
 const MISC_EXCLUDED_SELECTORS = ['.dc-contributor-avatars__avatar', '[class*="background"]'];
 const EXCLUDED_PARENT_SELECTORS = [...INTERACTIVE_SELECTORS, ...MISC_EXCLUDED_SELECTORS].join(', ');
+const HEADING_SELECTOR = 'h1, h2, h3, h4, h5, h6';
+const TABS_SELECTOR = '.yfm-tabs';
+const TAB_PANEL_SELECTOR = '.yfm-tab-panel';
 
 export type GetGalleryItemVideoArgs = {
     index: number;
@@ -49,12 +52,83 @@ export const isSvgElement = (el: Element): el is SVGSVGElement => {
 export const isMediaElement = (el: HTMLElement): boolean => {
     if (isExcludedByParent(el)) return false;
 
+    if (el.dataset.galleryId) return true;
+
     const galleryAttr = el.dataset.gallery;
     if (galleryAttr === 'true') return true;
     if (galleryAttr === 'false') return false;
     if (el.dataset.gallerySrc) return true;
 
     return isContentSize(el);
+};
+
+const getGalleryId = (el: HTMLElement): string | undefined => el.dataset.galleryId || undefined;
+
+const getGroupingContext = (el: HTMLElement, container: HTMLElement): HTMLElement => {
+    const tabPanel = el.closest<HTMLElement>(TAB_PANEL_SELECTOR);
+
+    return tabPanel && container.contains(tabPanel) ? tabPanel : container;
+};
+
+const isBefore = (first: HTMLElement, second: HTMLElement): boolean =>
+    first.compareDocumentPosition(second) === Node.DOCUMENT_POSITION_FOLLOWING;
+
+const getPreviousBoundary = (
+    media: HTMLElement,
+    boundaries: HTMLElement[],
+): HTMLElement | undefined => {
+    let previousBoundary: HTMLElement | undefined;
+
+    for (const boundary of boundaries) {
+        if (boundary === media || boundary.contains(media) || !isBefore(boundary, media)) continue;
+
+        if (!previousBoundary || isBefore(previousBoundary, boundary)) {
+            previousBoundary = boundary;
+        }
+    }
+
+    return previousBoundary;
+};
+
+const getStructuralBoundaries = (
+    media: HTMLElement[],
+    context: HTMLElement,
+    container: HTMLElement,
+): HTMLElement[] => {
+    const structureSelector = context.matches(TAB_PANEL_SELECTOR)
+        ? TABS_SELECTOR
+        : `${HEADING_SELECTOR}, ${TABS_SELECTOR}`;
+    const structureBoundaries = Array.from(
+        context.querySelectorAll<HTMLElement>(structureSelector),
+    ).filter((el) => getGroupingContext(el, container) === context);
+    const explicitGalleryBoundaries = media.filter(
+        (el) => getGalleryId(el) && getGroupingContext(el, container) === context,
+    );
+
+    return [...structureBoundaries, ...explicitGalleryBoundaries];
+};
+
+export const getGalleryMedia = (
+    media: HTMLElement[],
+    clickedMedia: HTMLElement,
+    container: HTMLElement,
+): HTMLElement[] => {
+    const galleryId = getGalleryId(clickedMedia);
+
+    if (galleryId) {
+        return media.filter((el) => getGalleryId(el) === galleryId);
+    }
+
+    const context = getGroupingContext(clickedMedia, container);
+    const boundaries = getStructuralBoundaries(media, context, container);
+    const previousBoundary = getPreviousBoundary(clickedMedia, boundaries);
+
+    return media.filter(
+        (el) =>
+            !getGalleryId(el) &&
+            getGroupingContext(el, container) === context &&
+            getPreviousBoundary(el, boundaries) === previousBoundary,
+    );
 };
 
 export const getImageMimeType = (src: string): string => {

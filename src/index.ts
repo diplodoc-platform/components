@@ -22,6 +22,8 @@ export * from './components/Toc';
 export * from './components/ToggleArrow';
 export * from './components/OutsideClick';
 export * from './components/TocNavPanel';
+export * from './components/Tags';
+export * from './components/TagsFilter';
 export * from './components/Feedback';
 export * from './components/Control';
 export * from './components/Controls';

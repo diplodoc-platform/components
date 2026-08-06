@@ -1,5 +1,12 @@
 # История изменений
 
+## [5.18.0](https://github.com/diplodoc-platform/components/compare/v5.17.6...v5.18.0) (2026-08-06)
+
+
+### Features
+
+* added page tags ([#734](https://github.com/diplodoc-platform/components/issues/734)) ([f8ee4fe](https://github.com/diplodoc-platform/components/commit/f8ee4fe543767aaab9e62070e5191b69f94faeae))
+
 ## [5.17.6](https://github.com/diplodoc-platform/components/compare/v5.17.5...v5.17.6) (2026-08-05)
 
 

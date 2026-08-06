@@ -1,5 +1,12 @@
 # История изменений
 
+## [5.18.1](https://github.com/diplodoc-platform/components/compare/v5.18.0...v5.18.1) (2026-08-06)
+
+
+### Bug Fixes
+
+* add pointover to gallery images ([5b4cbc5](https://github.com/diplodoc-platform/components/commit/5b4cbc58745a11d6b7552a5a176042ac8c765fbd))
+
 ## [5.18.0](https://github.com/diplodoc-platform/components/compare/v5.17.6...v5.18.0) (2026-08-06)
 
 

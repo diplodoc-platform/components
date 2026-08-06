@@ -3,6 +3,8 @@ import type {GetSearchLink} from './Tag';
 
 import block from 'bem-cn-lite';
 
+import {getPublicTags} from '../TagsFilter/utils';
+
 import Tag from './Tag';
 import './Tags.scss';
 
@@ -14,7 +16,7 @@ export interface TagsProps {
 }
 
 const Tags: FC<TagsProps> = ({tags, getSearchLink}) => {
-    const publicTags = [...new Set(tags.filter((tag) => !tag.startsWith('_')))];
+    const publicTags = getPublicTags(tags);
 
     if (!publicTags.length) {
         return null;

@@ -11,15 +11,21 @@ import './TagsFilter.scss';
 
 const b = block('dc-tags-filter');
 
-const COLLAPSED_TAGS_COUNT = 12;
+const DEFAULT_COLLAPSED_COUNT = 12;
 
 export interface TagsFilterProps {
     tags: string[];
     selectedTags: string[];
     onChange: (tags: string[]) => void;
+    collapsedCount?: number;
 }
 
-const TagsFilter: FC<TagsFilterProps> = ({tags, selectedTags, onChange}) => {
+const TagsFilter: FC<TagsFilterProps> = ({
+    tags,
+    selectedTags,
+    onChange,
+    collapsedCount = DEFAULT_COLLAPSED_COUNT,
+}) => {
     const {t} = useTranslation('toc-nav-panel');
     const publicTags = useMemo(() => getPublicTags(tags, selectedTags), [tags, selectedTags]);
     const [expanded, setExpanded] = useState(false);
@@ -28,9 +34,8 @@ const TagsFilter: FC<TagsFilterProps> = ({tags, selectedTags, onChange}) => {
         return null;
     }
 
-    const collapsible = publicTags.length > COLLAPSED_TAGS_COUNT;
-    const visibleTags =
-        collapsible && !expanded ? publicTags.slice(0, COLLAPSED_TAGS_COUNT) : publicTags;
+    const collapsible = publicTags.length > collapsedCount;
+    const visibleTags = collapsible && !expanded ? publicTags.slice(0, collapsedCount) : publicTags;
 
     const toggleTag = (tag: string) => {
         onChange(

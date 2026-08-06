@@ -6,6 +6,10 @@ test('filters technical tags from the public tag list', () => {
     expect(getPublicTags(['security', '_internal', 'syntax'])).toEqual(['security', 'syntax']);
 });
 
+test('removes duplicate tags', () => {
+    expect(getPublicTags(['security', 'security', 'syntax'])).toEqual(['security', 'syntax']);
+});
+
 test('keeps selected public tags at the start of the collapsed list', () => {
     expect(getPublicTags(['security', 'syntax', 'reference'], ['reference'])).toEqual([
         'reference',

@@ -8,6 +8,7 @@
     "resolveJsonModule": true,
     "declaration": true,
     "jsx": "react-jsx",
-    "target": "ESNext"
+    "target": "ESNext",
+    "types": ["node"]
   }
 }

@@ -62,12 +62,18 @@ test('Collapses and expands the documentation table of contents', async ({page})
     await loadDocumentPage(page, DOC_PAGE_COLLAPSIBLE_TOC_URL);
 
     const layout = page.locator('.dc-doc-layout__left');
+    const tocWrapper = page.locator('.dc-doc-layout__toc');
     const toc = page.locator('.dc-toc');
     const collapseButton = page.getByRole('button', {name: 'Collapse table of contents'});
     const icon = collapseButton.locator('svg');
     const tocId = await toc.getAttribute('id');
 
     await expect(collapseButton).toHaveAttribute('aria-expanded', 'true');
+    await expect(collapseButton).toHaveCSS('border-top-width', '0px');
+    await expect(tocWrapper).toHaveCSS('border-right-width', '1px');
+    expect(await tocWrapper.evaluate((element) => element.getBoundingClientRect().bottom)).toBe(
+        await page.evaluate(() => window.innerHeight),
+    );
     expect(tocId).toBeTruthy();
     await expect(collapseButton).toHaveAttribute('aria-controls', tocId || '');
     await expect(layout).toHaveCSS('width', '276px');

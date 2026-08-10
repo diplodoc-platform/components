@@ -1,5 +1,15 @@
 # История изменений
 
+## [5.18.3](https://github.com/diplodoc-platform/components/compare/v5.18.2...v5.18.3) (2026-08-10)
+
+
+### Bug Fixes
+
+* add gallery-id attribute and tab logic ([1c87130](https://github.com/diplodoc-platform/components/commit/1c871306d2f9b20e0ef198a6342abd4089dfbb08))
+* switch approach to make groups ([918beec](https://github.com/diplodoc-platform/components/commit/918beec7b1610031ab5e25454dd8674146bd4969))
+* **toc:** the toc does not highlight the title page [#5510](https://github.com/diplodoc-platform/components/issues/5510) ([0865328](https://github.com/diplodoc-platform/components/commit/0865328337fefd8857a9f9d07a183128b5f031aa))
+* **toc:** the toc does not highlight the title page [#5510](https://github.com/diplodoc-platform/components/issues/5510) ([b4678b8](https://github.com/diplodoc-platform/components/commit/b4678b84dc070b3c37eb86a92981196742482a0e))
+
 ## [5.18.2](https://github.com/diplodoc-platform/components/compare/v5.18.1...v5.18.2) (2026-08-07)
 
 

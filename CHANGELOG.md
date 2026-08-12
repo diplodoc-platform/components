@@ -1,5 +1,12 @@
 # История изменений
 
+## [5.18.4](https://github.com/diplodoc-platform/components/compare/v5.18.3...v5.18.4) (2026-08-12)
+
+
+### Bug Fixes
+
+* change image size check to natural dimensions ([6310532](https://github.com/diplodoc-platform/components/commit/63105321436802b64009611fd8a7b2ea409e513b))
+
 ## [5.18.3](https://github.com/diplodoc-platform/components/compare/v5.18.2...v5.18.3) (2026-08-10)
 
 

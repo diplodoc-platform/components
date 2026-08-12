@@ -36,14 +36,18 @@ export type ImageSource = {
 export const isExcludedByParent = (el: HTMLElement): boolean =>
     Boolean(el.closest(EXCLUDED_PARENT_SELECTORS));
 
+export const isImageElement = (el: Element): el is HTMLImageElement => {
+    return el.tagName?.toLowerCase() === 'img';
+};
+
 export const isContentSize = (el: Element): boolean => {
+    if (isImageElement(el)) {
+        return el.naturalWidth > MIN_CONTENT_SIZE && el.naturalHeight > MIN_CONTENT_SIZE;
+    }
+
     const rect = el.getBoundingClientRect();
 
     return rect.width > MIN_CONTENT_SIZE && rect.height > MIN_CONTENT_SIZE;
-};
-
-export const isImageElement = (el: HTMLElement): el is HTMLImageElement => {
-    return el.tagName?.toLowerCase() === 'img';
 };
 
 export const isSvgElement = (el: Element): el is SVGSVGElement => {

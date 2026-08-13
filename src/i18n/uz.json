@@ -162,6 +162,8 @@
     "versions-select-placeholder": "Versiyalar"
   },
   "markdown-button": {
+    "markdown-actions": "Markdown amallari",
+    "copy-as-markdown": "Markdown sifatida nusxalash",
     "view-in-markdown": "Markdown'da ko'rish"
   }
 }

@@ -163,6 +163,8 @@
     "versions-select-placeholder": "Версии"
   },
   "markdown-button": {
-    "view-in-markdown": "Открыть в Markdown"
+    "markdown-actions": "Действия с Markdown",
+    "copy-as-markdown": "Скопировать как Markdown",
+    "view-in-markdown": "Открыть Markdown"
   }
 }

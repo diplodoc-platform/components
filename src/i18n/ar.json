@@ -162,6 +162,8 @@
     "versions-select-placeholder": "الإصدارات"
   },
   "markdown-button": {
+    "markdown-actions": "إجراءات Markdown",
+    "copy-as-markdown": "نسخ بتنسيق Markdown",
     "view-in-markdown": "عرض في Markdown"
   }
 }

@@ -162,6 +162,8 @@
     "versions-select-placeholder": "Εκδόσεις"
   },
   "markdown-button": {
+    "markdown-actions": "Ενέργειες Markdown",
+    "copy-as-markdown": "Αντιγραφή ως Markdown",
     "view-in-markdown": "Προβολή σε Markdown"
   }
 }

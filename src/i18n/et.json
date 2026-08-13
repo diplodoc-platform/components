@@ -162,6 +162,8 @@
     "versions-select-placeholder": "Versioonid"
   },
   "markdown-button": {
+    "markdown-actions": "Markdowni toimingud",
+    "copy-as-markdown": "Kopeeri Markdownina",
     "view-in-markdown": "Vaata Markdownis"
   }
 }

@@ -162,6 +162,8 @@
     "versions-select-placeholder": "גרסאות"
   },
   "markdown-button": {
+    "markdown-actions": "פעולות Markdown",
+    "copy-as-markdown": "העתקה כ-Markdown",
     "view-in-markdown": "הצג ב-Markdown"
   }
 }

@@ -162,6 +162,8 @@
     "versions-select-placeholder": "Нұсқалар"
   },
   "markdown-button": {
+    "markdown-actions": "Markdown әрекеттері",
+    "copy-as-markdown": "Markdown ретінде көшіру",
     "view-in-markdown": "Markdown-да қарау"
   }
 }

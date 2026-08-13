@@ -162,6 +162,8 @@
     "versions-select-placeholder": "Verze"
   },
   "markdown-button": {
+    "markdown-actions": "Akce Markdown",
+    "copy-as-markdown": "Kopírovat jako Markdown",
     "view-in-markdown": "Zobrazit v Markdown"
   }
 }

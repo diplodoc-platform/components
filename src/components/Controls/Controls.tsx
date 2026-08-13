@@ -17,6 +17,7 @@ import {Subscribe, SubscribeView} from '../Subscribe';
 import {useInterface} from '../../hooks';
 
 import {ControlsLayoutContext} from './ControlsLayout';
+import MarkdownControl from './single-controls/MarkdownControl';
 
 import {
     DividerControl,
@@ -61,6 +62,9 @@ export interface ControlsProps {
     hideEditControl?: boolean;
     hideFeedbackControls?: boolean;
     availableLangs?: AvailableLangs;
+    showMarkdownActions?: boolean;
+    mdDocsUrl?: string;
+    onMdDocsButtonClick?: React.MouseEventHandler<HTMLElement>;
 }
 
 const b = block('dc-controls');
@@ -108,6 +112,9 @@ export const ControlsList: React.FC<
         isHiddenAsideFeedback,
         availableLangs = [],
         className,
+        showMarkdownActions,
+        mdDocsUrl,
+        onMdDocsButtonClick,
     } = props;
 
     const {isVerticalView} = useContext(ControlsLayoutContext);
@@ -200,6 +207,13 @@ export const ControlsList: React.FC<
                 onSubscribe={onSubscribe as Defined['onSubscribe']}
                 consentContent={consentContent}
                 view={SubscribeView.Regular}
+            />
+        ),
+        showMarkdownActions && (
+            <MarkdownControl
+                key="markdown-control"
+                mdDocsUrl={mdDocsUrl}
+                onClick={onMdDocsButtonClick}
             />
         ),
     ]

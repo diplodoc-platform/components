@@ -1,5 +1,13 @@
 # История изменений
 
+## [5.18.5](https://github.com/diplodoc-platform/components/compare/v5.18.4...v5.18.5) (2026-08-13)
+
+
+### Bug Fixes
+
+* add hasMarkdownCompanion check ([c157a77](https://github.com/diplodoc-platform/components/commit/c157a776aaeb3cad53434b988f14b5f954e942b5))
+* add markdown buttons ([8025ce3](https://github.com/diplodoc-platform/components/commit/8025ce3afaf6c2eda43c7d5610473a1f8c04defa))
+
 ## [5.18.4](https://github.com/diplodoc-platform/components/compare/v5.18.3...v5.18.4) (2026-08-12)
 
 

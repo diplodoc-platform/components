@@ -162,6 +162,8 @@
     "versions-select-placeholder": "版本"
   },
   "markdown-button": {
+    "markdown-actions": "Markdown 操作",
+    "copy-as-markdown": "复制为 Markdown",
     "view-in-markdown": "在 Markdown 中查看"
   }
 }

@@ -162,6 +162,8 @@
     "versions-select-placeholder": "Versions"
   },
   "markdown-button": {
+    "markdown-actions": "Actions Markdown",
+    "copy-as-markdown": "Copier en Markdown",
     "view-in-markdown": "Voir en Markdown"
   }
 }

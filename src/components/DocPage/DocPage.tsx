@@ -779,6 +779,8 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             hideEditControl,
             hideFeedbackControls,
             availableLangs = [],
+            mdDocsUrl,
+            onMdDocsButtonClick,
         } = this.props;
 
         if (hideControls) {
@@ -818,6 +820,9 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                         availableLangs={availableLangs}
                         pdfLink={headerPdfLink}
                         pdfIconConfig={headerPdfIconConfig}
+                        showMarkdownActions
+                        mdDocsUrl={mdDocsUrl}
+                        onMdDocsButtonClick={onMdDocsButtonClick}
                     />
                 </ControlsLayout>
             </div>

@@ -126,6 +126,7 @@ export interface DocMeta {
     updatedAt?: string;
     canonical?: string;
     alternate?: Alternate[];
+    vcsPath?: string;
     tags?: string[];
 }
 
@@ -192,6 +193,8 @@ export interface LangOptions {
 export type Alternate = {
     href: string;
     hreflang?: string;
+    type?: string;
+    title?: string;
 };
 
 export interface Contributor {

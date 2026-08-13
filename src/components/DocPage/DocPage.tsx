@@ -295,6 +295,16 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
         return name in map ? !map[name] : false;
     }
 
+    private get hasMarkdownCompanion(): boolean {
+        const {mdDocsUrl, meta} = this.props;
+        const hasMarkdownAlternate = meta.alternate?.some(
+            ({type, title}) => type === 'text/markdown' && title === 'Markdown version',
+        );
+        const hasMarkdownVcsPath = /\.md$/i.test(meta.vcsPath || '');
+
+        return Boolean(mdDocsUrl || hasMarkdownAlternate || hasMarkdownVcsPath);
+    }
+
     private handleBodyMutation = (mutationsList: MutationRecord[]) => {
         const {onContentMutation, onContentLoaded} = this.props;
 
@@ -820,7 +830,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                         availableLangs={availableLangs}
                         pdfLink={headerPdfLink}
                         pdfIconConfig={headerPdfIconConfig}
-                        showMarkdownActions
+                        showMarkdownActions={this.hasMarkdownCompanion}
                         mdDocsUrl={mdDocsUrl}
                         onMdDocsButtonClick={onMdDocsButtonClick}
                     />

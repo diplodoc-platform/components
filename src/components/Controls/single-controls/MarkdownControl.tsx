@@ -5,6 +5,7 @@ import {Copy, LogoMarkdown} from '@gravity-ui/icons';
 import {DropdownMenu, Icon} from '@gravity-ui/uikit';
 
 import {useTranslation} from '../../../hooks';
+import {CommonAnalyticsEvent, useAnalytics} from '../../../shared/libs/analytics';
 import {ControlsLayoutContext} from '../ControlsLayout';
 
 export function getMarkdownUrl(currentUrl: string) {
@@ -26,6 +27,7 @@ export interface MarkdownControlProps {
 
 const MarkdownControl: React.FC<MarkdownControlProps> = ({mdDocsUrl, onClick}) => {
     const {t} = useTranslation('markdown-button');
+    const analytics = useAnalytics();
     const {controlClassName, controlSize} = useContext(ControlsLayoutContext);
     const resolveMarkdownUrl = useCallback(
         () => mdDocsUrl || getMarkdownUrl(window.location.href),
@@ -33,6 +35,8 @@ const MarkdownControl: React.FC<MarkdownControlProps> = ({mdDocsUrl, onClick}) =
     );
 
     const copyMarkdown = useCallback(async () => {
+        analytics.track(CommonAnalyticsEvent.DOCS_COPY_AS_MARKDOWN_CLICK);
+
         const response = await fetch(resolveMarkdownUrl(), {
             credentials: 'same-origin',
             headers: {Accept: 'text/markdown'},
@@ -43,17 +47,19 @@ const MarkdownControl: React.FC<MarkdownControlProps> = ({mdDocsUrl, onClick}) =
         }
 
         await navigator.clipboard.writeText(await response.text());
-    }, [resolveMarkdownUrl]);
+    }, [analytics, resolveMarkdownUrl]);
 
     const viewMarkdown = useCallback<NonNullable<DropdownMenuItem<unknown>['action']>>(
         (event) => {
+            analytics.track(CommonAnalyticsEvent.DOCS_VIEW_AS_MARKDOWN_CLICK);
+
             if ('nativeEvent' in event) {
                 onClick?.(event);
             }
 
             window.open(resolveMarkdownUrl(), '_blank', 'noopener,noreferrer');
         },
-        [onClick, resolveMarkdownUrl],
+        [analytics, onClick, resolveMarkdownUrl],
     );
 
     const items = useMemo<DropdownMenuItem<unknown>[]>(

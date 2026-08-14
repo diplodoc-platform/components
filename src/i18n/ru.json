@@ -166,5 +166,8 @@
     "markdown-actions": "Действия с Markdown",
     "copy-as-markdown": "Скопировать как Markdown",
     "view-in-markdown": "Открыть Markdown"
+  },
+  "tags": {
+    "title": "Теги"
   }
 }

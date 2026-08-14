@@ -165,5 +165,8 @@
     "markdown-actions": "Markdown әрекеттері",
     "copy-as-markdown": "Markdown ретінде көшіру",
     "view-in-markdown": "Markdown-да қарау"
+  },
+  "tags": {
+    "title": "Тегтер"
   }
 }

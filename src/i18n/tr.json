@@ -165,5 +165,8 @@
     "markdown-actions": "Markdown işlemleri",
     "copy-as-markdown": "Markdown olarak kopyala",
     "view-in-markdown": "Markdown'da görüntüle"
+  },
+  "tags": {
+    "title": "Etiketler"
   }
 }

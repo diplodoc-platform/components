@@ -165,5 +165,8 @@
     "markdown-actions": "Ações de Markdown",
     "copy-as-markdown": "Copiar como Markdown",
     "view-in-markdown": "Ver em Markdown"
+  },
+  "tags": {
+    "title": "Tags"
   }
 }

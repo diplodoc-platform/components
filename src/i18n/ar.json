@@ -165,5 +165,8 @@
     "markdown-actions": "إجراءات Markdown",
     "copy-as-markdown": "نسخ بتنسيق Markdown",
     "view-in-markdown": "عرض في Markdown"
+  },
+  "tags": {
+    "title": "الوسوم"
   }
 }

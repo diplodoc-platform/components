@@ -165,5 +165,8 @@
     "markdown-actions": "Akce Markdown",
     "copy-as-markdown": "Kopírovat jako Markdown",
     "view-in-markdown": "Zobrazit v Markdown"
+  },
+  "tags": {
+    "title": "Štítky"
   }
 }

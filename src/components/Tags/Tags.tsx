@@ -3,6 +3,7 @@ import type {GetSearchLink} from './Tag';
 
 import block from 'bem-cn-lite';
 
+import {useTranslation} from '../../hooks';
 import {getPublicTags} from '../TagsFilter/utils';
 
 import Tag from './Tag';
@@ -16,6 +17,7 @@ export interface TagsProps {
 }
 
 const Tags: FC<TagsProps> = ({tags, getSearchLink}) => {
+    const {t} = useTranslation('tags');
     const publicTags = getPublicTags(tags);
 
     if (!publicTags.length) {
@@ -24,9 +26,12 @@ const Tags: FC<TagsProps> = ({tags, getSearchLink}) => {
 
     return (
         <div className={b()}>
-            {publicTags.map((tag) => (
-                <Tag key={tag} tag={tag} getSearchLink={getSearchLink} />
-            ))}
+            <h2 className={b('title')}>{t('title')}</h2>
+            <div className={b('list')}>
+                {publicTags.map((tag) => (
+                    <Tag key={tag} tag={tag} getSearchLink={getSearchLink} />
+                ))}
+            </div>
         </div>
     );
 };

@@ -164,5 +164,8 @@
     "markdown-actions": "Действия с Markdown",
     "copy-as-markdown": "Копиране като Markdown",
     "view-in-markdown": "Преглед в Markdown"
+  },
+  "tags": {
+    "title": "Етикети"
   }
 }

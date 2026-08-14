@@ -165,5 +165,8 @@
     "markdown-actions": "Ενέργειες Markdown",
     "copy-as-markdown": "Αντιγραφή ως Markdown",
     "view-in-markdown": "Προβολή σε Markdown"
+  },
+  "tags": {
+    "title": "Ετικέτες"
   }
 }

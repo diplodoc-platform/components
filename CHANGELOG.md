@@ -1,5 +1,12 @@
 # История изменений
 
+## [5.18.7](https://github.com/diplodoc-platform/components/compare/v5.18.6...v5.18.7) (2026-08-14)
+
+
+### Bug Fixes
+
+* add metrics to md menu items ([c4f4d94](https://github.com/diplodoc-platform/components/commit/c4f4d940def34b8d9fe69bcac5088f850d254e95))
+
 ## [5.18.6](https://github.com/diplodoc-platform/components/compare/v5.18.5...v5.18.6) (2026-08-14)
 
 

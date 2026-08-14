@@ -165,5 +165,8 @@
     "markdown-actions": "Markdown 操作",
     "copy-as-markdown": "复制为 Markdown",
     "view-in-markdown": "在 Markdown 中查看"
+  },
+  "tags": {
+    "title": "标签"
   }
 }

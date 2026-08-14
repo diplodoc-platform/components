@@ -242,9 +242,9 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                             {this.underTitleInfo()}
                             {this.showMiniToc && this.renderContentMiniToc()}
                             {this.renderBody()}
+                            {this.renderTags()}
                             {this.renderFeedback()}
                         </ContentWrapper>
-                        {this.renderTags()}
                         {this.renderTocNavPanel()}
                     </div>
                     {this.renderLoader()}

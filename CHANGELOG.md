@@ -1,5 +1,12 @@
 # История изменений
 
+## [5.18.6](https://github.com/diplodoc-platform/components/compare/v5.18.5...v5.18.6) (2026-08-14)
+
+
+### Bug Fixes
+
+* added tags title ([#751](https://github.com/diplodoc-platform/components/issues/751)) ([1779316](https://github.com/diplodoc-platform/components/commit/17793164e3dea73a1c9590c242695e3427ff90ba))
+
 ## [5.18.5](https://github.com/diplodoc-platform/components/compare/v5.18.4...v5.18.5) (2026-08-13)
 
 

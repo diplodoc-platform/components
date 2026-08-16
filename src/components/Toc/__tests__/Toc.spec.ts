@@ -97,10 +97,36 @@ test('Collapses and expands the documentation table of contents', async ({page})
     await expect(toc).toBeVisible();
 });
 
-test('Keeps the table of contents available on mobile', async ({page}) => {
-    await page.setViewportSize({width: 375, height: 800});
+test('Keeps the table of contents available after resizing to mobile', async ({page}) => {
     await loadDocumentPage(page, DOC_PAGE_COLLAPSIBLE_TOC_URL);
 
-    await expect(page.getByRole('button', {name: 'Collapse table of contents'})).toBeHidden();
-    await expect(page.locator('.dc-toc')).toHaveCSS('display', 'flex');
+    const toc = page.locator('.dc-toc');
+    const collapseButton = page.getByRole('button', {name: 'Collapse table of contents'});
+
+    await collapseButton.click();
+    await expect(toc).toBeHidden();
+
+    await page.setViewportSize({width: 375, height: 800});
+
+    await expect(page.getByRole('button', {name: 'Expand table of contents'})).toBeHidden();
+    await expect(toc).toHaveCSS('display', 'flex');
+});
+
+test('Does not show the collapse button without a change handler', async ({page}) => {
+    await loadDocumentPage(page);
+
+    await expect(page.locator('.dc-doc-layout__toc-collapse-button')).toHaveCount(0);
+});
+
+test('Preserves the mobile navigation transition with reduced motion', async ({page}) => {
+    await page.emulateMedia({reducedMotion: 'reduce'});
+    await loadDocumentPage(page, DOC_PAGE_COLLAPSIBLE_TOC_URL);
+
+    const layout = page.locator('.dc-doc-layout__left');
+
+    await expect(layout).toHaveCSS('transition-property', 'none');
+
+    await page.setViewportSize({width: 375, height: 800});
+
+    await expect(layout).toHaveCSS('transition-property', 'left');
 });

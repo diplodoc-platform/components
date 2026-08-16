@@ -35,6 +35,10 @@
         width: 276px;
         transition: width 150ms ease-out;
 
+        @media (prefers-reduced-motion: reduce) {
+            transition: none;
+        }
+
         &_full-screen {
             flex: initial;
         }
@@ -264,12 +268,6 @@
             &_toc-collapsed {
                 width: 56px;
             }
-        }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-        &__left {
-            transition: none;
         }
     }
 }

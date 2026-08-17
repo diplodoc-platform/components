@@ -1,5 +1,12 @@
 # История изменений
 
+## [5.19.0](https://github.com/diplodoc-platform/components/compare/v5.18.7...v5.19.0) (2026-08-17)
+
+
+### Features
+
+* добавить сворачиваемое оглавление ([#740](https://github.com/diplodoc-platform/components/issues/740)) ([ae49f14](https://github.com/diplodoc-platform/components/commit/ae49f14ff2f6235aebf1bfdf5a790593af0a7c34))
+
 ## [5.18.7](https://github.com/diplodoc-platform/components/compare/v5.18.6...v5.18.7) (2026-08-14)
 
 

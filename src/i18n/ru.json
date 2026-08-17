@@ -4,6 +4,8 @@
     "description_wide_format_enabled": "Включен",
     "description_wide_format_disabled": "Выключен",
     "label_show_mini_toc": "Навигация по текущей статье",
+    "collapse-toc-text": "Свернуть оглавление",
+    "expand-toc-text": "Развернуть оглавление",
     "description_show_mini_toc_enabled": "Включена",
     "description_show_mini_toc_disabled": "Выключена",
     "label_theme": "Тема",

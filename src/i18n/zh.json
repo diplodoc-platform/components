@@ -4,6 +4,8 @@
     "description_wide_format_enabled": "已开启",
     "description_wide_format_disabled": "已关闭",
     "label_show_mini_toc": "浏览当前文章",
+    "collapse-toc-text": "折叠目录",
+    "expand-toc-text": "展开目录",
     "description_show_mini_toc_enabled": "已启用",
     "description_show_mini_toc_disabled": "已禁用",
     "label_theme": "主题",

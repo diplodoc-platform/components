@@ -4,6 +4,8 @@
     "description_wide_format_enabled": "Habilitado",
     "description_wide_format_disabled": "Deshabilitado",
     "label_show_mini_toc": "Navegación por el artículo",
+    "collapse-toc-text": "Contraer la tabla de contenido",
+    "expand-toc-text": "Expandir la tabla de contenido",
     "description_show_mini_toc_enabled": "Activada",
     "description_show_mini_toc_disabled": "Desactivada",
     "label_theme": "Tema",

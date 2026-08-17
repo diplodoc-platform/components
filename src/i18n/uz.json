@@ -4,6 +4,8 @@
     "description_wide_format_enabled": "Yoqilgan",
     "description_wide_format_disabled": "Oʻchirilgan",
     "label_show_mini_toc": "Joriy maqola ichida navigatsiya",
+    "collapse-toc-text": "Mundarijani yig‘ish",
+    "expand-toc-text": "Mundarijani yoyish",
     "description_show_mini_toc_enabled": "Yoqilgan",
     "description_show_mini_toc_disabled": "O'chirilgan",
     "label_theme": "Mavzu",

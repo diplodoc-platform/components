@@ -80,6 +80,8 @@ export interface DocPageProps extends DocPageData, DocSettings, NotificationProp
     onChangeLang?: (lang: `${Lang}` | Lang, options?: LangOptions) => void;
     onChangeFullScreen?: (value: boolean) => void;
     onChangeSinglePage?: (value: boolean) => void;
+    tocCollapsed?: boolean;
+    onChangeTocCollapsed?: (value: boolean) => void;
     onChangeWideFormat?: (value: boolean) => void;
     onChangeShowMiniToc?: (value: boolean) => void;
     onChangeBookmarkPage?: (value: boolean) => void;
@@ -178,6 +180,8 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             hideToc,
             footer,
             onChangeSinglePage,
+            tocCollapsed,
+            onChangeTocCollapsed,
             pdfIconConfig,
             useMainTag,
             onChangeLang,
@@ -227,6 +231,8 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                 footer={footer}
                 singlePage={singlePage}
                 onChangeSinglePage={onChangeSinglePage}
+                tocCollapsed={tocCollapsed}
+                onChangeTocCollapsed={onChangeTocCollapsed}
                 pdfLink={tocPdfLink}
                 pdfIconConfig={pdfIconConfig}
                 legacyToc={legacyToc}

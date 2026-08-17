@@ -4,6 +4,8 @@
     "description_wide_format_enabled": "Қосулы",
     "description_wide_format_disabled": "Сөндірулі",
     "label_show_mini_toc": "Ағымдағы мақала бойынша навигация",
+    "collapse-toc-text": "Мазмұнды жию",
+    "expand-toc-text": "Мазмұнды жаю",
     "description_show_mini_toc_enabled": "Қосулы",
     "description_show_mini_toc_disabled": "Өшірулі",
     "label_theme": "Тақырып",

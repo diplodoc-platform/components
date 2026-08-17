@@ -21,6 +21,8 @@ export interface DocContentPageProps extends DocContentPageData {
     useMainTag?: boolean;
     legacyToc?: boolean;
     fullScreen?: boolean;
+    tocCollapsed?: boolean;
+    onChangeTocCollapsed?: (value: boolean) => void;
     viewerInterface?: Record<string, boolean>;
     hideTocHeader?: boolean;
     pdfLink?: string;
@@ -40,6 +42,8 @@ export const DocContentPage: React.FC<DocContentPageProps> = ({
     useMainTag,
     legacyToc,
     fullScreen,
+    tocCollapsed,
+    onChangeTocCollapsed,
     hideTocHeader,
     pdfLink,
     textSize,
@@ -57,6 +61,8 @@ export const DocContentPage: React.FC<DocContentPageProps> = ({
             className={b(modes)}
             hideToc={hideToc}
             fullScreen={fullScreen || data?.fullScreen}
+            tocCollapsed={tocCollapsed}
+            onChangeTocCollapsed={onChangeTocCollapsed}
             tocTitleIcon={tocTitleIcon}
             footer={footer}
             hideRight={true}

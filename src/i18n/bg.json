@@ -4,6 +4,8 @@
     "description_wide_format_enabled": "Включен",
     "description_wide_format_disabled": "Изключен",
     "label_show_mini_toc": "Навигация в текущата статия",
+    "collapse-toc-text": "Свиване на съдържанието",
+    "expand-toc-text": "Разгъване на съдържанието",
     "description_show_mini_toc_enabled": "Включена",
     "description_show_mini_toc_disabled": "Изключена",
     "label_theme": "Тема",

@@ -31,6 +31,8 @@ export interface DocLeadingPageProps extends DocLeadingPageData, NotificationPro
     legacyToc?: boolean;
     isMobile?: boolean;
     fullScreen?: boolean;
+    tocCollapsed?: boolean;
+    onChangeTocCollapsed?: (value: boolean) => void;
     pdfLink?: string;
     textSize?: TextSizes;
 }
@@ -135,6 +137,8 @@ export const DocLeadingPage: React.FC<DocLeadingPageProps> = ({
     notificationCb,
     isMobile,
     fullScreen,
+    tocCollapsed,
+    onChangeTocCollapsed,
     pdfLink,
     textSize,
 }) => {
@@ -154,6 +158,8 @@ export const DocLeadingPage: React.FC<DocLeadingPageProps> = ({
             footer={footer}
             legacyToc={legacyToc}
             fullScreen={fullScreen}
+            tocCollapsed={tocCollapsed}
+            onChangeTocCollapsed={onChangeTocCollapsed}
             pdfLink={pdfLink}
         >
             <DocLayout.Center>

@@ -4,6 +4,8 @@
     "description_wide_format_enabled": "Activé",
     "description_wide_format_disabled": "Désactivé",
     "label_show_mini_toc": "Navigation pour l’article",
+    "collapse-toc-text": "Réduire la table des matières",
+    "expand-toc-text": "Développer la table des matières",
     "description_show_mini_toc_enabled": "Activée",
     "description_show_mini_toc_disabled": "Désactivée",
     "label_theme": "Thème",

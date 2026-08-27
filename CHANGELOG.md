@@ -1,5 +1,12 @@
 # История изменений
 
+## [5.19.1](https://github.com/diplodoc-platform/components/compare/v5.19.0...v5.19.1) (2026-08-27)
+
+
+### Bug Fixes
+
+* **deps:** Update dev:@diplodoc/transform@4.77.15 ([ad9bab7](https://github.com/diplodoc-platform/components/commit/ad9bab78a8fd8ea4eae18691adf814e508737ddc))
+
 ## [5.19.0](https://github.com/diplodoc-platform/components/compare/v5.18.7...v5.19.0) (2026-08-17)
 
 

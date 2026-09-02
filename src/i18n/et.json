@@ -173,6 +173,7 @@
   },
   "share": {
     "share-text": "Jaga",
-    "link-copied-text": "Link on kopeeritud"
+    "link-copied-text": "Link on kopeeritud",
+    "copy-failed-text": "Linki kopeerimine ebaõnnestus"
   }
 }

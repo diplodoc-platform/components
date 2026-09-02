@@ -173,6 +173,7 @@
   },
   "share": {
     "share-text": "Ulashish",
-    "link-copied-text": "Havola nusxalandi"
+    "link-copied-text": "Havola nusxalandi",
+    "copy-failed-text": "Havolani nusxalab bo'lmadi"
   }
 }

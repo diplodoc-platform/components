@@ -172,6 +172,7 @@
   },
   "share": {
     "share-text": "Споделяне",
-    "link-copied-text": "Връзката е копирана"
+    "link-copied-text": "Връзката е копирана",
+    "copy-failed-text": "Връзката не можа да бъде копирана"
   }
 }

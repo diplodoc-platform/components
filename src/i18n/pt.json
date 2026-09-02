@@ -173,6 +173,7 @@
   },
   "share": {
     "share-text": "Partilhar",
-    "link-copied-text": "Ligação copiada"
+    "link-copied-text": "Ligação copiada",
+    "copy-failed-text": "Não foi possível copiar a ligação"
   }
 }

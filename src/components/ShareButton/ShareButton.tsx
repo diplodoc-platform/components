@@ -1,7 +1,8 @@
 import type {ButtonSize, ButtonView} from '@gravity-ui/uikit';
+import type {ShareResult} from '../../hooks';
 import type {ClassNameProps} from '../../models';
 
-import React, {useCallback, useRef} from 'react';
+import React, {useCallback, useRef, useState} from 'react';
 import {ArrowShapeTurnUpRight, Check} from '@gravity-ui/icons';
 import {Button, Popup} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
@@ -17,7 +18,7 @@ const ICON_SIZE = {
     height: 24,
 };
 
-const COPIED_HINT_TIMEOUT = 3000;
+const HINT_TIMEOUT = 3000;
 
 type IconSize = {
     width: number;
@@ -41,17 +42,20 @@ export const ShareButton: React.FC<ShareButtonProps> = ({
     const {t} = useTranslation('share');
     const shareHandler = useShareHandler(title);
     const buttonRef = useRef<HTMLButtonElement>(null);
-    const copiedHint = usePopupState({autoclose: COPIED_HINT_TIMEOUT});
+    const [copyResult, setCopyResult] = useState<Extract<ShareResult, 'copied' | 'failed'>>();
+    const hint = usePopupState({autoclose: HINT_TIMEOUT});
 
     const clickHandler = useCallback(() => {
         shareHandler().then((result) => {
-            if (result === 'copied') {
-                copiedHint.open();
+            // the system share sheet reports itself, only copying needs a hint
+            if (result === 'copied' || result === 'failed') {
+                setCopyResult(result);
+                hint.open();
             }
         });
-    }, [shareHandler, copiedHint]);
+    }, [shareHandler, hint]);
 
-    const copied = copiedHint.visible;
+    const copied = hint.visible && copyResult === 'copied';
     const Icon = copied ? Check : ArrowShapeTurnUpRight;
 
     return (
@@ -71,17 +75,19 @@ export const ShareButton: React.FC<ShareButtonProps> = ({
             {buttonRef.current && (
                 <Popup
                     anchorElement={buttonRef.current}
-                    open={copied}
+                    open={hint.visible}
                     onOpenChange={(open) => {
                         if (!open) {
-                            copiedHint.close();
+                            hint.close();
                         }
                     }}
                     className={b('tooltip')}
                     placement="bottom-end"
                     returnFocus={false}
                 >
-                    <span className={b('tooltip-text')}>{t('link-copied-text')}</span>
+                    <span className={b('tooltip-text')}>
+                        {copied ? t('link-copied-text') : t('copy-failed-text')}
+                    </span>
                 </Popup>
             )}
         </React.Fragment>

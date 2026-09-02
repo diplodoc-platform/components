@@ -173,6 +173,7 @@
   },
   "share": {
     "share-text": "שיתוף",
-    "link-copied-text": "הקישור הועתק"
+    "link-copied-text": "הקישור הועתק",
+    "copy-failed-text": "לא ניתן להעתיק את הקישור"
   }
 }

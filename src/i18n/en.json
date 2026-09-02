@@ -173,6 +173,7 @@
   },
   "share": {
     "share-text": "Share",
-    "link-copied-text": "Link copied"
+    "link-copied-text": "Link copied",
+    "copy-failed-text": "Couldn't copy the link"
   }
 }

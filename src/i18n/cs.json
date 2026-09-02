@@ -173,6 +173,7 @@
   },
   "share": {
     "share-text": "Sdílet",
-    "link-copied-text": "Odkaz byl zkopírován"
+    "link-copied-text": "Odkaz byl zkopírován",
+    "copy-failed-text": "Odkaz se nepodařilo zkopírovat"
   }
 }

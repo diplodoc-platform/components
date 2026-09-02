@@ -64,4 +64,27 @@ test.describe('ShareButton test', () => {
             .toBe(page.url());
         await expect(page.locator(COPIED_HINT_SELECTOR)).toHaveText('Link copied');
     });
+
+    test('Reports a failure when the clipboard is not available either', async ({page}) => {
+        await page.addInitScript(() => {
+            Object.defineProperty(navigator, 'share', {
+                configurable: true,
+                value: undefined,
+            });
+            Object.defineProperty(navigator, 'clipboard', {
+                configurable: true,
+                value: undefined,
+            });
+            Object.defineProperty(document, 'execCommand', {
+                configurable: true,
+                value: () => false,
+            });
+        });
+
+        await loadDocumentPage(page, DOC_PAGE_MOBILE_URL);
+
+        await page.locator(SHARE_BUTTON_SELECTOR).first().click();
+
+        await expect(page.locator(COPIED_HINT_SELECTOR)).toHaveText("Couldn't copy the link");
+    });
 });

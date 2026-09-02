@@ -173,6 +173,7 @@
   },
   "share": {
     "share-text": "Paylaş",
-    "link-copied-text": "Bağlantı kopyalandı"
+    "link-copied-text": "Bağlantı kopyalandı",
+    "copy-failed-text": "Bağlantı kopyalanamadı"
   }
 }

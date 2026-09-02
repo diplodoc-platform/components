@@ -173,6 +173,7 @@
   },
   "share": {
     "share-text": "Бөлісу",
-    "link-copied-text": "Сілтеме көшірілді"
+    "link-copied-text": "Сілтеме көшірілді",
+    "copy-failed-text": "Сілтемені көшіру мүмкін болмады"
   }
 }

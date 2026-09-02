@@ -170,5 +170,9 @@
   },
   "tags": {
     "title": "الوسوم"
+  },
+  "share": {
+    "share-text": "مشاركة",
+    "link-copied-text": "تم نسخ الرابط"
   }
 }

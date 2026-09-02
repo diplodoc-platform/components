@@ -170,5 +170,9 @@
   },
   "tags": {
     "title": "Etiketler"
+  },
+  "share": {
+    "share-text": "Paylaş",
+    "link-copied-text": "Bağlantı kopyalandı"
   }
 }

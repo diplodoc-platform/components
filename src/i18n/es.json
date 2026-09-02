@@ -170,5 +170,9 @@
   },
   "tags": {
     "title": "Etiquetas"
+  },
+  "share": {
+    "share-text": "Compartir",
+    "link-copied-text": "Enlace copiado"
   }
 }

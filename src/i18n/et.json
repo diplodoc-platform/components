@@ -170,5 +170,9 @@
   },
   "tags": {
     "title": "Sildid"
+  },
+  "share": {
+    "share-text": "Jaga",
+    "link-copied-text": "Link on kopeeritud"
   }
 }

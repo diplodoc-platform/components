@@ -170,5 +170,9 @@
   },
   "tags": {
     "title": "Štítky"
+  },
+  "share": {
+    "share-text": "Sdílet",
+    "link-copied-text": "Odkaz byl zkopírován"
   }
 }

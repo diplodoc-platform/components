@@ -170,5 +170,9 @@
   },
   "tags": {
     "title": "Тегтер"
+  },
+  "share": {
+    "share-text": "Бөлісу",
+    "link-copied-text": "Сілтеме көшірілді"
   }
 }

@@ -170,5 +170,9 @@
   },
   "tags": {
     "title": "תגיות"
+  },
+  "share": {
+    "share-text": "שיתוף",
+    "link-copied-text": "הקישור הועתק"
   }
 }

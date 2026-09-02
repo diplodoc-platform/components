@@ -171,5 +171,9 @@
   },
   "tags": {
     "title": "Теги"
+  },
+  "share": {
+    "share-text": "Поделиться",
+    "link-copied-text": "Ссылка скопирована"
   }
 }

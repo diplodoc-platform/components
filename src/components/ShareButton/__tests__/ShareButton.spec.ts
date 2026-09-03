@@ -65,6 +65,26 @@ test.describe('ShareButton test', () => {
         await expect(page.locator(COPIED_HINT_SELECTOR)).toHaveText('Link copied');
     });
 
+    test('Copies the link without the async clipboard API', async ({page}) => {
+        // the async clipboard is missing outside of a secure context
+        await page.addInitScript(() => {
+            Object.defineProperty(navigator, 'share', {
+                configurable: true,
+                value: undefined,
+            });
+            Object.defineProperty(navigator, 'clipboard', {
+                configurable: true,
+                value: undefined,
+            });
+        });
+
+        await loadDocumentPage(page, DOC_PAGE_MOBILE_URL);
+
+        await page.locator(SHARE_BUTTON_SELECTOR).first().click();
+
+        await expect(page.locator(COPIED_HINT_SELECTOR)).toHaveText('Link copied');
+    });
+
     test('Reports a failure when the clipboard is not available either', async ({page}) => {
         await page.addInitScript(() => {
             Object.defineProperty(navigator, 'share', {

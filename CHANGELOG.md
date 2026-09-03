@@ -1,5 +1,12 @@
 # История изменений
 
+## [5.19.2](https://github.com/diplodoc-platform/components/compare/v5.19.1...v5.19.2) (2026-09-03)
+
+
+### Bug Fixes
+
+* copy the link when the Web Share API is unavailable ([#759](https://github.com/diplodoc-platform/components/issues/759)) ([c5d09f1](https://github.com/diplodoc-platform/components/commit/c5d09f1a39d93fbde45950906e10430f3dcc0570))
+
 ## [5.19.1](https://github.com/diplodoc-platform/components/compare/v5.19.0...v5.19.1) (2026-08-27)
 
 

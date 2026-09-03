@@ -170,5 +170,10 @@
   },
   "tags": {
     "title": "Teglar"
+  },
+  "share": {
+    "share-text": "Ulashish",
+    "link-copied-text": "Havola nusxalandi",
+    "copy-failed-text": "Havolani nusxalab bo'lmadi"
   }
 }

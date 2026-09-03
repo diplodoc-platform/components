@@ -1,3 +1,5 @@
+@use '../../styles/mixins';
+
 // same as bookmark button keep it sync :)
 
 .dc-share-button {
@@ -6,5 +8,20 @@
 
     &:hover::before {
         background-color: transparent;
+    }
+
+    &__tooltip {
+        display: flex;
+        align-items: center;
+        padding: 4px 8px;
+        border: none;
+        height: 26px;
+    }
+
+    &__tooltip-text {
+        display: block;
+        white-space: nowrap;
+
+        @include mixins.text-size(body-1);
     }
 }

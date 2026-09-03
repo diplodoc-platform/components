@@ -170,5 +170,10 @@
   },
   "tags": {
     "title": "标签"
+  },
+  "share": {
+    "share-text": "分享",
+    "link-copied-text": "链接已复制",
+    "copy-failed-text": "无法复制链接"
   }
 }

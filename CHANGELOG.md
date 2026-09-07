@@ -1,5 +1,12 @@
 # История изменений
 
+## [5.20.1](https://github.com/diplodoc-platform/components/compare/v5.20.0...v5.20.1) (2026-09-07)
+
+
+### Bug Fixes
+
+* add wide format ([#766](https://github.com/diplodoc-platform/components/issues/766)) ([6052be4](https://github.com/diplodoc-platform/components/commit/6052be452de1346ba73d4542bb1aa596d7d97431))
+
 ## [5.20.0](https://github.com/diplodoc-platform/components/compare/v5.19.2...v5.20.0) (2026-09-07)
 
 

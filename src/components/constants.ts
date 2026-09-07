@@ -39,3 +39,5 @@ export const TAGS_FILTER_URL =
     BASE_URL + '/iframe.html?id=components-tagsfilter--tags-filter&viewMode=story';
 export const TAGS_FILTER_MOBILE_URL =
     BASE_URL + '/iframe.html?id=components-tagsfilter--mobile&viewMode=story';
+export const BACK_TO_TOP_URL =
+    BASE_URL + '/iframe.html?id=components-backtotop--back-to-top&viewMode=story';

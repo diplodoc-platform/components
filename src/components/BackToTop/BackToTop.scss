@@ -8,6 +8,10 @@ $right-column-width: 224px;
     right: calc(max(0px, (100% - #{$page-width}) / 2) + #{$right-column-width});
     z-index: 110;
 
+    .dc-root_wide-format & {
+        right: calc(max(0px, (100% - #{$page-width-wide}) / 2) + #{$right-column-width});
+    }
+
     .mobile & {
         right: auto;
         left: 16px;

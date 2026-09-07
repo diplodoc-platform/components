@@ -1,5 +1,12 @@
 # История изменений
 
+## [5.20.0](https://github.com/diplodoc-platform/components/compare/v5.19.2...v5.20.0) (2026-09-07)
+
+
+### Features
+
+* add back to top button ([#764](https://github.com/diplodoc-platform/components/issues/764)) ([f47d1a6](https://github.com/diplodoc-platform/components/commit/f47d1a6e665cae8cfcf5b740c685b184e8d2ed38))
+
 ## [5.19.2](https://github.com/diplodoc-platform/components/compare/v5.19.1...v5.19.2) (2026-09-03)
 
 

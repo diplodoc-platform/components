@@ -1,0 +1,123 @@
+[
+  {
+    "name": "Overview",
+    "href": "#overview",
+    "id": "e791c8fa03abd01b0a544fc7235022f7"
+  },
+  {
+    "name": "Quick start",
+    "href": "#quick-start",
+    "id": "ed2bdc3c40406eceb65d4e3b6323a16c"
+  },
+  {
+    "name": "Yandex Flavored Markdown",
+    "expanded": false,
+    "href": "#markdown",
+    "items": [
+      {
+        "name": "Syntax",
+        "items": [
+          {
+            "name": "Overview",
+            "href": "#syntax-overview",
+            "id": "cc3cd8ce896a9178d638c1dbf8129f11"
+          },
+          {
+            "name": "Basic markup",
+            "href": "#basic-markup",
+            "id": "b637ef82e97958680314533737b36e57"
+          },
+          {
+            "name": "Lists",
+            "href": "#lists",
+            "id": "3b02d2eff25874e2eb1e39518dadcedc"
+          },
+          {
+            "name": "Tables",
+            "items": [
+              {
+                "name": "GFM Tables",
+                "href": "#tables",
+                "id": "8f0ddfba89070063f0c69a44dedfca1c"
+              },
+              {
+                "name": "Multiline tables",
+                "href": "#multi-tables",
+                "id": "4eeeb77ed9353b9679b245af8194ff43"
+              }
+            ],
+            "id": "4fea9780e4fd08a1c6bfc5707b4c7f01"
+          },
+          {
+            "name": "Notes",
+            "href": "#notes",
+            "id": "18e6a43134b0088a6f1edd56a3c1b011"
+          }
+        ],
+        "id": "35a4c4af382fbf3b93bd7f3575492e64"
+      },
+      {
+        "name": "Settings",
+        "href": "#settings",
+        "id": "2d73aa064983e9c736de14bc4db066d7"
+      }
+    ],
+    "id": "0306901f3d63c90a53cc752d61ddbce5"
+  },
+  {
+    "name": "Contents",
+    "href": "#contents",
+    "id": "23ff2a1c8fdff8655b93f890e2436a26"
+  },
+  {
+    "name": "Leading page",
+    "href": "#leading-page",
+    "id": "7d533f3687cba23f1f560e8ee749c50c"
+  },
+  {
+    "name": "Page constructor",
+    "items": [
+      {
+        "name": "Overview",
+        "href": "#page-constructor",
+        "id": "aa9dc8105b533c9e78a088a55d105659"
+      },
+      {
+        "name": "Example 1",
+        "href": "#pc-example1",
+        "id": "74e29f97951dea8e3c14c00923e06a45"
+      },
+      {
+        "name": "Example 2",
+        "href": "#pc-example2",
+        "id": "42c45ce086d9fd7c5f359bc7e1d62d81"
+      },
+      {
+        "name": "Example 3 (fullScreen mode)",
+        "href": "#pc-example3",
+        "id": "91eb10b0f3da39a6ba9425da6fb831ff"
+      }
+    ],
+    "id": "0c87cd89568340c52388093d1055739a"
+  },
+  {
+    "name": "Variable presets",
+    "href": "#presets",
+    "id": "71300809e72bfdbfd4f7f97dd8695dec"
+  },
+  {
+    "name": "Configuration file",
+    "href": "#config",
+    "id": "b3b47b30afa8e07763e63ab90841780b"
+  },
+  {
+    "name": "Reusing content",
+    "href": "#includes",
+    "id": "019aeaf91f8f7ca71382b94d36c3d443"
+  },
+  {
+    "name": "Linter configuration file",
+    "href": "#lint",
+    "id": "c1683a4a7bf4514648de2c6a989b7398"
+  }
+]

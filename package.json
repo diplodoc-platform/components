@@ -78,7 +78,7 @@
     "@gravity-ui/components": "^4.16.0",
     "@gravity-ui/icons": "^2.5.0",
     "@gravity-ui/navigation": "^6.1.2",
-    "@gravity-ui/page-constructor": "^8.11.0",
+    "@gravity-ui/page-constructor": "^8.21.1",
     "@gravity-ui/uikit": "^7.26.0",
     "bem-cn-lite": "4.1.0",
     "clsx": "^2.1.1",

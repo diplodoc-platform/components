@@ -42,7 +42,7 @@ interface SearchPageProps extends RenderNoContent {
     hasRequest?: boolean;
 }
 
-type RenderFoundProps = SearchPageProps & SearchOnClickProps & PaginatorProps;
+type RenderFoundProps = {items: ISearchItem[]} & SearchOnClickProps & PaginatorProps;
 
 type SearchPageInnerProps = SearchPageProps & SearchOnClickProps & InputProps & PaginatorProps;
 

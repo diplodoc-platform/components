@@ -83,3 +83,49 @@ export const TagsFilter = {
 export const Mobile = {
     args: {...args, tags: mobileTags, Mobile: true},
 };
+
+export const ResultCounts = {
+    args: {
+        tags: [
+            'инструкция',
+            'информация',
+            'мета',
+            'сборка',
+            'локализация',
+            'структура',
+            'навигация',
+        ],
+        selectedTags: [],
+        tagCounts: {
+            информация: 10,
+            мета: 15,
+            инструкция: 0,
+            сборка: 0,
+            локализация: 12,
+            структура: 105,
+            навигация: 99,
+        },
+    },
+};
+
+export const SelectedWithoutResults = {
+    args: {
+        ...ResultCounts.args,
+        selectedTags: ['инструкция'],
+    },
+};
+
+const manyTagCounts = Object.fromEntries(
+    Array.from({length: 105}, (_, index) => [
+        `тег ${index + 1}`,
+        [10, 15, 12, 105, 99, 100, 0][index % 7],
+    ]),
+);
+
+export const ManyTags = {
+    args: {
+        tags: Object.keys(manyTagCounts),
+        selectedTags: [],
+        tagCounts: manyTagCounts,
+    },
+};

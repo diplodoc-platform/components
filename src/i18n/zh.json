@@ -137,6 +137,8 @@
     "search_close": "关闭",
     "search_request-query": "根据请求提供的结果",
     "search_not-found-title": "未找到与您的请求相关的信息",
+    "search_not-found-filtered-text": "未找到符合所选标签的结果：{{tags}}。请重置筛选条件或修改查询。",
+    "search_reset-filters": "重置筛选条件",
     "search_not-found-text": "请您检查一下拼写是否正确或尝试其他关键词。",
     "search_mark_like": "所需信息",
     "search_mark_dislike": "完全没有此类信息",

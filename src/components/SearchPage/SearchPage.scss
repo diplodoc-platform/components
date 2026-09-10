@@ -8,6 +8,7 @@
     justify-content: center;
 
     &__layout {
+        box-sizing: border-box;
         max-width: variables.$centerBlockMaxWidth;
         width: 100%;
     }
@@ -28,12 +29,25 @@
     &__search {
         &-field,
         &-item {
-            margin-bottom: 36px;
+            margin-bottom: 28px;
         }
+    }
+
+    &__reset-filters {
+        margin-top: var(--g-spacing-4);
     }
 
     &__subtitle {
         margin-bottom: 18px;
+    }
+
+    &__empty-subtitle {
+        margin-bottom: 8px;
+    }
+
+    &__subtitle,
+    &__empty-subtitle {
+        @include mixins.text-size(body-2);
     }
 
     &__paginator {
@@ -45,6 +59,7 @@
         margin-top: 16px;
 
         &__layout {
+            box-sizing: border-box;
             padding: 0 12px;
         }
 

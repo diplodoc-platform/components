@@ -137,6 +137,8 @@
     "search_close": "Close",
     "search_request-query": "Search results",
     "search_not-found-title": "No results found for your request",
+    "search_not-found-filtered-text": "No results match the selected tags: {{tags}}. Reset the filter or try another query.",
+    "search_reset-filters": "Reset filter",
     "search_not-found-text": "Please check the spelling or try another keywords.",
     "search_mark_like": "like",
     "search_mark_dislike": "dislike",

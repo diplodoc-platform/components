@@ -1,5 +1,12 @@
 # История изменений
 
+## [5.20.2](https://github.com/diplodoc-platform/components/compare/v5.20.1...v5.20.2) (2026-09-10)
+
+
+### Bug Fixes
+
+* improve search tag filters ([#771](https://github.com/diplodoc-platform/components/issues/771)) ([bed34ee](https://github.com/diplodoc-platform/components/commit/bed34ee17269bdd99db25f1141d9765bb777f92a))
+
 ## [5.20.1](https://github.com/diplodoc-platform/components/compare/v5.20.0...v5.20.1) (2026-09-07)
 
 

@@ -137,6 +137,8 @@
     "search_close": "關閉",
     "search_request-query": "根據請求提供的結果",
     "search_not-found-title": "未找到與您的請求相關的信息",
+    "search_not-found-filtered-text": "找不到符合所選標籤的結果：{{tags}}。請重設篩選條件或修改查詢。",
+    "search_reset-filters": "重設篩選條件",
     "search_not-found-text": "請您檢查一下拼寫是否正確或嘗試其他關鍵詞。",
     "search_mark_like": "所需信息",
     "search_mark_dislike": "完全沒有此類信息",

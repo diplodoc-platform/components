@@ -137,6 +137,8 @@
     "search_close": "סגירה",
     "search_request-query": "תוצאות חיפוש",
     "search_not-found-title": "אין תוצאות לבקשה שלך",
+    "search_not-found-filtered-text": "אין תוצאות התואמות לתגיות שנבחרו: {{tags}}. יש לאפס את המסנן או לשנות את החיפוש.",
+    "search_reset-filters": "איפוס המסנן",
     "search_not-found-text": "נא לבדוק את האיות או לנסות מילות מפתח אחרות",
     "search_mark_like": "אהבתי",
     "search_mark_dislike": "לא אהבתי",

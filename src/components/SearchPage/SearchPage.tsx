@@ -8,6 +8,7 @@ import block from 'bem-cn-lite';
 import {useTranslation} from '../../hooks';
 import {Paginator} from '../Paginator';
 import {SearchItem} from '../SearchItem';
+import {getPublicTags} from '../TagsFilter/utils';
 
 import './SearchPage.scss';
 
@@ -28,9 +29,12 @@ type RenderInput = {
     onQueryUpdate: (arg: string) => void;
 } & InputProps;
 
-type RenderNoContent = Loading;
+interface RenderNoContent extends Loading {
+    selectedTags?: string[];
+    onResetFilters?: () => void;
+}
 
-interface SearchPageProps extends Loading {
+interface SearchPageProps extends RenderNoContent {
     items: ISearchItem[];
     page: number;
     isMobile?: boolean;
@@ -58,7 +62,7 @@ const FoundBlock: React.FC<RenderFoundProps> = ({
 
     return (
         <div className={b('search-result')}>
-            <h3 className={b('subtitle')}>{t('search_request-query')}</h3>
+            <h2 className={b('subtitle')}>{t('search_request-query')}</h2>
             <div className={b('search-list')}>
                 {items.map((item: ISearchItem) => (
                     <SearchItem
@@ -85,15 +89,30 @@ const FoundBlock: React.FC<RenderFoundProps> = ({
     );
 };
 
-const WithoutContentBlock: React.FC<RenderNoContent> = ({loading}) => {
+const WithoutContentBlock: React.FC<RenderNoContent> = ({
+    loading,
+    selectedTags = [],
+    onResetFilters,
+}) => {
     const {t} = useTranslation('search');
+
+    const tags = getPublicTags(selectedTags);
 
     return loading ? (
         <Loader />
     ) : (
         <div className={b('search-empty')}>
-            <h3>{t('search_not-found-title')}</h3>
-            <div>{t('search_not-found-text')}</div>
+            <h3 className={b('empty-subtitle')}>{t('search_not-found-title')}</h3>
+            <div>
+                {tags.length
+                    ? t('search_not-found-filtered-text', {tags: tags.join(', ')})
+                    : t('search_not-found-text')}
+            </div>
+            {tags.length > 0 && onResetFilters && (
+                <Button className={b('reset-filters')} view="outlined" onClick={onResetFilters}>
+                    {t('search_reset-filters')}
+                </Button>
+            )}
         </div>
     );
 };
@@ -153,6 +172,8 @@ const SearchPage = ({
     loading,
     hasRequest,
     filters,
+    selectedTags,
+    onResetFilters,
 }: SearchPageInnerProps) => {
     const inputRef = useRef(null);
     const [currentQuery, setCurrentQuery] = useState(query);
@@ -191,7 +212,11 @@ const SearchPage = ({
                         }}
                     />
                 ) : (
-                    <WithoutContentBlock loading={loading} />
+                    <WithoutContentBlock
+                        loading={loading}
+                        selectedTags={selectedTags}
+                        onResetFilters={onResetFilters}
+                    />
                 )}
             </div>
         </div>

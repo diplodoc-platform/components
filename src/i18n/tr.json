@@ -137,6 +137,8 @@
     "search_close": "Kapat",
     "search_request-query": "Sorgu sonuçları",
     "search_not-found-title": "Sorgunuza uygun bir şey bulunamadı",
+    "search_not-found-filtered-text": "Seçilen etiketlerle eşleşen sonuç yok: {{tags}}. Filtreyi sıfırlayın veya sorguyu değiştirin.",
+    "search_reset-filters": "Filtreyi sıfırla",
     "search_not-found-text": "Lütfen, sorgunuzda yazım hatası olmadığından emin olun veya farklı anahtar kelimeler kullanmayı deneyin.",
     "search_mark_like": "tam aradığım şey",
     "search_mark_dislike": "tamamen alakasız",

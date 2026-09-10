@@ -1,3 +1,5 @@
+@use '../../styles/mixins';
+
 .dc-tags-filter {
     display: flex;
     flex-wrap: wrap;
@@ -5,23 +7,45 @@
     gap: var(--g-spacing-2);
     width: 100%;
 
+    &__title {
+        width: 100%;
+        margin: 0 0 var(--g-spacing-1);
+        color: var(--g-color-text-primary);
+        font-weight: 500;
+
+        @include mixins.text-size(body-1);
+    }
+
+    &__count {
+        font-weight: inherit;
+        font-variant-numeric: tabular-nums;
+        opacity: 0.5;
+    }
+
     &__tag {
         display: grid;
-        flex: 0 0 auto;
+        gap: var(--g-spacing-2);
+        grid-template-columns: 1fr auto;
         align-items: center;
         padding: var(--g-spacing-1) calc(var(--g-spacing-2) + var(--g-spacing-half));
         border: none;
         border-radius: var(--g-border-radius-m);
+        color: inherit;
         background: var(--g-color-base-generic);
         cursor: pointer;
         font-family: inherit;
-        font-size: var(--g-text-body-1-font-size);
-        line-height: var(--g-text-body-2-line-height);
         white-space: nowrap;
+        @include mixins.text-size(body-1);
 
         &:hover,
         &:active {
             background: var(--g-color-base-generic-hover);
+        }
+
+        &:disabled {
+            color: var(--g-color-text-hint);
+            background: var(--g-color-base-generic);
+            cursor: default;
         }
 
         &_selected {

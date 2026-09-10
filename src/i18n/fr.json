@@ -137,6 +137,8 @@
     "search_close": "Fermer",
     "search_request-query": "Résultats de la recherche",
     "search_not-found-title": "Aucun résultat n’a été trouvé pour votre requête",
+    "search_not-found-filtered-text": "Aucun résultat ne correspond aux tags sélectionnés : {{tags}}. Réinitialisez le filtre ou modifiez la recherche.",
+    "search_reset-filters": "Réinitialiser le filtre",
     "search_not-found-text": "Veuillez vérifier l’orthographe ou essayer un autre mot-clé.",
     "search_mark_like": "aimer",
     "search_mark_dislike": "ne pas aimer",

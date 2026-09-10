@@ -1,8 +1,7 @@
 import type {ISearchItem} from '@diplodoc/components';
 
 import {useState} from 'react';
-
-import {SearchPage} from '@diplodoc/components';
+import {SearchPage, TagsFilter} from '@diplodoc/components';
 
 import mockData from './data';
 
@@ -57,4 +56,64 @@ export const Search = {
     args: {
         Mobile: false,
     },
+};
+
+const tagItems = [
+    {
+        title: 'Метаданные документа',
+        url: '/meta',
+        description: 'Метаинформация о странице',
+        tags: ['информация', 'мета'],
+    },
+    {
+        title: 'Инструкция по установке',
+        url: '/install',
+        description: 'Установка Diplodoc',
+        tags: ['инструкция'],
+    },
+];
+
+const TagSearchDemo = ({selectedTags: initialTags = []}: {selectedTags?: string[]}) => {
+    const [query, setQuery] = useState('мета');
+    const [selectedTags, setSelectedTags] = useState(initialTags);
+    const matches = tagItems.filter((item) =>
+        `${item.title} ${item.description}`.toLowerCase().includes(query.toLowerCase()),
+    );
+    const tags = ['информация', 'мета', 'инструкция'];
+    const tagCounts = Object.fromEntries(
+        tags.map((tag) => [tag, matches.filter((item) => item.tags.includes(tag)).length]),
+    );
+    const items = matches.filter(
+        (item) => !selectedTags.length || item.tags.some((tag) => selectedTags.includes(tag)),
+    );
+
+    return (
+        <SearchPage
+            query={query}
+            onSubmit={setQuery}
+            items={items}
+            page={1}
+            totalItems={items.length}
+            onPageChange={() => {}}
+            hasRequest={true}
+            selectedTags={selectedTags}
+            onResetFilters={() => setSelectedTags([])}
+            filters={
+                <TagsFilter
+                    tags={tags}
+                    selectedTags={selectedTags}
+                    tagCounts={tagCounts}
+                    onChange={setSelectedTags}
+                />
+            }
+        />
+    );
+};
+
+export const TagFilters = {
+    render: () => <TagSearchDemo />,
+};
+
+export const EmptyTagIntersection = {
+    render: () => <TagSearchDemo selectedTags={['инструкция']} />,
 };

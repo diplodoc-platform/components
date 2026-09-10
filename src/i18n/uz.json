@@ -137,6 +137,8 @@
     "search_close": "Yopish",
     "search_request-query": "Qidiruv soʻrovi natijalari",
     "search_not-found-title": "Qidiruv soʻrovingiz boʻyicha hech narsa topilmadi",
+    "search_not-found-filtered-text": "Tanlangan teglarga mos natija topilmadi: {{tags}}. Filtrni tiklang yoki so‘rovni o‘zgartiring.",
+    "search_reset-filters": "Filtrni tiklash",
     "search_not-found-text": "Toʻgʻri yozilganini tekshiring yoki boshqa kalit soʻzlar bilan urining.",
     "search_mark_like": "narsani qidirish",
     "search_mark_dislike": "mutlaqo bu emas",

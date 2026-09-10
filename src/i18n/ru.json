@@ -138,6 +138,8 @@
     "search_close": "Закрыть",
     "search_request-query": "Результаты по запросу",
     "search_not-found-title": "По вашему запросу ничего не найдено",
+    "search_not-found-filtered-text": "Нет результатов с выбранными тегами: {{tags}}. Сбросьте фильтр или измените запрос.",
+    "search_reset-filters": "Сбросить фильтр",
     "search_not-found-text": "Пожалуйста, проверьте правильность написания или попробуйте другие ключевые слова.",
     "search_mark_like": "то, что нужно",
     "search_mark_dislike": "вообще не про то",

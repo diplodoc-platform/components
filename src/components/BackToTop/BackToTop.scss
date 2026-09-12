@@ -1,15 +1,22 @@
 $page-width: 1280px;
 $page-width-wide: 1440px;
+$page-offset: 24px;
 $right-column-width: 224px;
 
 .dc-back-to-top {
+    --dc-back-to-top-offset: #{$page-offset};
+
     position: fixed;
     bottom: 64px;
-    right: calc(max(0px, (100% - #{$page-width}) / 2) + #{$right-column-width});
+    right: calc(max(0px, (100% - #{$page-width}) / 2) + var(--dc-back-to-top-offset));
     z-index: 110;
 
+    body:has(.dc-mini-toc) & {
+        --dc-back-to-top-offset: #{$right-column-width};
+    }
+
     .dc-root_wide-format & {
-        right: calc(max(0px, (100% - #{$page-width-wide}) / 2) + #{$right-column-width});
+        right: calc(max(0px, (100% - #{$page-width-wide}) / 2) + var(--dc-back-to-top-offset));
     }
 
     .mobile & {

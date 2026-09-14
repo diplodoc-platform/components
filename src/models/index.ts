@@ -128,6 +128,7 @@ export interface DocMeta {
     alternate?: Alternate[];
     vcsPath?: string;
     tags?: string[];
+    summary?: string;
 }
 
 export interface TocLabel {

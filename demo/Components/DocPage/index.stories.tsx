@@ -1,10 +1,10 @@
-import type {RenderSidebarIcon, VcsType} from '@diplodoc/components';
+import type {RenderSidebarIcon} from '@diplodoc/components';
 
-import {useState} from 'react';
 import {Icon, configure as configureUikit} from '@gravity-ui/uikit';
-import cn from 'bem-cn-lite';
 import {Dots9, SquareListUl, Xmark} from '@gravity-ui/icons';
 
+import {useState} from 'react';
+import cn from 'bem-cn-lite';
 import {DocPage, configure as configureDocs} from '@diplodoc/components';
 
 import {ServiceLink} from '../shared/service-link';
@@ -18,6 +18,7 @@ import {
     resolveAvailableLangs,
 } from '../shared/story-config';
 import {
+    type StoryArgs,
     convertPathToOriginalArticle,
     createGeneratePathToVcs,
     renderLoader,
@@ -34,9 +35,9 @@ configureDocs({lang: 'en'});
 const renderSidebarIcon: RenderSidebarIcon = ({isSidebarOpened}) =>
     isSidebarOpened ? <Xmark width={20} height={20} /> : <Dots9 width={20} height={20} />;
 
-const DocPageDemo = (
-    args: Record<string, boolean> & {Pdf: string; Search: string; VCS: VcsType},
-) => {
+type DocPageDemoProps = StoryArgs & {HeadingCount?: number; Summary?: string};
+
+const DocPageDemo = (args: DocPageDemoProps) => {
     const {lang, singlePage, mobileView, base, overrides} = usePageProps(args, {
         langs: extendedLangs,
         withConsent: true,
@@ -51,7 +52,15 @@ const DocPageDemo = (
         tocTitleIcon = <Icon data={SquareListUl} size={16} />;
     }
 
-    const props = {...content, ...base};
+    const props = {
+        ...content,
+        ...base,
+        headings:
+            typeof args.HeadingCount === 'number'
+                ? content.headings.slice(0, args.HeadingCount)
+                : content.headings,
+        meta: {...content.meta, summary: args.Summary},
+    };
     Object.assign(props, ...overrides);
 
     const viewerInterface = {
@@ -92,6 +101,8 @@ export default {
         HideFeedback: {control: 'boolean'},
         HideAsideFeedback: {control: 'boolean'},
         CollapsibleToc: {control: 'boolean'},
+        HeadingCount: {control: 'number'},
+        Summary: {control: 'text'},
         AvailableLangs: availableLangsArgType,
     },
 };
@@ -103,5 +114,24 @@ export const Document = {
         HideFeedback: false,
         HideAsideFeedback: false,
         CollapsibleToc: false,
+        Summary: '',
+    },
+};
+
+export const WithSummary = {
+    args: {
+        ...Document.args,
+        Mobile: true,
+        Summary:
+            'A short summary that describes the page and helps readers understand what they will find inside.',
+    },
+};
+
+export const WithSummaryOnly = {
+    args: {
+        ...Document.args,
+        HeadingCount: 1,
+        Mobile: true,
+        Summary: 'Короткое описание статьи "О нас"',
     },
 };

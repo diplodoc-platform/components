@@ -6,6 +6,7 @@ import block from 'bem-cn-lite';
 import clsx from 'clsx';
 
 import {useTranslation} from '../../hooks';
+import Summary from '../Summary/Summary';
 
 import './MiniToc.scss';
 
@@ -16,11 +17,13 @@ const overflownClassName = 'dc-mini-toc_overflowed';
 type MiniTocProps = {
     headings: readonly FlatHeadingItem[];
     activeHeading: FlatHeadingItem | null;
+    summary?: string;
     onItemClick?: (event: MouseEvent) => void;
 };
 
-const MiniToc: FC<MiniTocProps> = ({headings, activeHeading, onItemClick}) => {
+const MiniToc: FC<MiniTocProps> = ({headings, activeHeading, summary, onItemClick}) => {
     const {t} = useTranslation('mini-toc');
+    const hasSections = headings.length >= 2;
 
     const [isOverflown, setIsOverflown] = useState(false);
     const rootContainerRef = useRef<HTMLUListElement>(null);
@@ -61,32 +64,39 @@ const MiniToc: FC<MiniTocProps> = ({headings, activeHeading, onItemClick}) => {
         }
     }, [refMappings, activeHeading]);
 
-    return headings.length ? (
-        <nav className={b()} aria-label={t('article-navigation')}>
+    return hasSections || summary ? (
+        <nav className={b({'summary-only': !hasSections})} aria-label={t('article-navigation')}>
             <h2 className={b('title')}>{t('title')}:</h2>
-            <ul
-                className={clsx(b('sections'), isOverflown && overflownClassName)}
-                aria-label={t('description')}
-                ref={rootContainerRef}
-            >
-                {headings.map((heading) => (
-                    <li
-                        key={heading.href}
-                        data-hash={heading.href}
-                        onClick={onItemClick}
-                        className={b('section', {
-                            child: heading.isChild,
-                            active: heading.href === activeHeading?.href,
-                        })}
-                        ref={refCb(heading)}
-                    >
-                        <a href={heading.href} className={b('section-link')} data-router-shallow>
-                            {heading.title}
-                        </a>
-                    </li>
-                ))}
-            </ul>
-            <div className={b('bottom')} />
+            <Summary summary={summary} />
+            {hasSections && (
+                <ul
+                    className={clsx(b('sections'), isOverflown && overflownClassName)}
+                    aria-label={t('description')}
+                    ref={rootContainerRef}
+                >
+                    {headings.map((heading) => (
+                        <li
+                            key={heading.href}
+                            data-hash={heading.href}
+                            onClick={onItemClick}
+                            className={b('section', {
+                                child: heading.isChild,
+                                active: heading.href === activeHeading?.href,
+                            })}
+                            ref={refCb(heading)}
+                        >
+                            <a
+                                href={heading.href}
+                                className={b('section-link')}
+                                data-router-shallow
+                            >
+                                {heading.title}
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+            )}
+            {hasSections && <div className={b('bottom')} />}
         </nav>
     ) : null;
 };

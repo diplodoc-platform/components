@@ -1,5 +1,12 @@
 # История изменений
 
+## [5.20.4](https://github.com/diplodoc-platform/components/compare/v5.20.3...v5.20.4) (2026-09-14)
+
+
+### Bug Fixes
+
+* back-to-top position ([#775](https://github.com/diplodoc-platform/components/issues/775)) ([25a4115](https://github.com/diplodoc-platform/components/commit/25a4115182149c64568c88b2783616971566559c))
+
 ## [5.20.3](https://github.com/diplodoc-platform/components/compare/v5.20.2...v5.20.3) (2026-09-12)
 
 

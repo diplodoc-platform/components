@@ -35,7 +35,14 @@ configureDocs({lang: 'en'});
 const renderSidebarIcon: RenderSidebarIcon = ({isSidebarOpened}) =>
     isSidebarOpened ? <Xmark width={20} height={20} /> : <Dots9 width={20} height={20} />;
 
-type DocPageDemoProps = StoryArgs & {HeadingCount?: number; Summary?: string};
+type DocPageDemoProps = StoryArgs & {
+    HideTocHeader?: boolean;
+    HideFeedback?: boolean;
+    HideAsideFeedback?: boolean;
+    CollapsibleToc?: boolean;
+    HeadingCount?: number;
+    Summary?: string;
+};
 
 const DocPageDemo = (args: DocPageDemoProps) => {
     const {lang, singlePage, mobileView, base, overrides} = usePageProps(args, {

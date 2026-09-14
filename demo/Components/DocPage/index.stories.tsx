@@ -2,9 +2,9 @@ import type {RenderSidebarIcon} from '@diplodoc/components';
 
 import {Icon, configure as configureUikit} from '@gravity-ui/uikit';
 import {Dots9, SquareListUl, Xmark} from '@gravity-ui/icons';
-
 import {useState} from 'react';
 import cn from 'bem-cn-lite';
+
 import {DocPage, configure as configureDocs} from '@diplodoc/components';
 
 import {ServiceLink} from '../shared/service-link';

@@ -47,7 +47,7 @@ export const BackToTop: React.FC<BackToTopProps> = ({isMobile, className}) => {
             className={b(null, className)}
             view="raised"
             size="m"
-            onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}
+            onClick={() => window.scrollTo({top: 0, behavior: 'auto'})}
         >
             <Button.Icon>
                 <ArrowUp />

@@ -1,5 +1,12 @@
 # История изменений
 
+## [5.22.0](https://github.com/diplodoc-platform/components/compare/v5.21.0...v5.22.0) (2026-09-15)
+
+
+### Features
+
+* added article summary ([#778](https://github.com/diplodoc-platform/components/issues/778)) ([baee86a](https://github.com/diplodoc-platform/components/commit/baee86acfdae75c6f03f92f4a91bebf7b5802006))
+
 ## [5.21.0](https://github.com/diplodoc-platform/components/compare/v5.20.4...v5.21.0) (2026-09-14)
 
 

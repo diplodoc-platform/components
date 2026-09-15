@@ -50,10 +50,17 @@
     }
 
     &__wrapper {
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
         width: 100%;
     }
 
     &__mini-toc {
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+
         @media (max-width: map.get(variables.$screenBreakpoints, 'md') - 1) {
             width: 100%;
             max-height: 0px;
@@ -74,7 +81,8 @@
                     100vh - var(--dc-header-height, variables.$headerHeight) - var(
                             --dc-subnavigation-height,
                             variables.$subNavigationHeight
-                        )
+                        ) -
+                        1px
                 );
                 transition: max-height 300ms 0s;
             }

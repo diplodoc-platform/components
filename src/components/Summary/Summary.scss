@@ -5,6 +5,7 @@
 
     &__text {
         color: var(--dc-color-mini-toc, var(--g-color-text-secondary));
+        overflow-wrap: anywhere;
 
         margin: 0;
 

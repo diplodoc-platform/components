@@ -34,10 +34,20 @@ const MiniToc: FC<MiniTocProps> = ({headings, activeHeading, summary, onItemClic
     };
 
     useLayoutEffect(() => {
-        const scrollHeight = rootContainerRef.current?.scrollHeight ?? 0;
-        const clientHeight = rootContainerRef.current?.clientHeight ?? 0;
+        const root = rootContainerRef.current;
 
-        setIsOverflown(scrollHeight > clientHeight);
+        if (!root) {
+            setIsOverflown(false);
+            return;
+        }
+
+        const updateOverflow = () => setIsOverflown(root.scrollHeight > root.clientHeight);
+        const observer = new ResizeObserver(updateOverflow);
+
+        updateOverflow();
+        observer.observe(root);
+
+        return () => observer.disconnect();
     }, [headings]);
 
     useLayoutEffect(() => {

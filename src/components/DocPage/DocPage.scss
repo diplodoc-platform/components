@@ -12,10 +12,20 @@
     $block: &;
 
     &__aside {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        box-sizing: border-box;
         position: fixed;
         top: calc(
             var(--dc-header-height, #{variables.$headerHeight}) +
                 var(--dc-subheader-height, #{variables.$subHeaderHeight})
+        );
+        max-height: calc(
+            100vh - var(--dc-header-height, #{variables.$headerHeight}) - var(
+                    --dc-subheader-height,
+                    #{variables.$subHeaderHeight}
+                )
         );
 
         padding-top: 24px;
@@ -27,11 +37,7 @@
             z-index: 117;
             position: sticky;
 
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-
-            box-sizing: border-box;
+            max-height: none;
             width: 100%;
             padding: 0;
         }

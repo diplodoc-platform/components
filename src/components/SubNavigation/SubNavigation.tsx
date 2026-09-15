@@ -42,6 +42,7 @@ export interface SubNavigationProps {
     hideBurger: boolean;
     hideTocHeader?: boolean;
     tocTitleIcon?: React.ReactNode;
+    summary?: string;
     onMiniTocItemClick?: (event: MouseEvent) => void;
     renderSidebarIcon?: RenderSidebarIcon;
 }
@@ -59,6 +60,7 @@ const SubNavigation = memo(
         hideBurger,
         hideTocHeader,
         tocTitleIcon,
+        summary,
         onMiniTocItemClick,
         renderSidebarIcon,
     }: SubNavigationProps) => {
@@ -155,6 +157,7 @@ const SubNavigation = memo(
                     key={keyDOM}
                     headings={flatHeadings}
                     activeHeading={activeHeading}
+                    summary={summary}
                     onItemClick={onItemClick}
                 />
             </div>

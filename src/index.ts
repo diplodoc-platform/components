@@ -18,6 +18,7 @@ export * from './components/SubNavigation';
 export * from './components/ShareButton';
 export * from './components/SocialSharingMeta';
 export * from './components/StageLabel';
+export * from './components/Summary';
 export * from './components/Text';
 export * from './components/Toc';
 export * from './components/ToggleArrow';

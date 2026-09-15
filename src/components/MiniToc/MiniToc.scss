@@ -5,7 +5,36 @@
 .dc-mini-toc {
     $class: &;
 
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    min-height: 0;
+    max-height: calc(
+        100vh - var(--dc-header-height, #{variables.$headerHeight}) - var(
+                --dc-subnavigation-height,
+                #{variables.$subNavigationHeight}
+            ) -
+            #{variables.$miniTocOffset}
+    );
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+
+    .dc-summary {
+        flex-shrink: 0;
+    }
+
+    &_summary-only {
+        .dc-summary {
+            margin-bottom: 0;
+
+            &__text {
+                text-wrap: balance;
+            }
+        }
+    }
+
     &__title {
+        flex-shrink: 0;
         font-weight: 500;
         color: var(--g-color-text-primary);
         margin-bottom: 12px;
@@ -20,13 +49,8 @@
         position: relative;
         box-sizing: border-box;
 
-        max-height: calc(
-            100vh - var(--dc-header-height, #{variables.$headerHeight}) - var(
-                    --dc-subnavigation-height,
-                    #{variables.$subNavigationHeight}
-                ) -
-                #{variables.$miniTocOffset}
-        );
+        flex: 1 1 auto;
+        min-height: 56px;
         overflow: hidden auto;
     }
 
@@ -76,8 +100,13 @@
             overflow-y: hidden;
         }
 
-        $bottomHeight: 0;
-
+        max-height: calc(
+            100vh - var(--dc-header-height, #{variables.$headerHeight}) - var(
+                    --dc-subnavigation-height,
+                    #{variables.$subNavigationHeight}
+                ) -
+                1px
+        );
         padding: variables.$miniTocVerticalPadding 8px variables.$miniTocVerticalPadding 20px;
 
         &__title {
@@ -86,25 +115,14 @@
 
         &:has(&_overflowed) {
             #{$class}__bottom {
-                $bottomHeight: 36px;
-
                 display: block;
-                height: $bottomHeight;
-            }
-
-            #{$class}__sections {
-                max-height: calc(
-                    100vh - var(--dc-header-height, #{variables.$headerHeight}) - var(
-                            --dc-subnavigation-height,
-                            #{variables.$subNavigationHeight}
-                        ) -
-                        #{variables.$mobileMiniTocOffset} - #{$bottomHeight}
-                );
+                height: 36px;
             }
         }
 
         &__section {
             &-link {
+                box-sizing: border-box;
                 padding: 8px 12px 8px 28px;
             }
 
@@ -118,13 +136,7 @@
         &__sections {
             @include mixins.text-size(body-2);
 
-            max-height: calc(
-                100vh - var(--dc-header-height, #{variables.$headerHeight}) - var(
-                        --dc-subnavigation-height,
-                        #{variables.$subNavigationHeight}
-                    ) -
-                    #{variables.$mobileMiniTocOffset}
-            );
+            min-height: 88px;
         }
     }
 }

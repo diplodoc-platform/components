@@ -193,6 +193,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
             availableLangs = [],
             beforeSubNavigationContent,
             renderSidebarIcon,
+            meta,
         } = this.props;
 
         const hideBurger = typeof headerHeight !== 'undefined' && headerHeight > 0;
@@ -279,6 +280,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                                 onMiniTocItemClick as unknown as (event: React.MouseEvent) => void
                             }
                             renderSidebarIcon={renderSidebarIcon}
+                            summary={meta.summary}
                         />
                     </div>
                 </DocLayout.Right>
@@ -444,17 +446,19 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
     };
 
     get showMiniToc() {
-        const {showMiniToc, singlePage, headings, toc} = this.props;
+        const {showMiniToc, singlePage, headings, toc, meta} = this.props;
+
+        const summary = meta.summary;
 
         if (singlePage) {
             return false;
         }
 
-        const emptyHeaderOrSinglePage = headings.length === 0 || toc.singlePage;
         const soloHeaderWithChildren =
             headings.length === 1 && headings[0].items && headings[0].items.length >= 1;
+        const hasMiniTocSections = soloHeaderWithChildren || headings.length >= 2;
 
-        if (emptyHeaderOrSinglePage || !(soloHeaderWithChildren || headings.length >= 2)) {
+        if (toc.singlePage || (!hasMiniTocSections && !summary)) {
             return false;
         }
 

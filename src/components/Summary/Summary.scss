@@ -1,0 +1,14 @@
+@use '../../styles/mixins';
+
+.dc-summary {
+    margin-bottom: var(--g-spacing-4);
+
+    &__text {
+        color: var(--dc-color-mini-toc, var(--g-color-text-secondary));
+        overflow-wrap: anywhere;
+
+        margin: 0;
+
+        @include mixins.text-size(body-1);
+    }
+}

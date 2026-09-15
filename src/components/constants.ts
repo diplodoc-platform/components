@@ -4,6 +4,10 @@ export const DOC_PAGE_URL =
     BASE_URL + '/iframe.html?args=&id=pages-document--document&viewMode=story';
 export const DOC_PAGE_MOBILE_URL =
     BASE_URL + '/iframe.html?args=Mobile:true&id=pages-document--document&viewMode=story';
+export const DOC_PAGE_SUMMARY_MOBILE_URL =
+    BASE_URL + '/iframe.html?id=pages-document--with-summary&viewMode=story';
+export const DOC_PAGE_SUMMARY_ONLY_MOBILE_URL =
+    BASE_URL + '/iframe.html?id=pages-document--with-summary-only&viewMode=story';
 export const DOC_PAGE_GALLERY_URL =
     BASE_URL + '/iframe.html?args=&id=pages-docpagegallery--doc-page-gallery&viewMode=story';
 export const DOC_PAGE_HIDDEN_URL =
@@ -35,6 +39,9 @@ export const CUSTOM_FOOTER_URL =
     BASE_URL + '/iframe.html?id=components-customfooter--custom-footer&viewMode=story';
 export const TAGS_URL = BASE_URL + '/iframe.html?id=components-tags--tags&viewMode=story';
 export const TAGS_MOBILE_URL = BASE_URL + '/iframe.html?id=components-tags--mobile&viewMode=story';
+export const SUMMARY_URL = BASE_URL + '/iframe.html?id=components-summary--summary&viewMode=story';
+export const SUMMARY_MOBILE_URL =
+    BASE_URL + '/iframe.html?id=components-summary--mobile&viewMode=story';
 export const TAGS_FILTER_URL =
     BASE_URL + '/iframe.html?id=components-tagsfilter--tags-filter&viewMode=story';
 export const TAGS_FILTER_MOBILE_URL =

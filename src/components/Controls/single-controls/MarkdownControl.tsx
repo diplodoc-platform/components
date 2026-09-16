@@ -3,7 +3,7 @@ import type {MarkdownActionsMode} from '../../../contexts/InterfaceContext';
 
 import React, {useCallback, useContext, useEffect, useMemo, useRef, useState} from 'react';
 import {Copy, LogoMarkdown, SquareCheck} from '@gravity-ui/icons';
-import {Button, DropdownMenu, Icon} from '@gravity-ui/uikit';
+import {ActionTooltip, Button, DropdownMenu, Icon} from '@gravity-ui/uikit';
 
 import {useTranslation} from '../../../hooks';
 import {CommonAnalyticsEvent, useAnalytics} from '../../../shared/libs/analytics';
@@ -138,30 +138,34 @@ const MarkdownControl: React.FC<MarkdownControlProps> = ({
     if (mode === 'visible') {
         return (
             <React.Fragment>
-                <Button
-                    className={`${controlClassName || ''} dc-markdown-control__copy_${copyState}`.trim()}
-                    size={controlSize}
-                    view="flat-secondary"
-                    disabled={copyState === 'pending'}
-                    data-copy-state={copyState}
-                    onClick={handleCopy}
-                >
-                    <Button.Icon>
-                        {copyState === 'success' ? <SquareCheck /> : <Copy />}
-                    </Button.Icon>
-                    {t('copy-as-markdown')}
-                </Button>
-                <Button
-                    className={controlClassName}
-                    size={controlSize}
-                    view="flat-secondary"
-                    onClick={viewMarkdown}
-                >
-                    <Button.Icon>
-                        <LogoMarkdown />
-                    </Button.Icon>
-                    {t('view-in-markdown')}
-                </Button>
+                <ActionTooltip title={t('copy-as-markdown')}>
+                    <Button
+                        aria-label={t('copy-as-markdown')}
+                        className={`${controlClassName || ''} dc-markdown-control__copy_${copyState}`.trim()}
+                        size={controlSize}
+                        view="flat-secondary"
+                        disabled={copyState === 'pending'}
+                        data-copy-state={copyState}
+                        onClick={handleCopy}
+                    >
+                        <Button.Icon>
+                            {copyState === 'success' ? <SquareCheck /> : <Copy />}
+                        </Button.Icon>
+                    </Button>
+                </ActionTooltip>
+                <ActionTooltip title={t('view-in-markdown')}>
+                    <Button
+                        aria-label={t('view-in-markdown')}
+                        className={controlClassName}
+                        size={controlSize}
+                        view="flat-secondary"
+                        onClick={viewMarkdown}
+                    >
+                        <Button.Icon>
+                            <LogoMarkdown />
+                        </Button.Icon>
+                    </Button>
+                </ActionTooltip>
             </React.Fragment>
         );
     }

@@ -16,12 +16,17 @@ export type InterfaceKey =
     | 'subscribe'
     | 'contributors';
 
+export type MarkdownActionsMode = 'visible' | 'dropdown' | 'none';
+
 /**
  * Control-visibility map. A key set to `false` hides the control; `true` shows
  * it. Absent keys fall back to each control's own default (most controls are
  * shown by default; `feedback-comment` is opt-in and hidden by default).
  */
-export type ViewerInterface = Partial<Record<InterfaceKey | (string & {}), boolean>>;
+export type ViewerInterface = Partial<Record<InterfaceKey, boolean>> & {
+    markdownActions?: MarkdownActionsMode;
+    [key: string]: boolean | MarkdownActionsMode | undefined;
+};
 
 export interface InterfaceContextType {
     interface: ViewerInterface;
@@ -45,7 +50,7 @@ export const InterfaceProvider: React.FC<InterfaceProviderProps> = ({
     const isHidden = useCallback(
         (name: string) => {
             if (viewerInterface && name in viewerInterface) {
-                return !viewerInterface[name];
+                return viewerInterface[name] === false;
             }
             return false;
         },

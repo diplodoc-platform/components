@@ -8,6 +8,7 @@ import type {
     TextSizes,
     Theme,
 } from '../../models';
+import type {MarkdownActionsMode} from '../../contexts/InterfaceContext';
 
 import React, {memo, useContext} from 'react';
 import block from 'bem-cn-lite';
@@ -63,6 +64,7 @@ export interface ControlsProps {
     hideFeedbackControls?: boolean;
     availableLangs?: AvailableLangs;
     showMarkdownActions?: boolean;
+    markdownActions?: MarkdownActionsMode;
     mdDocsUrl?: string;
     onMdDocsButtonClick?: React.MouseEventHandler<HTMLElement>;
 }
@@ -113,6 +115,7 @@ export const ControlsList: React.FC<
         availableLangs = [],
         className,
         showMarkdownActions,
+        markdownActions = 'dropdown',
         mdDocsUrl,
         onMdDocsButtonClick,
     } = props;
@@ -209,9 +212,10 @@ export const ControlsList: React.FC<
                 view={SubscribeView.Regular}
             />
         ),
-        showMarkdownActions && (
+        showMarkdownActions && markdownActions !== 'none' && (
             <MarkdownControl
                 key="markdown-control"
+                mode={markdownActions}
                 mdDocsUrl={mdDocsUrl}
                 onClick={onMdDocsButtonClick}
             />

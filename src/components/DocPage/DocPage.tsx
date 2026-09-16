@@ -16,7 +16,7 @@ import type {InnerProps} from '../../utils';
 import type {NotificationProps} from '../Notification';
 import type {RenderSidebarIcon} from '../navigation';
 import type {GetSearchLink} from '../Tags';
-import type {ViewerInterface} from '../../contexts/InterfaceContext';
+import type {MarkdownActionsMode, ViewerInterface} from '../../contexts/InterfaceContext';
 
 import React from 'react';
 import {Link} from '@gravity-ui/icons';
@@ -300,7 +300,13 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
 
     private isHidden(name: string): boolean {
         const map = this.getInterface();
-        return name in map ? !map[name] : false;
+        return name in map ? map[name] === false : false;
+    }
+
+    private get markdownActionsMode(): MarkdownActionsMode {
+        const mode = this.getInterface().markdownActions;
+
+        return mode === 'visible' || mode === 'none' ? mode : 'dropdown';
     }
 
     private get hasMarkdownCompanion(): boolean {
@@ -841,6 +847,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
                         pdfLink={headerPdfLink}
                         pdfIconConfig={headerPdfIconConfig}
                         showMarkdownActions={this.hasMarkdownCompanion}
+                        markdownActions={this.markdownActionsMode}
                         mdDocsUrl={mdDocsUrl}
                         onMdDocsButtonClick={onMdDocsButtonClick}
                     />

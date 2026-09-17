@@ -1,4 +1,4 @@
-import type {RenderSidebarIcon} from '@diplodoc/components';
+import type {MarkdownActionsMode, RenderSidebarIcon} from '@diplodoc/components';
 
 import {Icon, configure as configureUikit} from '@gravity-ui/uikit';
 import {Dots9, SquareListUl, Xmark} from '@gravity-ui/icons';
@@ -42,6 +42,7 @@ type DocPageDemoProps = StoryArgs & {
     CollapsibleToc?: boolean;
     HeadingCount?: number;
     Summary?: string;
+    MarkdownActions?: MarkdownActionsMode;
 };
 
 const DocPageDemo = (args: DocPageDemoProps) => {
@@ -72,6 +73,7 @@ const DocPageDemo = (args: DocPageDemoProps) => {
 
     const viewerInterface = {
         'feedback-comment': true,
+        markdownActions: args.MarkdownActions,
         ...(args['HideAsideFeedback'] ? {'feedback-aside': false} : {}),
     };
 
@@ -110,6 +112,10 @@ export default {
         CollapsibleToc: {control: 'boolean'},
         HeadingCount: {control: 'number'},
         Summary: {control: 'text'},
+        MarkdownActions: {
+            control: 'select',
+            options: ['visible', 'dropdown', 'none'],
+        },
         AvailableLangs: availableLangsArgType,
     },
 };
@@ -122,6 +128,7 @@ export const Document = {
         HideAsideFeedback: false,
         CollapsibleToc: false,
         Summary: '',
+        MarkdownActions: 'dropdown',
     },
 };
 

@@ -50,7 +50,7 @@ export const InterfaceProvider: React.FC<InterfaceProviderProps> = ({
     const isHidden = useCallback(
         (name: string) => {
             if (viewerInterface && name in viewerInterface) {
-                return viewerInterface[name] === false;
+                return !viewerInterface[name];
             }
             return false;
         },

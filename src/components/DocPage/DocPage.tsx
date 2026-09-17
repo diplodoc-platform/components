@@ -300,7 +300,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
 
     private isHidden(name: string): boolean {
         const map = this.getInterface();
-        return name in map ? map[name] === false : false;
+        return name in map ? !map[name] : false;
     }
 
     private get markdownActionsMode(): MarkdownActionsMode {
@@ -528,7 +528,7 @@ class DocPage extends React.Component<DocPageInnerProps, DocPageState> {
     private renderMarkdownButton() {
         const {mdDocsUrl, onMdDocsButtonClick} = this.props;
 
-        if (!mdDocsUrl) {
+        if (!mdDocsUrl || this.markdownActionsMode === 'none') {
             return null;
         }
 

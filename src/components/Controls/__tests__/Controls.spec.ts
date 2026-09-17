@@ -1,6 +1,7 @@
 import {expect, test} from '@playwright/test';
 
 import {loadDocumentPage} from '../../utils';
+import {DOC_PAGE_MARKDOWN_ACTIONS_HIDDEN_URL} from '../../constants';
 
 test.beforeEach(async ({page}) => {
     await loadDocumentPage(page);
@@ -71,6 +72,15 @@ test.describe('Controls test', () => {
                 ),
             )
             .toBe(markdown);
+    });
+
+    test('Markdown actions are hidden everywhere in none mode', async ({page}) => {
+        await loadDocumentPage(page, DOC_PAGE_MARKDOWN_ACTIONS_HIDDEN_URL);
+
+        await expect(page.getByRole('button', {name: 'Markdown actions'})).toHaveCount(0);
+        await expect(page.getByRole('button', {name: 'Copy as Markdown'})).toHaveCount(0);
+        await expect(page.getByRole('button', {name: 'View as Markdown'})).toHaveCount(0);
+        await expect(page.getByRole('link', {name: 'View as Markdown'})).toHaveCount(0);
     });
 
     test('SettingsControl test', async ({page}) => {

@@ -9,7 +9,7 @@ import {useTranslation} from '../../../hooks';
 import {CommonAnalyticsEvent, useAnalytics} from '../../../shared/libs/analytics';
 import {ControlsLayoutContext} from '../ControlsLayout';
 
-import {type MarkdownAction, getMarkdownUrl, setMarkdownAction} from './markdown-url';
+import {type MarkdownAction, getMarkdownUrl, resolveMarkdownActionUrl} from './markdown-url';
 
 const COPY_SUCCESS_TIMEOUT = 2000;
 
@@ -42,7 +42,7 @@ const MarkdownControl: React.FC<MarkdownControlProps> = ({
                 return getMarkdownUrl(window.location.href, action);
             }
 
-            return setMarkdownAction(new URL(mdDocsUrl, window.location.href), action);
+            return resolveMarkdownActionUrl(mdDocsUrl, window.location.href, action);
         },
         [mdDocsUrl],
     );

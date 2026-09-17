@@ -14,6 +14,23 @@ export function setMarkdownAction(url: URL, action: MarkdownAction) {
     return url.toString();
 }
 
+export function resolveMarkdownActionUrl(
+    sourceUrl: string,
+    baseUrl: string,
+    action: MarkdownAction,
+) {
+    const markdownUrl = new URL(sourceUrl, baseUrl);
+    const resolvedUrl = setMarkdownAction(markdownUrl, action);
+
+    if (/^[a-z][a-z\d+.-]*:/iu.test(sourceUrl)) {
+        return resolvedUrl;
+    }
+
+    const [relativePath] = sourceUrl.split(/[?#]/u, 1);
+
+    return `${relativePath}${markdownUrl.search}`;
+}
+
 export function getMarkdownUrl(currentUrl: string, action: MarkdownAction = 'view') {
     const markdownUrl = new URL(currentUrl);
 

@@ -11,10 +11,14 @@ test.describe('Controls test', () => {
         const markdown = '# Markdown companion';
         const markdownUrl = '/docs/overview/index.md';
 
-        await page.route(`**${markdownUrl}`, async (route) => {
-            expect(route.request().headers().accept).toBe('text/markdown');
-            await route.fulfill({body: markdown, contentType: 'text/markdown'});
-        });
+        await page.route(
+            (url) => url.pathname === markdownUrl,
+            async (route) => {
+                expect(route.request().headers().accept).toBe('text/markdown');
+                expect(new URL(route.request().url()).searchParams.get('__mdAction')).toBe('copy');
+                await route.fulfill({body: markdown, contentType: 'text/markdown'});
+            },
+        );
         await page.evaluate(() => {
             Object.defineProperty(navigator, 'clipboard', {
                 configurable: true,

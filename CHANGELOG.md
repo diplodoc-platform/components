@@ -1,5 +1,19 @@
 # История изменений
 
+## [5.23.0](https://github.com/diplodoc-platform/components/compare/v5.22.0...v5.23.0) (2026-09-17)
+
+
+### Features
+
+* configure Markdown companion actions ([e73bfd0](https://github.com/diplodoc-platform/components/commit/e73bfd073f456dd091f564b7f7fe149486584a68))
+
+
+### Bug Fixes
+
+* address Markdown actions review feedback ([4d6f821](https://github.com/diplodoc-platform/components/commit/4d6f8219e3f273fcc68bedd645d76f091264fe50))
+* preserve relative Markdown action URLs ([fddee53](https://github.com/diplodoc-platform/components/commit/fddee5368e5f35ffa9d5a59e55240a68df741537))
+* render Markdown actions as icon buttons ([32447a8](https://github.com/diplodoc-platform/components/commit/32447a8d25b35008bee21fca7b9eae6937756a9e))
+
 ## [5.22.0](https://github.com/diplodoc-platform/components/compare/v5.21.0...v5.22.0) (2026-09-15)
 
 

@@ -1,7 +1,7 @@
 {
   "controls": {
     "label_wide_format": "Широкий формат",
-    "description_wide_format_enabled": "Включен",
+    "description_wide_format_enabled": "Включён",
     "description_wide_format_disabled": "Выключен",
     "label_show_mini_toc": "Навигация по текущей статье",
     "collapse-toc-text": "Свернуть оглавление",
@@ -11,8 +11,8 @@
     "label_theme": "Тема",
     "label_light_theme": "Светлая",
     "full_label_light_theme": "Светлая тема",
-    "label_dark_theme": "Темная",
-    "full_label_dark_theme": "Темная тема",
+    "label_dark_theme": "Тёмная",
+    "full_label_dark_theme": "Тёмная тема",
     "description_enabled_dark_theme": "Включена",
     "description_disabled_dark_theme": "Выключена",
     "label_text_size": "Размер текста",

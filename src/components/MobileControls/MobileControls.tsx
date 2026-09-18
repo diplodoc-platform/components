@@ -112,7 +112,7 @@ const useThemeControl = (t: TFunction, theme: Theme, onChangeTheme?: (theme: The
                 continue;
             }
 
-            return t(`full_label_${item.value}_theme`);
+            return t(`label_${item.value}_theme`);
         }
 
         return '';

@@ -1,5 +1,12 @@
 # История изменений
 
+## [5.23.1](https://github.com/diplodoc-platform/components/compare/v5.23.0...v5.23.1) (2026-09-22)
+
+
+### Bug Fixes
+
+* **controls:** clarify theme labels by viewport ([7bc2139](https://github.com/diplodoc-platform/components/commit/7bc21394b1eb3ebe725ff106d7562b0498067160))
+
 ## [5.23.0](https://github.com/diplodoc-platform/components/compare/v5.22.0...v5.23.0) (2026-09-17)
 
 

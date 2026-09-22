@@ -141,14 +141,14 @@ const SettingsControl = (props: ControlProps) => {
                 : null,
             onChangeTheme
                 ? {
-                      text: t('label_dark_theme'),
+                      text: t('full_label_dark_theme'),
                       description:
                           Theme.Light === theme
                               ? t('description_disabled_dark_theme')
                               : t('description_enabled_dark_theme'),
                       control: (
                           <Switch
-                              title={t('label_dark_theme')}
+                              title={t('full_label_dark_theme')}
                               checked={theme === Theme.Dark}
                               onChange={_onChangeTheme}
                           />

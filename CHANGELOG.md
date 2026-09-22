@@ -1,5 +1,12 @@
 # История изменений
 
+## [5.23.2](https://github.com/diplodoc-platform/components/compare/v5.23.1...v5.23.2) (2026-09-22)
+
+
+### Bug Fixes
+
+* **i18n:** correct Russian spelling ([7b3dbc8](https://github.com/diplodoc-platform/components/commit/7b3dbc8de86b65efef376d55b267d629a09f1c0a))
+
 ## [5.23.1](https://github.com/diplodoc-platform/components/compare/v5.23.0...v5.23.1) (2026-09-22)
 
 

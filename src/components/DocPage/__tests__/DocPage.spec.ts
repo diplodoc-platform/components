@@ -13,6 +13,10 @@ test('Document page test', async ({page}) => {
     });
 });
 
+test('marks the main HTML container', async ({page}) => {
+    await expect(page.locator('[data-html-id="main"]')).toHaveCount(1);
+});
+
 test.skip('Document page with hidden toc, search, likes', async ({page}) => {
     await page.goto(DOC_PAGE_HIDDEN_URL);
     await expect(page).toHaveScreenshot('DocPageHidden.png');

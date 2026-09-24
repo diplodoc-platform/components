@@ -14,7 +14,14 @@ export interface RenderBodyProps {
 const RenderBody: FC<RenderBodyProps> = ({html, forwardRef, className = ''}) => {
     const htmlProps = useMemo(() => ({__html: html}), [html]);
 
-    return <div ref={forwardRef} className={className} dangerouslySetInnerHTML={htmlProps} />;
+    return (
+        <div
+            ref={forwardRef}
+            className={className}
+            data-html-id="main"
+            dangerouslySetInnerHTML={htmlProps}
+        />
+    );
 };
 
 export default RenderBody;

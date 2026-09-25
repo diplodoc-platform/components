@@ -1,5 +1,12 @@
 # История изменений
 
+## [5.24.0](https://github.com/diplodoc-platform/components/compare/v5.23.2...v5.24.0) (2026-09-25)
+
+
+### Features
+
+* mark main HTML container ([56116ea](https://github.com/diplodoc-platform/components/commit/56116ea8f775809ae14b1dbecbb68c02ef015c9b))
+
 ## [5.23.2](https://github.com/diplodoc-platform/components/compare/v5.23.1...v5.23.2) (2026-09-22)
 
 

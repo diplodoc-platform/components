@@ -5,6 +5,8 @@ import {useEffect, useMemo, useRef, useState} from 'react';
 
 import {useStableCallback} from '../../../hooks/useStableCallback';
 
+import {selectIntersectingHeading} from './selectIntersectingHeading';
+
 export type FlatHeadingItem = {
     title: string;
     href: string;
@@ -59,14 +61,10 @@ export const useHeadingIntersectionObserver = ({
 
     const intersectionObserverCallback = useStableCallback(
         (entries: IntersectionObserverEntry[]) => {
-            for (const {target, isIntersecting} of entries) {
-                const maybeDescriptor = elementMapRef.current?.get(target);
+            const heading = selectIntersectingHeading(entries, elementMapRef.current);
 
-                if (isIntersecting && maybeDescriptor) {
-                    setActiveHeading(maybeDescriptor);
-
-                    break;
-                }
+            if (heading) {
+                setActiveHeading(heading);
             }
         },
     );

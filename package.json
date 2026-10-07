@@ -51,7 +51,7 @@
     "deps:install": "npm ci",
     "deps:truncate": "npm prune --production",
     "typecheck": "tsc -b --noEmit",
-    "test": "exit 0",
+    "test": "playwright test --config=playwright/unit.config.ts",
     "playwright": "playwright test --config=playwright/playwright.config.ts",
     "playwright:update": "npm run playwright -- -u",
     "playwright:docker": "./playwright/playwright-docker.sh npm run playwright --",

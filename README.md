@@ -87,6 +87,16 @@ npm run storybook:start
 
 We use [Playwright](https://playwright.dev/docs/intro) for testing.
 
+Run the fast hook unit tests with `npm test`. These tests do not start Storybook
+or require installed browsers, and run in the normal pre-commit hook and Quality
+workflow. Keep observer selection regressions in
+`src/components/SubNavigation/hooks/__tests__`: include repeated observations of
+one target in a single delivery, as well as separate deliveries. The recorded
+Windows Mini TOC navigation batch is covered there without retries.
+
+Browser and screenshot tests remain available through `npm run playwright` and
+the Docker commands below.
+
 ### Running tests in Docker
 
 **Note:** Tests run in Docker container to ensure consistent screenshots across different operating systems (Mac, Linux, Windows).

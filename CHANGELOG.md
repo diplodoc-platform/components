@@ -1,5 +1,12 @@
 # История изменений
 
+## [5.24.1](https://github.com/diplodoc-platform/components/compare/v5.24.0...v5.24.1) (2026-10-09)
+
+
+### Bug Fixes
+
+* **mini-toc:** ignore stale intersection observations ([aa06fd1](https://github.com/diplodoc-platform/components/commit/aa06fd1fe9d67483835759f57a85f910126d4e19))
+
 ## [5.24.0](https://github.com/diplodoc-platform/components/compare/v5.23.2...v5.24.0) (2026-09-25)
 
 

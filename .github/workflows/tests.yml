@@ -60,7 +60,7 @@ jobs:
   graph:
     needs: classify
     if: needs.classify.outputs.profile == 'document-rendering' && needs.classify.outputs.run-deep == 'true'
-    uses: diplodoc-platform/testpack/.github/workflows/components-premerge-graph.yml@0acc5d7b960c138821a770ca03f882437c4cd434
+    uses: diplodoc-platform/testpack/.github/workflows/components-premerge-graph.yml@5f955c0da84a9672fc11257e0a2c83ef3a9b21f6
     with:
       metapackage-sha: 3446348576fe5d5bba8fc26ad80c03f1c7e750d6
       components-sha: 76675efbf7b427f40ac0a682bf5b68e07c991a67

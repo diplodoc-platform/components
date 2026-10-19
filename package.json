@@ -91,7 +91,7 @@
     "react-gtm-module": "^2.0.11",
     "react-helmet": "^6.1.0",
     "react-hotkeys-hook": "^4.6.1",
-    "react-i18next": "^15.4.0",
+    "react-i18next": ">=15.4.0 <15.7.0",
     "react-transition-group": "^4.4.5",
     "url": "^0.11.1"
   },

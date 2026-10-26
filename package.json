@@ -91,7 +91,7 @@
     "react-gtm-module": "^2.0.11",
     "react-helmet": "^6.1.0",
     "react-hotkeys-hook": "^4.6.1",
-    "react-i18next": ">=15.4.0 <15.7.0",
+    "react-i18next": ">=15.4.0 <15.8.0",
     "react-transition-group": "^4.4.5",
     "url": "^0.11.1"
   },
@@ -106,7 +106,7 @@
     "@storybook/react-vite": "^10.4.6",
     "@types/hoist-non-react-statics": "^3.3.6",
     "@types/langs": "^2.0.1",
-    "@types/lodash": "4.14.179",
+    "@types/lodash": "4.17.27",
     "@types/node": "^24.13.3",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",

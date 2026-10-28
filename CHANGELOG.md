@@ -1,5 +1,13 @@
 # История изменений
 
+## [5.24.2](https://github.com/diplodoc-platform/components/compare/v5.24.1...v5.24.2) (2026-10-28)
+
+
+### Bug Fixes
+
+* **deps:** Update dev:@diplodoc/transform@4.78.11 ([6e5cec7](https://github.com/diplodoc-platform/components/commit/6e5cec76585bf354b3b9a7d08061be5676e55714))
+* keep published translation types compatible with i18next 24 ([223c091](https://github.com/diplodoc-platform/components/commit/223c091dba86926f422e8c97125047c6dec320ee))
+
 ## [5.24.1](https://github.com/diplodoc-platform/components/compare/v5.24.0...v5.24.1) (2026-10-09)
 
 

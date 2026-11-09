@@ -151,13 +151,13 @@
     }
 
     &__desktop-only {
-        .mobile & {
+        @media (max-width: map.get(variables.$screenBreakpoints, 'md') - 1) {
             display: none;
         }
     }
 
     &__mobile-only {
-        .desktop & {
+        @media (min-width: map.get(variables.$screenBreakpoints, 'md')) {
             display: none;
         }
     }

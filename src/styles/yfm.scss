@@ -130,9 +130,16 @@
         box-shadow: 0 0 0 1px var(--yfm-color-term-dfn-pseudo-shadow);
     }
 
-    table thead,
+    // Transform counts body stripes across the YFM header boundary.
+    $yfm-header-body: 'table[data-header-rows] > thead + tbody';
+
+    #{$yfm-header-body} {
+        --yfm-color-table-stripe-row-background: var(--yfm-color-table-row-background);
+    }
+
+    table:where(:not([data-header-rows])) > thead,
     table[sticky-header] thead th::after,
-    table tr:nth-child(2n) {
+    table tr:nth-child(2n):not(:where(#{$yfm-header-body} > tr)) {
         background: var(--yfm-color-table-row-background);
     }
 

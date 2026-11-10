@@ -1,5 +1,12 @@
 # История изменений
 
+## [5.24.3](https://github.com/diplodoc-platform/components/compare/v5.24.2...v5.24.3) (2026-11-10)
+
+
+### Bug Fixes
+
+* **DocLayout:** align footer visibility with layout breakpoint ([38d21ab](https://github.com/diplodoc-platform/components/commit/38d21ab09d5cd38e532480cad0b83eea65320612))
+
 ## [5.24.2](https://github.com/diplodoc-platform/components/compare/v5.24.1...v5.24.2) (2026-10-28)
 
 

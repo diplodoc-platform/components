@@ -1,5 +1,12 @@
 # История изменений
 
+## [5.24.4](https://github.com/diplodoc-platform/components/compare/v5.24.3...v5.24.4) (2026-11-11)
+
+
+### Bug Fixes
+
+* add clipboard write ([#814](https://github.com/diplodoc-platform/components/issues/814)) ([0c04107](https://github.com/diplodoc-platform/components/commit/0c041072559802937018330e327aa814a063b44c))
+
 ## [5.24.3](https://github.com/diplodoc-platform/components/compare/v5.24.2...v5.24.3) (2026-11-10)
 
 

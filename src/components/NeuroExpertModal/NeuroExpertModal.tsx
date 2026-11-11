@@ -115,6 +115,7 @@ export const NeuroExpertModal: FC<NeuroExpertModalProps> = ({open, query, projec
                     <iframe
                         ref={iframeRef}
                         src={iframeSrc}
+                        allow="clipboard-write"
                         style={{width: '100%', height: '100%', border: 'none'}}
                     />
                 </div>

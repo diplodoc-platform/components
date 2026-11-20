@@ -4,12 +4,17 @@ on:
   pull_request:
     branches: [master]
 
+permissions:
+  contents: read
+
 jobs:
   build_storybook:
     name: Build Storybook
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - name: Setup Node.js and install dependencies
         uses: diplodoc-platform/setup-node-action@00e5cddb6b6eb5f5bc02d371fa70ce645f8f5554 # v1
         with:

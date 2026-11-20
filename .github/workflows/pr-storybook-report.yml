@@ -9,7 +9,9 @@ on:
 jobs:
   comment:
     name: Create GitHub Comment
-    if: github.event.workflow_run.event == 'pull_request'
+    if: >-
+      github.event.workflow_run.event == 'pull_request' &&
+      !startsWith(github.event.workflow_run.head_branch, 'codex/dependency-group-')
     runs-on: ubuntu-latest
     steps:
       - name: Download Artifacts
@@ -19,7 +21,10 @@ jobs:
           run-id: ${{ github.event.workflow_run.id }}
       - name: Extract PR Number
         id: pr
-        run: echo "::set-output name=id::$(<pr/pr-id.txt)"
+        run: |
+          pr_id=$(<pr/pr-id.txt)
+          [[ "$pr_id" =~ ^[1-9][0-9]*$ ]]
+          printf 'id=%s\n' "$pr_id" >> "$GITHUB_OUTPUT"
         shell: bash
       - name: Install AWS CLI
         uses: unfor19/install-aws-cli-action@f5b46b7f32cf5e7ebd652656c5036bf83dd1e60c # v1

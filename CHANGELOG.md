@@ -1,5 +1,13 @@
 # История изменений
 
+## [5.24.5](https://github.com/diplodoc-platform/components/compare/v5.24.4...v5.24.5) (2026-11-21)
+
+
+### Bug Fixes
+
+* **ci:** run Playwright visual tests on Ubuntu 24.04 ([1206569](https://github.com/diplodoc-platform/components/commit/12065693666653ccb95c8afb7d0d39f7ddaf098f))
+* preserve Transform 5 table row colors in docs ([ecc3cb0](https://github.com/diplodoc-platform/components/commit/ecc3cb0e79bcccb4aa3118cff6fb1ca2e9f0e837))
+
 ## [5.24.4](https://github.com/diplodoc-platform/components/compare/v5.24.3...v5.24.4) (2026-11-11)
 
 

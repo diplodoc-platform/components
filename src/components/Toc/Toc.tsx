@@ -40,6 +40,7 @@ interface TocInternalProps extends TocProps {
 interface TocState {
     activeId: string | null | undefined;
     fixedById: Record<string, 'opened' | 'closed'>;
+    skipArrowTransition?: boolean;
     contentScrolled: boolean;
     registry: TocItemRegistry;
 }
@@ -77,7 +78,11 @@ class TocClass extends React.Component<TocInternalProps, TocState> {
             this.contentRef.current.addEventListener('scroll', this.handleContentScroll);
         }
 
-        this.scrollToActiveItem();
+        if (this.props.expansionStorageKey) {
+            window.addEventListener('pageshow', this.restoreExpansion);
+        }
+
+        this.restoreExpansion();
     }
 
     componentDidUpdate(prevProps: TocProps, prevState: TocState) {
@@ -106,6 +111,8 @@ class TocClass extends React.Component<TocInternalProps, TocState> {
     }
 
     componentWillUnmount() {
+        window.removeEventListener('pageshow', this.restoreExpansion);
+
         if (this.contentRef && this.contentRef.current) {
             this.contentRef.current.removeEventListener('scroll', this.handleContentScroll);
         }
@@ -116,7 +123,11 @@ class TocClass extends React.Component<TocInternalProps, TocState> {
         const content = items ? this.renderList(items) : this.renderEmpty('');
 
         return (
-            <nav id={id} className={b()} ref={this.rootRef}>
+            <nav
+                id={id}
+                className={b({'skip-arrow-transition': this.state.skipArrowTransition})}
+                ref={this.rootRef}
+            >
                 {this.renderTop()}
                 <div
                     className={b('content', {
@@ -132,7 +143,7 @@ class TocClass extends React.Component<TocInternalProps, TocState> {
         );
     }
 
-    computeState(prevState: TocState) {
+    computeState(prevState: TocState, revealActive = false) {
         const {router} = this.props;
         const {pathname, hash} = router;
 
@@ -141,7 +152,7 @@ class TocClass extends React.Component<TocInternalProps, TocState> {
 
         let fixedById = prevState.fixedById;
 
-        if (activeId && prevState.activeId && activeId !== prevState.activeId) {
+        if (activeId && (revealActive || (prevState.activeId && activeId !== prevState.activeId))) {
             const expandedIds = [activeId].concat(prevState.registry.getParentIds(activeId));
             const dropClosedSign = expandedIds.filter((id) => prevState.fixedById[id] === 'closed');
 
@@ -161,7 +172,7 @@ class TocClass extends React.Component<TocInternalProps, TocState> {
 
     private renderList = (items: TocItem[]) => {
         const {toggleItem} = this;
-        const {singlePage} = this.props;
+        const {singlePage, expansionStorageKey} = this.props;
         const {activeId, fixedById} = this.state;
 
         const activeItem = activeId && this.state.registry.getItemById(activeId);
@@ -206,6 +217,7 @@ class TocClass extends React.Component<TocInternalProps, TocState> {
                                     expanded,
                                     expandable,
                                     toggleItem,
+                                    toggleOnLinkClick: !expansionStorageKey,
                                 }}
                             />
                             {expanded && this.renderList(item.items as TocItem[])}
@@ -372,6 +384,39 @@ class TocClass extends React.Component<TocInternalProps, TocState> {
         }
     };
 
+    private readExpansion(key: string): TocState['fixedById'] {
+        try {
+            const value: unknown = JSON.parse(sessionStorage.getItem(key) || '{}');
+
+            if (value && typeof value === 'object' && !Array.isArray(value)) {
+                return value as TocState['fixedById'];
+            }
+        } catch {
+            return {};
+        }
+        return {};
+    }
+
+    private restoreExpansion = (event?: PageTransitionEvent) => {
+        if (event && !event.persisted) {
+            return;
+        }
+
+        const {expansionStorageKey} = this.props;
+
+        if (expansionStorageKey) {
+            const fixedById = this.readExpansion(expansionStorageKey);
+            const nextState = this.computeState(
+                {...this.state, fixedById, skipArrowTransition: true},
+                true,
+            );
+
+            this.setState(nextState, this.scrollToActiveItem);
+        } else {
+            this.scrollToActiveItem();
+        }
+    };
+
     private openItem = (id: string) => {
         this.setState((prevState) => ({
             ...prevState,
@@ -383,7 +428,7 @@ class TocClass extends React.Component<TocInternalProps, TocState> {
     };
 
     private closeItem = (id: string) => {
-        const ids = this.state.registry.getChildIds(id);
+        const ids = this.props.expansionStorageKey ? [] : this.state.registry.getChildIds(id);
 
         this.setState((prevState) => ({
             ...prevState,
@@ -395,10 +440,29 @@ class TocClass extends React.Component<TocInternalProps, TocState> {
     };
 
     private toggleItem = (id: string, opened: boolean) => {
+        if (this.state.skipArrowTransition) {
+            this.setState({skipArrowTransition: false});
+        }
+
         if (opened) {
             this.closeItem(id);
         } else {
             this.openItem(id);
+        }
+
+        const {expansionStorageKey} = this.props;
+
+        if (expansionStorageKey) {
+            const fixedById = {
+                ...this.readExpansion(expansionStorageKey),
+                [id]: opened ? 'closed' : 'opened',
+            };
+
+            try {
+                sessionStorage.setItem(expansionStorageKey, JSON.stringify(fixedById));
+            } catch {
+                return;
+            }
         }
     };
 }

@@ -20,6 +20,10 @@ $leftOffset: 57px;
     overflow: hidden;
     border-right: 1px solid var(--g-color-line-generic);
 
+    &_skip-arrow-transition .dc-toc-item__icon {
+        transition: none;
+    }
+
     @media (max-width: map.get(variables.$screenBreakpoints, 'md') - 1) {
         padding: 12px 16px 0px;
 

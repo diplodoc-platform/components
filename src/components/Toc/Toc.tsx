@@ -40,6 +40,7 @@ interface TocInternalProps extends TocProps {
 interface TocState {
     activeId: string | null | undefined;
     fixedById: Record<string, 'opened' | 'closed'>;
+    revealedIds: string[];
     skipArrowTransition?: boolean;
     contentScrolled: boolean;
     registry: TocItemRegistry;
@@ -61,11 +62,12 @@ class TocClass extends React.Component<TocInternalProps, TocState> {
         this.tocTopId = props.tocTopId;
     }
 
-    getInitialState() {
+    getInitialState(): TocState {
         return {
             registry: new TocItemRegistry(this.props.items || [], this.normalizeUrl),
             fixedById: {},
             activeId: null,
+            revealedIds: [],
             contentScrolled: false,
         };
     }
@@ -86,7 +88,7 @@ class TocClass extends React.Component<TocInternalProps, TocState> {
     }
 
     componentDidUpdate(prevProps: TocProps, prevState: TocState) {
-        const {router, singlePage, items} = this.props;
+        const {router, singlePage, items, expansionStorageKey} = this.props;
 
         let nextState;
 
@@ -100,7 +102,9 @@ class TocClass extends React.Component<TocInternalProps, TocState> {
             prevProps.singlePage !== singlePage ||
             nextState
         ) {
-            nextState = this.computeState(nextState || prevState);
+            nextState = this.computeState(
+                nextState || (expansionStorageKey ? this.state : prevState),
+            );
         } else if (prevState.activeId !== this.state.activeId) {
             this.scrollToActiveItem();
         }
@@ -144,22 +148,30 @@ class TocClass extends React.Component<TocInternalProps, TocState> {
     }
 
     computeState(prevState: TocState, revealActive = false) {
-        const {router} = this.props;
+        const {router, expansionStorageKey} = this.props;
         const {pathname, hash} = router;
 
         const activeUrl = this.normalizeUrl(pathname, hash);
         const activeId = activeUrl && prevState.registry.getIdByUrl(activeUrl as string);
 
-        let fixedById = prevState.fixedById;
-
-        if (activeId && (revealActive || (prevState.activeId && activeId !== prevState.activeId))) {
-            const expandedIds = [activeId].concat(prevState.registry.getParentIds(activeId));
-            const dropClosedSign = expandedIds.filter((id) => prevState.fixedById[id] === 'closed');
-
-            if (dropClosedSign.length) {
-                fixedById = omit(fixedById, dropClosedSign);
-            }
+        if (!revealActive && activeId === prevState.activeId) {
+            return prevState;
         }
+
+        const closedIds =
+            activeId && (revealActive || expansionStorageKey || prevState.activeId)
+                ? [activeId, ...prevState.registry.getParentIds(activeId)].filter(
+                      (id) => prevState.fixedById[id] === 'closed',
+                  )
+                : [];
+
+        if (expansionStorageKey) {
+            return {...prevState, activeId, revealedIds: closedIds};
+        }
+
+        const fixedById = closedIds.length
+            ? omit(prevState.fixedById, closedIds)
+            : prevState.fixedById;
 
         return {...prevState, activeId, fixedById};
     }
@@ -173,7 +185,7 @@ class TocClass extends React.Component<TocInternalProps, TocState> {
     private renderList = (items: TocItem[]) => {
         const {toggleItem} = this;
         const {singlePage, expansionStorageKey} = this.props;
-        const {activeId, fixedById} = this.state;
+        const {activeId, fixedById, revealedIds} = this.state;
 
         const activeItem = activeId && this.state.registry.getItemById(activeId);
         const activeScope: Record<string, boolean> = activeItem
@@ -187,7 +199,9 @@ class TocClass extends React.Component<TocInternalProps, TocState> {
                     const active =
                         (singlePage && !activeId && index === 0 && main) || item.id === activeId;
                     const opened = fixedById[item.id] === 'opened';
-                    const closed = fixedById[item.id] === 'closed';
+                    const closed =
+                        fixedById[item.id] === 'closed' &&
+                        !(expansionStorageKey && revealedIds.includes(item.id));
                     const hasItems = Boolean(item.items && item.items.length > 0);
                     const expandable = hasItems && !item.labeled;
                     const expanded =
@@ -432,6 +446,7 @@ class TocClass extends React.Component<TocInternalProps, TocState> {
 
         this.setState((prevState) => ({
             ...prevState,
+            revealedIds: prevState.revealedIds.filter((revealedId) => revealedId !== id),
             fixedById: {
                 ...omit(prevState.fixedById, ids),
                 [id]: 'closed',

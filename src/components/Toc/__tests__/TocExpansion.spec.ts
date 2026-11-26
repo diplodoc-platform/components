@@ -40,3 +40,38 @@ test('Restores manual TOC expansion after navigating between articles', async ({
     await expect(guide).toHaveAttribute('aria-expanded', 'false');
     await expect(examples).toHaveAttribute('aria-expanded', 'true');
 });
+
+test('Restores a manually closed branch after leaving it in SPA navigation', async ({page}) => {
+    await loadDocumentPage(
+        page,
+        BASE_URL + '/iframe.html?id=components-toc--spa-navigation&viewMode=story',
+    );
+
+    const toc = page.getByRole('navigation');
+    const guide = toc.getByRole('link', {name: /Guide/});
+    const guideToggle = guide.getByRole('button');
+    const goToSetup = page.getByRole('button', {name: 'Navigate to Setup'});
+    const goToReference = page.getByRole('button', {name: 'Navigate to Reference'});
+
+    await expect(guide).toHaveAttribute('aria-expanded', 'true');
+    const mountedToc = await toc.elementHandle();
+    await guideToggle.click();
+    await expect(guide).toHaveAttribute('aria-expanded', 'false');
+
+    await goToSetup.click();
+    await expect(guide).toHaveAttribute('aria-expanded', 'true');
+    await expect(toc.getByRole('link', {name: 'Setup'})).toHaveAttribute('aria-current', 'true');
+
+    await goToReference.click();
+    await expect(toc.getByRole('link', {name: 'Reference'})).toHaveAttribute(
+        'aria-current',
+        'true',
+    );
+    await expect(guide).toHaveAttribute('aria-expanded', 'false');
+    expect(await mountedToc?.evaluate((element) => element.isConnected)).toBe(true);
+
+    await goToSetup.click();
+    await expect(guide).toHaveAttribute('aria-expanded', 'true');
+    await guideToggle.click();
+    await expect(guide).toHaveAttribute('aria-expanded', 'false');
+});

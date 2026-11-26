@@ -1,4 +1,5 @@
 import {useState} from 'react';
+
 import {Toc} from '@diplodoc/components';
 
 const toc = {

@@ -52,6 +52,7 @@ test('Restores a manually closed branch after leaving it in SPA navigation', asy
     const guideToggle = guide.getByRole('button');
     const goToSetup = page.getByRole('button', {name: 'Navigate to Setup'});
     const goToReference = page.getByRole('button', {name: 'Navigate to Reference'});
+    const examples = toc.getByRole('button', {name: /Examples/});
 
     await expect(guide).toHaveAttribute('aria-expanded', 'true');
     const mountedToc = await toc.elementHandle();
@@ -68,10 +69,20 @@ test('Restores a manually closed branch after leaving it in SPA navigation', asy
         'true',
     );
     await expect(guide).toHaveAttribute('aria-expanded', 'false');
-    expect(await mountedToc?.evaluate((element) => element.isConnected)).toBe(true);
 
     await goToSetup.click();
     await expect(guide).toHaveAttribute('aria-expanded', 'true');
     await guideToggle.click();
     await expect(guide).toHaveAttribute('aria-expanded', 'false');
+
+    await examples.click();
+    await expect(examples).toHaveAttribute('aria-expanded', 'true');
+    await page.getByRole('button', {name: 'Refresh TOC and open Reference'}).click();
+    await expect(toc.getByRole('link', {name: 'Reference'})).toHaveAttribute(
+        'aria-current',
+        'true',
+    );
+    await expect(guide).toHaveAttribute('aria-expanded', 'false');
+    await expect(examples).toHaveAttribute('aria-expanded', 'true');
+    expect(await mountedToc?.evaluate((element) => element.isConnected)).toBe(true);
 });

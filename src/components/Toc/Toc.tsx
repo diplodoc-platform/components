@@ -94,6 +94,10 @@ class TocClass extends React.Component<TocInternalProps, TocState> {
 
         if (prevProps.items !== items) {
             nextState = this.getInitialState();
+
+            if (expansionStorageKey && expansionStorageKey === prevProps.expansionStorageKey) {
+                nextState = {...this.state, registry: nextState.registry};
+            }
         }
 
         if (

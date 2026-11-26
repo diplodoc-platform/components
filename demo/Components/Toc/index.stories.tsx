@@ -35,6 +35,7 @@ export const PersistentExpansion = {
 
 function SpaNavigationDemo() {
     const [article, setArticle] = useState('overview');
+    const [items, setItems] = useState(toc.items);
 
     return (
         <>
@@ -44,8 +45,18 @@ function SpaNavigationDemo() {
             <button type="button" onClick={() => setArticle('reference')}>
                 Navigate to Reference
             </button>
+            <button
+                type="button"
+                onClick={() => {
+                    setItems([...toc.items]);
+                    setArticle('reference');
+                }}
+            >
+                Refresh TOC and open Reference
+            </button>
             <Toc
-                {...toc}
+                title={toc.title}
+                items={items}
                 router={{pathname: article}}
                 expansionStorageKey="storybook-toc-spa-expansion"
             />

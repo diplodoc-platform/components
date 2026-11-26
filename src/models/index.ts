@@ -141,6 +141,7 @@ export interface TocData {
     title?: string;
     href?: string;
     items?: TocItem[];
+    expansionStorageKey?: string;
     stage?: string;
     editable?: boolean;
     singlePage?: boolean;

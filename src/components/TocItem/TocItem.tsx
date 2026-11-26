@@ -25,6 +25,7 @@ export interface TocItemProps extends ITocItem {
     expanded: boolean;
     deprecated?: boolean;
     toggleItem: (id: string, opened: boolean) => void;
+    toggleOnLinkClick?: boolean;
 }
 
 export const TocItem: React.FC<TocItemProps> = React.forwardRef(
@@ -37,6 +38,7 @@ export const TocItem: React.FC<TocItemProps> = React.forwardRef(
             expandable,
             expanded,
             toggleItem,
+            toggleOnLinkClick = true,
             labeled,
             deprecated,
             analyticsEvents,
@@ -117,7 +119,7 @@ export const TocItem: React.FC<TocItemProps> = React.forwardRef(
             target: linkTarget,
             rel: linkTarget === '_blank' ? 'noopener noreferrer' : undefined,
             className: b('link'),
-            onClick: expandable && href ? handleClick : sendAnalytics,
+            onClick: expandable && toggleOnLinkClick ? handleClick : sendAnalytics,
             'aria-expanded': expandable ? expanded : undefined,
             'aria-current': active ? ('true' as const) : undefined,
             'data-router-shallow': true,

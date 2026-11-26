@@ -21,6 +21,11 @@
 
     .dc-summary {
         flex-shrink: 0;
+        margin-bottom: 20px;
+
+        &__text {
+            color: var(--g-color-text-primary);
+        }
     }
 
     &_summary-only {
@@ -41,6 +46,10 @@
         margin-top: 0;
 
         @include mixins.text-size(body-2);
+
+        &_summary {
+            margin-bottom: 4px;
+        }
     }
 
     &__sections {
@@ -108,10 +117,6 @@
                 1px
         );
         padding: variables.$miniTocVerticalPadding 8px variables.$miniTocVerticalPadding 20px;
-
-        &__title {
-            margin-bottom: variables.$miniTocTitleMargin;
-        }
 
         &:has(&_overflowed) {
             #{$class}__bottom {

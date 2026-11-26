@@ -54,7 +54,8 @@
     "label_to-main-menu": "В главное меню"
   },
   "mini-toc": {
-    "title": "В этой статье",
+    "title": "Содержание",
+    "annotation": "Аннотация",
     "article-navigation": "Навигация по статье",
     "description": "Содержание текущей статьи"
   },

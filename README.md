@@ -18,7 +18,7 @@
 
 `npm i @diplodoc/components`
 
-Components 6 uses Gravity UI UIKit 8 and Page Constructor 9 and requires React 18 or 19. See Page Constructor’s peer dependencies for the required React version.
+Components 6 uses Gravity UI UIKit 8 and Page Constructor 9 and requires React 18. The development setup uses React 18.3.1.
 
 ## Usage
 

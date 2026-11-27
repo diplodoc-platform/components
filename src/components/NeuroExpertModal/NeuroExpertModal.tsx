@@ -22,6 +22,8 @@ const IFRAME_ACTION_MAP: Record<string, string> = {
 export interface NeuroExpertModalProps {
     open: boolean;
     query: string;
+    /** Create a chat on load so the input is available without an initial query. */
+    createChatOnInit?: boolean;
     projectId: string;
     onClose: () => void;
 }
@@ -37,17 +39,14 @@ const HeaderCaption = () => {
     );
 };
 
-export const NeuroExpertModal: FC<NeuroExpertModalProps> = ({open, query, projectId, onClose}) => {
+type NeuroExpertDialogProps = Pick<NeuroExpertModalProps, 'open' | 'query' | 'onClose'> & {
+    iframeSrc: string;
+};
+
+const NeuroExpertDialog: FC<NeuroExpertDialogProps> = ({open, query, onClose, iframeSrc}) => {
     const analytics = useAnalytics();
     const [loaded, setLoaded] = useState<boolean>(false);
     const iframeRef = useRef<HTMLIFrameElement>(null);
-    const iframeSrc = `${IFRAME_BASE_URL}/${projectId}/iframe`;
-
-    const restoreBodyScroll = useCallback(() => {
-        document.body.style.removeProperty('overflow');
-        document.body.style.removeProperty('padding-right');
-        document.body.style.removeProperty('--floating-ui-scrollbar-width');
-    }, []);
 
     const trackAction = useCallback(
         (action: string) => {
@@ -89,7 +88,7 @@ export const NeuroExpertModal: FC<NeuroExpertModalProps> = ({open, query, projec
     }, [open, trackAction]);
 
     useEffect(() => {
-        if (!open || !loaded) {
+        if (!open || !loaded || !query) {
             return;
         }
 
@@ -107,7 +106,7 @@ export const NeuroExpertModal: FC<NeuroExpertModalProps> = ({open, query, projec
             keepMounted={loaded}
             className={b()}
             modalClassName={b('modal')}
-            onTransitionOutComplete={restoreBodyScroll}
+            disableBodyScrollLock={!open}
         >
             <Dialog.Header className={b('header')} caption={<HeaderCaption />} />
             <Dialog.Body className={b('body')}>
@@ -126,5 +125,35 @@ export const NeuroExpertModal: FC<NeuroExpertModalProps> = ({open, query, projec
                 )}
             </Dialog.Body>
         </Dialog>
+    );
+};
+
+export const NeuroExpertModal: FC<NeuroExpertModalProps> = ({
+    open,
+    query,
+    projectId,
+    createChatOnInit = false,
+    onClose,
+}) => {
+    const [request, setRequest] = useState({projectId, open, query, shouldSendQuery: true});
+    const projectChanged = projectId !== request.projectId;
+    const requestChanged = open !== request.open || query !== request.query;
+    // A project switch alone must not replay the previous question.
+    const shouldSendQuery = requestChanged || (!projectChanged && request.shouldSendQuery);
+    if (projectChanged || requestChanged) {
+        setRequest({projectId, open, query, shouldSendQuery});
+    }
+
+    const iframeSrc = `${IFRAME_BASE_URL}/${projectId}/iframe${createChatOnInit ? '?createChatOnInit=true' : ''}`;
+
+    // Wait for chat-mounted again when the iframe loads a different chat.
+    return (
+        <NeuroExpertDialog
+            key={iframeSrc}
+            iframeSrc={iframeSrc}
+            open={open}
+            query={shouldSendQuery ? query : ''}
+            onClose={onClose}
+        />
     );
 };

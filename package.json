@@ -75,11 +75,11 @@
   },
   "dependencies": {
     "@diplodoc/themes": "^1.2.0",
-    "@gravity-ui/components": "^4.16.0",
+    "@gravity-ui/components": "^5.0.0",
     "@gravity-ui/icons": "^2.5.0",
-    "@gravity-ui/navigation": "^6.1.2",
-    "@gravity-ui/page-constructor": "^8.21.1",
-    "@gravity-ui/uikit": "^7.26.0",
+    "@gravity-ui/navigation": "^8.0.0",
+    "@gravity-ui/page-constructor": "^9.0.0",
+    "@gravity-ui/uikit": "^8.0.0",
     "bem-cn-lite": "4.1.0",
     "clsx": "^2.1.1",
     "hoist-non-react-statics": "^3.3.2",
@@ -96,12 +96,12 @@
     "url": "^0.11.1"
   },
   "peerDependencies": {
-    "react": ">=16.14.0 || >=17.0.0 || >=18.0.0 || >=19.0.0",
-    "react-dom": ">=16.14.0 || >=17.0.0 || >=18.0.0 || >=19.0.0"
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
   },
   "devDependencies": {
     "@diplodoc/infra": "2.4.0",
-    "@diplodoc/transform": "^4.78.12",
+    "@diplodoc/transform": "^5.0.0",
     "@playwright/test": "^1.60.0",
     "@storybook/react-vite": "^10.4.6",
     "@types/hoist-non-react-statics": "^3.3.6",
@@ -122,6 +122,7 @@
     "react-dom": "^19.2.7",
     "sass": "^1.80.6",
     "storybook": "^10.4.6",
+    "tslib": "^2.9.1",
     "typescript": "6.0.3",
     "vite": "^8.1.4",
     "vite-plugin-svgr": "^5.2.0"

@@ -31,9 +31,13 @@ const Details: React.FC<DetailsProps> = (props) => {
 
     return (
         <Popup
-            anchorRef={ref}
+            anchorElement={ref.current}
             open={isVisiblePopup}
-            onOutsideClick={() => changeVisiblilityPopup(false)}
+            onOpenChange={(open, _event, reason) => {
+                if (!open && reason === 'outside-press') {
+                    changeVisiblilityPopup(false);
+                }
+            }}
             className={b('popup')}
             placement={PopperPosition.BOTTOM}
             hasArrow={true}

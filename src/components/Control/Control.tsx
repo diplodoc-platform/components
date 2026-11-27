@@ -1,4 +1,3 @@
-import type {ButtonProps} from '@gravity-ui/uikit';
 import type {PopperPosition} from '../../constants';
 
 import React, {forwardRef, useCallback, useImperativeHandle, useRef} from 'react';
@@ -32,7 +31,9 @@ export interface ControlProps {
     size?: ControlSizes;
     icon: React.FC<IconProps>;
     popupPosition?: PopperPosition;
-    buttonExtraProps?: ButtonProps['extraProps'];
+    buttonExtraProps?:
+        | React.ButtonHTMLAttributes<HTMLButtonElement>
+        | React.AnchorHTMLAttributes<HTMLAnchorElement>;
 }
 
 const ICONS_SIZES = {

@@ -2,7 +2,8 @@ import type {AvailableLangs, ExtendedLang, Lang, LangOptions, ListItem} from '..
 
 import {useCallback, useContext, useMemo, useRef} from 'react';
 import {Globe} from '@gravity-ui/icons';
-import {List, Popover} from '@gravity-ui/uikit';
+import {Popover} from '@gravity-ui/uikit';
+import {List as LegacyList} from '@gravity-ui/uikit/legacy';
 import block from 'bem-cn-lite';
 import allLangs from 'langs';
 
@@ -137,7 +138,7 @@ const LangControl = (props: ControlProps) => {
             modal={false}
             content={
                 <div className={b('popup', {tooltip: true, 'tooltip-content': true})}>
-                    <List
+                    <LegacyList
                         role={'list'}
                         filterable={false}
                         className={b('list')}

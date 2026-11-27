@@ -21,9 +21,13 @@ const SubscribeSuccessPopup = memo<{
 
     return (
         <Popup
-            anchorRef={anchor}
+            anchorElement={anchor.current}
             open={true}
-            onOutsideClick={onOutsideClick}
+            onOpenChange={(open, _event, reason) => {
+                if (!open && reason === 'outside-press') {
+                    onOutsideClick();
+                }
+            }}
             className={b('success-popup', {view})}
             placement={getSubscribePopupPosition(isVerticalView, view, direction)}
             strategy="fixed"

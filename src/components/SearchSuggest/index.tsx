@@ -1,7 +1,7 @@
 import type {KeyboardEvent, MouseEventHandler, SyntheticEvent} from 'react';
 import type {ISearchProvider} from '../../models';
 import type {SearchSuggestItem, SearchSuggestLinkableItem} from './types';
-import type {List} from '@gravity-ui/uikit';
+import type {List as LegacyList} from '@gravity-ui/uikit/legacy';
 
 import React, {
     forwardRef,
@@ -105,7 +105,7 @@ export const SearchSuggest = forwardRef<SearchSuggestApi, SearchSuggestProps>((p
     const analytics = useAnalytics();
     const href = useRef<HTMLAnchorElement>(null);
     const input = useRef<HTMLElement>(null);
-    const suggest = useRef<List<SearchSuggestItem>>(null);
+    const suggest = useRef<LegacyList<SearchSuggestItem>>(null);
     const id = useMemo(uniqueId, []);
     const [query, setQuery] = useState('');
     const [active, setActive] = useState<undefined | number>(undefined);
@@ -236,11 +236,16 @@ export const SearchSuggest = forwardRef<SearchSuggestApi, SearchSuggestProps>((p
             {input.current && (
                 <Popup
                     open={Boolean(query && focused)}
-                    onOutsideClick={onOutsideClick}
+                    onOpenChange={(open, _event, reason) => {
+                        if (!open && reason === 'outside-press') {
+                            onOutsideClick();
+                        }
+                    }}
                     id={`dc-popup-${id}`}
                     className={b('popup')}
-                    style={{width: box.width, zIndex: 1002}}
-                    anchorRef={box}
+                    style={{width: box.width}}
+                    zIndex={1002}
+                    anchorElement={input.current}
                     strategy="fixed"
                 >
                     <Suggest

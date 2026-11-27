@@ -101,7 +101,11 @@ const NeuroExpertDialog: FC<NeuroExpertDialogProps> = ({open, query, onClose, if
     return (
         <Dialog
             open={open}
-            onClose={onClose}
+            onOpenChange={(nextOpen) => {
+                if (!nextOpen) {
+                    onClose();
+                }
+            }}
             hasCloseButton
             keepMounted={loaded}
             className={b()}

@@ -3,7 +3,8 @@ import type {SubscribeData} from '../../../models';
 import type {SubscribeView} from '../Subscribe';
 
 import React, {memo, useCallback, useContext, useState} from 'react';
-import {Button, Checkbox, List, Popup, TextInput, useDirection} from '@gravity-ui/uikit';
+import {Button, Checkbox, Popup, TextInput, useDirection} from '@gravity-ui/uikit';
+import {List as LegacyList} from '@gravity-ui/uikit/legacy';
 import block from 'bem-cn-lite';
 
 import {useTranslation} from '../../../hooks';
@@ -91,7 +92,7 @@ const SubscribeVariantsPopup = memo<{
         const selectedItemIndex = ITEMS.findIndex(({value}) => value === subscribeSelectors);
 
         return (
-            <List
+            <LegacyList
                 filterable={false}
                 items={ITEMS}
                 onItemClick={(item) => setSubscribeSelectors(item.value as SubscribeType)}
@@ -110,7 +111,8 @@ const SubscribeVariantsPopup = memo<{
                     <TextInput
                         size="l"
                         placeholder={t('subscribe-documentation-placeholder')}
-                        error={showError || undefined}
+                        validationState={showError ? 'invalid' : undefined}
+                        errorMessage={showError || undefined}
                         value={email}
                         onUpdate={setEmail}
                     />
@@ -137,9 +139,13 @@ const SubscribeVariantsPopup = memo<{
 
     return (
         <Popup
-            anchorRef={anchor}
+            anchorElement={anchor.current}
             open={true}
-            onOutsideClick={onOutsideClick}
+            onOpenChange={(open, _event, reason) => {
+                if (!open && reason === 'outside-press') {
+                    onOutsideClick();
+                }
+            }}
             className={b('variants-popup', {view})}
             placement={getSubscribePopupPosition(isVerticalView, view, direction)}
             strategy="fixed"

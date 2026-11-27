@@ -18,16 +18,18 @@
 
 `npm i @diplodoc/components`
 
+Components 6 uses Gravity UI UIKit 8 and Page Constructor 9 and requires React 18 or 19. See Page Constructor’s peer dependencies for the required React version.
+
 ## Usage
 
 Append js
 
 ```js
 // In most cases append transform runtime
-import "@doc-tools/transform/dist/js/yfm.js";
+import '@diplodoc/transform/dist/js/yfm.js';
 
 import {createRoot} from 'react-dom/client';
-import {ThemeProvider} from '@gravity-ui/uikit';
+import {Provider} from '@gravity-ui/uikit';
 
 // configure components
 import {configure as configureUikit} from '@gravity-ui/uikit';
@@ -42,12 +44,12 @@ configureDocs({
     loc: {ru, en, tr, ...}
 })
 
-// The theme must be applied. To do that wrap your app in ThemeProvider
+// Wrap your app in the UIKit Provider to apply the theme.
 const root = createRoot(document.getElementById('root'));
 root.render(
-    <ThemeProvider theme="light">
+    <Provider theme="light">
         <App />
-    </ThemeProvider>,
+    </Provider>,
 );
 ```
 
@@ -63,7 +65,7 @@ Append css
 @import '@diplodoc/components/themes/common';
 
 /*In most cases append transform styles*/
-@import '@doc-tools/transform/dist/css/yfm.css';
+@import '@diplodoc/transform/dist/css/yfm.css';
 ```
 
 ## Development

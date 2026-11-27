@@ -134,7 +134,7 @@ export const TocItem: React.FC<TocItemProps> = React.forwardRef(
                             className={b('arrow')}
                             view={'flat'}
                             onClick={handleArrowClick}
-                            extraProps={allyButtonProps}
+                            {...allyButtonProps}
                             ref={ref}
                         >
                             <Button.Icon>{icon}</Button.Icon>

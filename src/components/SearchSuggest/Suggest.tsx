@@ -1,10 +1,11 @@
 import type {ReactNode} from 'react';
 import type {ISearchProvider} from '../../models';
 import type {SearchSuggestActionItem, SearchSuggestItem} from './types';
-import type {ListItemData} from '@gravity-ui/uikit';
+import type {ListItemData} from '@gravity-ui/uikit/legacy';
 
 import {forwardRef, memo, useEffect} from 'react';
-import {List, Loader} from '@gravity-ui/uikit';
+import {Loader} from '@gravity-ui/uikit';
+import {List as LegacyList} from '@gravity-ui/uikit/legacy';
 import block from 'bem-cn-lite';
 import pick from 'lodash/pick';
 
@@ -51,11 +52,11 @@ type SuggestListProps = {
 };
 
 const SuggestList = memo(
-    forwardRef<List<SearchSuggestItem>, SuggestListProps>((props, ref) => {
+    forwardRef<LegacyList<SearchSuggestItem>, SuggestListProps>((props, ref) => {
         const {id, items, renderItem, onItemClick, onChangeActive, activeItemIndex} = props;
 
         return (
-            <List
+            <LegacyList
                 ref={ref}
                 id={id}
                 className={b('list')}
@@ -84,7 +85,7 @@ type SuggestProps = {
 } & Omit<SuggestListProps, 'items'>;
 
 export const Suggest = memo(
-    forwardRef<List<SearchSuggestItem>, SuggestProps>((props, ref) => {
+    forwardRef<LegacyList<SearchSuggestItem>, SuggestProps>((props, ref) => {
         const {query, provider, withAllResults = true, emptyState, prependItems} = props;
         const [items, suggest] = useProvider(provider, {withAllResults});
 

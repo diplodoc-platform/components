@@ -1,9 +1,10 @@
-import type {DropdownMenuItem} from '@gravity-ui/uikit';
+import type {DropdownMenuItem} from '@gravity-ui/uikit/legacy';
 import type {MarkdownActionsMode} from '../../../contexts/InterfaceContext';
 
 import React, {useCallback, useContext, useEffect, useMemo, useRef, useState} from 'react';
 import {Copy, LogoMarkdown, SquareCheck} from '@gravity-ui/icons';
-import {ActionTooltip, Button, DropdownMenu, Icon} from '@gravity-ui/uikit';
+import {ActionTooltip, Button, Icon} from '@gravity-ui/uikit';
+import {DropdownMenu} from '@gravity-ui/uikit/legacy';
 
 import {useTranslation} from '../../../hooks';
 import {CommonAnalyticsEvent, useAnalytics} from '../../../shared/libs/analytics';

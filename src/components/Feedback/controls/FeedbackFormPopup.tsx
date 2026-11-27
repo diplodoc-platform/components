@@ -1,4 +1,4 @@
-import type {RefObject, SyntheticEvent} from 'react';
+import type {SyntheticEvent} from 'react';
 
 import React, {
     forwardRef,
@@ -123,7 +123,7 @@ export type FormData = {
 type FeedbackFormPopupProps = {
     view: FeedbackView;
     visible: boolean;
-    anchor: RefObject<HTMLButtonElement | null>;
+    anchor: HTMLButtonElement;
     titleKey: string;
     placeholderKey?: string;
     showVariants?: boolean;
@@ -174,9 +174,13 @@ const FeedbackFormPopup: React.FC<FeedbackFormPopupProps> = memo(
 
         return (
             <Popup
-                anchorElement={anchor.current}
+                anchorElement={anchor}
                 open={visible}
-                onOutsideClick={onOutsideClick}
+                onOpenChange={(open, _event, reason) => {
+                    if (!open && reason === 'outside-press') {
+                        onOutsideClick();
+                    }
+                }}
                 className={b('variants-popup', {view})}
                 placement={position}
                 offset={{mainAxis: 1, crossAxis: 0}}

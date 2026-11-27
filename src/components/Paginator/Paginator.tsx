@@ -148,9 +148,7 @@ const Paginator = ({
                 size="s"
                 view={'flat'}
                 disabled={disable}
-                extraProps={{
-                    'aria-label': label,
-                }}
+                aria-label={label}
             >
                 <Button.Icon>
                     <Icon width={16} height={16} />

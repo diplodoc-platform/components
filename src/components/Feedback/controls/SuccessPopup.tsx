@@ -1,5 +1,3 @@
-import type {RefObject} from 'react';
-
 import {memo, useContext, useMemo} from 'react';
 import {Popup, useDirection} from '@gravity-ui/uikit';
 import block from 'bem-cn-lite';
@@ -13,7 +11,7 @@ import {FeedbackView} from '../Feedback';
 type SuccessPopupProps = {
     view: FeedbackView;
     visible: boolean;
-    anchor: RefObject<HTMLButtonElement | null>;
+    anchor: HTMLButtonElement;
     onOutsideClick: () => void;
 };
 
@@ -34,9 +32,13 @@ const SuccessPopup = memo<SuccessPopupProps>(({visible, anchor, onOutsideClick, 
 
     return (
         <Popup
-            anchorRef={anchor}
+            anchorElement={anchor}
             open={visible}
-            onOutsideClick={onOutsideClick}
+            onOpenChange={(open, _event, reason) => {
+                if (!open && reason === 'outside-press') {
+                    onOutsideClick();
+                }
+            }}
             className={b('success-popup', {view})}
             placement={position}
             offset={{mainAxis: 1, crossAxis: 0}}

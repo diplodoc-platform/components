@@ -43,7 +43,7 @@ const ContributorAvatars: React.FC<ContributorAvatarsProps> = (props) => {
             <Link
                 key={`displayed-contributors-${login || email}`}
                 href={url}
-                extraProps={{tabIndex: contributor.avatar ? undefined : -1}} // as Avatar component may be button
+                tabIndex={contributor.avatar ? undefined : -1} // as Avatar component may be button
                 {...(contributor.enableDataStaffLogin && login ? {'data-staff': login} : {})}
             >
                 <AvatarWithDescription contributor={contributor} avatarSize={AvatarSizes.SMALL} />
@@ -101,7 +101,7 @@ function getRedirectingAvatar(avatarData: AvatarData, url: string, isRedirect = 
     return (
         <Link
             href={url}
-            extraProps={{tabIndex: avatarData.contributor.avatar ? undefined : -1}}
+            tabIndex={avatarData.contributor.avatar ? undefined : -1}
             {...enableStaffLogin}
         >
             <Avatar avatarData={avatarData} isRedirect={isRedirect} />

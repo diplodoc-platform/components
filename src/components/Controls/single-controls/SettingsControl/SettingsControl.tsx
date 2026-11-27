@@ -2,7 +2,8 @@ import type {ReactElement} from 'react';
 
 import {useCallback, useContext, useRef} from 'react';
 import {Gear} from '@gravity-ui/icons';
-import {Button, List, Popover, Switch, useDirection} from '@gravity-ui/uikit';
+import {Button, Popover, Switch, useDirection} from '@gravity-ui/uikit';
+import {List as LegacyList} from '@gravity-ui/uikit/legacy';
 import cn from 'bem-cn-lite';
 
 import {usePopupState, useTranslation} from '../../../../hooks';
@@ -216,7 +217,7 @@ const SettingsControl = (props: ControlProps) => {
             returnFocus={true}
             content={
                 <div className={b('popup', {tooltip: true, 'tooltip-content': true})}>
-                    <List
+                    <LegacyList
                         role={'list'}
                         items={settingsItems}
                         className={b('list')}

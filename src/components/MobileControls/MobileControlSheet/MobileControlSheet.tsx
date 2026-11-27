@@ -1,7 +1,8 @@
 import type {AvailableLangs, Lang, LangOptions, ListItem} from '../../../models';
 
 import {memo, useCallback} from 'react';
-import {List, Sheet} from '@gravity-ui/uikit';
+import {Sheet} from '@gravity-ui/uikit';
+import {List as LegacyList} from '@gravity-ui/uikit/legacy';
 import block from 'bem-cn-lite';
 
 import {getItemHeight, getItemsHeight} from '../../../utils';
@@ -57,8 +58,17 @@ const MobileControlSheet = memo(
         );
 
         return (
-            <Sheet title={title} className={b()} visible={isVisible} onClose={onClose}>
-                <List
+            <Sheet
+                title={title}
+                className={b()}
+                open={isVisible}
+                onOpenChange={(open) => {
+                    if (!open) {
+                        onClose();
+                    }
+                }}
+            >
+                <LegacyList
                     role={'list'}
                     className={b('list')}
                     filterable={false}

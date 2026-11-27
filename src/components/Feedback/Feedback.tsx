@@ -2,7 +2,7 @@ import type {PropsWithChildren} from 'react';
 import type {FeedbackSendData} from '../../models';
 import type {FormData} from './controls/FeedbackFormPopup';
 
-import React, {useCallback, useContext, useEffect, useRef, useState} from 'react';
+import React, {useCallback, useContext, useEffect, useState} from 'react';
 import block from 'bem-cn-lite';
 
 import {InterfaceContext} from '../../contexts/InterfaceContext';
@@ -73,9 +73,9 @@ const Feedback: React.FC<FeedbackProps> = (props) => {
         showComment,
     } = props;
     const analytics = useAnalytics();
-    const likeControlRef = useRef<HTMLButtonElement | null>(null);
-    const dislikeControlRef = useRef<HTMLButtonElement | null>(null);
-    const feedbackControlRef = useRef<HTMLButtonElement | null>(null);
+    const [likeAnchor, setLikeAnchor] = useState<HTMLButtonElement | null>(null);
+    const [dislikeAnchor, setDislikeAnchor] = useState<HTMLButtonElement | null>(null);
+    const [feedbackAnchor, setFeedbackAnchor] = useState<HTMLButtonElement | null>(null);
 
     const [innerState, setInnerState] = useState<FeedbackType>(getInnerState(isLiked, isDisliked));
     useEffect(() => {
@@ -178,14 +178,14 @@ const Feedback: React.FC<FeedbackProps> = (props) => {
         <React.Fragment>
             <ControlsLayout view={view}>
                 <LikeControl
-                    ref={likeControlRef}
+                    ref={setLikeAnchor}
                     view={view}
                     onClick={onChangeLike}
                     isLiked={innerState === FeedbackType.like}
                     isPopupVisible={likeSuccessPopup.visible}
                 />
                 <DislikeControl
-                    ref={dislikeControlRef}
+                    ref={setDislikeAnchor}
                     view={view}
                     onClick={onChangeDislike}
                     isDisliked={innerState === FeedbackType.dislike}
@@ -195,39 +195,39 @@ const Feedback: React.FC<FeedbackProps> = (props) => {
                     (view === FeedbackView.Wide ? (
                         <div className={b('comment-row')}>
                             <FeedbackControl
-                                ref={feedbackControlRef}
+                                ref={setFeedbackAnchor}
                                 view={view}
                                 onClick={onClickFeedback}
                             />
                         </div>
                     ) : (
                         <FeedbackControl
-                            ref={feedbackControlRef}
+                            ref={setFeedbackAnchor}
                             view={view}
                             onClick={onClickFeedback}
                         />
                     ))}
             </ControlsLayout>
-            {likeControlRef.current && (
+            {likeAnchor && (
                 <SuccessPopup
                     visible={likeSuccessPopup.visible}
-                    anchor={likeControlRef}
+                    anchor={likeAnchor}
                     view={view}
                     onOutsideClick={hideFeedbackPopups}
                 />
             )}
-            {dislikeControlRef.current && (
+            {dislikeAnchor && (
                 <SuccessPopup
                     visible={dislikeSuccessPopup.visible}
-                    anchor={dislikeControlRef}
+                    anchor={dislikeAnchor}
                     view={view}
                     onOutsideClick={hideFeedbackPopups}
                 />
             )}
-            {dislikeControlRef.current && (
+            {dislikeAnchor && (
                 <FeedbackFormPopup
                     visible={dislikeVariantsPopup.visible}
-                    anchor={dislikeControlRef}
+                    anchor={dislikeAnchor}
                     view={view}
                     titleKey="dislike-variants-title"
                     showVariants
@@ -235,18 +235,18 @@ const Feedback: React.FC<FeedbackProps> = (props) => {
                     onOutsideClick={hideFeedbackPopups}
                 />
             )}
-            {isCommentEnabled && feedbackControlRef.current && (
+            {isCommentEnabled && feedbackAnchor && (
                 <SuccessPopup
                     visible={commentSuccessPopup.visible}
-                    anchor={feedbackControlRef}
+                    anchor={feedbackAnchor}
                     view={view}
                     onOutsideClick={hideFeedbackPopups}
                 />
             )}
-            {isCommentEnabled && feedbackControlRef.current && (
+            {isCommentEnabled && feedbackAnchor && (
                 <FeedbackFormPopup
                     visible={commentFormPopup.visible}
-                    anchor={feedbackControlRef}
+                    anchor={feedbackAnchor}
                     view={view}
                     titleKey="comment-form-title"
                     placeholderKey="comment-form-placeholder"

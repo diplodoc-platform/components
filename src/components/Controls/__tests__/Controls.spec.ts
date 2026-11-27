@@ -42,7 +42,7 @@ test.describe('Controls test', () => {
         });
 
         const controls = page.locator('.dc-controls');
-        const markdownMenu = controls.locator('.g-dropdown-menu__switcher-wrapper');
+        const markdownMenu = controls.getByRole('button', {name: 'Markdown actions'});
 
         await expect(markdownMenu).toHaveCount(1);
         await markdownMenu.click();

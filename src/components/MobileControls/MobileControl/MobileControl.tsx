@@ -76,7 +76,7 @@ const MobileControl = memo(
                         {buttonLabel ?? labelText}
                     </div>
                     {!disabled && (
-                        <Button.Icon className={b('arrow')} side={'right'}>
+                        <Button.Icon className={b('arrow')} side="end">
                             <ChevronDown width={16} height={16} />
                         </Button.Icon>
                     )}

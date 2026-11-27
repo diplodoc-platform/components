@@ -228,7 +228,7 @@
     // popup renders via portal outside .dc-search-suggest,
     // so these selectors must not have it as an ancestor
     @at-root {
-        .g-list__item_active #{$block}__item-hint,
+        .g-list-legacy__item_active #{$block}__item-hint,
         #{$block}__item:hover #{$block}__item-hint,
         #{$block}__item:focus-within #{$block}__item-hint {
             opacity: 1;

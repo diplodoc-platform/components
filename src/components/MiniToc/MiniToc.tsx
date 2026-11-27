@@ -78,7 +78,7 @@ const MiniToc: FC<MiniTocProps> = ({headings, activeHeading, summary, onItemClic
         <nav className={b({'summary-only': !hasSections})} aria-label={t('article-navigation')}>
             {summary && (
                 <h2 className={b('title', {summary: true})}>
-                    {t('annotation', {defaultValue: 'Annotation'})}:
+                    {t('annotation', {defaultValue: 'Summary'})}:
                 </h2>
             )}
             <Summary summary={summary} />

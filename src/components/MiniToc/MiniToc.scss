@@ -75,6 +75,7 @@
         &-link {
             display: flex;
             align-items: center;
+            box-sizing: border-box;
             padding: 6px 6px 6px 12px;
             min-height: 28px;
 
@@ -127,7 +128,6 @@
 
         &__section {
             &-link {
-                box-sizing: border-box;
                 padding: 8px 12px 8px 28px;
             }
 

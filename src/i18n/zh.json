@@ -54,6 +54,7 @@
     "label_to-main-menu": "返回主菜单"
   },
   "mini-toc": {
+    "annotation": "摘要",
     "title": "在这篇文章中",
     "article-navigation": "文章导航",
     "description": "当前文章的内容"

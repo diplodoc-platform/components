@@ -21,6 +21,11 @@
 
     .dc-summary {
         flex-shrink: 0;
+        margin-bottom: 20px;
+
+        &__text {
+            color: var(--g-color-text-primary);
+        }
     }
 
     &_summary-only {
@@ -41,6 +46,10 @@
         margin-top: 0;
 
         @include mixins.text-size(body-2);
+
+        &_summary {
+            margin-bottom: 4px;
+        }
     }
 
     &__sections {
@@ -66,6 +75,7 @@
         &-link {
             display: flex;
             align-items: center;
+            box-sizing: border-box;
             padding: 6px 6px 6px 12px;
             min-height: 28px;
 
@@ -109,10 +119,6 @@
         );
         padding: variables.$miniTocVerticalPadding 8px variables.$miniTocVerticalPadding 20px;
 
-        &__title {
-            margin-bottom: variables.$miniTocTitleMargin;
-        }
-
         &:has(&_overflowed) {
             #{$class}__bottom {
                 display: block;
@@ -122,7 +128,6 @@
 
         &__section {
             &-link {
-                box-sizing: border-box;
                 padding: 8px 12px 8px 28px;
             }
 

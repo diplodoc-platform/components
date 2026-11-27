@@ -76,8 +76,13 @@ const MiniToc: FC<MiniTocProps> = ({headings, activeHeading, summary, onItemClic
 
     return hasSections || summary ? (
         <nav className={b({'summary-only': !hasSections})} aria-label={t('article-navigation')}>
-            <h2 className={b('title')}>{t('title')}:</h2>
+            {summary && (
+                <h2 className={b('title', {summary: true})}>
+                    {t('annotation', {defaultValue: 'Summary'})}:
+                </h2>
+            )}
             <Summary summary={summary} />
+            {hasSections && <h2 className={b('title')}>{t('title')}:</h2>}
             {hasSections && (
                 <ul
                     className={clsx(b('sections'), isOverflown && overflownClassName)}

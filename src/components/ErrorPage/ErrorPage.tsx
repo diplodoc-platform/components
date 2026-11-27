@@ -64,7 +64,7 @@ const ErrorPage: React.FC<ErrorPageProps> = ({
             description = (
                 <React.Fragment>
                     {links && links.length > 0 && (
-                        <div className={b('subtext')}>
+                        <span className={b('subtext')}>
                             {links
                                 .filter((link) => link.code && SUPPORTED_LANGS.includes(link.code))
                                 .map((link) => (
@@ -74,9 +74,9 @@ const ErrorPage: React.FC<ErrorPageProps> = ({
                                         </Button>
                                     </Link>
                                 ))}
-                        </div>
+                        </span>
                     )}
-                    <div>{homeLink}</div>
+                    <span>{homeLink}</span>
                 </React.Fragment>
             );
             break;

@@ -3,7 +3,7 @@ import block from 'bem-cn-lite';
 
 import {getConfig} from '../../config';
 import {useTranslation} from '../../hooks';
-import {format} from '../../utils/date';
+import {formatArticleDate} from '../../utils/date';
 
 import './UpdatedAtDate.scss';
 
@@ -19,7 +19,7 @@ const UpdatedAtDate: React.FC<UpdatedAtDateProps> = ({updatedAt, hasAuthor}) => 
 
     const updatedAtFormatted = useMemo(() => {
         const {localeCode} = getConfig();
-        return format(updatedAt, 'longDate', localeCode);
+        return formatArticleDate(updatedAt, localeCode);
     }, [updatedAt]);
 
     const titleKey = hasAuthor ? 'title' : 'no-author-title';

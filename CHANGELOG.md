@@ -1,5 +1,12 @@
 # История изменений
 
+## [5.24.6](https://github.com/diplodoc-platform/components/compare/v5.24.5...v5.24.6) (2026-11-27)
+
+
+### Bug Fixes
+
+* support opening an empty NeuroExpert chat #DOCSTOOLS-7123 ([a642c9b](https://github.com/diplodoc-platform/components/commit/a642c9ba8bf10109f62233aee3262fc0a6b3b1ca))
+
 ## [5.24.5](https://github.com/diplodoc-platform/components/compare/v5.24.4...v5.24.5) (2026-11-27)
 
 

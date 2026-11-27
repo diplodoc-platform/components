@@ -11,8 +11,10 @@ interface DateTimeFormatter {
 }
 
 const defaultRegion = 'en';
+const DATE_ONLY = /^\d{4}-\d{2}-\d{2}$/;
 
 const dateTimeFormatters: Map<string, DateTimeFormatter> = new Map();
+const moscowDateTimeFormatters = new Map<string, Intl.DateTimeFormat>();
 
 function getDateTimeFormatter(localeCode: string): DateTimeFormatter {
     if (!dateTimeFormatters.has(localeCode)) {
@@ -75,3 +77,22 @@ export const format = (
 ) => {
     return getDateTimeFormatter(localeCode)[formatCode].format(new Date(date));
 };
+
+export function formatArticleDate(date: string, localeCode = defaultRegion): string {
+    if (!DATE_ONLY.test(date)) {
+        return format(date, 'longDate', localeCode);
+    }
+
+    let formatter = moscowDateTimeFormatters.get(localeCode);
+    if (!formatter) {
+        formatter = new Intl.DateTimeFormat(localeCode, {
+            timeZone: 'Europe/Moscow',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+        });
+        moscowDateTimeFormatters.set(localeCode, formatter);
+    }
+
+    return formatter.format(new Date(date));
+}
